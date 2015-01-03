@@ -1,11 +1,11 @@
   <div class="post{% if post.class %}{{ post.class | prepend: " " }}{% endif %}">
 
-    <header class="post-header">
+    <header>
       <p class="date">{{ post.date | date: "%B %-d, %Y" }}</p>
       <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
     </header>
 
-    <article class="post-content">
+    <article>
     {{ content }}
     </article>
 
@@ -13,7 +13,7 @@
       <span class="tags">
       <span class="glyphicon glyphicon-tag"></span>
       {% for tag in post.tags %}
-      <a href="{{ site.baseurl }}/blog/tags/{{ tag }}">{{ tag }}</a>
+      <a href="{{ site.baseurl }}/news/tags/{{ tag }}">{{ tag }}</a>
       {% endfor %}
       </span>
     </p>

@@ -77,7 +77,7 @@ body {
 body.home {
     #header {
         height: 235px;
- 
+        
         h1 {
             font-size: 60px;
             font-weight: normal;
@@ -217,10 +217,8 @@ body.home {
     
 }
 
-h2 {
-    font-weight: 700;
-    margin: 35px 0;
-}
+h2 { font-weight: 700; margin: 35px 0; }
+.p-news h2 { font-weight: 600; }
 
 .content {
     margin: 0 0 50px;
@@ -358,58 +356,73 @@ h2 {
             }
         }
     }
+}
+
+.posts {
+    line-height: 23px;
     
-    .posts {
-        line-height: 23px;
-        
-        .post { margin-bottom: 70px; }
-        
+    .post { margin: 35px 0 70px; }
+    
+    h1 { 
+        font-size: 36px; font-weight: 500; margin: 0; 
+        a {
+            color: #000;
+        }
+    }
+    h2 { font-size: 22px; font-weight: 600; margin: 20px 0 7px; }
+    h3 { font-size: 17px; font-weight: 600; margin: 0; }
+    header {
+        margin: 0 0 15px;
+    }
+    .date {
+        color: @content-light;
+        margin: 0 0 5px;
+    }
+    p {
+        margin: 0 0 15px;
+    }
+    .release {
         h1 { 
-            font-size: 36px; font-weight: 500; margin: 0; 
-            a {
-                color: #000;
-            }
+            display: inline-block;
+            font-size: 17px; 
+            margin-left: 5px;
         }
-        h2 { font-size: 22px; font-weight: 600; margin: 20px 0 7px; }
-        h3 { font-size: 17px; font-weight: 600; margin: 0; }
-        header {
-            margin: 0 0 15px;
+        .date { display: inline; }
+    }
+    .tags { 
+        font-size: 0.85em; 
+        a {
+            display: inline-block;
+            margin-left: 3px;
         }
-        .date {
-            color: @content-light;
-            margin: 0 0 5px;
+        .glyphicon {
+            color: #bbb;
+            font-size: 13px;
+            position: relative;
+            top: 3px;
         }
-        p {
-            margin: 0 0 15px;
-        }
-        .release {
-            h1 { 
-                display: inline-block;
-                font-size: 17px; 
-                margin-left: 5px;
-            }
-            .date { display: inline; }
-        }
-        .tags { 
-            font-size: 0.85em; 
-            a {
-                display: inline-block;
-                margin-left: 3px;
-            }
-            .glyphicon {
-                color: #bbb;
-                font-size: 13px;
-                position: relative;
-                top: 3px;
-            }
-        }
-        code { font-size: 14px; }
+    }
+    code { font-size: 14px; }
+}
+
+.postlist {
+    .Delistify;
+
+    li {
+        .Delistify;
+        margin-bottom: 10px;
+        display: block;
+    }
+    .date { 
+        color: @content-light;
+        white-space: nowrap;
     }
 }
 
 .push {
     height: 60px;
 }
+
 #footer {
     .MainBG;
 
