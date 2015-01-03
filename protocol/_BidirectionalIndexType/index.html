@@ -1,0 +1,46 @@
+---
+layout: default
+title: "_BidirectionalIndexType"
+description: "Swift documentation for '_BidirectionalIndexType': This protocol is an implementation detail of BidirectionalIndexType; do
+not use it directly."
+keywords: "_BidirectionalIndexType,protocol,swift,documentation,predecessor"
+---
+
+<code class="language-swift">protocol _BidirectionalIndexType { ... }</code>
+
+<div class="comment">
+    <p>This protocol is an implementation detail of <code>BidirectionalIndexType</code>; do
+not use it directly.</p>
+
+<p>Its requirements are inherited by <code>BidirectionalIndexType</code> and thus must
+be satisfied by types conforming to that protocol.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">_ForwardIndexType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func predecessor() -> Self</code>
+<div class="comment">
+    <p>Return the previous consecutive value in a discrete sequence.</p>
+
+<p>If <code>self</code> has a well-defined successor,
+<code>self.successor().predecessor() == self</code>.  If <code>self</code> has a
+well-defined predecessor, <code>self.predecessor().successor() ==
+self</code>.</p>
+
+<p>Requires: <code>self</code> has a well-defined predecessor.</p>
+</div>
+</div>
+
+
+

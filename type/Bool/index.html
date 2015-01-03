@@ -1,0 +1,82 @@
+---
+layout: default
+title: "Bool"
+description: "Swift documentation for 'Bool': A value type whose instances are either true or false."
+keywords: "Bool,struct,swift,documentation,getMirror,boolValue,description,hashValue"
+---
+
+<code class="language-swift">struct Bool { ... }</code>
+
+<div class="comment">
+    <p>A value type whose instances are either <code>true</code> or <code>false</code>.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">BooleanLiteralConvertible, BooleanType, Printable, Equatable, Hashable, Reflectable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init()</code>
+<div class="comment">
+    <p>Default-initialize Boolean value to <code>false</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_builtinBooleanLiteral value: Builtin.Int1)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(booleanLiteral value: Bool)</code>
+<div class="comment">
+    <p>Create an instance initialized to <code>value</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init&lt;T : BooleanType&gt;(_ value: T)</code>
+<div class="comment">
+    <p>Construct an instance representing the same logical value as
+<code>value</code></p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var boolValue: Bool { get }</code>
+<div class="comment">
+    <p>Identical to <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var description: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var hashValue: Int { get }</code>
+<div class="comment">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code></p>
+
+<p><strong>Note:</strong> the hash value is not guaranteed to be stable across
+different invocations of the same program.  Do not persist the
+hash value across program runs.</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func getMirror() -> MirrorType</code>
+<div class="comment">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+</div>
+</div>
+
+
+

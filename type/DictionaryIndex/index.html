@@ -1,0 +1,57 @@
+---
+layout: default
+title: "DictionaryIndex"
+description: "Swift documentation for 'DictionaryIndex': Used to access the key-value pairs in an instance of
+Dictionary&lt;Key,Value&gt;."
+keywords: "DictionaryIndex,struct,swift,documentation,predecessor,successor,Index"
+---
+
+<code class="language-swift">struct DictionaryIndex&lt;Key : Hashable, Value&gt; { ... }</code>
+
+<div class="comment">
+    <p>Used to access the key-value pairs in an instance of
+<code>Dictionary&lt;Key,Value&gt;</code>.</p>
+
+<p>Remember that Dictionary has two subscripting interfaces:</p>
+
+<ol><li><p>Subscripting with a key, yielding an optional value:</p><p>   v = d[k]!</p></li><li><p>Subscripting with an index, yielding a key-value pair:</p><p> (k,v) = d[i]</p></li></ol>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">BidirectionalIndexType, Comparable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Index = DictionaryIndex&lt;Key, Value&gt;</code>
+<div class="comment">
+    <p>Identical to <code>self.dynamicType</code></p>
+</div>
+</div>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func predecessor() -> DictionaryIndex&lt;Key, Value&gt;</code>
+<div class="comment">
+    <p>Returns the previous consecutive value before <code>self</code>.</p>
+
+<p>Requires: the previous value is representable.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func successor() -> DictionaryIndex&lt;Key, Value&gt;</code>
+<div class="comment">
+    <p>Returns the next consecutive value after <code>self</code>.</p>
+
+<p>Requires: the next value is representable.</p>
+</div>
+</div>
+
+
+

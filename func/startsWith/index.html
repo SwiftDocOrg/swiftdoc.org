@@ -1,0 +1,23 @@
+---
+layout: default
+title: "startsWith"
+description: "Swift documentation for 'startsWith': Return true iff s begins with elements equivalent to those of
+prefix, using isEquivalent as the equivalence test.  Requires:
+isEquivalent is an equivalence relation."
+keywords: "startsWith,func,swift,documentation"
+---
+
+<div class="declaration">
+<code class="language-swift">func startsWith&lt;S0 : SequenceType, S1 : SequenceType where S0.Generator.Element == S0.Generator.Element&gt;(s: S0, prefix: S1, isEquivalent: (S0.Generator.Element, S0.Generator.Element) -&gt; Bool) -> Bool</code>
+<div class="comment">
+    <p>Return true iff <code>s</code> begins with elements equivalent to those of
+<code>prefix</code>, using <code>isEquivalent</code> as the equivalence test.  Requires:
+<code>isEquivalent</code> is an <a href="http://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func startsWith&lt;S0 : SequenceType, S1 : SequenceType where S0.Generator.Element == S0.Generator.Element, S0.Generator.Element : Equatable&gt;(s: S0, prefix: S1) -> Bool</code>
+<div class="comment">
+    <p>Return true iff the the initial elements of <code>s</code> are equal to <code>prefix</code>.</p>
+</div>
+</div>

@@ -1,0 +1,28 @@
+<p>I’m excited to announce some big changes to Swifter today. The first, as you can see from your address bar, is that the site is now SwiftDoc.org. The change in name is meant to mark the beginning of a process to give the Swift community both a more useful site and one we can all be involved with.</p>
+
+<p>To that end, I’ve put the code for the <a href="http://github.com/SwiftDocOrg/swiftdoc-parser">parser/builder that converts the Swift header file</a> into this site, and <a href="http://github.com/SwiftDocOrg/swiftdoc.org">the code to the site itself</a>, in repositories on GitHub. Moreover, the site itself is now hosted via GitHub Pages. Plans are in the making for the coming weeks that will involve, you, Gentle Reader, so watch this space.</p>
+
+<p>In addition, this release comprises the following changes:</p>
+
+<ul>
+  <li>
+    <p>Nested types are hoisted to the top-level, e.g. <a href="/type/String.Index/"><code>String.Index</code></a>.</p>
+  </li>
+  <li>
+    <p>Now includes <a href="/type/ContiguousArray/"><code>ContiguousArray</code></a>’s <code>join</code> method, due to its one-of-a-kind nested generic term. Bet you’re glad to see that one.</p>
+  </li>
+  <li>
+    <p>Two new protocols are visible: <a href="/protocol/ArrayType/"><code>ArrayType</code></a> and <a href="/protocol/_ArrayType/"><code>_ArrayType</code></a>. These are from the internal Swift header file and neither visible nor accessible to us while programming in Swift. They’re included here to connect <a href="/type/Array/"><code>Array</code></a> and <a href="/type/Array/"><code>Slice</code></a> to other protocols like <a href="/protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>.</p>
+  </li>
+  <li>
+    <p>The <a href="/type/String"><code>String</code></a> initializers that <code>import Foundation</code> adds are now listed, since Foundation is nearly always imported anyway. These initializers are marked with “<em>[Foundation]</em>”, like so:</p>
+  </li>
+</ul>
+
+<div class="declaration" style="margin-left: 40px;">
+    <code class="language-swift">init(format: String, locale: NSLocale?, _ args: CVarArgType...)</code>
+    <div class="comment">
+        <p><em>[Foundation]</em> Returns a <code>String</code> object initialized by using a given format string as a template into which the remaining argument values are substituted according to given locale information.</p>
+    </div>
+</div>
+

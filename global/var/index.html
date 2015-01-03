@@ -1,0 +1,25 @@
+---
+layout: default
+title: "Global Variables"
+description: "Documentation for global variables in the Swift language."
+---
+
+<div class="declaration">
+<code class="language-swift">var C_ARGC: CInt { get }</code>
+<div class="comment">
+    <p>Access to the raw argc value from C.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var C_ARGV: UnsafeMutablePointer&lt;UnsafeMutablePointer&lt;Int8&gt;&gt; { get }</code>
+<div class="comment">
+    <p>Access to the raw argv value from C. Accessing the argument vector
+through this pointer is unsafe.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var Process: _Process { get }</code>
+<div class="comment">
+    <p>An instance that exposes API for interaction with processes</p>
+</div>
+</div>

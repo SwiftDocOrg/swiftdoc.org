@@ -1,0 +1,82 @@
+---
+layout: default
+title: "CFunctionPointer"
+description: "Swift documentation for 'CFunctionPointer': The family of C function pointer types."
+keywords: "CFunctionPointer,struct,swift,documentation,null,hashValue,debugDescription"
+---
+
+<code class="language-swift">struct CFunctionPointer&lt;T&gt; { ... }</code>
+
+<div class="comment">
+    <p>The family of C function pointer types.</p>
+
+<p>In imported APIs, <code>T</code> is a Swift function type such as
+<code>(Int)-&gt;String</code>.</p>
+
+<p>Though not directly useful in Swift, <code>CFunctionPointer&lt;T&gt;</code> can be
+used to safely pass a C function pointer, received from one C or
+Objective-C API, to another C or Objective-C API.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">Equatable, Hashable, NilLiteralConvertible, DebugPrintable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init()</code>
+<div class="comment">
+    <p>Create a <code>nil</code> instance.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ value: COpaquePointer)</code>
+<div class="comment">
+    <p>Reinterpret the bits of <code>value</code> as <code>CFunctionPointer&lt;T&gt;</code>.</p>
+
+<p><strong>Warning:</strong> This is a fundamentally unsafe operation, equivalent to
+     <code>unsafeBitCast(value, CFunctionPointer&lt;T&gt;.self)</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(nilLiteral: ())</code>
+<div class="comment">
+    <p>Create an instance initialized with <code>nil</code>.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var hashValue: Int { get }</code>
+<div class="comment">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code></p>
+
+<p><strong>Note:</strong> the hash value is not guaranteed to be stable across
+different invocations of the same program.  Do not persist the
+hash value across program runs.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var debugDescription: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+</div>
+</div>
+
+<h3>Static Methods</h3>
+<div class="declaration">
+<code class="language-swift">static func null() -> CFunctionPointer&lt;T&gt;</code>
+<div class="comment">
+    <p>Returns <code>nil</code></p>
+</div>
+</div>
+
+
+
+

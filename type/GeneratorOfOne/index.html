@@ -1,0 +1,54 @@
+---
+layout: default
+title: "GeneratorOfOne"
+description: "Swift documentation for 'GeneratorOfOne': A generator that produces one or fewer instances of T."
+keywords: "GeneratorOfOne,struct,swift,documentation,generate,next"
+---
+
+<code class="language-swift">struct GeneratorOfOne&lt;T&gt; { ... }</code>
+
+<div class="comment">
+    <p>A generator that produces one or fewer instances of <code>T</code>.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">GeneratorType, SequenceType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(_ element: T?)</code>
+<div class="comment">
+    <p>Construct an instance that generates <code>element!</code>, or an empty
+sequence if <code>element == nil</code>.</p>
+</div>
+</div>
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func generate() -> GeneratorOfOne&lt;T&gt;</code>
+<div class="comment">
+    <p><code>GeneratorOfOne</code> is also a <code>SequenceType</code>, so it <code>generate</code>\
+&#39;s a copy of itself</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func next() -> T?</code>
+<div class="comment">
+    <p>Advance to the next element and return it, or <code>nil</code> if no next
+element exists.</p>
+
+<p>Requires: <code>next()</code> has not been applied to a copy of <code>self</code>
+since the copy was made, and no preceding call to <code>self.next()</code>
+has returned <code>nil</code>.</p>
+</div>
+</div>
+
+
+

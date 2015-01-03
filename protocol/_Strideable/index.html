@@ -1,0 +1,63 @@
+---
+layout: default
+title: "_Strideable"
+description: "Swift documentation for '_Strideable': This protocol is an implementation detail of Strideable; do
+not use it directly."
+keywords: "_Strideable,protocol,swift,documentation,distanceTo,advancedBy,Stride"
+---
+
+<code class="language-swift">protocol _Strideable { ... }</code>
+
+<div class="comment">
+    <p>This protocol is an implementation detail of <code>Strideable</code>; do
+not use it directly.</p>
+
+<p>Its requirements are inherited by <code>Strideable</code> and thus must
+be satisfied by types conforming to that protocol.</p>
+</div>
+
+<h3>Inheritance</h3>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Stride : SignedNumberType</code>
+<div class="comment">
+    <p>A type that can represent the distance between two values of <code>Self</code></p>
+</div>
+</div>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func distanceTo(other: Self) -> Stride</code>
+<div class="comment">
+    <p>Returns a stride <code>x</code> such that <code>self.advancedBy(x)</code> approximates
+<code>other</code>.</p>
+
+<p>Complexity: O(1).</p>
+
+<p>See also: <code>RandomAccessIndexType</code>&#39;s <code>distanceTo</code>, which provides a
+stronger semantic guarantee.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func advancedBy(n: Stride) -> Self</code>
+<div class="comment">
+    <p>Returns a <code>Self</code> <code>x</code> such that <code>self.distanceTo(x)</code> approximates
+<code>n</code>.</p>
+
+<p>Complexity: O(1).</p>
+
+<p>See also: <code>RandomAccessIndexType</code>&#39;s <code>advancedBy</code>, which
+provides a stronger semantic guarantee.</p>
+</div>
+</div>
+
+
+

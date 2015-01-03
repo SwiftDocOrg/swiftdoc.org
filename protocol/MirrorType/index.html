@@ -1,0 +1,74 @@
+---
+layout: default
+title: "MirrorType"
+description: "Swift documentation for 'MirrorType': The type returned by reflect(x); supplies an API for runtime
+reflection on x."
+keywords: "MirrorType,protocol,swift,documentation,value,valueType,objectIdentifier,count,summary,quickLookObject,disposition"
+---
+
+<code class="language-swift">protocol MirrorType { ... }</code>
+
+<div class="comment">
+    <p>The type returned by <code>reflect(x)</code>; supplies an API for runtime
+reflection on <code>x</code></p>
+</div>
+
+
+
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var value: Any { get }</code>
+<div class="comment">
+    <p>The instance being reflected</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var valueType: Any.Type { get }</code>
+<div class="comment">
+    <p>Identical to <code>value.dynamicType</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var objectIdentifier: ObjectIdentifier? { get }</code>
+<div class="comment">
+    <p>A unique identifier for <code>value</code> if it is a class instance; <code>nil</code>
+otherwise.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var count: Int { get }</code>
+<div class="comment">
+    <p>The count of <code>value</code>&#39;s logical children </p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var summary: String { get }</code>
+<div class="comment">
+    <p>A string description of <code>value</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var quickLookObject: QuickLookObject? { get }</code>
+<div class="comment">
+    <p>A rich representation of <code>value</code> for an IDE, or <code>nil</code> if none is supplied.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var disposition: MirrorDisposition { get }</code>
+<div class="comment">
+    <p>How <code>value</code> should be presented in an IDE.</p>
+</div>
+</div>
+
+
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(i: Int) -> (String, MirrorType) { get }</code>
+</div>
+
+

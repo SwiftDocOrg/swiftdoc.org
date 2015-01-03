@@ -1,0 +1,44 @@
+---
+layout: default
+title: "sort"
+description: "Swift documentation for func 'sort'."
+keywords: "sort,func,swift,documentation"
+---
+
+<div class="declaration">
+<code class="language-swift">func sort&lt;T : Comparable&gt;(inout array: ContiguousArray&lt;T&gt;)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func sort&lt;T : Comparable&gt;(inout array: [T])</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func sort&lt;C : MutableCollectionType where C.Index : RandomAccessIndexType, C.Generator.Element : Comparable&gt;(inout collection: C)</code>
+<div class="comment">
+    <p>Sort <code>collection</code> in-place.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements that compare equal).</p>
+
+<p>Requires: The less-than operator (<code>func &lt;</code>) defined in the <code>Comparable</code>
+conformance is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over <code>elements</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func sort&lt;T&gt;(inout array: ContiguousArray&lt;T&gt;, isOrderedBefore: (T, T) -&gt; Bool)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func sort&lt;T&gt;(inout array: [T], isOrderedBefore: (T, T) -&gt; Bool)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func sort&lt;C : MutableCollectionType where C.Index : RandomAccessIndexType&gt;(inout collection: C, isOrderedBefore: (C.Generator.Element, C.Generator.Element) -&gt; Bool)</code>
+<div class="comment">
+    <p>Sort <code>collection</code> in-place according to <code>isOrderedBefore</code>.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements for which <code>isOrderedBefore</code> does not establish an order).</p>
+
+<p>Requires: <code>isOrderedBefore</code> is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over <code>elements</code>.</p>
+</div>
+</div>

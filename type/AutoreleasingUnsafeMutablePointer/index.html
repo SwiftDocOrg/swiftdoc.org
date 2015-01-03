@@ -1,0 +1,92 @@
+---
+layout: default
+title: "AutoreleasingUnsafeMutablePointer"
+description: "Swift documentation for 'AutoreleasingUnsafeMutablePointer': A mutable pointer-to-ObjC-pointer argument."
+keywords: "AutoreleasingUnsafeMutablePointer,struct,swift,documentation,null,memory,debugDescription"
+---
+
+<code class="language-swift">struct AutoreleasingUnsafeMutablePointer&lt;T&gt; { ... }</code>
+
+<div class="comment">
+    <p>A mutable pointer-to-ObjC-pointer argument.</p>
+
+<p>This type has implicit conversions to allow passing any of the following
+to a C or ObjC API:</p>
+
+<ul><li>&#39;nil&#39;, which gets passed as a null pointer,</li><li>an inout argument of the referenced type, which gets passed as a pointer
+to a writeback temporary with autoreleasing ownership semantics,</li><li>an UnsafeMutablePointer&lt;T&gt;, which is passed as-is.</li></ul>
+
+<p>Passing pointers to mutable arrays of ObjC class pointers is not
+directly supported. Unlike UnsafeMutablePointer&lt;T&gt;,
+AutoreleasingUnsafeMutablePointer must reference storage that does
+not own a reference count to the referenced
+value. UnsafeMutablePointer&#39;s operations, by contrast, assume that
+the referenced storage owns values loaded from or stored to it.</p>
+
+<p>This type does not carry an owner pointer unlike the other C*Pointer types
+because it only needs to reference the results of inout conversions, which
+already have writeback-scoped lifetime.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">Equatable, NilLiteralConvertible, DebugPrintable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(nilLiteral: ())</code>
+<div class="comment">
+    <p>Create an instance initialized with <code>nil</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init()</code>
+<div class="comment">
+    <p>Initialize to a null pointer.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init&lt;U&gt;(_ ptr: UnsafeMutablePointer&lt;U&gt;)</code>
+<div class="comment">
+    <p>Explicit construction from an UnsafeMutablePointer.</p>
+
+<p>This is inherently unsafe; UnsafeMutablePointer assumes the
+referenced memory has +1 strong ownership semantics, whereas
+AutoreleasingUnsafeMutablePointer implies +0 semantics.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var memory: T { get set }</code>
+<div class="comment">
+    <p>Access the underlying raw memory, getting and
+setting values.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var debugDescription: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+</div>
+</div>
+
+<h3>Static Methods</h3>
+<div class="declaration">
+<code class="language-swift">static func null() -> AutoreleasingUnsafeMutablePointer&lt;T&gt;</code>
+<div class="comment">
+    <p>Returns <code>nil</code></p>
+</div>
+</div>
+
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(i: Int) -> T { get }</code>
+</div>
+
+

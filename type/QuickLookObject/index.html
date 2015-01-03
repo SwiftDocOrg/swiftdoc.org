@@ -1,0 +1,84 @@
+---
+layout: default
+title: "QuickLookObject"
+description: "Swift documentation for 'QuickLookObject': The sum of types that can be used as a quick look representation."
+keywords: "QuickLookObject,enum,swift,documentation"
+---
+
+<code class="language-swift">enum QuickLookObject { ... }</code>
+
+<div class="comment">
+    <p>The sum of types that can be used as a quick look representation.</p>
+
+<p>This type must be binary-compatible with the &#39;QuickLookObject&#39; struct in
+stdlib/Runtime/Reflection.mm, and &#39;QuickLookObject?&#39; must be binary
+compatible with &#39;OptionalQuickLookObject&#39; from the same.</p>
+
+<p>NB: This type is somewhat carefully laid out to <em>suppress</em> enum layout
+optimization so that it is easier to manufacture in the C++ runtime
+implementation.</p>
+</div>
+
+
+
+
+<h3>Cases</h3>
+<div class="declaration">
+<code class="language-swift">case Text(String)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case Int(Int64)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case UInt(UInt64)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case Float(Double)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case Image(Any)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case Sound(Any)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case Color(Any)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case BezierPath(Any)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case AttributedString(Any)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case Rectangle(Double, Double, Double, Double)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case Point(Double, Double)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case Size(Double, Double)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case Logical(Bool)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case Range(UInt64, UInt64)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case View(Any)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case Sprite(Any)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case URL(String)</code>
+</div>
+
+
+
+
+
+
+
+

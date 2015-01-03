@@ -1,0 +1,49 @@
+---
+layout: default
+title: "SequenceType"
+description: "Swift documentation for 'SequenceType': A type that can be iterated with a for...in loop."
+keywords: "SequenceType,protocol,swift,documentation,generate,Generator"
+---
+
+<code class="language-swift">protocol SequenceType { ... }</code>
+
+<div class="comment">
+    <p>A type that can be iterated with a <code>for</code>...<code>in</code> loop.</p>
+
+<p><code>SequenceType</code> makes no requirement on conforming types regarding
+whether they will be destructively &quot;consumed&quot; by iteration.  To
+ensure non-destructive iteration, constrain your <em>sequence</em> to
+<code>CollectionType</code>.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">_Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Generator : GeneratorType</code>
+<div class="comment">
+    <p>A type that provides the <em>sequence</em>&#39;s iteration interface and
+encapsulates its iteration state.</p>
+</div>
+</div>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func generate() -> Generator</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+</div>
+</div>
+
+
+

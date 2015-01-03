@@ -1,0 +1,22 @@
+---
+layout: default
+title: "suffix"
+description: "Swift documentation for 'suffix': Return a slice, up to maxLength in length, containing the
+final elements of s."
+keywords: "suffix,func,swift,documentation"
+---
+
+<div class="declaration">
+<code class="language-swift">func suffix&lt;S : Sliceable where S.Index : BidirectionalIndexType&gt;(s: S, maxLength: Int) -> S.SubSlice</code>
+<div class="comment">
+    <p>Return a slice, up to <code>maxLength</code> in length, containing the
+final elements of <code>s</code>.</p>
+
+<p>If <code>maxLength</code> exceeds <code>countElements(s)</code>, the result contains all
+the elements of <code>s</code>.</p>
+
+<p>Complexity: O(1)+K when <code>S.Index</code> conforms to
+<code>RandomAccessIndexType</code> and O(N)+K otherwise, where K is the cost
+of slicing <code>s</code>.</p>
+</div>
+</div>

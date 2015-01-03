@@ -1,0 +1,67 @@
+---
+layout: default
+title: "_RandomAccessIndexType"
+description: "Swift documentation for '_RandomAccessIndexType': This protocol is an implementation detail of RandomAccessIndexType; do
+not use it directly."
+keywords: "_RandomAccessIndexType,protocol,swift,documentation,distanceTo,advancedBy"
+---
+
+<code class="language-swift">protocol _RandomAccessIndexType { ... }</code>
+
+<div class="comment">
+    <p>This protocol is an implementation detail of <code>RandomAccessIndexType</code>; do
+not use it directly.</p>
+
+<p>Its requirements are inherited by <code>RandomAccessIndexType</code> and thus must
+be satisfied by types conforming to that protocol.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">_BidirectionalIndexType, Strideable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func distanceTo(other: Self) -> Self.Distance</code>
+<div class="comment">
+    <p>Return the minimum number of applications of <code>successor</code> or
+<code>predecessor</code> required to reach <code>other</code> from <code>self</code>.</p>
+
+<p>Complexity: O(1).</p>
+
+<p>Axioms:</p>
+
+<pre><code class="language-swift">x.distanceTo(x.successor())) == 1
+x.distanceTo(x.predecessor())) == -1
+x.advancedBy(x.distanceTo(y)) == y</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func advancedBy(n: Self.Distance) -> Self</code>
+<div class="comment">
+    <p>Return <code>self</code> offset by <code>n</code> steps.</p>
+
+<p><strong>Returns:</strong> If <code>n &gt; 0</code>, the result of applying <code>successor</code> to
+<code>self</code> <code>n</code> times.  If <code>n &lt; 0</code>, the result of applying
+<code>predecessor</code> to <code>self</code> <code>-n</code> times. Otherwise, <code>self</code>.</p>
+
+<p>Complexity: O(1)</p>
+
+<p>Axioms:</p>
+
+<pre><code class="language-swift">x.advancedBy(0) == x
+x.advancedBy(1) == x.successor()
+x.advancedBy(-1) == x.predecessor()
+x.distanceTo(x.advancedBy(m)) == m</code></pre>
+</div>
+</div>
+
+
+

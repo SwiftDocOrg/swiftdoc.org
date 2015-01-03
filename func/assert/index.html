@@ -1,0 +1,26 @@
+---
+layout: default
+title: "assert"
+description: "Swift documentation for 'assert': User code assertions."
+keywords: "assert,func,swift,documentation"
+---
+
+<div class="declaration">
+<code class="language-swift">func assert(condition: @autoclosure () -&gt; Bool, _ message: @autoclosure () -&gt; String = default, file: StaticString = default, line: UWord = default)</code>
+<div class="comment">
+    <p>User code assertions.</p>
+
+<p>User code assertions and fatal errors are only enabled in debug mode. In
+release or fast mode these checks are disabled. This means they may have no
+effect on program semantics, depending on the assert configuration.
+Traditional C-style assert with an optional message.</p>
+
+<p>When assertions are enabled and <code>condition</code> is false, stop program
+execution in a debuggable state after printing a message.  When
+assertions are disabled in release and fast builds, <code>condition</code> is not even
+evaluated.</p>
+
+<p>When assertions are turned off, the optimizer can assume that the
+<code>condition</code> is true.</p>
+</div>
+</div>

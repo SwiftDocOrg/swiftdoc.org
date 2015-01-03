@@ -1,0 +1,20 @@
+---
+layout: default
+title: "distance"
+description: "Swift documentation for 'distance': Measure the distance between start and end."
+keywords: "distance,func,swift,documentation"
+---
+
+<div class="declaration">
+<code class="language-swift">func distance&lt;T : ForwardIndexType&gt;(start: T, end: T) -> T.Distance</code>
+<div class="comment">
+    <p>Measure the distance between <code>start</code> and <code>end</code>.</p>
+
+<p>If <code>T</code> models <code>RandomAccessIndexType</code>, requires that <code>start</code> and <code>end</code> are
+part of the same sequence, and executes in O(1).</p>
+
+<p>Otherwise, requires that <code>end</code> is reachable from <code>start</code> by
+incrementation, and executes in O(N), where N is the function&#39;s
+result.</p>
+</div>
+</div>

@@ -1,0 +1,66 @@
+---
+layout: default
+title: "IntervalType"
+description: "Swift documentation for 'IntervalType': An interval over a Comparable type."
+keywords: "IntervalType,protocol,swift,documentation,contains,clamp,isEmpty,start,end,Bound"
+---
+
+<code class="language-swift">protocol IntervalType { ... }</code>
+
+<div class="comment">
+    <p>An interval over a <code>Comparable</code> type.</p>
+</div>
+
+<h3>Inheritance</h3>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Bound : Comparable</code>
+<div class="comment">
+    <p>The type of the <code>Interval</code>&#39;s endpoints</p>
+</div>
+</div>
+
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var isEmpty: Bool { get }</code>
+<div class="comment">
+    <p>True iff <code>self</code> is empty</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var start: Bound { get }</code>
+<div class="comment">
+    <p>The <code>Interval</code>&#39;s lower bound. Invariant: <code>start</code> &lt;= <code>end</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var end: Bound { get }</code>
+<div class="comment">
+    <p>The <code>Interval</code>&#39;s upper bound. Invariant: <code>start</code> &lt;= <code>end</code></p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func contains(value: Bound) -> Bool</code>
+<div class="comment">
+    <p>Returns <code>true</code> iff the interval contains <code>value</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func clamp(intervalToClamp: Self) -> Self</code>
+<div class="comment">
+    <p>Return <code>rhs</code> clamped to <code>self</code>.  The bounds of the result, even
+if it is empty, are always within the bounds of <code>self</code></p>
+</div>
+</div>
+
+
+

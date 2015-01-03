@@ -1,0 +1,36 @@
+---
+layout: default
+title: "MutableSliceable"
+description: "Swift documentation for 'MutableSliceable': A collection with mutable slices."
+keywords: "MutableSliceable,protocol,swift,documentation"
+---
+
+<code class="language-swift">protocol MutableSliceable { ... }</code>
+
+<div class="comment">
+    <p>A <em>collection</em> with mutable slices.</p>
+
+<p>For example,</p>
+
+<pre><code class="language-swift">   x[i..&lt;j] = *someExpression*
+   x[i..&lt;j].*mutatingMethod*()</code></pre>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">Sliceable, MutableCollectionType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+
+
+
+
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(_: Range&lt;Self.Index&gt;) -> Self.SubSlice { get set }</code>
+</div>
+
+

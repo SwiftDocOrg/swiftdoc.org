@@ -1,0 +1,165 @@
+---
+layout: default
+title: "Operator: =="
+description: "Swift documentation for the '==' operator."
+---
+
+<code class="language-swift">infix operator == {
+    associativity none
+    precedence 130
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration">
+<code class="language-swift">func ==(lhs: Bit, rhs: Bit) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: Bool, rhs: Bool) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: COpaquePointer, rhs: COpaquePointer) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: Character, rhs: Character) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: Double, rhs: Double) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: Float, rhs: Float) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: Float80, rhs: Float80) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: FloatingPointClassification, rhs: FloatingPointClassification) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: Int, rhs: Int) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: Int8, rhs: Int8) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: Int16, rhs: Int16) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: Int32, rhs: Int32) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: Int64, rhs: Int64) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: String, rhs: String) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: String.Index, rhs: String.Index) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: String.UTF8View.Index, rhs: String.UTF8View.Index) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: String.UnicodeScalarView.Index, rhs: String.UnicodeScalarView.Index) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: UInt, rhs: UInt) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: UInt8, rhs: UInt8) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: UInt16, rhs: UInt16) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: UInt32, rhs: UInt32) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: UInt64, rhs: UInt64) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(lhs: UnicodeScalar, rhs: UnicodeScalar) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==(x: ObjectIdentifier, y: ObjectIdentifier) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;Base : CollectionType&gt;(lhs: FilterCollectionViewIndex&lt;Base&gt;, rhs: FilterCollectionViewIndex&lt;Base&gt;) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;I&gt;(lhs: ReverseBidirectionalIndex&lt;I&gt;, rhs: ReverseBidirectionalIndex&lt;I&gt;) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;I&gt;(lhs: ReverseRandomAccessIndex&lt;I&gt;, rhs: ReverseRandomAccessIndex&lt;I&gt;) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;Key : Equatable, Value : Equatable&gt;(lhs: [Key : Value], rhs: [Key : Value]) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;Key : Hashable, Value&gt;(lhs: DictionaryIndex&lt;Key, Value&gt;, rhs: DictionaryIndex&lt;Key, Value&gt;) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T : _RawOptionSetType&gt;(a: T, b: T) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T : _Strideable&gt;(x: T, y: T) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T : Comparable&gt;(lhs: ClosedInterval&lt;T&gt;, rhs: ClosedInterval&lt;T&gt;) -> Bool</code>
+<div class="comment">
+    <p>Two <code>ClosedInterval</code>s are equal if their <code>start</code> and <code>end</code> are
+equal</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T : Comparable&gt;(lhs: HalfOpenInterval&lt;T&gt;, rhs: HalfOpenInterval&lt;T&gt;) -> Bool</code>
+<div class="comment">
+    <p>Two <code>HalfOpenInterval</code>s are equal if their <code>start</code> and <code>end</code> are
+equal</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T : Equatable&gt;(lhs: [T], rhs: [T]) -> Bool</code>
+<div class="comment">
+    <p>Returns true if these arrays contain the same elements.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T : Equatable&gt;(lhs: ContiguousArray&lt;T&gt;, rhs: ContiguousArray&lt;T&gt;) -> Bool</code>
+<div class="comment">
+    <p>Returns true if these arrays contain the same elements.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T : Equatable&gt;(lhs: Slice&lt;T&gt;, rhs: Slice&lt;T&gt;) -> Bool</code>
+<div class="comment">
+    <p>Returns true if these arrays contain the same elements.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T : Equatable&gt;(lhs: T?, rhs: T?) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T&gt;(lhs: _OptionalNilComparisonType, rhs: T?) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T&gt;(lhs: AutoreleasingUnsafeMutablePointer&lt;T&gt;, rhs: AutoreleasingUnsafeMutablePointer&lt;T&gt;) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T&gt;(lhs: CFunctionPointer&lt;T&gt;, rhs: CFunctionPointer&lt;T&gt;) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T&gt;(lhs: Range&lt;T&gt;, rhs: Range&lt;T&gt;) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T&gt;(lhs: T?, rhs: _OptionalNilComparisonType) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T&gt;(lhs: UnsafeMutablePointer&lt;T&gt;, rhs: UnsafeMutablePointer&lt;T&gt;) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;T&gt;(lhs: UnsafePointer&lt;T&gt;, rhs: UnsafePointer&lt;T&gt;) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func ==&lt;Value, Element&gt;(lhs: HeapBuffer&lt;Value, Element&gt;, rhs: HeapBuffer&lt;Value, Element&gt;) -> Bool</code>
+</div>

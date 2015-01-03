@@ -1,0 +1,17 @@
+---
+layout: default
+title: "splice"
+description: "Swift documentation for 'splice': Insert newElements into x at index i."
+keywords: "splice,func,swift,documentation"
+---
+
+<div class="declaration">
+<code class="language-swift">func splice&lt;C : RangeReplaceableCollectionType, S : CollectionType where S.Generator.Element == S.Generator.Element&gt;(inout x: C, newElements: S, atIndex i: C.Index)</code>
+<div class="comment">
+    <p>Insert <code>newElements</code> into <code>x</code> at index <code>i</code></p>
+
+<p>Invalidates all indices with respect to <code>x</code>.</p>
+
+<p>Complexity: O(<code>countElements(x) + countElements(newElements)</code>).</p>
+</div>
+</div>

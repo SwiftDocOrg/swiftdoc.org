@@ -1,0 +1,76 @@
+---
+layout: default
+title: "String.UTF16View"
+description: "Swift documentation for 'String.UTF16View': A collection of UTF-16 code units that encodes a String value."
+keywords: "String.UTF16View,struct,swift,documentation,generate,getMirror,startIndex,endIndex,Generator"
+---
+
+<code class="language-swift">struct String.UTF16View { ... }</code>
+
+<div class="comment">
+    <p>A collection of UTF-16 code units that encodes a <code>String</code> value.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">Sliceable, Reflectable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Generator</code>
+<div class="comment">
+    <p>A type whose instances can produce the elements of this
+sequence, in order.</p>
+</div>
+</div>
+
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var startIndex: Int { get }</code>
+<div class="comment">
+    <p>The position of the first code unit if the <code>String</code> is
+non-empty; identical to <code>endIndex</code> otherwise.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var endIndex: Int { get }</code>
+<div class="comment">
+    <p>The &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func generate() -> Generator</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the code points that comprise this
+<em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func getMirror() -> MirrorType</code>
+<div class="comment">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+</div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(position: Int) -> UInt16 { get }</code>
+</div>
+<div class="declaration">
+<code class="language-swift">subscript(subRange: Range&lt;Int&gt;) -> String.UTF16View { get }</code>
+</div>
+
+

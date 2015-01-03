@@ -1,0 +1,21 @@
+# Site settings
+title:              "SwiftDoc.org"
+email:              info@swiftdoc.org
+description:        "Auto-generated documentation for Swift. Command-click no more."
+keywords:           "swift,documentation,swiftdoc,apple,swiftdoc.org"
+baseurl:            ""
+url:                "http://swiftdoc.org"
+twitter_username:   SwiftDocOrg
+github_username:    SwiftDocOrg
+
+port:               4040
+include:            [ "_[A-Z]*" ]
+exclude:            [ "README.md" ]
+keep_files:         [ "CNAME", "README.md" ]
+
+# Build settings
+markdown:           kramdown
+paginate:           10
+permalink:          /news/:year/:month/:title
+paginate_path:      /news/page:num
+tag_dir:            /news/tags

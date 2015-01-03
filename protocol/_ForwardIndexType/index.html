@@ -1,0 +1,46 @@
+---
+layout: default
+title: "_ForwardIndexType"
+description: "Swift documentation for '_ForwardIndexType': This protocol is an implementation detail of ForwardIndexType; do
+not use it directly."
+keywords: "_ForwardIndexType,protocol,swift,documentation,Distance,_DisabledRangeIndex"
+---
+
+<code class="language-swift">protocol _ForwardIndexType { ... }</code>
+
+<div class="comment">
+    <p>This protocol is an implementation detail of <code>ForwardIndexType</code>; do
+not use it directly.</p>
+
+<p>Its requirements are inherited by <code>ForwardIndexType</code> and thus must
+be satisfied by types conforming to that protocol.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">_Incrementable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Distance : _SignedIntegerType = Int</code>
+<div class="comment">
+    <p>A type that can represent the number of steps between pairs of
+<code>Self</code> values where one value is reachable from the other.</p>
+
+<p>Reachability is defined by the ability to produce one value from
+the other via zero or more applications of <code>successor</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias _DisabledRangeIndex = _DisabledRangeIndex_</code>
+</div>
+
+
+
+
+
+
+
+
+
+

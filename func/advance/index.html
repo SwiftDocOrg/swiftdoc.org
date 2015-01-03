@@ -1,0 +1,30 @@
+---
+layout: default
+title: "advance"
+description: "Swift documentation for 'advance': Return the result of advancing start by n positions.  If T
+models RandomAccessIndexType, executes in O(1).  Otherwise,
+executes in O(abs(n)).  If T does not model
+BidirectionalIndexType, requires that n is non-negative."
+keywords: "advance,func,swift,documentation"
+---
+
+<div class="declaration">
+<code class="language-swift">func advance&lt;T : ForwardIndexType&gt;(start: T, n: T.Distance) -> T</code>
+<div class="comment">
+    <p>Return the result of advancing <code>start</code> by <code>n</code> positions.  If <code>T</code>
+models <code>RandomAccessIndexType</code>, executes in O(1).  Otherwise,
+executes in O(<code>abs(n)</code>).  If <code>T</code> does not model
+<code>BidirectionalIndexType</code>, requires that <code>n</code> is non-negative.</p>
+
+<p><code>advance(i, n)</code> is a synonym for `i++n&#39;</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func advance&lt;T : ForwardIndexType&gt;(start: T, n: T.Distance, end: T) -> T</code>
+<div class="comment">
+    <p>Return the result of advancing start by <code>n</code> positions, or until it
+equals <code>end</code>.  If <code>T</code> models <code>RandomAccessIndexType</code>, executes in
+O(1).  Otherwise, executes in O(<code>abs(n)</code>).  If <code>T</code> does not model
+<code>BidirectionalIndexType</code>, requires that <code>n</code> is non-negative.</p>
+</div>
+</div>

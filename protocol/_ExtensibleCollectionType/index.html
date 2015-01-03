@@ -1,0 +1,77 @@
+---
+layout: default
+title: "_ExtensibleCollectionType"
+description: "Swift documentation for '_ExtensibleCollectionType': This protocol is an implementation detail of ExtensibleCollectionType; do
+not use it directly."
+keywords: "_ExtensibleCollectionType,protocol,swift,documentation,reserveCapacity,append,extend"
+---
+
+<code class="language-swift">protocol _ExtensibleCollectionType { ... }</code>
+
+<div class="comment">
+    <p>This protocol is an implementation detail of <code>ExtensibleCollectionType</code>; do
+not use it directly.</p>
+
+<p>Its requirements are inherited by <code>ExtensibleCollectionType</code> and thus must
+be satisfied by types conforming to that protocol.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">CollectionType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init()</code>
+<div class="comment">
+    <p>Create an empty instance</p>
+</div>
+</div>
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">mutating func reserveCapacity(n: Self.Index.Distance)</code>
+<div class="comment">
+    <p>A non-binding request to ensure <code>n</code> elements of available storage.</p>
+
+<p>This works as an optimization to avoid multiple reallocations of
+linear data structures like <code>Array</code>.  Conforming types may
+reserve more than <code>n</code>, exactly <code>n</code>, less than <code>n</code> elements of
+storage, or even ignore the request completely.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func append(x: Self.Generator.Element)</code>
+<div class="comment">
+    <p>Append <code>x</code> to <code>self</code>.</p>
+
+<p>Applying <code>successor()</code> to the index of the new element yields
+<code>self.endIndex</code>.</p>
+
+<p>Complexity: amortized O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func extend&lt;S : SequenceType where `Self`.Generator.Element == Self.Generator.Element&gt;(newElements: S)</code>
+<div class="comment">
+    <p>Append the elements of <code>newElements</code> to <code>self</code>.</p>
+
+<p>Complexity: O(<em>length of result</em>) </p>
+
+<p>A possible implementation:</p>
+
+<pre><code class="language-swift">reserveCapacity(countElements(self) + underestimateCount(newElements))
+for x in newElements {
+  newElements.append(x)
+}</code></pre>
+</div>
+</div>
+
+
+

@@ -1,0 +1,23 @@
+---
+layout: default
+title: "Operator: &&"
+description: "Swift documentation for the '&&' operator."
+---
+
+<code class="language-swift">infix operator &amp;&amp; {
+    associativity left
+    precedence 120
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration">
+<code class="language-swift">@inline(__always)  func &amp;&amp;&lt;T : BooleanType, U : BooleanType&gt;(lhs: T, rhs: @autoclosure () -&gt; U) -> Bool</code>
+<div class="comment">
+    <p>If <code>lhs</code> is <code>false</code>, return it.  Otherwise, evaluate <code>rhs</code> and
+return its <code>boolValue</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func &amp;&amp;&lt;T : BooleanType&gt;(lhs: T, rhs: @autoclosure () -&gt; Bool) -> Bool</code>
+</div>

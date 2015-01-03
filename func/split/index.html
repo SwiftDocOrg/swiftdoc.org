@@ -1,0 +1,22 @@
+---
+layout: default
+title: "split"
+description: "Swift documentation for 'split': Return the result of slicing elements into sub-sequences that
+don&#39;t contain elements satisfying the predicate isSeparator."
+keywords: "split,func,swift,documentation"
+---
+
+<div class="declaration">
+<code class="language-swift">func split&lt;S : Sliceable, R : BooleanType&gt;(elements: S, isSeparator: (S.Generator.Element) -&gt; R, maxSplit: Int = default, allowEmptySlices: Bool = default) -> [S.SubSlice]</code>
+<div class="comment">
+    <p>Return the result of slicing <code>elements</code> into sub-sequences that
+don&#39;t contain elements satisfying the predicate <code>isSeparator</code>.</p>
+
+<p><strong>maxSplit</strong> the maximum number of slices to return, minus 1.
+If <code>maxSplit + 1</code> slices would otherwise be returned, the
+algorithm stops splitting and returns a suffix of <code>elements</code></p>
+
+<p><strong>allowEmptySlices</strong> if true, an empty slice is produced in
+the result for each pair of consecutive </p>
+</div>
+</div>

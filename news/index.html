@@ -1,0 +1,29 @@
+---
+layout: default
+title: News
+indexpage: 1
+---
+
+<div class="posts">
+
+  {% for post in paginator.posts %}
+
+    {% assign content = post.content %}
+    {% include post.html %}
+    
+  {% endfor %}
+
+  <ul class="pager">
+    {% if paginator.next_page %}
+    <li class="previous"><a href="{{ site.baseurl }}/news/page{{ paginator.next_page }}">&larr; Older</a></li>
+    {% endif %}
+    {% if paginator.previous_page == 1 %}
+    <li class="next"><a href="{{ site.baseurl }}/news/">Newer &rarr;</a></li>
+    {% else %}
+      {% if paginator.previous_page %}
+    <li class="next"><a href="{{ site.baseurl }}/news/page{{ paginator.previous_page }}">Newer &rarr;</a></li>
+      {% endif %}
+    {% endif %}
+  </ul>
+
+</div>

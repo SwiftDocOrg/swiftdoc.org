@@ -1,0 +1,114 @@
+---
+layout: default
+title: "Unmanaged"
+description: "Swift documentation for 'Unmanaged': A type for propagating an unmanaged object reference."
+keywords: "Unmanaged,struct,swift,documentation,fromOpaque,toOpaque,passRetained,passUnretained,takeUnretainedValue,takeRetainedValue,retain,release,autorelease"
+---
+
+<code class="language-swift">struct Unmanaged&lt;T&gt; { ... }</code>
+
+<div class="comment">
+    <p>A type for propagating an unmanaged object reference.</p>
+
+<p>When you use this type, you become partially responsible for
+keeping the object alive.</p>
+</div>
+
+
+
+
+
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration">
+<code class="language-swift">static func fromOpaque(value: COpaquePointer) -> Unmanaged&lt;T&gt;</code>
+<div class="comment">
+    <p>Unsafely turn an opaque C pointer into an unmanaged
+class reference.</p>
+
+<p>This operation does not change reference counts.</p>
+
+<pre><code class="language-swift">let str: CFString = Unmanaged.fromOpaque(ptr).takeUnretainedValue()</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">static func passRetained(value: T) -> Unmanaged&lt;T&gt;</code>
+<div class="comment">
+    <p>Create an unmanaged reference with an unbalanced retain.
+The object will leak if nothing eventually balances the retain.</p>
+
+<p>This is useful when passing an object to an API which Swift
+does not know the ownership rules for, but you know that the
+API expects you to pass the object at +1.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">static func passUnretained(value: T) -> Unmanaged&lt;T&gt;</code>
+<div class="comment">
+    <p>Create an unmanaged reference without performing an unbalanced
+retain.</p>
+
+<p>This is useful when passing a reference to an API which Swift
+does not know the ownership rules for, but you know that the
+API expects you to pass the object at +0.</p>
+
+<pre><code class="language-swift">CFArraySetValueAtIndex(.passUnretained(array), i,
+                       .passUnretained(object))</code></pre>
+</div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func toOpaque() -> COpaquePointer</code>
+<div class="comment">
+    <p>Unsafely turn an unmanaged class reference into an opaque
+C pointer.</p>
+
+<p>This operation does not change reference counts.</p>
+
+<pre><code class="language-swift">let str: CFString = Unmanaged.fromOpaque(ptr).takeUnretainedValue()</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func takeUnretainedValue() -> T</code>
+<div class="comment">
+    <p>Get the value of this unmanaged reference as a managed
+reference without consuming an unbalanced retain of it.</p>
+
+<p>This is useful when a function returns an unmanaged reference
+and you know that you&#39;re not responsible for releasing the result.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func takeRetainedValue() -> T</code>
+<div class="comment">
+    <p>Get the value of this unmanaged reference as a managed
+reference and consume an unbalanced retain of it.</p>
+
+<p>This is useful when a function returns an unmanaged reference
+and you know that you&#39;re responsible for releasing the result.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func retain() -> Unmanaged&lt;T&gt;</code>
+<div class="comment">
+    <p>Perform an unbalanced retain of the object.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func release()</code>
+<div class="comment">
+    <p>Perform an unbalanced release of the object.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func autorelease() -> Unmanaged&lt;T&gt;</code>
+<div class="comment">
+    <p>Perform an unbalanced autorelease of the object.</p>
+</div>
+</div>
+
+
+

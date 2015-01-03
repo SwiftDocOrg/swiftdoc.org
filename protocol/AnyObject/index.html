@@ -1,0 +1,54 @@
+---
+layout: default
+title: "AnyObject"
+description: "Swift documentation for 'AnyObject': The protocol to which all classes implicitly conform."
+keywords: "AnyObject,protocol,swift,documentation"
+---
+
+<code class="language-swift">protocol AnyObject { ... }</code>
+
+<div class="comment">
+    <p>The protocol to which all classes implicitly conform.</p>
+
+<p>When used as a concrete type, all known <code>@objc</code> methods and
+properties are available, as implicitly-unwrapped-optional methods
+and properties respectively, on each instance of <code>AnyObject</code>.  For
+example:</p>
+
+<pre><code class="language-swift">class C {
+  @objc func getCValue() -&gt; Int { return 42 }
+}
+
+// If x has a method @objc getValue()-&gt;Int, call it and
+// return the result.  Otherwise, return nil.
+func getCValue1(x: AnyObject) -&gt; Int? {
+  if let f: ()-&gt;Int = **x.getCValue** {
+    return f()
+  }
+  return nil
+}
+
+// A more idiomatic implementation using &quot;optional chaining&quot;
+func getCValue2(x: AnyObject) -&gt; Int? {
+  return **x.getCValue?()**
+}
+
+// An implementation that assumes the required method is present
+func getCValue3(x: AnyObject) -&gt; **Int** {
+  return **x.getCValue()** // x.getCValue is implicitly unwrapped.
+}</code></pre>
+
+<p>See also: <code>AnyClass</code></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,329 @@
+---
+layout: default
+title: "ContiguousArray"
+description: "Swift documentation for 'ContiguousArray': A fast, contiguously-stored array of T."
+keywords: "ContiguousArray,struct,swift,documentation,generate,reserveCapacity,append,extend,removeLast,insert,removeAtIndex,removeAll,join,reduce,sort,sorted,map,reverse,filter,getMirror,withUnsafeBufferPointer,withUnsafeMutableBufferPointer,replaceRange,splice,removeRange,startIndex,endIndex,count,capacity,isEmpty,first,last,description,debugDescription,Element,SubSlice"
+---
+
+<code class="language-swift">struct ContiguousArray&lt;T&gt; { ... }</code>
+
+<div class="comment">
+    <p>A fast, contiguously-stored array of <code>T</code>.</p>
+
+<p>Efficiency is equivalent to that of <code>Array</code>, unless <code>T</code> is a
+<code>class</code> or <code>@objc</code> <code>protocol</code> type, in which case using
+<code>ContiguousArray</code> may be more efficient.  Note, however, that
+<code>ContiguousArray</code> does not bridge to Objective-C.  See <code>Array</code>,
+with which <code>ContiguousArray</code> shares most properties, for more
+detail.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">MutableCollectionType, Sliceable, ArrayLiteralConvertible, Reflectable, Printable, DebugPrintable, ArrayType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Element = T</code>
+<div class="comment">
+    <p>The type of element stored by this <code>ContiguousArray</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias SubSlice = Slice&lt;T&gt;</code>
+<div class="comment">
+    <p>A type that can represent a sub-range of a ContiguousArray </p>
+</div>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(_ buffer: _ContiguousArrayBuffer&lt;T&gt;)</code>
+<div class="comment">
+    <p>Initialization from an existing buffer does not have &quot;array.init&quot;
+semantics because the caller may retain an alias to buffer.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(arrayLiteral elements: T...)</code>
+<div class="comment">
+    <p>Create an instance containing <code>elements</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init()</code>
+<div class="comment">
+    <p>Construct an empty ContiguousArray</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init&lt;S : SequenceType where T == T&gt;(_ s: S)</code>
+<div class="comment">
+    <p>Construct from an arbitrary sequence with elements of type <code>T</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(count: Int, repeatedValue: T)</code>
+<div class="comment">
+    <p>Construct a ContiguousArray of <code>count</code> elements, each initialized to
+<code>repeatedValue</code>.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var startIndex: Int { get }</code>
+<div class="comment">
+    <p>Always zero, which is the index of the first element when non-empty.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var endIndex: Int { get }</code>
+<div class="comment">
+    <p>A &quot;past-the-end&quot; element index; the successor of the last valid
+subscript argument.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var count: Int { get }</code>
+<div class="comment">
+    <p>How many elements the ContiguousArray stores</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var capacity: Int { get }</code>
+<div class="comment">
+    <p>How many elements the <code>ContiguousArray</code> can store without reallocation</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var isEmpty: Bool { get }</code>
+<div class="comment">
+    <p><code>true</code> if and only if the <code>ContiguousArray</code> is empty</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var first: T? { get }</code>
+<div class="comment">
+    <p>The first element, or <code>nil</code> if the array is empty</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var last: T? { get }</code>
+<div class="comment">
+    <p>The last element, or <code>nil</code> if the array is empty</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var description: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var debugDescription: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func generate() -> IndexingGenerator&lt;ContiguousArray&lt;T&gt;&gt;</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the elements.</p>
+
+<p>Complexity: O(1)</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func reserveCapacity(minimumCapacity: Int)</code>
+<div class="comment">
+    <p>Reserve enough space to store minimumCapacity elements.</p>
+
+<p>PostCondition: <code>capacity &gt;= minimumCapacity</code> and the array has
+mutable contiguous storage.</p>
+
+<p>Complexity: O(<code>count</code>)</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func append(newElement: T)</code>
+<div class="comment">
+    <p>Append newElement to the ContiguousArray</p>
+
+<p>Complexity: amortized O(1) unless <code>self</code>&#39;s storage is shared with another live array; O(<code>count</code>) otherwise.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func extend&lt;S : SequenceType where T == T&gt;(newElements: S)</code>
+<div class="comment">
+    <p>Append the elements of <code>newElements</code> to <code>self</code>.</p>
+
+<p>Complexity: O(<em>length of result</em>) </p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeLast() -> T</code>
+<div class="comment">
+    <p>Remove an element from the end of the ContiguousArray in O(1).
+Requires: count &gt; 0</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func insert(newElement: T, atIndex i: Int)</code>
+<div class="comment">
+    <p>Insert <code>newElement</code> at index <code>i</code>.</p>
+
+<p>Requires: <code>i &lt;= count</code></p>
+
+<p>Complexity: O(<code>count</code>).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeAtIndex(index: Int) -> T</code>
+<div class="comment">
+    <p>Remove and return the element at index <code>i</code></p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p>Complexity: O(<code>count</code>).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeAll(keepCapacity: Bool = default)</code>
+<div class="comment">
+    <p>Remove all elements.</p>
+
+<p>Postcondition: <code>capacity == 0</code> iff <code>keepCapacity</code> is <code>false</code>.</p>
+
+<p>Complexity: O(<code>countElements(self)</code>).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func join&lt;S : SequenceType where ContiguousArray&lt;T&gt; == ContiguousArray&lt;T&gt;&gt;(elements: S) -> ContiguousArray&lt;T&gt;</code>
+<div class="comment">
+    <p>Interpose <code>self</code> between each consecutive pair of <code>elements</code>,
+and concatenate the elements of the resulting sequence.  For
+example, <code>[-1, -2].join([[1, 2, 3], [4, 5, 6], [7, 8, 9]])</code>
+yields <code>[1, 2, 3, -1, -2, 4, 5, 6, -1, -2, 7, 8, 9]</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func reduce&lt;U&gt;(initial: U, combine: (U, T) -&gt; U) -> U</code>
+<div class="comment">
+    <p>Return the result of repeatedly calling <code>combine</code> with an
+accumulated value initialized to <code>initial</code> and each element of
+<code>self</code>, in turn, i.e. return
+<code>combine(combine(...combine(combine(initial, self[0]),
+self[1]),...self[count-2]), self[count-1])</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func sort(isOrderedBefore: (T, T) -&gt; Bool)</code>
+<div class="comment">
+    <p>Sort <code>self</code> in-place according to <code>isOrderedBefore</code>.  Requires:
+<code>isOrderedBefore</code> induces a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over the elements.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func sorted(isOrderedBefore: (T, T) -&gt; Bool) -> ContiguousArray&lt;T&gt;</code>
+<div class="comment">
+    <p>Return a copy of <code>self</code> that has been sorted according to
+<code>isOrderedBefore</code>.  Requires: <code>isOrderedBefore</code> induces a
+<a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over the elements.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func map&lt;U&gt;(transform: (T) -&gt; U) -> ContiguousArray&lt;U&gt;</code>
+<div class="comment">
+    <p>Return a ContiguousArray containing the results of calling
+<code>transform(x)</code> on each element <code>x</code> of <code>self</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func reverse() -> ContiguousArray&lt;T&gt;</code>
+<div class="comment">
+    <p>A ContiguousArray containing the elements of <code>self</code> in reverse order</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func filter(includeElement: (T) -&gt; Bool) -> ContiguousArray&lt;T&gt;</code>
+<div class="comment">
+    <p>Return a ContiguousArray containing the elements <code>x</code> of <code>self</code> for which
+<code>includeElement(x)</code> is <code>true</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func getMirror() -> MirrorType</code>
+<div class="comment">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func withUnsafeBufferPointer&lt;R&gt;(body: (UnsafeBufferPointer&lt;T&gt;) -&gt; R) -> R</code>
+<div class="comment">
+    <p>Call <code>body(p)</code>, where <code>p</code> is a pointer to the <code>ContiguousArray</code>&#39;s
+contiguous storage.</p>
+
+<p>Often, the optimizer can eliminate bounds checks within an
+array algorithm, but when that fails, invoking the
+same algorithm on <code>body</code>&#39;s argument lets you trade safety for
+speed.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func withUnsafeMutableBufferPointer&lt;R&gt;(body: (inout UnsafeMutableBufferPointer&lt;T&gt;) -&gt; R) -> R</code>
+<div class="comment">
+    <p>Call <code>body(p)</code>, where <code>p</code> is a pointer to the <code>ContiguousArray</code>&#39;s
+mutable contiguous storage.</p>
+
+<p>Often, the optimizer can eliminate bounds- and uniqueness-checks
+within an array algorithm, but when that fails, invoking the
+same algorithm on <code>body</code>&#39;s argument lets you trade safety for
+speed.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func replaceRange&lt;C : CollectionType where T == T&gt;(subRange: Range&lt;Int&gt;, with newElements: C)</code>
+<div class="comment">
+    <p>Replace the given <code>subRange</code> of elements with <code>newElements</code>.</p>
+
+<p>Complexity: O(<code>countElements(subRange)</code>) if <code>subRange.endIndex
+== self.endIndex</code> and <code>isEmpty(newElements)</code>, O(N) otherwise.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func splice&lt;S : CollectionType where T == T&gt;(newElements: S, atIndex i: Int)</code>
+<div class="comment">
+    <p>Insert <code>newElements</code> at index <code>i</code></p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p>Complexity: O(<code>count + countElements(newElements)</code>).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeRange(subRange: Range&lt;Int&gt;)</code>
+<div class="comment">
+    <p>Remove the indicated <code>subRange</code> of elements</p>
+
+<p>Complexity: O(<code>count</code>).</p>
+</div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(index: Int) -> T</code>
+</div>
+<div class="declaration">
+<code class="language-swift">subscript(subRange: Range&lt;Int&gt;) -> Slice&lt;T&gt;</code>
+</div>
+
+

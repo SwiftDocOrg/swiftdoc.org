@@ -1,0 +1,44 @@
+---
+layout: default
+title: "CollectionType"
+description: "Swift documentation for 'CollectionType': A multi-pass sequence with addressable positions."
+keywords: "CollectionType,protocol,swift,documentation"
+---
+
+<code class="language-swift">protocol CollectionType { ... }</code>
+
+<div class="comment">
+    <p>A multi-pass <em>sequence</em> with addressable positions.</p>
+
+<p>Positions are represented by an associated <code>Index</code> type.  Whereas
+an arbitrary <em>sequence</em> may be consumed as it is traversed, a
+<em>collection</em> is multi-pass: any element may be revisited merely by
+saving its index.</p>
+
+<p>The sequence view of the elements is identical to the collection
+view.  In other words, the following code binds the same series of
+values to <code>x</code> as does <code>for x in self {}</code>:</p>
+
+<pre><code class="language-swift">for i in startIndex..&lt;endIndex {
+  let x = self[i]
+}</code></pre>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">_CollectionType, SequenceType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+
+
+
+
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(position: Self.Index) -> Self.Generator.Element { get }</code>
+</div>
+
+
