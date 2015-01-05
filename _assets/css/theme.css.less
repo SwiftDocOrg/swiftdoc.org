@@ -220,6 +220,10 @@ body.home {
 h2 { font-weight: 700; margin: 35px 0; }
 .p-news h2 { font-weight: 600; }
 
+a {
+    color: @content-link;
+}
+
 .content {
     margin: 0 0 50px;
     
@@ -227,9 +231,6 @@ h2 { font-weight: 700; margin: 35px 0; }
         font-size: 22px;
         font-weight: 600;
         margin: 25px 0 5px;
-    }
-    a {
-        color: @content-link;
     }
 
     .main-list {
@@ -416,6 +417,25 @@ h2 { font-weight: 700; margin: 35px 0; }
     .date { 
         color: @content-light;
         white-space: nowrap;
+    }
+}
+
+/* hierarchy SVG embed pages */
+.p-hierarchy {
+    .container {
+        width: auto;
+        padding-top: 10px;
+    }
+    
+    #footer {
+        background: none;
+        text-align: left;
+        padding-left: 15px;
+        color: @content-light;
+        
+        a {
+            color: @content-light;
+        }
     }
 }
 
