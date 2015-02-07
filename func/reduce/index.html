@@ -13,5 +13,12 @@ keywords: "reduce,func,swift,documentation"
     <p>Return the result of repeatedly calling <code>combine</code> with an
 accumulated value initialized to <code>initial</code> and each element of
 <code>sequence</code>, in turn.</p>
+<p>For example, this function can be used to merge values:</p>
+<pre><code class="language-swift">var a = reduce([5, 10, 20], 1, { $0 * $1 })
+print(a) // 1000
+var languages = ["Swift", "Objective-C"]
+var b = reduce(languages, "We learned: ", { $0 + $1 })
+print(b) // "We learned: SwiftObjective-C"
+</code></pre>
 </div>
 </div>
