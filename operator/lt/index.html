@@ -42,10 +42,16 @@ description: "Swift documentation for the '<' operator."
 <code class="language-swift">func &lt;(lhs: Int64, rhs: Int64) -> Bool</code>
 </div>
 <div class="declaration">
+<code class="language-swift">func &lt;(lhs: ObjectIdentifier, rhs: ObjectIdentifier) -> Bool</code>
+</div>
+<div class="declaration">
 <code class="language-swift">func &lt;(lhs: String, rhs: String) -> Bool</code>
 </div>
 <div class="declaration">
 <code class="language-swift">func &lt;(lhs: String.Index, rhs: String.Index) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func &lt;(lhs: String.UTF16View.Index, rhs: String.UTF16View.Index) -> Bool</code>
 </div>
 <div class="declaration">
 <code class="language-swift">func &lt;(lhs: String.UnicodeScalarView.Index, rhs: String.UnicodeScalarView.Index) -> Bool</code>
@@ -79,6 +85,9 @@ description: "Swift documentation for the '<' operator."
 <div class="comment">
     <p>Compare two Strideables</p>
 </div>
+</div>
+<div class="declaration">
+<code class="language-swift">func &lt;&lt;T : Hashable&gt;(lhs: SetIndex&lt;T&gt;, rhs: SetIndex&lt;T&gt;) -> Bool</code>
 </div>
 <div class="declaration">
 <code class="language-swift">func &lt;&lt;T&gt;(lhs: UnsafeMutablePointer&lt;T&gt;, rhs: UnsafeMutablePointer&lt;T&gt;) -> Bool</code>

@@ -1,18 +1,27 @@
 ---
 layout: "default"
 title: "println"
-description: "Swift documentation for 'println': Writes a single newline character into the standard output."
+description: "Swift documentation for 'println': Writes the textual representation of object and a newline character into
+the stream target."
 keywords: "println,func,swift,documentation"
 ---
 
 <div class="declaration">
-<code class="language-swift">func println()</code>
+<code class="language-swift">@inline(never)  func println&lt;T, TargetStream : OutputStreamType&gt;(object: T, inout target: TargetStream)</code>
 <div class="comment">
-    <p>Writes a single newline character into the standard output.</p>
+    <p>Writes the textual representation of <code>object</code> and a newline character into
+the stream <code>target</code>.</p>
+
+<p>The textual representation is obtained from the <code>object</code> using its protocol
+conformances, in the following order of preference: <code>Streamable</code>,
+<code>Printable</code>, <code>DebugPrintable</code>.</p>
+
+<p>Do not overload this function for your type.  Instead, adopt one of the
+protocols mentioned above.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">func println&lt;T&gt;(object: T)</code>
+<code class="language-swift">@inline(never)  func println&lt;T&gt;(object: T)</code>
 <div class="comment">
     <p>Writes the textual representation of <code>object</code> and a newline character into
 the standard output.</p>
@@ -26,16 +35,8 @@ protocols mentioned above.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">func println&lt;T, TargetStream : OutputStreamType&gt;(object: T, inout target: TargetStream)</code>
+<code class="language-swift">@inline(never)  func println()</code>
 <div class="comment">
-    <p>Writes the textual representation of <code>object</code> and a newline character into
-the stream <code>target</code>.</p>
-
-<p>The textual representation is obtained from the <code>object</code> using its protocol
-conformances, in the following order of preference: <code>Streamable</code>,
-<code>Printable</code>, <code>DebugPrintable</code>.</p>
-
-<p>Do not overload this function for your type.  Instead, adopt one of the
-protocols mentioned above.</p>
+    <p>Writes a single newline character into the standard output.</p>
 </div>
 </div>

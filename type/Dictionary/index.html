@@ -31,9 +31,7 @@ collection of key-value pairs with no defined ordering.</p>
 <div class="declaration">
 <code class="language-swift">init()</code>
 <div class="comment">
-    <p>Create a dictionary with at least the given number of
-elements worth of storage.  The actual capacity will be the
-smallest power of 2 that&#39;s &gt;= <code>minimumCapacity</code>.</p>
+    <p>Create an empty dictionary.</p>
 </div>
 </div>
 <div class="declaration">
@@ -92,7 +90,7 @@ reachable from <code>startIndex</code> by zero or more applications of
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">var keys: LazyBidirectionalCollection&lt;MapCollectionView&lt;[Key : Value], Key&gt;&gt; { get }</code>
+<code class="language-swift">var keys: LazyForwardCollection&lt;MapCollectionView&lt;[Key : Value], Key&gt;&gt; { get }</code>
 <div class="comment">
     <p>A collection containing just the keys of <code>self</code></p>
 
@@ -102,7 +100,7 @@ unique value.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">var values: LazyBidirectionalCollection&lt;MapCollectionView&lt;[Key : Value], Value&gt;&gt; { get }</code>
+<code class="language-swift">var values: LazyForwardCollection&lt;MapCollectionView&lt;[Key : Value], Value&gt;&gt; { get }</code>
 <div class="comment">
     <p>A collection containing just the values of <code>self</code></p>
 

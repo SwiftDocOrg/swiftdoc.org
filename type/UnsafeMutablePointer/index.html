@@ -4,7 +4,7 @@ title: "UnsafeMutablePointer"
 description: "Swift documentation for 'UnsafeMutablePointer': A pointer to an object of type T.  This type provides no automated
 memory management, and therefore the user must take care to allocate
 and free memory appropriately."
-keywords: "UnsafeMutablePointer,struct,swift,documentation,null,alloc,dealloc,initialize,move,moveInitializeBackwardFrom,moveAssignFrom,assignFrom,assignBackwardFrom,moveInitializeFrom,initializeFrom,initializeFrom,destroy,destroy,successor,predecessor,distanceTo,advancedBy,getMirror,put,memory,hashValue,debugDescription"
+keywords: "UnsafeMutablePointer,struct,swift,documentation,alloc,dealloc,initialize,move,assignFrom,assignBackwardFrom,moveInitializeFrom,moveInitializeBackwardFrom,initializeFrom,initializeFrom,moveAssignFrom,destroy,destroy,successor,predecessor,distanceTo,advancedBy,getMirror,put,memory,hashValue,debugDescription"
 ---
 
 <code class="language-swift">struct UnsafeMutablePointer&lt;T&gt; { ... }</code>
@@ -21,7 +21,7 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">RandomAccessIndexType, Hashable, NilLiteralConvertible, DebugPrintable, Reflectable, SinkType</code>
+<code class="inherits">RandomAccessIndexType, Hashable, NilLiteralConvertible, _PointerType, DebugPrintable, Reflectable, SinkType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -32,12 +32,6 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 <code class="language-swift">init()</code>
 <div class="comment">
     <p>Construct a null pointer.</p>
-</div>
-</div>
-<div class="declaration">
-<code class="language-swift">init(_ value: Builtin.RawPointer)</code>
-<div class="comment">
-    <p>Construct an <code>UnsafeMutablePointer</code> from a builtin raw pointer.</p>
 </div>
 </div>
 <div class="declaration">
@@ -117,12 +111,6 @@ hash value across program runs.</p>
 
 <h3>Static Methods</h3>
 <div class="declaration">
-<code class="language-swift">static func null() -> UnsafeMutablePointer&lt;T&gt;</code>
-<div class="comment">
-    <p>Return a <code>nil</code> instance.</p>
-</div>
-</div>
-<div class="declaration">
 <code class="language-swift">static func alloc(num: Int) -> UnsafeMutablePointer&lt;T&gt;</code>
 <div class="comment">
     <p>Allocate memory for <code>num</code> objects of type <code>T</code>.</p>
@@ -174,24 +162,6 @@ be initialized before being used again.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">func moveInitializeBackwardFrom(source: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
-<div class="comment">
-    <p>Move count values beginning at source into uninitialized memory,
-transforming the source values into raw memory, proceeding from
-the last value to the first.  Use this for copying ranges into
-later memory that may overlap with the source range.</p>
-
-<p>Requires: either <code>source</code> precedes <code>self</code> or follows <code>self + count</code>.</p>
-</div>
-</div>
-<div class="declaration">
-<code class="language-swift">func moveAssignFrom(source: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
-<div class="comment">
-    <p>Assign from count values beginning at source into initialized
-memory, transforming the source values into raw memory.</p>
-</div>
-</div>
-<div class="declaration">
 <code class="language-swift">func assignFrom(source: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
 <div class="comment">
     <p>Assign from <code>count</code> values beginning at source into initialized
@@ -217,11 +187,24 @@ transforming the source values into raw memory.</p>
 </div>
 </div>
 <div class="declaration">
+<code class="language-swift">func moveInitializeBackwardFrom(source: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
+<div class="comment">
+    <p>Move <code>count</code> values beginning at <code>source</code> into uninitialized memory,
+transforming the source values into raw memory, proceeding from
+the last value to the first.  Use this for copying ranges into
+later memory that may overlap with the source range.</p>
+
+<p>Requires: either <code>source</code> precedes <code>self</code> or follows <code>self + count</code>.</p>
+</div>
+</div>
+<div class="declaration">
 <code class="language-swift">func initializeFrom(source: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
 <div class="comment">
     <p>Copy count values beginning at source into raw memory.</p>
 
 <p>Precondition: the memory is not initialized.</p>
+
+<p>Requires: <code>self</code> and <code>source</code> may not overlap.</p>
 </div>
 </div>
 <div class="declaration">
@@ -230,6 +213,15 @@ transforming the source values into raw memory.</p>
     <p>Copy the elements of <code>C</code> into raw memory.</p>
 
 <p>Precondition: the memory is not initialized.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func moveAssignFrom(source: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
+<div class="comment">
+    <p>Assign from <code>count</code> values beginning at <code>source</code> into initialized
+memory, transforming the source values into raw memory.</p>
+
+<p>Requires: the <code>self</code> and <code>source</code> ranges may not overlap.</p>
 </div>
 </div>
 <div class="declaration">

@@ -58,6 +58,12 @@ arithmetic overflow (except in -Ounchecked builds).</p>
 </div>
 </div>
 <div class="declaration">
+<code class="language-swift">func -&lt;T : _UnsignedIntegerType&gt;(lhs: T, rhs: T) -> T._DisallowMixedSignArithmetic</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func -&lt;T : _UnsignedIntegerType&gt;(lhs: T, rhs: T._DisallowMixedSignArithmetic) -> T</code>
+</div>
+<div class="declaration">
 <code class="language-swift">func -&lt;T : Strideable&gt;(lhs: T, rhs: T) -> T.Stride</code>
 </div>
 <div class="declaration">

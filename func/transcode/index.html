@@ -7,7 +7,7 @@ keywords: "transcode,func,swift,documentation"
 ---
 
 <div class="declaration">
-<code class="language-swift">func transcode&lt;Input : GeneratorType, Output : SinkType, InputEncoding : UnicodeCodecType, OutputEncoding : UnicodeCodecType where InputEncoding.CodeUnit == InputEncoding.CodeUnit, OutputEncoding.CodeUnit == OutputEncoding.CodeUnit&gt;(inputEncoding: InputEncoding.Type, outputEncoding: OutputEncoding.Type, input: Input, output: Output, #stopOnError: Bool) -> (Bool)</code>
+<code class="language-swift">func transcode&lt;Input : GeneratorType, Output : SinkType, InputEncoding : UnicodeCodecType, OutputEncoding : UnicodeCodecType where Input.Element == Input.Element, Output.Element == Output.Element&gt;(inputEncoding: InputEncoding.Type, outputEncoding: OutputEncoding.Type, input: Input, inout output: Output, #stopOnError: Bool) -> Bool</code>
 <div class="comment">
     <p>Translate <code>input</code>, in the given <code>InputEncoding</code>, into <code>output</code>, in
 the given <code>OutputEncoding</code>.</p>

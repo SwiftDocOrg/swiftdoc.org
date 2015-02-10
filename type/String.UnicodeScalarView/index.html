@@ -3,18 +3,18 @@ layout: "default"
 title: "String.UnicodeScalarView"
 description: "Swift documentation for 'String.UnicodeScalarView': A collection of Unicode scalar values that
 encode a String ."
-keywords: "String.UnicodeScalarView,struct,swift,documentation,generate,getMirror,startIndex,endIndex"
+keywords: "String.UnicodeScalarView,struct,swift,documentation,generate,getMirror,startIndex,endIndex,description,debugDescription"
 ---
 
 <code class="language-swift">struct String.UnicodeScalarView { ... }</code>
 
 <div class="comment">
-    <p>A collection of Unicode scalar values that
+    <p>A collection of <a href="http://www.unicode.org/glossary/#unicode_scalar_value">Unicode scalar values</a> that
 encode a <code>String</code> .</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">Sliceable, SequenceType, Reflectable</code>
+<code class="inherits">Sliceable, SequenceType, Reflectable, Printable, DebugPrintable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -41,6 +41,12 @@ non-empty; identical to <code>endIndex</code> otherwise.</p>
 reachable from <code>startIndex</code> by zero or more applications of
 <code>successor()</code>.</p>
 </div>
+</div>
+<div class="declaration">
+<code class="language-swift">var description: String { get }</code>
+</div>
+<div class="declaration">
+<code class="language-swift">var debugDescription: String { get }</code>
 </div>
 
 

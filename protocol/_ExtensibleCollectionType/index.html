@@ -58,7 +58,7 @@ storage, or even ignore the request completely.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">mutating func extend&lt;S : SequenceType where `Self`.Generator.Element == Self.Generator.Element&gt;(newElements: S)</code>
+<code class="language-swift">mutating func extend&lt;S : SequenceType where Self.Generator.Element == Self.Generator.Element&gt;(newElements: S)</code>
 <div class="comment">
     <p>Append the elements of <code>newElements</code> to <code>self</code>.</p>
 
@@ -66,7 +66,7 @@ storage, or even ignore the request completely.</p>
 
 <p>A possible implementation:</p>
 
-<pre><code class="language-swift">reserveCapacity(countElements(self) + underestimateCount(newElements))
+<pre><code class="language-swift">reserveCapacity(count(self) + underestimateCount(newElements))
 for x in newElements {
   newElements.append(x)
 }</code></pre>

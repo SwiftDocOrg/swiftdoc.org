@@ -2,13 +2,13 @@
 layout: "default"
 title: "UTF16"
 description: "Swift documentation for 'UTF16': A codec for UTF-16."
-keywords: "UTF16,struct,swift,documentation,decode,encode,width,leadSurrogate,trailSurrogate,measure,CodeUnit"
+keywords: "UTF16,struct,swift,documentation,decode,encode,width,leadSurrogate,trailSurrogate,isLeadSurrogate,isTrailSurrogate,measure,CodeUnit"
 ---
 
 <code class="language-swift">struct UTF16 { ... }</code>
 
 <div class="comment">
-    <p>A codec for UTF-16.</p>
+    <p>A codec for <a href="http://www.unicode.org/glossary/#UTF_16">UTF-16</a>.</p>
 </div>
 
 <h3>Inheritance</h3>
@@ -19,7 +19,7 @@ keywords: "UTF16,struct,swift,documentation,decode,encode,width,leadSurrogate,tr
 <div class="declaration">
 <code class="language-swift">typealias CodeUnit = UInt16</code>
 <div class="comment">
-    <p>A type that can hold code unit values for this
+    <p>A type that can hold <a href="http://www.unicode.org/glossary/#code_unit">code unit</a> values for this
 encoding.</p>
 </div>
 </div>
@@ -50,8 +50,8 @@ encoding.</p>
 <div class="declaration">
 <code class="language-swift">static func leadSurrogate(x: UnicodeScalar) -> CodeUnit</code>
 <div class="comment">
-    <p>Return the high surrogate code unit of a surrogate pair
-representing <code>x</code>.</p>
+    <p>Return the high surrogate code unit of a <a href="http://www.unicode.org/glossary/#surrogate_pair">surrogate pair</a> representing
+<code>x</code>.</p>
 
 <p>Requires: <code>width(x) == 2</code></p>
 </div>
@@ -59,11 +59,17 @@ representing <code>x</code>.</p>
 <div class="declaration">
 <code class="language-swift">static func trailSurrogate(x: UnicodeScalar) -> CodeUnit</code>
 <div class="comment">
-    <p>Return the low surrogate code unit of a surrogate pair
-representing <code>x</code>.</p>
+    <p>Return the low surrogate code unit of a <a href="http://www.unicode.org/glossary/#surrogate_pair">surrogate pair</a> representing
+<code>x</code>.</p>
 
 <p>Requires: <code>width(x) == 2</code></p>
 </div>
+</div>
+<div class="declaration">
+<code class="language-swift">static func isLeadSurrogate(x: CodeUnit) -> Bool</code>
+</div>
+<div class="declaration">
+<code class="language-swift">static func isTrailSurrogate(x: CodeUnit) -> Bool</code>
 </div>
 <div class="declaration">
 <code class="language-swift">static func measure&lt;Encoding : UnicodeCodecType, Input : GeneratorType where Encoding.CodeUnit == Encoding.CodeUnit&gt;(_: Encoding.Type, input: Input, repairIllFormedSequences: Bool) -> (Int, Bool)?</code>

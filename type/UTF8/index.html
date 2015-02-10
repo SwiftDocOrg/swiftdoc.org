@@ -2,13 +2,13 @@
 layout: "default"
 title: "UTF8"
 description: "Swift documentation for 'UTF8': A codec for UTF-8."
-keywords: "UTF8,struct,swift,documentation,decode,encode,CodeUnit"
+keywords: "UTF8,struct,swift,documentation,decode,encode,isContinuation,CodeUnit"
 ---
 
 <code class="language-swift">struct UTF8 { ... }</code>
 
 <div class="comment">
-    <p>A codec for UTF-8.</p>
+    <p>A codec for <a href="http://www.unicode.org/glossary/#UTF_8">UTF-8</a>.</p>
 </div>
 
 <h3>Inheritance</h3>
@@ -19,7 +19,7 @@ keywords: "UTF8,struct,swift,documentation,decode,encode,CodeUnit"
 <div class="declaration">
 <code class="language-swift">typealias CodeUnit = UInt8</code>
 <div class="comment">
-    <p>A type that can hold code unit values for this
+    <p>A type that can hold <a href="http://www.unicode.org/glossary/#code_unit">code unit</a> values for this
 encoding.</p>
 </div>
 </div>
@@ -39,6 +39,13 @@ encoding.</p>
 <div class="comment">
     <p>Encode a <code>UnicodeScalar</code> as a series of <code>CodeUnit</code>s by <code>put</code>\
 &#39;ing each <code>CodeUnit</code> to <code>output</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">static func isContinuation(byte: CodeUnit) -> Bool</code>
+<div class="comment">
+    <p>Return true if <code>byte</code> is a continuation byte of the form
+<code>0b10xxxxxx</code></p>
 </div>
 </div>
 

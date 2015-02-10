@@ -7,7 +7,7 @@ keywords: "debugPrintln,func,swift,documentation"
 ---
 
 <div class="declaration">
-<code class="language-swift">func debugPrintln&lt;T, TargetStream : OutputStreamType&gt;(x: T, inout target: TargetStream)</code>
+<code class="language-swift">@inline(never)  func debugPrintln&lt;T, TargetStream : OutputStreamType&gt;(x: T, inout target: TargetStream)</code>
 <div class="comment">
     <p>Write to <code>target</code> the textual representation of <code>x</code> most suitable
 for debugging, followed by a newline.</p>
@@ -18,7 +18,7 @@ for debugging, followed by a newline.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">func debugPrintln&lt;T&gt;(x: T)</code>
+<code class="language-swift">@inline(never)  func debugPrintln&lt;T&gt;(x: T)</code>
 <div class="comment">
     <p>Write to the console the textual representation of <code>x</code> most suitable
 for debugging, followed by a newline.</p>

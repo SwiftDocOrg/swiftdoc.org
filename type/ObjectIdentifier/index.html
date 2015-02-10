@@ -1,23 +1,23 @@
 ---
 layout: "default"
 title: "ObjectIdentifier"
-description: "Swift documentation for 'ObjectIdentifier': A unique identifier for a class instance. This can be used by reflection
-clients to recognize cycles in the object graph."
+description: "Swift documentation for 'ObjectIdentifier': A unique identifier for a class instance or metatype. This can be used by
+reflection clients to recognize cycles in the object graph."
 keywords: "ObjectIdentifier,struct,swift,documentation,uintValue,hashValue"
 ---
 
 <code class="language-swift">struct ObjectIdentifier { ... }</code>
 
 <div class="comment">
-    <p>A unique identifier for a class instance. This can be used by reflection
-clients to recognize cycles in the object graph.</p>
+    <p>A unique identifier for a class instance or metatype. This can be used by
+reflection clients to recognize cycles in the object graph.</p>
 
-<p>In Swift, only class instances have unique identities. There is no notion
-of identity for structs, enums, or tuples.</p>
+<p>In Swift, only class instances and metatypes have unique identities. There
+is no notion of identity for structs, enums, functions, or tuples.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">Hashable</code>
+<code class="inherits">Hashable, Comparable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -27,12 +27,26 @@ of identity for structs, enums, or tuples.</p>
 <div class="declaration">
 <code class="language-swift">init(_ x: AnyObject)</code>
 <div class="comment">
-    <p>Construct an instance that uniquely identifies <code>x</code>.</p>
+    <p>Construct an instance that uniquely identifies the class instance <code>x</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ x: Any.Type)</code>
+<div class="comment">
+    <p>Construct an instance that uniquely identifies the metatype <code>x</code>.</p>
 </div>
 </div>
 
 
 <h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var uintValue: UInt { get }</code>
+<div class="comment">
+    <p>Convert to a <code>UInt</code> that captures the full value of <code>self</code>.</p>
+
+<p>Axiom: <code>a.uintValue == b.uintValue</code> iff <code>a == b</code></p>
+</div>
+</div>
 <div class="declaration">
 <code class="language-swift">var hashValue: Int { get }</code>
 <div class="comment">
@@ -47,15 +61,6 @@ hash value across program runs.</p>
 </div>
 
 
-<h3>Instance Methods</h3>
-<div class="declaration">
-<code class="language-swift">func uintValue() -> UInt</code>
-<div class="comment">
-    <p>Convert to a <code>UInt</code> that captures the full value of <code>self</code>.</p>
-
-<p>Axiom: <code>a.uintValue() == b.uintValue()</code> iff <code>a == b</code></p>
-</div>
-</div>
 
 
 

@@ -4,7 +4,7 @@ title: "UnsafePointer"
 description: "Swift documentation for 'UnsafePointer': A pointer to an object of type T.  This type provides no automated
 memory management, and therefore the user must take care to allocate
 and free memory appropriately."
-keywords: "UnsafePointer,struct,swift,documentation,null,successor,predecessor,distanceTo,advancedBy,getMirror,memory,hashValue,debugDescription"
+keywords: "UnsafePointer,struct,swift,documentation,successor,predecessor,distanceTo,advancedBy,getMirror,memory,hashValue,debugDescription"
 ---
 
 <code class="language-swift">struct UnsafePointer&lt;T&gt; { ... }</code>
@@ -21,7 +21,7 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">RandomAccessIndexType, Hashable, NilLiteralConvertible, DebugPrintable, Reflectable</code>
+<code class="inherits">RandomAccessIndexType, Hashable, NilLiteralConvertible, _PointerType, DebugPrintable, Reflectable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -32,12 +32,6 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 <code class="language-swift">init()</code>
 <div class="comment">
     <p>Construct a null pointer.</p>
-</div>
-</div>
-<div class="declaration">
-<code class="language-swift">init(_ value: Builtin.RawPointer)</code>
-<div class="comment">
-    <p>Construct an <code>UnsafePointer</code> from a builtin raw pointer.</p>
 </div>
 </div>
 <div class="declaration">
@@ -115,13 +109,6 @@ hash value across program runs.</p>
 </div>
 </div>
 
-<h3>Static Methods</h3>
-<div class="declaration">
-<code class="language-swift">static func null() -> UnsafePointer&lt;T&gt;</code>
-<div class="comment">
-    <p>Return a <code>nil</code> instance.</p>
-</div>
-</div>
 
 <h3>Instance Methods</h3>
 <div class="declaration">

@@ -2,7 +2,7 @@
 layout: "default"
 title: "String"
 description: "Swift documentation for 'String': An arbitrary Unicode string value."
-keywords: "String,struct,swift,documentation,generate,fromCString,fromCStringRepairingIllFormedUTF8,withCString,getMirror,write,writeTo,extend,append,convertFromStringInterpolation,convertFromStringInterpolationSegment,reserveCapacity,append,extend,join,replaceRange,insert,splice,removeAtIndex,removeRange,removeAll,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,convertFromStringInterpolationSegment,hasPrefix,hasSuffix,toInt,availableStringEncodings,defaultCStringEncoding,localizedNameOfStringEncoding,localizedStringWithFormat,pathWithComponents,canBeConvertedToEncoding,capitalizedStringWithLocale,caseInsensitiveCompare,commonPrefixWithString,compare,completePathIntoString,componentsSeparatedByCharactersInSet,componentsSeparatedByString,cStringUsingEncoding,dataUsingEncoding,enumerateLines,enumerateLinguisticTagsInRange,enumerateSubstringsInRange,fileSystemRepresentation,getBytes,getCString,getFileSystemRepresentation,getLineStart,getParagraphStart,lengthOfBytesUsingEncoding,lineRangeForRange,linguisticTagsInRange,localizedCaseInsensitiveCompare,localizedCompare,localizedStandardCompare,lowercaseStringWithLocale,maximumLengthOfBytesUsingEncoding,paragraphRangeForRange,propertyList,propertyListFromStringsFileFormat,rangeOfCharacterFromSet,rangeOfComposedCharacterSequenceAtIndex,rangeOfComposedCharacterSequencesForRange,rangeOfString,stringByAddingPercentEncodingWithAllowedCharacters,stringByAddingPercentEscapesUsingEncoding,stringByAppendingFormat,stringByAppendingPathComponent,stringByAppendingPathExtension,stringByAppendingString,stringByFoldingWithOptions,stringByPaddingToLength,stringByReplacingCharactersInRange,stringByReplacingOccurrencesOfString,stringByReplacingPercentEscapesUsingEncoding,stringByTrimmingCharactersInSet,stringsByAppendingPaths,substringFromIndex,substringToIndex,substringWithRange,uppercaseStringWithLocale,writeToFile,writeToURL,startIndex,endIndex,utf8,nulTerminatedUTF8,debugDescription,hashValue,isEmpty,utf16,unicodeScalars,capitalizedString,decomposedStringWithCanonicalMapping,decomposedStringWithCompatibilityMapping,fastestEncoding,hash,lastPathComponent,utf16Count,pathComponents,pathExtension,precomposedStringWithCanonicalMapping,precomposedStringWithCompatibilityMapping,smallestEncoding,stringByAbbreviatingWithTildeInPath,stringByDeletingLastPathComponent,stringByDeletingPathExtension,stringByExpandingTildeInPath,stringByRemovingPercentEncoding,stringByResolvingSymlinksInPath,stringByStandardizingPath,lowercaseString,uppercaseString"
+keywords: "String,struct,swift,documentation,generate,fromCString,fromCStringRepairingIllFormedUTF8,withCString,getMirror,write,writeTo,extend,append,reserveCapacity,append,extend,join,replaceRange,insert,splice,removeAtIndex,removeRange,removeAll,hasPrefix,hasSuffix,toInt,availableStringEncodings,defaultCStringEncoding,localizedNameOfStringEncoding,localizedStringWithFormat,pathWithComponents,canBeConvertedToEncoding,capitalizedStringWithLocale,caseInsensitiveCompare,commonPrefixWithString,compare,completePathIntoString,componentsSeparatedByCharactersInSet,componentsSeparatedByString,cStringUsingEncoding,dataUsingEncoding,enumerateLines,enumerateLinguisticTagsInRange,enumerateSubstringsInRange,fileSystemRepresentation,getBytes,getCString,getFileSystemRepresentation,getLineStart,getParagraphStart,lengthOfBytesUsingEncoding,lineRangeForRange,linguisticTagsInRange,localizedCaseInsensitiveCompare,localizedCompare,localizedStandardCompare,lowercaseStringWithLocale,maximumLengthOfBytesUsingEncoding,paragraphRangeForRange,propertyList,propertyListFromStringsFileFormat,rangeOfCharacterFromSet,rangeOfComposedCharacterSequenceAtIndex,rangeOfComposedCharacterSequencesForRange,rangeOfString,stringByAddingPercentEncodingWithAllowedCharacters,stringByAddingPercentEscapesUsingEncoding,stringByAppendingFormat,stringByAppendingPathComponent,stringByAppendingPathExtension,stringByAppendingString,stringByFoldingWithOptions,stringByPaddingToLength,stringByReplacingCharactersInRange,stringByReplacingOccurrencesOfString,stringByReplacingPercentEscapesUsingEncoding,stringByTrimmingCharactersInSet,stringsByAppendingPaths,substringFromIndex,substringToIndex,substringWithRange,uppercaseStringWithLocale,writeToFile,writeToURL,startIndex,endIndex,utf16,utf8,nulTerminatedUTF8,debugDescription,hashValue,lowercaseString,uppercaseString,isEmpty,unicodeScalars,capitalizedString,decomposedStringWithCanonicalMapping,decomposedStringWithCompatibilityMapping,fastestEncoding,hash,lastPathComponent,utf16Count,pathComponents,pathExtension,precomposedStringWithCanonicalMapping,precomposedStringWithCompatibilityMapping,smallestEncoding,stringByAbbreviatingWithTildeInPath,stringByDeletingLastPathComponent,stringByDeletingPathExtension,stringByExpandingTildeInPath,stringByRemovingPercentEncoding,stringByResolvingSymlinksInPath,stringByStandardizingPath,lowercaseString,uppercaseString,UTF16Index,UTF8Index,UnicodeScalarIndex"
 ---
 
 <code class="language-swift">struct String { ... }</code>
@@ -17,10 +17,10 @@ the APIs make it easy to write code that works correctly, and does
 not surprise end-users, regardless of where you venture in the
 Unicode character space.  For example,</p>
 
-<ul><li><p>The <code>==</code> operator checks for Unicode canonical equivalence,
+<ul><li><p>The <code>==</code> operator checks for <a href="http://www.unicode.org/glossary/#deterministic_comparison">Unicode canonical equivalence</a>,
 so two different representations of the same string will always
-compare equal.</p></li><li><p>String elements are <code>Characters</code> (Unicode extended grapheme
-clusters), a unit of text that is meaningful to most humans.</p></li></ul>
+compare equal.</p></li><li><p>String elements are <code>Characters</code> (<a href="http://www.unicode.org/glossary/#extended_grapheme_cluster">extended grapheme clusters</a>),
+a unit of text that is meaningful to most humans.</p></li></ul>
 
 <h1>Locale-Insensitive</h1>
 
@@ -28,7 +28,7 @@ clusters), a unit of text that is meaningful to most humans.</p></li></ul>
 locale settings.  That&#39;s because, for example, the validity of a
 <code>Dictionary&lt;String, T&gt;</code> in a running program depends on a given
 string comparison having a single, stable result.  Therefore,
-Swift always uses the default, un-tailored Unicode algorithms
+Swift always uses the default, un-<a href="http://www.unicode.org/glossary/#tailorable">tailored</a> Unicode algorithms
 for basic string operations.</p>
 
 <p>Importing <code>Foundation</code> endows swift strings with the full power of
@@ -78,14 +78,57 @@ characteristics).</p>
 <code class="inherits">CollectionType, Reflectable, OutputStreamType, Streamable, UnicodeScalarLiteralConvertible, ExtendedGraphemeClusterLiteralConvertible, StringLiteralConvertible, DebugPrintable, Equatable, Comparable, Hashable, StringInterpolationConvertible, Sliceable, ExtensibleCollectionType, RangeReplaceableCollectionType, _ObjectiveCBridgeable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias UTF16Index = String.UTF16View.Index</code>
+<div class="comment">
+    <p>The index type for subscripting a <code>String</code>&#39;s <code>utf16</code> view.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UTF8Index = String.UTF8View.Index</code>
+<div class="comment">
+    <p>The index type for subscripting a <code>String</code>&#39;s <code>.utf8</code> view.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnicodeScalarIndex = String.UnicodeScalarView.Index</code>
+<div class="comment">
+    <p>The index type for subscripting a <code>String</code>&#39;s <code>.unicodeScalars</code>
+view.</p>
+</div>
+</div>
 
 <h3>Nested types</h3>
-<code class="nested">String.Index, String.UTF8View, String.UnicodeScalarView, String.UTF16View, String.UTF8View.Index, String.UnicodeScalarView.Index, String.UnicodeScalarView.Generator</code>
+<code class="nested">String.Index, String.UTF16View, String.UTF8View, String.UnicodeScalarView, String.UTF16View.Index, String.UTF8View.Index, String.UnicodeScalarView.Index, String.UnicodeScalarView.Generator</code>
 
 
 <h3>Initializers</h3>
 <div class="declaration">
 <code class="language-swift">init()</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init?(_ utf16: String.UTF16View)</code>
+<div class="comment">
+    <p>Construct the <code>String</code> corresponding to the given sequence of
+UTF-16 code units.  If <code>utf16</code> contains unpaired surrogates, the
+result is <code>nil</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init?(_ utf8: String.UTF8View)</code>
+<div class="comment">
+    <p>Construct the <code>String</code> corresponding to the given sequence of
+UTF-8 code units.  If <code>utf8</code> contains unpaired surrogates, the
+result is <code>nil</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ unicodeScalars: String.UnicodeScalarView)</code>
+<div class="comment">
+    <p>Construct the <code>String</code> corresponding to the given sequence of
+Unicode scalars.</p>
+</div>
 </div>
 <div class="declaration">
 <code class="language-swift">init(_ c: Character)</code>
@@ -124,22 +167,82 @@ characteristics).</p>
 </div>
 </div>
 <div class="declaration">
+<code class="language-swift">init(stringInterpolation strings: String...)</code>
+<div class="comment">
+    <p>Create an instance by concatenating the elements of <code>strings</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init&lt;T&gt;(stringInterpolationSegment expr: T)</code>
+<div class="comment">
+    <p>Create an instance containing <code>expr</code>&#39;s <code>print</code> representation</p>
+</div>
+</div>
+<div class="declaration">
 <code class="language-swift">init&lt;S : SequenceType where Character == Character&gt;(_ characters: S)</code>
 <div class="comment">
     <p>Create an instance containing <code>characters</code>.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">init(count sz: Int, repeatedValue c: Character)</code>
+<code class="language-swift">init(stringInterpolationSegment expr: String)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: Character)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: UnicodeScalar)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: Bool)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: Float32)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: Float64)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: UInt8)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: Int8)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: UInt16)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: Int16)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: UInt32)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: Int32)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: UInt64)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: Int64)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: UInt)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(stringInterpolationSegment expr: Int)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(count: Int, repeatedValue c: Character)</code>
 <div class="comment">
-    <p>Construct an instance that is the concatenation of <code>sz</code> copies
+    <p>Construct an instance that is the concatenation of <code>count</code> copies
 of <code>repeatedValue</code></p>
 </div>
 </div>
 <div class="declaration">
 <code class="language-swift">init(count: Int, repeatedValue c: UnicodeScalar)</code>
 <div class="comment">
-    <p>Construct an instance that is the concatenation of <code>sz</code> copies
+    <p>Construct an instance that is the concatenation of <code>count</code> copies
 of <code>Character(repeatedValue)</code></p>
 </div>
 </div>
@@ -171,13 +274,6 @@ starting with <code>a</code> if <code>uppercase</code> is <code>false</code> or 
 
 <p>Numerals greater than 9 are represented as roman letters,
 starting with <code>a</code> if <code>uppercase</code> is <code>false</code> or <code>A</code> otherwise.</p>
-</div>
-</div>
-<div class="declaration">
-<code class="language-swift">init(_ view: String.UnicodeScalarView)</code>
-<div class="comment">
-    <p>Construct an instance given a collection of Unicode scalar
-values.</p>
 </div>
 </div>
 <div class="declaration">
@@ -316,6 +412,12 @@ reachable from <code>startIndex</code> by zero or more applications of
 </div>
 </div>
 <div class="declaration">
+<code class="language-swift">var utf16: String.UTF16View { get }</code>
+<div class="comment">
+    <p>A UTF-16 encoding of <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
 <code class="language-swift">var utf8: String.UTF8View { get }</code>
 <div class="comment">
     <p>A UTF-8 encoding of <code>self</code>.</p>
@@ -350,21 +452,21 @@ hash value across program runs.</p>
 </div>
 </div>
 <div class="declaration">
+<code class="language-swift">var lowercaseString: String { get }</code>
+</div>
+<div class="declaration">
+<code class="language-swift">var uppercaseString: String { get }</code>
+</div>
+<div class="declaration">
 <code class="language-swift">var isEmpty: Bool { get }</code>
 <div class="comment">
     <p><code>true</code> iff <code>self</code> contains no characters.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">var utf16: String.UTF16View { get }</code>
-<div class="comment">
-    <p>A UTF-16 encoding of <code>self</code>.</p>
-</div>
-</div>
-<div class="declaration">
 <code class="language-swift">var unicodeScalars: String.UnicodeScalarView { get }</code>
 <div class="comment">
-    <p>The value of <code>self</code> as a collection of Unicode scalar values.</p>
+    <p>The value of <code>self</code> as a collection of <a href="http://www.unicode.org/glossary/#unicode_scalar_value">Unicode scalar values</a>.</p>
 </div>
 </div>
 <div class="declaration">
@@ -541,66 +643,6 @@ characters (U+FFFD).</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolation(strings: String...) -> String</code>
-<div class="comment">
-    <p>Create an instance by concatenating the elements of <code>strings</code></p>
-</div>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment&lt;T&gt;(expr: T) -> String</code>
-<div class="comment">
-    <p>Create an instance containing <code>expr</code>&#39;s <code>print</code> representation</p>
-</div>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: String) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: Character) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: UnicodeScalar) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: Bool) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: Float32) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: Float64) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: UInt8) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: Int8) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: UInt16) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: Int16) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: UInt32) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: Int32) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: UInt64) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: Int64) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: UInt) -> String</code>
-</div>
-<div class="declaration">
-<code class="language-swift">static func convertFromStringInterpolationSegment(expr: Int) -> String</code>
-</div>
-<div class="declaration">
 <code class="language-swift">static func availableStringEncodings() -> [NSStringEncoding]</code>
 <div class="comment">
     <p><em>[Foundation]</em> Returns an Array of the encodings string objects support
@@ -662,6 +704,9 @@ lifetime extends through the execution of <code>f</code>.</p>
 </div>
 <div class="declaration">
 <code class="language-swift">mutating func write(other: String)</code>
+<div class="comment">
+    <p>Append <code>other</code> to this stream.</p>
+</div>
 </div>
 <div class="declaration">
 <code class="language-swift">func writeTo&lt;Target : OutputStreamType&gt;(inout target: Target)</code>
@@ -721,7 +766,7 @@ then concatenate the result.  For example:</p>
 
 <p>Invalidates all indices with respect to <code>self</code>.</p>
 
-<p>Complexity: O(<code>countElements(subRange)</code>) if <code>subRange.endIndex
+<p>Complexity: O(<code>count(subRange)</code>) if <code>subRange.endIndex
 == self.endIndex</code> and <code>isEmpty(newElements)</code>, O(N) otherwise.</p>
 </div>
 </div>
@@ -732,7 +777,7 @@ then concatenate the result.  For example:</p>
 
 <p>Invalidates all indices with respect to <code>self</code>.</p>
 
-<p>Complexity: O(<code>countElements(self)</code>).</p>
+<p>Complexity: O(<code>count(self)</code>).</p>
 </div>
 </div>
 <div class="declaration">
@@ -742,7 +787,7 @@ then concatenate the result.  For example:</p>
 
 <p>Invalidates all indices with respect to <code>self</code>.</p>
 
-<p>Complexity: O(<code>countElements(self) + countElements(newElements)</code>).</p>
+<p>Complexity: O(<code>count(self) + count(newElements)</code>).</p>
 </div>
 </div>
 <div class="declaration">
@@ -752,7 +797,7 @@ then concatenate the result.  For example:</p>
 
 <p>Invalidates all indices with respect to <code>self</code>.</p>
 
-<p>Complexity: O(<code>countElements(self)</code>).</p>
+<p>Complexity: O(<code>count(self)</code>).</p>
 </div>
 </div>
 <div class="declaration">
@@ -762,7 +807,7 @@ then concatenate the result.  For example:</p>
 
 <p>Invalidates all indices with respect to <code>self</code>.</p>
 
-<p>Complexity: O(<code>countElements(self)</code>).</p>
+<p>Complexity: O(<code>count(self)</code>).</p>
 </div>
 </div>
 <div class="declaration">

@@ -54,13 +54,13 @@ description: "Swift documentation for the '+' operator."
 <code class="language-swift">func +(lhs: UInt64, rhs: UInt64) -> UInt64</code>
 </div>
 <div class="declaration">
-<code class="language-swift">func +&lt;C : _ExtensibleCollectionType, S : CollectionType where S.Generator.Element == S.Generator.Element&gt;(lhs: C, rhs: S) -> C</code>
+<code class="language-swift">func +&lt;C : _ExtensibleCollectionType, S : CollectionType where C.Generator.Element == C.Generator.Element&gt;(lhs: C, rhs: S) -> C</code>
 </div>
 <div class="declaration">
-<code class="language-swift">func +&lt;C : _ExtensibleCollectionType, S : SequenceType where S.Generator.Element == S.Generator.Element&gt;(lhs: C, rhs: S) -> C</code>
+<code class="language-swift">func +&lt;C : _ExtensibleCollectionType, S : SequenceType where C.Generator.Element == C.Generator.Element&gt;(lhs: C, rhs: S) -> C</code>
 </div>
 <div class="declaration">
-<code class="language-swift">func +&lt;C : _ExtensibleCollectionType, S : SequenceType where S.Generator.Element == S.Generator.Element&gt;(lhs: S, rhs: C) -> C</code>
+<code class="language-swift">func +&lt;C : _ExtensibleCollectionType, S : SequenceType where C.Generator.Element == C.Generator.Element&gt;(lhs: S, rhs: C) -> C</code>
 </div>
 <div class="declaration">
 <code class="language-swift">func +&lt;EC1 : _ExtensibleCollectionType, EC2 : _ExtensibleCollectionType where EC1.Generator.Element == EC1.Generator.Element&gt;(lhs: EC1, rhs: EC2) -> EC1</code>
@@ -71,6 +71,12 @@ description: "Swift documentation for the '+' operator."
     <p>Add <code>lhs</code> and <code>rhs</code>, returning a result and trapping in case of
 arithmetic overflow (except in -Ounchecked builds).</p>
 </div>
+</div>
+<div class="declaration">
+<code class="language-swift">func +&lt;T : _UnsignedIntegerType&gt;(lhs: T, rhs: T._DisallowMixedSignArithmetic) -> T</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func +&lt;T : _UnsignedIntegerType&gt;(lhs: T._DisallowMixedSignArithmetic, rhs: T) -> T</code>
 </div>
 <div class="declaration">
 <code class="language-swift">func +&lt;T : Strideable&gt;(lhs: T, rhs: T.Stride) -> T</code>

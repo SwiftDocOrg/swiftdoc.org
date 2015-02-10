@@ -19,7 +19,7 @@ detail.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">MutableCollectionType, Sliceable, ArrayLiteralConvertible, Reflectable, Printable, DebugPrintable, ArrayType</code>
+<code class="inherits">MutableCollectionType, Sliceable, _DestructorSafeContainer, __ArrayType, ArrayLiteralConvertible, _ArrayType, Reflectable, Printable, DebugPrintable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 <h3>Associated types</h3>
@@ -201,7 +201,7 @@ Requires: count &gt; 0</p>
 
 <p>Postcondition: <code>capacity == 0</code> iff <code>keepCapacity</code> is <code>false</code>.</p>
 
-<p>Complexity: O(<code>countElements(self)</code>).</p>
+<p>Complexity: O(<code>count(self)</code>).</p>
 </div>
 </div>
 <div class="declaration">
@@ -295,7 +295,7 @@ speed.</p>
 <div class="comment">
     <p>Replace the given <code>subRange</code> of elements with <code>newElements</code>.</p>
 
-<p>Complexity: O(<code>countElements(subRange)</code>) if <code>subRange.endIndex
+<p>Complexity: O(<code>count(subRange)</code>) if <code>subRange.endIndex
 == self.endIndex</code> and <code>isEmpty(newElements)</code>, O(N) otherwise.</p>
 </div>
 </div>
@@ -306,7 +306,7 @@ speed.</p>
 
 <p>Invalidates all indices with respect to <code>self</code>.</p>
 
-<p>Complexity: O(<code>count + countElements(newElements)</code>).</p>
+<p>Complexity: O(<code>count + count(newElements)</code>).</p>
 </div>
 </div>
 <div class="declaration">

@@ -2,7 +2,7 @@
 layout: "default"
 title: "String.UTF8View"
 description: "Swift documentation for 'String.UTF8View': A collection of UTF-8 code units that encodes a String value."
-keywords: "String.UTF8View,struct,swift,documentation,generate,getMirror,startIndex,endIndex"
+keywords: "String.UTF8View,struct,swift,documentation,generate,getMirror,startIndex,endIndex,description,debugDescription"
 ---
 
 <code class="language-swift">struct String.UTF8View { ... }</code>
@@ -12,7 +12,7 @@ keywords: "String.UTF8View,struct,swift,documentation,generate,getMirror,startIn
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">CollectionType, Reflectable</code>
+<code class="inherits">CollectionType, Reflectable, Printable, DebugPrintable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -40,6 +40,12 @@ reachable from <code>startIndex</code> by zero or more applications of
 <code>successor()</code>.</p>
 </div>
 </div>
+<div class="declaration">
+<code class="language-swift">var description: String { get }</code>
+</div>
+<div class="declaration">
+<code class="language-swift">var debugDescription: String { get }</code>
+</div>
 
 
 <h3>Instance Methods</h3>
@@ -62,6 +68,9 @@ reachable from <code>startIndex</code> by zero or more applications of
 <h3>Subscripts</h3>
 <div class="declaration">
 <code class="language-swift">subscript(position: String.UTF8View.Index) -> CodeUnit { get }</code>
+</div>
+<div class="declaration">
+<code class="language-swift">subscript(subRange: Range&lt;String.UTF8View.Index&gt;) -> String.UTF8View { get }</code>
 </div>
 
 

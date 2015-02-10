@@ -3,7 +3,7 @@ layout: "default"
 title: "Array"
 description: "Swift documentation for 'Array': Conceptually, Array is an efficient, tail-growable random-access
 collection of arbitrary elements."
-keywords: "Array,struct,swift,documentation,generate,reserveCapacity,append,extend,removeLast,insert,removeAtIndex,removeAll,join,reduce,sort,sorted,map,reverse,filter,getMirror,withUnsafeBufferPointer,withUnsafeMutableBufferPointer,convertFromHeapArray,replaceRange,splice,removeRange,startIndex,endIndex,count,capacity,isEmpty,first,last,description,debugDescription,Element,SubSlice"
+keywords: "Array,struct,swift,documentation,generate,reserveCapacity,append,extend,removeLast,insert,removeAtIndex,removeAll,join,reduce,sort,sorted,map,reverse,filter,getMirror,withUnsafeBufferPointer,withUnsafeMutableBufferPointer,replaceRange,splice,removeRange,startIndex,endIndex,count,capacity,isEmpty,first,last,description,debugDescription,Element,SubSlice"
 ---
 
 <code class="language-swift">struct Array&lt;T&gt; { ... }</code>
@@ -91,7 +91,7 @@ first element access.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">MutableCollectionType, Sliceable, ArrayLiteralConvertible, Reflectable, Printable, DebugPrintable, ArrayType</code>
+<code class="inherits">MutableCollectionType, Sliceable, _DestructorSafeContainer, __ArrayType, ArrayLiteralConvertible, _ArrayType, Reflectable, Printable, DebugPrintable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 <h3>Associated types</h3>
@@ -144,12 +144,12 @@ semantics because the caller may retain an alias to buffer.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">init(_fromCocoaArray source: _SwiftNSArrayRequiredOverridesType, noCopy: Bool = default)</code>
+<code class="language-swift">init(_fromCocoaArray source: _NSArrayCoreType, noCopy: Bool = default)</code>
 <div class="comment">
-    <p>Construct from the given <code>_SwiftNSArrayRequiredOverridesType</code>.</p>
+    <p>Construct from the given <code>_NSArrayCoreType</code>.</p>
 
 <p>If <code>noCopy</code> is <code>true</code>, either <code>source</code> must be known to be immutable,
-or the resulting / <code>Array</code> must not survive across code that could mutate
+or the resulting <code>Array</code> must not survive across code that could mutate
 <code>source</code>.</p>
 </div>
 </div>
@@ -212,13 +212,6 @@ subscript argument.</p>
 </div>
 </div>
 
-<h3>Static Methods</h3>
-<div class="declaration">
-<code class="language-swift">static func convertFromHeapArray(base: Builtin.RawPointer, owner: Builtin.NativeObject, count: Builtin.Word) -> [T]</code>
-<div class="comment">
-    <p>This function &quot;seeds&quot; the ArrayLiteralConvertible protocol</p>
-</div>
-</div>
 
 <h3>Instance Methods</h3>
 <div class="declaration">
@@ -290,7 +283,7 @@ Requires: count &gt; 0</p>
 
 <p>Postcondition: <code>capacity == 0</code> iff <code>keepCapacity</code> is <code>false</code>.</p>
 
-<p>Complexity: O(<code>countElements(self)</code>).</p>
+<p>Complexity: O(<code>count(self)</code>).</p>
 </div>
 </div>
 <div class="declaration">
@@ -384,7 +377,7 @@ speed.</p>
 <div class="comment">
     <p>Replace the given <code>subRange</code> of elements with <code>newElements</code>.</p>
 
-<p>Complexity: O(<code>countElements(subRange)</code>) if <code>subRange.endIndex
+<p>Complexity: O(<code>count(subRange)</code>) if <code>subRange.endIndex
 == self.endIndex</code> and <code>isEmpty(newElements)</code>, O(N) otherwise.</p>
 </div>
 </div>
@@ -395,7 +388,7 @@ speed.</p>
 
 <p>Invalidates all indices with respect to <code>self</code>.</p>
 
-<p>Complexity: O(<code>count + countElements(newElements)</code>).</p>
+<p>Complexity: O(<code>count + count(newElements)</code>).</p>
 </div>
 </div>
 <div class="declaration">

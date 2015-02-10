@@ -62,6 +62,9 @@ case of arithmetic overflow (except in -Ounchecked builds).</p>
 </div>
 </div>
 <div class="declaration">
+<code class="language-swift">func +=&lt;T : _UnsignedIntegerType&gt;(inout lhs: T, rhs: T._DisallowMixedSignArithmetic)</code>
+</div>
+<div class="declaration">
 <code class="language-swift">func +=&lt;T : Strideable&gt;(inout lhs: T, rhs: T.Stride)</code>
 </div>
 <div class="declaration">
@@ -72,6 +75,18 @@ case of arithmetic overflow (except in -Ounchecked builds).</p>
 </div>
 <div class="declaration">
 <code class="language-swift">func +=&lt;T, C : CollectionType where T == T&gt;(inout lhs: _ContiguousArrayBuffer&lt;T&gt;, rhs: C)</code>
+<div class="comment">
+    <p>Append the elements of rhs to lhs</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func +=&lt;T, C : CollectionType where T == T&gt;(inout lhs: _UnitTestArray&lt;T&gt;, rhs: C)</code>
+<div class="comment">
+    <p>Extend <code>lhs</code> with the elements of <code>rhs</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func +=&lt;T, C : CollectionType where T == T&gt;(inout lhs: _UnitTestArrayBuffer&lt;T&gt;, rhs: C)</code>
 <div class="comment">
     <p>Append the elements of rhs to lhs</p>
 </div>
@@ -95,6 +110,12 @@ case of arithmetic overflow (except in -Ounchecked builds).</p>
 </div>
 </div>
 <div class="declaration">
+<code class="language-swift">func +=&lt;T, S : SequenceType where T == T&gt;(inout lhs: _UnitTestArray&lt;T&gt;, rhs: S)</code>
+<div class="comment">
+    <p>Extend <code>lhs</code> with the elements of <code>rhs</code></p>
+</div>
+</div>
+<div class="declaration">
 <code class="language-swift">func +=&lt;T, S : SequenceType where T == T&gt;(inout lhs: ContiguousArray&lt;T&gt;, rhs: S)</code>
 <div class="comment">
     <p>Extend <code>lhs</code> with the elements of <code>rhs</code></p>
@@ -108,6 +129,12 @@ case of arithmetic overflow (except in -Ounchecked builds).</p>
 </div>
 <div class="declaration">
 <code class="language-swift">func +=&lt;T&gt;(inout lhs: _ContiguousArrayBuffer&lt;T&gt;, rhs: T)</code>
+<div class="comment">
+    <p>Append rhs to lhs</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func +=&lt;T&gt;(inout lhs: _UnitTestArrayBuffer&lt;T&gt;, rhs: T)</code>
 <div class="comment">
     <p>Append rhs to lhs</p>
 </div>

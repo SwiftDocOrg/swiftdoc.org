@@ -7,7 +7,7 @@ keywords: "numericCast,func,swift,documentation"
 ---
 
 <div class="declaration">
-<code class="language-swift">func numericCast&lt;T : _UnsignedIntegerType, U : _SignedIntegerType&gt;(x: T) -> U</code>
+<code class="language-swift">func numericCast&lt;T : _SignedIntegerType, U : _SignedIntegerType&gt;(x: T) -> U</code>
 <div class="comment">
     <p>Convert <code>x</code> to type <code>U</code>, trapping on overflow in -Onone and -O
 builds.</p>
@@ -16,7 +16,7 @@ builds.</p>
 integer type:</p>
 
 <pre><code class="language-swift">func f(x: Int32) {}
-func g(x: UInt64) { f(numericCast(x)) }</code></pre>
+func g(x: Int64) { f(numericCast(x)) }</code></pre>
 </div>
 </div>
 <div class="declaration">
@@ -46,7 +46,7 @@ func g(x: UInt64) { f(numericCast(x)) }</code></pre>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">func numericCast&lt;T : _SignedIntegerType, U : _SignedIntegerType&gt;(x: T) -> U</code>
+<code class="language-swift">func numericCast&lt;T : _UnsignedIntegerType, U : _SignedIntegerType&gt;(x: T) -> U</code>
 <div class="comment">
     <p>Convert <code>x</code> to type <code>U</code>, trapping on overflow in -Onone and -O
 builds.</p>
@@ -55,6 +55,6 @@ builds.</p>
 integer type:</p>
 
 <pre><code class="language-swift">func f(x: Int32) {}
-func g(x: Int64) { f(numericCast(x)) }</code></pre>
+func g(x: UInt64) { f(numericCast(x)) }</code></pre>
 </div>
 </div>
