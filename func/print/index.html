@@ -1,16 +1,16 @@
 ---
 layout: "default"
 title: "print"
-description: "Swift documentation for 'print': Writes the textual representation of object into the standard output."
+description: "Swift documentation for 'print': Writes the textual representation of value into the standard output."
 keywords: "print,func,swift,documentation"
 ---
 
 <div class="declaration">
-<code class="language-swift">@inline(never)  func print&lt;T&gt;(object: T)</code>
+<code class="language-swift">@inline(never)  func print&lt;T&gt;(value: T)</code>
 <div class="comment">
-    <p>Writes the textual representation of <code>object</code> into the standard output.</p>
+    <p>Writes the textual representation of <code>value</code> into the standard output.</p>
 
-<p>The textual representation is obtained from the <code>object</code> using its protocol
+<p>The textual representation is obtained from the <code>value</code> using its protocol
 conformances, in the following order of preference: <code>Streamable</code>,
 <code>Printable</code>, <code>DebugPrintable</code>.</p>
 
@@ -19,11 +19,11 @@ protocols mentioned above.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">@inline(never)  func print&lt;T, TargetStream : OutputStreamType&gt;(object: T, inout target: TargetStream)</code>
+<code class="language-swift">@inline(never)  func print&lt;T, TargetStream : OutputStreamType&gt;(value: T, inout target: TargetStream)</code>
 <div class="comment">
-    <p>Writes the textual representation of <code>object</code> into the stream <code>target</code>.</p>
+    <p>Writes the textual representation of <code>value</code> into the stream <code>target</code>.</p>
 
-<p>The textual representation is obtained from the <code>object</code> using its protocol
+<p>The textual representation is obtained from the <code>value</code> using its protocol
 conformances, in the following order of preference: <code>Streamable</code>,
 <code>Printable</code>, <code>DebugPrintable</code>.</p>
 

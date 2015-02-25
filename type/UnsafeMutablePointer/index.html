@@ -4,7 +4,7 @@ title: "UnsafeMutablePointer"
 description: "Swift documentation for 'UnsafeMutablePointer': A pointer to an object of type T.  This type provides no automated
 memory management, and therefore the user must take care to allocate
 and free memory appropriately."
-keywords: "UnsafeMutablePointer,struct,swift,documentation,alloc,dealloc,initialize,move,assignFrom,assignBackwardFrom,moveInitializeFrom,moveInitializeBackwardFrom,initializeFrom,initializeFrom,moveAssignFrom,destroy,destroy,successor,predecessor,distanceTo,advancedBy,getMirror,put,memory,hashValue,debugDescription"
+keywords: "UnsafeMutablePointer,struct,swift,documentation,alloc,dealloc,initialize,move,assignFrom,assignBackwardFrom,moveInitializeFrom,moveInitializeBackwardFrom,initializeFrom,initializeFrom,moveAssignFrom,destroy,destroy,successor,predecessor,distanceTo,advancedBy,getMirror,put,encode,memory,hashValue,debugDescription"
 ---
 
 <code class="language-swift">struct UnsafeMutablePointer&lt;T&gt; { ... }</code>
@@ -21,7 +21,7 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">RandomAccessIndexType, Hashable, NilLiteralConvertible, _PointerType, DebugPrintable, Reflectable, SinkType</code>
+<code class="inherits">RandomAccessIndexType, Hashable, NilLiteralConvertible, _PointerType, DebugPrintable, Reflectable, SinkType, CVarArgType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -290,6 +290,13 @@ be initialized before being used again.</p>
 </div>
 <div class="declaration">
 <code class="language-swift">mutating func put(x: T)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func encode() -> [Word]</code>
+<div class="comment">
+    <p>Transform <code>self</code> into a series of machine words that can be
+appropriately interpreted by C varargs</p>
+</div>
 </div>
 
 <h3>Subscripts</h3>

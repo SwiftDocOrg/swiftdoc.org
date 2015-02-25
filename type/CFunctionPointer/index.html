@@ -2,7 +2,7 @@
 layout: "default"
 title: "CFunctionPointer"
 description: "Swift documentation for 'CFunctionPointer': The family of C function pointer types."
-keywords: "CFunctionPointer,struct,swift,documentation,null,hashValue,debugDescription"
+keywords: "CFunctionPointer,struct,swift,documentation,encode,hashValue,debugDescription"
 ---
 
 <code class="language-swift">struct CFunctionPointer&lt;T&gt; { ... }</code>
@@ -19,7 +19,7 @@ Objective-C API, to another C or Objective-C API.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">Equatable, Hashable, NilLiteralConvertible, DebugPrintable</code>
+<code class="inherits">Equatable, Hashable, NilLiteralConvertible, DebugPrintable, CVarArgType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -69,14 +69,15 @@ hash value across program runs.</p>
 </div>
 </div>
 
-<h3>Static Methods</h3>
-<div class="declaration">
-<code class="language-swift">static func null() -> CFunctionPointer&lt;T&gt;</code>
-<div class="comment">
-    <p>Returns <code>nil</code></p>
-</div>
-</div>
 
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func encode() -> [Word]</code>
+<div class="comment">
+    <p>Transform <code>self</code> into a series of machine words that can be
+appropriately interpreted by C varargs</p>
+</div>
+</div>
 
 
 

@@ -689,7 +689,7 @@ by concatenating them with a path separator between each pair.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">func withCString&lt;Result&gt;(f: (UnsafePointer&lt;Int8&gt;) -&gt; Result) -> Result</code>
+<code class="language-swift">func withCString&lt;Result&gt;(f: @noescape UnsafePointer&lt;Int8&gt; -&gt; Result) -> Result</code>
 <div class="comment">
     <p>Invoke <code>f</code> on the contents of this string, represented as
 a nul-terminated array of char, ensuring that the array&#39;s

@@ -2,7 +2,7 @@
 layout: "default"
 title: "AutoreleasingUnsafeMutablePointer"
 description: "Swift documentation for 'AutoreleasingUnsafeMutablePointer': A mutable pointer-to-ObjC-pointer argument."
-keywords: "AutoreleasingUnsafeMutablePointer,struct,swift,documentation,null,memory,debugDescription"
+keywords: "AutoreleasingUnsafeMutablePointer,struct,swift,documentation,encode,memory,debugDescription"
 ---
 
 <code class="language-swift">struct AutoreleasingUnsafeMutablePointer&lt;T&gt; { ... }</code>
@@ -29,7 +29,7 @@ already have writeback-scoped lifetime.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">Equatable, NilLiteralConvertible, _PointerType, DebugPrintable</code>
+<code class="inherits">Equatable, NilLiteralConvertible, _PointerType, DebugPrintable, CVarArgType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -75,14 +75,15 @@ setting values.</p>
 </div>
 </div>
 
-<h3>Static Methods</h3>
-<div class="declaration">
-<code class="language-swift">static func null() -> AutoreleasingUnsafeMutablePointer&lt;T&gt;</code>
-<div class="comment">
-    <p>Returns <code>nil</code></p>
-</div>
-</div>
 
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func encode() -> [Word]</code>
+<div class="comment">
+    <p>Transform <code>self</code> into a series of machine words that can be
+appropriately interpreted by C varargs</p>
+</div>
+</div>
 
 <h3>Subscripts</h3>
 <div class="declaration">

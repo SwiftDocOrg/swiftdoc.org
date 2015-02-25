@@ -4,7 +4,7 @@ title: "Character"
 description: "Swift documentation for 'Character': Character represents some Unicode grapheme cluster as
 defined by a canonical, localized, or otherwise tailored
 segmentation algorithm."
-keywords: "Character,struct,swift,documentation,getMirror,writeTo,hashValue"
+keywords: "Character,struct,swift,documentation,getMirror,writeTo,hashValue,debugDescription"
 ---
 
 <code class="language-swift">struct Character { ... }</code>
@@ -16,7 +16,7 @@ segmentation algorithm.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">ExtendedGraphemeClusterLiteralConvertible, Equatable, Hashable, Comparable, Reflectable, Streamable</code>
+<code class="inherits">ExtendedGraphemeClusterLiteralConvertible, Equatable, Hashable, Comparable, DebugPrintable, Reflectable, Streamable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -68,6 +68,12 @@ segmentation algorithm.</p>
 <p><strong>Note:</strong> the hash value is not guaranteed to be stable across
 different invocations of the same program.  Do not persist the
 hash value across program runs.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var debugDescription: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
 </div>
 </div>
 

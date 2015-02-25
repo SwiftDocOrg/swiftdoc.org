@@ -138,7 +138,7 @@ will not change</p>
 <code class="language-swift">func join&lt;S : SequenceType where Self == Self&gt;(elements: S) -> Self</code>
 </div>
 <div class="declaration">
-<code class="language-swift">func reduce&lt;U&gt;(initial: U, combine: (U, Self.Generator.Element) -&gt; U) -> U</code>
+<code class="language-swift">func reduce&lt;U&gt;(initial: U, combine: @noescape (U, Self.Generator.Element) -&gt; U) -> U</code>
 </div>
 <div class="declaration">
 <code class="language-swift">mutating func sort(isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool)</code>

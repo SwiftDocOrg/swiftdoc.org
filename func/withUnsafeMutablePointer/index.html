@@ -8,7 +8,7 @@ keywords: "withUnsafeMutablePointer,func,swift,documentation"
 ---
 
 <div class="declaration">
-<code class="language-swift">func withUnsafeMutablePointer&lt;T, Result&gt;(inout arg: T, body: (UnsafeMutablePointer&lt;T&gt;) -&gt; Result) -> Result</code>
+<code class="language-swift">func withUnsafeMutablePointer&lt;T, Result&gt;(inout arg: T, body: @noescape UnsafeMutablePointer&lt;T&gt; -&gt; Result) -> Result</code>
 <div class="comment">
     <p>Invokes <code>body</code> with an <code>UnsafeMutablePointer</code> to <code>arg</code> and returns the
 result. Useful for calling Objective-C APIs that take &quot;in/out&quot;

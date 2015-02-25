@@ -214,7 +214,7 @@ yields <code>[1, 2, 3, -1, -2, 4, 5, 6, -1, -2, 7, 8, 9]</code></p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">func reduce&lt;U&gt;(initial: U, combine: (U, T) -&gt; U) -> U</code>
+<code class="language-swift">func reduce&lt;U&gt;(initial: U, combine: @noescape (U, T) -&gt; U) -> U</code>
 <div class="comment">
     <p>Return the result of repeatedly calling <code>combine</code> with an
 accumulated value initialized to <code>initial</code> and each element of
@@ -267,7 +267,7 @@ over the elements.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">func withUnsafeBufferPointer&lt;R&gt;(body: (UnsafeBufferPointer&lt;T&gt;) -&gt; R) -> R</code>
+<code class="language-swift">func withUnsafeBufferPointer&lt;R&gt;(body: @noescape (UnsafeBufferPointer&lt;T&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Call <code>body(p)</code>, where <code>p</code> is a pointer to the <code>ContiguousArray</code>&#39;s
 contiguous storage.</p>
@@ -279,7 +279,7 @@ speed.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">mutating func withUnsafeMutableBufferPointer&lt;R&gt;(body: (inout UnsafeMutableBufferPointer&lt;T&gt;) -&gt; R) -> R</code>
+<code class="language-swift">mutating func withUnsafeMutableBufferPointer&lt;R&gt;(body: @noescape (inout UnsafeMutableBufferPointer&lt;T&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Call <code>body(p)</code>, where <code>p</code> is a pointer to the <code>ContiguousArray</code>&#39;s
 mutable contiguous storage.</p>

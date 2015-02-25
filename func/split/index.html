@@ -7,7 +7,7 @@ keywords: "split,func,swift,documentation"
 ---
 
 <div class="declaration">
-<code class="language-swift">func split&lt;S : Sliceable, R : BooleanType&gt;(elements: S, isSeparator: (S.Generator.Element) -&gt; R, maxSplit: Int = default, allowEmptySlices: Bool = default) -> [S.SubSlice]</code>
+<code class="language-swift">func split&lt;S : Sliceable, R : BooleanType&gt;(elements: S, maxSplit: Int = default, allowEmptySlices: Bool = default, #isSeparator: @noescape (S.Generator.Element) -&gt; R) -> [S.SubSlice]</code>
 <div class="comment">
     <p>Return the result of slicing <code>elements</code> into sub-sequences that
 don&#39;t contain elements satisfying the predicate <code>isSeparator</code>.</p>
