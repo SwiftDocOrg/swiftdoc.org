@@ -3,7 +3,7 @@ layout: "default"
 title: "ImplicitlyUnwrappedOptional"
 description: "Swift documentation for 'ImplicitlyUnwrappedOptional': An optional type that allows implicit member access (via compiler
 magic)."
-keywords: "ImplicitlyUnwrappedOptional,enum,swift,documentation,map,getMirror,description"
+keywords: "ImplicitlyUnwrappedOptional,enum,swift,documentation,map,flatMap,getMirror,description"
 ---
 
 <code class="language-swift">enum ImplicitlyUnwrappedOptional&lt;T&gt; { ... }</code>
@@ -73,6 +73,12 @@ library intrinsics below.</p>
 <code class="language-swift">func map&lt;U&gt;(f: @noescape (T) -&gt; U) -> U!</code>
 <div class="comment">
     <p>If <code>self == nil</code>, returns <code>nil</code>.  Otherwise, returns <code>f(self!)</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func flatMap&lt;U&gt;(f: @noescape (T) -&gt; U!) -> U!</code>
+<div class="comment">
+    <p>Returns <code>f(self)!</code> iff <code>self</code> and <code>f(self)</code> are not nil.</p>
 </div>
 </div>
 <div class="declaration">

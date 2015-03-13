@@ -1,0 +1,28 @@
+---
+layout: "default"
+title: "flatMap"
+description: "Swift documentation for 'flatMap': Return an Array containing the results of mapping transform
+over source and flattening the result."
+keywords: "flatMap,func,swift,documentation"
+---
+
+<div class="declaration">
+<code class="language-swift">func flatMap&lt;S : SequenceType, T&gt;(source: S, transform: @noescape (S.Generator.Element) -&gt; [T]) -> [T]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the results of mapping <code>transform</code>
+over <code>source</code> and flattening the result.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func flatMap&lt;C : CollectionType, T&gt;(source: C, transform: (C.Generator.Element) -&gt; [T]) -> [T]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the results of mapping <code>transform</code>
+over <code>source</code> and flattening the result.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func flatMap&lt;T, U&gt;(x: T?, f: @noescape (T) -&gt; U?) -> U?</code>
+<div class="comment">
+    <p>Returns <code>f(self)!</code> iff <code>self</code> and <code>f(self)</code> are not nil.</p>
+</div>
+</div>

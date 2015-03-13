@@ -3,7 +3,7 @@ layout: "default"
 title: "Array"
 description: "Swift documentation for 'Array': Conceptually, Array is an efficient, tail-growable random-access
 collection of arbitrary elements."
-keywords: "Array,struct,swift,documentation,generate,reserveCapacity,append,extend,removeLast,insert,removeAtIndex,removeAll,join,reduce,sort,sorted,map,reverse,filter,getMirror,withUnsafeBufferPointer,withUnsafeMutableBufferPointer,replaceRange,splice,removeRange,startIndex,endIndex,count,capacity,isEmpty,first,last,description,debugDescription,Element,SubSlice"
+keywords: "Array,struct,swift,documentation,generate,reserveCapacity,append,extend,removeLast,insert,removeAtIndex,removeAll,join,reduce,sort,sorted,map,flatMap,reverse,filter,getMirror,withUnsafeBufferPointer,withUnsafeMutableBufferPointer,replaceRange,splice,removeRange,startIndex,endIndex,count,capacity,isEmpty,first,last,description,debugDescription,Element,SubSlice"
 ---
 
 <code class="language-swift">struct Array&lt;T&gt; { ... }</code>
@@ -15,7 +15,7 @@ collection of arbitrary elements.</p>
 <h1>Common Properties of Array Types</h1>
 
 <p>The information in this section applies to all three of Swift&#39;s
-array types, <code>Array&lt;T&gt;</code>, <code>ContiguousArray&lt;T&gt;</code>, and <code>Slice&lt;T&gt;</code>.
+array types, <code>Array&lt;T&gt;</code>, <code>ContiguousArray&lt;T&gt;</code>, and <code>ArraySlice&lt;T&gt;</code>.
 When you read the word &quot;array&quot; here in a normal typeface, it
 applies to all three of them.</p>
 
@@ -44,7 +44,7 @@ where <code>N</code> is the length of the array.</p>
 
 <p>When an array&#39;s contiguous storage fills up, new storage must be
 allocated and elements must be moved to the new storage.  <code>Array</code>,
-<code>ContiguousArray</code>, and <code>Slice</code> share an exponential growth
+<code>ContiguousArray</code>, and <code>ArraySlice</code> share an exponential growth
 strategy that makes <code>append</code> a constant time operation <em>when
 amortized over many invocations</em>.  In addition to a <code>count</code>
 property, these array types have a <code>capacity</code> that reflects their
@@ -102,7 +102,7 @@ first element access.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">typealias SubSlice = Slice&lt;T&gt;</code>
+<code class="language-swift">typealias SubSlice = ArraySlice&lt;T&gt;</code>
 <div class="comment">
     <p>A type that can represent a sub-range of an <code>Array</code> </p>
 </div>
@@ -330,6 +330,13 @@ over the elements.</p>
 </div>
 </div>
 <div class="declaration">
+<code class="language-swift">func flatMap&lt;U&gt;(transform: @noescape (T) -&gt; [U]) -> [U]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the results of calling
+<code>transform(x)</code> on each element <code>x</code> of <code>self</code> and flattening the result.</p>
+</div>
+</div>
+<div class="declaration">
 <code class="language-swift">func reverse() -> [T]</code>
 <div class="comment">
     <p>A Array containing the elements of <code>self</code> in reverse order</p>
@@ -405,7 +412,7 @@ speed.</p>
 <code class="language-swift">subscript(index: Int) -> T</code>
 </div>
 <div class="declaration">
-<code class="language-swift">subscript(subRange: Range&lt;Int&gt;) -> Slice&lt;T&gt;</code>
+<code class="language-swift">subscript(subRange: Range&lt;Int&gt;) -> ArraySlice&lt;T&gt;</code>
 </div>
 
 

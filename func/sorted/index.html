@@ -6,6 +6,18 @@ keywords: "sorted,func,swift,documentation"
 ---
 
 <div class="declaration">
+<code class="language-swift">func sorted&lt;C : SequenceType&gt;(source: C, isOrderedBefore: (C.Generator.Element, C.Generator.Element) -&gt; Bool) -> [C.Generator.Element]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the sorted elements of <code>source</code>{according}.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements for which <code>isOrderedBefore</code> does not establish an order).</p>
+
+<p>Requires: <code>isOrderedBefore</code> is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over <code>elements</code>.</p>
+</div>
+</div>
+<div class="declaration">
 <code class="language-swift">func sorted&lt;C : SequenceType where C.Generator.Element : Comparable&gt;(source: C) -> [C.Generator.Element]</code>
 <div class="comment">
     <p>Return an <code>Array</code> containing the sorted elements of <code>source</code>{according}.</p>
@@ -15,18 +27,6 @@ elements that compare equal).</p>
 
 <p>Requires: The less-than operator (<code>func &lt;</code>) defined in the <code>Comparable</code>
 conformance is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
-over <code>elements</code>.</p>
-</div>
-</div>
-<div class="declaration">
-<code class="language-swift">func sorted&lt;C : SequenceType&gt;(source: C, isOrderedBefore: (C.Generator.Element, C.Generator.Element) -&gt; Bool) -> [C.Generator.Element]</code>
-<div class="comment">
-    <p>Return an <code>Array</code> containing the sorted elements of <code>source</code>{according}.</p>
-
-<p>The sorting algorithm is not stable (can change the relative order of
-elements for which <code>isOrderedBefore</code> does not establish an order).</p>
-
-<p>Requires: <code>isOrderedBefore</code> is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
 over <code>elements</code>.</p>
 </div>
 </div>

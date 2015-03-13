@@ -2,7 +2,7 @@
 layout: "default"
 title: "ContiguousArray"
 description: "Swift documentation for 'ContiguousArray': A fast, contiguously-stored array of T."
-keywords: "ContiguousArray,struct,swift,documentation,generate,reserveCapacity,append,extend,removeLast,insert,removeAtIndex,removeAll,join,reduce,sort,sorted,map,reverse,filter,getMirror,withUnsafeBufferPointer,withUnsafeMutableBufferPointer,replaceRange,splice,removeRange,startIndex,endIndex,count,capacity,isEmpty,first,last,description,debugDescription,Element,SubSlice"
+keywords: "ContiguousArray,struct,swift,documentation,generate,reserveCapacity,append,extend,removeLast,insert,removeAtIndex,removeAll,join,reduce,sort,sorted,map,flatMap,reverse,filter,getMirror,withUnsafeBufferPointer,withUnsafeMutableBufferPointer,replaceRange,splice,removeRange,startIndex,endIndex,count,capacity,isEmpty,first,last,description,debugDescription,Element,SubSlice"
 ---
 
 <code class="language-swift">struct ContiguousArray&lt;T&gt; { ... }</code>
@@ -30,7 +30,7 @@ detail.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">typealias SubSlice = Slice&lt;T&gt;</code>
+<code class="language-swift">typealias SubSlice = ArraySlice&lt;T&gt;</code>
 <div class="comment">
     <p>A type that can represent a sub-range of a ContiguousArray </p>
 </div>
@@ -248,6 +248,13 @@ over the elements.</p>
 </div>
 </div>
 <div class="declaration">
+<code class="language-swift">func flatMap&lt;U&gt;(transform: @noescape (T) -&gt; ContiguousArray&lt;U&gt;) -> ContiguousArray&lt;U&gt;</code>
+<div class="comment">
+    <p>Return a ContiguousArray containing the results of calling
+<code>transform(x)</code> on each element <code>x</code> of <code>self</code> and flattening the result.</p>
+</div>
+</div>
+<div class="declaration">
 <code class="language-swift">func reverse() -> ContiguousArray&lt;T&gt;</code>
 <div class="comment">
     <p>A ContiguousArray containing the elements of <code>self</code> in reverse order</p>
@@ -323,7 +330,7 @@ speed.</p>
 <code class="language-swift">subscript(index: Int) -> T</code>
 </div>
 <div class="declaration">
-<code class="language-swift">subscript(subRange: Range&lt;Int&gt;) -> Slice&lt;T&gt;</code>
+<code class="language-swift">subscript(subRange: Range&lt;Int&gt;) -> ArraySlice&lt;T&gt;</code>
 </div>
 
 

@@ -1,19 +1,19 @@
 ---
 layout: "default"
 title: "contains"
-description: "Swift documentation for 'contains': Return true iff x is in seq."
+description: "Swift documentation for 'contains': Return true iff an element in seq satisfies predicate."
 keywords: "contains,func,swift,documentation"
 ---
 
 <div class="declaration">
-<code class="language-swift">func contains&lt;S : SequenceType where S.Generator.Element : Equatable&gt;(seq: S, x: S.Generator.Element) -> Bool</code>
-<div class="comment">
-    <p>Return <code>true</code> iff <code>x</code> is in <code>seq</code>.</p>
-</div>
-</div>
-<div class="declaration">
 <code class="language-swift">func contains&lt;S : SequenceType, L : BooleanType&gt;(seq: S, predicate: @noescape (S.Generator.Element) -&gt; L) -> Bool</code>
 <div class="comment">
     <p>Return <code>true</code> iff an element in <code>seq</code> satisfies <code>predicate</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func contains&lt;S : SequenceType where S.Generator.Element : Equatable&gt;(seq: S, x: S.Generator.Element) -> Bool</code>
+<div class="comment">
+    <p>Return <code>true</code> iff <code>x</code> is in <code>seq</code>.</p>
 </div>
 </div>

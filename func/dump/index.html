@@ -1,19 +1,19 @@
 ---
 layout: "default"
 title: "dump"
-description: "Swift documentation for 'dump': Dump an object&#39;s contents using its mirror to standard output."
+description: "Swift documentation for 'dump': Dump an object&#39;s contents using its mirror to the specified output stream."
 keywords: "dump,func,swift,documentation"
 ---
 
 <div class="declaration">
-<code class="language-swift">func dump&lt;T&gt;(x: T, name: String? = default, indent: Int = default, maxDepth: Int = default, maxItems: Int = default) -> T</code>
-<div class="comment">
-    <p>Dump an object&#39;s contents using its mirror to standard output.</p>
-</div>
-</div>
-<div class="declaration">
 <code class="language-swift">func dump&lt;T, TargetStream : OutputStreamType&gt;(x: T, inout targetStream: TargetStream, name: String? = default, indent: Int = default, maxDepth: Int = default, maxItems: Int = default) -> T</code>
 <div class="comment">
     <p>Dump an object&#39;s contents using its mirror to the specified output stream.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func dump&lt;T&gt;(x: T, name: String? = default, indent: Int = default, maxDepth: Int = default, maxItems: Int = default) -> T</code>
+<div class="comment">
+    <p>Dump an object&#39;s contents using its mirror to standard output.</p>
 </div>
 </div>

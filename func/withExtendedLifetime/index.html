@@ -1,22 +1,22 @@
 ---
 layout: "default"
 title: "withExtendedLifetime"
-description: "Swift documentation for 'withExtendedLifetime': Evaluate f(x) and return its result, ensuring that x is not
+description: "Swift documentation for 'withExtendedLifetime': Evaluate f() and return its result, ensuring that x is not
 destroyed before f returns."
 keywords: "withExtendedLifetime,func,swift,documentation"
 ---
 
 <div class="declaration">
-<code class="language-swift">func withExtendedLifetime&lt;T, Result&gt;(x: T, f: @noescape T -&gt; Result) -> Result</code>
+<code class="language-swift">func withExtendedLifetime&lt;T, Result&gt;(x: T, f: @noescape () -&gt; Result) -> Result</code>
 <div class="comment">
-    <p>Evaluate <code>f(x)</code> and return its result, ensuring that <code>x</code> is not
+    <p>Evaluate <code>f()</code> and return its result, ensuring that <code>x</code> is not
 destroyed before f returns.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">func withExtendedLifetime&lt;T, Result&gt;(x: T, f: @noescape () -&gt; Result) -> Result</code>
+<code class="language-swift">func withExtendedLifetime&lt;T, Result&gt;(x: T, f: @noescape T -&gt; Result) -> Result</code>
 <div class="comment">
-    <p>Evaluate <code>f()</code> and return its result, ensuring that <code>x</code> is not
+    <p>Evaluate <code>f(x)</code> and return its result, ensuring that <code>x</code> is not
 destroyed before f returns.</p>
 </div>
 </div>
