@@ -2,14 +2,14 @@
 layout: "default"
 title: "String.UTF16View.Index"
 description: "Swift documentation for struct 'String.UTF16View.Index'."
-keywords: "String.UTF16View.Index,struct,swift,documentation,successor,predecessor,samePositionIn,samePositionIn,samePositionIn,Distance"
+keywords: "String.UTF16View.Index,struct,swift,documentation,successor,predecessor,samePositionIn,samePositionIn,samePositionIn,distanceTo,advancedBy,Distance"
 ---
 
 <code class="language-swift">struct String.UTF16View.Index { ... }</code>
 
 
 <h3>Inheritance</h3>
-<code class="inherits">BidirectionalIndexType, Comparable</code>
+<code class="inherits">BidirectionalIndexType, Comparable, RandomAccessIndexType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 <h3>Associated types</h3>
@@ -50,6 +50,12 @@ keywords: "String.UTF16View.Index,struct,swift,documentation,successor,predecess
 <code>indices(String(utf16)!)</code>.</p>
 </div>
 </div>
+<div class="declaration">
+<code class="language-swift">init(_ offset: Int)</code>
+<div class="comment">
+    <p><em>[Foundation]</em> Construct from an integer offset.</p>
+</div>
+</div>
 
 
 
@@ -88,6 +94,27 @@ to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
 to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
 
 <p>Requires: <code>self</code> is an element of <code>indices(characters.utf16)</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func distanceTo(x: String.UTF16View.Index) -> Int</code>
+<div class="comment">
+    <p><em>[Foundation]</em> Return the minimum number of applications of <code>successor</code> or
+<code>predecessor</code> required to reach <code>other</code> from <code>self</code>.</p>
+
+<p>Complexity: O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func advancedBy(x: Int) -> String.UTF16View.Index</code>
+<div class="comment">
+    <p><em>[Foundation]</em> Return <code>self</code> offset by <code>n</code> steps.</p>
+
+<p><strong>Returns:</strong> If <code>n &gt; 0</code>, the result of applying <code>successor</code> to
+<code>self</code> <code>n</code> times.  If <code>n &lt; 0</code>, the result of applying
+<code>predecessor</code> to <code>self</code> <code>-n</code> times. Otherwise, <code>self</code>.</p>
+
+<p>Complexity: O(1)</p>
 </div>
 </div>
 

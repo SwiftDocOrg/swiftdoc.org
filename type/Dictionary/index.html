@@ -163,9 +163,14 @@ in the dictionary.</p>
 <div class="comment">
     <p>Remove all elements.</p>
 
-<p>Postcondition: <code>capacity == 0</code> iff <code>keepCapacity</code> is <code>false</code>.</p>
+<p>Postcondition: <code>capacity == 0</code> if <code>keepCapacity</code> is <code>false</code>, otherwise
+the capacity will not be decreased.</p>
 
 <p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>keepCapacity</strong> If <code>true</code>, the operation preserves the
+storage capacity that the collection has, otherwise the underlying
+storage is released.  The default is <code>false</code>.</p>
 
 <p>Complexity: O(<code>count</code>).</p>
 </div>

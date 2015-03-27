@@ -24,6 +24,12 @@ over <code>elements</code>.</p>
 <code class="language-swift">func sort&lt;T&gt;(inout array: ContiguousArray&lt;T&gt;, isOrderedBefore: (T, T) -&gt; Bool)</code>
 </div>
 <div class="declaration">
+<code class="language-swift">func sort&lt;T : Comparable&gt;(inout array: ContiguousArray&lt;T&gt;)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func sort&lt;T : Comparable&gt;(inout array: [T])</code>
+</div>
+<div class="declaration">
 <code class="language-swift">func sort&lt;C : MutableCollectionType where C.Index : RandomAccessIndexType, C.Generator.Element : Comparable&gt;(inout collection: C)</code>
 <div class="comment">
     <p>Sort <code>collection</code> in-place.</p>
@@ -35,10 +41,4 @@ elements that compare equal).</p>
 conformance is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
 over <code>elements</code>.</p>
 </div>
-</div>
-<div class="declaration">
-<code class="language-swift">func sort&lt;T : Comparable&gt;(inout array: [T])</code>
-</div>
-<div class="declaration">
-<code class="language-swift">func sort&lt;T : Comparable&gt;(inout array: ContiguousArray&lt;T&gt;)</code>
 </div>
