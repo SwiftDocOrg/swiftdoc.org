@@ -16,11 +16,11 @@ signature <code>(Element) -&gt; Void</code>.</p>
 outstrips its ability to specialize ordinary closures.  For
 example, you may find that instead of:</p>
 
-<pre><code class="language-swift">func f(g: (X)-&gt;Void) { .**g(a) ...}</code></pre>
+<pre><code class="language-swift">func f(g: (X)-&gt;Void) { ... g(a) ...}</code></pre>
 
-<p>the following generates better code:**</p>
+<p>the following generates better code:</p>
 
-<p>  func f&lt;T: Sink where T.Element == X&gt;(g: T) { ... g.put(a) ...}</p>
+<pre><code class="language-swift">func f&lt;T: Sink where T.Element == X&gt;(g: T) { ... g.put(a) ...}</code></pre>
 </div>
 
 <h3>Inheritance</h3>
