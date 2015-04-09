@@ -7,7 +7,7 @@ keywords: "isUniquelyReferencedNonObjC,func,swift,documentation"
 ---
 
 <div class="declaration">
-<code class="language-swift">func isUniquelyReferencedNonObjC&lt;T&gt;(inout object: T?) -> Bool</code>
+<code class="language-swift">func isUniquelyReferencedNonObjC&lt;T&gt;(inout object: T) -> Bool</code>
 <div class="comment">
     <p>Returns <code>true</code> iff <code>object</code> is a non-<code>@objc</code> class instance with
 a single strong reference.</p>
@@ -33,7 +33,7 @@ is already a user-level data race on the value being mutated.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">func isUniquelyReferencedNonObjC&lt;T&gt;(inout object: T) -> Bool</code>
+<code class="language-swift">func isUniquelyReferencedNonObjC&lt;T&gt;(inout object: T?) -> Bool</code>
 <div class="comment">
     <p>Returns <code>true</code> iff <code>object</code> is a non-<code>@objc</code> class instance with
 a single strong reference.</p>

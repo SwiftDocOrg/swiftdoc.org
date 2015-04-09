@@ -2,10 +2,17 @@
 layout: "default"
 title: "lexicographicalCompare"
 description: "Swift documentation for 'lexicographicalCompare': Return true iff a1 precedes a2 in a lexicographical (&quot;dictionary&quot;)
-ordering, using isOrderedBefore as the comparison between elements."
+ordering, using &quot;&lt;&quot; as the comparison between elements."
 keywords: "lexicographicalCompare,func,swift,documentation"
 ---
 
+<div class="declaration">
+<code class="language-swift">func lexicographicalCompare&lt;S1 : SequenceType, S2 : SequenceType where S1.Generator.Element == S1.Generator.Element, S1.Generator.Element : Comparable&gt;(a1: S1, a2: S2) -> Bool</code>
+<div class="comment">
+    <p>Return true iff a1 precedes a2 in a lexicographical (&quot;dictionary&quot;)
+ordering, using &quot;&lt;&quot; as the comparison between elements.</p>
+</div>
+</div>
 <div class="declaration">
 <code class="language-swift">func lexicographicalCompare&lt;S1 : SequenceType, S2 : SequenceType where S1.Generator.Element == S1.Generator.Element&gt;(a1: S1, a2: S2, isOrderedBefore less: @noescape (S1.Generator.Element, S1.Generator.Element) -&gt; Bool) -> Bool</code>
 <div class="comment">
@@ -15,12 +22,5 @@ ordering, using <code>isOrderedBefore</code> as the comparison between elements.
 <p>Requires: isOrderedBefore<code> is a [strict weak ordering
 ](http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings)
 over the elements of </code>a1<code> and </code>a2`.</p>
-</div>
-</div>
-<div class="declaration">
-<code class="language-swift">func lexicographicalCompare&lt;S1 : SequenceType, S2 : SequenceType where S1.Generator.Element == S1.Generator.Element, S1.Generator.Element : Comparable&gt;(a1: S1, a2: S2) -> Bool</code>
-<div class="comment">
-    <p>Return true iff a1 precedes a2 in a lexicographical (&quot;dictionary&quot;)
-ordering, using &quot;&lt;&quot; as the comparison between elements.</p>
 </div>
 </div>

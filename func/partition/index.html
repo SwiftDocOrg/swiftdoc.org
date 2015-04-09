@@ -7,21 +7,6 @@ keywords: "partition,func,swift,documentation"
 ---
 
 <div class="declaration">
-<code class="language-swift">func partition&lt;C : MutableCollectionType where C.Index : RandomAccessIndexType&gt;(inout elements: C, range: Range&lt;C.Index&gt;, isOrderedBefore: (C.Generator.Element, C.Generator.Element) -&gt; Bool) -> C.Index</code>
-<div class="comment">
-    <p>Re-order the given <code>range</code> of <code>elements</code> and return a pivot index
-<em>p</em>.  </p>
-
-<p>Postcondition: for all <em>i</em> in <code>range.startIndex..&lt;</code><em>p</em>, and <em>j</em>
-in <em>p</em><code>..&lt;range.endIndex</code>, <code>less(elements[</code><em>i</em><code>],
-elements[</code><em>j</em><code>]) &amp;&amp; !less(elements[</code><em>j</em><code>], 
-elements[</code><em>p</em><code>])</code>.  Only returns <code>range.endIndex</code> when 
-<code>elements</code> is empty.
-Requires: <code>isOrderedBefore</code> is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
-over <code>elements</code>.</p>
-</div>
-</div>
-<div class="declaration">
 <code class="language-swift">func partition&lt;C : MutableCollectionType where C.Index : RandomAccessIndexType, C.Generator.Element : Comparable&gt;(inout elements: C, range: Range&lt;C.Index&gt;) -> C.Index</code>
 <div class="comment">
     <p>Re-order the given <code>range</code> of <code>elements</code> and return a pivot index
@@ -34,6 +19,21 @@ elements[</code><em>p</em><code>])</code>.  Only returns <code>range.endIndex</c
 <code>elements</code> is empty.
 Requires: The less-than operator (<code>func &lt;</code>) defined in the <code>Comparable</code>
 conformance is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over <code>elements</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func partition&lt;C : MutableCollectionType where C.Index : RandomAccessIndexType&gt;(inout elements: C, range: Range&lt;C.Index&gt;, isOrderedBefore: (C.Generator.Element, C.Generator.Element) -&gt; Bool) -> C.Index</code>
+<div class="comment">
+    <p>Re-order the given <code>range</code> of <code>elements</code> and return a pivot index
+<em>p</em>.  </p>
+
+<p>Postcondition: for all <em>i</em> in <code>range.startIndex..&lt;</code><em>p</em>, and <em>j</em>
+in <em>p</em><code>..&lt;range.endIndex</code>, <code>less(elements[</code><em>i</em><code>],
+elements[</code><em>j</em><code>]) &amp;&amp; !less(elements[</code><em>j</em><code>], 
+elements[</code><em>p</em><code>])</code>.  Only returns <code>range.endIndex</code> when 
+<code>elements</code> is empty.
+Requires: <code>isOrderedBefore</code> is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
 over <code>elements</code>.</p>
 </div>
 </div>
