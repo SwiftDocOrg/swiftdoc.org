@@ -15,7 +15,8 @@ If you have Jekyll installed, you can run SwiftDoc.org locally by using these co
 ```
 $ git clone https://github.com/SwiftDocOrg/swiftdoc.org.git
 $ cd swiftdoc.org
-$ jekyll serve
+$ bundle install
+$ foreman start
 ```
 
 ## Contributions
