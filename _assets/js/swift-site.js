@@ -36,36 +36,64 @@ $(function() {
     });
     
     // set up search box
-    var selectdata = [ { text: 'Types', children:[] }, { text: 'Protocols', children:[] }, { text: 'Operators', children:[] }, { text: 'Globals', children:[] } ];
+    var selectdata = [];
     var collapseAreas = [ '', '', '', '' ];
     var globalLinks = ['', ''];
+    var format = function(item) { return item.text + '&nbsp;<span class="kind">' + item.kind + '</span>'; };
     for (item in linkdata) {
         if (linkdata[item].match(/\/type\//)) {
             collapseAreas[0] += '<a href="' + linkdata[item] + '" class="list-group-item">' + item + '</a>';
-            selectdata[0].children.push({ id: item, text: item });
+            selectdata.push({ id: item.toLowerCase(), text: item, kind: 'type' });
         } else if (linkdata[item].match(/\/protocol\//)) {
             collapseAreas[1] += '<a href="' + linkdata[item] + '" class="list-group-item">' + item + '</a>';
-            selectdata[1].children.push({ id: item, text: item });
+            selectdata.push({ id: item.toLowerCase(), text: item, kind: 'protocol' });
         } else if (linkdata[item].match(/\/operator\//)) {
             collapseAreas[2] += '<a href="' + linkdata[item] + '" class="list-group-item">' + item + '</a>';
-            selectdata[2].children.push({ id: item, text: item });
+            selectdata.push({ id: item.toLowerCase(), text: item, kind: 'operator' });
         } else if (linkdata[item].match(/\/(var)\//)) {
             globalLinks[0] = '<a href="' + linkdata[item] + '" class="list-group-item">Variables</a>';
-            selectdata[3].children.push({ id: item, text: item });
+            selectdata.push({ id: item.toLowerCase(), text: item, kind: 'var' });
         } else if (linkdata[item].match(/\/(alias)\//)) {
             globalLinks[1] = '<a href="' + linkdata[item] + '" class="list-group-item">Type Aliases</a>';
-            selectdata[3].children.push({ id: item, text: item });
+            selectdata.push({ id: item.toLowerCase(), text: item, kind: 'alias' });
         } else if (linkdata[item].match(/\/(func)\//)) {
             collapseAreas[3] += '<a href="' + linkdata[item] + '" class="list-group-item">' + item + '</a>';
-            selectdata[3].children.push({ id: item, text: item });
+            selectdata.push({ id: item.toLowerCase(), text: item, kind: 'func' });
         }
     }
-    $('.select2').select2({ placeholder: "Search", minimumInputLength: 1, formatInputTooShort: '', data: selectdata})
-                .on("change", function(e) {
-                    if (linkdata[e.val]) {
-                        window.location.href = linkdata[e.val];
+    $('.select2').select2({ placeholder: "Search", minimumInputLength: 1, formatInputTooShort: '', data: selectdata, formatResult: format,
+                sortResults: function(results, container, query) {
+                    if (query.term) {
+                        return results.sort(function(a, b) {
+                            var term = query.term.toLowerCase();
+                            
+                            // check to see if the search term matches the beginning of each result
+                            var prefixesA = (a.id.indexOf(term) == 0);
+                            var prefixesB = (b.id.indexOf(term) == 0);
+                            
+                            // we want the prefixed matches to be listed first, then the non-prefixed,
+                            // so if they aren't in the same group order the prefixed item first
+                            if (prefixesA != prefixesB) {
+                                return (prefixesA) ? -1 : 1;
+                                
+                            // otherwise order using case-insensitive alpha
+                            } else {
+                                if (a.id == b.id) {
+                                    return 0;
+                                } else {
+                                    return (a.id < b.id) ? -1 : 1;
+                                }
+                            }
+                        });
                     }
-                });
+                    return results;
+                }
+            })
+            .on("change", function(e) {
+                if ((e.added) && (linkdata[e.added.text])) {
+                    window.location.href = linkdata[e.added.text];
+                }
+            });
 
     $('#collapseTypes').html(collapseAreas[0]);
     $('#collapseProtocols').html(collapseAreas[1]);
