@@ -39,7 +39,15 @@ $(function() {
     var selectdata = [];
     var collapseAreas = [ '', '', '', '' ];
     var globalLinks = ['', ''];
-    var format = function(item) { return item.text + '&nbsp;<span class="kind">' + item.kind + '</span>'; };
+    var format = function(item, element, search) {
+        var termStart = item.id.indexOf(search.term.toLowerCase());
+        var itemText = item.text.substr(0, termStart) 
+                        + '<span class="select2-match">' 
+                        + item.text.substr(termStart, search.term.length) 
+                        + '</span>' 
+                        + item.text.substr(termStart + search.term.length);
+        return itemText + '&nbsp;<span class="kind">' + item.kind + '</span>'; 
+    };
     for (item in linkdata) {
         if (linkdata[item].match(/\/type\//)) {
             collapseAreas[0] += '<a href="' + linkdata[item] + '" class="list-group-item">' + item + '</a>';
@@ -68,13 +76,12 @@ $(function() {
                             var term = query.term.toLowerCase();
                             
                             // check to see if the search term matches the beginning of each result
-                            var prefixesA = (a.id.indexOf(term) == 0);
-                            var prefixesB = (b.id.indexOf(term) == 0);
+                            var indexOffset = a.id.indexOf(term) - b.id.indexOf(term);
                             
                             // we want the prefixed matches to be listed first, then the non-prefixed,
                             // so if they aren't in the same group order the prefixed item first
-                            if (prefixesA != prefixesB) {
-                                return (prefixesA) ? -1 : 1;
+                            if (indexOffset != 0) {
+                                return indexOffset;
                                 
                             // otherwise order using case-insensitive alpha
                             } else {
