@@ -1,0 +1,48 @@
+strict digraph "_SignedNumberType - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AbsoluteValuable" [URL="/protocol/AbsoluteValuable/"]
+    "Bit" [URL="/type/Bit/", style=filled]
+    "Comparable" [URL="/protocol/Comparable/"]
+    "Double" [URL="/type/Double/", style=filled]
+    "Equatable" [URL="/protocol/Equatable/"]
+    "Float" [URL="/type/Float/", style=filled]
+    "Float80" [URL="/type/Float80/", style=filled]
+    "Int" [URL="/type/Int/", style=filled]
+    "Int16" [URL="/type/Int16/", style=filled]
+    "Int32" [URL="/type/Int32/", style=filled]
+    "Int64" [URL="/type/Int64/", style=filled]
+    "Int8" [URL="/type/Int8/", style=filled]
+    "IntegerLiteralConvertible" [URL="/protocol/IntegerLiteralConvertible/"]
+    "SignedIntegerType" [URL="/protocol/SignedIntegerType/"]
+    "SignedNumberType" [URL="/protocol/SignedNumberType/"]
+    "_Comparable" [URL="/protocol/_Comparable/"]
+    "_SignedIntegerType" [URL="/protocol/_SignedIntegerType/"]
+    "_SignedNumberType" [URL="/protocol/_SignedNumberType/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]    "_SignedNumberType" -> "SignedNumberType"
+    "SignedNumberType" -> "AbsoluteValuable"
+    "SignedNumberType" -> "Int"
+    "SignedNumberType" -> "Int16"
+    "SignedNumberType" -> "Int32"
+    "SignedNumberType" -> "Int64"
+    "SignedNumberType" -> "Int8"
+    "SignedNumberType" -> "_SignedIntegerType"
+    "AbsoluteValuable" -> "Double"
+    "AbsoluteValuable" -> "Float"
+    "AbsoluteValuable" -> "Float80"
+    "Int" -> "Bit"
+    "_SignedIntegerType" -> "SignedIntegerType"
+    "SignedIntegerType" -> "Int"
+    "SignedIntegerType" -> "Int16"
+    "SignedIntegerType" -> "Int32"
+    "SignedIntegerType" -> "Int64"
+    "SignedIntegerType" -> "Int8"
+    "Int" -> "Bit"
+    "Comparable" -> "_SignedNumberType"
+    "IntegerLiteralConvertible" -> "_SignedNumberType"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "Double"; "Float"; "Float80"; "Bit";
+    }
+}

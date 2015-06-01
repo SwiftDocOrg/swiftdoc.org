@@ -1,0 +1,53 @@
+strict digraph "Float - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AbsoluteValuable" [URL="/protocol/AbsoluteValuable/"]
+    "CVarArgType" [URL="/protocol/CVarArgType/"]
+    "Comparable" [URL="/protocol/Comparable/"]
+    "Equatable" [URL="/protocol/Equatable/"]
+    "Float" [URL="/type/Float/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "FloatLiteralConvertible" [URL="/protocol/FloatLiteralConvertible/"]
+    "FloatingPointType" [URL="/protocol/FloatingPointType/"]
+    "Hashable" [URL="/protocol/Hashable/"]
+    "IntegerLiteralConvertible" [URL="/protocol/IntegerLiteralConvertible/"]
+    "Printable" [URL="/protocol/Printable/"]
+    "Reflectable" [URL="/protocol/Reflectable/"]
+    "SignedNumberType" [URL="/protocol/SignedNumberType/"]
+    "Strideable" [URL="/protocol/Strideable/"]
+    "_CVarArgPassedAsDouble" [URL="/protocol/_CVarArgPassedAsDouble/"]
+    "_Comparable" [URL="/protocol/_Comparable/"]
+    "_SignedNumberType" [URL="/protocol/_SignedNumberType/"]
+    "_Strideable" [URL="/protocol/_Strideable/"]    "Printable" -> "Float"
+    "FloatingPointType" -> "Float"
+    "IntegerLiteralConvertible" -> "Float"
+    "FloatLiteralConvertible" -> "Float"
+    "Comparable" -> "Float"
+    "Hashable" -> "Float"
+    "AbsoluteValuable" -> "Float"
+    "Strideable" -> "Float"
+    "Reflectable" -> "Float"
+    "_CVarArgPassedAsDouble" -> "Float"
+    "Strideable" -> "FloatingPointType"
+    "Comparable" -> "Strideable"
+    "_Strideable" -> "Strideable"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "Hashable"
+    "SignedNumberType" -> "AbsoluteValuable"
+    "_SignedNumberType" -> "SignedNumberType"
+    "Comparable" -> "_SignedNumberType"
+    "IntegerLiteralConvertible" -> "_SignedNumberType"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    "Comparable" -> "Strideable"
+    "_Strideable" -> "Strideable"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    "CVarArgType" -> "_CVarArgPassedAsDouble"
+    subgraph Types {
+        rank = max; "Float";
+    }
+}

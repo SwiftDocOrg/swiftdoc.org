@@ -1,0 +1,46 @@
+strict digraph "CVarArgType - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AutoreleasingUnsafeMutablePointer" [URL="/type/AutoreleasingUnsafeMutablePointer/", style=filled]
+    "Bit" [URL="/type/Bit/", style=filled]
+    "CFunctionPointer" [URL="/type/CFunctionPointer/", style=filled]
+    "COpaquePointer" [URL="/type/COpaquePointer/", style=filled]
+    "CVarArgType" [URL="/protocol/CVarArgType/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "Double" [URL="/type/Double/", style=filled]
+    "Float" [URL="/type/Float/", style=filled]
+    "Int" [URL="/type/Int/", style=filled]
+    "Int16" [URL="/type/Int16/", style=filled]
+    "Int32" [URL="/type/Int32/", style=filled]
+    "Int64" [URL="/type/Int64/", style=filled]
+    "Int8" [URL="/type/Int8/", style=filled]
+    "UInt" [URL="/type/UInt/", style=filled]
+    "UInt16" [URL="/type/UInt16/", style=filled]
+    "UInt32" [URL="/type/UInt32/", style=filled]
+    "UInt64" [URL="/type/UInt64/", style=filled]
+    "UInt8" [URL="/type/UInt8/", style=filled]
+    "UnsafeMutablePointer" [URL="/type/UnsafeMutablePointer/", style=filled]
+    "UnsafePointer" [URL="/type/UnsafePointer/", style=filled]
+    "_CVarArgPassedAsDouble" [URL="/protocol/_CVarArgPassedAsDouble/"]    "CVarArgType" -> "AutoreleasingUnsafeMutablePointer"
+    "CVarArgType" -> "CFunctionPointer"
+    "CVarArgType" -> "COpaquePointer"
+    "CVarArgType" -> "Int"
+    "CVarArgType" -> "Int16"
+    "CVarArgType" -> "Int32"
+    "CVarArgType" -> "Int64"
+    "CVarArgType" -> "Int8"
+    "CVarArgType" -> "UInt"
+    "CVarArgType" -> "UInt16"
+    "CVarArgType" -> "UInt32"
+    "CVarArgType" -> "UInt64"
+    "CVarArgType" -> "UInt8"
+    "CVarArgType" -> "UnsafeMutablePointer"
+    "CVarArgType" -> "UnsafePointer"
+    "CVarArgType" -> "_CVarArgPassedAsDouble"
+    "Int" -> "Bit"
+    "_CVarArgPassedAsDouble" -> "Double"
+    "_CVarArgPassedAsDouble" -> "Float"
+    subgraph Types {
+        rank = max; "AutoreleasingUnsafeMutablePointer"; "CFunctionPointer"; "COpaquePointer"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8"; "UnsafeMutablePointer"; "UnsafePointer"; "Bit"; "Double"; "Float";
+    }
+}
