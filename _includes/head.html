@@ -4,7 +4,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% if page.title == "Home" %}
+    <title>{{ site.title }} &#8212; {{ site.description }}</title>
+    {% else %}
     <title>{% if page.title %}{{ page.title | strip_html }} &#8212; {% endif %}{{ site.title }}</title>
+    {% endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ meta_description }}">
     <meta name="keywords" content="{{ meta_keywords }}">
@@ -52,7 +56,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    {% if page.version %}
-    <script src="/assets/js/swift-linkdata-{{ page.version }}.js"></script>
+    {% if page.root %}
+    <script src="{{ page.root }}/assets/js/swift-linkdata.js"></script>
     {% endif %}
   </head>

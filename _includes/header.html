@@ -34,7 +34,7 @@
 			<h1><a href="/">{{ site.title }}</a></h1>
 			<p>Auto-generated documentation for <a href="https://developer.apple.com/swift/">Swift</a>. Command-click no more.</p>
 			
-			{% if page.url == "/index.html" %}
+			{% if page.layout == "home" %}
     		<div class="form-group form-group-lg input-group-lg has-feedback">
     			<input type="hidden" class="form-control select2">
     			<span class="glyphicon glyphicon-search form-control-feedback"></span>
@@ -42,3 +42,15 @@
     		{% endif %}
 		</div>
 	</div>
+
+    {% unless page.url contains "/news" %}
+    <div id="version">
+		<div class="container">
+    		{% if page.url contains "/swift-2" %}
+			Swift version: <a href="/">1.2</a> &nbsp;|&nbsp; <strong>2.0</strong>
+    		{% else %}
+			Swift version: <strong>1.2</strong> &nbsp;|&nbsp; <a href="/swift-2/">2.0</a>
+    		{% endif %}
+		</div>
+    </div>
+    {% endunless %}

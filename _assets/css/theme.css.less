@@ -138,9 +138,6 @@ body.home {
             }
         }
     }
-    .version {
-        color: rgba(255, 255, 255, 0.7);
-    }
 }
 
 .select2-results {
@@ -192,9 +189,6 @@ body.home {
     #accordion {
         margin: 30px 0;
     
-        #versions {
-            margin-top: 30px;
-        }
         .panel {
             color: @panel-text;
             background: @panel-bottom;
@@ -232,6 +226,15 @@ h2 { font-weight: 700; margin: 35px 0; }
 
 a {
     color: @content-link;
+}
+
+#version {
+    background: #eee;
+    
+    .container {
+        text-align: center;
+        padding: 5px 0;
+    }
 }
 
 .content {
@@ -351,6 +354,10 @@ a {
         code {
             font-size: 0.85em;
         }
+    }
+    
+    .declaration .comment {
+        margin: -0.5em 0 20px 30px;
     }
     
     code {
