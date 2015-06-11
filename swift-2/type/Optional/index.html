@@ -1,0 +1,77 @@
+---
+layout: "default"
+title: "Optional"
+description: "Swift documentation for enum 'Optional'."
+keywords: "Optional,enum,swift,documentation,map,flatMap,getMirror,debugDescription"
+root: "/swift-2"
+---
+
+<code class="language-swift">enum Optional&lt;T&gt; { ... }</code>
+
+
+<h3>Inheritance</h3>
+<code class="inherits">Reflectable, NilLiteralConvertible, CustomDebugStringConvertible</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+<h3>Cases</h3>
+<div class="declaration">
+<code class="language-swift">case None</code>
+</div>
+<div class="declaration">
+<code class="language-swift">case Some(T)</code>
+</div>
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init()</code>
+<div class="comment">
+    <p>Construct a <code>nil</code> instance.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ some: T)</code>
+<div class="comment">
+    <p>Construct a non-<code>nil</code> instance that stores <code>some</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(nilLiteral: ())</code>
+<div class="comment">
+    <p>Create an instance initialized with <code>nil</code>.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var debugDescription: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func map&lt;U&gt;(@noescape f: (T) -&gt; U) -> U?</code>
+<div class="comment">
+    <p>If <code>self == nil</code>, returns <code>nil</code>.  Otherwise, returns <code>f(self!)</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func flatMap&lt;U&gt;(@noescape f: (T) -&gt; U?) -> U?</code>
+<div class="comment">
+    <p>Returns <code>nil</code> if <code>self</code> is nil, <code>f(self!)</code> otherwise.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func getMirror() -> MirrorType</code>
+<div class="comment">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+</div>
+</div>
+
+
+

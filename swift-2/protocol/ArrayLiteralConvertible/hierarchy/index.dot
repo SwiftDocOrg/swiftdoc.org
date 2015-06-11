@@ -1,0 +1,25 @@
+strict digraph "ArrayLiteralConvertible - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Array" [URL="/type/Array/", style=filled]
+    "ArrayLiteralConvertible" [URL="/protocol/ArrayLiteralConvertible/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "ArraySlice" [URL="/type/ArraySlice/", style=filled]
+    "ContiguousArray" [URL="/type/ContiguousArray/", style=filled]
+    "OptionSetType" [URL="/protocol/OptionSetType/"]
+    "Set" [URL="/type/Set/", style=filled]
+    "SetAlgebraType" [URL="/protocol/SetAlgebraType/"]
+    "_ArrayType" [URL="/protocol/_ArrayType/"]    "ArrayLiteralConvertible" -> "Array"
+    "ArrayLiteralConvertible" -> "ArraySlice"
+    "ArrayLiteralConvertible" -> "ContiguousArray"
+    "ArrayLiteralConvertible" -> "Set"
+    "ArrayLiteralConvertible" -> "SetAlgebraType"
+    "ArrayLiteralConvertible" -> "_ArrayType"
+    "SetAlgebraType" -> "OptionSetType"
+    "_ArrayType" -> "Array"
+    "_ArrayType" -> "ArraySlice"
+    "_ArrayType" -> "ContiguousArray"
+    subgraph Types {
+        rank = max; "Array"; "ArraySlice"; "ContiguousArray"; "Set";
+    }
+}

@@ -1,0 +1,272 @@
+---
+layout: "default"
+title: "Set"
+description: "Swift documentation for 'Set': A collection of unique T instances with no defined ordering."
+keywords: "Set,struct,swift,documentation,contains,indexOf,insert,remove,removeAtIndex,removeAll,removeFirst,generate,isSubsetOf,isStrictSubsetOf,isSupersetOf,isStrictSupersetOf,isDisjointWith,union,unionInPlace,subtract,subtractInPlace,intersect,intersectInPlace,exclusiveOr,exclusiveOrInPlace,getMirror,startIndex,endIndex,count,hashValue,isEmpty,first,description,debugDescription,Element,Index,GeneratorType"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct Set&lt;T : Hashable&gt; { ... }</code>
+
+<div class="comment">
+    <p>A collection of unique <code>T</code> instances with no defined ordering.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">Hashable, Equatable, CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType, ArrayLiteralConvertible, CustomStringConvertible, CustomDebugStringConvertible, Reflectable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Element = T</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Index = SetIndex&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias GeneratorType = SetGenerator&lt;T&gt;</code>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(minimumCapacity: Int)</code>
+<div class="comment">
+    <p>Create an empty set with at least the given number of
+elements worth of storage.  The actual capacity will be the
+smallest power of 2 that&#39;s &gt;= <code>minimumCapacity</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(arrayLiteral elements: T...)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init()</code>
+<div class="comment">
+    <p>Create an empty <code>Set</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init&lt;S : SequenceType where S.Generator.Element == T&gt;(_ sequence: S)</code>
+<div class="comment">
+    <p>Create a <code>Set</code> from a finite sequence of items.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var startIndex: SetIndex&lt;T&gt; { get }</code>
+<div class="comment">
+    <p>The position of the first element in a non-empty set.</p>
+
+<p>This is identical to <code>endIndex</code> in an empty set.</p>
+
+<p><strong>Complexity:</strong> Amortized O(1) if <code>self</code> does not wrap a bridged
+  <code>NSSet</code>, O(N) otherwise.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var endIndex: SetIndex&lt;T&gt; { get }</code>
+<div class="comment">
+    <p>The collection&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+<p><strong>Complexity:</strong> Amortized O(1) if <code>self</code> does not wrap a bridged
+  <code>NSSet</code>, O(N) otherwise.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var count: Int { get }</code>
+<div class="comment">
+    <p>The number of members in the set.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var hashValue: Int { get }</code>
+</div>
+<div class="declaration">
+<code class="language-swift">var isEmpty: Bool { get }</code>
+<div class="comment">
+    <p><code>true</code> if the set is empty.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var first: T? { get }</code>
+<div class="comment">
+    <p>The first element obtained when iterating, or <code>nil</code> if <code>self</code> is
+empty.  Equivalent to <code>self.generate().next()</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var description: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var debugDescription: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func contains(member: T) -> Bool</code>
+<div class="comment">
+    <p>Returns <code>true</code> if the set contains a member.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func indexOf(member: T) -> SetIndex&lt;T&gt;?</code>
+<div class="comment">
+    <p>Returns the <code>Index</code> of a given member, or <code>nil</code> if the member is not
+present in the set.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func insert(member: T)</code>
+<div class="comment">
+    <p>Insert a member into the set.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func remove(member: T) -> T?</code>
+<div class="comment">
+    <p>Remove the member from the set and return it if it was present.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeAtIndex(index: SetIndex&lt;T&gt;)</code>
+<div class="comment">
+    <p>Remove the member referenced by the given index.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeAll(keepCapacity keepCapacity: Bool = default)</code>
+<div class="comment">
+    <p>Erase all the elements.  If <code>keepCapacity</code> is <code>true</code>, <code>capacity</code>
+will not decrease.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeFirst() -> T</code>
+<div class="comment">
+    <p>Remove a member from the set and return it.</p>
+
+<p><strong>Requires:</strong> <code>count &gt; 0</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func generate() -> SetGenerator&lt;T&gt;</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the members.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func isSubsetOf&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S) -> Bool</code>
+<div class="comment">
+    <p>Returns true if the set is a subset of a finite sequence as a <code>Set</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func isStrictSubsetOf&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S) -> Bool</code>
+<div class="comment">
+    <p>Returns true if the set is a subset of a finite sequence as a <code>Set</code>
+but not equal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func isSupersetOf&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S) -> Bool</code>
+<div class="comment">
+    <p>Returns true if the set is a superset of a finite sequence as a <code>Set</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func isStrictSupersetOf&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S) -> Bool</code>
+<div class="comment">
+    <p>Returns true if the set is a superset of a finite sequence as a <code>Set</code>
+but not equal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func isDisjointWith&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S) -> Bool</code>
+<div class="comment">
+    <p>Returns true if no members in the set are in a finite sequence as a <code>Set</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func union&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S) -> Set&lt;T&gt;</code>
+<div class="comment">
+    <p>Return a new <code>Set</code> with items in both this set and a finite sequence.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func unionInPlace&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S)</code>
+<div class="comment">
+    <p>Insert elements of a finite sequence into this <code>Set</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func subtract&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S) -> Set&lt;T&gt;</code>
+<div class="comment">
+    <p>Return a new set with elements in this set that do not occur
+in a finite sequence.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func subtractInPlace&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S)</code>
+<div class="comment">
+    <p>Remove all members in the set that occur in a finite sequence.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func intersect&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S) -> Set&lt;T&gt;</code>
+<div class="comment">
+    <p>Return a new set with elements common to this set and a finite sequence.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func intersectInPlace&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S)</code>
+<div class="comment">
+    <p>Remove any members of this set that aren&#39;t also in a finite sequence.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func exclusiveOr&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S) -> Set&lt;T&gt;</code>
+<div class="comment">
+    <p>Return a new set with elements that are either in the set or a finite
+sequence but do not occur in both.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func exclusiveOrInPlace&lt;S : SequenceType where S.Generator.Element == T&gt;(sequence: S)</code>
+<div class="comment">
+    <p>For each element of a finite sequence, remove it from the set if it is a
+common element, otherwise add it to the set. Repeated elements of the
+sequence will be ignored.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func getMirror() -> MirrorType</code>
+<div class="comment">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+</div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(position: SetIndex&lt;T&gt;) -> T { get }</code>
+</div>
+
+

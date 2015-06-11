@@ -1,0 +1,95 @@
+---
+layout: "default"
+title: "LazyForwardCollection"
+description: "Swift documentation for 'LazyForwardCollection': A collection that forwards its implementation to an underlying
+collection instance while exposing lazy computations as methods."
+keywords: "LazyForwardCollection,struct,swift,documentation,generate,underestimateCount,filter,map,startIndex,endIndex,array"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct LazyForwardCollection&lt;S : CollectionType where S.Index : ForwardIndexType&gt; { ... }</code>
+
+<div class="comment">
+    <p>A collection that forwards its implementation to an underlying
+collection instance while exposing lazy computations as methods.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(_ base: S)</code>
+<div class="comment">
+    <p>Construct an instance with <code>base</code> as its underlying collection
+instance.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var startIndex: S.Index { get }</code>
+<div class="comment">
+    <p>The position of the first element in a non-empty collection.</p>
+
+<p>In an empty collection, <code>startIndex == endIndex</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var endIndex: S.Index { get }</code>
+<div class="comment">
+    <p>The collection&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var array: [S.Generator.Element] { get }</code>
+<div class="comment">
+    <p>an Array, created on-demand, containing the elements of this
+lazy CollectionType.</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func generate() -> S.Generator</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func underestimateCount() -> Int</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func filter(includeElement: (S.Generator.Element) -&gt; Bool) -> LazySequence&lt;FilterSequenceView&lt;S&gt;&gt;</code>
+<div class="comment">
+    <p>Return a lazy SequenceType containing the elements <code>x</code> of <code>source</code> for
+which <code>includeElement(x)</code> is <code>true</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func map&lt;U&gt;(transform: (S.Generator.Element) -&gt; U) -> LazyForwardCollection&lt;MapCollectionView&lt;S, U&gt;&gt;</code>
+<div class="comment">
+    <p>Return a <code>MapCollectionView</code> over this <code>LazyForwardCollection</code>.  The elements of
+the result are computed lazily, each time they are read, by
+calling <code>transform</code> function on a base element.</p>
+</div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(position: S.Index) -> S.Generator.Element { get }</code>
+</div>
+
+

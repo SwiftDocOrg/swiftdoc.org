@@ -1,0 +1,41 @@
+---
+layout: "default"
+title: "anyGenerator"
+description: "Swift documentation for 'anyGenerator': Return a GeneratorType instance whose next method invokes
+body and returns the result."
+keywords: "anyGenerator,func,swift,documentation"
+root: "/swift-2"
+---
+
+<div class="declaration">
+<code class="language-swift">func anyGenerator&lt;T&gt;(body: () -&gt; T?) -> AnyGenerator&lt;T&gt;</code>
+<div class="comment">
+    <p>Return a <code>GeneratorType</code> instance whose <code>next</code> method invokes
+<code>body</code> and returns the result.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-swift">var x = 7
+let g = anyGenerator { x &lt; 15 ? x++ : nil }
+let a = Array(g) // [ 7, 8, 9, 10, 11, 12, 13, 14 ]</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func anyGenerator&lt;G : GeneratorType&gt;(base: G) -> AnyGenerator&lt;G.Element&gt;</code>
+<div class="comment">
+    <p>Return a <code>GeneratorType</code> instance that wraps <code>base</code> but whose type
+depends only on the type of <code>G.Element</code>.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-swift">func countStrings() -&gt; AnyGenerator&lt;String&gt; {
+  let lazyStrings = lazy(0..&lt;10).map { String($0) }
+
+  // This is a really complicated type of no interest to our
+  // clients.
+  let g: MapSequenceGenerator&lt;RangeGenerator&lt;Int&gt;, String&gt;
+    = lazyStrings.generate()
+  return anyGenerator(g)
+}</code></pre>
+</div>
+</div>

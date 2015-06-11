@@ -1,0 +1,181 @@
+---
+layout: "default"
+title: "String.CharacterView"
+description: "Swift documentation for 'String.CharacterView': A String&#39;s collection of Characters (extended grapheme
+clusters)
+elements."
+keywords: "String.CharacterView,struct,swift,documentation,generate,reserveCapacity,append,extend,join,replaceRange,insert,splice,removeAtIndex,removeRange,removeAll,startIndex,endIndex"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct String.CharacterView { ... }</code>
+
+<div class="comment">
+    <p>A <code>String</code>&#39;s collection of <code>Character</code>s (<a href="http://www.unicode.org/glossary/#extended_grapheme_cluster">extended grapheme
+clusters</a>)
+elements.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType, ExtensibleCollectionType, RangeReplaceableCollectionType, Sliceable, _Sliceable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+<h3>Nested types</h3>
+<code class="nested">String.CharacterView.Index</code>
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(_ text: String)</code>
+<div class="comment">
+    <p>Create a view of the <code>Character</code>s in <code>text</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init()</code>
+<div class="comment">
+    <p>Create an empty instance.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init&lt;S : SequenceType where S.Generator.Element == Character&gt;(_ characters: S)</code>
+<div class="comment">
+    <p>Create an instance containing <code>characters</code>.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var startIndex: String.CharacterView.Index { get }</code>
+<div class="comment">
+    <p>The position of the first <code>Character</code> if <code>self</code> is
+non-empty; identical to <code>endIndex</code> otherwise.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var endIndex: String.CharacterView.Index { get }</code>
+<div class="comment">
+    <p>The &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func generate() -> IndexingGenerator&lt;String.CharacterView&gt;</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the <code>Character</code>s.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func reserveCapacity(n: Int)</code>
+<div class="comment">
+    <p>Reserve enough space to store <code>n</code> ASCII characters.</p>
+
+<p><strong>Complexity:</strong> O(<code>n</code>).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func append(c: Character)</code>
+<div class="comment">
+    <p>Append <code>c</code> to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> Amortized O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func extend&lt;S : SequenceType where S.Generator.Element == Character&gt;(newElements: S)</code>
+<div class="comment">
+    <p>Append the elements of <code>newElements</code> to <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func join&lt;S : SequenceType where S.Generator.Element == String.CharacterView&gt;(elements: S) -> String.CharacterView</code>
+<div class="comment">
+    <p>Interpose <code>self</code> between every pair of consecutive <code>elements</code>,
+then concatenate the result.  For example:</p>
+
+<pre><code class="language-swift">&quot;-|-&quot;.join([&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]) // &quot;foo-|-bar-|-baz&quot;</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func replaceRange&lt;C : CollectionType where C.Generator.Element == Character&gt;(subRange: Range&lt;String.CharacterView.Index&gt;, with newElements: C)</code>
+<div class="comment">
+    <p>Replace the given <code>subRange</code> of elements with <code>newElements</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>subRange.count</code>) if <code>subRange.endIndex
+  == self.endIndex</code> and <code>isEmpty(newElements)</code>, O(N) otherwise.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func insert(newElement: Character, atIndex i: String.CharacterView.Index)</code>
+<div class="comment">
+    <p>Insert <code>newElement</code> at index <code>i</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func splice&lt;S : CollectionType where S.Generator.Element == Character&gt;(newElements: S, atIndex i: String.CharacterView.Index)</code>
+<div class="comment">
+    <p>Insert <code>newElements</code> at index <code>i</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count + newElements.count</code>).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeAtIndex(i: String.CharacterView.Index) -> Character</code>
+<div class="comment">
+    <p>Remove and return the element at index <code>i</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeRange(subRange: Range&lt;String.CharacterView.Index&gt;)</code>
+<div class="comment">
+    <p>Remove the indicated <code>subRange</code> of characters.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeAll(keepCapacity keepCapacity: Bool = default)</code>
+<div class="comment">
+    <p>Remove all characters.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong><code>keepCapacity</code>:</strong>  If <code>true</code>, prevents the release of
+  allocated storage, which can be a useful optimization
+  when <code>self</code> is going to be grown again.</p>
+</div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(i: String.CharacterView.Index) -> Character { get }</code>
+</div>
+<div class="declaration">
+<code class="language-swift">subscript(subRange: Range&lt;String.CharacterView.Index&gt;) -> String.CharacterView { get }</code>
+</div>
+
+

@@ -1,0 +1,92 @@
+---
+layout: "default"
+title: "DictionaryLiteral"
+description: "Swift documentation for 'DictionaryLiteral': Represent the ability to pass a dictionary literal in function
+signatures."
+keywords: "DictionaryLiteral,struct,swift,documentation,generate,startIndex,endIndex"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct DictionaryLiteral&lt;Key, Value&gt; { ... }</code>
+
+<div class="comment">
+    <p>Represent the ability to pass a dictionary literal in function
+signatures.</p>
+
+<p>A function with a <code>DictionaryLiteral</code> parameter can be passed a
+Swift dictionary literal without causing a <code>Dictionary</code> to be
+created.  This capability can be especially important when the
+order of elements in the literal is significant.</p>
+
+<p>For example:</p>
+
+<pre><code class="language-swift">struct IntPairs {
+  var elements: [(Int, Int)]
+  init(_ pairs: DictionaryLiteral&lt;Int,Int&gt;) {
+    elements = Array(pairs)
+  }
+}
+
+let x = IntPairs([1:2, 1:1, 3:4, 2:1])
+print(x.elements)  // [(1, 2), (1, 1), (3, 4), (2, 1)]</code></pre>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">DictionaryLiteralConvertible, CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(dictionaryLiteral elements: (Key, Value)...)</code>
+<div class="comment">
+    <p>Store <code>elements</code>.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var startIndex: Int { get }</code>
+<div class="comment">
+    <p>The position of the first element in a non-empty <code>DictionaryLiteral</code>.</p>
+
+<p>Identical to <code>endIndex</code> in an empty <code>DictionaryLiteral</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var endIndex: Int { get }</code>
+<div class="comment">
+    <p>The <code>DictionaryLiteral</code>&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func generate() -> IndexingGenerator&lt;DictionaryLiteral&lt;Key, Value&gt;&gt;</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.  The
+<em>generator</em>&#39;s next element is the first element of the
+sequence.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(position: Int) -> (Key, Value) { get }</code>
+</div>
+
+

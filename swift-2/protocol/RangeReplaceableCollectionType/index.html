@@ -1,0 +1,128 @@
+---
+layout: "default"
+title: "RangeReplaceableCollectionType"
+description: "Swift documentation for 'RangeReplaceableCollectionType': A collection that supports replacement of an arbitrary subRange
+of elements with the elements of another collection."
+keywords: "RangeReplaceableCollectionType,protocol,swift,documentation,append,replaceRange,insert,splice,removeAtIndex,removeRange,removeAll"
+root: "/swift-2"
+---
+
+<code class="language-swift">protocol RangeReplaceableCollectionType { ... }</code>
+
+<div class="comment">
+    <p>A <em>collection</em> that supports replacement of an arbitrary subRange
+of elements with the elements of another collection.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">ExtensibleCollectionType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">mutating func append(x: Self.Generator.Element)</code>
+<div class="comment">
+    <p>Append <code>x</code> to <code>self</code>.</p>
+
+<p>Applying <code>successor()</code> to the index of the new element yields
+<code>self.endIndex</code>.</p>
+
+<p><strong>Complexity:</strong> Amortized O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func replaceRange&lt;C : CollectionType where C.Generator.Element == Generator.Element&gt;(subRange: Range&lt;Self.Index&gt;, with newElements: C)</code>
+<div class="comment">
+    <p>Replace the given <code>subRange</code> of elements with <code>newElements</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>subRange.count</code>) if
+  <code>subRange.endIndex == self.endIndex</code> and <code>isEmpty(newElements)</code>,
+  O(<code>self.count</code> + <code>newElements.count</code>) otherwise.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func insert(newElement: Self.Generator.Element, atIndex i: Self.Index)</code>
+<div class="comment">
+    <p>Insert <code>newElement</code> at index <code>i</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+
+<p>Can be implemented as:</p>
+
+<pre><code class="language-swift">Swift.insert(&amp;self, newElement, atIndex: i)</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func splice&lt;S : CollectionType where S.Generator.Element == Generator.Element&gt;(newElements: S, atIndex i: Self.Index)</code>
+<div class="comment">
+    <p>Insert <code>newElements</code> at index <code>i</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count + newElements.count</code>).</p>
+
+<p>Can be implemented as:</p>
+
+<pre><code class="language-swift">Swift.splice(&amp;self, newElements, atIndex: i)</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeAtIndex(i: Self.Index) -> Self.Generator.Element</code>
+<div class="comment">
+    <p>Remove the element at index <code>i</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+
+<p>Can be implemented as:</p>
+
+<pre><code class="language-swift">Swift.removeAtIndex(&amp;self, i)</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeRange(subRange: Range&lt;Self.Index&gt;)</code>
+<div class="comment">
+    <p>Remove the indicated <code>subRange</code> of elements.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+
+<p>Can be implemented as:</p>
+
+<pre><code class="language-swift">Swift.removeRange(&amp;self, subRange)</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeAll(keepCapacity keepCapacity: Bool)</code>
+<div class="comment">
+    <p>Remove all elements.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong><code>keepCapacity</code>:</strong>  If <code>true</code>, is a non-binding request to
+   avoid releasing storage, which can be a useful optimization
+   when <code>self</code> is going to be grown again.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+
+<p>Can be implemented as:</p>
+
+<pre><code class="language-swift">Swift.removeAll(&amp;self, keepCapacity: keepCapacity)</code></pre>
+</div>
+</div>
+
+
+

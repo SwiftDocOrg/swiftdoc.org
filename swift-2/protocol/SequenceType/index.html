@@ -1,0 +1,319 @@
+---
+layout: "default"
+title: "SequenceType"
+description: "Swift documentation for 'SequenceType': A type that can be iterated with a for...in loop."
+keywords: "SequenceType,protocol,swift,documentation,generate,underestimateCount,map,filter,Generator"
+root: "/swift-2"
+---
+
+<code class="language-swift">protocol SequenceType { ... }</code>
+
+<div class="comment">
+    <p>A type that can be iterated with a <code>for</code>...<code>in</code> loop.</p>
+
+<p><code>SequenceType</code> makes no requirement on conforming types regarding
+whether they will be destructively &quot;consumed&quot; by iteration.  To
+ensure non-destructive iteration, constrain your <em>sequence</em> to
+<code>CollectionType</code>.</p>
+</div>
+
+<h3>Inheritance</h3>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Generator : GeneratorType</code>
+<div class="comment">
+    <p>A type that provides the <em>sequence</em>&#39;s iteration interface and
+encapsulates its iteration state.</p>
+</div>
+</div>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func generate() -> Self.Generator</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func underestimateCount() -> Int</code>
+<div class="comment">
+    <p>Return a value less than or equal to the number of elements in
+<code>self</code>, <strong>nondestructively</strong>.</p>
+
+<p><strong>Complexity:</strong> O(N).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func map&lt;T&gt;(@noescape transform: (Self.Generator.Element) -&gt; T) -> [T]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the results of mapping <code>transform</code>
+over <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(N).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func filter(@noescape includeElement: (Self.Generator.Element) -&gt; Bool) -> [Self.Generator.Element]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the elements of <code>self</code>,
+in order, that satisfy the predicate <code>includeElement</code>.</p>
+</div>
+</div>
+
+
+
+<h3>Default Implementations</h3>
+
+
+<h4>Where Self.Generator.Element : Comparable<h4>
+
+<div class="declaration">
+<code class="language-swift">@warn_unused_result
+     func sort() -> [Self.Generator.Element]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the sorted elements of <code>source</code>.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements that compare equal).</p>
+
+<p><strong>Requires:</strong> The less-than operator (<code>func &lt;</code>) defined in
+  the <code>Comparable</code> conformance is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements in <code>self</code>.</p>
+</div>
+</div>
+
+
+
+
+
+<div class="declaration">
+<code class="language-swift">@warn_unused_result
+     func sort(isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> [Self.Generator.Element]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the sorted elements of <code>source</code>
+according to <code>isOrderedBefore</code>.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements for which <code>isOrderedBefore</code> does not establish an order).</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements in <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func underestimateCount() -> Int</code>
+<div class="comment">
+    <p>Return a value less than or equal to the number of elements in
+<code>self</code>, <strong>nondestructively</strong>.</p>
+
+<p><strong>Complexity:</strong> O(N).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func map&lt;T&gt;(@noescape transform: (Self.Generator.Element) -&gt; T) -> [T]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the results of mapping <code>transform</code>
+over <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(N).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func filter(@noescape includeElement: (Self.Generator.Element) -&gt; Bool) -> [Self.Generator.Element]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the elements of <code>self</code>,
+in order, that satisfy the predicate <code>includeElement</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func enumerate() -> EnumerateSequence&lt;Self&gt;</code>
+<div class="comment">
+    <p>Return a lazy <code>SequenceType</code> containing pairs (<em>n</em>, <em>x</em>), where
+<em>n</em>s are consecutive <code>Int</code>s starting at zero, and <em>x</em>s are
+the elements of <code>base</code>:</p>
+
+<pre><code class="language-swift">&gt; for (n, c) in &quot;Swift&quot;.characters.enumerate() {
+    print(&quot;\(n): &#39;\(c)&#39;&quot;)
+  }
+0: &#39;S&#39;
+1: &#39;w&#39;
+2: &#39;i&#39;
+3: &#39;f&#39;
+4: &#39;t&#39;</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func minElement(@noescape isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> Self.Generator.Element?</code>
+<div class="comment">
+    <p>Returns the minimum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
+
+<p><strong>Complexity:</strong> O(<code>elements.count</code>).</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>.
+  over <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func maxElement(@noescape isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> Self.Generator.Element?</code>
+<div class="comment">
+    <p>Returns the maximum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
+
+<p><strong>Complexity:</strong> O(<code>elements.count</code>).</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>.
+  over <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func startsWith&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence, @noescape isEquivalent: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> Bool</code>
+<div class="comment">
+    <p>Return true iff <code>self</code> begins with elements equivalent to those of
+<code>other</code>, using <code>isEquivalent</code> as the equivalence test.  Return true if
+<code>other</code> is empty.</p>
+
+<p><strong>Requires:</strong> <code>isEquivalent</code> is an
+  <a href="http://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func elementsEqual&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence, @noescape isEquivalent: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> Bool</code>
+<div class="comment">
+    <p>Return true iff <code>self</code> and <code>other</code> contain equivalent elements, using
+<code>isEquivalent</code> as the equivalence test.</p>
+
+<p><strong>Requires:</strong> <code>isEquivalent</code> is an
+  <a href="http://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func lexicographicalCompare&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence, @noescape isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> Bool</code>
+<div class="comment">
+    <p>Return true iff <code>self</code> precedes <code>other</code> in a lexicographical (&quot;dictionary&quot;)
+ordering, using <code>isOrderedBefore</code> as the comparison between elements.</p>
+
+<p><strong>Note:</strong> This method implements the mathematical notion of lexicographical
+  ordering, which has no connection to Unicode.  If you are sorting strings
+  to present to the end-user, you should use <code>String</code> APIs that perform
+localized comparison.</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements of <code>self</code> and <code>other</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func contains(@noescape predicate: (Self.Generator.Element) -&gt; Bool) -> Bool</code>
+<div class="comment">
+    <p>Return <code>true</code> iff an element in <code>self</code> satisfies <code>predicate</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func reduce&lt;T&gt;(initial: T, @noescape combine: (T, Self.Generator.Element) -&gt; T) -> T</code>
+<div class="comment">
+    <p>Return the result of repeatedly calling <code>combine</code> with an
+accumulated value initialized to <code>initial</code> and each element of
+<code>self</code>, in turn, i.e. return
+<code>combine(combine(...combine(combine(initial, self[0]),
+self[1]),...self[count-2]), self[count-1])</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func reverse() -> [Self.Generator.Element]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the elements of <code>self</code> in reverse
+order.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func flatMap&lt;S : SequenceType&gt;(@noescape transform: (Self.Generator.Element) -&gt; S) -> [S.Generator.Element]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing concatenated results of mapping <code>transform</code>
+over <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func flatMap&lt;T&gt;(@noescape transform: (Self.Generator.Element) -&gt; T?) -> [T]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the non-nil results of mapping <code>transform</code>
+over <code>self</code>.</p>
+</div>
+</div>
+
+
+
+
+<h4>Where Generator.Element : Comparable<h4>
+
+<div class="declaration">
+<code class="language-swift">func minElement() -> Self.Generator.Element?</code>
+<div class="comment">
+    <p>Returns the minimum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
+
+<p><strong>Complexity:</strong> O(<code>elements.count</code>).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func maxElement() -> Self.Generator.Element?</code>
+<div class="comment">
+    <p>Returns the maximum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
+
+<p><strong>Complexity:</strong> O(<code>elements.count</code>).
+  </p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func lexicographicalCompare&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence) -> Bool</code>
+<div class="comment">
+    <p>Return true iff <code>self</code> precedes <code>other</code> in a lexicographical (&quot;dictionary&quot;)
+ordering, using &quot;&lt;&quot; as the comparison between elements.</p>
+
+<p><strong>Note:</strong> This method implements the mathematical notion of lexicographical
+  ordering, which has no connection to Unicode.  If you are sorting strings
+  to present to the end-user, you should use <code>String</code> APIs that perform
+localized comparison.</p>
+</div>
+</div>
+
+
+
+
+<h4>Where Generator.Element : Equatable<h4>
+
+<div class="declaration">
+<code class="language-swift">func startsWith&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence) -> Bool</code>
+<div class="comment">
+    <p>Return true iff the the initial elements of <code>self</code> are equal to <code>prefix</code>.
+Return true if <code>other</code> is empty.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func elementsEqual&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence) -> Bool</code>
+<div class="comment">
+    <p>Return <code>true</code> iff <code>self</code> and <code>other</code> contain the same elements in the
+same order.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func contains(element: Self.Generator.Element) -> Bool</code>
+<div class="comment">
+    <p>Return <code>true</code> iff <code>x</code> is in <code>self</code>.</p>
+</div>
+</div>
+
+
+
+

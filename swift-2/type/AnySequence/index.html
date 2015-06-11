@@ -1,0 +1,64 @@
+---
+layout: "default"
+title: "AnySequence"
+description: "Swift documentation for 'AnySequence': A type-erased sequence."
+keywords: "AnySequence,struct,swift,documentation,generate,underestimateCount,Element"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct AnySequence&lt;T&gt; { ... }</code>
+
+<div class="comment">
+    <p>A type-erased sequence.</p>
+
+<p>Forwards operations to an arbitrary underlying sequence having the
+same <code>Element</code> type, hiding the specifics of the underlying
+<code>SequenceType</code>.</p>
+
+<p><strong>See Also:</strong> &lt;span class=&quot;see_also&quot;&gt;<code>AnyGenerator&lt;T&gt;</code>.&lt;/span&gt;</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">SequenceType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Element = T</code>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init&lt;S : SequenceType where S.Generator.Element == T&gt;(_ base: S)</code>
+<div class="comment">
+    <p>Wrap and forward operations to to <code>base</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init&lt;G : GeneratorType where G.Element == T&gt;(_ makeUnderlyingGenerator: () -&gt; G)</code>
+<div class="comment">
+    <p>Create a sequence whose <code>generate()</code> method forwards to
+<code>makeUnderlyingGenerator</code>.</p>
+</div>
+</div>
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func generate() -> AnyGenerator&lt;T&gt;</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func underestimateCount() -> Int</code>
+</div>
+
+
+

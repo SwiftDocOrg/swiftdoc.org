@@ -1,0 +1,52 @@
+---
+layout: "default"
+title: "print"
+description: "Swift documentation for func 'print'."
+keywords: "print,func,swift,documentation"
+root: "/swift-2"
+---
+
+<div class="declaration">
+<code class="language-swift">func print&lt;T&gt;(value: T)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func print&lt;T&gt;(value: T, appendNewline: Bool)</code>
+<div class="comment">
+    <p>Writes the textual representation of <code>value</code>, and an optional newline,
+into the standard output.</p>
+
+<p>The textual representation is obtained from the <code>value</code> using its protocol
+conformances, in the following order of preference: <code>Streamable</code>,
+<code>CustomStringConvertible</code>, <code>CustomDebugStringConvertible</code>.  If none of
+these conformances are found, a default text representation is constructed
+in an implementation-defined way, based on the type kind and structure.</p>
+
+<p>Do not overload this function for your type.  Instead, adopt one of the
+protocols mentioned above.</p>
+
+<p><strong><code>appendNewline</code>:</strong>  Iff <code>true</code> (the default), write a trailing
+  newline.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func print&lt;T, TargetStream : OutputStreamType&gt;(value: T, :)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func print&lt;T, TargetStream : OutputStreamType&gt;(value: T, :, appendNewline: Bool)</code>
+<div class="comment">
+    <p>Writes the textual representation of <code>value</code>, and an optional newline,
+into the stream <code>target</code>.</p>
+
+<p>The textual representation is obtained from the <code>value</code> using its protocol
+conformances, in the following order of preference: <code>Streamable</code>,
+<code>CustomStringConvertible</code>, <code>CustomDebugStringConvertible</code>.  If none of
+these conformances are found, a default text representation is constructed
+in an implementation-defined way, based on the type kind and structure.</p>
+
+<p>Do not overload this function for your type.  Instead, adopt one of the
+protocols mentioned above.</p>
+
+<p><strong><code>appendNewline</code>:</strong>  Iff <code>true</code> (the default), write a trailing
+  newline.</p>
+</div>
+</div>

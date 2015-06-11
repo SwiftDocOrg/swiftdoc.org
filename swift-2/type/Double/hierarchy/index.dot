@@ -1,0 +1,56 @@
+strict digraph "Double - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AbsoluteValuable" [URL="/protocol/AbsoluteValuable/"]
+    "CVarArgType" [URL="/protocol/CVarArgType/"]
+    "Comparable" [URL="/protocol/Comparable/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/"]
+    "Double" [URL="/type/Double/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "Equatable" [URL="/protocol/Equatable/"]
+    "FloatLiteralConvertible" [URL="/protocol/FloatLiteralConvertible/"]
+    "FloatingPointType" [URL="/protocol/FloatingPointType/"]
+    "Hashable" [URL="/protocol/Hashable/"]
+    "IntegerLiteralConvertible" [URL="/protocol/IntegerLiteralConvertible/"]
+    "Reflectable" [URL="/protocol/Reflectable/"]
+    "SignedNumberType" [URL="/protocol/SignedNumberType/"]
+    "Strideable" [URL="/protocol/Strideable/"]
+    "_CVarArgAlignedType" [URL="/protocol/_CVarArgAlignedType/"]
+    "_CVarArgPassedAsDouble" [URL="/protocol/_CVarArgPassedAsDouble/"]
+    "_Strideable" [URL="/protocol/_Strideable/"]    "CustomStringConvertible" -> "Double"
+    "FloatingPointType" -> "Double"
+    "IntegerLiteralConvertible" -> "Double"
+    "FloatLiteralConvertible" -> "Double"
+    "Comparable" -> "Double"
+    "Equatable" -> "Double"
+    "Hashable" -> "Double"
+    "SignedNumberType" -> "Double"
+    "AbsoluteValuable" -> "Double"
+    "Strideable" -> "Double"
+    "_Strideable" -> "Double"
+    "Reflectable" -> "Double"
+    "_CVarArgPassedAsDouble" -> "Double"
+    "CVarArgType" -> "Double"
+    "_CVarArgAlignedType" -> "Double"
+    "Strideable" -> "FloatingPointType"
+    "Comparable" -> "Strideable"
+    "_Strideable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "Hashable"
+    "Comparable" -> "SignedNumberType"
+    "IntegerLiteralConvertible" -> "SignedNumberType"
+    "Equatable" -> "Comparable"
+    "SignedNumberType" -> "AbsoluteValuable"
+    "Comparable" -> "SignedNumberType"
+    "IntegerLiteralConvertible" -> "SignedNumberType"
+    "Equatable" -> "Comparable"
+    "Comparable" -> "Strideable"
+    "_Strideable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    "CVarArgType" -> "_CVarArgPassedAsDouble"
+    "CVarArgType" -> "_CVarArgAlignedType"
+    subgraph Types {
+        rank = max; "Double";
+    }
+}

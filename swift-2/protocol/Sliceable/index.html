@@ -1,0 +1,45 @@
+---
+layout: "default"
+title: "Sliceable"
+description: "Swift documentation for 'Sliceable': A collection from which a sub-range of elements (a &quot;slice&quot;)
+can be efficiently extracted."
+keywords: "Sliceable,protocol,swift,documentation,SubSlice"
+root: "/swift-2"
+---
+
+<code class="language-swift">protocol Sliceable { ... }</code>
+
+<div class="comment">
+    <p>A <em>collection</em> from which a sub-range of elements (a &quot;slice&quot;)
+can be efficiently extracted.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">_Sliceable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias SubSlice : _Sliceable</code>
+<div class="comment">
+    <p>The <em>collection</em> type that represents a sub-range of elements.</p>
+
+<p>Though it can&#39;t currently be enforced by the type system, the
+<code>SubSlice</code> type in a concrete implementation of <code>Sliceable</code>
+should also be <code>Sliceable</code>.</p>
+</div>
+</div>
+
+
+
+
+
+
+
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(bounds: Range&lt;Self.Index&gt;) -> Self.SubSlice { get }</code>
+</div>
+
+

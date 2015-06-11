@@ -1,0 +1,106 @@
+strict digraph "IntegerArithmeticType - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Bit" [URL="/type/Bit/", style=filled]
+    "Comparable" [URL="/protocol/Comparable/"]
+    "Equatable" [URL="/protocol/Equatable/"]
+    "Int" [URL="/type/Int/", style=filled]
+    "Int16" [URL="/type/Int16/", style=filled]
+    "Int32" [URL="/type/Int32/", style=filled]
+    "Int64" [URL="/type/Int64/", style=filled]
+    "Int8" [URL="/type/Int8/", style=filled]
+    "IntegerArithmeticType" [URL="/protocol/IntegerArithmeticType/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "IntegerType" [URL="/protocol/IntegerType/"]
+    "SignedIntegerType" [URL="/protocol/SignedIntegerType/"]
+    "UInt" [URL="/type/UInt/", style=filled]
+    "UInt16" [URL="/type/UInt16/", style=filled]
+    "UInt32" [URL="/type/UInt32/", style=filled]
+    "UInt64" [URL="/type/UInt64/", style=filled]
+    "UInt8" [URL="/type/UInt8/", style=filled]
+    "UnsignedIntegerType" [URL="/protocol/UnsignedIntegerType/"]
+    "_IntegerArithmeticType" [URL="/protocol/_IntegerArithmeticType/"]
+    "_IntegerType" [URL="/protocol/_IntegerType/"]
+    "_SignedIntegerType" [URL="/protocol/_SignedIntegerType/"]
+    "_UnsignedIntegerType" [URL="/protocol/_UnsignedIntegerType/"]    "IntegerArithmeticType" -> "Bit"
+    "IntegerArithmeticType" -> "Int"
+    "IntegerArithmeticType" -> "Int16"
+    "IntegerArithmeticType" -> "Int32"
+    "IntegerArithmeticType" -> "Int64"
+    "IntegerArithmeticType" -> "Int8"
+    "IntegerArithmeticType" -> "UInt"
+    "IntegerArithmeticType" -> "UInt16"
+    "IntegerArithmeticType" -> "UInt32"
+    "IntegerArithmeticType" -> "UInt64"
+    "IntegerArithmeticType" -> "UInt8"
+    "IntegerArithmeticType" -> "_IntegerType"
+    "Int" -> "Bit"
+    "_IntegerType" -> "Int"
+    "_IntegerType" -> "Int16"
+    "_IntegerType" -> "Int32"
+    "_IntegerType" -> "Int64"
+    "_IntegerType" -> "Int8"
+    "_IntegerType" -> "IntegerType"
+    "_IntegerType" -> "UInt"
+    "_IntegerType" -> "UInt16"
+    "_IntegerType" -> "UInt32"
+    "_IntegerType" -> "UInt64"
+    "_IntegerType" -> "UInt8"
+    "_IntegerType" -> "_SignedIntegerType"
+    "_IntegerType" -> "_UnsignedIntegerType"
+    "Int" -> "Bit"
+    "IntegerType" -> "Int"
+    "IntegerType" -> "Int16"
+    "IntegerType" -> "Int32"
+    "IntegerType" -> "Int64"
+    "IntegerType" -> "Int8"
+    "IntegerType" -> "SignedIntegerType"
+    "IntegerType" -> "UInt"
+    "IntegerType" -> "UInt16"
+    "IntegerType" -> "UInt32"
+    "IntegerType" -> "UInt64"
+    "IntegerType" -> "UInt8"
+    "IntegerType" -> "UnsignedIntegerType"
+    "Int" -> "Bit"
+    "SignedIntegerType" -> "Int"
+    "SignedIntegerType" -> "Int16"
+    "SignedIntegerType" -> "Int32"
+    "SignedIntegerType" -> "Int64"
+    "SignedIntegerType" -> "Int8"
+    "Int" -> "Bit"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
+    "_SignedIntegerType" -> "Int"
+    "_SignedIntegerType" -> "Int16"
+    "_SignedIntegerType" -> "Int32"
+    "_SignedIntegerType" -> "Int64"
+    "_SignedIntegerType" -> "Int8"
+    "_SignedIntegerType" -> "SignedIntegerType"
+    "Int" -> "Bit"
+    "SignedIntegerType" -> "Int"
+    "SignedIntegerType" -> "Int16"
+    "SignedIntegerType" -> "Int32"
+    "SignedIntegerType" -> "Int64"
+    "SignedIntegerType" -> "Int8"
+    "Int" -> "Bit"
+    "_UnsignedIntegerType" -> "UInt"
+    "_UnsignedIntegerType" -> "UInt16"
+    "_UnsignedIntegerType" -> "UInt32"
+    "_UnsignedIntegerType" -> "UInt64"
+    "_UnsignedIntegerType" -> "UInt8"
+    "_UnsignedIntegerType" -> "UnsignedIntegerType"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
+    "_IntegerArithmeticType" -> "IntegerArithmeticType"
+    "Comparable" -> "IntegerArithmeticType"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "Bit"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8";
+    }
+}

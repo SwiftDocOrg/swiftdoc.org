@@ -1,0 +1,40 @@
+---
+layout: "default"
+title: "CustomPlaygroundQuickLookable"
+description: "Swift documentation for 'CustomPlaygroundQuickLookable': A type that explicitly supplies its own PlaygroundQuickLook."
+keywords: "CustomPlaygroundQuickLookable,protocol,swift,documentation,customPlaygroundQuickLook"
+root: "/swift-2"
+---
+
+<code class="language-swift">protocol CustomPlaygroundQuickLookable { ... }</code>
+
+<div class="comment">
+    <p>A type that explicitly supplies its own PlaygroundQuickLook.</p>
+
+<p>Instances of any type can be <code>reflect</code>&#39;ed upon, but if you are
+not satisfied with the <code>Mirror</code> supplied for your type by default,
+you can make it conform to <code>CustomReflectable</code> and return a custom
+<code>Mirror</code>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func customPlaygroundQuickLook() -> PlaygroundQuickLook</code>
+<div class="comment">
+    <p>Return the <code>Mirror</code> for <code>self</code>.</p>
+
+<p><strong>Note:</strong> If <code>Self</code> has value semantics, the <code>Mirror</code> should be
+  unaffected by subsequent mutations of <code>self</code>.</p>
+</div>
+</div>
+
+
+

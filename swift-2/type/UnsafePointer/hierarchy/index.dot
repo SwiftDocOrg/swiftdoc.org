@@ -1,0 +1,55 @@
+strict digraph "UnsafePointer<T> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BidirectionalIndexType" [URL="/protocol/BidirectionalIndexType/"]
+    "CVarArgType" [URL="/protocol/CVarArgType/"]
+    "Comparable" [URL="/protocol/Comparable/"]
+    "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/"]
+    "Equatable" [URL="/protocol/Equatable/"]
+    "ForwardIndexType" [URL="/protocol/ForwardIndexType/"]
+    "Hashable" [URL="/protocol/Hashable/"]
+    "NilLiteralConvertible" [URL="/protocol/NilLiteralConvertible/"]
+    "RandomAccessIndexType" [URL="/protocol/RandomAccessIndexType/"]
+    "Reflectable" [URL="/protocol/Reflectable/"]
+    "Strideable" [URL="/protocol/Strideable/"]
+    "UnsafePointer<T>" [URL="/type/UnsafePointer/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "_Incrementable" [URL="/protocol/_Incrementable/"]
+    "_PointerType" [URL="/protocol/_PointerType/"]
+    "_Strideable" [URL="/protocol/_Strideable/"]    "RandomAccessIndexType" -> "UnsafePointer<T>"
+    "BidirectionalIndexType" -> "UnsafePointer<T>"
+    "ForwardIndexType" -> "UnsafePointer<T>"
+    "_Incrementable" -> "UnsafePointer<T>"
+    "Equatable" -> "UnsafePointer<T>"
+    "Strideable" -> "UnsafePointer<T>"
+    "Comparable" -> "UnsafePointer<T>"
+    "_Strideable" -> "UnsafePointer<T>"
+    "Hashable" -> "UnsafePointer<T>"
+    "NilLiteralConvertible" -> "UnsafePointer<T>"
+    "_PointerType" -> "UnsafePointer<T>"
+    "CustomDebugStringConvertible" -> "UnsafePointer<T>"
+    "Reflectable" -> "UnsafePointer<T>"
+    "CVarArgType" -> "UnsafePointer<T>"
+    "BidirectionalIndexType" -> "RandomAccessIndexType"
+    "Strideable" -> "RandomAccessIndexType"
+    "ForwardIndexType" -> "BidirectionalIndexType"
+    "_Incrementable" -> "ForwardIndexType"
+    "Equatable" -> "_Incrementable"
+    "Comparable" -> "Strideable"
+    "_Strideable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    "ForwardIndexType" -> "BidirectionalIndexType"
+    "_Incrementable" -> "ForwardIndexType"
+    "Equatable" -> "_Incrementable"
+    "_Incrementable" -> "ForwardIndexType"
+    "Equatable" -> "_Incrementable"
+    "Equatable" -> "_Incrementable"
+    "Comparable" -> "Strideable"
+    "_Strideable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "Hashable"
+    subgraph Types {
+        rank = max; "UnsafePointer<T>";
+    }
+}

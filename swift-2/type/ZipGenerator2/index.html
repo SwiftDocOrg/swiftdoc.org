@@ -1,0 +1,54 @@
+---
+layout: "default"
+title: "ZipGenerator2"
+description: "Swift documentation for 'ZipGenerator2': A generator for the Zip2 sequence."
+keywords: "ZipGenerator2,struct,swift,documentation,next,Element"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct ZipGenerator2&lt;Generator1 : GeneratorType, Generator2 : GeneratorType&gt; { ... }</code>
+
+<div class="comment">
+    <p>A generator for the <code>Zip2</code> sequence.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">GeneratorType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Element = (Generator1.Element, Generator2.Element)</code>
+<div class="comment">
+    <p>The type of element returned by <code>next()</code>.</p>
+</div>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(_ generator1: Generator1, _ generator2: Generator2)</code>
+<div class="comment">
+    <p>Construct around a pair of underlying generators.</p>
+</div>
+</div>
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">mutating func next() -> (Generator1.Element, Generator2.Element)?</code>
+<div class="comment">
+    <p>Advance to the next element and return it, or <code>nil</code> if no next
+element exists.</p>
+
+<p><strong>Requires:</strong> <code>next()</code> has not been applied to a copy of <code>self</code>
+  since the copy was made, and no preceding call to <code>self.next()</code>
+  has returned <code>nil</code>.</p>
+</div>
+</div>
+
+
+

@@ -1,0 +1,26 @@
+---
+layout: "default"
+title: "assert"
+description: "Swift documentation for 'assert': Traditional C-style assert with an optional message."
+keywords: "assert,func,swift,documentation"
+root: "/swift-2"
+---
+
+<div class="declaration">
+<code class="language-swift">func assert(@autoclosure condition: () -&gt; Bool, :, file: StaticString = default, line: UWord = default)</code>
+<div class="comment">
+    <p>Traditional C-style assert with an optional message.</p>
+
+<p>Use this function for internal sanity checks that are active
+during testing but do not impact performance of shipping code.
+To check for invalid usage in Release builds; see <code>precondition</code>.</p>
+
+<ul><li><p>In playgrounds and -Onone builds (the default for Xcode&#39;s Debug
+configuration): if <code>condition</code> evaluates to false, stop program
+execution in a debuggable state after printing <code>message</code>.</p></li><li><p>In -O builds (the default for Xcode&#39;s Release configuration),
+<code>condition</code> is not evaluated, and there are no effects.</p></li><li><p>In -Ounchecked builds, <code>condition</code> is not evaluated, but the
+optimizer may assume that it <em>would</em> evaluate to <code>true</code>. Failure
+to satisfy that assumption in -Ounchecked builds is a serious
+programming error.</p></li></ul>
+</div>
+</div>

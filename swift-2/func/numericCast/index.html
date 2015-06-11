@@ -1,0 +1,61 @@
+---
+layout: "default"
+title: "numericCast"
+description: "Swift documentation for 'numericCast': Convert x to type U, trapping on overflow in -Onone and -O
+builds."
+keywords: "numericCast,func,swift,documentation"
+root: "/swift-2"
+---
+
+<div class="declaration">
+<code class="language-swift">func numericCast&lt;T : _SignedIntegerType, U : _SignedIntegerType&gt;(x: T) -> U</code>
+<div class="comment">
+    <p>Convert <code>x</code> to type <code>U</code>, trapping on overflow in -Onone and -O
+builds.</p>
+
+<p>Typically used to do conversion to any contextually-deduced
+integer type:</p>
+
+<pre><code class="language-swift">func f(x: Int32) {}
+func g(x: Int64) { f(numericCast(x)) }</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func numericCast&lt;T : _SignedIntegerType, U : _UnsignedIntegerType&gt;(x: T) -> U</code>
+<div class="comment">
+    <p>Convert <code>x</code> to type <code>U</code>, trapping on overflow in -Onone and -O
+builds.</p>
+
+<p>Typically used to do conversion to any contextually-deduced
+integer type:</p>
+
+<pre><code class="language-swift">func f(x: UInt32) {}
+func g(x: Int64) { f(numericCast(x)) }</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func numericCast&lt;T : _UnsignedIntegerType, U : _SignedIntegerType&gt;(x: T) -> U</code>
+<div class="comment">
+    <p>Convert <code>x</code> to type <code>U</code>, trapping on overflow in -Onone and -O
+builds.</p>
+
+<p>Typically used to do conversion to any contextually-deduced
+integer type:</p>
+
+<pre><code class="language-swift">func f(x: Int32) {}
+func g(x: UInt64) { f(numericCast(x)) }</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func numericCast&lt;T : _UnsignedIntegerType, U : _UnsignedIntegerType&gt;(x: T) -> U</code>
+<div class="comment">
+    <p>Convert <code>x</code> to type <code>U</code>, trapping on overflow in -Onone and -O
+builds.</p>
+
+<p>Typically used to do conversion to any contextually-deduced
+integer type:</p>
+
+<pre><code class="language-swift">func f(x: UInt32) {}
+func g(x: UInt64) { f(numericCast(x)) }</code></pre>
+</div>
+</div>

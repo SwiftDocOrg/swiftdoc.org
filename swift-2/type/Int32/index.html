@@ -1,0 +1,322 @@
+---
+layout: "default"
+title: "Int32"
+description: "Swift documentation for 'Int32': A 32-bit signed integer value
+type."
+keywords: "Int32,struct,swift,documentation,successor,predecessor,distanceTo,advancedBy,addWithOverflow,subtractWithOverflow,multiplyWithOverflow,divideWithOverflow,remainderWithOverflow,toIntMax,getMirror,value,bigEndian,littleEndian,byteSwapped,max,min,hashValue,description,allZeros,Distance"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct Int32 { ... }</code>
+
+<div class="comment">
+    <p>A 32-bit signed integer value
+type.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">SignedIntegerType, IntegerType, Equatable, Comparable, _IntegerType, IntegerArithmeticType, _IntegerArithmeticType, _SignedIntegerType, Hashable, CustomStringConvertible, RandomAccessIndexType, BidirectionalIndexType, ForwardIndexType, _Incrementable, Strideable, _Strideable, IntegerLiteralConvertible, SignedNumberType, BitwiseOperationsType, Reflectable, CVarArgType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Distance = Int</code>
+<div class="comment">
+    <p>A type that can represent the number of steps between pairs of
+values.</p>
+</div>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init()</code>
+<div class="comment">
+    <p>Create an instance initialized to zero.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ value: Int32)</code>
+<div class="comment">
+    <p>Create an instance initialized to <code>value</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(bigEndian value: Int32)</code>
+<div class="comment">
+    <p>Creates an integer from its big-endian representation, changing the
+byte order if necessary.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(littleEndian value: Int32)</code>
+<div class="comment">
+    <p>Creates an integer from its little-endian representation, changing the
+byte order if necessary.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_builtinIntegerLiteral value: Builtin.Int2048)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(integerLiteral value: Int32)</code>
+<div class="comment">
+    <p>Create an instance initialized to <code>value</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: UInt8)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: Int8)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: UInt16)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: Int16)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: UInt32)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: UInt64)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(truncatingBitPattern: UInt64)</code>
+<div class="comment">
+    <p>Construct a <code>Int32</code> having the same bitwise representation as
+the least significant bits of the provided bit pattern.</p>
+
+<p>No range or overflow checking occurs.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: Int64)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(truncatingBitPattern: Int64)</code>
+<div class="comment">
+    <p>Construct a <code>Int32</code> having the same bitwise representation as
+the least significant bits of the provided bit pattern.</p>
+
+<p>No range or overflow checking occurs.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: UInt)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(truncatingBitPattern: UInt)</code>
+<div class="comment">
+    <p>Construct a <code>Int32</code> having the same bitwise representation as
+the least significant bits of the provided bit pattern.</p>
+
+<p>No range or overflow checking occurs.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: Int)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(truncatingBitPattern: Int)</code>
+<div class="comment">
+    <p>Construct a <code>Int32</code> having the same bitwise representation as
+the least significant bits of the provided bit pattern.</p>
+
+<p>No range or overflow checking occurs.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(bitPattern: UInt32)</code>
+<div class="comment">
+    <p>Construct a <code>Int32</code> having the same memory representation as
+the <code>UInt32</code> <code>bitPattern</code>.  No range or overflow checking
+occurs, and the resulting <code>Int32</code> may not have the same numeric
+value as <code>bitPattern</code>--it is only guaranteed to use the same
+pattern of bits.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ other: Float)</code>
+<div class="comment">
+    <p>Construct an instance that approximates <code>other</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ other: Double)</code>
+<div class="comment">
+    <p>Construct an instance that approximates <code>other</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ other: Float80)</code>
+<div class="comment">
+    <p>Construct an instance that approximates <code>other</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init?(_ text: String, radix: Int = default)</code>
+<div class="comment">
+    <p>Construct from an ASCII representation in the given <code>radix</code>.</p>
+
+<p>If <code>text</code> does not match the regular expression
+&quot;[+-][0-9a-zA-Z]+&quot;, or the value it denotes in the given <code>radix</code>
+is not representable, the result is <code>nil</code>.</p>
+</div>
+</div>
+
+<h3>Static Variables</h3>
+<div class="declaration">
+<code class="language-swift">static var max: Int32 { get }</code>
+</div>
+<div class="declaration">
+<code class="language-swift">static var min: Int32 { get }</code>
+</div>
+<div class="declaration">
+<code class="language-swift">static var allZeros: Int32 { get }</code>
+<div class="comment">
+    <p>The empty bitset of type Int32.</p>
+</div>
+</div>
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var value: Builtin.Int32 { get set }</code>
+</div>
+<div class="declaration">
+<code class="language-swift">var bigEndian: Int32 { get }</code>
+<div class="comment">
+    <p>Returns the big-endian representation of the integer, changing the
+byte order if necessary.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var littleEndian: Int32 { get }</code>
+<div class="comment">
+    <p>Returns the little-endian representation of the integer, changing the
+byte order if necessary.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var byteSwapped: Int32 { get }</code>
+<div class="comment">
+    <p>Returns the current integer with the byte order swapped.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var hashValue: Int { get }</code>
+<div class="comment">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code>.</p>
+
+<p><strong>Note:</strong> The hash value is not guaranteed to be stable across
+  different invocations of the same program.  Do not persist the
+  hash value across program runs.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var description: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>.</p>
+</div>
+</div>
+
+<h3>Static Methods</h3>
+<div class="declaration">
+<code class="language-swift">static func addWithOverflow(lhs: Int32, _ rhs: Int32) -> (Int32, overflow: Bool)</code>
+<div class="comment">
+    <p>Add <code>lhs</code> and <code>rhs</code>, returning a result and a
+<code>Bool</code> that is true iff the operation caused an arithmetic
+overflow.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">static func subtractWithOverflow(lhs: Int32, _ rhs: Int32) -> (Int32, overflow: Bool)</code>
+<div class="comment">
+    <p>Subtract <code>lhs</code> and <code>rhs</code>, returning a result and a
+<code>Bool</code> that is true iff the operation caused an arithmetic
+overflow.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">static func multiplyWithOverflow(lhs: Int32, _ rhs: Int32) -> (Int32, overflow: Bool)</code>
+<div class="comment">
+    <p>Multiply <code>lhs</code> and <code>rhs</code>, returning a result and a
+<code>Bool</code> that is true iff the operation caused an arithmetic
+overflow.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">static func divideWithOverflow(lhs: Int32, _ rhs: Int32) -> (Int32, overflow: Bool)</code>
+<div class="comment">
+    <p>Divide <code>lhs</code> and <code>rhs</code>, returning
+a result and a <code>Bool</code>
+that is true iff the operation caused an arithmetic overflow.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">static func remainderWithOverflow(lhs: Int32, _ rhs: Int32) -> (Int32, overflow: Bool)</code>
+<div class="comment">
+    <p>Divide <code>lhs</code> and <code>rhs</code>, returning
+the remainder and a <code>Bool</code>
+that is true iff the operation caused an arithmetic overflow.</p>
+</div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func successor() -> Int32</code>
+<div class="comment">
+    <p>Returns the next consecutive value after <code>self</code>.</p>
+
+<p><strong>Requires:</strong> The next value is representable.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func predecessor() -> Int32</code>
+<div class="comment">
+    <p>Returns the previous consecutive value before <code>self</code>.</p>
+
+<p><strong>Requires:</strong> The previous value is representable.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func distanceTo(other: Int32) -> Distance</code>
+<div class="comment">
+    <p>Return the minimum number of applications of <code>successor</code> or
+<code>predecessor</code> required to reach <code>other</code> from <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func advancedBy(amount: Distance) -> Int32</code>
+<div class="comment">
+    <p>Return <code>self</code> offset by <code>n</code> steps.</p>
+
+<p><strong>Returns:</strong> If <code>n &gt; 0</code>, the result of applying <code>successor</code> to
+  <code>self</code> <code>n</code> times.  If <code>n &lt; 0</code>, the result of applying
+  <code>predecessor</code> to <code>self</code> <code>-n</code> times. Otherwise, <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func toIntMax() -> IntMax</code>
+<div class="comment">
+    <p>Represent this number using Swift&#39;s widest native signed
+integer type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func getMirror() -> MirrorType</code>
+<div class="comment">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+</div>
+</div>
+
+
+

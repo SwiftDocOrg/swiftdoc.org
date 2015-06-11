@@ -1,0 +1,35 @@
+---
+layout: "default"
+title: "isUniquelyReferenced"
+description: "Swift documentation for 'isUniquelyReferenced': Returns true iff object is a non-@objc class instance with a single
+strong reference."
+keywords: "isUniquelyReferenced,func,swift,documentation"
+root: "/swift-2"
+---
+
+<div class="declaration">
+<code class="language-swift">func isUniquelyReferenced&lt;T : NonObjectiveCBase&gt;(inout object: T) -> Bool</code>
+<div class="comment">
+    <p>Returns <code>true</code> iff <code>object</code> is a non-<code>@objc</code> class instance with a single
+strong reference.</p>
+
+<ul><li>Does <em>not</em> modify <code>object</code>; the use of <code>inout</code> is an
+implementation artifact.</li><li>Weak references do not affect the result of this function.</li></ul>
+
+<p>Useful for implementing the copy-on-write optimization for the
+deep storage of value types:</p>
+
+<pre><code class="language-swift">mutating func modifyMe(arg: X) {
+  if isUniquelyReferenced(&amp;myStorage) {
+    myStorage.modifyInPlace(arg)
+  }
+  else {
+    myStorage = myStorage.createModified(arg)
+  }
+}</code></pre>
+
+<p>This function is safe to use for <code>mutating</code> functions in
+multithreaded code because a false positive would imply that there
+is already a user-level data race on the value being mutated.</p>
+</div>
+</div>

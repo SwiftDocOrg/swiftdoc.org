@@ -1,0 +1,97 @@
+---
+layout: "default"
+title: "Character"
+description: "Swift documentation for 'Character': Character represents some Unicode grapheme cluster as
+defined by a canonical, localized, or otherwise tailored
+segmentation algorithm."
+keywords: "Character,struct,swift,documentation,getMirror,writeTo,hashValue,debugDescription"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct Character { ... }</code>
+
+<div class="comment">
+    <p><code>Character</code> represents some Unicode grapheme cluster as
+defined by a canonical, localized, or otherwise tailored
+segmentation algorithm.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">ExtendedGraphemeClusterLiteralConvertible, UnicodeScalarLiteralConvertible, Equatable, Hashable, Comparable, CustomDebugStringConvertible, Reflectable, Streamable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(_ scalar: UnicodeScalar)</code>
+<div class="comment">
+    <p>Construct a <code>Character</code> containing just the given <code>scalar</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_builtinUnicodeScalarLiteral value: Builtin.Int32)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(unicodeScalarLiteral value: Character)</code>
+<div class="comment">
+    <p>Create an instance initialized to <code>value</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_builtinExtendedGraphemeClusterLiteral start: Builtin.RawPointer, byteSize: Builtin.Word, isASCII: Builtin.Int1)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(extendedGraphemeClusterLiteral value: Character)</code>
+<div class="comment">
+    <p>Create an instance initialized to <code>value</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ s: String)</code>
+<div class="comment">
+    <p>Create an instance from a single-character <code>String</code>.</p>
+
+<p><strong>Requires:</strong> <code>s</code> contains exactly one extended grapheme cluster.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var hashValue: Int { get }</code>
+<div class="comment">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code>.</p>
+
+<p><strong>Note:</strong> The hash value is not guaranteed to be stable across
+  different invocations of the same program.  Do not persist the
+  hash value across program runs.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var debugDescription: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func getMirror() -> MirrorType</code>
+<div class="comment">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func writeTo&lt;Target : OutputStreamType&gt;(inout target: Target)</code>
+<div class="comment">
+    <p>Write a textual representation of <code>self</code> into <code>target</code>.</p>
+</div>
+</div>
+
+
+

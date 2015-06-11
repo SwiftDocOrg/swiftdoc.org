@@ -1,0 +1,154 @@
+---
+layout: "default"
+title: "CollectionType"
+description: "Swift documentation for 'CollectionType': A multi-pass sequence with addressable positions."
+keywords: "CollectionType,protocol,swift,documentation,isEmpty,count"
+root: "/swift-2"
+---
+
+<code class="language-swift">protocol CollectionType { ... }</code>
+
+<div class="comment">
+    <p>A multi-pass <em>sequence</em> with addressable positions.</p>
+
+<p>Positions are represented by an associated <code>Index</code> type.  Whereas
+an arbitrary <em>sequence</em> may be consumed as it is traversed, a
+<em>collection</em> is multi-pass: any element may be revisited merely by
+saving its index.</p>
+
+<p>The sequence view of the elements is identical to the collection
+view.  In other words, the following code binds the same series of
+values to <code>x</code> as does <code>for x in self {}</code>:</p>
+
+<pre><code class="language-swift">for i in startIndex..&lt;endIndex {
+  let x = self[i]
+}</code></pre>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var isEmpty: Bool { get }</code>
+<div class="comment">
+    <p>Returns <code>true</code> iff <code>self</code> is empty.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var count: Self.Index.Distance { get }</code>
+<div class="comment">
+    <p>Returns the number of elements.</p>
+
+<p><strong>Complexity:</strong> O(1) if <code>Index</code> conforms to <code>RandomAccessIndexType</code>;
+  O(N) otherwise.</p>
+</div>
+</div>
+
+
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(position: Self.Index) -> Self.Generator.Element { get }</code>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+<div class="declaration">
+<code class="language-swift">func map&lt;T&gt;(@noescape transform: (Self.Generator.Element) -&gt; T) -> [T]</code>
+<div class="comment">
+    <p>Return an <code>Array</code> containing the results of mapping <code>transform</code>
+over <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(N).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func filter(@noescape includeElement: (Self.Generator.Element) -&gt; Bool) -> [Self.Generator.Element]</code>
+<div class="comment">
+    <p>Returns an <code>Array</code> containing the elements of <code>self</code>,
+in order, that satisfy the predicate <code>includeElement</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func indexOf(@noescape predicate: (Self.Generator.Element) -&gt; Bool) -> Self.Index?</code>
+<div class="comment">
+    <p>Returns the first index where <code>predicate</code> returns <code>true</code> for the
+corresponding value, or <code>nil</code> if such value is not found.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+</div>
+</div>
+
+<div class="declaration">
+<code class="language-swift">var first: Self.Generator.Element? { get }</code>
+<div class="comment">
+    <p>Returns the first element of <code>self</code>, or <code>nil</code> if <code>self</code> is empty.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var indices: Range&lt;Self.Index&gt; { get }</code>
+<div class="comment">
+    <p>Return the range of valid index values.</p>
+
+<p>The result&#39;s <code>endIndex</code> is the same as that of <code>self</code>.  Because
+<code>Range</code> is half-open, iterating the values of the result produces
+all valid subscript arguments for <code>self</code>, omitting its <code>endIndex</code>.</p>
+</div>
+</div>
+
+
+
+<h4>Where Index : BidirectionalIndexType<h4>
+
+<div class="declaration">
+<code class="language-swift">func reverse() -> BidirectionalReverseView&lt;Self&gt;</code>
+<div class="comment">
+    <p>Return a lazy <code>CollectionType</code> containing the elements of <code>self</code>
+in reverse order.</p>
+</div>
+</div>
+
+<div class="declaration">
+<code class="language-swift">var last: Self.Generator.Element? { get }</code>
+</div>
+
+
+
+<h4>Where Generator.Element : Equatable<h4>
+
+<div class="declaration">
+<code class="language-swift">func indexOf(element: Self.Generator.Element) -> Self.Index?</code>
+<div class="comment">
+    <p>Returns the first index where <code>value</code> appears in <code>self</code> or <code>nil</code> if
+<code>value</code> is not found.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+</div>
+</div>
+
+
+
+
+<h4>Where Index : RandomAccessIndexType<h4>
+
+<div class="declaration">
+<code class="language-swift">func reverse() -> RandomAccessReverseView&lt;Self&gt;</code>
+<div class="comment">
+    <p>Return a lazy <code>CollectionType</code> containing the elements of <code>self</code>
+in reverse order.</p>
+</div>
+</div>
+
+
+
+

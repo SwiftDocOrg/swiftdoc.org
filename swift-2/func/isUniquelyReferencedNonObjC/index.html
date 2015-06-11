@@ -1,0 +1,61 @@
+---
+layout: "default"
+title: "isUniquelyReferencedNonObjC"
+description: "Swift documentation for 'isUniquelyReferencedNonObjC': Returns true iff object is a non-@objc class instance with
+a single strong reference."
+keywords: "isUniquelyReferencedNonObjC,func,swift,documentation"
+root: "/swift-2"
+---
+
+<div class="declaration">
+<code class="language-swift">func isUniquelyReferencedNonObjC&lt;T&gt;(inout object: T) -> Bool</code>
+<div class="comment">
+    <p>Returns <code>true</code> iff <code>object</code> is a non-<code>@objc</code> class instance with
+a single strong reference.</p>
+
+<ul><li>Does <em>not</em> modify <code>object</code>; the use of <code>inout</code> is an
+implementation artifact.</li><li>If <code>object</code> is an Objective-C class instance, returns <code>false</code>.</li><li>Weak references do not affect the result of this function.</li></ul>
+
+<p>Useful for implementing the copy-on-write optimization for the
+deep storage of value types:</p>
+
+<pre><code class="language-swift">mutating func modifyMe(arg: X) {
+  if isUniquelyReferencedNonObjC(&amp;myStorage) {
+    myStorage.modifyInPlace(arg)
+  }
+  else {
+    myStorage = self.createModified(myStorage, arg)
+  }
+}</code></pre>
+
+<p>This function is safe to use for <code>mutating</code> functions in
+multithreaded code because a false positive would imply that there
+is already a user-level data race on the value being mutated.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func isUniquelyReferencedNonObjC&lt;T&gt;(inout object: T?) -> Bool</code>
+<div class="comment">
+    <p>Returns <code>true</code> iff <code>object</code> is a non-<code>@objc</code> class instance with
+a single strong reference.</p>
+
+<ul><li>Does <em>not</em> modify <code>object</code>; the use of <code>inout</code> is an
+implementation artifact.</li><li>If <code>object</code> is an Objective-C class instance, returns <code>false</code>.</li><li>Weak references do not affect the result of this function.</li></ul>
+
+<p>Useful for implementing the copy-on-write optimization for the
+deep storage of value types:</p>
+
+<pre><code class="language-swift">mutating func modifyMe(arg: X) {
+  if isUniquelyReferencedNonObjC(&amp;myStorage) {
+    myStorage.modifyInPlace(arg)
+  }
+  else {
+    myStorage = self.createModified(myStorage, arg)
+  }
+}</code></pre>
+
+<p>This function is safe to use for <code>mutating</code> functions in
+multithreaded code because a false positive would imply that there
+is already a user-level data race on the value being mutated.</p>
+</div>
+</div>

@@ -1,0 +1,28 @@
+strict digraph "AnyRandomAccessCollection<Element> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AnyCollectionType" [URL="/protocol/AnyCollectionType/"]
+    "AnyRandomAccessCollection<Element>" [URL="/type/AnyRandomAccessCollection/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "CollectionType" [URL="/protocol/CollectionType/"]
+    "SequenceType" [URL="/protocol/SequenceType/"]
+    "_CollectionDefaultsType" [URL="/protocol/_CollectionDefaultsType/"]
+    "_CollectionGeneratorDefaultsType" [URL="/protocol/_CollectionGeneratorDefaultsType/"]    "AnyCollectionType" -> "AnyRandomAccessCollection<Element>"
+    "CollectionType" -> "AnyRandomAccessCollection<Element>"
+    "SequenceType" -> "AnyRandomAccessCollection<Element>"
+    "_CollectionDefaultsType" -> "AnyRandomAccessCollection<Element>"
+    "_CollectionGeneratorDefaultsType" -> "AnyRandomAccessCollection<Element>"
+    "CollectionType" -> "AnyCollectionType"
+    "SequenceType" -> "CollectionType"
+    "_CollectionDefaultsType" -> "CollectionType"
+    "_CollectionGeneratorDefaultsType" -> "CollectionType"
+    "SequenceType" -> "_CollectionDefaultsType"
+    "SequenceType" -> "CollectionType"
+    "_CollectionDefaultsType" -> "CollectionType"
+    "_CollectionGeneratorDefaultsType" -> "CollectionType"
+    "SequenceType" -> "_CollectionDefaultsType"
+    "SequenceType" -> "_CollectionDefaultsType"
+    subgraph Types {
+        rank = max; "AnyRandomAccessCollection<Element>";
+    }
+}

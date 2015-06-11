@@ -1,0 +1,74 @@
+---
+layout: "default"
+title: "PermutationGenerator"
+description: "Swift documentation for 'PermutationGenerator': A generator that adapts a collection C and any sequence of
+its Index type to present the collection&#39;s elements in a
+permuted order."
+keywords: "PermutationGenerator,struct,swift,documentation,next,generate,Element,Generator"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct PermutationGenerator&lt;C : CollectionType, Indices : SequenceType where C.Index == Indices.Generator.Element&gt; { ... }</code>
+
+<div class="comment">
+    <p>A <em>generator</em> that adapts a <em>collection</em> <code>C</code> and any <em>sequence</em> of
+its <code>Index</code> type to present the collection&#39;s elements in a
+permuted order.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">GeneratorType, SequenceType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Element = C.Generator.Element</code>
+<div class="comment">
+    <p>The type of element returned by <code>next()</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Generator = PermutationGenerator&lt;C, Indices&gt;</code>
+<div class="comment">
+    <p>A type whose instances can produce the elements of this
+sequence, in order.</p>
+</div>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(elements: C, indices: Indices)</code>
+<div class="comment">
+    <p>Construct a <em>generator</em> over a permutation of <code>elements</code> given
+by <code>indices</code>.</p>
+
+<p><strong>Requires:</strong> <code>elements[i]</code> is valid for every <code>i</code> in <code>indices</code>.</p>
+</div>
+</div>
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">mutating func next() -> C.Generator.Element?</code>
+<div class="comment">
+    <p>Advance to the next element and return it, or <code>nil</code> if no next
+element exists.</p>
+
+<p><strong>Requires:</strong> No preceding call to <code>self.next()</code> has returned <code>nil</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func generate() -> PermutationGenerator&lt;C, Indices&gt;</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+
+
+

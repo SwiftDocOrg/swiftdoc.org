@@ -1,0 +1,86 @@
+---
+layout: "default"
+title: "CollectionOfOne"
+description: "Swift documentation for 'CollectionOfOne': A collection containing a single element of type T."
+keywords: "CollectionOfOne,struct,swift,documentation,generate,getMirror,startIndex,endIndex,count,Index"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct CollectionOfOne&lt;T&gt; { ... }</code>
+
+<div class="comment">
+    <p>A collection containing a single element of type <code>T</code>.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType, Reflectable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Index = Bit</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(_ element: T)</code>
+<div class="comment">
+    <p>Construct an instance containing just <code>element</code>.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var startIndex: Index { get }</code>
+<div class="comment">
+    <p>The position of the first element.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var endIndex: Index { get }</code>
+<div class="comment">
+    <p>The &quot;past the end&quot; position; always identical to
+<code>startIndex.successor()</code>.</p>
+
+<p><strong>Note:</strong> <code>endIndex</code> is not a valid argument to <code>subscript</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var count: Int { get }</code>
+<div class="comment">
+    <p>Return the number of elements (always one).</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func generate() -> GeneratorOfOne&lt;T&gt;</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func getMirror() -> MirrorType</code>
+<div class="comment">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+</div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(position: Index) -> T { get }</code>
+</div>
+
+

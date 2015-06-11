@@ -1,0 +1,139 @@
+---
+layout: "default"
+title: "Range"
+description: "Swift documentation for 'Range': A collection of consecutive discrete index values."
+keywords: "Range,struct,swift,documentation,generate,getMirror,startIndex,endIndex,description,debugDescription,Index,Generator"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct Range&lt;T : ForwardIndexType&gt; { ... }</code>
+
+<div class="comment">
+    <p>A collection of consecutive discrete index values.</p>
+
+<p><strong><code>T</code>:</strong>  Is both the element type and the index type of the
+  collection.</p>
+
+<p>Like other collections, a range containing one element has an
+<code>endIndex</code> that is the successor of its <code>startIndex</code>; and an empty
+range has <code>startIndex == endIndex</code>.</p>
+
+<p>Axiom: for any <code>Range</code> <code>r</code>, <code>r[i] == i</code>.</p>
+
+<p>Therefore, if <code>T</code> has a maximal value, it can serve as an
+<code>endIndex</code>, but can never be contained in a <code>Range&lt;T&gt;</code>.</p>
+
+<p>It also follows from the axiom above that <code>(-99..&lt;100)[0] == 0</code>.
+To prevent confusion (because some expect the result to be <code>-99</code>),
+in a context where <code>T</code> is known to be an integer type,
+subscripting with <code>T</code> is a compile-time error:</p>
+
+<pre><code class="language-swift">// error: could not find an overload for &#39;subscript&#39;...
+print(Range&lt;Int&gt;(start: -99, end: 100)[0])</code></pre>
+
+<p>However, subscripting that range still works in a generic context:</p>
+
+<pre><code class="language-swift">func brackets&lt;T : ForwardIndexType&gt;(x: Range&lt;T&gt;, i: T) -&gt; T {
+  return x[i] // Just forward to subscript
+}
+print(brackets(Range&lt;Int&gt;(start:-99, end:100), 0)) // prints 0</code></pre>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">Equatable, CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType, CustomStringConvertible, CustomDebugStringConvertible, Reflectable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Index = T</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Generator = RangeGenerator&lt;T&gt;</code>
+<div class="comment">
+    <p>A type whose instances can produce the elements of this
+sequence, in order.</p>
+</div>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(_ x: Range&lt;T&gt;)</code>
+<div class="comment">
+    <p>Construct a copy of <code>x</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(start: T, end: T)</code>
+<div class="comment">
+    <p>Construct a range with <code>startIndex == start</code> and <code>endIndex ==
+end</code>.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var startIndex: T { get set }</code>
+<div class="comment">
+    <p>The range&#39;s lower bound.</p>
+
+<p>Identical to <code>endIndex</code> in an empty range.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var endIndex: T { get set }</code>
+<div class="comment">
+    <p>The range&#39;s upper bound.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var description: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var debugDescription: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func generate() -> RangeGenerator&lt;T&gt;</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func getMirror() -> MirrorType</code>
+<div class="comment">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+</div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(position: T) -> T { get }</code>
+</div>
+<div class="declaration">
+<code class="language-swift">subscript(_: T._DisabledRangeIndex) -> T { get }</code>
+</div>
+
+

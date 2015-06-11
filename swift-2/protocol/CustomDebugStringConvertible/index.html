@@ -1,0 +1,51 @@
+---
+layout: "default"
+title: "CustomDebugStringConvertible"
+description: "Swift documentation for 'CustomDebugStringConvertible': A type with a customized textual representation suitable for
+debugging purposes."
+keywords: "CustomDebugStringConvertible,protocol,swift,documentation,debugDescription"
+root: "/swift-2"
+---
+
+<code class="language-swift">protocol CustomDebugStringConvertible { ... }</code>
+
+<div class="comment">
+    <p>A type with a customized textual representation suitable for
+debugging purposes.</p>
+
+<p>This textual representation is used when values are written to an
+<em>output stream</em> by <code>debugPrint</code> and <code>debugPrintln</code>, and is
+typically more verbose than the text provided by a
+<code>CustomStringConvertible</code>&#39;s <code>description</code> property.</p>
+
+<p><strong>Note:</strong> <code>String(reflecting: instance)</code> will work for an <code>instance</code>
+  of <em>any</em> type, returning its <code>debugDescription</code> if the <code>instance</code>
+  happens to be <code>CustomDebugStringConvertible</code>.  Using
+<code>CustomDebugStringConvertible</code> as a generic constraint, or
+accessing a conforming type&#39;s <code>debugDescription</code> directly, is
+therefore discouraged.</p>
+
+<p><strong>See Also:</strong> &lt;span class=&quot;see_also&quot;&gt;<code>String.init&lt;T&gt;(reflecting: T)</code>,&lt;/span&gt;
+  <code>CustomStringConvertible</code></p>
+</div>
+
+<h3>Inheritance</h3>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var debugDescription: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+</div>
+</div>
+
+
+
+
+

@@ -1,0 +1,96 @@
+---
+layout: "default"
+title: "String.UTF16View.Index"
+description: "Swift documentation for struct 'String.UTF16View.Index'."
+keywords: "String.UTF16View.Index,struct,swift,documentation,successor,predecessor,samePositionIn,samePositionIn,samePositionIn,Distance"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct String.UTF16View.Index { ... }</code>
+
+
+<h3>Inheritance</h3>
+<code class="inherits">ForwardIndexType, _Incrementable, BidirectionalIndexType, Equatable, Comparable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Distance = Int</code>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init?(_ utf8Index: UTF8Index, within utf16: String.UTF16View)</code>
+<div class="comment">
+    <p>Construct the position in <code>utf16</code> that corresponds exactly to
+<code>utf8Index</code>. If no such position exists, the result is <code>nil</code>.</p>
+
+<p><strong>Requires:</strong> <code>utf8Index</code> is an element of
+  <code>String(utf16)!.utf8.indices</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ unicodeScalarIndex: UnicodeScalarIndex, within utf16: String.UTF16View)</code>
+<div class="comment">
+    <p>Construct the position in <code>utf16</code> that corresponds exactly to
+<code>unicodeScalarIndex</code>.</p>
+
+<p><strong>Requires:</strong> <code>unicodeScalarIndex</code> is an element of
+  <code>String(utf16)!.unicodeScalars.indices</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ characterIndex: Index, within utf16: String.UTF16View)</code>
+<div class="comment">
+    <p>Construct the position in <code>utf16</code> that corresponds exactly to
+<code>characterIndex</code>.</p>
+
+<p><strong>Requires:</strong> <code>characterIndex</code> is an element of
+  <code>String(utf16)!.indices</code>.</p>
+</div>
+</div>
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func successor() -> String.UTF16View.Index</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func predecessor() -> String.UTF16View.Index</code>
+</div>
+<div class="declaration">
+<code class="language-swift">func samePositionIn(utf8: String.UTF8View) -> String.UTF8View.Index?</code>
+<div class="comment">
+    <p>Return the position in <code>utf8</code> that corresponds exactly
+to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
+
+<p><strong>Requires:</strong> <code>self</code> is an element of
+  <code>String(utf8)!.utf16.indices</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func samePositionIn(unicodeScalars: String.UnicodeScalarView) -> UnicodeScalarIndex?</code>
+<div class="comment">
+    <p>Return the position in <code>unicodeScalars</code> that corresponds exactly
+to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
+
+<p><strong>Requires:</strong> <code>self</code> is an element of
+  <code>String(unicodeScalars).utf16.indices</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func samePositionIn(characters: String) -> Index?</code>
+<div class="comment">
+    <p>Return the position in <code>characters</code> that corresponds exactly
+to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
+
+<p><strong>Requires:</strong> <code>self</code> is an element of <code>characters.utf16.indices</code>.</p>
+</div>
+</div>
+
+
+

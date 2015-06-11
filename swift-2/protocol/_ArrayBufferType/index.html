@@ -1,0 +1,154 @@
+---
+layout: "default"
+title: "_ArrayBufferType"
+description: "Swift documentation for '_ArrayBufferType': The underlying buffer for an ArrayType conforms to
+_ArrayBufferType.  This buffer does not provide value semantics."
+keywords: "_ArrayBufferType,protocol,swift,documentation,requestUniqueMutableBackingBuffer,isMutableAndUniquelyReferenced,requestNativeBuffer,replace,withUnsafeBufferPointer,withUnsafeMutableBufferPointer,count,capacity,owner,baseAddress,identity,Element"
+root: "/swift-2"
+---
+
+<code class="language-swift">protocol _ArrayBufferType { ... }</code>
+
+<div class="comment">
+    <p>The underlying buffer for an ArrayType conforms to
+<code>_ArrayBufferType</code>.  This buffer does not provide value semantics.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">MutableCollectionType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Element</code>
+<div class="comment">
+    <p>The type of elements stored in the buffer.</p>
+</div>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init()</code>
+<div class="comment">
+    <p>Create an empty buffer.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ buffer: _ContiguousArrayBuffer&lt;Self.Element&gt;)</code>
+<div class="comment">
+    <p>Adopt the storage of x.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var count: Int { get set }</code>
+<div class="comment">
+    <p>The number of elements the buffer stores.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var capacity: Int { get }</code>
+<div class="comment">
+    <p>The number of elements the buffer can store without reallocation.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var owner: AnyObject { get }</code>
+<div class="comment">
+    <p>An object that keeps the elements stored in this buffer alive.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var baseAddress: UnsafeMutablePointer&lt;Self.Element&gt; { get }</code>
+<div class="comment">
+    <p>If the elements are stored contiguously, a pointer to the first
+element. Otherwise, <code>nil</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var identity: UnsafePointer&lt;Void&gt; { get }</code>
+<div class="comment">
+    <p>A value that identifies the storage used by the buffer.  Two
+buffers address the same elements when they have the same
+identity and count.</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">mutating func requestUniqueMutableBackingBuffer(minimumCapacity: Int) -> _ContiguousArrayBuffer&lt;Self.Element&gt;?</code>
+<div class="comment">
+    <p>If this buffer is backed by a uniquely-referenced mutable
+<code>_ContiguousArrayBuffer</code> that can be grown in-place to allow the <code>self</code>
+buffer store <code>minimumCapacity</code> elements, returns that buffer.
+Otherwise, returns nil.</p>
+
+<p><strong>Note:</strong> The result&#39;s baseAddress may not match ours, if we are a
+  _SliceBuffer.</p>
+
+<p><strong>Note:</strong> This function must remain mutating; otherwise the buffer
+  may acquire spurious extra references, which will cause
+  unnecessary reallocation.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func isMutableAndUniquelyReferenced() -> Bool</code>
+<div class="comment">
+    <p>Returns true iff this buffer is backed by a uniquely-referenced mutable
+_ContiguousArrayBuffer.</p>
+
+<p><strong>Note:</strong> This function must remain mutating; otherwise the buffer
+  may acquire spurious extra references, which will cause
+  unnecessary reallocation.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func requestNativeBuffer() -> _ContiguousArrayBuffer&lt;Self.Element&gt;?</code>
+<div class="comment">
+    <p>If this buffer is backed by a <code>_ContiguousArrayBuffer</code>
+containing the same number of elements as <code>self</code>, return it.
+Otherwise, return <code>nil</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func replace&lt;C : CollectionType where C.Generator.Element == Element&gt;(subRange subRange: Range&lt;Int&gt;, with newCount: Int, elementsOf newValues: C)</code>
+<div class="comment">
+    <p>Replace the given <code>subRange</code> with the first <code>newCount</code> elements of
+the given collection.</p>
+
+<p><strong>Requires:</strong> This buffer is backed by a uniquely-referenced
+<code>_ContiguousArrayBuffer</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func withUnsafeBufferPointer&lt;R&gt;(@noescape body: (UnsafeBufferPointer&lt;Self.Element&gt;) -&gt; R) -> R</code>
+<div class="comment">
+    <p>Call <code>body(p)</code>, where <code>p</code> is an <code>UnsafeBufferPointer</code> over the
+underlying contiguous storage.  If no such storage exists, it is
+created on-demand.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func withUnsafeMutableBufferPointer&lt;R&gt;(@noescape body: (UnsafeMutableBufferPointer&lt;Self.Element&gt;) -&gt; R) -> R</code>
+<div class="comment">
+    <p>Call <code>body(p)</code>, where <code>p</code> is an <code>UnsafeMutableBufferPointer</code>
+over the underlying contiguous storage.</p>
+
+<p><strong>Requires:</strong> Such contiguous storage exists or the buffer is empty.</p>
+</div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(index: Int) -> Self.Element { get nonmutating set }</code>
+</div>
+<div class="declaration">
+<code class="language-swift">subscript(subRange: Range&lt;Int&gt;) -> _SliceBuffer&lt;Self.Element&gt; { get }</code>
+</div>
+
+

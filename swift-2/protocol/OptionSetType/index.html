@@ -1,0 +1,154 @@
+---
+layout: "default"
+title: "OptionSetType"
+description: "Swift documentation for 'OptionSetType': Supplies convenient conformance to SetAlgebraType for any type
+whose RawValue is a BitwiseOperationsType.  For example:."
+keywords: "OptionSetType,protocol,swift,documentation,Element"
+root: "/swift-2"
+---
+
+<code class="language-swift">protocol OptionSetType { ... }</code>
+
+<div class="comment">
+    <p>Supplies convenient conformance to <code>SetAlgebraType</code> for any type
+whose <code>RawValue</code> is a <code>BitwiseOperationsType</code>.  For example:</p>
+
+<pre><code class="language-swift">struct PackagingOptions : OptionSetType {
+  let rawValue: Int
+  init(rawValue: Int) { self.rawValue = rawValue }
+
+  static let Box = PackagingOptions(rawValue: 1)
+  static let Carton = PackagingOptions(rawValue: 2)
+  static let Bag = PackagingOptions(rawValue: 4)
+  static let Satchel = PackagingOptions(rawValue: 8)
+  static let BoxOrBag: PackagingOptions = [Box, Bag]
+  static let BoxOrCartonOrBag: PackagingOptions = [Box, Carton, Bag]
+}</code></pre>
+
+<p>In the example above, <code>PackagingOptions.Element</code> is the same type
+as <code>PackagingOptions</code>, and instance <code>a</code> subsumes instance <code>b</code> if
+and only if <code>a.rawValue &amp; b.rawValue == b.rawValue</code>.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">SetAlgebraType, RawRepresentable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Element = Self</code>
+<div class="comment">
+    <p>An <code>OptionSet</code>&#39;s <code>Element</code> type is normally <code>Self</code>.</p>
+</div>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(rawValue: Self.RawValue)</code>
+<div class="comment">
+    <p>Convert from a value of <code>RawValue</code>, succeeding unconditionally.</p>
+</div>
+</div>
+
+
+
+
+
+
+
+<h3>Default Implementations</h3>
+
+
+
+<div class="declaration">
+<code class="language-swift">func union(other: Self) -> Self</code>
+<div class="comment">
+    <p>Returns the set of elements contained in <code>self</code>, in <code>other</code>, or in
+both <code>self</code> and <code>other</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func intersect(other: Self) -> Self</code>
+<div class="comment">
+    <p>Returns the set of elements contained in both <code>self</code> and <code>other</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func exclusiveOr(other: Self) -> Self</code>
+<div class="comment">
+    <p>Returns the set of elements contained in <code>self</code> or in <code>other</code>,
+but not in both <code>self</code> and <code>other</code>.</p>
+</div>
+</div>
+
+
+
+
+<h4>Where Element == Self<h4>
+
+<div class="declaration">
+<code class="language-swift">func contains(member: Self) -> Bool</code>
+<div class="comment">
+    <p>Returns <code>true</code> if <code>self</code> contains <code>member</code>.</p>
+
+<ul><li>Equivalent to <code>self.intersect([member]) == [member]</code></li></ul>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func insert(member: Self)</code>
+<div class="comment">
+    <p>If <code>member</code> is not already contained in <code>self</code>, insert it.</p>
+
+<ul><li>Equivalent to <code>self.unionInPlace([member])</code>
+<strong>Postcondition:</strong> <code>self.contains(member)</code></li></ul>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func remove(member: Self) -> Self?</code>
+<div class="comment">
+    <p>If <code>member</code> is contained in <code>self</code>, remove and return it.
+Otherwise, return <code>nil</code>.</p>
+
+<p><strong>Postcondition:</strong> <code>self.intersect([member]).isEmpty</code></p>
+</div>
+</div>
+
+
+
+
+<h4>Where RawValue : BitwiseOperationsType<h4>
+
+<div class="declaration">
+<code class="language-swift">mutating func unionInPlace(other: Self)</code>
+<div class="comment">
+    <p>Insert all elements of <code>other</code> into <code>self</code>.</p>
+
+<ul><li>Equivalent to replacing <code>self</code> with <code>self.union(other)</code>.
+<strong>Postcondition:</strong> <code>self.isSupersetOf(other)</code></li></ul>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func intersectInPlace(other: Self)</code>
+<div class="comment">
+    <p>Remove all elements of <code>self</code> that are not also present in
+<code>other</code>.</p>
+
+<ul><li>Equivalent to replacing <code>self</code> with <code>self.intersect(other)</code>
+<strong>Postcondition:</strong> <code>self.isSubsetOf(other)</code></li></ul>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func exclusiveOrInPlace(other: Self)</code>
+<div class="comment">
+    <p>Replace <code>self</code> with a set containing all elements contained in
+either <code>self</code> or <code>other</code>, but not both.</p>
+
+<ul><li>Equivalent to replacing <code>self</code> with <code>self.exclusiveOr(other)</code></li></ul>
+</div>
+</div>
+
+
+
+

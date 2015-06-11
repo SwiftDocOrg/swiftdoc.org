@@ -1,0 +1,37 @@
+strict digraph "String - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Comparable" [URL="/protocol/Comparable/"]
+    "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/"]
+    "Equatable" [URL="/protocol/Equatable/"]
+    "ExtendedGraphemeClusterLiteralConvertible" [URL="/protocol/ExtendedGraphemeClusterLiteralConvertible/"]
+    "Hashable" [URL="/protocol/Hashable/"]
+    "MirrorPathType" [URL="/protocol/MirrorPathType/"]
+    "OutputStreamType" [URL="/protocol/OutputStreamType/"]
+    "Reflectable" [URL="/protocol/Reflectable/"]
+    "Streamable" [URL="/protocol/Streamable/"]
+    "String" [URL="/type/String/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "StringInterpolationConvertible" [URL="/protocol/StringInterpolationConvertible/"]
+    "StringLiteralConvertible" [URL="/protocol/StringLiteralConvertible/"]
+    "UnicodeScalarLiteralConvertible" [URL="/protocol/UnicodeScalarLiteralConvertible/"]    "Reflectable" -> "String"
+    "OutputStreamType" -> "String"
+    "Streamable" -> "String"
+    "UnicodeScalarLiteralConvertible" -> "String"
+    "ExtendedGraphemeClusterLiteralConvertible" -> "String"
+    "StringLiteralConvertible" -> "String"
+    "CustomDebugStringConvertible" -> "String"
+    "Equatable" -> "String"
+    "Comparable" -> "String"
+    "Hashable" -> "String"
+    "StringInterpolationConvertible" -> "String"
+    "MirrorPathType" -> "String"
+    "UnicodeScalarLiteralConvertible" -> "ExtendedGraphemeClusterLiteralConvertible"
+    "ExtendedGraphemeClusterLiteralConvertible" -> "StringLiteralConvertible"
+    "UnicodeScalarLiteralConvertible" -> "ExtendedGraphemeClusterLiteralConvertible"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "Hashable"
+    subgraph Types {
+        rank = max; "String";
+    }
+}

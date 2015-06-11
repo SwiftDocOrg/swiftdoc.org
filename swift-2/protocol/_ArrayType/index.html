@@ -1,0 +1,138 @@
+---
+layout: "default"
+title: "_ArrayType"
+description: "Swift documentation for protocol '_ArrayType'."
+keywords: "_ArrayType,protocol,swift,documentation,reserveCapacity,append,extend,+=,removeLast,insert,removeAtIndex,removeAll,join,count,capacity,isEmpty"
+root: "/swift-2"
+---
+
+<code class="language-swift">protocol _ArrayType { ... }</code>
+
+
+<h3>Inheritance</h3>
+<code class="inherits">__ArrayType, RangeReplaceableCollectionType, MutableSliceable, ArrayLiteralConvertible</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init()</code>
+<div class="comment">
+    <p>Construct an empty Array.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(count: Int, repeatedValue: Self.Generator.Element)</code>
+<div class="comment">
+    <p>Construct an array of <code>count</code> elements, each initialized to <code>repeatedValue</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ buffer: Self._Buffer)</code>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var count: Int { get }</code>
+<div class="comment">
+    <p>The number of elements the Array stores.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var capacity: Int { get }</code>
+<div class="comment">
+    <p>The number of elements the Array can store without reallocation.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var isEmpty: Bool { get }</code>
+<div class="comment">
+    <p><code>true</code> if and only if the Array is empty.</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">mutating func reserveCapacity(minimumCapacity: Int)</code>
+<div class="comment">
+    <p>Reserve enough space to store minimumCapacity elements.</p>
+
+<p><strong>Postcondition:</strong> <code>capacity &gt;= minimumCapacity</code> and the array has
+  mutable contiguous storage.</p>
+
+<p><strong>Complexity:</strong> O(<code>count</code>).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func append(newElement: Self.Generator.Element)</code>
+<div class="comment">
+    <p>Append newElement to the Array in O(1) (amortized).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func extend&lt;S : SequenceType where S.Generator.Element == Generator.Element&gt;(sequence: S)</code>
+<div class="comment">
+    <p>Append elements from <code>sequence</code> to the Array.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func +=&lt;S : SequenceType where S.Generator.Element == Generator.Element&gt;(inout lhs: Self, rhs: S)</code>
+<div class="comment">
+    <p>Operator form of <code>extend</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeLast() -> Self.Generator.Element</code>
+<div class="comment">
+    <p>Remove an element from the end of the Array in O(1).</p>
+
+<p><strong>returns:</strong> The removed element.</p>
+
+<p><strong>Requires:</strong> <code>count &gt; 0</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func insert(newElement: Self.Generator.Element, atIndex i: Int)</code>
+<div class="comment">
+    <p>Insert <code>newElement</code> at index <code>i</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+
+<p><strong>Requires:</strong> <code>atIndex &lt;= count</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeAtIndex(index: Int) -> Self.Generator.Element</code>
+<div class="comment">
+    <p>Remove and return the element at the given index.</p>
+
+<p><strong>returns:</strong> The removed element.</p>
+
+<p><strong>Complexity:</strong> Worst case O(N).</p>
+
+<p><strong>Requires:</strong> <code>count &gt; index</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">mutating func removeAll(keepCapacity keepCapacity: Bool)</code>
+<div class="comment">
+    <p>Erase all the elements.  If <code>keepCapacity</code> is <code>true</code>, <code>capacity</code>
+will not change.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func join&lt;S : SequenceType where S.Generator.Element == Self&gt;(elements: S) -> Self</code>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(index: Int) -> Self.Generator.Element { get set }</code>
+</div>
+
+

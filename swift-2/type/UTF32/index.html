@@ -1,0 +1,66 @@
+---
+layout: "default"
+title: "UTF32"
+description: "Swift documentation for 'UTF32': A codec for UTF-32."
+keywords: "UTF32,struct,swift,documentation,decode,encode,CodeUnit"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct UTF32 { ... }</code>
+
+<div class="comment">
+    <p>A codec for <a href="http://www.unicode.org/glossary/#UTF_32">UTF-32</a>.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">UnicodeCodecType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias CodeUnit = UInt32</code>
+<div class="comment">
+    <p>A type that can hold <a href="http://www.unicode.org/glossary/#code_unit">code unit</a> values for this
+encoding.</p>
+</div>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init()</code>
+</div>
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration">
+<code class="language-swift">static func encode&lt;S : SinkType where S.Element == CodeUnit&gt;(input: UnicodeScalar, inout output: S)</code>
+<div class="comment">
+    <p>Encode a <code>UnicodeScalar</code> as a series of <code>CodeUnit</code>s by
+<code>put</code>&#39;ing each <code>CodeUnit</code> to <code>output</code>.</p>
+</div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">mutating func decode&lt;G : GeneratorType where G.Element == CodeUnit&gt;(inout input: G) -> UnicodeDecodingResult</code>
+<div class="comment">
+    <p>Start or continue decoding a UTF sequence.</p>
+
+<p>In order to decode a code unit sequence completely, this function should
+be called repeatedly until it returns <code>UnicodeDecodingResult.EmptyInput</code>.
+Checking that the generator was exhausted is not sufficient.  The decoder
+can have an internal buffer that is pre-filled with data from the input
+generator.</p>
+
+<p>Because of buffering, it is impossible to find the corresponing position
+in the generator for a given returned <code>UnicodeScalar</code> or an error.</p>
+
+<p><strong><code>next</code>:</strong>  A <em>generator</em> of code units to be decoded.</p>
+</div>
+</div>
+
+
+

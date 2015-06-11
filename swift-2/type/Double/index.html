@@ -1,0 +1,241 @@
+---
+layout: "default"
+title: "Double"
+description: "Swift documentation for struct 'Double'."
+keywords: "Double,struct,swift,documentation,abs,distanceTo,advancedBy,getMirror,description,infinity,NaN,quietNaN,isSignMinus,isNormal,isFinite,isZero,isSubnormal,isInfinite,isNaN,isSignaling,floatingPointClass,hashValue"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct Double { ... }</code>
+
+
+<h3>Inheritance</h3>
+<code class="inherits">CustomStringConvertible, FloatingPointType, IntegerLiteralConvertible, FloatLiteralConvertible, Comparable, Equatable, Hashable, SignedNumberType, AbsoluteValuable, Strideable, _Strideable, Reflectable, _CVarArgPassedAsDouble, CVarArgType, _CVarArgAlignedType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init()</code>
+<div class="comment">
+    <p>Create an instance initialized to zero.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_bits v: Builtin.FPIEEE64)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ value: Double)</code>
+<div class="comment">
+    <p>Create an instance initialized to <code>value</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_builtinIntegerLiteral value: Builtin.Int2048)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(integerLiteral value: Int64)</code>
+<div class="comment">
+    <p>Create an instance initialized to <code>value</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_builtinFloatLiteral value: Builtin.FPIEEE80)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(floatLiteral value: Double)</code>
+<div class="comment">
+    <p>Create an instance initialized to <code>value</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: UInt8)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: Int8)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: UInt16)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: Int16)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: UInt32)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: Int32)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: UInt64)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: Int64)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: UInt)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ v: Int)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ other: Float)</code>
+<div class="comment">
+    <p>Construct an instance that approximates <code>other</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init(_ other: Float80)</code>
+<div class="comment">
+    <p>Construct an instance that approximates <code>other</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">init?(_ text: String)</code>
+<div class="comment">
+    <p>Construct from an ASCII representation.</p>
+
+<p>Returns the result of calling the POSIX function
+<code>strtod_l</code> using the &quot;C&quot; locale, unless
+<code>text</code> contains non-ASCII text or whitespace, or is not
+completely consumed by the call. Otherwise, returns <code>nil</code>.</p>
+
+<p>See the <code>strtod (3)</code> man page for details of
+the exact format accepted.</p>
+</div>
+</div>
+
+<h3>Static Variables</h3>
+<div class="declaration">
+<code class="language-swift">static var infinity: Double { get }</code>
+<div class="comment">
+    <p>The positive infinity.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">static var NaN: Double { get }</code>
+<div class="comment">
+    <p>A quiet NaN.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">static var quietNaN: Double { get }</code>
+<div class="comment">
+    <p>A quiet NaN.</p>
+</div>
+</div>
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var description: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var isSignMinus: Bool { get }</code>
+<div class="comment">
+    <p><code>true</code> iff <code>self</code> is negative.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var isNormal: Bool { get }</code>
+<div class="comment">
+    <p><code>true</code> iff <code>self</code> is normal (not zero, subnormal, infinity, or
+NaN).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var isFinite: Bool { get }</code>
+<div class="comment">
+    <p><code>true</code> iff <code>self</code> is zero, subnormal, or normal (not infinity
+or NaN).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var isZero: Bool { get }</code>
+<div class="comment">
+    <p><code>true</code> iff <code>self</code> is +0.0 or -0.0.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var isSubnormal: Bool { get }</code>
+<div class="comment">
+    <p><code>true</code> iff <code>self</code> is subnormal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var isInfinite: Bool { get }</code>
+<div class="comment">
+    <p><code>true</code> iff <code>self</code> is infinity.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var isNaN: Bool { get }</code>
+<div class="comment">
+    <p><code>true</code> iff <code>self</code> is NaN.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var isSignaling: Bool { get }</code>
+<div class="comment">
+    <p><code>true</code> iff <code>self</code> is a signaling NaN.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var floatingPointClass: FloatingPointClassification { get }</code>
+<div class="comment">
+    <p>The IEEE 754 &quot;class&quot; of this type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">var hashValue: Int { get }</code>
+<div class="comment">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code>.</p>
+
+<p><strong>Note:</strong> The hash value is not guaranteed to be stable across
+  different invocations of the same program.  Do not persist the
+  hash value across program runs.</p>
+</div>
+</div>
+
+<h3>Static Methods</h3>
+<div class="declaration">
+<code class="language-swift">static func abs(x: Double) -> Double</code>
+<div class="comment">
+    <p>Returns the absolute value of <code>x</code>.</p>
+</div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func distanceTo(other: Double) -> Double</code>
+<div class="comment">
+    <p>Returns a stride <code>x</code> such that <code>self.advancedBy(x)</code> approximates
+<code>other</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func advancedBy(amount: Double) -> Double</code>
+<div class="comment">
+    <p>Returns a <code>Self</code> <code>x</code> such that <code>self.distanceTo(x)</code> approximates
+<code>n</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func getMirror() -> MirrorType</code>
+<div class="comment">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+</div>
+</div>
+
+
+

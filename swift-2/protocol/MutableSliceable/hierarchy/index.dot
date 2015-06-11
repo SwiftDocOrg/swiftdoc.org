@@ -1,0 +1,39 @@
+strict digraph "MutableSliceable - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Array" [URL="/type/Array/", style=filled]
+    "ArraySlice" [URL="/type/ArraySlice/", style=filled]
+    "CollectionType" [URL="/protocol/CollectionType/"]
+    "ContiguousArray" [URL="/type/ContiguousArray/", style=filled]
+    "MutableCollectionType" [URL="/protocol/MutableCollectionType/"]
+    "MutableSliceable" [URL="/protocol/MutableSliceable/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "SequenceType" [URL="/protocol/SequenceType/"]
+    "Sliceable" [URL="/protocol/Sliceable/"]
+    "_ArrayType" [URL="/protocol/_ArrayType/"]
+    "_CollectionDefaultsType" [URL="/protocol/_CollectionDefaultsType/"]
+    "_CollectionGeneratorDefaultsType" [URL="/protocol/_CollectionGeneratorDefaultsType/"]
+    "_Sliceable" [URL="/protocol/_Sliceable/"]    "MutableSliceable" -> "Array"
+    "MutableSliceable" -> "ArraySlice"
+    "MutableSliceable" -> "ContiguousArray"
+    "MutableSliceable" -> "_ArrayType"
+    "_ArrayType" -> "Array"
+    "_ArrayType" -> "ArraySlice"
+    "_ArrayType" -> "ContiguousArray"
+    "Sliceable" -> "MutableSliceable"
+    "MutableCollectionType" -> "MutableSliceable"
+    "_Sliceable" -> "Sliceable"
+    "CollectionType" -> "_Sliceable"
+    "SequenceType" -> "CollectionType"
+    "_CollectionDefaultsType" -> "CollectionType"
+    "_CollectionGeneratorDefaultsType" -> "CollectionType"
+    "SequenceType" -> "_CollectionDefaultsType"
+    "CollectionType" -> "MutableCollectionType"
+    "SequenceType" -> "CollectionType"
+    "_CollectionDefaultsType" -> "CollectionType"
+    "_CollectionGeneratorDefaultsType" -> "CollectionType"
+    "SequenceType" -> "_CollectionDefaultsType"
+    subgraph Types {
+        rank = max; "Array"; "ArraySlice"; "ContiguousArray";
+    }
+}

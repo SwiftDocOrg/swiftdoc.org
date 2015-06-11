@@ -1,0 +1,45 @@
+---
+layout: "default"
+title: "CustomStringConvertible"
+description: "Swift documentation for 'CustomStringConvertible': A type with a customized textual representation."
+keywords: "CustomStringConvertible,protocol,swift,documentation,description"
+root: "/swift-2"
+---
+
+<code class="language-swift">protocol CustomStringConvertible { ... }</code>
+
+<div class="comment">
+    <p>A type with a customized textual representation.</p>
+
+<p>This textual representation is used when values are written to an
+<em>output stream</em>, for example, by <code>print</code>.</p>
+
+<p><strong>Note:</strong> <code>String(instance)</code> will work for an <code>instance</code> of <em>any</em>
+  type, returning its <code>description</code> if the <code>instance</code> happens to be
+  <code>CustomStringConvertible</code>.  Using <code>CustomStringConvertible</code> as a
+generic constraint, or accessing a conforming type&#39;s <code>description</code>
+directly, is therefore discouraged.</p>
+
+<p><strong>See Also:</strong> &lt;span class=&quot;see_also&quot;&gt;<code>String.init&lt;T&gt;(T)</code>, <code>CustomDebugStringConvertible</code>&lt;/span&gt;</p>
+</div>
+
+<h3>Inheritance</h3>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration">
+<code class="language-swift">var description: String { get }</code>
+<div class="comment">
+    <p>A textual representation of <code>self</code>.</p>
+</div>
+</div>
+
+
+
+
+

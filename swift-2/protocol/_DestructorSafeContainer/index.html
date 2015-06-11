@@ -1,0 +1,41 @@
+---
+layout: "default"
+title: "_DestructorSafeContainer"
+description: "Swift documentation for '_DestructorSafeContainer': A container is destructor safe if whether it may store to memory on
+destruction only depends on its type parameters.
+For example, whether Array&lt;T&gt; may store to memory on destruction depends
+only on T.
+If T is an Int we know the Array&lt;Int&gt; does not store to memory during
+destruction. If T is an arbitrary class Array&lt;MemoryUnsafeDestructorClass&gt;
+then the compiler will deduce may store to memory on destruction because
+MemoryUnsafeDestructorClass&#39;s destructor may store to memory on destruction."
+keywords: "_DestructorSafeContainer,protocol,swift,documentation"
+root: "/swift-2"
+---
+
+<code class="language-swift">protocol _DestructorSafeContainer { ... }</code>
+
+<div class="comment">
+    <p>A container is destructor safe if whether it may store to memory on
+destruction only depends on its type parameters.
+For example, whether <code>Array&lt;T&gt;</code> may store to memory on destruction depends
+only on <code>T</code>.
+If <code>T</code> is an <code>Int</code> we know the <code>Array&lt;Int&gt;</code> does not store to memory during
+destruction. If <code>T</code> is an arbitrary class <code>Array&lt;MemoryUnsafeDestructorClass&gt;</code>
+then the compiler will deduce may store to memory on destruction because
+<code>MemoryUnsafeDestructorClass</code>&#39;s destructor may store to memory on destruction.</p>
+</div>
+
+<h3>Inheritance</h3>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+---
+layout: "default"
+title: "AnyForwardIndex"
+description: "Swift documentation for 'AnyForwardIndex': A wrapper over an underlying ForwardIndexType that hides
+the specific underlying type."
+keywords: "AnyForwardIndex,struct,swift,documentation,successor,Distance"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct AnyForwardIndex { ... }</code>
+
+<div class="comment">
+    <p>A wrapper over an underlying <code>ForwardIndexType</code> that hides
+the specific underlying type.</p>
+
+<p><strong>See Also:</strong> &lt;span class=&quot;see_also&quot;&gt;<code>AnyForwardCollection</code>&lt;/span&gt;</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">ForwardIndexType, _Incrementable, Equatable</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3>Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Distance = IntMax</code>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init&lt;BaseIndex : ForwardIndexType&gt;(_ base: BaseIndex)</code>
+<div class="comment">
+    <p>Wrap and forward operations to <code>base</code>.</p>
+</div>
+</div>
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">func successor() -> AnyForwardIndex</code>
+<div class="comment">
+    <p>Return the next consecutive value in a discrete sequence of
+<code>AnyForwardIndex</code> values.</p>
+
+<p><strong>Requires:</strong> <code>self</code> has a well-defined successor.</p>
+</div>
+</div>
+
+
+

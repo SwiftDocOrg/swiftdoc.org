@@ -1,0 +1,47 @@
+---
+layout: "default"
+title: "SignedNumberType"
+description: "Swift documentation for 'SignedNumberType': Instances of conforming types can be subtracted, arithmetically
+negated, and initialized from 0."
+keywords: "SignedNumberType,protocol,swift,documentation,-,-"
+root: "/swift-2"
+---
+
+<code class="language-swift">protocol SignedNumberType { ... }</code>
+
+<div class="comment">
+    <p>Instances of conforming types can be subtracted, arithmetically
+negated, and initialized from <code>0</code>.</p>
+
+<p>Axioms:</p>
+
+<ul><li><code>x - 0 == x</code></li><li><code>-x == 0 - x</code></li><li><code>-(-x) == x</code></li></ul>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">Comparable, IntegerLiteralConvertible</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration">
+<code class="language-swift">prefix func -(x: Self) -> Self</code>
+<div class="comment">
+    <p>Return the result of negating <code>x</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">func -(lhs: Self, rhs: Self) -> Self</code>
+<div class="comment">
+    <p>Return the difference between <code>lhs</code> and <code>rhs</code>.</p>
+</div>
+</div>
+
+
+

@@ -1,0 +1,23 @@
+---
+layout: "default"
+title: "unsafeDowncast"
+description: "Swift documentation for 'unsafeDowncast': returns: x as T."
+keywords: "unsafeDowncast,func,swift,documentation"
+root: "/swift-2"
+---
+
+<div class="declaration">
+<code class="language-swift">func unsafeDowncast&lt;T&gt;(x: AnyObject) -> T</code>
+<div class="comment">
+    <p><strong>returns:</strong> <code>x as T</code>.</p>
+
+<p><strong>Requires:</strong> <code>x is T</code>.  In particular, in -O builds, no test is
+  performed to ensure that <code>x</code> actually has dynamic type <code>T</code>.</p>
+
+<p><strong>Warning:</strong> Trades safety for performance.  Use <code>unsafeDowncast</code>
+  only when <code>x as T</code> has proven to be a performance problem and you
+  are confident that, always, <code>x is T</code>.  It is better than an
+  <code>unsafeBitCast</code> because it&#39;s more restrictive, and because
+  checking is still performed in debug builds.</p>
+</div>
+</div>
