@@ -3,7 +3,7 @@ layout: "default"
 title: "Strideable"
 description: "Swift documentation for 'Strideable': Conforming types are notionally continuous, one-dimensional
 values that can be offset and measured."
-keywords: "Strideable,protocol,swift,documentation"
+keywords: "Strideable,protocol,swift,documentation,distanceTo,advancedBy,Stride"
 root: "/swift-2"
 ---
 
@@ -20,6 +20,13 @@ values that can be offset and measured.</p>
 <code class="inherits">Comparable, _Strideable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
+<h3 id="aliases">Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Stride : SignedNumberType</code>
+<div class="comment">
+    <p>A type that can represent the distance between two values of <code>Self</code>.</p>
+</div>
+</div>
 
 
 
@@ -27,6 +34,31 @@ values that can be offset and measured.</p>
 
 
 
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-distanceTo">
+<code class="language-swift">func distanceTo(other: Self) -> Self.Stride</code>
+<div class="comment">
+    <p>Returns a stride <code>x</code> such that <code>self.advancedBy(x)</code> approximates
+<code>other</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+<p><strong>See Also:</strong> <code>RandomAccessIndexType</code>&#39;s <code>distanceTo</code>, which provides a
+  stronger semantic guarantee.</p>
+</div>
+</div>
+<div class="declaration" id="func-advancedBy">
+<code class="language-swift">func advancedBy(n: Self.Stride) -> Self</code>
+<div class="comment">
+    <p>Returns a <code>Self</code> <code>x</code> such that <code>self.distanceTo(x)</code> approximates
+<code>n</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+<p><strong>See Also:</strong> <code>RandomAccessIndexType</code>&#39;s <code>advancedBy</code>, which
+  provides a stronger semantic guarantee.</p>
+</div>
+</div>
 
 
 

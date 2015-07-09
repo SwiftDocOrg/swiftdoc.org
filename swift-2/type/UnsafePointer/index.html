@@ -1,17 +1,17 @@
 ---
 layout: "default"
 title: "UnsafePointer"
-description: "Swift documentation for 'UnsafePointer': A pointer to an object of type T.  This type provides no automated
+description: "Swift documentation for 'UnsafePointer': A pointer to an object of type Memory.  This type provides no automated
 memory management, and therefore the user must take care to allocate
 and free memory appropriately."
 keywords: "UnsafePointer,struct,swift,documentation,successor,predecessor,distanceTo,advancedBy,getMirror,memory,hashValue,debugDescription"
 root: "/swift-2"
 ---
 
-<code class="language-swift">struct UnsafePointer&lt;T&gt; { ... }</code>
+<code class="language-swift">struct UnsafePointer&lt;Memory&gt; { ... }</code>
 
 <div class="comment">
-    <p>A pointer to an object of type <code>T</code>.  This type provides no automated
+    <p>A pointer to an object of type <code>Memory</code>.  This type provides no automated
 memory management, and therefore the user must take care to allocate
 and free memory appropriately.</p>
 
@@ -22,7 +22,7 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">RandomAccessIndexType, BidirectionalIndexType, ForwardIndexType, _Incrementable, Equatable, Strideable, Comparable, _Strideable, Hashable, NilLiteralConvertible, _PointerType, CustomDebugStringConvertible, Reflectable, CVarArgType</code>
+<code class="inherits">RandomAccessIndexType, BidirectionalIndexType, ForwardIndexType, _Incrementable, Equatable, Strideable, Comparable, _Strideable, Hashable, NilLiteralConvertible, _PointerType, CustomDebugStringConvertible, _Reflectable, CVarArgType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -84,13 +84,13 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
-<code class="language-swift">var memory: T { get }</code>
+<div class="declaration" id="prop-memory">
+<code class="language-swift">var memory: Memory { get }</code>
 <div class="comment">
     <p>Access the underlying raw memory, getting values.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-hashValue">
 <code class="language-swift">var hashValue: Int { get }</code>
 <div class="comment">
     <p>The hash value.</p>
@@ -102,7 +102,7 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
   hash value across program runs.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-debugDescription">
 <code class="language-swift">var debugDescription: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>, suitable for debugging.</p>
@@ -111,24 +111,24 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
-<code class="language-swift">func successor() -> UnsafePointer&lt;T&gt;</code>
+<div class="declaration" id="func-successor">
+<code class="language-swift">func successor() -> UnsafePointer&lt;Memory&gt;</code>
 <div class="comment">
     <p>Returns the next consecutive value after <code>self</code>.</p>
 
 <p><strong>Requires:</strong> The next value is representable.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func predecessor() -> UnsafePointer&lt;T&gt;</code>
+<div class="declaration" id="func-predecessor">
+<code class="language-swift">func predecessor() -> UnsafePointer&lt;Memory&gt;</code>
 <div class="comment">
     <p>Returns the previous consecutive value before <code>self</code>.</p>
 
 <p><strong>Requires:</strong> The previous value is representable.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func distanceTo(x: UnsafePointer&lt;T&gt;) -> Int</code>
+<div class="declaration" id="func-distanceTo">
+<code class="language-swift">func distanceTo(x: UnsafePointer&lt;Memory&gt;) -> Int</code>
 <div class="comment">
     <p>Return the minimum number of applications of <code>successor</code> or
 <code>predecessor</code> required to reach <code>other</code> from <code>self</code>.</p>
@@ -136,8 +136,8 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func advancedBy(n: Int) -> UnsafePointer&lt;T&gt;</code>
+<div class="declaration" id="func-advancedBy">
+<code class="language-swift">func advancedBy(n: Int) -> UnsafePointer&lt;Memory&gt;</code>
 <div class="comment">
     <p>Return <code>self</code> offset by <code>n</code> steps.</p>
 
@@ -148,7 +148,7 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-getMirror">
 <code class="language-swift">func getMirror() -> MirrorType</code>
 <div class="comment">
     <p>Returns a mirror that reflects <code>self</code>.</p>
@@ -157,7 +157,7 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 
 <h3>Subscripts</h3>
 <div class="declaration">
-<code class="language-swift">subscript(i: Int) -> T { get }</code>
+<code class="language-swift">subscript(i: Int) -> Memory { get }</code>
 </div>
 
 

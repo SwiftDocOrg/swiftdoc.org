@@ -12,15 +12,12 @@ root: "/swift-2"
 <div class="comment">
     <p>This protocol is an implementation detail of <code>CollectionType</code>; do
 not use it directly.</p>
-
-<p>Its requirements are inherited by <code>CollectionType</code> and thus must
-be satisfied by types conforming to that protocol.</p>
 </div>
 
 <h3>Inheritance</h3>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias Index : ForwardIndexType</code>
 </div>
@@ -30,10 +27,10 @@ be satisfied by types conforming to that protocol.</p>
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-startIndex">
 <code class="language-swift">var startIndex: Self.Index { get }</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-endIndex">
 <code class="language-swift">var endIndex: Self.Index { get }</code>
 </div>
 
@@ -49,7 +46,7 @@ be satisfied by types conforming to that protocol.</p>
 
 
 
-<div class="declaration">
+<div class="declaration" id="func-generate">
 <code class="language-swift">func generate() -> IndexingGenerator&lt;Self&gt;</code>
 </div>
 

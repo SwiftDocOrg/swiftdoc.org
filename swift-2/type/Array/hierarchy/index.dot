@@ -1,8 +1,8 @@
-strict digraph "Array<T> - Type Hierarchy - SwiftDoc.org" {
+strict digraph "Array<Element> - Type Hierarchy - SwiftDoc.org" {
     pad="0.1,0.8"
     node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
     edge [color="#cccccc"]
-    "Array<T>" [URL="/type/Array/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "Array<Element>" [URL="/type/Array/", style="filled", fillcolor="#ee543d", color="#ee543d"]
     "ArrayLiteralConvertible" [URL="/protocol/ArrayLiteralConvertible/"]
     "CollectionType" [URL="/protocol/CollectionType/"]
     "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/"]
@@ -11,31 +11,31 @@ strict digraph "Array<T> - Type Hierarchy - SwiftDoc.org" {
     "MutableCollectionType" [URL="/protocol/MutableCollectionType/"]
     "MutableSliceable" [URL="/protocol/MutableSliceable/"]
     "RangeReplaceableCollectionType" [URL="/protocol/RangeReplaceableCollectionType/"]
-    "Reflectable" [URL="/protocol/Reflectable/"]
     "SequenceType" [URL="/protocol/SequenceType/"]
     "Sliceable" [URL="/protocol/Sliceable/"]
     "_ArrayType" [URL="/protocol/_ArrayType/"]
     "_CollectionDefaultsType" [URL="/protocol/_CollectionDefaultsType/"]
     "_CollectionGeneratorDefaultsType" [URL="/protocol/_CollectionGeneratorDefaultsType/"]
     "_DestructorSafeContainer" [URL="/protocol/_DestructorSafeContainer/"]
+    "_Reflectable" [URL="/protocol/_Reflectable/"]
     "_Sliceable" [URL="/protocol/_Sliceable/"]
-    "__ArrayType" [URL="/protocol/__ArrayType/"]    "CollectionType" -> "Array<T>"
-    "SequenceType" -> "Array<T>"
-    "_CollectionDefaultsType" -> "Array<T>"
-    "_CollectionGeneratorDefaultsType" -> "Array<T>"
-    "MutableCollectionType" -> "Array<T>"
-    "Sliceable" -> "Array<T>"
-    "_Sliceable" -> "Array<T>"
-    "_DestructorSafeContainer" -> "Array<T>"
-    "__ArrayType" -> "Array<T>"
-    "ArrayLiteralConvertible" -> "Array<T>"
-    "_ArrayType" -> "Array<T>"
-    "MutableSliceable" -> "Array<T>"
-    "RangeReplaceableCollectionType" -> "Array<T>"
-    "ExtensibleCollectionType" -> "Array<T>"
-    "Reflectable" -> "Array<T>"
-    "CustomStringConvertible" -> "Array<T>"
-    "CustomDebugStringConvertible" -> "Array<T>"
+    "__ArrayType" [URL="/protocol/__ArrayType/"]    "CollectionType" -> "Array<Element>"
+    "SequenceType" -> "Array<Element>"
+    "_CollectionGeneratorDefaultsType" -> "Array<Element>"
+    "_CollectionDefaultsType" -> "Array<Element>"
+    "MutableCollectionType" -> "Array<Element>"
+    "Sliceable" -> "Array<Element>"
+    "_Sliceable" -> "Array<Element>"
+    "_DestructorSafeContainer" -> "Array<Element>"
+    "__ArrayType" -> "Array<Element>"
+    "ArrayLiteralConvertible" -> "Array<Element>"
+    "_ArrayType" -> "Array<Element>"
+    "MutableSliceable" -> "Array<Element>"
+    "RangeReplaceableCollectionType" -> "Array<Element>"
+    "ExtensibleCollectionType" -> "Array<Element>"
+    "_Reflectable" -> "Array<Element>"
+    "CustomStringConvertible" -> "Array<Element>"
+    "CustomDebugStringConvertible" -> "Array<Element>"
     "SequenceType" -> "CollectionType"
     "_CollectionDefaultsType" -> "CollectionType"
     "_CollectionGeneratorDefaultsType" -> "CollectionType"
@@ -115,6 +115,6 @@ strict digraph "Array<T> - Type Hierarchy - SwiftDoc.org" {
     "_CollectionGeneratorDefaultsType" -> "CollectionType"
     "SequenceType" -> "_CollectionDefaultsType"
     subgraph Types {
-        rank = max; "Array<T>";
+        rank = max; "Array<Element>";
     }
 }

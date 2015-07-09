@@ -1,17 +1,17 @@
 ---
 layout: "default"
 title: "UnsafeMutablePointer"
-description: "Swift documentation for 'UnsafeMutablePointer': A pointer to an object of type T.  This type provides no automated
+description: "Swift documentation for 'UnsafeMutablePointer': A pointer to an object of type Memory.  This type provides no automated
 memory management, and therefore the user must take care to allocate
 and free memory appropriately."
 keywords: "UnsafeMutablePointer,struct,swift,documentation,alloc,dealloc,initialize,move,assignFrom,assignBackwardFrom,moveInitializeFrom,moveInitializeBackwardFrom,initializeFrom,initializeFrom,moveAssignFrom,destroy,destroy,successor,predecessor,distanceTo,advancedBy,getMirror,put,memory,hashValue,debugDescription"
 root: "/swift-2"
 ---
 
-<code class="language-swift">struct UnsafeMutablePointer&lt;T&gt; { ... }</code>
+<code class="language-swift">struct UnsafeMutablePointer&lt;Memory&gt; { ... }</code>
 
 <div class="comment">
-    <p>A pointer to an object of type <code>T</code>.  This type provides no automated
+    <p>A pointer to an object of type <code>Memory</code>.  This type provides no automated
 memory management, and therefore the user must take care to allocate
 and free memory appropriately.</p>
 
@@ -22,7 +22,7 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">RandomAccessIndexType, BidirectionalIndexType, ForwardIndexType, _Incrementable, Equatable, Strideable, Comparable, _Strideable, Hashable, NilLiteralConvertible, _PointerType, CustomDebugStringConvertible, Reflectable, SinkType, CVarArgType</code>
+<code class="inherits">RandomAccessIndexType, BidirectionalIndexType, ForwardIndexType, _Incrementable, Equatable, Strideable, Comparable, _Strideable, Hashable, NilLiteralConvertible, _PointerType, CustomDebugStringConvertible, _Reflectable, SinkType, CVarArgType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -84,13 +84,13 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
-<code class="language-swift">var memory: T { get set }</code>
+<div class="declaration" id="prop-memory">
+<code class="language-swift">var memory: Memory { get set }</code>
 <div class="comment">
     <p>Access the underlying raw memory, getting and setting values.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-hashValue">
 <code class="language-swift">var hashValue: Int { get }</code>
 <div class="comment">
     <p>The hash value.</p>
@@ -102,7 +102,7 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
   hash value across program runs.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-debugDescription">
 <code class="language-swift">var debugDescription: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>, suitable for debugging.</p>
@@ -110,17 +110,17 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 </div>
 
 <h3>Static Methods</h3>
-<div class="declaration">
-<code class="language-swift">static func alloc(num: Int) -> UnsafeMutablePointer&lt;T&gt;</code>
+<div class="declaration" id="func-alloc">
+<code class="language-swift">static func alloc(num: Int) -> UnsafeMutablePointer&lt;Memory&gt;</code>
 <div class="comment">
-    <p>Allocate memory for <code>num</code> objects of type <code>T</code>.</p>
+    <p>Allocate memory for <code>num</code> objects of type <code>Memory</code>.</p>
 
 <p><strong>Postcondition:</strong> The memory is allocated, but not initialized.</p>
 </div>
 </div>
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-dealloc">
 <code class="language-swift">func dealloc(num: Int)</code>
 <div class="comment">
     <p>Deallocate <code>num</code> objects.</p>
@@ -134,8 +134,8 @@ been deallocated previously);</p></li><li><p>memory is allocated, but value has 
 <p><strong>Postcondition:</strong> The memory has been deallocated.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func initialize(newvalue: T)</code>
+<div class="declaration" id="func-initialize">
+<code class="language-swift">func initialize(newvalue: Memory)</code>
 <div class="comment">
     <p>Initialize the value the pointer points to, to construct
 an object where there was no object previously stored.</p>
@@ -146,8 +146,8 @@ an object where there was no object previously stored.</p>
   be destroyed or moved from to avoid leaks.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func move() -> T</code>
+<div class="declaration" id="func-move">
+<code class="language-swift">func move() -> Memory</code>
 <div class="comment">
     <p>Retrieve the value the pointer points to, moving it away
 from the location referenced in memory.</p>
@@ -161,15 +161,15 @@ but more efficient.</p>
   be initialized before being used again.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func assignFrom(source: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
+<div class="declaration" id="func-assignFrom">
+<code class="language-swift">func assignFrom(source: UnsafeMutablePointer&lt;Memory&gt;, count: Int)</code>
 <div class="comment">
     <p>Assign from <code>count</code> values beginning at source into initialized
 memory, proceeding from the first element to the last.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func assignBackwardFrom(source: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
+<div class="declaration" id="func-assignBackwardFrom">
+<code class="language-swift">func assignBackwardFrom(source: UnsafeMutablePointer&lt;Memory&gt;, count: Int)</code>
 <div class="comment">
     <p>Assign from <code>count</code> values beginning at <code>source</code> into
 initialized memory, proceeding from the last value to the first.
@@ -179,15 +179,15 @@ with the source range.</p>
 <p><strong>Requires:</strong> Either <code>source</code> precedes <code>self</code> or follows <code>self + count</code>.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func moveInitializeFrom(source: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
+<div class="declaration" id="func-moveInitializeFrom">
+<code class="language-swift">func moveInitializeFrom(source: UnsafeMutablePointer&lt;Memory&gt;, count: Int)</code>
 <div class="comment">
     <p>Move <code>count</code> values beginning at source into raw memory,
 transforming the source values into raw memory.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func moveInitializeBackwardFrom(source: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
+<div class="declaration" id="func-moveInitializeBackwardFrom">
+<code class="language-swift">func moveInitializeBackwardFrom(source: UnsafeMutablePointer&lt;Memory&gt;, count: Int)</code>
 <div class="comment">
     <p>Move <code>count</code> values beginning at <code>source</code> into uninitialized memory,
 transforming the source values into raw memory, proceeding from
@@ -197,8 +197,8 @@ later memory that may overlap with the source range.</p>
 <p><strong>Requires:</strong> Either <code>source</code> precedes <code>self</code> or follows <code>self + count</code>.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func initializeFrom(source: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
+<div class="declaration" id="func-initializeFrom">
+<code class="language-swift">func initializeFrom(source: UnsafeMutablePointer&lt;Memory&gt;, count: Int)</code>
 <div class="comment">
     <p>Copy <code>count</code> values beginning at source into raw memory.</p>
 
@@ -207,16 +207,16 @@ later memory that may overlap with the source range.</p>
 <p><strong>Requires:</strong> <code>self</code> and <code>source</code> may not overlap.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func initializeFrom&lt;C : CollectionType where C.Generator.Element == T&gt;(source: C)</code>
+<div class="declaration" id="func-initializeFrom">
+<code class="language-swift">func initializeFrom&lt;C : CollectionType where C.Generator.Element == Memory&gt;(source: C)</code>
 <div class="comment">
     <p>Copy the elements of <code>C</code> into raw memory.</p>
 
 <p><strong>Precondition:</strong> The memory is not initialized.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func moveAssignFrom(source: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
+<div class="declaration" id="func-moveAssignFrom">
+<code class="language-swift">func moveAssignFrom(source: UnsafeMutablePointer&lt;Memory&gt;, count: Int)</code>
 <div class="comment">
     <p>Assign from <code>count</code> values beginning at <code>source</code> into initialized
 memory, transforming the source values into raw memory.</p>
@@ -224,7 +224,7 @@ memory, transforming the source values into raw memory.</p>
 <p><strong>Requires:</strong> The <code>self</code> and <code>source</code> ranges may not overlap.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-destroy">
 <code class="language-swift">func destroy()</code>
 <div class="comment">
     <p>Destroy the object the pointer points to.</p>
@@ -235,7 +235,7 @@ memory, transforming the source values into raw memory.</p>
   be initialized before being used again.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-destroy">
 <code class="language-swift">func destroy(count: Int)</code>
 <div class="comment">
     <p>Destroy the <code>count</code> objects the pointer points to.
@@ -245,24 +245,24 @@ memory, transforming the source values into raw memory.</p>
   be initialized before being used again.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func successor() -> UnsafeMutablePointer&lt;T&gt;</code>
+<div class="declaration" id="func-successor">
+<code class="language-swift">func successor() -> UnsafeMutablePointer&lt;Memory&gt;</code>
 <div class="comment">
     <p>Returns the next consecutive value after <code>self</code>.</p>
 
 <p><strong>Requires:</strong> The next value is representable.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func predecessor() -> UnsafeMutablePointer&lt;T&gt;</code>
+<div class="declaration" id="func-predecessor">
+<code class="language-swift">func predecessor() -> UnsafeMutablePointer&lt;Memory&gt;</code>
 <div class="comment">
     <p>Returns the previous consecutive value before <code>self</code>.</p>
 
 <p><strong>Requires:</strong> The previous value is representable.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func distanceTo(x: UnsafeMutablePointer&lt;T&gt;) -> Int</code>
+<div class="declaration" id="func-distanceTo">
+<code class="language-swift">func distanceTo(x: UnsafeMutablePointer&lt;Memory&gt;) -> Int</code>
 <div class="comment">
     <p>Return the minimum number of applications of <code>successor</code> or
 <code>predecessor</code> required to reach <code>other</code> from <code>self</code>.</p>
@@ -270,8 +270,8 @@ memory, transforming the source values into raw memory.</p>
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func advancedBy(n: Int) -> UnsafeMutablePointer&lt;T&gt;</code>
+<div class="declaration" id="func-advancedBy">
+<code class="language-swift">func advancedBy(n: Int) -> UnsafeMutablePointer&lt;Memory&gt;</code>
 <div class="comment">
     <p>Return <code>self</code> offset by <code>n</code> steps.</p>
 
@@ -282,19 +282,19 @@ memory, transforming the source values into raw memory.</p>
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-getMirror">
 <code class="language-swift">func getMirror() -> MirrorType</code>
 <div class="comment">
     <p>Returns a mirror that reflects <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">mutating func put(x: T)</code>
+<div class="declaration" id="func-put">
+<code class="language-swift">mutating func put(x: Memory)</code>
 </div>
 
 <h3>Subscripts</h3>
 <div class="declaration">
-<code class="language-swift">subscript(i: Int) -> T { get nonmutating set }</code>
+<code class="language-swift">subscript(i: Int) -> Memory { get nonmutating set }</code>
 </div>
 
 

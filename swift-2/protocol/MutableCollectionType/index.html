@@ -45,7 +45,7 @@ let y = x</code></pre>
 
 
 
-<div class="declaration">
+<div class="declaration" id="func-sort">
 <code class="language-swift">@warn_unused_result(mutable_variant="sortInPlace")
      func sort(isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> [Self.Generator.Element]</code>
 <div class="comment">
@@ -67,7 +67,7 @@ elements for which <code>isOrderedBefore</code> does not establish an order).</p
 
 <h4>Where Index : RandomAccessIndexType</h4>
 
-<div class="declaration">
+<div class="declaration" id="func-partition">
 <code class="language-swift">mutating func partition(range: Range&lt;Self.Index&gt;, isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> Self.Index</code>
 <div class="comment">
     <p>Re-order the given <code>range</code> of elements in <code>self</code> and return
@@ -83,7 +83,7 @@ a pivot index <em>p</em>.</p>
   over the elements in <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-sortInPlace">
 <code class="language-swift">mutating func sortInPlace(isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool)</code>
 <div class="comment">
     <p>Sort <code>self</code> in-place according to <code>isOrderedBefore</code>.</p>
@@ -103,7 +103,7 @@ elements for which <code>isOrderedBefore</code> does not establish an order).</p
 
 <h4>Where Index : RandomAccessIndexType, Generator.Element : Comparable</h4>
 
-<div class="declaration">
+<div class="declaration" id="func-partition">
 <code class="language-swift">mutating func partition(range: Range&lt;Self.Index&gt;) -> Self.Index</code>
 <div class="comment">
     <p>Re-order the given <code>range</code> of elements in <code>self</code> and return
@@ -127,7 +127,7 @@ a pivot index <em>p</em>.</p>
 
 <h4>Where Generator.Element : Comparable</h4>
 
-<div class="declaration">
+<div class="declaration" id="func-sort">
 <code class="language-swift">@warn_unused_result(mutable_variant="sortInPlace")
      func sort() -> [Self.Generator.Element]</code>
 <div class="comment">
@@ -151,7 +151,7 @@ elements that compare equal).</p>
 
 <h4>Where Index : RandomAccessIndexType, Self.Generator.Element : Comparable</h4>
 
-<div class="declaration">
+<div class="declaration" id="func-sortInPlace">
 <code class="language-swift">mutating func sortInPlace()</code>
 <div class="comment">
     <p>Sort <code>self</code> in-place.</p>

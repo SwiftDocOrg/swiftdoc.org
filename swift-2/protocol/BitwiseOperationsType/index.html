@@ -26,7 +26,7 @@ root: "/swift-2"
 
 
 <h3>Static Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-allZeros">
 <code class="language-swift">static var allZeros: Self { get }</code>
 <div class="comment">
     <p>The empty bitset.</p>
@@ -40,7 +40,7 @@ root: "/swift-2"
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-&">
 <code class="language-swift">func &amp;(lhs: Self, rhs: Self) -> Self</code>
 <div class="comment">
     <p>Returns the intersection of bits set in <code>lhs</code> and <code>rhs</code>.</p>
@@ -48,7 +48,7 @@ root: "/swift-2"
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-|">
 <code class="language-swift">func |(lhs: Self, rhs: Self) -> Self</code>
 <div class="comment">
     <p>Returns the union of bits set in <code>lhs</code> and <code>rhs</code>.</p>
@@ -56,7 +56,7 @@ root: "/swift-2"
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-^">
 <code class="language-swift">func ^(lhs: Self, rhs: Self) -> Self</code>
 <div class="comment">
     <p>Returns the bits that are set in exactly one of <code>lhs</code> and <code>rhs</code>.</p>
@@ -64,7 +64,7 @@ root: "/swift-2"
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-~">
 <code class="language-swift">prefix func ~(x: Self) -> Self</code>
 <div class="comment">
     <p>Returns <code>x ^ ~Self.allZeros</code>.</p>

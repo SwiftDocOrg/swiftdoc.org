@@ -15,10 +15,10 @@ type.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">UnsignedIntegerType, IntegerType, Equatable, Comparable, _IntegerType, IntegerArithmeticType, _IntegerArithmeticType, IntegerLiteralConvertible, _UnsignedIntegerType, Hashable, CustomStringConvertible, RandomAccessIndexType, BidirectionalIndexType, ForwardIndexType, _Incrementable, Strideable, _Strideable, BitwiseOperationsType, Reflectable, _StringElementType, CVarArgType</code>
+<code class="inherits">UnsignedIntegerType, IntegerType, Equatable, Comparable, _IntegerType, IntegerArithmeticType, _IntegerArithmeticType, IntegerLiteralConvertible, _DisallowMixedSignArithmetic, Hashable, CustomStringConvertible, RandomAccessIndexType, BidirectionalIndexType, ForwardIndexType, _Incrementable, Strideable, _Strideable, BitwiseOperationsType, _Reflectable, _StringElementType, CVarArgType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias Distance = Int</code>
 <div class="comment">
@@ -198,13 +198,13 @@ is not representable, the result is <code>nil</code>.</p>
 </div>
 
 <h3>Static Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-max">
 <code class="language-swift">static var max: UInt8 { get }</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-min">
 <code class="language-swift">static var min: UInt8 { get }</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-allZeros">
 <code class="language-swift">static var allZeros: UInt8 { get }</code>
 <div class="comment">
     <p>The empty bitset of type UInt8.</p>
@@ -212,10 +212,10 @@ is not representable, the result is <code>nil</code>.</p>
 </div>
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-value">
 <code class="language-swift">var value: Builtin.Int8 { get set }</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-hashValue">
 <code class="language-swift">var hashValue: Int { get }</code>
 <div class="comment">
     <p>The hash value.</p>
@@ -227,7 +227,7 @@ is not representable, the result is <code>nil</code>.</p>
   hash value across program runs.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-description">
 <code class="language-swift">var description: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>.</p>
@@ -235,7 +235,7 @@ is not representable, the result is <code>nil</code>.</p>
 </div>
 
 <h3>Static Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-addWithOverflow">
 <code class="language-swift">static func addWithOverflow(lhs: UInt8, _ rhs: UInt8) -> (UInt8, overflow: Bool)</code>
 <div class="comment">
     <p>Add <code>lhs</code> and <code>rhs</code>, returning a result and a
@@ -243,7 +243,7 @@ is not representable, the result is <code>nil</code>.</p>
 overflow.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-subtractWithOverflow">
 <code class="language-swift">static func subtractWithOverflow(lhs: UInt8, _ rhs: UInt8) -> (UInt8, overflow: Bool)</code>
 <div class="comment">
     <p>Subtract <code>lhs</code> and <code>rhs</code>, returning a result and a
@@ -251,7 +251,7 @@ overflow.</p>
 overflow.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-multiplyWithOverflow">
 <code class="language-swift">static func multiplyWithOverflow(lhs: UInt8, _ rhs: UInt8) -> (UInt8, overflow: Bool)</code>
 <div class="comment">
     <p>Multiply <code>lhs</code> and <code>rhs</code>, returning a result and a
@@ -259,7 +259,7 @@ overflow.</p>
 overflow.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-divideWithOverflow">
 <code class="language-swift">static func divideWithOverflow(lhs: UInt8, _ rhs: UInt8) -> (UInt8, overflow: Bool)</code>
 <div class="comment">
     <p>Divide <code>lhs</code> and <code>rhs</code>, returning
@@ -267,7 +267,7 @@ a result and a <code>Bool</code>
 that is true iff the operation caused an arithmetic overflow.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-remainderWithOverflow">
 <code class="language-swift">static func remainderWithOverflow(lhs: UInt8, _ rhs: UInt8) -> (UInt8, overflow: Bool)</code>
 <div class="comment">
     <p>Divide <code>lhs</code> and <code>rhs</code>, returning
@@ -277,7 +277,7 @@ that is true iff the operation caused an arithmetic overflow.</p>
 </div>
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-successor">
 <code class="language-swift">func successor() -> UInt8</code>
 <div class="comment">
     <p>Returns the next consecutive value after <code>self</code>.</p>
@@ -285,7 +285,7 @@ that is true iff the operation caused an arithmetic overflow.</p>
 <p><strong>Requires:</strong> The next value is representable.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-predecessor">
 <code class="language-swift">func predecessor() -> UInt8</code>
 <div class="comment">
     <p>Returns the previous consecutive value before <code>self</code>.</p>
@@ -293,7 +293,7 @@ that is true iff the operation caused an arithmetic overflow.</p>
 <p><strong>Requires:</strong> The previous value is representable.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-distanceTo">
 <code class="language-swift">func distanceTo(other: UInt8) -> Distance</code>
 <div class="comment">
     <p>Return the minimum number of applications of <code>successor</code> or
@@ -302,7 +302,7 @@ that is true iff the operation caused an arithmetic overflow.</p>
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-advancedBy">
 <code class="language-swift">func advancedBy(amount: Distance) -> UInt8</code>
 <div class="comment">
     <p>Return <code>self</code> offset by <code>n</code> steps.</p>
@@ -314,20 +314,20 @@ that is true iff the operation caused an arithmetic overflow.</p>
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-toUIntMax">
 <code class="language-swift">func toUIntMax() -> UIntMax</code>
 <div class="comment">
     <p>Represent this number using Swift&#39;s widest native unsigned
 integer type.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-toIntMax">
 <code class="language-swift">func toIntMax() -> IntMax</code>
 <div class="comment">
     <p>Explicitly convert to <code>IntMax</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-getMirror">
 <code class="language-swift">func getMirror() -> MirrorType</code>
 <div class="comment">
     <p>Returns a mirror that reflects <code>self</code>.</p>

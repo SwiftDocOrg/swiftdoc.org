@@ -7,7 +7,7 @@ keywords: "ReverseRandomAccessIndex,struct,swift,documentation,successor,predece
 root: "/swift-2"
 ---
 
-<code class="language-swift">struct ReverseRandomAccessIndex&lt;I : RandomAccessIndexType&gt; { ... }</code>
+<code class="language-swift">struct ReverseRandomAccessIndex&lt;Base : RandomAccessIndexType&gt; { ... }</code>
 
 <div class="comment">
     <p>A wrapper for a <code>RandomAccessIndexType</code> that reverses its
@@ -26,24 +26,24 @@ direction of traversal.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
-<code class="language-swift">func successor() -> ReverseRandomAccessIndex&lt;I&gt;</code>
+<div class="declaration" id="func-successor">
+<code class="language-swift">func successor() -> ReverseRandomAccessIndex&lt;Base&gt;</code>
 <div class="comment">
     <p>Returns the next consecutive value after <code>self</code>.</p>
 
 <p><strong>Requires:</strong> The next value is representable.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func predecessor() -> ReverseRandomAccessIndex&lt;I&gt;</code>
+<div class="declaration" id="func-predecessor">
+<code class="language-swift">func predecessor() -> ReverseRandomAccessIndex&lt;Base&gt;</code>
 <div class="comment">
     <p>Returns the previous consecutive value before <code>self</code>.</p>
 
 <p><strong>Requires:</strong> The previous value is representable.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func distanceTo(other: ReverseRandomAccessIndex&lt;I&gt;) -> I.Distance</code>
+<div class="declaration" id="func-distanceTo">
+<code class="language-swift">func distanceTo(other: ReverseRandomAccessIndex&lt;Base&gt;) -> Base.Distance</code>
 <div class="comment">
     <p>Return the minimum number of applications of <code>successor</code> or
 <code>predecessor</code> required to reach <code>other</code> from <code>self</code>.</p>
@@ -51,8 +51,8 @@ direction of traversal.</p>
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func advancedBy(amount: I.Distance) -> ReverseRandomAccessIndex&lt;I&gt;</code>
+<div class="declaration" id="func-advancedBy">
+<code class="language-swift">func advancedBy(amount: Base.Distance) -> ReverseRandomAccessIndex&lt;Base&gt;</code>
 <div class="comment">
     <p>Return <code>self</code> offset by <code>n</code> steps.</p>
 

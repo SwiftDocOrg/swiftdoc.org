@@ -91,7 +91,7 @@ collection as <code>other</code>.</p>
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-startIndex">
 <code class="language-swift">var startIndex: AnyForwardIndex { get }</code>
 <div class="comment">
     <p>The position of the first element in a non-empty collection.</p>
@@ -99,7 +99,7 @@ collection as <code>other</code>.</p>
 <p>In an empty collection, <code>startIndex == endIndex</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-endIndex">
 <code class="language-swift">var endIndex: AnyForwardIndex { get }</code>
 <div class="comment">
     <p>The collection&#39;s &quot;past the end&quot; position.</p>
@@ -109,7 +109,7 @@ reachable from <code>startIndex</code> by zero or more applications of
 <code>successor()</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-count">
 <code class="language-swift">var count: IntMax { get }</code>
 <div class="comment">
     <p>Return the number of elements.</p>
@@ -120,7 +120,7 @@ reachable from <code>startIndex</code> by zero or more applications of
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-generate">
 <code class="language-swift">func generate() -> AnyGenerator&lt;Element&gt;</code>
 <div class="comment">
     <p>Returns a <em>generator</em> over the elements of this <em>collection</em>.</p>
@@ -128,7 +128,7 @@ reachable from <code>startIndex</code> by zero or more applications of
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-underestimateCount">
 <code class="language-swift">func underestimateCount() -> Int</code>
 </div>
 

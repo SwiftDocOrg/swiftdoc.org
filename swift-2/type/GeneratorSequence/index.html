@@ -6,7 +6,7 @@ keywords: "GeneratorSequence,struct,swift,documentation,next,generate"
 root: "/swift-2"
 ---
 
-<code class="language-swift">struct GeneratorSequence&lt;G : GeneratorType&gt; { ... }</code>
+<code class="language-swift">struct GeneratorSequence&lt;Base : GeneratorType&gt; { ... }</code>
 
 <div class="comment">
     <p>A sequence built around a generator of type <code>G</code>.</p>
@@ -26,7 +26,7 @@ given just a generator <code>g</code>:</p>
 
 <h3>Initializers</h3>
 <div class="declaration">
-<code class="language-swift">init(_ base: G)</code>
+<code class="language-swift">init(_ base: Base)</code>
 <div class="comment">
     <p>Construct an instance whose generator is a copy of <code>base</code>.</p>
 </div>
@@ -36,8 +36,8 @@ given just a generator <code>g</code>:</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
-<code class="language-swift">mutating func next() -> G.Element?</code>
+<div class="declaration" id="func-next">
+<code class="language-swift">mutating func next() -> Base.Element?</code>
 <div class="comment">
     <p>Advance to the next element and return it, or <code>nil</code> if no next
 element exists.</p>
@@ -47,8 +47,8 @@ element exists.</p>
   has returned <code>nil</code>.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func generate() -> GeneratorSequence&lt;G&gt;</code>
+<div class="declaration" id="func-generate">
+<code class="language-swift">func generate() -> GeneratorSequence&lt;Base&gt;</code>
 <div class="comment">
     <p>Returns a <em>generator</em> over the elements of this <em>sequence</em>.</p>
 

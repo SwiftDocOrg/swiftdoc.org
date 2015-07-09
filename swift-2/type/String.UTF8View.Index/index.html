@@ -55,7 +55,7 @@ root: "/swift-2"
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-successor">
 <code class="language-swift">func successor() -> String.UTF8View.Index</code>
 <div class="comment">
     <p>Returns the next consecutive value after <code>self</code>.</p>
@@ -63,7 +63,7 @@ root: "/swift-2"
 <p><strong>Requires:</strong> The next value is representable.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-samePositionIn">
 <code class="language-swift">func samePositionIn(utf16: String.UTF16View) -> String.UTF16View.Index?</code>
 <div class="comment">
     <p>Return the position in <code>utf16</code> that corresponds exactly
@@ -72,7 +72,7 @@ to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
 <p><strong>Requires:</strong> <code>self</code> is an element of <code>String(utf16)!.utf8.indices</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-samePositionIn">
 <code class="language-swift">func samePositionIn(unicodeScalars: String.UnicodeScalarView) -> UnicodeScalarIndex?</code>
 <div class="comment">
     <p>Return the position in <code>unicodeScalars</code> that corresponds exactly
@@ -82,7 +82,7 @@ to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
   <code>String(unicodeScalars).utf8.indices</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-samePositionIn">
 <code class="language-swift">func samePositionIn(characters: String) -> Index?</code>
 <div class="comment">
     <p>Return the position in <code>characters</code> that corresponds exactly

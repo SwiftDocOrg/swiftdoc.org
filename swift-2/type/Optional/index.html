@@ -10,12 +10,12 @@ root: "/swift-2"
 
 
 <h3>Inheritance</h3>
-<code class="inherits">Reflectable, NilLiteralConvertible, CustomDebugStringConvertible</code>
+<code class="inherits">_Reflectable, NilLiteralConvertible, CustomDebugStringConvertible</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
 
-<h3>Cases</h3>
+<h3 id="cases">Cases</h3>
 <div class="declaration">
 <code class="language-swift">case None</code>
 </div>
@@ -45,7 +45,7 @@ root: "/swift-2"
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-debugDescription">
 <code class="language-swift">var debugDescription: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>, suitable for debugging.</p>
@@ -54,19 +54,19 @@ root: "/swift-2"
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-map">
 <code class="language-swift">func map&lt;U&gt;(@noescape f: (T) -&gt; U) -> U?</code>
 <div class="comment">
     <p>If <code>self == nil</code>, returns <code>nil</code>.  Otherwise, returns <code>f(self!)</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-flatMap">
 <code class="language-swift">func flatMap&lt;U&gt;(@noescape f: (T) -&gt; U?) -> U?</code>
 <div class="comment">
     <p>Returns <code>nil</code> if <code>self</code> is nil, <code>f(self!)</code> otherwise.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-getMirror">
 <code class="language-swift">func getMirror() -> MirrorType</code>
 <div class="comment">
     <p>Returns a mirror that reflects <code>self</code>.</p>

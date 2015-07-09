@@ -26,7 +26,7 @@ of elements with the elements of another collection.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-append">
 <code class="language-swift">mutating func append(x: Self.Generator.Element)</code>
 <div class="comment">
     <p>Append <code>x</code> to <code>self</code>.</p>
@@ -37,7 +37,7 @@ of elements with the elements of another collection.</p>
 <p><strong>Complexity:</strong> Amortized O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-replaceRange">
 <code class="language-swift">mutating func replaceRange&lt;C : CollectionType where C.Generator.Element == Generator.Element&gt;(subRange: Range&lt;Self.Index&gt;, with newElements: C)</code>
 <div class="comment">
     <p>Replace the given <code>subRange</code> of elements with <code>newElements</code>.</p>
@@ -49,7 +49,7 @@ of elements with the elements of another collection.</p>
   O(<code>self.count</code> + <code>newElements.count</code>) otherwise.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-insert">
 <code class="language-swift">mutating func insert(newElement: Self.Generator.Element, atIndex i: Self.Index)</code>
 <div class="comment">
     <p>Insert <code>newElement</code> at index <code>i</code>.</p>
@@ -63,7 +63,7 @@ of elements with the elements of another collection.</p>
 <pre><code class="language-swift">Swift.insert(&amp;self, newElement, atIndex: i)</code></pre>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-splice">
 <code class="language-swift">mutating func splice&lt;S : CollectionType where S.Generator.Element == Generator.Element&gt;(newElements: S, atIndex i: Self.Index)</code>
 <div class="comment">
     <p>Insert <code>newElements</code> at index <code>i</code>.</p>
@@ -77,7 +77,7 @@ of elements with the elements of another collection.</p>
 <pre><code class="language-swift">Swift.splice(&amp;self, newElements, atIndex: i)</code></pre>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-removeAtIndex">
 <code class="language-swift">mutating func removeAtIndex(i: Self.Index) -> Self.Generator.Element</code>
 <div class="comment">
     <p>Remove the element at index <code>i</code>.</p>
@@ -91,7 +91,7 @@ of elements with the elements of another collection.</p>
 <pre><code class="language-swift">Swift.removeAtIndex(&amp;self, i)</code></pre>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-removeRange">
 <code class="language-swift">mutating func removeRange(subRange: Range&lt;Self.Index&gt;)</code>
 <div class="comment">
     <p>Remove the indicated <code>subRange</code> of elements.</p>
@@ -105,7 +105,7 @@ of elements with the elements of another collection.</p>
 <pre><code class="language-swift">Swift.removeRange(&amp;self, subRange)</code></pre>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-removeAll">
 <code class="language-swift">mutating func removeAll(keepCapacity keepCapacity: Bool)</code>
 <div class="comment">
     <p>Remove all elements.</p>

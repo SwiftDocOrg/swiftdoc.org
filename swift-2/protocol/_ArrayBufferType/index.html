@@ -18,7 +18,7 @@ root: "/swift-2"
 <code class="inherits">MutableCollectionType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias Element</code>
 <div class="comment">
@@ -44,32 +44,32 @@ root: "/swift-2"
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-count">
 <code class="language-swift">var count: Int { get set }</code>
 <div class="comment">
     <p>The number of elements the buffer stores.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-capacity">
 <code class="language-swift">var capacity: Int { get }</code>
 <div class="comment">
     <p>The number of elements the buffer can store without reallocation.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-owner">
 <code class="language-swift">var owner: AnyObject { get }</code>
 <div class="comment">
     <p>An object that keeps the elements stored in this buffer alive.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-baseAddress">
 <code class="language-swift">var baseAddress: UnsafeMutablePointer&lt;Self.Element&gt; { get }</code>
 <div class="comment">
     <p>If the elements are stored contiguously, a pointer to the first
 element. Otherwise, <code>nil</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-identity">
 <code class="language-swift">var identity: UnsafePointer&lt;Void&gt; { get }</code>
 <div class="comment">
     <p>A value that identifies the storage used by the buffer.  Two
@@ -80,7 +80,7 @@ identity and count.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-requestUniqueMutableBackingBuffer">
 <code class="language-swift">mutating func requestUniqueMutableBackingBuffer(minimumCapacity: Int) -> _ContiguousArrayBuffer&lt;Self.Element&gt;?</code>
 <div class="comment">
     <p>If this buffer is backed by a uniquely-referenced mutable
@@ -96,7 +96,7 @@ Otherwise, returns nil.</p>
   unnecessary reallocation.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-isMutableAndUniquelyReferenced">
 <code class="language-swift">mutating func isMutableAndUniquelyReferenced() -> Bool</code>
 <div class="comment">
     <p>Returns true iff this buffer is backed by a uniquely-referenced mutable
@@ -107,7 +107,7 @@ _ContiguousArrayBuffer.</p>
   unnecessary reallocation.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-requestNativeBuffer">
 <code class="language-swift">func requestNativeBuffer() -> _ContiguousArrayBuffer&lt;Self.Element&gt;?</code>
 <div class="comment">
     <p>If this buffer is backed by a <code>_ContiguousArrayBuffer</code>
@@ -115,7 +115,7 @@ containing the same number of elements as <code>self</code>, return it.
 Otherwise, return <code>nil</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-replace">
 <code class="language-swift">mutating func replace&lt;C : CollectionType where C.Generator.Element == Element&gt;(subRange subRange: Range&lt;Int&gt;, with newCount: Int, elementsOf newValues: C)</code>
 <div class="comment">
     <p>Replace the given <code>subRange</code> with the first <code>newCount</code> elements of
@@ -125,7 +125,7 @@ the given collection.</p>
 <code>_ContiguousArrayBuffer</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-withUnsafeBufferPointer">
 <code class="language-swift">func withUnsafeBufferPointer&lt;R&gt;(@noescape body: (UnsafeBufferPointer&lt;Self.Element&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Call <code>body(p)</code>, where <code>p</code> is an <code>UnsafeBufferPointer</code> over the
@@ -133,7 +133,7 @@ underlying contiguous storage.  If no such storage exists, it is
 created on-demand.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-withUnsafeMutableBufferPointer">
 <code class="language-swift">mutating func withUnsafeMutableBufferPointer&lt;R&gt;(@noescape body: (UnsafeMutableBufferPointer&lt;Self.Element&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Call <code>body(p)</code>, where <code>p</code> is an <code>UnsafeMutableBufferPointer</code>

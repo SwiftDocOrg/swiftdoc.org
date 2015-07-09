@@ -13,7 +13,7 @@ root: "/swift-2"
 <code class="inherits">SequenceType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias Index : ForwardIndexType</code>
 <div class="comment">
@@ -29,7 +29,7 @@ root: "/swift-2"
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-startIndex">
 <code class="language-swift">var startIndex: Self.Index { get }</code>
 <div class="comment">
     <p>The position of the first element in a non-empty collection.</p>
@@ -37,7 +37,7 @@ root: "/swift-2"
 <p>In an empty collection, <code>startIndex == endIndex</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-endIndex">
 <code class="language-swift">var endIndex: Self.Index { get }</code>
 <div class="comment">
     <p>The collection&#39;s &quot;past the end&quot; position.</p>
@@ -47,7 +47,7 @@ reachable from <code>startIndex</code> by zero or more applications of
 <code>successor()</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-first">
 <code class="language-swift">var first: Self.Generator.Element? { get }</code>
 <div class="comment">
     <p>Returns the first element of <code>self</code>, or <code>nil</code> if <code>self</code> is empty.</p>
@@ -62,7 +62,7 @@ reachable from <code>startIndex</code> by zero or more applications of
 
 
 
-<div class="declaration">
+<div class="declaration" id="func-underestimateCount">
 <code class="language-swift">func underestimateCount() -> Int</code>
 <div class="comment">
     <p>Returns a value less than or equal to the number of elements in
@@ -72,13 +72,13 @@ reachable from <code>startIndex</code> by zero or more applications of
 </div>
 </div>
 
-<div class="declaration">
+<div class="declaration" id="prop-isEmpty">
 <code class="language-swift">var isEmpty: Bool { get }</code>
 <div class="comment">
     <p>Returns <code>true</code> iff <code>self</code> is empty.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-count">
 <code class="language-swift">var count: Self.Index.Distance { get }</code>
 <div class="comment">
     <p>Returns the number of elements.</p>

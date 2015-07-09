@@ -20,7 +20,7 @@ ensure non-destructive iteration, constrain your <em>sequence</em> to
 <h3>Inheritance</h3>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias Generator : GeneratorType</code>
 <div class="comment">
@@ -36,7 +36,7 @@ encapsulates its iteration state.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-generate">
 <code class="language-swift">func generate() -> Self.Generator</code>
 <div class="comment">
     <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
@@ -44,7 +44,7 @@ encapsulates its iteration state.</p>
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-underestimateCount">
 <code class="language-swift">func underestimateCount() -> Int</code>
 <div class="comment">
     <p>Return a value less than or equal to the number of elements in
@@ -53,7 +53,7 @@ encapsulates its iteration state.</p>
 <p><strong>Complexity:</strong> O(N).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-map">
 <code class="language-swift">func map&lt;T&gt;(@noescape transform: (Self.Generator.Element) -&gt; T) -> [T]</code>
 <div class="comment">
     <p>Return an <code>Array</code> containing the results of mapping <code>transform</code>
@@ -62,7 +62,7 @@ over <code>self</code>.</p>
 <p><strong>Complexity:</strong> O(N).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-filter">
 <code class="language-swift">func filter(@noescape includeElement: (Self.Generator.Element) -&gt; Bool) -> [Self.Generator.Element]</code>
 <div class="comment">
     <p>Return an <code>Array</code> containing the elements of <code>self</code>,
@@ -76,7 +76,7 @@ in order, that satisfy the predicate <code>includeElement</code>.</p>
 
 
 
-<div class="declaration">
+<div class="declaration" id="func-sort">
 <code class="language-swift">@warn_unused_result
      func sort(isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> [Self.Generator.Element]</code>
 <div class="comment">
@@ -91,7 +91,7 @@ elements for which <code>isOrderedBefore</code> does not establish an order).</p
   over the elements in <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-underestimateCount">
 <code class="language-swift">func underestimateCount() -> Int</code>
 <div class="comment">
     <p>Return a value less than or equal to the number of elements in
@@ -100,7 +100,7 @@ elements for which <code>isOrderedBefore</code> does not establish an order).</p
 <p><strong>Complexity:</strong> O(N).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-map">
 <code class="language-swift">func map&lt;T&gt;(@noescape transform: (Self.Generator.Element) -&gt; T) -> [T]</code>
 <div class="comment">
     <p>Return an <code>Array</code> containing the results of mapping <code>transform</code>
@@ -109,14 +109,14 @@ over <code>self</code>.</p>
 <p><strong>Complexity:</strong> O(N).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-filter">
 <code class="language-swift">func filter(@noescape includeElement: (Self.Generator.Element) -&gt; Bool) -> [Self.Generator.Element]</code>
 <div class="comment">
     <p>Return an <code>Array</code> containing the elements of <code>self</code>,
 in order, that satisfy the predicate <code>includeElement</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-enumerate">
 <code class="language-swift">func enumerate() -> EnumerateSequence&lt;Self&gt;</code>
 <div class="comment">
     <p>Return a lazy <code>SequenceType</code> containing pairs (<em>n</em>, <em>x</em>), where
@@ -133,7 +133,7 @@ the elements of <code>base</code>:</p>
 4: &#39;t&#39;</code></pre>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-minElement">
 <code class="language-swift">func minElement(@noescape isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> Self.Generator.Element?</code>
 <div class="comment">
     <p>Returns the minimum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
@@ -145,7 +145,7 @@ the elements of <code>base</code>:</p>
   over <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-maxElement">
 <code class="language-swift">func maxElement(@noescape isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> Self.Generator.Element?</code>
 <div class="comment">
     <p>Returns the maximum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
@@ -157,7 +157,7 @@ the elements of <code>base</code>:</p>
   over <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-startsWith">
 <code class="language-swift">func startsWith&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence, @noescape isEquivalent: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> Bool</code>
 <div class="comment">
     <p>Return true iff <code>self</code> begins with elements equivalent to those of
@@ -168,7 +168,7 @@ the elements of <code>base</code>:</p>
   <a href="http://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-elementsEqual">
 <code class="language-swift">func elementsEqual&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence, @noescape isEquivalent: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> Bool</code>
 <div class="comment">
     <p>Return true iff <code>self</code> and <code>other</code> contain equivalent elements, using
@@ -178,7 +178,7 @@ the elements of <code>base</code>:</p>
   <a href="http://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-lexicographicalCompare">
 <code class="language-swift">func lexicographicalCompare&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence, @noescape isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool) -> Bool</code>
 <div class="comment">
     <p>Return true iff <code>self</code> precedes <code>other</code> in a lexicographical (&quot;dictionary&quot;)
@@ -194,13 +194,13 @@ localized comparison.</p>
   over the elements of <code>self</code> and <code>other</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-contains">
 <code class="language-swift">func contains(@noescape predicate: (Self.Generator.Element) -&gt; Bool) -> Bool</code>
 <div class="comment">
     <p>Return <code>true</code> iff an element in <code>self</code> satisfies <code>predicate</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-reduce">
 <code class="language-swift">func reduce&lt;T&gt;(initial: T, @noescape combine: (T, Self.Generator.Element) -&gt; T) -> T</code>
 <div class="comment">
     <p>Return the result of repeatedly calling <code>combine</code> with an
@@ -210,21 +210,21 @@ accumulated value initialized to <code>initial</code> and each element of
 self[1]),...self[count-2]), self[count-1])</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-reverse">
 <code class="language-swift">func reverse() -> [Self.Generator.Element]</code>
 <div class="comment">
     <p>Return an <code>Array</code> containing the elements of <code>self</code> in reverse
 order.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-flatMap">
 <code class="language-swift">func flatMap&lt;S : SequenceType&gt;(@noescape transform: (Self.Generator.Element) -&gt; S) -> [S.Generator.Element]</code>
 <div class="comment">
     <p>Return an <code>Array</code> containing concatenated results of mapping <code>transform</code>
 over <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-flatMap">
 <code class="language-swift">func flatMap&lt;T&gt;(@noescape transform: (Self.Generator.Element) -&gt; T?) -> [T]</code>
 <div class="comment">
     <p>Return an <code>Array</code> containing the non-nil results of mapping <code>transform</code>
@@ -238,7 +238,7 @@ over <code>self</code>.</p>
 
 <h4>Where Generator.Element : Comparable</h4>
 
-<div class="declaration">
+<div class="declaration" id="func-sort">
 <code class="language-swift">@warn_unused_result
      func sort() -> [Self.Generator.Element]</code>
 <div class="comment">
@@ -253,7 +253,7 @@ elements that compare equal).</p>
   over the elements in <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-minElement">
 <code class="language-swift">func minElement() -> Self.Generator.Element?</code>
 <div class="comment">
     <p>Returns the minimum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
@@ -261,7 +261,7 @@ elements that compare equal).</p>
 <p><strong>Complexity:</strong> O(<code>elements.count</code>).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-maxElement">
 <code class="language-swift">func maxElement() -> Self.Generator.Element?</code>
 <div class="comment">
     <p>Returns the maximum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
@@ -270,7 +270,7 @@ elements that compare equal).</p>
   </p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-lexicographicalCompare">
 <code class="language-swift">func lexicographicalCompare&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence) -> Bool</code>
 <div class="comment">
     <p>Return true iff <code>self</code> precedes <code>other</code> in a lexicographical (&quot;dictionary&quot;)
@@ -291,21 +291,21 @@ localized comparison.</p>
 
 <h4>Where Generator.Element : Equatable</h4>
 
-<div class="declaration">
+<div class="declaration" id="func-startsWith">
 <code class="language-swift">func startsWith&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence) -> Bool</code>
 <div class="comment">
     <p>Return true iff the the initial elements of <code>self</code> are equal to <code>prefix</code>.
 Return true if <code>other</code> is empty.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-elementsEqual">
 <code class="language-swift">func elementsEqual&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence) -> Bool</code>
 <div class="comment">
     <p>Return <code>true</code> iff <code>self</code> and <code>other</code> contain the same elements in the
 same order.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-contains">
 <code class="language-swift">func contains(element: Self.Generator.Element) -> Bool</code>
 <div class="comment">
     <p>Return <code>true</code> iff <code>x</code> is in <code>self</code>.</p>

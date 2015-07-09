@@ -17,7 +17,7 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "DictionaryIndex" [URL="/type/DictionaryIndex/", style=filled]
     "Double" [URL="/type/Double/", style=filled]
     "Equatable" [URL="/protocol/Equatable/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
-    "FilterCollectionViewIndex" [URL="/type/FilterCollectionViewIndex/", style=filled]
+    "FilterCollectionIndex" [URL="/type/FilterCollectionIndex/", style=filled]
     "Float" [URL="/type/Float/", style=filled]
     "Float80" [URL="/type/Float80/", style=filled]
     "FloatingPointClassification" [URL="/type/FloatingPointClassification/", style=filled]
@@ -37,8 +37,7 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "OptionSetType" [URL="/protocol/OptionSetType/"]
     "RandomAccessIndexType" [URL="/protocol/RandomAccessIndexType/"]
     "Range" [URL="/type/Range/", style=filled]
-    "RawOptionSetType" [URL="/protocol/RawOptionSetType/"]
-    "ReverseBidirectionalIndex" [URL="/type/ReverseBidirectionalIndex/", style=filled]
+    "ReverseIndex" [URL="/type/ReverseIndex/", style=filled]
     "ReverseRandomAccessIndex" [URL="/type/ReverseRandomAccessIndex/", style=filled]
     "Set" [URL="/type/Set/", style=filled]
     "SetAlgebraType" [URL="/protocol/SetAlgebraType/"]
@@ -60,12 +59,11 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "UnsafeMutablePointer" [URL="/type/UnsafeMutablePointer/", style=filled]
     "UnsafePointer" [URL="/type/UnsafePointer/", style=filled]
     "UnsignedIntegerType" [URL="/protocol/UnsignedIntegerType/"]
+    "_DisallowMixedSignArithmetic" [URL="/protocol/_DisallowMixedSignArithmetic/"]
     "_Incrementable" [URL="/protocol/_Incrementable/"]
     "_IntegerType" [URL="/protocol/_IntegerType/"]
-    "_RawOptionSetType" [URL="/protocol/_RawOptionSetType/"]
     "_SignedIntegerType" [URL="/protocol/_SignedIntegerType/"]
-    "_SwiftNSOperatingSystemVersion" [URL="/type/_SwiftNSOperatingSystemVersion/", style=filled]
-    "_UnsignedIntegerType" [URL="/protocol/_UnsignedIntegerType/"]    "Equatable" -> "_SwiftNSOperatingSystemVersion"
+    "_SwiftNSOperatingSystemVersion" [URL="/type/_SwiftNSOperatingSystemVersion/", style=filled]    "Equatable" -> "_SwiftNSOperatingSystemVersion"
     "Equatable" -> "AnyBidirectionalIndex"
     "Equatable" -> "AnyForwardIndex"
     "Equatable" -> "AnyRandomAccessIndex"
@@ -77,7 +75,7 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "Equatable" -> "Comparable"
     "Equatable" -> "DictionaryIndex"
     "Equatable" -> "Double"
-    "Equatable" -> "FilterCollectionViewIndex"
+    "Equatable" -> "FilterCollectionIndex"
     "Equatable" -> "Float"
     "Equatable" -> "Float80"
     "Equatable" -> "FloatingPointClassification"
@@ -91,7 +89,7 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "Equatable" -> "ManagedBufferPointer"
     "Equatable" -> "ObjectIdentifier"
     "Equatable" -> "Range"
-    "Equatable" -> "ReverseBidirectionalIndex"
+    "Equatable" -> "ReverseIndex"
     "Equatable" -> "ReverseRandomAccessIndex"
     "Equatable" -> "Set"
     "Equatable" -> "SetAlgebraType"
@@ -106,7 +104,6 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "Equatable" -> "UnsafeMutablePointer"
     "Equatable" -> "UnsafePointer"
     "Equatable" -> "_Incrementable"
-    "Equatable" -> "_RawOptionSetType"
     "Equatable" -> "String.CharacterView.Index"
     "Equatable" -> "String.UnicodeScalarView.Index"
     "Equatable" -> "String.UTF16View.Index"
@@ -167,8 +164,8 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "_IntegerType" -> "UInt32"
     "_IntegerType" -> "UInt64"
     "_IntegerType" -> "UInt8"
+    "_IntegerType" -> "_DisallowMixedSignArithmetic"
     "_IntegerType" -> "_SignedIntegerType"
-    "_IntegerType" -> "_UnsignedIntegerType"
     "Int" -> "Bit"
     "IntegerType" -> "Int"
     "IntegerType" -> "Int16"
@@ -194,6 +191,17 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "UnsignedIntegerType" -> "UInt32"
     "UnsignedIntegerType" -> "UInt64"
     "UnsignedIntegerType" -> "UInt8"
+    "_DisallowMixedSignArithmetic" -> "UInt"
+    "_DisallowMixedSignArithmetic" -> "UInt16"
+    "_DisallowMixedSignArithmetic" -> "UInt32"
+    "_DisallowMixedSignArithmetic" -> "UInt64"
+    "_DisallowMixedSignArithmetic" -> "UInt8"
+    "_DisallowMixedSignArithmetic" -> "UnsignedIntegerType"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
     "_SignedIntegerType" -> "Int"
     "_SignedIntegerType" -> "Int16"
     "_SignedIntegerType" -> "Int32"
@@ -207,17 +215,6 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "SignedIntegerType" -> "Int64"
     "SignedIntegerType" -> "Int8"
     "Int" -> "Bit"
-    "_UnsignedIntegerType" -> "UInt"
-    "_UnsignedIntegerType" -> "UInt16"
-    "_UnsignedIntegerType" -> "UInt32"
-    "_UnsignedIntegerType" -> "UInt64"
-    "_UnsignedIntegerType" -> "UInt8"
-    "_UnsignedIntegerType" -> "UnsignedIntegerType"
-    "UnsignedIntegerType" -> "UInt"
-    "UnsignedIntegerType" -> "UInt16"
-    "UnsignedIntegerType" -> "UInt32"
-    "UnsignedIntegerType" -> "UInt64"
-    "UnsignedIntegerType" -> "UInt8"
     "SignedNumberType" -> "AbsoluteValuable"
     "SignedNumberType" -> "Double"
     "SignedNumberType" -> "Float"
@@ -344,8 +341,8 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "_IntegerType" -> "UInt32"
     "_IntegerType" -> "UInt64"
     "_IntegerType" -> "UInt8"
+    "_IntegerType" -> "_DisallowMixedSignArithmetic"
     "_IntegerType" -> "_SignedIntegerType"
-    "_IntegerType" -> "_UnsignedIntegerType"
     "Int" -> "Bit"
     "IntegerType" -> "Int"
     "IntegerType" -> "Int16"
@@ -371,6 +368,17 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "UnsignedIntegerType" -> "UInt32"
     "UnsignedIntegerType" -> "UInt64"
     "UnsignedIntegerType" -> "UInt8"
+    "_DisallowMixedSignArithmetic" -> "UInt"
+    "_DisallowMixedSignArithmetic" -> "UInt16"
+    "_DisallowMixedSignArithmetic" -> "UInt32"
+    "_DisallowMixedSignArithmetic" -> "UInt64"
+    "_DisallowMixedSignArithmetic" -> "UInt8"
+    "_DisallowMixedSignArithmetic" -> "UnsignedIntegerType"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
     "_SignedIntegerType" -> "Int"
     "_SignedIntegerType" -> "Int16"
     "_SignedIntegerType" -> "Int32"
@@ -384,17 +392,6 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "SignedIntegerType" -> "Int64"
     "SignedIntegerType" -> "Int8"
     "Int" -> "Bit"
-    "_UnsignedIntegerType" -> "UInt"
-    "_UnsignedIntegerType" -> "UInt16"
-    "_UnsignedIntegerType" -> "UInt32"
-    "_UnsignedIntegerType" -> "UInt64"
-    "_UnsignedIntegerType" -> "UInt8"
-    "_UnsignedIntegerType" -> "UnsignedIntegerType"
-    "UnsignedIntegerType" -> "UInt"
-    "UnsignedIntegerType" -> "UInt16"
-    "UnsignedIntegerType" -> "UInt32"
-    "UnsignedIntegerType" -> "UInt64"
-    "UnsignedIntegerType" -> "UInt8"
     "Int" -> "Bit"
     "SetAlgebraType" -> "OptionSetType"
     "_Incrementable" -> "AnyBidirectionalIndex"
@@ -402,14 +399,14 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "_Incrementable" -> "AnyRandomAccessIndex"
     "_Incrementable" -> "Bit"
     "_Incrementable" -> "DictionaryIndex"
-    "_Incrementable" -> "FilterCollectionViewIndex"
+    "_Incrementable" -> "FilterCollectionIndex"
     "_Incrementable" -> "ForwardIndexType"
     "_Incrementable" -> "Int"
     "_Incrementable" -> "Int16"
     "_Incrementable" -> "Int32"
     "_Incrementable" -> "Int64"
     "_Incrementable" -> "Int8"
-    "_Incrementable" -> "ReverseBidirectionalIndex"
+    "_Incrementable" -> "ReverseIndex"
     "_Incrementable" -> "ReverseRandomAccessIndex"
     "_Incrementable" -> "SetIndex"
     "_Incrementable" -> "UInt"
@@ -430,13 +427,13 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "ForwardIndexType" -> "BidirectionalIndexType"
     "ForwardIndexType" -> "Bit"
     "ForwardIndexType" -> "DictionaryIndex"
-    "ForwardIndexType" -> "FilterCollectionViewIndex"
+    "ForwardIndexType" -> "FilterCollectionIndex"
     "ForwardIndexType" -> "Int"
     "ForwardIndexType" -> "Int16"
     "ForwardIndexType" -> "Int32"
     "ForwardIndexType" -> "Int64"
     "ForwardIndexType" -> "Int8"
-    "ForwardIndexType" -> "ReverseBidirectionalIndex"
+    "ForwardIndexType" -> "ReverseIndex"
     "ForwardIndexType" -> "ReverseRandomAccessIndex"
     "ForwardIndexType" -> "SetIndex"
     "ForwardIndexType" -> "UInt"
@@ -459,7 +456,7 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "BidirectionalIndexType" -> "Int64"
     "BidirectionalIndexType" -> "Int8"
     "BidirectionalIndexType" -> "RandomAccessIndexType"
-    "BidirectionalIndexType" -> "ReverseBidirectionalIndex"
+    "BidirectionalIndexType" -> "ReverseIndex"
     "BidirectionalIndexType" -> "ReverseRandomAccessIndex"
     "BidirectionalIndexType" -> "UInt"
     "BidirectionalIndexType" -> "UInt16"
@@ -526,8 +523,8 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "_IntegerType" -> "UInt32"
     "_IntegerType" -> "UInt64"
     "_IntegerType" -> "UInt8"
+    "_IntegerType" -> "_DisallowMixedSignArithmetic"
     "_IntegerType" -> "_SignedIntegerType"
-    "_IntegerType" -> "_UnsignedIntegerType"
     "Int" -> "Bit"
     "IntegerType" -> "Int"
     "IntegerType" -> "Int16"
@@ -553,6 +550,17 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "UnsignedIntegerType" -> "UInt32"
     "UnsignedIntegerType" -> "UInt64"
     "UnsignedIntegerType" -> "UInt8"
+    "_DisallowMixedSignArithmetic" -> "UInt"
+    "_DisallowMixedSignArithmetic" -> "UInt16"
+    "_DisallowMixedSignArithmetic" -> "UInt32"
+    "_DisallowMixedSignArithmetic" -> "UInt64"
+    "_DisallowMixedSignArithmetic" -> "UInt8"
+    "_DisallowMixedSignArithmetic" -> "UnsignedIntegerType"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
     "_SignedIntegerType" -> "Int"
     "_SignedIntegerType" -> "Int16"
     "_SignedIntegerType" -> "Int32"
@@ -566,19 +574,7 @@ strict digraph "Equatable - Type Hierarchy - SwiftDoc.org" {
     "SignedIntegerType" -> "Int64"
     "SignedIntegerType" -> "Int8"
     "Int" -> "Bit"
-    "_UnsignedIntegerType" -> "UInt"
-    "_UnsignedIntegerType" -> "UInt16"
-    "_UnsignedIntegerType" -> "UInt32"
-    "_UnsignedIntegerType" -> "UInt64"
-    "_UnsignedIntegerType" -> "UInt8"
-    "_UnsignedIntegerType" -> "UnsignedIntegerType"
-    "UnsignedIntegerType" -> "UInt"
-    "UnsignedIntegerType" -> "UInt16"
-    "UnsignedIntegerType" -> "UInt32"
-    "UnsignedIntegerType" -> "UInt64"
-    "UnsignedIntegerType" -> "UInt8"
-    "_RawOptionSetType" -> "RawOptionSetType"
     subgraph Types {
-        rank = max; "_SwiftNSOperatingSystemVersion"; "AnyBidirectionalIndex"; "AnyForwardIndex"; "AnyRandomAccessIndex"; "AutoreleasingUnsafeMutablePointer"; "Bool"; "COpaquePointer"; "Character"; "ClosedInterval"; "DictionaryIndex"; "Double"; "FilterCollectionViewIndex"; "Float"; "Float80"; "FloatingPointClassification"; "HalfOpenInterval"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "ManagedBufferPointer"; "ObjectIdentifier"; "Range"; "ReverseBidirectionalIndex"; "ReverseRandomAccessIndex"; "Set"; "SetIndex"; "String"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8"; "UnicodeScalar"; "UnsafeMutablePointer"; "UnsafePointer"; "String.CharacterView.Index"; "String.UnicodeScalarView.Index"; "String.UTF16View.Index"; "String.UTF8View.Index"; "Bit";
+        rank = max; "_SwiftNSOperatingSystemVersion"; "AnyBidirectionalIndex"; "AnyForwardIndex"; "AnyRandomAccessIndex"; "AutoreleasingUnsafeMutablePointer"; "Bool"; "COpaquePointer"; "Character"; "ClosedInterval"; "DictionaryIndex"; "Double"; "FilterCollectionIndex"; "Float"; "Float80"; "FloatingPointClassification"; "HalfOpenInterval"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "ManagedBufferPointer"; "ObjectIdentifier"; "Range"; "ReverseIndex"; "ReverseRandomAccessIndex"; "Set"; "SetIndex"; "String"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8"; "UnicodeScalar"; "UnsafeMutablePointer"; "UnsafePointer"; "String.CharacterView.Index"; "String.UnicodeScalarView.Index"; "String.UTF16View.Index"; "String.UTF8View.Index"; "Bit";
     }
 }

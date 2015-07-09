@@ -9,7 +9,7 @@ strict digraph "ForwardIndexType - Type Hierarchy - SwiftDoc.org" {
     "Bit" [URL="/type/Bit/", style=filled]
     "DictionaryIndex" [URL="/type/DictionaryIndex/", style=filled]
     "Equatable" [URL="/protocol/Equatable/"]
-    "FilterCollectionViewIndex" [URL="/type/FilterCollectionViewIndex/", style=filled]
+    "FilterCollectionIndex" [URL="/type/FilterCollectionIndex/", style=filled]
     "ForwardIndexType" [URL="/protocol/ForwardIndexType/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
     "Int" [URL="/type/Int/", style=filled]
     "Int16" [URL="/type/Int16/", style=filled]
@@ -18,7 +18,7 @@ strict digraph "ForwardIndexType - Type Hierarchy - SwiftDoc.org" {
     "Int8" [URL="/type/Int8/", style=filled]
     "IntegerType" [URL="/protocol/IntegerType/"]
     "RandomAccessIndexType" [URL="/protocol/RandomAccessIndexType/"]
-    "ReverseBidirectionalIndex" [URL="/type/ReverseBidirectionalIndex/", style=filled]
+    "ReverseIndex" [URL="/type/ReverseIndex/", style=filled]
     "ReverseRandomAccessIndex" [URL="/type/ReverseRandomAccessIndex/", style=filled]
     "SetIndex" [URL="/type/SetIndex/", style=filled]
     "SignedIntegerType" [URL="/protocol/SignedIntegerType/"]
@@ -40,13 +40,13 @@ strict digraph "ForwardIndexType - Type Hierarchy - SwiftDoc.org" {
     "ForwardIndexType" -> "BidirectionalIndexType"
     "ForwardIndexType" -> "Bit"
     "ForwardIndexType" -> "DictionaryIndex"
-    "ForwardIndexType" -> "FilterCollectionViewIndex"
+    "ForwardIndexType" -> "FilterCollectionIndex"
     "ForwardIndexType" -> "Int"
     "ForwardIndexType" -> "Int16"
     "ForwardIndexType" -> "Int32"
     "ForwardIndexType" -> "Int64"
     "ForwardIndexType" -> "Int8"
-    "ForwardIndexType" -> "ReverseBidirectionalIndex"
+    "ForwardIndexType" -> "ReverseIndex"
     "ForwardIndexType" -> "ReverseRandomAccessIndex"
     "ForwardIndexType" -> "SetIndex"
     "ForwardIndexType" -> "UInt"
@@ -69,7 +69,7 @@ strict digraph "ForwardIndexType - Type Hierarchy - SwiftDoc.org" {
     "BidirectionalIndexType" -> "Int64"
     "BidirectionalIndexType" -> "Int8"
     "BidirectionalIndexType" -> "RandomAccessIndexType"
-    "BidirectionalIndexType" -> "ReverseBidirectionalIndex"
+    "BidirectionalIndexType" -> "ReverseIndex"
     "BidirectionalIndexType" -> "ReverseRandomAccessIndex"
     "BidirectionalIndexType" -> "UInt"
     "BidirectionalIndexType" -> "UInt16"
@@ -127,6 +127,6 @@ strict digraph "ForwardIndexType - Type Hierarchy - SwiftDoc.org" {
     "_Incrementable" -> "ForwardIndexType"
     "Equatable" -> "_Incrementable"
     subgraph Types {
-        rank = max; "AnyBidirectionalIndex"; "AnyForwardIndex"; "AnyRandomAccessIndex"; "Bit"; "DictionaryIndex"; "FilterCollectionViewIndex"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "ReverseBidirectionalIndex"; "ReverseRandomAccessIndex"; "SetIndex"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8"; "UnsafeMutablePointer"; "UnsafePointer"; "String.CharacterView.Index"; "String.UnicodeScalarView.Index"; "String.UTF16View.Index"; "String.UTF8View.Index";
+        rank = max; "AnyBidirectionalIndex"; "AnyForwardIndex"; "AnyRandomAccessIndex"; "Bit"; "DictionaryIndex"; "FilterCollectionIndex"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "ReverseIndex"; "ReverseRandomAccessIndex"; "SetIndex"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8"; "UnsafeMutablePointer"; "UnsafePointer"; "String.CharacterView.Index"; "String.UnicodeScalarView.Index"; "String.UTF16View.Index"; "String.UTF8View.Index";
     }
 }

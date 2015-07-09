@@ -55,7 +55,7 @@ exactly to <code>characterIndex</code>.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-successor">
 <code class="language-swift">func successor() -> String.UnicodeScalarView.Index</code>
 <div class="comment">
     <p>Returns the next consecutive value after <code>self</code>.</p>
@@ -63,7 +63,7 @@ exactly to <code>characterIndex</code>.</p>
 <p><strong>Requires:</strong> The next value is representable.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-predecessor">
 <code class="language-swift">func predecessor() -> String.UnicodeScalarView.Index</code>
 <div class="comment">
     <p>Returns the previous consecutive value before <code>self</code>.</p>
@@ -71,7 +71,7 @@ exactly to <code>characterIndex</code>.</p>
 <p><strong>Requires:</strong> The previous value is representable.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-samePositionIn">
 <code class="language-swift">func samePositionIn(utf8: String.UTF8View) -> String.UTF8View.Index</code>
 <div class="comment">
     <p>Return the position in <code>utf8</code> that corresponds exactly
@@ -80,7 +80,7 @@ to <code>self</code>.</p>
 <p><strong>Requires:</strong> <code>self</code> is an element of <code>String(utf8)!.indices</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-samePositionIn">
 <code class="language-swift">func samePositionIn(utf16: String.UTF16View) -> String.UTF16View.Index</code>
 <div class="comment">
     <p>Return the position in <code>utf16</code> that corresponds exactly
@@ -89,7 +89,7 @@ to <code>self</code>.</p>
 <p><strong>Requires:</strong> <code>self</code> is an element of <code>String(utf16)!.indices</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-samePositionIn">
 <code class="language-swift">func samePositionIn(characters: String) -> Index?</code>
 <div class="comment">
     <p>Return the position in <code>characters</code> that corresponds exactly

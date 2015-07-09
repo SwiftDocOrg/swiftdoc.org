@@ -26,7 +26,7 @@ and can measure the distance to any reachable value, in O(1).</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-distanceTo">
 <code class="language-swift">func distanceTo(other: Self) -> Self.Distance</code>
 <div class="comment">
     <p>Return the minimum number of applications of <code>successor</code> or
@@ -41,7 +41,7 @@ x.distanceTo(x.predecessor())) == -1
 x.advancedBy(x.distanceTo(y)) == y</code></pre>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-advancedBy">
 <code class="language-swift">func advancedBy(n: Self.Distance) -> Self</code>
 <div class="comment">
     <p>Return <code>self</code> offset by <code>n</code> steps.</p>

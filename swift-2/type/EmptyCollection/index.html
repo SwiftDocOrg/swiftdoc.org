@@ -1,22 +1,22 @@
 ---
 layout: "default"
 title: "EmptyCollection"
-description: "Swift documentation for 'EmptyCollection': A collection whose element type is T but that is always empty."
+description: "Swift documentation for 'EmptyCollection': A collection whose element type is Element but that is always empty."
 keywords: "EmptyCollection,struct,swift,documentation,generate,getMirror,startIndex,endIndex,count,Index"
 root: "/swift-2"
 ---
 
-<code class="language-swift">struct EmptyCollection&lt;T&gt; { ... }</code>
+<code class="language-swift">struct EmptyCollection&lt;Element&gt; { ... }</code>
 
 <div class="comment">
-    <p>A collection whose element type is <code>T</code> but that is always empty.</p>
+    <p>A collection whose element type is <code>Element</code> but that is always empty.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType, Reflectable</code>
+<code class="inherits">CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType, _Reflectable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias Index = Int</code>
 <div class="comment">
@@ -39,19 +39,19 @@ root: "/swift-2"
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-startIndex">
 <code class="language-swift">var startIndex: Index { get }</code>
 <div class="comment">
     <p>Always zero, just like <code>endIndex</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-endIndex">
 <code class="language-swift">var endIndex: Index { get }</code>
 <div class="comment">
     <p>Always zero, just like <code>startIndex</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-count">
 <code class="language-swift">var count: Int { get }</code>
 <div class="comment">
     <p>Return the number of elements (always zero).</p>
@@ -60,15 +60,15 @@ root: "/swift-2"
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
-<code class="language-swift">func generate() -> EmptyGenerator&lt;T&gt;</code>
+<div class="declaration" id="func-generate">
+<code class="language-swift">func generate() -> EmptyGenerator&lt;Element&gt;</code>
 <div class="comment">
     <p>Returns an empty <em>generator</em>.</p>
 
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-getMirror">
 <code class="language-swift">func getMirror() -> MirrorType</code>
 <div class="comment">
     <p>Returns a mirror that reflects <code>self</code>.</p>
@@ -77,7 +77,7 @@ root: "/swift-2"
 
 <h3>Subscripts</h3>
 <div class="declaration">
-<code class="language-swift">subscript(position: Index) -> T { get }</code>
+<code class="language-swift">subscript(position: Index) -> Element { get }</code>
 </div>
 
 

@@ -15,10 +15,10 @@ collection of key-value pairs with no defined ordering.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType, DictionaryLiteralConvertible, CustomStringConvertible, CustomDebugStringConvertible, Reflectable</code>
+<code class="inherits">CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType, DictionaryLiteralConvertible, CustomStringConvertible, CustomDebugStringConvertible, _Reflectable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias Element = (Key, Value)</code>
 </div>
@@ -52,7 +52,7 @@ smallest power of 2 that&#39;s &gt;= <code>minimumCapacity</code>.</p>
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-startIndex">
 <code class="language-swift">var startIndex: DictionaryIndex&lt;Key, Value&gt; { get }</code>
 <div class="comment">
     <p>The position of the first element in a non-empty dictionary.</p>
@@ -63,7 +63,7 @@ smallest power of 2 that&#39;s &gt;= <code>minimumCapacity</code>.</p>
   <code>NSDictionary</code>, O(N) otherwise.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-endIndex">
 <code class="language-swift">var endIndex: DictionaryIndex&lt;Key, Value&gt; { get }</code>
 <div class="comment">
     <p>The collection&#39;s &quot;past the end&quot; position.</p>
@@ -76,7 +76,7 @@ reachable from <code>startIndex</code> by zero or more applications of
   <code>NSDictionary</code>, O(N) otherwise.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-count">
 <code class="language-swift">var count: Int { get }</code>
 <div class="comment">
     <p>The number of entries in the dictionary.</p>
@@ -84,8 +84,8 @@ reachable from <code>startIndex</code> by zero or more applications of
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">var keys: LazyForwardCollection&lt;MapCollectionView&lt;[Key : Value], Key&gt;&gt; { get }</code>
+<div class="declaration" id="prop-keys">
+<code class="language-swift">var keys: LazyForwardCollection&lt;MapCollection&lt;[Key : Value], Key&gt;&gt; { get }</code>
 <div class="comment">
     <p>A collection containing just the keys of <code>self</code>.</p>
 
@@ -94,8 +94,8 @@ of key-value pairs in <code>self</code>.  Each key in the result has a
 unique value.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">var values: LazyForwardCollection&lt;MapCollectionView&lt;[Key : Value], Value&gt;&gt; { get }</code>
+<div class="declaration" id="prop-values">
+<code class="language-swift">var values: LazyForwardCollection&lt;MapCollection&lt;[Key : Value], Value&gt;&gt; { get }</code>
 <div class="comment">
     <p>A collection containing just the values of <code>self</code>.</p>
 
@@ -103,19 +103,19 @@ unique value.</p>
 of key-value pairs in <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-isEmpty">
 <code class="language-swift">var isEmpty: Bool { get }</code>
 <div class="comment">
     <p><code>true</code> iff <code>count == 0</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-description">
 <code class="language-swift">var description: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-debugDescription">
 <code class="language-swift">var debugDescription: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>, suitable for debugging.</p>
@@ -124,14 +124,14 @@ of key-value pairs in <code>self</code>.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-indexForKey">
 <code class="language-swift">func indexForKey(key: Key) -> DictionaryIndex&lt;Key, Value&gt;?</code>
 <div class="comment">
     <p>Returns the <code>Index</code> for the given key, or <code>nil</code> if the key is not
 present in the dictionary.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-updateValue">
 <code class="language-swift">mutating func updateValue(value: Value, forKey key: Key) -> Value?</code>
 <div class="comment">
     <p>Update the value stored in the dictionary for the given key, or, if they
@@ -141,7 +141,7 @@ key does not exist, add a new key-value pair to the dictionary.</p>
 was added.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-removeAtIndex">
 <code class="language-swift">mutating func removeAtIndex(index: DictionaryIndex&lt;Key, Value&gt;)</code>
 <div class="comment">
     <p>Remove the key-value pair at <code>index</code>.</p>
@@ -151,7 +151,7 @@ was added.</p>
 <p><strong>Complexity:</strong> O(<code>count</code>).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-removeValueForKey">
 <code class="language-swift">mutating func removeValueForKey(key: Key) -> Value?</code>
 <div class="comment">
     <p>Remove a given key and the associated value from the dictionary.
@@ -159,7 +159,7 @@ Returns the value that was removed, or <code>nil</code> if the key was not prese
 in the dictionary.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-removeAll">
 <code class="language-swift">mutating func removeAll(keepCapacity keepCapacity: Bool = default)</code>
 <div class="comment">
     <p>Remove all elements.</p>
@@ -176,7 +176,7 @@ in the dictionary.</p>
 <p>Complexity: O(<code>count</code>).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-generate">
 <code class="language-swift">func generate() -> DictionaryGenerator&lt;Key, Value&gt;</code>
 <div class="comment">
     <p>Return a <em>generator</em> over the (key, value) pairs.</p>
@@ -184,7 +184,7 @@ in the dictionary.</p>
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-getMirror">
 <code class="language-swift">func getMirror() -> MirrorType</code>
 <div class="comment">
     <p>Returns a mirror that reflects <code>self</code>.</p>

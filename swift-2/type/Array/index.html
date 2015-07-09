@@ -3,11 +3,11 @@ layout: "default"
 title: "Array"
 description: "Swift documentation for 'Array': Array is an efficient, tail-growable random-access
 collection of arbitrary elements."
-keywords: "Array,struct,swift,documentation,generate,reserveCapacity,append,extend,removeLast,insert,removeAtIndex,removeAll,join,getMirror,withUnsafeBufferPointer,withUnsafeMutableBufferPointer,replaceRange,splice,removeRange,startIndex,endIndex,count,capacity,description,debugDescription,Element,SubSlice"
+keywords: "Array,struct,swift,documentation,reserveCapacity,append,extend,removeLast,insert,removeAtIndex,removeAll,join,getMirror,withUnsafeBufferPointer,withUnsafeMutableBufferPointer,replaceRange,splice,removeRange,startIndex,endIndex,count,capacity,description,debugDescription,SubSlice"
 root: "/swift-2"
 ---
 
-<code class="language-swift">struct Array&lt;T&gt; { ... }</code>
+<code class="language-swift">struct Array&lt;Element&gt; { ... }</code>
 
 <div class="comment">
     <p><code>Array</code> is an efficient, tail-growable random-access
@@ -16,9 +16,9 @@ collection of arbitrary elements.</p>
 <h1>Common Properties of Array Types</h1>
 
 <p>The information in this section applies to all three of Swift&#39;s
-array types, <code>Array&lt;T&gt;</code>, <code>ContiguousArray&lt;T&gt;</code>, and <code>ArraySlice&lt;T&gt;</code>.
-When you read the word &quot;array&quot; here in a normal typeface, it
-applies to all three of them.</p>
+array types, <code>Array&lt;Element&gt;</code>, <code>ContiguousArray&lt;Element&gt;</code>, and
+<code>ArraySlice&lt;Element&gt;</code>.  When you read the word &quot;array&quot; here in
+a normal typeface, it applies to all three of them.</p>
 
 <h2>Value Semantics</h2>
 
@@ -59,12 +59,12 @@ intermediate reallocations.</p>
 <p>The main distinction between <code>Array</code> and the other array types is
 that it interoperates seamlessly and efficiently with Objective-C.</p>
 
-<p><code>Array&lt;T&gt;</code> is considered bridged to Objective-C iff <code>T</code> is bridged
-to Objective-C.</p>
+<p><code>Array&lt;Element&gt;</code> is considered bridged to Objective-C iff <code>Element</code>
+is bridged to Objective-C.</p>
 
-<p>When <code>T</code> is a <code>class</code> or <code>@objc</code> protocol type, <code>Array</code> may store
-its elements in an <code>NSArray</code>.  Since any arbitrary subclass of
-<code>NSArray</code> can become an <code>Array</code>, there are no guarantees about
+<p>When <code>Element</code> is a <code>class</code> or <code>@objc</code> protocol type, <code>Array</code> may
+store its elements in an <code>NSArray</code>.  Since any arbitrary subclass
+of <code>NSArray</code> can become an <code>Array</code>, there are no guarantees about
 representation or efficiency in this case (see also
 <code>ContiguousArray</code>).  Since <code>NSArray</code> is immutable, it is just as
 though the storage was shared by some copy: the first in any
@@ -76,7 +76,7 @@ where <code>N</code> is the length of the array (or more, if the underlying
 <h2>Bridging to Objective-C</h2>
 
 <p>Any bridged <code>Array</code> can be implicitly converted to an <code>NSArray</code>.
-When <code>T</code> is a <code>class</code> or <code>@objc</code> protocol, bridging takes O(1)
+When <code>Element</code> is a <code>class</code> or <code>@objc</code> protocol, bridging takes O(1)
 time and O(1) space.  Other <code>Array</code>s must be bridged
 element-by-element, allocating a new object for each element, at a
 cost of at least O(<code>count</code>) time and space.</p>
@@ -84,26 +84,20 @@ cost of at least O(<code>count</code>) time and space.</p>
 <h2>Bridging from Objective-C</h2>
 
 <p>An <code>NSArray</code> can be implicitly or explicitly converted to any
-bridged <code>Array&lt;T&gt;</code>.  This conversion calls <code>copyWithZone</code> on the
-<code>NSArray</code>, to ensure it won&#39;t be modified, and stores the result
-in the <code>Array</code>.  Type-checking, to ensure the <code>NSArray</code>&#39;s
-elements match or can be bridged to <code>T</code>, is deferred until the
+bridged <code>Array&lt;Element&gt;</code>.  This conversion calls <code>copyWithZone</code>
+on the <code>NSArray</code>, to ensure it won&#39;t be modified, and stores the
+result in the <code>Array</code>.  Type-checking, to ensure the <code>NSArray</code>&#39;s
+elements match or can be bridged to <code>Element</code>, is deferred until the
 first element access.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType, MutableCollectionType, Sliceable, _Sliceable, _DestructorSafeContainer, __ArrayType, ArrayLiteralConvertible, _ArrayType, MutableSliceable, RangeReplaceableCollectionType, ExtensibleCollectionType, Reflectable, CustomStringConvertible, CustomDebugStringConvertible</code>
+<code class="inherits">CollectionType, SequenceType, _CollectionGeneratorDefaultsType, _CollectionDefaultsType, MutableCollectionType, Sliceable, _Sliceable, _DestructorSafeContainer, __ArrayType, ArrayLiteralConvertible, _ArrayType, MutableSliceable, RangeReplaceableCollectionType, ExtensibleCollectionType, _Reflectable, CustomStringConvertible, CustomDebugStringConvertible</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
-<code class="language-swift">typealias Element = T</code>
-<div class="comment">
-    <p>The type of element stored by this <code>Array</code>.</p>
-</div>
-</div>
-<div class="declaration">
-<code class="language-swift">typealias SubSlice = ArraySlice&lt;T&gt;</code>
+<code class="language-swift">typealias SubSlice = ArraySlice&lt;Element&gt;</code>
 <div class="comment">
     <p>A type that can represent a sub-range of an <code>Array</code>.</p>
 </div>
@@ -113,7 +107,7 @@ first element access.</p>
 
 <h3>Initializers</h3>
 <div class="declaration">
-<code class="language-swift">init(arrayLiteral elements: T...)</code>
+<code class="language-swift">init(arrayLiteral elements: Element...)</code>
 <div class="comment">
     <p>Create an instance containing <code>elements</code>.</p>
 </div>
@@ -127,11 +121,11 @@ first element access.</p>
 <div class="declaration">
 <code class="language-swift">init&lt;S : SequenceType where S.Generator.Element == _Buffer.Element&gt;(_ s: S)</code>
 <div class="comment">
-    <p>Construct from an arbitrary sequence with elements of type <code>T</code>.</p>
+    <p>Construct from an arbitrary sequence with elements of type <code>Element</code>.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">init(count: Int, repeatedValue: T)</code>
+<code class="language-swift">init(count: Int, repeatedValue: Element)</code>
 <div class="comment">
     <p>Construct a Array of <code>count</code> elements, each initialized to
 <code>repeatedValue</code>.</p>
@@ -140,38 +134,38 @@ first element access.</p>
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-startIndex">
 <code class="language-swift">var startIndex: Int { get }</code>
 <div class="comment">
     <p>Always zero, which is the index of the first element when non-empty.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-endIndex">
 <code class="language-swift">var endIndex: Int { get }</code>
 <div class="comment">
     <p>A &quot;past-the-end&quot; element index; the successor of the last valid
 subscript argument.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-count">
 <code class="language-swift">var count: Int { get }</code>
 <div class="comment">
     <p>The number of elements the Array stores.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-capacity">
 <code class="language-swift">var capacity: Int { get }</code>
 <div class="comment">
     <p>The number of elements the <code>Array</code> can store without reallocation.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-description">
 <code class="language-swift">var description: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-debugDescription">
 <code class="language-swift">var debugDescription: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>, suitable for debugging.</p>
@@ -180,15 +174,7 @@ subscript argument.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
-<code class="language-swift">func generate() -> IndexingGenerator&lt;[T]&gt;</code>
-<div class="comment">
-    <p>Return a <em>generator</em> over the elements.</p>
-
-<p><strong>Complexity:</strong> O(1).</p>
-</div>
-</div>
-<div class="declaration">
+<div class="declaration" id="func-reserveCapacity">
 <code class="language-swift">mutating func reserveCapacity(minimumCapacity: Int)</code>
 <div class="comment">
     <p>Reserve enough space to store <code>minimumCapacity</code> elements.</p>
@@ -199,32 +185,32 @@ subscript argument.</p>
 <p><strong>Complexity:</strong> O(<code>count</code>).</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">mutating func append(newElement: T)</code>
+<div class="declaration" id="func-append">
+<code class="language-swift">mutating func append(newElement: Element)</code>
 <div class="comment">
     <p>Append <code>newElement</code> to the Array.</p>
 
 <p><strong>Complexity:</strong> Amortized O(1) unless <code>self</code>&#39;s storage is shared with another live array; O(<code>count</code>) if <code>self</code> does not wrap a bridged <code>NSArray</code>; otherwise the efficiency is unspecified..</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">mutating func extend&lt;S : SequenceType where S.Generator.Element == T&gt;(newElements: S)</code>
+<div class="declaration" id="func-extend">
+<code class="language-swift">mutating func extend&lt;S : SequenceType where S.Generator.Element == Element&gt;(newElements: S)</code>
 <div class="comment">
     <p>Append the elements of <code>newElements</code> to <code>self</code>.</p>
 
 <p><strong>Complexity:</strong> O(<em>length of result</em>).</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">mutating func removeLast() -> T</code>
+<div class="declaration" id="func-removeLast">
+<code class="language-swift">mutating func removeLast() -> Element</code>
 <div class="comment">
     <p>Remove an element from the end of the Array in O(1).</p>
 
 <p><strong>Requires:</strong> <code>count &gt; 0</code>.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">mutating func insert(newElement: T, atIndex i: Int)</code>
+<div class="declaration" id="func-insert">
+<code class="language-swift">mutating func insert(newElement: Element, atIndex i: Int)</code>
 <div class="comment">
     <p>Insert <code>newElement</code> at index <code>i</code>.</p>
 
@@ -233,8 +219,8 @@ subscript argument.</p>
 <p><strong>Complexity:</strong> O(<code>count</code>).</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">mutating func removeAtIndex(index: Int) -> T</code>
+<div class="declaration" id="func-removeAtIndex">
+<code class="language-swift">mutating func removeAtIndex(index: Int) -> Element</code>
 <div class="comment">
     <p>Remove and return the element at index <code>i</code>.</p>
 
@@ -243,7 +229,7 @@ subscript argument.</p>
 <p><strong>Complexity:</strong> O(<code>count</code>).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-removeAll">
 <code class="language-swift">mutating func removeAll(keepCapacity keepCapacity: Bool = default)</code>
 <div class="comment">
     <p>Remove all elements.</p>
@@ -253,8 +239,8 @@ subscript argument.</p>
 <p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func join&lt;S : SequenceType where S.Generator.Element == Array&lt;T&gt;&gt;(elements: S) -> [T]</code>
+<div class="declaration" id="func-join">
+<code class="language-swift">func join&lt;S : SequenceType where S.Generator.Element == Array&lt;Element&gt;&gt;(elements: S) -> [Element]</code>
 <div class="comment">
     <p>Interpose <code>self</code> between each consecutive pair of <code>elements</code>,
 and concatenate the elements of the resulting sequence.  For
@@ -262,14 +248,14 @@ example, <code>[-1, -2].join([[1, 2, 3], [4, 5, 6], [7, 8, 9]])</code>
 yields <code>[1, 2, 3, -1, -2, 4, 5, 6, -1, -2, 7, 8, 9]</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-getMirror">
 <code class="language-swift">func getMirror() -> MirrorType</code>
 <div class="comment">
     <p>Returns a mirror that reflects <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func withUnsafeBufferPointer&lt;R&gt;(@noescape body: (UnsafeBufferPointer&lt;T&gt;) -&gt; R) -> R</code>
+<div class="declaration" id="func-withUnsafeBufferPointer">
+<code class="language-swift">func withUnsafeBufferPointer&lt;R&gt;(@noescape body: (UnsafeBufferPointer&lt;Element&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Call <code>body(p)</code>, where <code>p</code> is a pointer to the <code>Array</code>&#39;s
 contiguous storage. If no such storage exists, it is first created.</p>
@@ -280,8 +266,8 @@ same algorithm on <code>body</code>&#39;s argument lets you trade safety for
 speed.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">mutating func withUnsafeMutableBufferPointer&lt;R&gt;(@noescape body: (inout UnsafeMutableBufferPointer&lt;T&gt;) -&gt; R) -> R</code>
+<div class="declaration" id="func-withUnsafeMutableBufferPointer">
+<code class="language-swift">mutating func withUnsafeMutableBufferPointer&lt;R&gt;(@noescape body: (inout UnsafeMutableBufferPointer&lt;Element&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Call <code>body(p)</code>, where <code>p</code> is a pointer to the <code>Array</code>&#39;s
 mutable contiguous storage. If no such storage exists, it is first created.</p>
@@ -297,7 +283,7 @@ speed.</p>
   use only the <code>UnsafeMutableBufferPointer</code> argument to <code>body</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-replaceRange">
 <code class="language-swift">mutating func replaceRange&lt;C : CollectionType where C.Generator.Element == _Buffer.Element&gt;(subRange: Range&lt;Int&gt;, with newElements: C)</code>
 <div class="comment">
     <p>Replace the given <code>subRange</code> of elements with <code>newElements</code>.</p>
@@ -306,8 +292,8 @@ speed.</p>
   == self.endIndex</code> and <code>isEmpty(newElements)</code>, O(N) otherwise.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">mutating func splice&lt;S : CollectionType where S.Generator.Element == T&gt;(newElements: S, atIndex i: Int)</code>
+<div class="declaration" id="func-splice">
+<code class="language-swift">mutating func splice&lt;S : CollectionType where S.Generator.Element == Element&gt;(newElements: S, atIndex i: Int)</code>
 <div class="comment">
     <p>Insert <code>newElements</code> at index <code>i</code>.</p>
 
@@ -316,7 +302,7 @@ speed.</p>
 <p><strong>Complexity:</strong> O(<code>count + newElements.count</code>).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-removeRange">
 <code class="language-swift">mutating func removeRange(subRange: Range&lt;Int&gt;)</code>
 <div class="comment">
     <p>Remove the indicated <code>subRange</code> of elements.</p>
@@ -327,10 +313,10 @@ speed.</p>
 
 <h3>Subscripts</h3>
 <div class="declaration">
-<code class="language-swift">subscript(index: Int) -> T</code>
+<code class="language-swift">subscript(index: Int) -> Element</code>
 </div>
 <div class="declaration">
-<code class="language-swift">subscript(subRange: Range&lt;Int&gt;) -> ArraySlice&lt;T&gt;</code>
+<code class="language-swift">subscript(subRange: Range&lt;Int&gt;) -> ArraySlice&lt;Element&gt;</code>
 </div>
 
 

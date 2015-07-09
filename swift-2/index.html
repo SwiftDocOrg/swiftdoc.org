@@ -26,7 +26,6 @@ root: "/swift-2"
 <li><a href="/swift-2/type/Array/">Array</a></li>
 <li><a href="/swift-2/type/ArraySlice/">ArraySlice</a></li>
 <li><a href="/swift-2/type/AutoreleasingUnsafeMutablePointer/">AutoreleasingUnsafeMutablePointer</a></li>
-<li><a href="/swift-2/type/BidirectionalReverseView/">BidirectionalReverseView</a></li>
 <li><a href="/swift-2/type/Bit/">Bit</a></li>
 <li><a href="/swift-2/type/Bool/">Bool</a></li>
 <li><a href="/swift-2/type/COpaquePointer/">COpaquePointer</a></li>
@@ -44,10 +43,10 @@ root: "/swift-2"
 <li><a href="/swift-2/type/EmptyGenerator/">EmptyGenerator</a></li>
 <li><a href="/swift-2/type/EnumerateGenerator/">EnumerateGenerator</a></li>
 <li><a href="/swift-2/type/EnumerateSequence/">EnumerateSequence</a></li>
-<li><a href="/swift-2/type/FilterCollectionView/">FilterCollectionView</a></li>
-<li><a href="/swift-2/type/FilterCollectionViewIndex/">FilterCollectionViewIndex</a></li>
+<li><a href="/swift-2/type/FilterCollection/">FilterCollection</a></li>
+<li><a href="/swift-2/type/FilterCollectionIndex/">FilterCollectionIndex</a></li>
 <li><a href="/swift-2/type/FilterGenerator/">FilterGenerator</a></li>
-<li><a href="/swift-2/type/FilterSequenceView/">FilterSequenceView</a></li>
+<li><a href="/swift-2/type/FilterSequence/">FilterSequence</a></li>
 <li><a href="/swift-2/type/Float/">Float</a></li>
 <li><a href="/swift-2/type/Float80/">Float80</a></li>
 <li><a href="/swift-2/type/FloatingPointClassification/">FloatingPointClassification</a></li>
@@ -68,15 +67,15 @@ root: "/swift-2"
 <li><a href="/swift-2/type/ManagedBuffer/">ManagedBuffer</a></li>
 <li><a href="/swift-2/type/ManagedBufferPointer/">ManagedBufferPointer</a></li>
 <li><a href="/swift-2/type/ManagedProtoBuffer/">ManagedProtoBuffer</a></li>
-<li><a href="/swift-2/type/MapCollectionView/">MapCollectionView</a></li>
-<li><a href="/swift-2/type/MapSequenceGenerator/">MapSequenceGenerator</a></li>
-<li><a href="/swift-2/type/MapSequenceView/">MapSequenceView</a></li>
+<li><a href="/swift-2/type/MapCollection/">MapCollection</a></li>
+<li><a href="/swift-2/type/MapGenerator/">MapGenerator</a></li>
+<li><a href="/swift-2/type/MapSequence/">MapSequence</a></li>
 <li><a href="/swift-2/type/Mirror/">Mirror</a></li>
+<li><a href="/swift-2/type/Mirror.AncestorRepresentation/">Mirror.AncestorRepresentation</a></li>
 </ul>
 </div>
 <div class="col-sm-6">
 <ul class="main-list">
-<li><a href="/swift-2/type/Mirror.AncestorRepresentation/">Mirror.AncestorRepresentation</a></li>
 <li><a href="/swift-2/type/Mirror.DisplayStyle/">Mirror.DisplayStyle</a></li>
 <li><a href="/swift-2/type/MirrorDisposition/">MirrorDisposition</a></li>
 <li><a href="/swift-2/type/NonObjectiveCBase/">NonObjectiveCBase</a></li>
@@ -85,12 +84,13 @@ root: "/swift-2"
 <li><a href="/swift-2/type/PermutationGenerator/">PermutationGenerator</a></li>
 <li><a href="/swift-2/type/Process/">Process</a></li>
 <li><a href="/swift-2/type/QuickLookObject/">QuickLookObject</a></li>
-<li><a href="/swift-2/type/RandomAccessReverseView/">RandomAccessReverseView</a></li>
 <li><a href="/swift-2/type/Range/">Range</a></li>
 <li><a href="/swift-2/type/RangeGenerator/">RangeGenerator</a></li>
 <li><a href="/swift-2/type/RawByte/">RawByte</a></li>
 <li><a href="/swift-2/type/Repeat/">Repeat</a></li>
-<li><a href="/swift-2/type/ReverseBidirectionalIndex/">ReverseBidirectionalIndex</a></li>
+<li><a href="/swift-2/type/ReverseCollection/">ReverseCollection</a></li>
+<li><a href="/swift-2/type/ReverseIndex/">ReverseIndex</a></li>
+<li><a href="/swift-2/type/ReverseRandomAccessCollection/">ReverseRandomAccessCollection</a></li>
 <li><a href="/swift-2/type/ReverseRandomAccessIndex/">ReverseRandomAccessIndex</a></li>
 <li><a href="/swift-2/type/Set/">Set</a></li>
 <li><a href="/swift-2/type/SetGenerator/">SetGenerator</a></li>
@@ -129,8 +129,8 @@ root: "/swift-2"
 <li><a href="/swift-2/type/UnsafeMutablePointer/">UnsafeMutablePointer</a></li>
 <li><a href="/swift-2/type/UnsafePointer/">UnsafePointer</a></li>
 <li><a href="/swift-2/type/VaListBuilder/">VaListBuilder</a></li>
-<li><a href="/swift-2/type/Zip2/">Zip2</a></li>
-<li><a href="/swift-2/type/ZipGenerator2/">ZipGenerator2</a></li>
+<li><a href="/swift-2/type/Zip2Generator/">Zip2Generator</a></li>
+<li><a href="/swift-2/type/Zip2Sequence/">Zip2Sequence</a></li>
 <li><a href="/swift-2/type/_SwiftNSOperatingSystemVersion/">_SwiftNSOperatingSystemVersion</a></li>
 </ul>
 </div>
@@ -192,16 +192,14 @@ root: "/swift-2"
 <li><a href="/swift-2/protocol/OutputStreamType/">OutputStreamType</a></li>
 <li><a href="/swift-2/protocol/RandomAccessIndexType/">RandomAccessIndexType</a></li>
 <li><a href="/swift-2/protocol/RangeReplaceableCollectionType/">RangeReplaceableCollectionType</a></li>
-<li><a href="/swift-2/protocol/RawOptionSetType/">RawOptionSetType</a></li>
 <li><a href="/swift-2/protocol/RawRepresentable/">RawRepresentable</a></li>
-<li><a href="/swift-2/protocol/Reflectable/">Reflectable</a></li>
 <li><a href="/swift-2/protocol/SequenceType/">SequenceType</a></li>
 <li><a href="/swift-2/protocol/SetAlgebraType/">SetAlgebraType</a></li>
+<li><a href="/swift-2/protocol/SignedIntegerType/">SignedIntegerType</a></li>
 </ul>
 </div>
 <div class="col-sm-6">
 <ul class="main-list">
-<li><a href="/swift-2/protocol/SignedIntegerType/">SignedIntegerType</a></li>
 <li><a href="/swift-2/protocol/SignedNumberType/">SignedNumberType</a></li>
 <li><a href="/swift-2/protocol/SinkType/">SinkType</a></li>
 <li><a href="/swift-2/protocol/Sliceable/">Sliceable</a></li>
@@ -221,6 +219,7 @@ root: "/swift-2"
 <li><a href="/swift-2/protocol/_CollectionGeneratorDefaultsType/">_CollectionGeneratorDefaultsType</a></li>
 <li><a href="/swift-2/protocol/_ColorLiteralConvertible/">_ColorLiteralConvertible</a></li>
 <li><a href="/swift-2/protocol/_DestructorSafeContainer/">_DestructorSafeContainer</a></li>
+<li><a href="/swift-2/protocol/_DisallowMixedSignArithmetic/">_DisallowMixedSignArithmetic</a></li>
 <li><a href="/swift-2/protocol/_ImageLiteralConvertible/">_ImageLiteralConvertible</a></li>
 <li><a href="/swift-2/protocol/_Incrementable/">_Incrementable</a></li>
 <li><a href="/swift-2/protocol/_IntegerArithmeticType/">_IntegerArithmeticType</a></li>
@@ -236,13 +235,12 @@ root: "/swift-2"
 <li><a href="/swift-2/protocol/_NSStringCoreType/">_NSStringCoreType</a></li>
 <li><a href="/swift-2/protocol/_ObjectiveCBridgeable/">_ObjectiveCBridgeable</a></li>
 <li><a href="/swift-2/protocol/_PointerType/">_PointerType</a></li>
-<li><a href="/swift-2/protocol/_RawOptionSetType/">_RawOptionSetType</a></li>
+<li><a href="/swift-2/protocol/_Reflectable/">_Reflectable</a></li>
 <li><a href="/swift-2/protocol/_ShadowProtocol/">_ShadowProtocol</a></li>
 <li><a href="/swift-2/protocol/_SignedIntegerType/">_SignedIntegerType</a></li>
 <li><a href="/swift-2/protocol/_Sliceable/">_Sliceable</a></li>
 <li><a href="/swift-2/protocol/_Strideable/">_Strideable</a></li>
 <li><a href="/swift-2/protocol/_StringElementType/">_StringElementType</a></li>
-<li><a href="/swift-2/protocol/_UnsignedIntegerType/">_UnsignedIntegerType</a></li>
 <li><a href="/swift-2/protocol/__ArrayType/">__ArrayType</a></li>
 </ul>
 </div>

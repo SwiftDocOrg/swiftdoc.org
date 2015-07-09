@@ -14,16 +14,16 @@ strict digraph "UInt64 - Type Hierarchy - SwiftDoc.org" {
     "IntegerLiteralConvertible" [URL="/protocol/IntegerLiteralConvertible/"]
     "IntegerType" [URL="/protocol/IntegerType/"]
     "RandomAccessIndexType" [URL="/protocol/RandomAccessIndexType/"]
-    "Reflectable" [URL="/protocol/Reflectable/"]
     "Strideable" [URL="/protocol/Strideable/"]
     "UInt64" [URL="/type/UInt64/", style="filled", fillcolor="#ee543d", color="#ee543d"]
     "UnsignedIntegerType" [URL="/protocol/UnsignedIntegerType/"]
     "_CVarArgAlignedType" [URL="/protocol/_CVarArgAlignedType/"]
+    "_DisallowMixedSignArithmetic" [URL="/protocol/_DisallowMixedSignArithmetic/"]
     "_Incrementable" [URL="/protocol/_Incrementable/"]
     "_IntegerArithmeticType" [URL="/protocol/_IntegerArithmeticType/"]
     "_IntegerType" [URL="/protocol/_IntegerType/"]
-    "_Strideable" [URL="/protocol/_Strideable/"]
-    "_UnsignedIntegerType" [URL="/protocol/_UnsignedIntegerType/"]    "UnsignedIntegerType" -> "UInt64"
+    "_Reflectable" [URL="/protocol/_Reflectable/"]
+    "_Strideable" [URL="/protocol/_Strideable/"]    "UnsignedIntegerType" -> "UInt64"
     "IntegerType" -> "UInt64"
     "Equatable" -> "UInt64"
     "Comparable" -> "UInt64"
@@ -31,7 +31,7 @@ strict digraph "UInt64 - Type Hierarchy - SwiftDoc.org" {
     "IntegerArithmeticType" -> "UInt64"
     "_IntegerArithmeticType" -> "UInt64"
     "IntegerLiteralConvertible" -> "UInt64"
-    "_UnsignedIntegerType" -> "UInt64"
+    "_DisallowMixedSignArithmetic" -> "UInt64"
     "Hashable" -> "UInt64"
     "CustomStringConvertible" -> "UInt64"
     "RandomAccessIndexType" -> "UInt64"
@@ -41,12 +41,12 @@ strict digraph "UInt64 - Type Hierarchy - SwiftDoc.org" {
     "Strideable" -> "UInt64"
     "_Strideable" -> "UInt64"
     "BitwiseOperationsType" -> "UInt64"
-    "Reflectable" -> "UInt64"
+    "_Reflectable" -> "UInt64"
     "CVarArgType" -> "UInt64"
     "_CVarArgAlignedType" -> "UInt64"
-    "_UnsignedIntegerType" -> "UnsignedIntegerType"
+    "_DisallowMixedSignArithmetic" -> "UnsignedIntegerType"
     "IntegerType" -> "UnsignedIntegerType"
-    "_IntegerType" -> "_UnsignedIntegerType"
+    "_IntegerType" -> "_DisallowMixedSignArithmetic"
     "IntegerLiteralConvertible" -> "_IntegerType"
     "CustomStringConvertible" -> "_IntegerType"
     "Hashable" -> "_IntegerType"
@@ -115,7 +115,7 @@ strict digraph "UInt64 - Type Hierarchy - SwiftDoc.org" {
     "_IntegerArithmeticType" -> "IntegerArithmeticType"
     "Comparable" -> "IntegerArithmeticType"
     "Equatable" -> "Comparable"
-    "_IntegerType" -> "_UnsignedIntegerType"
+    "_IntegerType" -> "_DisallowMixedSignArithmetic"
     "IntegerLiteralConvertible" -> "_IntegerType"
     "CustomStringConvertible" -> "_IntegerType"
     "Hashable" -> "_IntegerType"

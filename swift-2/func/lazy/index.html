@@ -6,26 +6,26 @@ keywords: "lazy,func,swift,documentation"
 root: "/swift-2"
 ---
 
-<div class="declaration">
-<code class="language-swift">func lazy&lt;S : SequenceType&gt;(s: S) -> LazySequence&lt;S&gt;</code>
+<div class="declaration" id="func-lazy">
+<code class="language-swift">func lazy&lt;Base : SequenceType&gt;(s: Base) -> LazySequence&lt;Base&gt;</code>
 <div class="comment">
     <p>Augment <code>s</code> with lazy methods such as <code>map</code>, <code>filter</code>, etc.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func lazy&lt;S : CollectionType where S.Index : ForwardIndexType&gt;(s: S) -> LazyForwardCollection&lt;S&gt;</code>
+<div class="declaration" id="func-lazy">
+<code class="language-swift">func lazy&lt;Base : CollectionType where Base.Index : ForwardIndexType&gt;(s: Base) -> LazyForwardCollection&lt;Base&gt;</code>
 <div class="comment">
     <p>Augment <code>s</code> with lazy methods such as <code>map</code>, <code>filter</code>, etc.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func lazy&lt;S : CollectionType where S.Index : RandomAccessIndexType&gt;(s: S) -> LazyRandomAccessCollection&lt;S&gt;</code>
+<div class="declaration" id="func-lazy">
+<code class="language-swift">func lazy&lt;Base : CollectionType where Base.Index : RandomAccessIndexType&gt;(s: Base) -> LazyRandomAccessCollection&lt;Base&gt;</code>
 <div class="comment">
     <p>Augment <code>s</code> with lazy methods such as <code>map</code>, <code>filter</code>, etc.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func lazy&lt;S : CollectionType where S.Index : BidirectionalIndexType&gt;(s: S) -> LazyBidirectionalCollection&lt;S&gt;</code>
+<div class="declaration" id="func-lazy">
+<code class="language-swift">func lazy&lt;Base : CollectionType where Base.Index : BidirectionalIndexType&gt;(s: Base) -> LazyBidirectionalCollection&lt;Base&gt;</code>
 <div class="comment">
     <p>Augment <code>s</code> with lazy methods such as <code>map</code>, <code>filter</code>, etc.</p>
 </div>

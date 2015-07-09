@@ -1,22 +1,22 @@
 ---
 layout: "default"
 title: "Repeat"
-description: "Swift documentation for 'Repeat': A collection whose elements are all identical Ts."
-keywords: "Repeat,struct,swift,documentation,generate,startIndex,endIndex,count,repeatedValue,Index"
+description: "Swift documentation for 'Repeat': A collection whose elements are all identical Elements."
+keywords: "Repeat,struct,swift,documentation,startIndex,endIndex,count,repeatedValue,Index"
 root: "/swift-2"
 ---
 
-<code class="language-swift">struct Repeat&lt;T&gt; { ... }</code>
+<code class="language-swift">struct Repeat&lt;Element&gt; { ... }</code>
 
 <div class="comment">
-    <p>A collection whose elements are all identical <code>T</code>s.</p>
+    <p>A collection whose elements are all identical <code>Element</code>s.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType</code>
+<code class="inherits">CollectionType, SequenceType, _CollectionGeneratorDefaultsType, _CollectionDefaultsType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias Index = Int</code>
 <div class="comment">
@@ -31,7 +31,7 @@ root: "/swift-2"
 
 <h3>Initializers</h3>
 <div class="declaration">
-<code class="language-swift">init(count: Int, repeatedValue: T)</code>
+<code class="language-swift">init(count: Int, repeatedValue: Element)</code>
 <div class="comment">
     <p>Construct an instance that contains <code>count</code> elements having the
 value <code>repeatedValue</code>.</p>
@@ -40,47 +40,38 @@ value <code>repeatedValue</code>.</p>
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-startIndex">
 <code class="language-swift">var startIndex: Index { get }</code>
 <div class="comment">
     <p>Always zero, which is the index of the first element in a
 non-empty instance.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-endIndex">
 <code class="language-swift">var endIndex: Index { get }</code>
 <div class="comment">
     <p>Always equal to <code>count</code>, which is one greater than the index of
 the last element in a non-empty instance.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-count">
 <code class="language-swift">var count: Int { get set }</code>
 <div class="comment">
     <p>The number of elements in this collection.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">var repeatedValue: T { get }</code>
+<div class="declaration" id="prop-repeatedValue">
+<code class="language-swift">var repeatedValue: Element { get }</code>
 <div class="comment">
     <p>The value of every element in this collection.</p>
 </div>
 </div>
 
 
-<h3>Instance Methods</h3>
-<div class="declaration">
-<code class="language-swift">func generate() -> IndexingGenerator&lt;Repeat&lt;T&gt;&gt;</code>
-<div class="comment">
-    <p>Returns a <em>generator</em> over the elements of this <em>sequence</em>.</p>
-
-<p><strong>Complexity:</strong> O(1).</p>
-</div>
-</div>
 
 <h3>Subscripts</h3>
 <div class="declaration">
-<code class="language-swift">subscript(position: Int) -> T { get }</code>
+<code class="language-swift">subscript(position: Int) -> Element { get }</code>
 </div>
 
 

@@ -1,0 +1,21 @@
+strict digraph "ReverseCollection<Base : CollectionType where Base.Index : BidirectionalIndexType> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "CollectionType" [URL="/protocol/CollectionType/"]
+    "ReverseCollection<Base : CollectionType where Base.Index : BidirectionalIndexType>" [URL="/type/ReverseCollection/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "SequenceType" [URL="/protocol/SequenceType/"]
+    "_CollectionDefaultsType" [URL="/protocol/_CollectionDefaultsType/"]
+    "_CollectionGeneratorDefaultsType" [URL="/protocol/_CollectionGeneratorDefaultsType/"]    "CollectionType" -> "ReverseCollection<Base : CollectionType where Base.Index : BidirectionalIndexType>"
+    "SequenceType" -> "ReverseCollection<Base : CollectionType where Base.Index : BidirectionalIndexType>"
+    "_CollectionGeneratorDefaultsType" -> "ReverseCollection<Base : CollectionType where Base.Index : BidirectionalIndexType>"
+    "_CollectionDefaultsType" -> "ReverseCollection<Base : CollectionType where Base.Index : BidirectionalIndexType>"
+    "SequenceType" -> "CollectionType"
+    "_CollectionDefaultsType" -> "CollectionType"
+    "_CollectionGeneratorDefaultsType" -> "CollectionType"
+    "SequenceType" -> "_CollectionDefaultsType"
+    "SequenceType" -> "_CollectionDefaultsType"
+    subgraph Types {
+        rank = max; "ReverseCollection<Base : CollectionType where Base.Index : BidirectionalIndexType>";
+    }
+}

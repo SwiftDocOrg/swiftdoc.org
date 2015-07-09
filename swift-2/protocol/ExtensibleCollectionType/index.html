@@ -31,7 +31,7 @@ root: "/swift-2"
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-reserveCapacity">
 <code class="language-swift">mutating func reserveCapacity(n: Self.Index.Distance)</code>
 <div class="comment">
     <p>A non-binding request to ensure <code>n</code> elements of available storage.</p>
@@ -42,7 +42,7 @@ reserve more than <code>n</code>, exactly <code>n</code>, less than <code>n</cod
 storage, or even ignore the request completely.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-append">
 <code class="language-swift">mutating func append(x: Self.Generator.Element)</code>
 <div class="comment">
     <p>Append <code>x</code> to <code>self</code>.</p>
@@ -53,7 +53,7 @@ storage, or even ignore the request completely.</p>
 <p><strong>Complexity:</strong> Amortized O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-extend">
 <code class="language-swift">mutating func extend&lt;S : SequenceType where S.Generator.Element == Generator.Element&gt;(newElements: S)</code>
 <div class="comment">
     <p>Append the elements of <code>newElements</code> to <code>self</code>.</p>

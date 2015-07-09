@@ -2,7 +2,7 @@
 layout: "default"
 title: "String.UTF8View"
 description: "Swift documentation for 'String.UTF8View': A collection of UTF-8 code units that encodes a String value."
-keywords: "String.UTF8View,struct,swift,documentation,generate,getMirror,startIndex,endIndex,description,debugDescription"
+keywords: "String.UTF8View,struct,swift,documentation,getMirror,startIndex,endIndex,description,debugDescription"
 root: "/swift-2"
 ---
 
@@ -13,7 +13,7 @@ root: "/swift-2"
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType, Reflectable, CustomStringConvertible, CustomDebugStringConvertible</code>
+<code class="inherits">CollectionType, SequenceType, _CollectionGeneratorDefaultsType, _CollectionDefaultsType, _Reflectable, CustomStringConvertible, CustomDebugStringConvertible</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -24,14 +24,14 @@ root: "/swift-2"
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-startIndex">
 <code class="language-swift">var startIndex: String.UTF8View.Index { get }</code>
 <div class="comment">
     <p>The position of the first code unit if the <code>String</code> is
 non-empty; identical to <code>endIndex</code> otherwise.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-endIndex">
 <code class="language-swift">var endIndex: String.UTF8View.Index { get }</code>
 <div class="comment">
     <p>The &quot;past the end&quot; position.</p>
@@ -41,25 +41,16 @@ reachable from <code>startIndex</code> by zero or more applications of
 <code>successor()</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-description">
 <code class="language-swift">var description: String { get }</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-debugDescription">
 <code class="language-swift">var debugDescription: String { get }</code>
 </div>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
-<code class="language-swift">func generate() -> IndexingGenerator&lt;String.UTF8View&gt;</code>
-<div class="comment">
-    <p>Returns a <em>generator</em> over the code points that comprise this
-<em>sequence</em>.</p>
-
-<p><strong>Complexity:</strong> O(1).</p>
-</div>
-</div>
-<div class="declaration">
+<div class="declaration" id="func-getMirror">
 <code class="language-swift">func getMirror() -> MirrorType</code>
 <div class="comment">
     <p>Returns a mirror that reflects <code>self</code>.</p>

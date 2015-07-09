@@ -14,16 +14,16 @@ strict digraph "UInt8 - Type Hierarchy - SwiftDoc.org" {
     "IntegerLiteralConvertible" [URL="/protocol/IntegerLiteralConvertible/"]
     "IntegerType" [URL="/protocol/IntegerType/"]
     "RandomAccessIndexType" [URL="/protocol/RandomAccessIndexType/"]
-    "Reflectable" [URL="/protocol/Reflectable/"]
     "Strideable" [URL="/protocol/Strideable/"]
     "UInt8" [URL="/type/UInt8/", style="filled", fillcolor="#ee543d", color="#ee543d"]
     "UnsignedIntegerType" [URL="/protocol/UnsignedIntegerType/"]
+    "_DisallowMixedSignArithmetic" [URL="/protocol/_DisallowMixedSignArithmetic/"]
     "_Incrementable" [URL="/protocol/_Incrementable/"]
     "_IntegerArithmeticType" [URL="/protocol/_IntegerArithmeticType/"]
     "_IntegerType" [URL="/protocol/_IntegerType/"]
+    "_Reflectable" [URL="/protocol/_Reflectable/"]
     "_Strideable" [URL="/protocol/_Strideable/"]
-    "_StringElementType" [URL="/protocol/_StringElementType/"]
-    "_UnsignedIntegerType" [URL="/protocol/_UnsignedIntegerType/"]    "UnsignedIntegerType" -> "UInt8"
+    "_StringElementType" [URL="/protocol/_StringElementType/"]    "UnsignedIntegerType" -> "UInt8"
     "IntegerType" -> "UInt8"
     "Equatable" -> "UInt8"
     "Comparable" -> "UInt8"
@@ -31,7 +31,7 @@ strict digraph "UInt8 - Type Hierarchy - SwiftDoc.org" {
     "IntegerArithmeticType" -> "UInt8"
     "_IntegerArithmeticType" -> "UInt8"
     "IntegerLiteralConvertible" -> "UInt8"
-    "_UnsignedIntegerType" -> "UInt8"
+    "_DisallowMixedSignArithmetic" -> "UInt8"
     "Hashable" -> "UInt8"
     "CustomStringConvertible" -> "UInt8"
     "RandomAccessIndexType" -> "UInt8"
@@ -41,12 +41,12 @@ strict digraph "UInt8 - Type Hierarchy - SwiftDoc.org" {
     "Strideable" -> "UInt8"
     "_Strideable" -> "UInt8"
     "BitwiseOperationsType" -> "UInt8"
-    "Reflectable" -> "UInt8"
+    "_Reflectable" -> "UInt8"
     "_StringElementType" -> "UInt8"
     "CVarArgType" -> "UInt8"
-    "_UnsignedIntegerType" -> "UnsignedIntegerType"
+    "_DisallowMixedSignArithmetic" -> "UnsignedIntegerType"
     "IntegerType" -> "UnsignedIntegerType"
-    "_IntegerType" -> "_UnsignedIntegerType"
+    "_IntegerType" -> "_DisallowMixedSignArithmetic"
     "IntegerLiteralConvertible" -> "_IntegerType"
     "CustomStringConvertible" -> "_IntegerType"
     "Hashable" -> "_IntegerType"
@@ -115,7 +115,7 @@ strict digraph "UInt8 - Type Hierarchy - SwiftDoc.org" {
     "_IntegerArithmeticType" -> "IntegerArithmeticType"
     "Comparable" -> "IntegerArithmeticType"
     "Equatable" -> "Comparable"
-    "_IntegerType" -> "_UnsignedIntegerType"
+    "_IntegerType" -> "_DisallowMixedSignArithmetic"
     "IntegerLiteralConvertible" -> "_IntegerType"
     "CustomStringConvertible" -> "_IntegerType"
     "Hashable" -> "_IntegerType"

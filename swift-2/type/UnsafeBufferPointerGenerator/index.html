@@ -7,7 +7,7 @@ keywords: "UnsafeBufferPointerGenerator,struct,swift,documentation,next,generate
 root: "/swift-2"
 ---
 
-<code class="language-swift">struct UnsafeBufferPointerGenerator&lt;T&gt; { ... }</code>
+<code class="language-swift">struct UnsafeBufferPointerGenerator&lt;Element&gt; { ... }</code>
 
 <div class="comment">
     <p>A generator for the elements in the buffer referenced by
@@ -26,15 +26,15 @@ root: "/swift-2"
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
-<code class="language-swift">mutating func next() -> T?</code>
+<div class="declaration" id="func-next">
+<code class="language-swift">mutating func next() -> Element?</code>
 <div class="comment">
     <p>Advance to the next element and return it, or <code>nil</code> if no next
 element exists.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func generate() -> UnsafeBufferPointerGenerator&lt;T&gt;</code>
+<div class="declaration" id="func-generate">
+<code class="language-swift">func generate() -> UnsafeBufferPointerGenerator&lt;Element&gt;</code>
 <div class="comment">
     <p><code>UnsafeBufferPointerGenerator</code> is also a <code>SequenceType</code>, so it
 <code>generate</code>&#39;s a copy of itself.</p>

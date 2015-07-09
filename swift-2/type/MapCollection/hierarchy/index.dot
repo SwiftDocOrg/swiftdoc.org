@@ -1,0 +1,21 @@
+strict digraph "MapCollection<Base : CollectionType, Element> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "CollectionType" [URL="/protocol/CollectionType/"]
+    "MapCollection<Base : CollectionType, Element>" [URL="/type/MapCollection/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "SequenceType" [URL="/protocol/SequenceType/"]
+    "_CollectionDefaultsType" [URL="/protocol/_CollectionDefaultsType/"]
+    "_CollectionGeneratorDefaultsType" [URL="/protocol/_CollectionGeneratorDefaultsType/"]    "CollectionType" -> "MapCollection<Base : CollectionType, Element>"
+    "SequenceType" -> "MapCollection<Base : CollectionType, Element>"
+    "_CollectionDefaultsType" -> "MapCollection<Base : CollectionType, Element>"
+    "_CollectionGeneratorDefaultsType" -> "MapCollection<Base : CollectionType, Element>"
+    "SequenceType" -> "CollectionType"
+    "_CollectionDefaultsType" -> "CollectionType"
+    "_CollectionGeneratorDefaultsType" -> "CollectionType"
+    "SequenceType" -> "_CollectionDefaultsType"
+    "SequenceType" -> "_CollectionDefaultsType"
+    subgraph Types {
+        rank = max; "MapCollection<Base : CollectionType, Element>";
+    }
+}

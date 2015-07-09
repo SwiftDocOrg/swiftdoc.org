@@ -23,7 +23,7 @@ compile-time&quot;.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">UnicodeScalarLiteralConvertible, ExtendedGraphemeClusterLiteralConvertible, StringLiteralConvertible, CustomStringConvertible, CustomDebugStringConvertible, Reflectable</code>
+<code class="inherits">UnicodeScalarLiteralConvertible, ExtendedGraphemeClusterLiteralConvertible, StringLiteralConvertible, CustomStringConvertible, CustomDebugStringConvertible, _Reflectable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -66,7 +66,7 @@ compile-time&quot;.</p>
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-utf8Start">
 <code class="language-swift">var utf8Start: UnsafePointer&lt;UInt8&gt; { get }</code>
 <div class="comment">
     <p>A pointer to the beginning of UTF-8 code units.</p>
@@ -75,7 +75,7 @@ compile-time&quot;.</p>
   units.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-unicodeScalar">
 <code class="language-swift">var unicodeScalar: UnicodeScalar { get }</code>
 <div class="comment">
     <p>The stored Unicode scalar value.</p>
@@ -83,7 +83,7 @@ compile-time&quot;.</p>
 <p><strong>Requires:</strong> <code>self</code> stores a single Unicode scalar value.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-byteSize">
 <code class="language-swift">var byteSize: Word { get }</code>
 <div class="comment">
     <p>If <code>self</code> stores a pointer to ASCII or UTF-8 code units, the
@@ -93,13 +93,13 @@ length in bytes of that data.</p>
 <code>byteSize</code> is unspecified.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-hasPointerRepresentation">
 <code class="language-swift">var hasPointerRepresentation: Bool { get }</code>
 <div class="comment">
     <p><code>true</code> iff <code>self</code> stores a pointer to ASCII or UTF-8 code units.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-isASCII">
 <code class="language-swift">var isASCII: Bool { get }</code>
 <div class="comment">
     <p><code>true</code> if <code>self</code> stores a pointer to ASCII code units.</p>
@@ -108,20 +108,20 @@ length in bytes of that data.</p>
 <code>isASCII</code> is unspecified.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-stringValue">
 <code class="language-swift">var stringValue: String { get }</code>
 <div class="comment">
     <p>Return a <code>String</code> representing the same sequence of Unicode
 scalar values as <code>self</code> does.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-description">
 <code class="language-swift">var description: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-debugDescription">
 <code class="language-swift">var debugDescription: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>, suitable for debugging.</p>
@@ -130,7 +130,7 @@ scalar values as <code>self</code> does.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-withUTF8Buffer">
 <code class="language-swift">func withUTF8Buffer&lt;R&gt;(@noescape body: (UnsafeBufferPointer&lt;UInt8&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Invoke <code>body</code> with a buffer containing the UTF-8 code units of
@@ -139,7 +139,7 @@ scalar values as <code>self</code> does.</p>
 <p>This method works regardless of what <code>self</code> stores.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-getMirror">
 <code class="language-swift">func getMirror() -> MirrorType</code>
 </div>
 

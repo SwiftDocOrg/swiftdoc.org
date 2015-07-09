@@ -1,41 +1,27 @@
 ---
 layout: "default"
 title: "RangeGenerator"
-description: "Swift documentation for 'RangeGenerator': A generator over the elements of Range&lt;T&gt;."
-keywords: "RangeGenerator,struct,swift,documentation,next,generate,startIndex,endIndex,Element,Generator"
+description: "Swift documentation for 'RangeGenerator': A generator over the elements of Range&lt;Element&gt;."
+keywords: "RangeGenerator,struct,swift,documentation,next,generate,startIndex,endIndex"
 root: "/swift-2"
 ---
 
-<code class="language-swift">struct RangeGenerator&lt;T : ForwardIndexType&gt; { ... }</code>
+<code class="language-swift">struct RangeGenerator&lt;Element : ForwardIndexType&gt; { ... }</code>
 
 <div class="comment">
-    <p>A generator over the elements of <code>Range&lt;T&gt;</code>.</p>
+    <p>A generator over the elements of <code>Range&lt;Element&gt;</code>.</p>
 </div>
 
 <h3>Inheritance</h3>
 <code class="inherits">GeneratorType, SequenceType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
-<div class="declaration">
-<code class="language-swift">typealias Element = T</code>
-<div class="comment">
-    <p>The type of element returned by <code>next()</code>.</p>
-</div>
-</div>
-<div class="declaration">
-<code class="language-swift">typealias Generator = RangeGenerator&lt;T&gt;</code>
-<div class="comment">
-    <p>A type whose instances can produce the elements of this
-sequence, in order.</p>
-</div>
-</div>
 
 
 
 <h3>Initializers</h3>
 <div class="declaration">
-<code class="language-swift">init(_ bounds: Range&lt;T&gt;)</code>
+<code class="language-swift">init(_ bounds: Range&lt;Element&gt;)</code>
 <div class="comment">
     <p>Construct an instance that traverses the elements of <code>bounds</code>.</p>
 </div>
@@ -43,14 +29,14 @@ sequence, in order.</p>
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
-<code class="language-swift">var startIndex: T { get set }</code>
+<div class="declaration" id="prop-startIndex">
+<code class="language-swift">var startIndex: Element { get set }</code>
 <div class="comment">
     <p>The lower bound of the remaining range.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">var endIndex: T { get set }</code>
+<div class="declaration" id="prop-endIndex">
+<code class="language-swift">var endIndex: Element { get set }</code>
 <div class="comment">
     <p>The upper bound of the remaining range; not included in the
 generated sequence.</p>
@@ -59,15 +45,15 @@ generated sequence.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
-<code class="language-swift">mutating func next() -> T?</code>
+<div class="declaration" id="func-next">
+<code class="language-swift">mutating func next() -> Element?</code>
 <div class="comment">
     <p>Advance to the next element and return it, or <code>nil</code> if no next
 element exists.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func generate() -> RangeGenerator&lt;T&gt;</code>
+<div class="declaration" id="func-generate">
+<code class="language-swift">func generate() -> RangeGenerator&lt;Element&gt;</code>
 <div class="comment">
     <p><code>RangeGenerator</code> is also a <code>SequenceType</code>, so it
 <code>generate</code>&#39;s a copy of itself.</p>

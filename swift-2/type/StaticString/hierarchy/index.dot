@@ -5,15 +5,15 @@ strict digraph "StaticString - Type Hierarchy - SwiftDoc.org" {
     "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/"]
     "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/"]
     "ExtendedGraphemeClusterLiteralConvertible" [URL="/protocol/ExtendedGraphemeClusterLiteralConvertible/"]
-    "Reflectable" [URL="/protocol/Reflectable/"]
     "StaticString" [URL="/type/StaticString/", style="filled", fillcolor="#ee543d", color="#ee543d"]
     "StringLiteralConvertible" [URL="/protocol/StringLiteralConvertible/"]
-    "UnicodeScalarLiteralConvertible" [URL="/protocol/UnicodeScalarLiteralConvertible/"]    "UnicodeScalarLiteralConvertible" -> "StaticString"
+    "UnicodeScalarLiteralConvertible" [URL="/protocol/UnicodeScalarLiteralConvertible/"]
+    "_Reflectable" [URL="/protocol/_Reflectable/"]    "UnicodeScalarLiteralConvertible" -> "StaticString"
     "ExtendedGraphemeClusterLiteralConvertible" -> "StaticString"
     "StringLiteralConvertible" -> "StaticString"
     "CustomStringConvertible" -> "StaticString"
     "CustomDebugStringConvertible" -> "StaticString"
-    "Reflectable" -> "StaticString"
+    "_Reflectable" -> "StaticString"
     "UnicodeScalarLiteralConvertible" -> "ExtendedGraphemeClusterLiteralConvertible"
     "ExtendedGraphemeClusterLiteralConvertible" -> "StringLiteralConvertible"
     "UnicodeScalarLiteralConvertible" -> "ExtendedGraphemeClusterLiteralConvertible"

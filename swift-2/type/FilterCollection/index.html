@@ -1,0 +1,95 @@
+---
+layout: "default"
+title: "FilterCollection"
+description: "Swift documentation for 'FilterCollection': A lazy CollectionType wrapper that includes the elements of an
+underlying collection that satisfy a predicate.  Not
+automatically returned by filter(x) for two reasons:."
+keywords: "FilterCollection,struct,swift,documentation,generate,startIndex,endIndex,Index"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct FilterCollection&lt;Base : CollectionType&gt; { ... }</code>
+
+<div class="comment">
+    <p>A lazy <code>CollectionType</code> wrapper that includes the elements of an
+underlying collection that satisfy a predicate.  Not
+automatically returned by <code>filter(x)</code> for two reasons:</p>
+
+<ul><li><p>The O(1) guarantee of our <code>Index</code> would be iffy at best, since
+it advances an underlying <code>Index</code> until the predicate is
+satisfied.  Be aware that a <code>FilterCollection</code> may not offer
+the expected efficiency for this reason.</p></li><li><p>Constructing an <code>Array</code> from a <code>CollectionType</code> measures the length
+of the collection before traversing it to read the elements.
+This causes the filter predicate to be called twice for each
+element of the underlying collection, which is surprising.</p></li></ul>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">CollectionType, SequenceType, _CollectionDefaultsType, _CollectionGeneratorDefaultsType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3 id="aliases">Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Index = FilterCollectionIndex&lt;Base&gt;</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(_ base: Base, includeElement predicate: (Base.Generator.Element) -&gt; Bool)</code>
+<div class="comment">
+    <p>Construct an instance containing the elements of <code>base</code> that
+satisfy <code>predicate</code>.</p>
+</div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="prop-startIndex">
+<code class="language-swift">var startIndex: FilterCollectionIndex&lt;Base&gt; { get }</code>
+<div class="comment">
+    <p>The position of the first element in a non-empty collection.</p>
+
+<p>In an empty collection, <code>startIndex == endIndex</code>.</p>
+
+<p><strong>Complexity:</strong> O(N), where N is the ratio between unfiltered and
+  filtered collection counts.</p>
+</div>
+</div>
+<div class="declaration" id="prop-endIndex">
+<code class="language-swift">var endIndex: FilterCollectionIndex&lt;Base&gt; { get }</code>
+<div class="comment">
+    <p>The collection&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-generate">
+<code class="language-swift">func generate() -> FilterGenerator&lt;Base.Generator&gt;</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration">
+<code class="language-swift">subscript(position: FilterCollectionIndex&lt;Base&gt;) -> Base.Generator.Element { get }</code>
+</div>
+
+

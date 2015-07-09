@@ -40,10 +40,10 @@ strict digraph "Comparable - Type Hierarchy - SwiftDoc.org" {
     "UnsafeMutablePointer" [URL="/type/UnsafeMutablePointer/", style=filled]
     "UnsafePointer" [URL="/type/UnsafePointer/", style=filled]
     "UnsignedIntegerType" [URL="/protocol/UnsignedIntegerType/"]
+    "_DisallowMixedSignArithmetic" [URL="/protocol/_DisallowMixedSignArithmetic/"]
     "_IntegerType" [URL="/protocol/_IntegerType/"]
     "_SignedIntegerType" [URL="/protocol/_SignedIntegerType/"]
-    "_SwiftNSOperatingSystemVersion" [URL="/type/_SwiftNSOperatingSystemVersion/", style=filled]
-    "_UnsignedIntegerType" [URL="/protocol/_UnsignedIntegerType/"]    "Comparable" -> "_SwiftNSOperatingSystemVersion"
+    "_SwiftNSOperatingSystemVersion" [URL="/type/_SwiftNSOperatingSystemVersion/", style=filled]    "Comparable" -> "_SwiftNSOperatingSystemVersion"
     "Comparable" -> "AnyRandomAccessIndex"
     "Comparable" -> "Bit"
     "Comparable" -> "Character"
@@ -99,8 +99,8 @@ strict digraph "Comparable - Type Hierarchy - SwiftDoc.org" {
     "_IntegerType" -> "UInt32"
     "_IntegerType" -> "UInt64"
     "_IntegerType" -> "UInt8"
+    "_IntegerType" -> "_DisallowMixedSignArithmetic"
     "_IntegerType" -> "_SignedIntegerType"
-    "_IntegerType" -> "_UnsignedIntegerType"
     "Int" -> "Bit"
     "IntegerType" -> "Int"
     "IntegerType" -> "Int16"
@@ -126,6 +126,17 @@ strict digraph "Comparable - Type Hierarchy - SwiftDoc.org" {
     "UnsignedIntegerType" -> "UInt32"
     "UnsignedIntegerType" -> "UInt64"
     "UnsignedIntegerType" -> "UInt8"
+    "_DisallowMixedSignArithmetic" -> "UInt"
+    "_DisallowMixedSignArithmetic" -> "UInt16"
+    "_DisallowMixedSignArithmetic" -> "UInt32"
+    "_DisallowMixedSignArithmetic" -> "UInt64"
+    "_DisallowMixedSignArithmetic" -> "UInt8"
+    "_DisallowMixedSignArithmetic" -> "UnsignedIntegerType"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
     "_SignedIntegerType" -> "Int"
     "_SignedIntegerType" -> "Int16"
     "_SignedIntegerType" -> "Int32"
@@ -139,17 +150,6 @@ strict digraph "Comparable - Type Hierarchy - SwiftDoc.org" {
     "SignedIntegerType" -> "Int64"
     "SignedIntegerType" -> "Int8"
     "Int" -> "Bit"
-    "_UnsignedIntegerType" -> "UInt"
-    "_UnsignedIntegerType" -> "UInt16"
-    "_UnsignedIntegerType" -> "UInt32"
-    "_UnsignedIntegerType" -> "UInt64"
-    "_UnsignedIntegerType" -> "UInt8"
-    "_UnsignedIntegerType" -> "UnsignedIntegerType"
-    "UnsignedIntegerType" -> "UInt"
-    "UnsignedIntegerType" -> "UInt16"
-    "UnsignedIntegerType" -> "UInt32"
-    "UnsignedIntegerType" -> "UInt64"
-    "UnsignedIntegerType" -> "UInt8"
     "SignedNumberType" -> "AbsoluteValuable"
     "SignedNumberType" -> "Double"
     "SignedNumberType" -> "Float"

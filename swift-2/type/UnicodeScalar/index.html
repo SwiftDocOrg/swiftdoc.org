@@ -13,7 +13,7 @@ root: "/swift-2"
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">UnicodeScalarLiteralConvertible, Reflectable, Streamable, CustomStringConvertible, CustomDebugStringConvertible, Hashable, Equatable, Comparable</code>
+<code class="inherits">UnicodeScalarLiteralConvertible, _Reflectable, Streamable, CustomStringConvertible, CustomDebugStringConvertible, Hashable, Equatable, Comparable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
@@ -74,25 +74,25 @@ root: "/swift-2"
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-value">
 <code class="language-swift">var value: UInt32 { get }</code>
 <div class="comment">
     <p>A numeric representation of <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-description">
 <code class="language-swift">var description: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-debugDescription">
 <code class="language-swift">var debugDescription: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>, suitable for debugging.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-hashValue">
 <code class="language-swift">var hashValue: Int { get }</code>
 <div class="comment">
     <p>The hash value.</p>
@@ -107,7 +107,7 @@ root: "/swift-2"
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-escape">
 <code class="language-swift">func escape(asASCII forceASCII: Bool) -> String</code>
 <div class="comment">
     <p>Return a String representation of <code>self</code> .</p>
@@ -116,20 +116,20 @@ root: "/swift-2"
   representation.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-isASCII">
 <code class="language-swift">func isASCII() -> Bool</code>
 <div class="comment">
     <p>Returns true if this is an ASCII character (code point 0 to 127
 inclusive).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-getMirror">
 <code class="language-swift">func getMirror() -> MirrorType</code>
 <div class="comment">
     <p>Returns a mirror that reflects <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-writeTo">
 <code class="language-swift">func writeTo&lt;Target : OutputStreamType&gt;(inout target: Target)</code>
 <div class="comment">
     <p>Write a textual representation of <code>self</code> into <code>target</code>.</p>

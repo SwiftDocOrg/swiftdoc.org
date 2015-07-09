@@ -18,7 +18,7 @@ translate between sequences of these code units and <a href="http://www.unicode.
 <h3>Inheritance</h3>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias CodeUnit</code>
 <div class="comment">
@@ -37,7 +37,7 @@ encoding.</p>
 
 
 <h3>Static Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-encode">
 <code class="language-swift">static func encode&lt;S : SinkType where S.Element == CodeUnit&gt;(input: UnicodeScalar, inout output: S)</code>
 <div class="comment">
     <p>Encode a <code>UnicodeScalar</code> as a series of <code>CodeUnit</code>s by
@@ -46,7 +46,7 @@ encoding.</p>
 </div>
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-decode">
 <code class="language-swift">mutating func decode&lt;G : GeneratorType where G.Element == CodeUnit&gt;(inout next: G) -> UnicodeDecodingResult</code>
 <div class="comment">
     <p>Start or continue decoding a UTF sequence.</p>
@@ -57,7 +57,7 @@ Checking that the generator was exhausted is not sufficient.  The decoder
 can have an internal buffer that is pre-filled with data from the input
 generator.</p>
 
-<p>Because of buffering, it is impossible to find the corresponing position
+<p>Because of buffering, it is impossible to find the corresponding position
 in the generator for a given returned <code>UnicodeScalar</code> or an error.</p>
 
 <p><strong><code>next</code>:</strong>  A <em>generator</em> of code units to be decoded.</p>

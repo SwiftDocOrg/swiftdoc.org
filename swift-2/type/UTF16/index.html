@@ -16,7 +16,7 @@ root: "/swift-2"
 <code class="inherits">UnicodeCodecType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias CodeUnit = UInt16</code>
 <div class="comment">
@@ -35,20 +35,20 @@ encoding.</p>
 
 
 <h3>Static Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-encode">
 <code class="language-swift">static func encode&lt;S : SinkType where S.Element == CodeUnit&gt;(input: UnicodeScalar, inout output: S)</code>
 <div class="comment">
     <p>Encode a <code>UnicodeScalar</code> as a series of <code>CodeUnit</code>s by
 <code>put</code>&#39;ing each <code>CodeUnit</code> to <code>output</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-width">
 <code class="language-swift">static func width(x: UnicodeScalar) -> Int</code>
 <div class="comment">
     <p>Return the number of code units required to encode <code>x</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-leadSurrogate">
 <code class="language-swift">static func leadSurrogate(x: UnicodeScalar) -> CodeUnit</code>
 <div class="comment">
     <p>Return the high surrogate code unit of a <a href="http://www.unicode.org/glossary/#surrogate_pair">surrogate pair</a> representing
@@ -57,7 +57,7 @@ encoding.</p>
 <p><strong>Requires:</strong> <code>width(x) == 2</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-trailSurrogate">
 <code class="language-swift">static func trailSurrogate(x: UnicodeScalar) -> CodeUnit</code>
 <div class="comment">
     <p>Return the low surrogate code unit of a <a href="http://www.unicode.org/glossary/#surrogate_pair">surrogate pair</a> representing
@@ -66,13 +66,13 @@ encoding.</p>
 <p><strong>Requires:</strong> <code>width(x) == 2</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-isLeadSurrogate">
 <code class="language-swift">static func isLeadSurrogate(x: CodeUnit) -> Bool</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-isTrailSurrogate">
 <code class="language-swift">static func isTrailSurrogate(x: CodeUnit) -> Bool</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-measure">
 <code class="language-swift">static func measure&lt;Encoding : UnicodeCodecType, Input : GeneratorType where Encoding.CodeUnit == Input.Element&gt;(_: Encoding.Type, input: Input, repairIllFormedSequences: Bool) -> (Int, Bool)?</code>
 <div class="comment">
     <p>Returns the number of UTF-16 code units required for the given code unit
@@ -86,7 +86,7 @@ found in <code>input</code>.</p>
 </div>
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-decode">
 <code class="language-swift">mutating func decode&lt;G : GeneratorType where G.Element == CodeUnit&gt;(inout input: G) -> UnicodeDecodingResult</code>
 <div class="comment">
     <p>Start or continue decoding a UTF sequence.</p>
@@ -97,7 +97,7 @@ Checking that the generator was exhausted is not sufficient.  The decoder
 can have an internal buffer that is pre-filled with data from the input
 generator.</p>
 
-<p>Because of buffering, it is impossible to find the corresponing position
+<p>Because of buffering, it is impossible to find the corresponding position
 in the generator for a given returned <code>UnicodeScalar</code> or an error.</p>
 
 <p><strong><code>next</code>:</strong>  A <em>generator</em> of code units to be decoded.</p>

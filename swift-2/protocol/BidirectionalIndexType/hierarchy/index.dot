@@ -15,7 +15,7 @@ strict digraph "BidirectionalIndexType - Type Hierarchy - SwiftDoc.org" {
     "Int8" [URL="/type/Int8/", style=filled]
     "IntegerType" [URL="/protocol/IntegerType/"]
     "RandomAccessIndexType" [URL="/protocol/RandomAccessIndexType/"]
-    "ReverseBidirectionalIndex" [URL="/type/ReverseBidirectionalIndex/", style=filled]
+    "ReverseIndex" [URL="/type/ReverseIndex/", style=filled]
     "ReverseRandomAccessIndex" [URL="/type/ReverseRandomAccessIndex/", style=filled]
     "SignedIntegerType" [URL="/protocol/SignedIntegerType/"]
     "String.CharacterView.Index" [URL="/type/String.CharacterView.Index/", style=filled]
@@ -38,7 +38,7 @@ strict digraph "BidirectionalIndexType - Type Hierarchy - SwiftDoc.org" {
     "BidirectionalIndexType" -> "Int64"
     "BidirectionalIndexType" -> "Int8"
     "BidirectionalIndexType" -> "RandomAccessIndexType"
-    "BidirectionalIndexType" -> "ReverseBidirectionalIndex"
+    "BidirectionalIndexType" -> "ReverseIndex"
     "BidirectionalIndexType" -> "ReverseRandomAccessIndex"
     "BidirectionalIndexType" -> "UInt"
     "BidirectionalIndexType" -> "UInt16"
@@ -96,6 +96,6 @@ strict digraph "BidirectionalIndexType - Type Hierarchy - SwiftDoc.org" {
     "_Incrementable" -> "ForwardIndexType"
     "Equatable" -> "_Incrementable"
     subgraph Types {
-        rank = max; "AnyBidirectionalIndex"; "AnyRandomAccessIndex"; "Bit"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "ReverseBidirectionalIndex"; "ReverseRandomAccessIndex"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8"; "UnsafeMutablePointer"; "UnsafePointer"; "String.CharacterView.Index"; "String.UnicodeScalarView.Index"; "String.UTF16View.Index";
+        rank = max; "AnyBidirectionalIndex"; "AnyRandomAccessIndex"; "Bit"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "ReverseIndex"; "ReverseRandomAccessIndex"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8"; "UnsafeMutablePointer"; "UnsafePointer"; "String.CharacterView.Index"; "String.UnicodeScalarView.Index"; "String.UTF16View.Index";
     }
 }

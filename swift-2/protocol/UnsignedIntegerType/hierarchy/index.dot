@@ -20,18 +20,18 @@ strict digraph "UnsignedIntegerType - Type Hierarchy - SwiftDoc.org" {
     "UInt64" [URL="/type/UInt64/", style=filled]
     "UInt8" [URL="/type/UInt8/", style=filled]
     "UnsignedIntegerType" [URL="/protocol/UnsignedIntegerType/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "_DisallowMixedSignArithmetic" [URL="/protocol/_DisallowMixedSignArithmetic/"]
     "_Incrementable" [URL="/protocol/_Incrementable/"]
     "_IntegerArithmeticType" [URL="/protocol/_IntegerArithmeticType/"]
     "_IntegerType" [URL="/protocol/_IntegerType/"]
-    "_Strideable" [URL="/protocol/_Strideable/"]
-    "_UnsignedIntegerType" [URL="/protocol/_UnsignedIntegerType/"]    "UnsignedIntegerType" -> "UInt"
+    "_Strideable" [URL="/protocol/_Strideable/"]    "UnsignedIntegerType" -> "UInt"
     "UnsignedIntegerType" -> "UInt16"
     "UnsignedIntegerType" -> "UInt32"
     "UnsignedIntegerType" -> "UInt64"
     "UnsignedIntegerType" -> "UInt8"
-    "_UnsignedIntegerType" -> "UnsignedIntegerType"
+    "_DisallowMixedSignArithmetic" -> "UnsignedIntegerType"
     "IntegerType" -> "UnsignedIntegerType"
-    "_IntegerType" -> "_UnsignedIntegerType"
+    "_IntegerType" -> "_DisallowMixedSignArithmetic"
     "IntegerLiteralConvertible" -> "_IntegerType"
     "CustomStringConvertible" -> "_IntegerType"
     "Hashable" -> "_IntegerType"

@@ -15,12 +15,12 @@ the <code>Index</code> type for <code>CollectionOfOne&lt;T&gt;</code>.</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">Int, Comparable, RandomAccessIndexType, BidirectionalIndexType, ForwardIndexType, _Incrementable, Strideable, _Strideable, Reflectable, IntegerArithmeticType, _IntegerArithmeticType</code>
+<code class="inherits">Int, Comparable, RandomAccessIndexType, BidirectionalIndexType, ForwardIndexType, _Incrementable, Strideable, _Strideable, _Reflectable, IntegerArithmeticType, _IntegerArithmeticType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
 
 
-<h3>Cases</h3>
+<h3 id="cases">Cases</h3>
 <div class="declaration">
 <code class="language-swift">case Zero</code>
 </div>
@@ -32,35 +32,35 @@ the <code>Index</code> type for <code>CollectionOfOne&lt;T&gt;</code>.</p>
 
 
 <h3>Static Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-addWithOverflow">
 <code class="language-swift">static func addWithOverflow(lhs: Bit, _ rhs: Bit) -> (Bit, overflow: Bool)</code>
 <div class="comment">
     <p>Add <code>lhs</code> and <code>rhs</code>, returning a result and a <code>Bool</code> that is
 true iff the operation caused an arithmetic overflow.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-subtractWithOverflow">
 <code class="language-swift">static func subtractWithOverflow(lhs: Bit, _ rhs: Bit) -> (Bit, overflow: Bool)</code>
 <div class="comment">
     <p>Subtract <code>lhs</code> and <code>rhs</code>, returning a result and a <code>Bool</code> that is
 true iff the operation caused an arithmetic overflow.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-multiplyWithOverflow">
 <code class="language-swift">static func multiplyWithOverflow(lhs: Bit, _ rhs: Bit) -> (Bit, overflow: Bool)</code>
 <div class="comment">
     <p>Multiply <code>lhs</code> and <code>rhs</code>, returning a result and a <code>Bool</code> that is
 true iff the operation caused an arithmetic overflow.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-divideWithOverflow">
 <code class="language-swift">static func divideWithOverflow(lhs: Bit, _ rhs: Bit) -> (Bit, overflow: Bool)</code>
 <div class="comment">
     <p>Divide <code>lhs</code> and <code>rhs</code>, returning a result and a <code>Bool</code> that is
 true iff the operation caused an arithmetic overflow.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-remainderWithOverflow">
 <code class="language-swift">static func remainderWithOverflow(lhs: Bit, _ rhs: Bit) -> (Bit, overflow: Bool)</code>
 <div class="comment">
     <p>Divide <code>lhs</code> and <code>rhs</code>, returning the remainder and a <code>Bool</code> that is
@@ -69,7 +69,7 @@ true iff the operation caused an arithmetic overflow.</p>
 </div>
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-successor">
 <code class="language-swift">func successor() -> Bit</code>
 <div class="comment">
     <p>Returns the next consecutive value after <code>self</code>.</p>
@@ -77,7 +77,7 @@ true iff the operation caused an arithmetic overflow.</p>
 <p><strong>Requires:</strong> <code>self == .Zero</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-predecessor">
 <code class="language-swift">func predecessor() -> Bit</code>
 <div class="comment">
     <p>Returns the previous consecutive value before <code>self</code>.</p>
@@ -85,7 +85,7 @@ true iff the operation caused an arithmetic overflow.</p>
 <p><strong>Requires:</strong> <code>self != .Zero</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-distanceTo">
 <code class="language-swift">func distanceTo(other: Bit) -> Int</code>
 <div class="comment">
     <p>Return the minimum number of applications of <code>successor</code> or
@@ -94,7 +94,7 @@ true iff the operation caused an arithmetic overflow.</p>
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-advancedBy">
 <code class="language-swift">func advancedBy(distance: Int) -> Bit</code>
 <div class="comment">
     <p>Return <code>self</code> offset by <code>n</code> steps.</p>
@@ -106,13 +106,13 @@ true iff the operation caused an arithmetic overflow.</p>
 <p><strong>Complexity:</strong> O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-getMirror">
 <code class="language-swift">func getMirror() -> MirrorType</code>
 <div class="comment">
     <p>Returns a mirror that reflects <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-toIntMax">
 <code class="language-swift">func toIntMax() -> IntMax</code>
 <div class="comment">
     <p>Represent this number using Swift&#39;s widest native signed integer

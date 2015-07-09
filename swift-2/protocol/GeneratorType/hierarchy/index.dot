@@ -11,7 +11,7 @@ strict digraph "GeneratorType - Type Hierarchy - SwiftDoc.org" {
     "GeneratorSequence" [URL="/type/GeneratorSequence/", style=filled]
     "GeneratorType" [URL="/protocol/GeneratorType/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
     "IndexingGenerator" [URL="/type/IndexingGenerator/", style=filled]
-    "MapSequenceGenerator" [URL="/type/MapSequenceGenerator/", style=filled]
+    "MapGenerator" [URL="/type/MapGenerator/", style=filled]
     "PermutationGenerator" [URL="/type/PermutationGenerator/", style=filled]
     "RangeGenerator" [URL="/type/RangeGenerator/", style=filled]
     "SetGenerator" [URL="/type/SetGenerator/", style=filled]
@@ -19,7 +19,7 @@ strict digraph "GeneratorType - Type Hierarchy - SwiftDoc.org" {
     "StrideToGenerator" [URL="/type/StrideToGenerator/", style=filled]
     "String.UnicodeScalarView.Generator" [URL="/type/String.UnicodeScalarView.Generator/", style=filled]
     "UnsafeBufferPointerGenerator" [URL="/type/UnsafeBufferPointerGenerator/", style=filled]
-    "ZipGenerator2" [URL="/type/ZipGenerator2/", style=filled]    "GeneratorType" -> "AnyGenerator"
+    "Zip2Generator" [URL="/type/Zip2Generator/", style=filled]    "GeneratorType" -> "AnyGenerator"
     "GeneratorType" -> "DictionaryGenerator"
     "GeneratorType" -> "EmptyGenerator"
     "GeneratorType" -> "EnumerateGenerator"
@@ -27,16 +27,16 @@ strict digraph "GeneratorType - Type Hierarchy - SwiftDoc.org" {
     "GeneratorType" -> "GeneratorOfOne"
     "GeneratorType" -> "GeneratorSequence"
     "GeneratorType" -> "IndexingGenerator"
-    "GeneratorType" -> "MapSequenceGenerator"
+    "GeneratorType" -> "MapGenerator"
     "GeneratorType" -> "PermutationGenerator"
     "GeneratorType" -> "RangeGenerator"
     "GeneratorType" -> "SetGenerator"
     "GeneratorType" -> "StrideThroughGenerator"
     "GeneratorType" -> "StrideToGenerator"
     "GeneratorType" -> "UnsafeBufferPointerGenerator"
-    "GeneratorType" -> "ZipGenerator2"
+    "GeneratorType" -> "Zip2Generator"
     "GeneratorType" -> "String.UnicodeScalarView.Generator"
     subgraph Types {
-        rank = max; "AnyGenerator"; "DictionaryGenerator"; "EmptyGenerator"; "EnumerateGenerator"; "FilterGenerator"; "GeneratorOfOne"; "GeneratorSequence"; "IndexingGenerator"; "MapSequenceGenerator"; "PermutationGenerator"; "RangeGenerator"; "SetGenerator"; "StrideThroughGenerator"; "StrideToGenerator"; "UnsafeBufferPointerGenerator"; "ZipGenerator2"; "String.UnicodeScalarView.Generator";
+        rank = max; "AnyGenerator"; "DictionaryGenerator"; "EmptyGenerator"; "EnumerateGenerator"; "FilterGenerator"; "GeneratorOfOne"; "GeneratorSequence"; "IndexingGenerator"; "MapGenerator"; "PermutationGenerator"; "RangeGenerator"; "SetGenerator"; "StrideThroughGenerator"; "StrideToGenerator"; "UnsafeBufferPointerGenerator"; "Zip2Generator"; "String.UnicodeScalarView.Generator";
     }
 }

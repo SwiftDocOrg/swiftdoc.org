@@ -8,7 +8,6 @@ strict digraph "_CollectionGeneratorDefaultsType - Type Hierarchy - SwiftDoc.org
     "AnyRandomAccessCollection" [URL="/type/AnyRandomAccessCollection/", style=filled]
     "Array" [URL="/type/Array/", style=filled]
     "ArraySlice" [URL="/type/ArraySlice/", style=filled]
-    "BidirectionalReverseView" [URL="/type/BidirectionalReverseView/", style=filled]
     "CollectionOfOne" [URL="/type/CollectionOfOne/", style=filled]
     "CollectionType" [URL="/protocol/CollectionType/"]
     "ContiguousArray" [URL="/type/ContiguousArray/", style=filled]
@@ -16,17 +15,18 @@ strict digraph "_CollectionGeneratorDefaultsType - Type Hierarchy - SwiftDoc.org
     "DictionaryLiteral" [URL="/type/DictionaryLiteral/", style=filled]
     "EmptyCollection" [URL="/type/EmptyCollection/", style=filled]
     "ExtensibleCollectionType" [URL="/protocol/ExtensibleCollectionType/"]
-    "FilterCollectionView" [URL="/type/FilterCollectionView/", style=filled]
+    "FilterCollection" [URL="/type/FilterCollection/", style=filled]
     "LazyBidirectionalCollection" [URL="/type/LazyBidirectionalCollection/", style=filled]
     "LazyForwardCollection" [URL="/type/LazyForwardCollection/", style=filled]
     "LazyRandomAccessCollection" [URL="/type/LazyRandomAccessCollection/", style=filled]
-    "MapCollectionView" [URL="/type/MapCollectionView/", style=filled]
+    "MapCollection" [URL="/type/MapCollection/", style=filled]
     "MutableCollectionType" [URL="/protocol/MutableCollectionType/"]
     "MutableSliceable" [URL="/protocol/MutableSliceable/"]
-    "RandomAccessReverseView" [URL="/type/RandomAccessReverseView/", style=filled]
     "Range" [URL="/type/Range/", style=filled]
     "RangeReplaceableCollectionType" [URL="/protocol/RangeReplaceableCollectionType/"]
     "Repeat" [URL="/type/Repeat/", style=filled]
+    "ReverseCollection" [URL="/type/ReverseCollection/", style=filled]
+    "ReverseRandomAccessCollection" [URL="/type/ReverseRandomAccessCollection/", style=filled]
     "Set" [URL="/type/Set/", style=filled]
     "Sliceable" [URL="/protocol/Sliceable/"]
     "String.CharacterView" [URL="/type/String.CharacterView/", style=filled]
@@ -45,21 +45,21 @@ strict digraph "_CollectionGeneratorDefaultsType - Type Hierarchy - SwiftDoc.org
     "_CollectionGeneratorDefaultsType" -> "AnyRandomAccessCollection"
     "_CollectionGeneratorDefaultsType" -> "Array"
     "_CollectionGeneratorDefaultsType" -> "ArraySlice"
-    "_CollectionGeneratorDefaultsType" -> "BidirectionalReverseView"
     "_CollectionGeneratorDefaultsType" -> "CollectionOfOne"
     "_CollectionGeneratorDefaultsType" -> "CollectionType"
     "_CollectionGeneratorDefaultsType" -> "ContiguousArray"
     "_CollectionGeneratorDefaultsType" -> "Dictionary"
     "_CollectionGeneratorDefaultsType" -> "DictionaryLiteral"
     "_CollectionGeneratorDefaultsType" -> "EmptyCollection"
-    "_CollectionGeneratorDefaultsType" -> "FilterCollectionView"
+    "_CollectionGeneratorDefaultsType" -> "FilterCollection"
     "_CollectionGeneratorDefaultsType" -> "LazyBidirectionalCollection"
     "_CollectionGeneratorDefaultsType" -> "LazyForwardCollection"
     "_CollectionGeneratorDefaultsType" -> "LazyRandomAccessCollection"
-    "_CollectionGeneratorDefaultsType" -> "MapCollectionView"
-    "_CollectionGeneratorDefaultsType" -> "RandomAccessReverseView"
+    "_CollectionGeneratorDefaultsType" -> "MapCollection"
     "_CollectionGeneratorDefaultsType" -> "Range"
     "_CollectionGeneratorDefaultsType" -> "Repeat"
+    "_CollectionGeneratorDefaultsType" -> "ReverseCollection"
+    "_CollectionGeneratorDefaultsType" -> "ReverseRandomAccessCollection"
     "_CollectionGeneratorDefaultsType" -> "Set"
     "_CollectionGeneratorDefaultsType" -> "UnicodeScalar.UTF16View"
     "_CollectionGeneratorDefaultsType" -> "UnsafeBufferPointer"
@@ -74,22 +74,22 @@ strict digraph "_CollectionGeneratorDefaultsType - Type Hierarchy - SwiftDoc.org
     "CollectionType" -> "AnyRandomAccessCollection"
     "CollectionType" -> "Array"
     "CollectionType" -> "ArraySlice"
-    "CollectionType" -> "BidirectionalReverseView"
     "CollectionType" -> "CollectionOfOne"
     "CollectionType" -> "ContiguousArray"
     "CollectionType" -> "Dictionary"
     "CollectionType" -> "DictionaryLiteral"
     "CollectionType" -> "EmptyCollection"
     "CollectionType" -> "ExtensibleCollectionType"
-    "CollectionType" -> "FilterCollectionView"
+    "CollectionType" -> "FilterCollection"
     "CollectionType" -> "LazyBidirectionalCollection"
     "CollectionType" -> "LazyForwardCollection"
     "CollectionType" -> "LazyRandomAccessCollection"
-    "CollectionType" -> "MapCollectionView"
+    "CollectionType" -> "MapCollection"
     "CollectionType" -> "MutableCollectionType"
-    "CollectionType" -> "RandomAccessReverseView"
     "CollectionType" -> "Range"
     "CollectionType" -> "Repeat"
+    "CollectionType" -> "ReverseCollection"
+    "CollectionType" -> "ReverseRandomAccessCollection"
     "CollectionType" -> "Set"
     "CollectionType" -> "UnicodeScalar.UTF16View"
     "CollectionType" -> "UnsafeBufferPointer"
@@ -160,6 +160,6 @@ strict digraph "_CollectionGeneratorDefaultsType - Type Hierarchy - SwiftDoc.org
     "_ArrayType" -> "ArraySlice"
     "_ArrayType" -> "ContiguousArray"
     subgraph Types {
-        rank = max; "AnyBidirectionalCollection"; "AnyForwardCollection"; "AnyRandomAccessCollection"; "Array"; "ArraySlice"; "BidirectionalReverseView"; "CollectionOfOne"; "ContiguousArray"; "Dictionary"; "DictionaryLiteral"; "EmptyCollection"; "FilterCollectionView"; "LazyBidirectionalCollection"; "LazyForwardCollection"; "LazyRandomAccessCollection"; "MapCollectionView"; "RandomAccessReverseView"; "Range"; "Repeat"; "Set"; "UnicodeScalar.UTF16View"; "UnsafeBufferPointer"; "UnsafeMutableBufferPointer"; "String.CharacterView"; "String.UnicodeScalarView"; "String.UTF16View"; "String.UTF8View";
+        rank = max; "AnyBidirectionalCollection"; "AnyForwardCollection"; "AnyRandomAccessCollection"; "Array"; "ArraySlice"; "CollectionOfOne"; "ContiguousArray"; "Dictionary"; "DictionaryLiteral"; "EmptyCollection"; "FilterCollection"; "LazyBidirectionalCollection"; "LazyForwardCollection"; "LazyRandomAccessCollection"; "MapCollection"; "Range"; "Repeat"; "ReverseCollection"; "ReverseRandomAccessCollection"; "Set"; "UnicodeScalar.UTF16View"; "UnsafeBufferPointer"; "UnsafeMutableBufferPointer"; "String.CharacterView"; "String.UnicodeScalarView"; "String.UTF16View"; "String.UTF8View";
     }
 }

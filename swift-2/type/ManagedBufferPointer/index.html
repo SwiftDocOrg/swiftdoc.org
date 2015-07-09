@@ -89,19 +89,19 @@ for at least <code>minimumCapacity</code> <code>element</code>s.</p>
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-value">
 <code class="language-swift">var value: Value { get set }</code>
 <div class="comment">
     <p>The stored <code>Value</code> instance.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-buffer">
 <code class="language-swift">var buffer: AnyObject { get }</code>
 <div class="comment">
     <p>Return the object instance being used for storage.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-allocatedElementCount">
 <code class="language-swift">var allocatedElementCount: Int { get }</code>
 <div class="comment">
     <p>The actual number of elements that can be stored in this object.</p>
@@ -114,7 +114,7 @@ an instance is created.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-withUnsafeMutablePointerToValue">
 <code class="language-swift">func withUnsafeMutablePointerToValue&lt;R&gt;(body: (UnsafeMutablePointer&lt;Value&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Call <code>body</code> with an <code>UnsafeMutablePointer</code> to the stored
@@ -124,7 +124,7 @@ an instance is created.</p>
   for the duration of the call to <code>body</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-withUnsafeMutablePointerToElements">
 <code class="language-swift">func withUnsafeMutablePointerToElements&lt;R&gt;(body: (UnsafeMutablePointer&lt;Element&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Call <code>body</code> with an <code>UnsafeMutablePointer</code> to the <code>Element</code>
@@ -134,7 +134,7 @@ storage.</p>
   call to <code>body</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-withUnsafeMutablePointers">
 <code class="language-swift">func withUnsafeMutablePointers&lt;R&gt;(body: (UnsafeMutablePointer&lt;Value&gt;, UnsafeMutablePointer&lt;Element&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Call <code>body</code> with <code>UnsafeMutablePointer</code>s to the stored <code>Value</code>
@@ -144,7 +144,7 @@ and raw <code>Element</code> storage.</p>
   call to <code>body</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-holdsUniqueReference">
 <code class="language-swift">mutating func holdsUniqueReference() -> Bool</code>
 <div class="comment">
     <p>Returns true iff <code>self</code> holds the only strong reference to its buffer.</p>
@@ -152,7 +152,7 @@ and raw <code>Element</code> storage.</p>
 <p>See <code>isUniquelyReferenced</code> for details.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-holdsUniqueOrPinnedReference">
 <code class="language-swift">mutating func holdsUniqueOrPinnedReference() -> Bool</code>
 <div class="comment">
     <p>Returns true iff either <code>self</code> holds the only strong reference

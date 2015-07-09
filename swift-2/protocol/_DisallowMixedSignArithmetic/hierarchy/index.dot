@@ -1,0 +1,47 @@
+strict digraph "_DisallowMixedSignArithmetic - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BitwiseOperationsType" [URL="/protocol/BitwiseOperationsType/"]
+    "Comparable" [URL="/protocol/Comparable/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/"]
+    "Equatable" [URL="/protocol/Equatable/"]
+    "Hashable" [URL="/protocol/Hashable/"]
+    "IntegerArithmeticType" [URL="/protocol/IntegerArithmeticType/"]
+    "IntegerLiteralConvertible" [URL="/protocol/IntegerLiteralConvertible/"]
+    "UInt" [URL="/type/UInt/", style=filled]
+    "UInt16" [URL="/type/UInt16/", style=filled]
+    "UInt32" [URL="/type/UInt32/", style=filled]
+    "UInt64" [URL="/type/UInt64/", style=filled]
+    "UInt8" [URL="/type/UInt8/", style=filled]
+    "UnsignedIntegerType" [URL="/protocol/UnsignedIntegerType/"]
+    "_DisallowMixedSignArithmetic" [URL="/protocol/_DisallowMixedSignArithmetic/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "_Incrementable" [URL="/protocol/_Incrementable/"]
+    "_IntegerArithmeticType" [URL="/protocol/_IntegerArithmeticType/"]
+    "_IntegerType" [URL="/protocol/_IntegerType/"]    "_DisallowMixedSignArithmetic" -> "UInt"
+    "_DisallowMixedSignArithmetic" -> "UInt16"
+    "_DisallowMixedSignArithmetic" -> "UInt32"
+    "_DisallowMixedSignArithmetic" -> "UInt64"
+    "_DisallowMixedSignArithmetic" -> "UInt8"
+    "_DisallowMixedSignArithmetic" -> "UnsignedIntegerType"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
+    "_IntegerType" -> "_DisallowMixedSignArithmetic"
+    "IntegerLiteralConvertible" -> "_IntegerType"
+    "CustomStringConvertible" -> "_IntegerType"
+    "Hashable" -> "_IntegerType"
+    "IntegerArithmeticType" -> "_IntegerType"
+    "BitwiseOperationsType" -> "_IntegerType"
+    "_Incrementable" -> "_IntegerType"
+    "Equatable" -> "Hashable"
+    "_IntegerArithmeticType" -> "IntegerArithmeticType"
+    "Comparable" -> "IntegerArithmeticType"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "_Incrementable"
+    subgraph Types {
+        rank = max; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8";
+    }
+}

@@ -1,4 +1,4 @@
-strict digraph "UnsafePointer<T> - Type Hierarchy - SwiftDoc.org" {
+strict digraph "UnsafePointer<Memory> - Type Hierarchy - SwiftDoc.org" {
     pad="0.1,0.8"
     node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
     edge [color="#cccccc"]
@@ -11,25 +11,25 @@ strict digraph "UnsafePointer<T> - Type Hierarchy - SwiftDoc.org" {
     "Hashable" [URL="/protocol/Hashable/"]
     "NilLiteralConvertible" [URL="/protocol/NilLiteralConvertible/"]
     "RandomAccessIndexType" [URL="/protocol/RandomAccessIndexType/"]
-    "Reflectable" [URL="/protocol/Reflectable/"]
     "Strideable" [URL="/protocol/Strideable/"]
-    "UnsafePointer<T>" [URL="/type/UnsafePointer/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "UnsafePointer<Memory>" [URL="/type/UnsafePointer/", style="filled", fillcolor="#ee543d", color="#ee543d"]
     "_Incrementable" [URL="/protocol/_Incrementable/"]
     "_PointerType" [URL="/protocol/_PointerType/"]
-    "_Strideable" [URL="/protocol/_Strideable/"]    "RandomAccessIndexType" -> "UnsafePointer<T>"
-    "BidirectionalIndexType" -> "UnsafePointer<T>"
-    "ForwardIndexType" -> "UnsafePointer<T>"
-    "_Incrementable" -> "UnsafePointer<T>"
-    "Equatable" -> "UnsafePointer<T>"
-    "Strideable" -> "UnsafePointer<T>"
-    "Comparable" -> "UnsafePointer<T>"
-    "_Strideable" -> "UnsafePointer<T>"
-    "Hashable" -> "UnsafePointer<T>"
-    "NilLiteralConvertible" -> "UnsafePointer<T>"
-    "_PointerType" -> "UnsafePointer<T>"
-    "CustomDebugStringConvertible" -> "UnsafePointer<T>"
-    "Reflectable" -> "UnsafePointer<T>"
-    "CVarArgType" -> "UnsafePointer<T>"
+    "_Reflectable" [URL="/protocol/_Reflectable/"]
+    "_Strideable" [URL="/protocol/_Strideable/"]    "RandomAccessIndexType" -> "UnsafePointer<Memory>"
+    "BidirectionalIndexType" -> "UnsafePointer<Memory>"
+    "ForwardIndexType" -> "UnsafePointer<Memory>"
+    "_Incrementable" -> "UnsafePointer<Memory>"
+    "Equatable" -> "UnsafePointer<Memory>"
+    "Strideable" -> "UnsafePointer<Memory>"
+    "Comparable" -> "UnsafePointer<Memory>"
+    "_Strideable" -> "UnsafePointer<Memory>"
+    "Hashable" -> "UnsafePointer<Memory>"
+    "NilLiteralConvertible" -> "UnsafePointer<Memory>"
+    "_PointerType" -> "UnsafePointer<Memory>"
+    "CustomDebugStringConvertible" -> "UnsafePointer<Memory>"
+    "_Reflectable" -> "UnsafePointer<Memory>"
+    "CVarArgType" -> "UnsafePointer<Memory>"
     "BidirectionalIndexType" -> "RandomAccessIndexType"
     "Strideable" -> "RandomAccessIndexType"
     "ForwardIndexType" -> "BidirectionalIndexType"
@@ -50,6 +50,6 @@ strict digraph "UnsafePointer<T> - Type Hierarchy - SwiftDoc.org" {
     "Equatable" -> "Comparable"
     "Equatable" -> "Hashable"
     subgraph Types {
-        rank = max; "UnsafePointer<T>";
+        rank = max; "UnsafePointer<Memory>";
     }
 }

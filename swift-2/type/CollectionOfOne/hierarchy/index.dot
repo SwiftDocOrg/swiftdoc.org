@@ -1,23 +1,23 @@
-strict digraph "CollectionOfOne<T> - Type Hierarchy - SwiftDoc.org" {
+strict digraph "CollectionOfOne<Element> - Type Hierarchy - SwiftDoc.org" {
     pad="0.1,0.8"
     node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
     edge [color="#cccccc"]
-    "CollectionOfOne<T>" [URL="/type/CollectionOfOne/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "CollectionOfOne<Element>" [URL="/type/CollectionOfOne/", style="filled", fillcolor="#ee543d", color="#ee543d"]
     "CollectionType" [URL="/protocol/CollectionType/"]
-    "Reflectable" [URL="/protocol/Reflectable/"]
     "SequenceType" [URL="/protocol/SequenceType/"]
     "_CollectionDefaultsType" [URL="/protocol/_CollectionDefaultsType/"]
-    "_CollectionGeneratorDefaultsType" [URL="/protocol/_CollectionGeneratorDefaultsType/"]    "CollectionType" -> "CollectionOfOne<T>"
-    "SequenceType" -> "CollectionOfOne<T>"
-    "_CollectionDefaultsType" -> "CollectionOfOne<T>"
-    "_CollectionGeneratorDefaultsType" -> "CollectionOfOne<T>"
-    "Reflectable" -> "CollectionOfOne<T>"
+    "_CollectionGeneratorDefaultsType" [URL="/protocol/_CollectionGeneratorDefaultsType/"]
+    "_Reflectable" [URL="/protocol/_Reflectable/"]    "CollectionType" -> "CollectionOfOne<Element>"
+    "SequenceType" -> "CollectionOfOne<Element>"
+    "_CollectionDefaultsType" -> "CollectionOfOne<Element>"
+    "_CollectionGeneratorDefaultsType" -> "CollectionOfOne<Element>"
+    "_Reflectable" -> "CollectionOfOne<Element>"
     "SequenceType" -> "CollectionType"
     "_CollectionDefaultsType" -> "CollectionType"
     "_CollectionGeneratorDefaultsType" -> "CollectionType"
     "SequenceType" -> "_CollectionDefaultsType"
     "SequenceType" -> "_CollectionDefaultsType"
     subgraph Types {
-        rank = max; "CollectionOfOne<T>";
+        rank = max; "CollectionOfOne<Element>";
     }
 }

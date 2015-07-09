@@ -30,7 +30,7 @@ g.next() // nil</code></pre>
 <code class="inherits">GeneratorType, SequenceType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias Element = (index: Int, element: Base.Element)</code>
 <div class="comment">
@@ -59,7 +59,7 @@ sequence, in order.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-next">
 <code class="language-swift">mutating func next() -> (index: Int, element: Base.Element)?</code>
 <div class="comment">
     <p>Advance to the next element and return it, or <code>nil</code> if no next
@@ -68,7 +68,7 @@ element exists.</p>
 <p><strong>Requires:</strong> No preceding call to <code>self.next()</code> has returned <code>nil</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-generate">
 <code class="language-swift">func generate() -> EnumerateGenerator&lt;Base&gt;</code>
 <div class="comment">
     <p><code>EnumerateGenerator</code> is also a <code>SequenceType</code>, so it

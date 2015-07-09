@@ -30,7 +30,7 @@ uninitialized <code>value</code> property of <code>ManagedBuffer</code>.</p>
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-allocatedElementCount">
 <code class="language-swift">var allocatedElementCount: Int { get }</code>
 <div class="comment">
     <p>The actual number of elements that can be stored in this object.</p>
@@ -43,7 +43,7 @@ an instance is created.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-withUnsafeMutablePointerToValue">
 <code class="language-swift">final func withUnsafeMutablePointerToValue&lt;R&gt;(body: (UnsafeMutablePointer&lt;Value&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Call <code>body</code> with an <code>UnsafeMutablePointer</code> to the stored
@@ -53,7 +53,7 @@ an instance is created.</p>
   call to <code>body</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-withUnsafeMutablePointerToElements">
 <code class="language-swift">final func withUnsafeMutablePointerToElements&lt;R&gt;(body: (UnsafeMutablePointer&lt;Element&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Call <code>body</code> with an <code>UnsafeMutablePointer</code> to the <code>Element</code>
@@ -63,7 +63,7 @@ storage.</p>
   call to <code>body</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-withUnsafeMutablePointers">
 <code class="language-swift">final func withUnsafeMutablePointers&lt;R&gt;(body: (UnsafeMutablePointer&lt;Value&gt;, UnsafeMutablePointer&lt;Element&gt;) -&gt; R) -> R</code>
 <div class="comment">
     <p>Call <code>body</code> with <code>UnsafeMutablePointer</code>s to the stored <code>Value</code>

@@ -1,8 +1,7 @@
 ---
 layout: "default"
 title: "FilterGenerator"
-description: "Swift documentation for 'FilterGenerator': The GeneratorType used by FilterSequenceView and
-FilterCollectionView."
+description: "Swift documentation for 'FilterGenerator': The GeneratorType used by FilterSequence and FilterCollection."
 keywords: "FilterGenerator,struct,swift,documentation,next,generate"
 root: "/swift-2"
 ---
@@ -10,8 +9,7 @@ root: "/swift-2"
 <code class="language-swift">struct FilterGenerator&lt;Base : GeneratorType&gt; { ... }</code>
 
 <div class="comment">
-    <p>The <code>GeneratorType</code> used by <code>FilterSequenceView</code> and
-<code>FilterCollectionView</code>.</p>
+    <p>The <code>GeneratorType</code> used by <code>FilterSequence</code> and <code>FilterCollection</code>.</p>
 </div>
 
 <h3>Inheritance</h3>
@@ -26,7 +24,7 @@ root: "/swift-2"
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-next">
 <code class="language-swift">mutating func next() -> Base.Element?</code>
 <div class="comment">
     <p>Advance to the next element and return it, or <code>nil</code> if no next
@@ -37,7 +35,7 @@ element exists.</p>
   has returned <code>nil</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-generate">
 <code class="language-swift">func generate() -> FilterGenerator&lt;Base&gt;</code>
 <div class="comment">
     <p><code>FilterGenerator</code> is also a <code>SequenceType</code>, so it <code>generate</code>&#39;s

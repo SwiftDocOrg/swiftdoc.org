@@ -1,0 +1,63 @@
+---
+layout: "default"
+title: "Zip2Sequence"
+description: "Swift documentation for 'Zip2Sequence': A sequence of pairs built out of two underlying sequences, where
+the elements of the ith pair are the ith elements of each
+underlying sequence."
+keywords: "Zip2Sequence,struct,swift,documentation,generate,Stream1,Stream2,Generator"
+root: "/swift-2"
+---
+
+<code class="language-swift">struct Zip2Sequence&lt;Sequence1 : SequenceType, Sequence2 : SequenceType&gt; { ... }</code>
+
+<div class="comment">
+    <p>A sequence of pairs built out of two underlying sequences, where
+the elements of the <code>i</code>th pair are the <code>i</code>th elements of each
+underlying sequence.</p>
+</div>
+
+<h3>Inheritance</h3>
+<code class="inherits">SequenceType</code>
+<span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
+
+<h3 id="aliases">Associated types</h3>
+<div class="declaration">
+<code class="language-swift">typealias Stream1 = Sequence1.Generator</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Stream2 = Sequence2.Generator</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Generator = Zip2Generator&lt;Sequence1.Generator, Sequence2.Generator&gt;</code>
+<div class="comment">
+    <p>A type whose instances can produce the elements of this
+sequence, in order.</p>
+</div>
+</div>
+
+
+
+<h3>Initializers</h3>
+<div class="declaration">
+<code class="language-swift">init(_ sequence1: Sequence1, _ sequence2: Sequence2)</code>
+<div class="comment">
+    <p>Construct an instance that makes pairs of elements from <code>sequence1</code> and
+<code>sequence2</code>.</p>
+</div>
+</div>
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-generate">
+<code class="language-swift">func generate() -> Zip2Generator&lt;Sequence1.Generator, Sequence2.Generator&gt;</code>
+<div class="comment">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+</div>
+</div>
+
+
+

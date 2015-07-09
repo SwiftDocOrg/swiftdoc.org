@@ -25,7 +25,7 @@ property that suggests how this structure might be rendered.</p>
 <code class="inherits">CustomStringConvertible, CustomReflectable</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias Child = (label: String?, value: Any)</code>
 <div class="comment">
@@ -166,7 +166,7 @@ ancestors, <code>customMirror</code> overrides should initialize the
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-subjectType">
 <code class="language-swift">var subjectType: Any.Type { get }</code>
 <div class="comment">
     <p>The static type of the subject being reflected.</p>
@@ -175,29 +175,29 @@ ancestors, <code>customMirror</code> overrides should initialize the
 is the <code>superclassMirror()</code> of another mirror.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-children">
 <code class="language-swift">var children: Children { get }</code>
 <div class="comment">
     <p>A collection of <code>Child</code> elements describing the structure of the
 reflected subject.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-displayStyle">
 <code class="language-swift">var displayStyle: Mirror.DisplayStyle? { get }</code>
 <div class="comment">
     <p>Suggests a display style for the reflected subject.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-description">
 <code class="language-swift">var description: String { get }</code>
 </div>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-superclassMirror">
 <code class="language-swift">func superclassMirror() -> Mirror?</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-descendant">
 <code class="language-swift">func descendant(first: MirrorPathType, _ rest: MirrorPathType...) -> Any?</code>
 <div class="comment">
     <p>Return a specific descendant of the reflected subject, or <code>nil</code>
@@ -235,7 +235,7 @@ this function is suitable for exploring the structure of a
 efficient.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-customMirror">
 <code class="language-swift">func customMirror() -> Mirror</code>
 </div>
 

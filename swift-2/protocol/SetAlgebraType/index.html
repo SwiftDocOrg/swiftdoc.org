@@ -3,7 +3,7 @@ layout: "default"
 title: "SetAlgebraType"
 description: "Swift documentation for 'SetAlgebraType': A generalized set whose distinct elements are not necessarily
 disjoint."
-keywords: "SetAlgebraType,protocol,swift,documentation,contains,union,intersect,exclusiveOr,insert,remove,unionInPlace,intersectInPlace,exclusiveOrInPlace,subtract,isSubsetOf,isDisjointWith,isSupersetOf,subtractInPlace,element,element,isEmpty,DefaultImplementations,Element"
+keywords: "SetAlgebraType,protocol,swift,documentation,contains,union,intersect,exclusiveOr,insert,remove,unionInPlace,intersectInPlace,exclusiveOrInPlace,subtract,isSubsetOf,isDisjointWith,isSupersetOf,subtractInPlace,element,element,isEmpty,Element"
 root: "/swift-2"
 ---
 
@@ -35,10 +35,7 @@ of type <code>S</code>, and <code>e</code> is of type <code>S.Element</code>:</p
 <code class="inherits">Equatable, ArrayLiteralConvertible</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
-<div class="declaration">
-<code class="language-swift">typealias DefaultImplementations = ()</code>
-</div>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias Element</code>
 <div class="comment">
@@ -66,15 +63,15 @@ of type <code>S</code>, and <code>e</code> is of type <code>S.Element</code>:</p
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-isEmpty">
 <code class="language-swift">var isEmpty: Bool { get }</code>
 <div class="comment">
-    <p>Returns true iff <code>self.contains(e)</code> is <code>false</code> for all <code>e</code>.</p>
+    <p>Return true iff <code>self.contains(e)</code> is <code>false</code> for all <code>e</code>.</p>
 </div>
 </div>
 
 <h3>Static Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-element">
 <code class="language-swift">static func element(a: Self.Element, subsumes b: Self.Element) -> Bool</code>
 <div class="comment">
     <p>Returns <code>true</code> iff <code>a</code> subsumes <code>b</code>.</p>
@@ -82,7 +79,7 @@ of type <code>S</code>, and <code>e</code> is of type <code>S.Element</code>:</p
 <ul><li>Equivalent to <code>([a] as Self).isSupersetOf([b])</code></li></ul>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-element">
 <code class="language-swift">static func element(a: Self.Element, isDisjointWith b: Self.Element) -> Bool</code>
 <div class="comment">
     <p>Returns <code>true</code> iff <code>a</code> is disjoint with <code>b</code>.</p>
@@ -94,7 +91,7 @@ of type <code>S</code>, and <code>e</code> is of type <code>S.Element</code>:</p
 </div>
 
 <h3>Instance Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-contains">
 <code class="language-swift">func contains(member: Self.Element) -> Bool</code>
 <div class="comment">
     <p>Returns <code>true</code> if <code>self</code> contains <code>member</code>.</p>
@@ -102,27 +99,27 @@ of type <code>S</code>, and <code>e</code> is of type <code>S.Element</code>:</p
 <ul><li>Equivalent to <code>self.intersect([member]) == [member]</code></li></ul>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-union">
 <code class="language-swift">func union(other: Self) -> Self</code>
 <div class="comment">
     <p>Returns the set of elements contained in <code>self</code>, in <code>other</code>, or in
 both <code>self</code> and <code>other</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-intersect">
 <code class="language-swift">func intersect(other: Self) -> Self</code>
 <div class="comment">
     <p>Returns the set of elements contained in both <code>self</code> and <code>other</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-exclusiveOr">
 <code class="language-swift">func exclusiveOr(other: Self) -> Self</code>
 <div class="comment">
     <p>Returns the set of elements contained in <code>self</code> or in <code>other</code>,
 but not in both <code>self</code> and <code>other</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-insert">
 <code class="language-swift">mutating func insert(member: Self.Element)</code>
 <div class="comment">
     <p>If <code>member</code> is not already contained in <code>self</code>, inserts it.</p>
@@ -131,7 +128,7 @@ but not in both <code>self</code> and <code>other</code>.</p>
 <strong>Postcondition:</strong> <code>self.contains(member)</code></li></ul>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-remove">
 <code class="language-swift">mutating func remove(member: Self.Element) -> Self.Element?</code>
 <div class="comment">
     <p>If <code>member</code> is contained in <code>self</code>, removes and returns it.
@@ -141,7 +138,7 @@ Otherwise, removes all elements subsumed by <code>member</code> and returns
 <p><strong>Postcondition:</strong> <code>self.intersect([member]).isEmpty</code></p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-unionInPlace">
 <code class="language-swift">mutating func unionInPlace(other: Self)</code>
 <div class="comment">
     <p>Insert all elements of <code>other</code> into <code>self</code>.</p>
@@ -150,7 +147,7 @@ Otherwise, removes all elements subsumed by <code>member</code> and returns
 <strong>Postcondition:</strong> <code>self.isSupersetOf(other)</code></li></ul>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-intersectInPlace">
 <code class="language-swift">mutating func intersectInPlace(other: Self)</code>
 <div class="comment">
     <p>Removes all elements of <code>self</code> that are not also present in
@@ -160,7 +157,7 @@ Otherwise, removes all elements subsumed by <code>member</code> and returns
 <strong>Postcondition:</strong> <code>self.isSubsetOf(other)</code></li></ul>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-exclusiveOrInPlace">
 <code class="language-swift">mutating func exclusiveOrInPlace(other: Self)</code>
 <div class="comment">
     <p>Replaces <code>self</code> with a set containing all elements contained in
@@ -169,31 +166,31 @@ either <code>self</code> or <code>other</code>, but not both.</p>
 <ul><li>Equivalent to replacing <code>self</code> with <code>self.exclusiveOr(other)</code></li></ul>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-subtract">
 <code class="language-swift">func subtract(other: Self) -> Self</code>
 <div class="comment">
     <p>Return true iff <code>self.intersect(other).isEmpty</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-isSubsetOf">
 <code class="language-swift">func isSubsetOf(other: Self) -> Bool</code>
 <div class="comment">
     <p>Return true iff every element of <code>self</code> is contained in <code>other</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-isDisjointWith">
 <code class="language-swift">func isDisjointWith(other: Self) -> Bool</code>
 <div class="comment">
     <p>Return true iff <code>self.intersect(other).isEmpty</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-isSupersetOf">
 <code class="language-swift">func isSupersetOf(other: Self) -> Bool</code>
 <div class="comment">
     <p>Return true iff every element of <code>other</code> is contained in <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-subtractInPlace">
 <code class="language-swift">mutating func subtractInPlace(other: Self)</code>
 <div class="comment">
     <p>Removes all elements of <code>other</code> from <code>self</code>.</p>
@@ -207,16 +204,8 @@ either <code>self</code> or <code>other</code>, but not both.</p>
 <h3>Default Implementations</h3>
 
 
-<h4>Where </h4>
 
-
-
-
-
-
-<h4>Where DefaultImplementations == ()</h4>
-
-<div class="declaration">
+<div class="declaration" id="func-subtractInPlace">
 <code class="language-swift">mutating func subtractInPlace(other: Self)</code>
 <div class="comment">
     <p>Removes all elements of <code>other</code> from <code>self</code>.</p>
@@ -224,45 +213,45 @@ either <code>self</code> or <code>other</code>, but not both.</p>
 <ul><li>Equivalent to replacing <code>self</code> with <code>self.subtract(other)</code>.</li></ul>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-isSubsetOf">
 <code class="language-swift">func isSubsetOf(other: Self) -> Bool</code>
 <div class="comment">
     <p>Returns true iff every element of <code>self</code> is contained in <code>other</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-isSupersetOf">
 <code class="language-swift">func isSupersetOf(other: Self) -> Bool</code>
 <div class="comment">
     <p>Returns true iff every element of <code>other</code> is contained in <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-isDisjointWith">
 <code class="language-swift">func isDisjointWith(other: Self) -> Bool</code>
 <div class="comment">
     <p>Returns true iff <code>self.intersect(other).isEmpty</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-subtract">
 <code class="language-swift">func subtract(other: Self) -> Self</code>
 <div class="comment">
     <p>Returns true iff <code>self.intersect(other).isEmpty</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-isStrictSupersetOf">
 <code class="language-swift">func isStrictSupersetOf(other: Self) -> Bool</code>
 <div class="comment">
     <p>Returns true iff every element of <code>other</code> is contained in <code>self</code>
 and <code>self</code> contains an element that is not contained in <code>other</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-isStrictSubsetOf">
 <code class="language-swift">func isStrictSubsetOf(other: Self) -> Bool</code>
 <div class="comment">
     <p>Return true iff every element of <code>self</code> is contained in <code>other</code>
 and <code>other</code> contains an element that is not contained in <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-element">
 <code class="language-swift">static func element(a: Self.Element, subsumes b: Self.Element) -> Bool</code>
 <div class="comment">
     <p>Returns <code>true</code> iff <code>a</code> subsumes <code>b</code>.</p>
@@ -270,7 +259,7 @@ and <code>other</code> contains an element that is not contained in <code>self</
 <ul><li>Equivalent to <code>([a] as Self).isSupersetOf([b])</code></li></ul>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-element">
 <code class="language-swift">static func element(a: Self.Element, isDisjointWith b: Self.Element) -> Bool</code>
 <div class="comment">
     <p>Returns <code>true</code> iff <code>a</code> is disjoint with <code>b</code>.</p>
@@ -281,12 +270,14 @@ and <code>other</code> contains an element that is not contained in <code>self</
 </div>
 </div>
 
-<div class="declaration">
+<div class="declaration" id="prop-isEmpty">
 <code class="language-swift">var isEmpty: Bool { get }</code>
 <div class="comment">
     <p>Returns true iff <code>self.contains(e)</code> is <code>false</code> for all <code>e</code>.</p>
 </div>
 </div>
+
+
 
 
 

@@ -2,7 +2,7 @@
 layout: "default"
 title: "String"
 description: "Swift documentation for 'String': An arbitrary Unicode string value."
-keywords: "String,struct,swift,documentation,generate,withMutableCharacters,fromCString,fromCStringRepairingIllFormedUTF8,withCString,getMirror,write,writeTo,extend,append,reserveCapacity,append,extend,join,replaceRange,replaceRange,insert,splice,removeAtIndex,removeRange,removeAll,hasPrefix,hasSuffix,startIndex,endIndex,characters,utf16,utf8,nulTerminatedUTF8,debugDescription,hashValue,lowercaseString,uppercaseString,isEmpty,unicodeScalars,Index,UnicodeScalarIndex,UTF16Index,UTF8Index"
+keywords: "String,struct,swift,documentation,withMutableCharacters,fromCString,fromCStringRepairingIllFormedUTF8,withCString,getMirror,write,writeTo,extend,append,reserveCapacity,append,extend,join,replaceRange,replaceRange,insert,splice,removeAtIndex,removeRange,removeAll,hasPrefix,hasSuffix,startIndex,endIndex,characters,utf16,utf8,nulTerminatedUTF8,debugDescription,hashValue,lowercaseString,uppercaseString,isEmpty,unicodeScalars,Index,UnicodeScalarIndex,UTF16Index,UTF8Index"
 root: "/swift-2"
 ---
 
@@ -98,10 +98,10 @@ characteristics).</p>
 </div>
 
 <h3>Inheritance</h3>
-<code class="inherits">Reflectable, OutputStreamType, Streamable, UnicodeScalarLiteralConvertible, ExtendedGraphemeClusterLiteralConvertible, StringLiteralConvertible, CustomDebugStringConvertible, Equatable, Comparable, Hashable, StringInterpolationConvertible, MirrorPathType</code>
+<code class="inherits">_Reflectable, OutputStreamType, Streamable, UnicodeScalarLiteralConvertible, ExtendedGraphemeClusterLiteralConvertible, StringLiteralConvertible, CustomDebugStringConvertible, Equatable, Comparable, Hashable, StringInterpolationConvertible, MirrorPathType</code>
 <span class="viz"><a href="hierarchy/">Protocol hierarchy</a></span>
 
-<h3>Associated types</h3>
+<h3 id="aliases">Associated types</h3>
 <div class="declaration">
 <code class="language-swift">typealias Index = String.CharacterView.Index</code>
 </div>
@@ -289,7 +289,7 @@ of <code>Character(repeatedValue)</code>.</p>
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">init&lt;T : _UnsignedIntegerType&gt;(_ v: T)</code>
+<code class="language-swift">init&lt;T : UnsignedIntegerType&gt;(_ v: T)</code>
 <div class="comment">
     <p>Create an instance representing <code>v</code> in base 10.</p>
 </div>
@@ -304,7 +304,7 @@ starting with <code>a</code> if <code>uppercase</code> is <code>false</code> or 
 </div>
 </div>
 <div class="declaration">
-<code class="language-swift">init&lt;T : _UnsignedIntegerType&gt;(_ v: T, radix: Int, uppercase: Bool = default)</code>
+<code class="language-swift">init&lt;T : UnsignedIntegerType&gt;(_ v: T, radix: Int, uppercase: Bool = default)</code>
 <div class="comment">
     <p>Create an instance representing <code>v</code> in the given <code>radix</code> (base).</p>
 
@@ -344,14 +344,14 @@ the Swift standard library.</p></li></ul>
 
 
 <h3>Instance Variables</h3>
-<div class="declaration">
+<div class="declaration" id="prop-startIndex">
 <code class="language-swift">var startIndex: Index { get }</code>
 <div class="comment">
     <p>The position of the first <code>Character</code> in <code>self.characters</code> if
 <code>self</code> is non-empty; identical to <code>endIndex</code> otherwise.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-endIndex">
 <code class="language-swift">var endIndex: Index { get }</code>
 <div class="comment">
     <p>The &quot;past the end&quot; position in <code>self.characters</code>.</p>
@@ -361,7 +361,7 @@ reachable from <code>startIndex</code> by zero or more applications of
 <code>successor()</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-characters">
 <code class="language-swift">var characters: String.CharacterView { get }</code>
 <div class="comment">
     <p>A collection of <code>Characters</code> representing the <code>String</code>&#39;s
@@ -369,19 +369,19 @@ reachable from <code>startIndex</code> by zero or more applications of
 clusters</a>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-utf16">
 <code class="language-swift">var utf16: String.UTF16View { get }</code>
 <div class="comment">
     <p>A UTF-16 encoding of <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-utf8">
 <code class="language-swift">var utf8: String.UTF8View { get }</code>
 <div class="comment">
     <p>A UTF-8 encoding of <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-nulTerminatedUTF8">
 <code class="language-swift">var nulTerminatedUTF8: ContiguousArray&lt;CodeUnit&gt; { get }</code>
 <div class="comment">
     <p>A contiguously-stored nul-terminated UTF-8 representation of
@@ -391,13 +391,13 @@ clusters</a>.</p>
 <code>withUnsafeBufferPointer</code> on the <code>ContiguousArray</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-debugDescription">
 <code class="language-swift">var debugDescription: String { get }</code>
 <div class="comment">
     <p>A textual representation of <code>self</code>, suitable for debugging.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-hashValue">
 <code class="language-swift">var hashValue: Int { get }</code>
 <div class="comment">
     <p>The hash value.</p>
@@ -409,19 +409,19 @@ clusters</a>.</p>
   hash value across program runs.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-lowercaseString">
 <code class="language-swift">var lowercaseString: String { get }</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-uppercaseString">
 <code class="language-swift">var uppercaseString: String { get }</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-isEmpty">
 <code class="language-swift">var isEmpty: Bool { get }</code>
 <div class="comment">
     <p><code>true</code> iff <code>self</code> contains no characters.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="prop-unicodeScalars">
 <code class="language-swift">var unicodeScalars: String.UnicodeScalarView { get set }</code>
 <div class="comment">
     <p>The value of <code>self</code> as a collection of <a href="http://www.unicode.org/glossary/#unicode_scalar_value">Unicode scalar values</a>.</p>
@@ -429,7 +429,7 @@ clusters</a>.</p>
 </div>
 
 <h3>Static Methods</h3>
-<div class="declaration">
+<div class="declaration" id="func-fromCString">
 <code class="language-swift">static func fromCString(cs: UnsafePointer&lt;CChar&gt;) -> String?</code>
 <div class="comment">
     <p>Creates a new <code>String</code> by copying the nul-terminated UTF-8 data
@@ -439,7 +439,7 @@ referenced by a <code>CString</code>.</p>
 UTF-8 code unit sequences.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-fromCStringRepairingIllFormedUTF8">
 <code class="language-swift">static func fromCStringRepairingIllFormedUTF8(cs: UnsafePointer&lt;CChar&gt;) -> (String?, hadError: Bool)</code>
 <div class="comment">
     <p>Creates a new <code>String</code> by copying the nul-terminated UTF-8 data
@@ -452,15 +452,7 @@ characters (U+FFFD).</p>
 </div>
 
 <h3>Instance Methods</h3>
-<div class="declaration">
-<code class="language-swift">func generate() -> IndexingGenerator&lt;String.CharacterView&gt;</code>
-<div class="comment">
-    <p>Return a <em>generator</em> over the <code>Character</code>s.</p>
-
-<p><strong>Complexity:</strong> O(1).</p>
-</div>
-</div>
-<div class="declaration">
+<div class="declaration" id="func-withMutableCharacters">
 <code class="language-swift">mutating func withMutableCharacters&lt;R&gt;(body: (inout String.CharacterView) -&gt; R) -> R</code>
 <div class="comment">
     <p>Efficiently mutate <code>self</code> by applying <code>body</code> to its <code>characters</code>.</p>
@@ -471,7 +463,7 @@ characters (U+FFFD).</p>
   use only the <code>String.CharacterView</code> argument to <code>body</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-withCString">
 <code class="language-swift">func withCString&lt;Result&gt;(@noescape f: UnsafePointer&lt;Int8&gt; -&gt; Result) -> Result</code>
 <div class="comment">
     <p>Invoke <code>f</code> on the contents of this string, represented as
@@ -479,31 +471,31 @@ a nul-terminated array of char, ensuring that the array&#39;s
 lifetime extends through the execution of <code>f</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-getMirror">
 <code class="language-swift">func getMirror() -> MirrorType</code>
 <div class="comment">
     <p>Returns a mirror that reflects <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-write">
 <code class="language-swift">mutating func write(other: String)</code>
 <div class="comment">
     <p>Append <code>other</code> to this stream.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-writeTo">
 <code class="language-swift">func writeTo&lt;Target : OutputStreamType&gt;(inout target: Target)</code>
 <div class="comment">
     <p>Write a textual representation of <code>self</code> into <code>target</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-extend">
 <code class="language-swift">mutating func extend(other: String)</code>
 <div class="comment">
     <p>Append the elements of <code>other</code> to <code>self</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-append">
 <code class="language-swift">mutating func append(x: UnicodeScalar)</code>
 <div class="comment">
     <p>Append <code>x</code> to <code>self</code>.</p>
@@ -511,16 +503,16 @@ lifetime extends through the execution of <code>f</code>.</p>
 <p><strong>Complexity:</strong> Amortized O(1).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-reserveCapacity">
 <code class="language-swift">mutating func reserveCapacity(n: Int)</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-append">
 <code class="language-swift">mutating func append(c: Character)</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-extend">
 <code class="language-swift">mutating func extend&lt;S : SequenceType where S.Generator.Element == Character&gt;(newElements: S)</code>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-join">
 <code class="language-swift">func join&lt;S : SequenceType where S.Generator.Element == String&gt;(elements: S) -> String</code>
 <div class="comment">
     <p>Interpose <code>self</code> between every pair of consecutive <code>elements</code>,
@@ -529,7 +521,7 @@ then concatenate the result.  For example:</p>
 <pre><code class="language-swift">&quot;-|-&quot;.join([&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]) // &quot;foo-|-bar-|-baz&quot;</code></pre>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-replaceRange">
 <code class="language-swift">mutating func replaceRange&lt;C : CollectionType where C.Generator.Element == Character&gt;(subRange: Range&lt;Index&gt;, with newElements: C)</code>
 <div class="comment">
     <p>Replace the given <code>subRange</code> of elements with <code>newElements</code>.</p>
@@ -540,7 +532,7 @@ then concatenate the result.  For example:</p>
   == self.endIndex</code> and <code>isEmpty(newElements)</code>, O(N) otherwise.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-replaceRange">
 <code class="language-swift">mutating func replaceRange(subRange: Range&lt;Index&gt;, with newElements: String)</code>
 <div class="comment">
     <p>Replace the given <code>subRange</code> of elements with <code>newElements</code>.</p>
@@ -551,7 +543,7 @@ then concatenate the result.  For example:</p>
   == self.endIndex</code> and <code>isEmpty(newElements)</code>, O(N) otherwise.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-insert">
 <code class="language-swift">mutating func insert(newElement: Character, atIndex i: Index)</code>
 <div class="comment">
     <p>Insert <code>newElement</code> at index <code>i</code>.</p>
@@ -561,7 +553,7 @@ then concatenate the result.  For example:</p>
 <p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-splice">
 <code class="language-swift">mutating func splice&lt;S : CollectionType where S.Generator.Element == Character&gt;(newElements: S, atIndex i: Index)</code>
 <div class="comment">
     <p>Insert <code>newElements</code> at index <code>i</code>.</p>
@@ -571,7 +563,7 @@ then concatenate the result.  For example:</p>
 <p><strong>Complexity:</strong> O(<code>self.count + newElements.count</code>).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-removeAtIndex">
 <code class="language-swift">mutating func removeAtIndex(i: Index) -> Character</code>
 <div class="comment">
     <p>Remove and return the element at index <code>i</code>.</p>
@@ -581,7 +573,7 @@ then concatenate the result.  For example:</p>
 <p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-removeRange">
 <code class="language-swift">mutating func removeRange(subRange: Range&lt;Index&gt;)</code>
 <div class="comment">
     <p>Remove the indicated <code>subRange</code> of characters.</p>
@@ -591,7 +583,7 @@ then concatenate the result.  For example:</p>
 <p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-removeAll">
 <code class="language-swift">mutating func removeAll(keepCapacity keepCapacity: Bool = default)</code>
 <div class="comment">
     <p>Remove all characters.</p>
@@ -603,13 +595,13 @@ then concatenate the result.  For example:</p>
   when <code>self</code> is going to be grown again.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-hasPrefix">
 <code class="language-swift">func hasPrefix(prefix: String) -> Bool</code>
 <div class="comment">
     <p>Returns <code>true</code> iff <code>self</code> begins with <code>prefix</code>.</p>
 </div>
 </div>
-<div class="declaration">
+<div class="declaration" id="func-hasSuffix">
 <code class="language-swift">func hasSuffix(suffix: String) -> Bool</code>
 <div class="comment">
     <p>Returns <code>true</code> iff <code>self</code> ends with <code>suffix</code>.</p>

@@ -1,15 +1,15 @@
 ---
 layout: "default"
 title: "AnyGenerator"
-description: "Swift documentation for 'AnyGenerator': An abstract GeneratorType base class over T elements."
+description: "Swift documentation for 'AnyGenerator': An abstract GeneratorType base class over Element elements."
 keywords: "AnyGenerator,class,swift,documentation,next,generate"
 root: "/swift-2"
 ---
 
-<code class="language-swift">class AnyGenerator&lt;T&gt; { ... }</code>
+<code class="language-swift">class AnyGenerator&lt;Element&gt; { ... }</code>
 
 <div class="comment">
-    <p>An abstract <code>GeneratorType</code> base class over <code>T</code> elements.</p>
+    <p>An abstract <code>GeneratorType</code> base class over <code>Element</code> elements.</p>
 
 <p>Use this as a <code>Sequence</code>&#39;s associated <code>Generator</code> type when you
 don&#39;t want to expose details of the concrete generator, a subclass.</p>
@@ -20,7 +20,7 @@ also instances of an <code>AnyGenerator</code> subclass.</p>
 <p><strong>See Also:</strong>
   - <code>struct AnySequence&lt;S : SequenceType&gt;</code>
   - <code>func anyGenerator&lt;G : GeneratorType&gt;(base: G) -&gt; AnyGenerator&lt;G.Element&gt;</code>
-  - <code>func anyGenerator&lt;T&gt;(body: ()-&gt;T?) -&gt; AnyGenerator&lt;T&gt;</code></p>
+  - <code>func anyGenerator&lt;Element&gt;(body: ()-&gt;Element?) -&gt; AnyGenerator&lt;Element&gt;</code></p>
 </div>
 
 <h3>Inheritance</h3>
@@ -43,8 +43,8 @@ initializer.</p>
 
 
 <h3>Instance Methods</h3>
-<div class="declaration">
-<code class="language-swift">func next() -> T?</code>
+<div class="declaration" id="func-next">
+<code class="language-swift">func next() -> Element?</code>
 <div class="comment">
     <p>Advance to the next element and return it, or <code>nil</code> if no next
 element exists.</p>
@@ -52,8 +52,8 @@ element exists.</p>
 <p><strong>Note:</strong> Subclasses must override this method.</p>
 </div>
 </div>
-<div class="declaration">
-<code class="language-swift">func generate() -> AnyGenerator&lt;T&gt;</code>
+<div class="declaration" id="func-generate">
+<code class="language-swift">func generate() -> AnyGenerator&lt;Element&gt;</code>
 <div class="comment">
     <p>Returns <code>self</code>.</p>
 </div>
