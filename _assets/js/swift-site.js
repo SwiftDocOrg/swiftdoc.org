@@ -40,18 +40,52 @@ $(function() {
     var collapseAreas = [ '', '', '', '' ];
     var globalLinks = ['', ''];
     var format = function(item, element, search) {
-        var termStart = item.id.indexOf(search.term.toLowerCase());
-        var itemText = item.text.substr(0, termStart) 
-                        + '<span class="select2-match">' 
-                        + item.text.substr(termStart, search.term.length) 
-                        + '</span>' 
-                        + item.text.substr(termStart + search.term.length);
+        
+        var fullText = item.fullText || item.text;
+        var prefixLength = fullText.lastIndexOf('.') + 1;
+        var termStart = prefixLength + item.id.replace(/^.+\./, '').indexOf(search.term.toLowerCase());
+
+        if (search.term == 'next') {
+            console.log(fullText);
+            console.log(prefixLength);
+            console.log(termStart);
+        }
+
+        var itemText = '';
+        if (prefixLength != 0) {
+            itemText = '<span class="kind">' + fullText.substr(0, prefixLength) + '</span>'
+        }
+        itemText += fullText.substr(prefixLength, termStart - prefixLength)
+                    + '<span class="select2-match">' 
+                    + fullText.substr(termStart, search.term.length) 
+                    + '</span>' 
+                    + fullText.substr(termStart + search.term.length);
         return itemText + '&nbsp;<span class="kind">' + item.kind + '</span>'; 
     };
     for (item in linkdata) {
-        if (linkdata[item].match(/\/type\//)) {
+        var match = null;
+        var url = linkdata[item];
+        if (match = url.match(/#(.+)-/)) {
+            var kind = match[1];
+            if ((kind == 'type') || (kind == 'protocol')) {
+                kind = 'alias';
+            }
+            selectdata.push({ 
+                id: item.toLowerCase(), 
+                fullText: item,
+                text: item.replace(/^.+\./, ''),
+                lowerText: item.replace(/^.+\./, '').toLowerCase(),
+                kind: match[1] 
+            });
+        } else if (linkdata[item].match(/\/type\//)) {
             collapseAreas[0] += '<a href="' + linkdata[item] + '" class="list-group-item">' + item + '</a>';
-            selectdata.push({ id: item.toLowerCase(), text: item, kind: 'type' });
+            selectdata.push({ 
+                id: item.toLowerCase(), 
+                fullText: item,
+                text: item.replace(/^.+\./, ''),
+                lowerText: item.replace(/^.+\./, '').toLowerCase(),
+                kind: 'type'
+            });
         } else if (linkdata[item].match(/\/protocol\//)) {
             collapseAreas[1] += '<a href="' + linkdata[item] + '" class="list-group-item">' + item + '</a>';
             selectdata.push({ id: item.toLowerCase(), text: item, kind: 'protocol' });
@@ -69,21 +103,37 @@ $(function() {
             selectdata.push({ id: item.toLowerCase(), text: item, kind: 'func' });
         }
     }
-    $('.select2').select2({ placeholder: "Search", minimumInputLength: 1, formatInputTooShort: '', data: selectdata, formatResult: format,
-                sortResults: function(results, container, query) {
-                    if (query.term) {
-                        return results.sort(function(a, b) {
-                            var term = query.term.toLowerCase();
-                            
-                            // check to see if the search term matches the beginning of each result
-                            var indexOffset = a.id.indexOf(term) - b.id.indexOf(term);
-                            
-                            // we want the prefixed matches to be listed first, then the non-prefixed,
-                            // so if they aren't in the same group order the prefixed item first
+    $('.select2').select2({ 
+        placeholder: "Search", 
+        minimumInputLength: 3, 
+        formatInputTooShort: '', 
+        data: selectdata, 
+        formatResult: format,
+        sortResults: function(results, container, query) {
+            if (query.term) {
+                var term = query.term.toLowerCase();
+                return results.sort(function(a, b) {
+                    // we sort first by location of the search term in the matches
+                    // that is, when the term is "string", String should match before StaticString
+                    // to begin, find the relative search term offset of the two matches
+                    var aComp = a.lowerText || a.id;
+                    var bComp = b.lowerText || b.id;
+                    var indexOffset = aComp.indexOf(term) - bComp.indexOf(term);
+                    
+                    // if the relative offset of the search term is nonzero, the term
+                    // with the lower offset should come first
+                    if (indexOffset != 0) {
+                        return indexOffset;
+                        
+                    // otherwise, order using case-insensitive alpha
+                    } else {
+                        if (aComp != bComp) {
+                            return (aComp < bComp) ? -1 : 1;                            
+                        } else {
+                            // if the two terms are the same, expand the comparison to look at their fully qualified names
+                            indexOffset = a.id.indexOf(term) - b.id.indexOf(term);
                             if (indexOffset != 0) {
                                 return indexOffset;
-                                
-                            // otherwise order using case-insensitive alpha
                             } else {
                                 if (a.id == b.id) {
                                     return 0;
@@ -91,16 +141,21 @@ $(function() {
                                     return (a.id < b.id) ? -1 : 1;
                                 }
                             }
-                        });
+                        }
                     }
-                    return results;
-                }
-            })
-            .on("change", function(e) {
-                if ((e.added) && (linkdata[e.added.text])) {
-                    window.location.href = linkdata[e.added.text];
-                }
-            });
+                });
+            }
+            return results;
+        }
+    })
+    .on("change", function(e) {
+        if (!e.added) return;
+        
+        var linkdataKey = e.added.fullText || e.added.text;
+        if (linkdata[linkdataKey]) {
+            window.location.href = linkdata[linkdataKey];
+        }
+    });
 
     $('#collapseTypes').html(collapseAreas[0]);
     $('#collapseProtocols').html(collapseAreas[1]);
