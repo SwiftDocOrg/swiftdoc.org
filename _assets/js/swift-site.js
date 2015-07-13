@@ -35,6 +35,11 @@ $(function() {
         item.innerHTML = text;
     });
     
+    // revise link to alternate version
+    $('#version a').each(function(i, item) {
+        item.href = item.href + location.href.replace(/http:\/\/[^\/]+\/(swift-2\/?)?/, '');
+    });
+    
     // set up search box
     var selectdata = [];
     var collapseAreas = [ '', '', '', '' ];
@@ -66,46 +71,46 @@ $(function() {
         var match = null;
         var url = linkdata[item];
         if (match = url.match(/#(.+)-/)) {
+            // pull the kind from the path
             var kind = match[1];
-            if ((kind == 'type') || (kind == 'protocol')) {
-                kind = 'alias';
-            }
             selectdata.push({ 
+                // id = lowercase name of function/property/type: will be unique
                 id: item.toLowerCase(), 
+                // fullText = mixed name of item
                 fullText: item,
-                text: item.replace(/^.+\./, ''),
-                lowerText: item.replace(/^.+\./, '').toLowerCase(),
-                kind: match[1] 
+                // text = portion of fullText after final '.' -- this is what gets matched in the search
+                text: item.replace(/^.+\./, '').toLowerCase(),
+                // pull the kind from the path
+                kind: match[1]      
             });
         } else if (linkdata[item].match(/\/type\//)) {
             collapseAreas[0] += '<a href="' + linkdata[item] + '" class="list-group-item">' + item + '</a>';
             selectdata.push({ 
                 id: item.toLowerCase(), 
                 fullText: item,
-                text: item.replace(/^.+\./, ''),
-                lowerText: item.replace(/^.+\./, '').toLowerCase(),
+                text: item.replace(/^.+\./, '').toLowerCase(),
                 kind: 'type'
             });
         } else if (linkdata[item].match(/\/protocol\//)) {
             collapseAreas[1] += '<a href="' + linkdata[item] + '" class="list-group-item">' + item + '</a>';
-            selectdata.push({ id: item.toLowerCase(), text: item, kind: 'protocol' });
+            selectdata.push({ id: item.toLowerCase(), fullText: item, text: item.toLowerCase(), kind: 'protocol' });
         } else if (linkdata[item].match(/\/operator\//)) {
             collapseAreas[2] += '<a href="' + linkdata[item] + '" class="list-group-item">' + item + '</a>';
-            selectdata.push({ id: item.toLowerCase(), text: item, kind: 'operator' });
+            selectdata.push({ id: item.toLowerCase(), fullText: item, text: item.toLowerCase(), kind: 'operator' });
         } else if (linkdata[item].match(/\/(var)\//)) {
             globalLinks[0] = '<a href="' + linkdata[item] + '" class="list-group-item">Variables</a>';
-            selectdata.push({ id: item.toLowerCase(), text: item, kind: 'var' });
+            selectdata.push({ id: item.toLowerCase(), fullText: item, text: item.toLowerCase(), kind: 'var' });
         } else if (linkdata[item].match(/\/(alias)\//)) {
             globalLinks[1] = '<a href="' + linkdata[item] + '" class="list-group-item">Type Aliases</a>';
-            selectdata.push({ id: item.toLowerCase(), text: item, kind: 'alias' });
+            selectdata.push({ id: item.toLowerCase(), fullText: item, text: item.toLowerCase(), kind: 'alias' });
         } else if (linkdata[item].match(/\/(func)\//)) {
             collapseAreas[3] += '<a href="' + linkdata[item] + '" class="list-group-item">' + item + '</a>';
-            selectdata.push({ id: item.toLowerCase(), text: item, kind: 'func' });
+            selectdata.push({ id: item.toLowerCase(), fullText: item, text: item.toLowerCase(), kind: 'func' });
         }
     }
     $('.select2').select2({ 
         placeholder: "Search", 
-        minimumInputLength: 3, 
+        minimumInputLength: 1, 
         formatInputTooShort: '', 
         data: selectdata, 
         formatResult: format,
@@ -116,8 +121,8 @@ $(function() {
                     // we sort first by location of the search term in the matches
                     // that is, when the term is "string", String should match before StaticString
                     // to begin, find the relative search term offset of the two matches
-                    var aComp = a.lowerText || a.id;
-                    var bComp = b.lowerText || b.id;
+                    var aComp = a.text || a.id;
+                    var bComp = b.text || b.id;
                     var indexOffset = aComp.indexOf(term) - bComp.indexOf(term);
                     
                     // if the relative offset of the search term is nonzero, the term
