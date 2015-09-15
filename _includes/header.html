@@ -1,3 +1,4 @@
+    {% capture homeUrl %}{% if page.url contains 'swift-2' %}/swift-2{% endif %}/{% endcapture %}
 	<nav class="navbar navbar-default" role="navigation" id="navbar">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -8,7 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <h1><a href="/">SwiftDoc.org</a></h1>
+          <h1><a href="{{ homeUrl }}">SwiftDoc.org</a></h1>
           <span class="version"></span>
         </div>
 	    <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -31,7 +32,7 @@
 
 	<div id="header">
 		<div class="container">
-			<h1><a href="/">{{ site.title }}</a></h1>
+			<h1><a href="{{ homeUrl }}">{{ site.title }}</a></h1>
 			<p>Auto-generated documentation for <a href="https://developer.apple.com/swift/">Swift</a>. Command-click no more.</p>
 			
 			{% if page.layout == "home" %}
@@ -47,9 +48,9 @@
     <div id="version">
 		<div class="container">
     		{% if page.url contains "/swift-2" %}
-			Swift version: <a href="/">1.2</a> &nbsp;|&nbsp; <strong>2.0b5</strong>
+			Swift version: <a href="/">1.2</a> &nbsp;|&nbsp; <strong>2.0b6</strong>
     		{% else %}
-			Swift version: <strong>1.2</strong> &nbsp;|&nbsp; <a href="/swift-2/">2.0b5</a>
+			Swift version: <strong>1.2</strong> &nbsp;|&nbsp; <a href="/swift-2/">2.0b6</a>
     		{% endif %}
 		</div>
     </div>
