@@ -36,7 +36,7 @@ html, body {
     height: 100%;
 }
 body {
-    font: 17px/21px 'Avenir Next', 'Avenir', sans-serif;
+    font: 17px/21px -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
     color: @content-fg;
 }
 
@@ -54,7 +54,8 @@ body {
     .MainBG;
     height: 80px;
     text-align: center;
-
+    font-family: 'Avenir Next', Avenir, sans-serif;
+    
     h1 {
         font-size: 40px;
         font-weight: normal;
@@ -105,7 +106,7 @@ body.home {
     border: none;
     
     .navbar-right>li>a {
-        padding-left: 20px;
+        padding: 7px 15px 7px 20px;
     }
     .navbar-header {
         .MainBG;    
@@ -124,6 +125,12 @@ body.home {
         .icon-bar {
             background: @white;
         }
+    }
+    .divider {
+        height: 1px;
+        margin: 9px 0;
+        overflow: hidden;
+        background-color: #e5e5e5;
     }
     h1 {
         font-size: 32px;
@@ -187,6 +194,7 @@ body.home {
     }
     
     #accordion {
+        display: none;
         margin: 30px 0;
     
         .panel {
@@ -219,9 +227,35 @@ body.home {
         }
     }
     
+    #intranav {
+        font-size: 0.8em;
+        
+        h4 {
+            margin: 2em 0 0.2em;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            color: #999;
+        }
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        
+    }
+    
+    #fixed-sidebar.affix {
+        top: 0;
+    }
 }
 
-h2 { font-weight: 700; margin: 35px 0; }
+h2 { 
+    font-size: 40px;
+    font-weight: normal;
+    margin: 35px 0 25px; 
+}
+
 .p-news h2 { font-weight: 600; }
 
 a {
@@ -242,12 +276,17 @@ a {
     
     h3 {
         font-size: 22px;
-        font-weight: 600;
+        font-weight: 500;
         margin: 30px 0 5px;
     }
     
     h4 {
         margin-top: 30px;
+        font-size: 15px;
+        
+        &:first-child {
+            margin-top: 0;
+        }
     }
 
     .main-list {
@@ -269,10 +308,9 @@ a {
         
         a {
             display: inline-block;
-            margin-top: 5px;
-            padding: 4px 5px 2px;
+            margin: 0 0 6px -8px;
+            padding: 3px 8px;
             background: white;
-            border: 1px solid @content-link;
             color: @content-link;
             font-size: 11px;
             font-weight: 600;
@@ -283,7 +321,14 @@ a {
                 background: @content-link;
                 text-decoration: none;
             }
+            
         }
+        
+        &:first-child {
+            a {
+                margin-top: 6px;
+            }
+        }        
     }
 
     .syntaxhighlighter {
@@ -334,19 +379,22 @@ a {
         }
         h2 {
             margin: 1.8em 0 0.2em;
-            font-size: 14px;
+            font-size: 15px;
             text-transform: uppercase;
-            font-weight: 700;
+            font-weight: 600;
         }
+        h4 {
+            font-size: 14px;
+            margin: 12px 0 4px;
+        }
+        p { margin: 10px 0; }
         strong { font-weight: 600; }
         
         .syntaxhighlighter {
-            font-size: 1em !important;
+            font-size: 15px;
             margin: 0 !important;
-
+            
             ul.container {
-                line-height: 1.5em;
-                
                 li:last-child {
                     padding-bottom: 0 !important;
                 }
@@ -360,8 +408,56 @@ a {
         }
     }
     
-    .declaration .comment {
-        margin: -0.5em 0 20px 30px;
+    .intro-declaration {
+        font-size: 1.1em;
+    }
+    
+    .discussion {
+        font-size: 16px;
+    }
+    
+    .declaration {
+        margin: 10px 0;
+        line-height: 17px;
+        
+        .comment {
+            margin: 0;
+    
+            .p {
+                padding: 0 0 15px 25px;
+            }
+        }        
+        
+        .required {
+            display: inline-block;
+            font-size: 10px;
+            line-height: 15px;
+            padding: 1px 6px;
+            top: -2px;
+            position: relative;
+            border-radius: 4px;
+            color: #fff;
+            background: #aaa;
+            text-transform: uppercase;
+        }
+    }
+    
+    .noninherited {
+        font-size: 0.8em;
+        font-style: italic;
+        color: #999;
+        display: none;
+    }
+    
+    a.toggle-link {
+        font-size: 14px;
+        font-family: Menlo, Consolas, monospace;
+        color: #999;
+        text-decoration: none;
+        
+        .identifier {
+            color: @code-link;
+        }
     }
     
     code {
@@ -377,6 +473,47 @@ a {
             
             :hover {
                 color: @code-link;
+            }
+        }
+    }
+    
+    table.standard {
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 2em 0;
+
+        tr {
+            border-bottom: 1px solid #ccc;
+        }
+        
+        th, td { 
+            vertical-align: top;
+        }
+        th { 
+            font-weight: 500; 
+            padding: 10px 20px 10px 0;
+            font-size: 15px;
+        }
+        td {
+            .syntaxhighlighter {
+                margin: 10px 0 4px !important;
+            }
+            
+            .declaration {
+                margin: 10px 0 15px;
+                
+                .comment {
+                    margin: 0;
+                    padding: 0;
+                    background: none;
+                }
+            }
+            .inherits, .nested {
+                margin: 10px 0;
+                display: inline-block;
+            }
+            .noninherited {
+                margin: 10px 0;
             }
         }
     }
@@ -493,9 +630,14 @@ a {
     #sidebar, #header { display: block; }
     #wrapper { margin-bottom: -40px; }
     .push, #footer { height: 40px; }
+    
     #footer {
         .line { display: inline; }
         .sep { display: inline; }
+    }
+    
+    .content table.standard th {
+        white-space: nowrap;
     }
 }
 
