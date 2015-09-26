@@ -37,7 +37,7 @@ $(function() {
     
     // revise link to alternate version
     $('#version a').each(function(i, item) {
-        item.href = item.href + location.href.replace(/http:\/\/[^\/]+\/(swift-2\/?)?/, '');
+        item.href = (item.href + location.href).replace(/(v[.a-z0-9]+\/).+?(\/v[.a-z0-9]+\/|$)/, '$1');
     });
     
     // set up search box

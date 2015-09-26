@@ -44,13 +44,13 @@
 		</div>
 	</div>
 
-    {% unless page.url contains "/news" %}
+    {% unless page.url contains "/news" or page.noversions %}
     <div id="version">
 		<div class="container">
-    		{% if page.url contains "/swift-2" %}
-			Swift version: <a href="/">1.2</a> &nbsp;|&nbsp; <strong>2.0b6</strong>
+    		{% if page.url contains "/v1.2" %}
+			Swift version: <strong>1.2</strong> &nbsp;|&nbsp; <a href="/v2.0/">2.0</a>
     		{% else %}
-			Swift version: <strong>1.2</strong> &nbsp;|&nbsp; <a href="/swift-2/">2.0b6</a>
+			Swift version: <a href="/v1.2/">1.2</a> &nbsp;|&nbsp; <strong>2.0</strong>
     		{% endif %}
 		</div>
     </div>
