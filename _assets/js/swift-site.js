@@ -121,7 +121,7 @@ $(function() {
     // highlight key parts of identifiers
     $('.toggle-link').each(function(i, link) {
         // operator functions
-        $(link).html( $(link).html().replace(/^((final |class |static |mutating |prefix )*(func)) ((&amp;|&lt;|&gt;|[+-\/*%|^=.~])+)/i, '$1 <span class="identifier">$4</span>') );
+        $(link).html( $(link).html().replace(/^((final |class |static |mutating |prefix )*(func)) ((&amp;|&lt;|&gt;|[+-!\/*%|^=.~])+)/i, '$1 <span class="identifier">$4</span>') );
         // other symbols
         $(link).html( $(link).html().replace(/^((final |class |static |mutating |prefix )*(func|var|case)) ([a-z0-9]+)/i, '$1 <span class="identifier">$4</span>') );
         // init / subscript
