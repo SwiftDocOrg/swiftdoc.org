@@ -42,7 +42,7 @@ $(function() {
     $('.content h3').each(function(index, el) {
         // create link to add
         var title = $(el).html();
-    	var id = title.toLowerCase().replace(' ', '-').replace(/[^a-z-]/, '');
+        var id = title.toLowerCase().replace(' ', '-').replace(/[^a-z-]/, '');
         var line = '<li><a href="#' + id + '">' + title + '</a></li>';
         $('#chapters').append(line);
 
@@ -84,10 +84,13 @@ $(function() {
         }
     };
     
-    $('#display').append('<li><a href="#toggleDescriptions" id="toggleDescriptions">Expand all</a></li>');
+    $('#display').append('<li><a href="#toggleDescriptions" id="toggleDescriptions">Expand all</a> [a]</li>');
     $('#navmenu').append('<li><a href="#toggleDescriptions" id="toggleDescriptionsNav">Expand all</a></li>');
     $('#toggleDescriptions,#toggleDescriptionsNav').click(function() { expandAll(!shouldExpandAll); return false; });
-    $('html').keypress(function(ev) { if (ev.keyCode == 97) expandAll(!shouldExpandAll); });
+    $('html').keydown(function(ev) {
+        if ($(ev.target).is(':input')) return;
+        if (ev.which == 65) expandAll(!shouldExpandAll); 
+    });
     
     // hide inherited
     var inheritedCount = $('.inherited').length;
@@ -108,10 +111,13 @@ $(function() {
     };
     
     if (inheritedCount > 0) {
-        $('#display').append('<li><a href="#toggleInherited" id="toggleInherited">Hide inherited (' + inheritedCount + ')</a></li>');
+        $('#display').append('<li><a href="#toggleInherited" id="toggleInherited">Hide inherited (' + inheritedCount + ')</a> [i]</li>');
         $('#navmenu').append('<li><a href="#toggleInherited" id="toggleInheritedNav">Hide inherited (' + inheritedCount + ')</a></li>');
         $('#toggleInherited,#toggleInheritedNav').click(function() { hideInherited(!shouldHideInherited); return false; });
-        $('html').keypress(function(ev) { if (ev.keyCode == 105) hideInherited(!shouldHideInherited); });
+        $('html').keydown(function(ev) {
+            if ($(ev.target).is(':input')) return;
+            if (ev.which == 73) hideInherited(!shouldHideInherited);
+        });
         if (shouldHideInherited) hideInherited(true);
     }
     
