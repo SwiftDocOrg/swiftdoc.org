@@ -87,6 +87,7 @@ $(function() {
     $('#display').append('<li><a href="#toggleDescriptions" id="toggleDescriptions">Expand all</a></li>');
     $('#navmenu').append('<li><a href="#toggleDescriptions" id="toggleDescriptionsNav">Expand all</a></li>');
     $('#toggleDescriptions,#toggleDescriptionsNav').click(function() { expandAll(!shouldExpandAll); return false; });
+    $('html').keypress(function(ev) { if (ev.keyCode == 97) expandAll(!shouldExpandAll); });
     
     // hide inherited
     var inheritedCount = $('.inherited').length;
@@ -110,6 +111,7 @@ $(function() {
         $('#display').append('<li><a href="#toggleInherited" id="toggleInherited">Hide inherited (' + inheritedCount + ')</a></li>');
         $('#navmenu').append('<li><a href="#toggleInherited" id="toggleInheritedNav">Hide inherited (' + inheritedCount + ')</a></li>');
         $('#toggleInherited,#toggleInheritedNav').click(function() { hideInherited(!shouldHideInherited); return false; });
+        $('html').keypress(function(ev) { if (ev.keyCode == 105) hideInherited(!shouldHideInherited); });
         if (shouldHideInherited) hideInherited(true);
     }
     
