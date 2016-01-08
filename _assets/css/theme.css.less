@@ -485,20 +485,26 @@ a {
         border: none;
         border-top: 1px solid #ccc;
         margin: 2em 0;
-
+        display: block;
+        
         tr {
             border-bottom: 1px solid #ccc;
+            display: block;
         }
         
         th, td { 
             vertical-align: top;
+            display: block;
         }
         th { 
             font-weight: 500; 
-            padding: 10px 20px 10px 0;
+            padding: 10px 0 0 0;
             font-size: 15px;
+            margin: 10px 0 0;
         }
         td {
+            margin-bottom: 10px;
+            
             .syntaxhighlighter {
                 margin: 10px 0 4px !important;
             }
@@ -511,6 +517,9 @@ a {
                     padding: 0;
                     background: none;
                 }
+            }
+            h5 {
+                margin: 13px 0 -7px;
             }
             .inherits, .nested {
                 margin: 10px 0;
@@ -639,9 +648,23 @@ a {
         .line { display: inline; }
         .sep { display: inline; }
     }
-    
-    .content table.standard th {
-        white-space: nowrap;
+    .content {
+        table.standard {
+            display: table;
+            tr {
+                display: table-row;
+            }
+            th { 
+                margin: 0;
+                display: table-cell;
+                white-space: nowrap;
+                padding: 10px 20px 10px 0;
+            }
+            td {
+                display: table-cell;
+                margin-bottom: 5px;
+            }
+        }
     }
 }
 
