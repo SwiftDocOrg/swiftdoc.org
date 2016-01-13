@@ -139,20 +139,22 @@ $(function() {
         $(link).html( $(link).html().replace(/^(init|subscript)/, '<span class="identifier">$1</span>') );
         
         // expand the hashed item on page load
-        var hash = link.href.substring(link.href.lastIndexOf('#'));
+        var hash = link.href.substring(link.href.lastIndexOf('#')).replace('#comment-', '#');
         if (hash == location.hash) link.click();
     });
     
     // add toggle actions to all toggle links
     $('.toggle-link').click(function() {
-        var hash = $(this)[0].href.substring($(this)[0].href.lastIndexOf('#') + 1);
+        var hash = '#' + $(this)[0].href.substring($(this)[0].href.lastIndexOf('#') + 1).replace(/^comment-/, '');
         
         if (!$(this).nextAll('.collapse').hasClass('in')) {
             // only set the hash if we're opening this toggle item
-            location.hash = hash;
+            if (history.pushState) history.pushState(null, null, hash);
+            else location.hash = hash;
         } else if (location.hash == hash) {
             // and clear the hash if we're closing the currently hashed item
-            location.hash = '';
+            if (history.pushState) history.pushState(null, null, '');
+            else location.hash = '';
         }
     });
 
