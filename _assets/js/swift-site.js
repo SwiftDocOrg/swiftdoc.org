@@ -210,47 +210,49 @@ $(function() {
             selectdata.push({ id: item.toLowerCase(), fullText: item, text: item.toLowerCase(), kind: match[1] });
         }
     }
-    
     $('.select2').select2({ 
         placeholder: "Search", 
         minimumInputLength: 1, 
         formatInputTooShort: '', 
         data: selectdata, 
         formatResult: format,
-        sortResults: function(results, container, query) {          
-            if (!query.term) {
-                return results;
+        sortResults: function(results, container, query) {
+            if (query.term) {
+                var term = query.term.toLowerCase();
+                return results.sort(function(a, b) {
+                    // we sort first by location of the search term in the matches
+                    // that is, when the term is "string", String should match before StaticString
+                    // to begin, find the relative search term offset of the two matches
+                    var aComp = a.text || a.id;
+                    var bComp = b.text || b.id;
+                    var indexOffset = aComp.indexOf(term) - bComp.indexOf(term);
+                    
+                    // if the relative offset of the search term is nonzero, the term
+                    // with the lower offset should come first
+                    if (indexOffset != 0) {
+                        return indexOffset;
+                        
+                    // otherwise, order using case-insensitive alpha
+                    } else {
+                        if (aComp != bComp) {
+                            return (aComp < bComp) ? -1 : 1;                            
+                        } else {
+                            // if the two terms are the same, expand the comparison to look at their fully qualified names
+                            indexOffset = a.id.indexOf(term) - b.id.indexOf(term);
+                            if (indexOffset != 0) {
+                                return indexOffset;
+                            } else {
+                                if (a.id == b.id) {
+                                    return 0;
+                                } else {
+                                    return (a.id < b.id) ? -1 : 1;
+                                }
+                            }
+                        }
+                    }
+                });
             }
-
-            var term = query.term.toLowerCase();
-            
-            // order two items by the location of the search term in the text
-            // that is, when the term is "string", String should match before StaticString
-            var orderByOffset = function(a, b) {
-                var indexOffset = a.indexOf(term) - a.indexOf(term);
-
-                // if the relative offset of the search term is nonzero, the term
-                // with the lower offset should come first
-                if (indexOffset != 0) {
-                    return indexOffset;
-                }
-                
-                // otherwise, order using case-insensitive alpha
-                if (a == b) {
-                    return 0;
-                } else {
-                    return (a < b) ? -1 : 1;
-                }
-            }
-
-            return results.sort(function(a, b) {
-                var compResult = orderByOffset(a.text || a.id, b.text || b.id);
-                if (compResult != 0) {
-                    return compResult;
-                }
-                
-                return orderByOffset(a.id, b.id);
-            });
+            return results;
         }
     })
     .on("change", function(e) {
