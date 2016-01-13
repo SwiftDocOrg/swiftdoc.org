@@ -139,8 +139,8 @@ $(function() {
         $(link).html( $(link).html().replace(/^(init|subscript)/, '<span class="identifier">$1</span>') );
         
         // expand the hashed item on page load
-        var hash = link.href.substring(link.href.lastIndexOf('#')).replace('#comment-', '#');
-        if (hash == location.hash) link.click();
+        var hash = link.href.substring(link.href.lastIndexOf('#'));
+        if (hash.replace('#comment-', '#') == location.hash) $(hash).addClass('in');
     });
     
     // add toggle actions to all toggle links
