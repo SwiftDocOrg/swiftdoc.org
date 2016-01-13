@@ -22,9 +22,6 @@ $(function() {
                 $(repl).remove(); 
             }
         });
-        
-        // doing the auto-expand cancels the linking above, commence afterward
-        if (shouldExpandAll) expandAll(true);
     }});
     
     // link non-synxtaxhighlighter sections
@@ -91,6 +88,12 @@ $(function() {
         if ($(ev.target).is(':input')) return;
         if (ev.which == 65) expandAll(!shouldExpandAll); 
     });
+    
+    // expand all by default if preference set
+    if (shouldExpandAll) { 
+        $('#content .collapse').addClass('in');
+        $('#toggleDescriptions,#toggleDescriptionsNav').html('Collapse all');
+    }
     
     // hide inherited
     var inheritedCount = $('.inherited').length;
