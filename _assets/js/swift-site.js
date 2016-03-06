@@ -54,11 +54,12 @@ $(function() {
         if (inheritedSubcount == 0) return;
         
         var noun = inheritedSubcount == 1 ? ' inherited item hidden' : ' inherited items hidden';
-        subitems.last().after('<p class="noninherited">' + inheritedSubcount + noun + '.</p>');
+        var link = '(<a href="#" onclick="$(\'#toggleInherited\').click(); return false;">Show all</a>)';
+        subitems.last().after('<p class="noninherited">' + inheritedSubcount + noun + '. ' + link + '</p>');
     }
     
     $('.content h3').each(addHiddenNote);
-    $('#default-implementations').nextAll('h4').each(addHiddenNote);
+    $('#conditionally-inheriteditems').nextAll('h4').each(addHiddenNote);
     $('#aliasesmark').each(addHiddenNote);
     
     // display setting cookies
