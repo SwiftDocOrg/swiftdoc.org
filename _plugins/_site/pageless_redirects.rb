@@ -116,9 +116,6 @@ module Jekyll
         fs_path_to_dir   = File.join(@site.dest, alias_dir)
         alias_index_path = File.join(alias_dir, alias_file)
 
-        print fs_path_to_dir
-        print "\n"
-
         FileUtils.mkdir_p(fs_path_to_dir)
 
         File.open(File.join(fs_path_to_dir, alias_file), 'w') do |file|

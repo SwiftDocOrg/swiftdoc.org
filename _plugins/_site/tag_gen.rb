@@ -41,7 +41,7 @@ module Jekyll
     end
     
     def posts_with_tag(site, tag)
-      site.posts.select { |post| post.tags.include?(tag) }
+      site.posts.select { |post| post.data.tags.include?(tag) }
     end
     
   end
