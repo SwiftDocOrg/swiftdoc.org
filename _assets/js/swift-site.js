@@ -124,10 +124,15 @@ $(function() {
         if (shouldHideInherited) hideInherited(true);
     }
     
-    // revise link to alternate version
+    // revise links to alternate version
+    $('.dropdown-menu a').each(function(i, item) { 
+        item.href = (item.href + location.href).replace(/(v[.a-z0-9]+\/).+?(\/v[.a-z0-9]+\/|$)/, '$1')
+    });
+/*
     $('#version a').each(function(i, item) {
         item.href = (item.href + location.href).replace(/(v[.a-z0-9]+\/).+?(\/v[.a-z0-9]+\/|$)/, '$1');
     });
+*/
     
     // highlight key parts of identifiers
     $('.toggle-link').each(function(i, link) {
