@@ -1,11 +1,5 @@
-{% if page.isdoc %}
-{% assign current = 'Swift 2.2 (Xcode 7.3 beta)' %}
-{% for version in site.data.versions %}
-    {% if page.url contains version.path %}
-        {% capture current %}{{ version.name }} ({{ version.note }}){% endcapture %}
-    {% endif %}
-{% endfor %}
 <div id="intranav">
+{% if page.isdoc %}
     <h4>On this page</h4>
     <ul id="chapters">
         <li><a href="#content">Declaration</a></li>
@@ -14,18 +8,8 @@
     <h4>Display</h4>
     <ul id="display">
     </ul>
+{% endif %}
 
     <h4>Swift Version</h4>
-    <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="versionMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            {{ current }}
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="versionMenu">
-        {% for version in site.data.versions %}
-            <li><a href="{{ version.path }}">{{ version.name }} ({{ version.note }})</a></li>
-        {% endfor %}
-        </ul>
-    </div>
+    {% include version.html %}
 </div>
-{% endif %}

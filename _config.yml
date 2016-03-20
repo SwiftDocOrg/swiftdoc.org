@@ -24,3 +24,16 @@ paginate_path:      /news/page:num
 tag_dir:            /news/tags
 monthly_archive:
   path:             /news
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      isdoc: true
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      isdoc: false

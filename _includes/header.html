@@ -1,11 +1,4 @@
 {% capture homeUrl %}{% if page.url contains 'swift-2' %}/swift-2{% endif %}/{% endcapture %}
-{% assign current = 'Swift 2.2 (Xcode 7.3 beta)' %}
-{% for version in site.data.versions %}
-    {% if page.url contains version.path %}
-        {% capture current %}{{ version.name }} ({{ version.note }}){% endcapture %}
-    {% endif %}
-{% endfor %}
-
 	<nav class="navbar navbar-default" role="navigation" id="navbar">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -27,6 +20,8 @@
     			<span class="glyphicon glyphicon-search form-control-feedback"></span>
     		</div>
             
+            {% include version.html %}
+
           </form>
           <ul class="nav navbar-nav navbar-right" id="navmenu">
               <li><a href="/type/">Types</a></li>
@@ -49,17 +44,7 @@
     			<span class="glyphicon glyphicon-search form-control-feedback"></span>
     		</div>
     		
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="versionMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    {{ current }}
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="versionMenu">
-                {% for version in site.data.versions %}
-                    <li><a href="{{ version.path }}">{{ version.name }} ({{ version.note }})</a></li>
-                {% endfor %}
-                </ul>
-            </div>
+            {% include version.html %}
 
     		{% endif %}
 		</div>

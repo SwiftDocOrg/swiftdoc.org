@@ -1,3 +1,9 @@
+{% assign current = 'Swift 2.2 (Xcode 7.3 beta)' %}
+{% for version in site.data.versions %}
+    {% if page.url contains version.path %}
+        {% capture current %}{{ version.name }} ({{ version.note }}){% endcapture %}
+    {% endif %}
+{% endfor %}
 <!DOCTYPE html>
 <html>
   {% include head.html %}
@@ -12,12 +18,14 @@
 
             <div id="fixed-sidebar" data-spy="">
                 
+            {% if page.isdoc %}
             <div class="form-group">
         		<div class="input-group has-feedback" id="select-container">
         			<input type="hidden" class="form-control select2">
         			<span class="glyphicon glyphicon-search form-control-feedback"></span>
         		</div>
             </div>
+            {% endif %}
     
             {% include sidebar.html %}
             
