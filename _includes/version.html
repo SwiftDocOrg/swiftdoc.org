@@ -1,4 +1,4 @@
-{% assign current = 'Swift 2.2 (Xcode 7.3 beta)' %}
+{% assign current = 'Swift 2.2 (Xcode 7.3)' %}
 {% for version in site.data.versions %}
     {% if page.url contains version.path %}
         {% capture current %}{{ version.name }} ({{ version.note }}){% endcapture %}
@@ -13,5 +13,7 @@
         {% for version in site.data.versions %}
             <li><a href="{{ version.path }}">{{ version.name }} ({{ version.note }})</a></li>
         {% endfor %}
-        </ul>
+            <li role="separator" class="divider"></li>
+            <li><a href="/versions">More information</a></li>
+         </ul>
     </div>
