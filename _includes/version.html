@@ -11,7 +11,9 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="versionMenu">
         {% for version in site.data.versions %}
-            <li><a href="{{ version.path }}">{{ version.name }} ({{ version.note }})</a></li>
+            {% if version.dropdown %}
+                <li><a href="{{ version.path }}">{{ version.name }} ({{ version.note }})</a></li>
+            {% endif %}
         {% endfor %}
             <li role="separator" class="divider"></li>
             <li><a href="/versions">More information</a></li>
