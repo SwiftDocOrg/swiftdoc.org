@@ -128,7 +128,7 @@ $(function() {
     // revise links to alternate versions
     $('.dropdown-menu a').each(function(i, item) {
         if (item.href.indexOf('versions') == -1) {
-            item.href = (item.href + location.href).replace(/(v[.a-z0-9]+\/).+?(\/v[.a-z0-9]+\/|$)/, '$1')
+            item.href = (item.href + location.href).replace(/((nightly|v[.a-z0-9]+)\/).+?(\/v[.a-z0-9]+\/|$)/, '$1')
         }
     });
     $('#header h1 a').each(function(i, item) { 
