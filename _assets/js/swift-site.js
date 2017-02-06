@@ -132,7 +132,7 @@ $(function() {
         }
     });
     $('#header h1 a').each(function(i, item) { 
-        item.href = location.href.replace(/(v[.a-z0-9]+\/).+/, '$1')
+        item.href = location.href.replace(/((nightly|v[.a-z0-9]+)\/).+/, '$1')
     });
     
     // highlight key parts of identifiers
