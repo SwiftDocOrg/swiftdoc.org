@@ -1,2 +1,1 @@
-web: bundle exec jekyll serve --no-watch
-
+web: bundle exec jekyll serve --port $PORT --no-watch
