@@ -13,8 +13,6 @@ include:            [ "_[A-Z]*", "__[A-Z]*", "_redirects" ]
 exclude:            [ "README.md", "LICENSE", "CC-BY-NC-LICENSE.md", "Gemfile", "Gemfile.lock", "Procfile" ]
 keep_files:         [ ".nojekyll", ".git", "CNAME", "README.md" ]
 
-gems:               [ jekyll-paginate ]
-
 # Build settings
 markdown:           kramdown
 paginate:           10
@@ -23,6 +21,12 @@ paginate_path:      /news/page:num
 tag_dir:            /news/tags
 monthly_archive:
   path:             /news
+
+
+plugins:
+  - jekyll-assets
+  - jekyll-paginate
+  - jekyll-tidy
 
 defaults:
   -
