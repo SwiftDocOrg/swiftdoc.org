@@ -34,23 +34,8 @@
     <meta name="twitter:description" content="{{ meta_description | escape }}"/>
     <meta name="twitter:url" content="{{ site.url }}{{ page.url }}"/>
 
-    {% css_asset_tag swift %}
-    - /_assets/css/bootstrap.min.css
-    - /_assets/css/bootstrap-theme.min.css
-    - /_assets/css/select2.css
-    - /_assets/css/select2-bootstrap.css
-    - /_assets/css/theme.css.less
-    - /_assets/css/apple-swift.css
-    {% endcss_asset_tag %}
-    {% javascript_asset_tag swift %}
-    - /_assets/js/jquery-2.1.1.min.js
-    - /_assets/js/bootstrap.min.js
-    - /_assets/js/select2.min.js
-    - /_assets/js/syntaxhighlighter.min.js
-    - /_assets/js/brushes/swift.js
-    - /assets/js/swift-linkdata.js
-    - /_assets/js/swift-site.js
-    {% endjavascript_asset_tag %}
+    {% asset screen.css %}
+    {% asset application.js %}
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
