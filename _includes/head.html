@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    {% if page.title == "Home" %}
+    {% if page.url == "/" %}
     <title>{{ site.title }} &#8212; {{ site.description }}</title>
     {% else %}
     <title>{% if page.title %}{{ page.title | strip_html }} &#8212; {% endif %}{{ site.title }}</title>
