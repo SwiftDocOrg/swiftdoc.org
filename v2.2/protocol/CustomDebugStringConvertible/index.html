@@ -1,0 +1,65 @@
+---
+layout: "default"
+title: "CustomDebugStringConvertible"
+description: "Swift documentation for 'CustomDebugStringConvertible': A type with a customized textual representation suitable for."
+keywords: "CustomDebugStringConvertible,protocol,swift,documentation,debugDescription"
+root: "/v2.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CustomDebugStringConvertible</code></div>
+
+<div class="discussion comment">
+    <p>A type with a customized textual representation suitable for
+debugging purposes.</p>
+
+<p>This textual representation is used when values are written to an
+<em>output stream</em> by <code>debugPrint</code>, and is
+typically more verbose than the text provided by a
+<code>CustomStringConvertible</code>&#39;s <code>description</code> property.</p>
+
+<p><strong>Note:</strong> <code>String(reflecting: instance)</code> will work for an <code>instance</code>
+  of <em>any</em> type, returning its <code>debugDescription</code> if the <code>instance</code>
+  happens to be <code>CustomDebugStringConvertible</code>.  Using
+<code>CustomDebugStringConvertible</code> as a generic constraint, or
+accessing a conforming type&#39;s <code>debugDescription</code> directly, is
+therefore discouraged.</p>
+
+<p><strong>See Also:</strong> <code>String.init&lt;T&gt;(reflecting: T)</code>,
+  <code>CustomStringConvertible</code></p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+

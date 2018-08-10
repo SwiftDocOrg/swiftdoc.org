@@ -1,0 +1,47 @@
+---
+layout: "default"
+title: "_DestructorSafeContainer"
+description: "Swift documentation for '_DestructorSafeContainer': A container is destructor safe if whether it may store to memory on."
+keywords: "_DestructorSafeContainer,protocol,swift,documentation"
+root: "/v2.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol _DestructorSafeContainer</code></div>
+
+<div class="discussion comment">
+    <p>A container is destructor safe if whether it may store to memory on
+destruction only depends on its type parameters.
+For example, whether <code>Array&lt;Element&gt;</code> may store to memory on destruction
+depends only on <code>Element</code>.
+If <code>Element</code> is an <code>Int</code> we know the <code>Array&lt;Int&gt;</code> does not store to memory
+during destruction. If <code>Element</code> is an arbitrary class
+<code>Array&lt;MemoryUnsafeDestructorClass&gt;</code> then the compiler will deduce may
+store to memory on destruction because <code>MemoryUnsafeDestructorClass</code>&#39;s
+destructor may store to memory on destruction.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+
+

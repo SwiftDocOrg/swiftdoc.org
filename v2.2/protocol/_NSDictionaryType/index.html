@@ -1,0 +1,137 @@
+---
+layout: "default"
+title: "_NSDictionaryType"
+description: "Swift documentation for '_NSDictionaryType': A shadow for the API of NSDictionary we will use in the core."
+keywords: "_NSDictionaryType,protocol,swift,documentation,copyWithZone,countByEnumeratingWithState,getObjects,keyEnumerator,objectForKey,count"
+root: "/v2.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol _NSDictionaryType</code></div>
+
+<div class="discussion comment">
+    <p>A shadow for the API of <code>NSDictionary</code> we will use in the core
+stdlib.</p>
+
+<p><code>NSDictionary</code> operations, in addition to those on
+<code>_NSDictionaryCoreType</code>, that we need to use from the core stdlib.
+Distinct from <code>_NSDictionaryCoreType</code> because we don&#39;t want to be
+forced to implement operations that <code>NSDictionary</code> already
+supplies.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">_NSCopyingType, _NSDictionaryCoreType, _NSFastEnumerationType, _ShadowProtocol</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration inherited" id="init-objects_forkeys_count_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-objects_forkeys_count_">init(<wbr>objects:<wbr>forKeys:<wbr>count:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-objects_forkeys_count_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(objects: UnsafePointer&lt;AnyObject?&gt;, forKeys: UnsafePointer&lt;Void&gt;, count: Int)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/_NSDictionaryCoreType/"><code>_NSDictionaryCoreType</code></a>
+        </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration inherited" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/_NSDictionaryCoreType/"><code>_NSDictionaryCoreType</code></a>
+        </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-copywithzone_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-copywithzone_">func copyWithZone(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-copywithzone_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func copyWithZone(zone: _SwiftNSZone) -&gt; AnyObject</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_NSCopyingType/"><code>_NSCopyingType</code></a>,    <a href="../../protocol/_NSDictionaryCoreType/"><code>_NSDictionaryCoreType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-countbyenumeratingwithstate_objects_count_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-countbyenumeratingwithstate_objects_count_">func countByEnumeratingWithState(<wbr>_:<wbr>objects:<wbr>count:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-countbyenumeratingwithstate_objects_count_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func countByEnumeratingWithState(state: UnsafeMutablePointer&lt;_SwiftNSFastEnumerationState&gt;, objects: UnsafeMutablePointer&lt;AnyObject&gt;, count: Int) -&gt; Int</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_NSDictionaryCoreType/"><code>_NSDictionaryCoreType</code></a>,    <a href="../../protocol/_NSFastEnumerationType/"><code>_NSFastEnumerationType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-getobjects_andkeys_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-getobjects_andkeys_">func getObjects(<wbr>_:<wbr>andKeys:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-getobjects_andkeys_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func getObjects(objects: UnsafeMutablePointer&lt;AnyObject&gt;, andKeys keys: UnsafeMutablePointer&lt;AnyObject&gt;)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_NSDictionaryType/"><code>_NSDictionaryType</code></a>,    <a href="../../protocol/_NSDictionaryCoreType/"><code>_NSDictionaryCoreType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-keyenumerator">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-keyenumerator">func keyEnumerator()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-keyenumerator"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func keyEnumerator() -&gt; _NSEnumeratorType</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_NSDictionaryCoreType/"><code>_NSDictionaryCoreType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-objectforkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-objectforkey_">func objectForKey(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-objectforkey_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func objectForKey(aKey: AnyObject) -&gt; AnyObject?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_NSDictionaryCoreType/"><code>_NSDictionaryCoreType</code></a>    
+</div></div>
+</div>
+
+

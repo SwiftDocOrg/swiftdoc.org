@@ -1,0 +1,90 @@
+---
+layout: "default"
+title: "ObjectIdentifier"
+description: "Swift documentation for 'ObjectIdentifier': A unique identifier for a class instance or metatype. This can be used by."
+keywords: "ObjectIdentifier,struct,swift,documentation,hashValue,uintValue"
+root: "/v2.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct ObjectIdentifier</code></div>
+
+<div class="discussion comment">
+    <p>A unique identifier for a class instance or metatype. This can be used by
+reflection clients to recognize cycles in the object graph.</p>
+
+<p>In Swift, only class instances and metatypes have unique identities. There
+is no notion of identity for structs, enums, functions, or tuples.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Comparable, Equatable, Hashable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_-any-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-any-type">init(<wbr>_: Any.Type)</a><div class="comment collapse" id="comment-init_-any-type"><div class="p">
+    <p>Construct an instance that uniquely identifies the metatype <code>x</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ x: Any.Type)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-anyobject">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-anyobject">init(<wbr>_: AnyObject)</a><div class="comment collapse" id="comment-init_-anyobject"><div class="p">
+    <p>Construct an instance that uniquely identifies the class instance <code>x</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ x: AnyObject)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code>.</p>
+
+<p><strong>Note:</strong> The hash value is not guaranteed to be stable across
+  different invocations of the same program.  Do not persist the
+  hash value across program runs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-uintvalue_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-uintvalue_-uint">var uintValue: UInt</a><div class="comment collapse" id="comment-var-uintvalue_-uint"><div class="p">
+    <p>Convert to a <code>UInt</code> that captures the full value of <code>self</code>.</p>
+
+<p>Axiom: <code>a.uintValue == b.uintValue</code> iff <code>a == b</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var uintValue: UInt { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+

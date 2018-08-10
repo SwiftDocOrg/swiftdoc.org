@@ -1,0 +1,111 @@
+---
+layout: "default"
+title: "_MirrorType"
+description: "Swift documentation for '_MirrorType': The type returned by _reflect(x); supplies an API for runtime."
+keywords: "_MirrorType,protocol,swift,documentation,count,disposition,objectIdentifier,quickLookObject,summary,value,valueType"
+root: "/v2.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol _MirrorType</code></div>
+
+<div class="discussion comment">
+    <p>The type returned by <code>_reflect(x)</code>; supplies an API for runtime
+reflection on <code>x</code>.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    <p>The count of <code>value</code>&#39;s logical children.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-disposition_-mirrordisposition">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-disposition_-mirrordisposition">var disposition: _MirrorDisposition</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-disposition_-mirrordisposition"><div class="p">
+    <p>How <code>value</code> should be presented in an IDE.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var disposition: _MirrorDisposition { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-objectidentifier_-objectidentifier">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-objectidentifier_-objectidentifier">var objectIdentifier: ObjectIdentifier?</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-objectidentifier_-objectidentifier"><div class="p">
+    <p>A unique identifier for <code>value</code> if it is a class instance; <code>nil</code>
+otherwise.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var objectIdentifier: ObjectIdentifier? { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-quicklookobject_-playgroundquicklook">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-quicklookobject_-playgroundquicklook">var quickLookObject: PlaygroundQuickLook?</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-quicklookobject_-playgroundquicklook"><div class="p">
+    <p>A rich representation of <code>value</code> for an IDE, or <code>nil</code> if none is supplied.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var quickLookObject: PlaygroundQuickLook? { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-summary_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-summary_-string">var summary: String</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-summary_-string"><div class="p">
+    <p>A string description of <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var summary: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-value_-any">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-value_-any">var value: Any</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-value_-any"><div class="p">
+    <p>The instance being reflected.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var value: Any { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-valuetype_-any-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-valuetype_-any-type">var valueType: Any.Type</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-valuetype_-any-type"><div class="p">
+    <p>Identical to <code>value.dynamicType</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var valueType: Any.Type { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-int">subscript(_: Int)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-int"><div class="p">
+    <p>Get a name and mirror for the <code>i</code>th logical child.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(i: Int) -&gt; (String, _MirrorType) { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+
+

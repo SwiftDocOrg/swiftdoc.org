@@ -1,0 +1,888 @@
+---
+layout: "default"
+title: "Dictionary"
+description: "Swift documentation for 'Dictionary': A hash-based mapping from Key to Value instances.  Also a."
+keywords: "Dictionary,struct,swift,documentation,contains,dropFirst,dropFirst,dropLast,dropLast,elementsEqual,enumerate,filter,flatMap,flatMap,forEach,generate,indexForKey,indexOf,lexicographicalCompare,map,maxElement,minElement,popFirst,prefix,prefixThrough,prefixUpTo,reduce,removeAll,removeAtIndex,removeValueForKey,reverse,sort,split,startsWith,suffix,suffixFrom,underestimateCount,updateValue,count,debugDescription,description,endIndex,first,indices,isEmpty,keys,lazy,startIndex,values,Element,Index,Generator,SubSequence"
+root: "/v2.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Dictionary&lt;Key : Hashable, Value&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A hash-based mapping from <code>Key</code> to <code>Value</code> instances.  Also a
+collection of key-value pairs with no defined ordering.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CollectionType, CustomDebugStringConvertible, CustomStringConvertible, DictionaryLiteralConvertible, Indexable, SequenceType, _ObjectiveCBridgeable, _Reflectable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Element = (Key, Value)</code>
+</div>
+<div class="declaration">
+<code class="language-swift">Index = DictionaryIndex&lt;Key, Value&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">Generator = DictionaryGenerator&lt;Key, Value&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence = Slice&lt;Dictionary&lt;Key, Value&gt;&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Create an empty dictionary.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-dictionaryliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-dictionaryliteral_">init(<wbr>dictionaryLiteral:)</a><div class="comment collapse" id="comment-init-dictionaryliteral_"><div class="p">
+    <p>Create an instance initialized with <code>elements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(dictionaryLiteral elements: (Key, Value)...)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-minimumcapacity_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-minimumcapacity_">init(<wbr>minimumCapacity:)</a><div class="comment collapse" id="comment-init-minimumcapacity_"><div class="p">
+    <p>Create a dictionary with at least the given number of
+elements worth of storage.  The actual capacity will be the
+smallest power of 2 that&#39;s &gt;= <code>minimumCapacity</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(minimumCapacity: Int)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int</a><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    <p>The number of entries in the dictionary.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-endindex_-dictionaryindex-key-value">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-dictionaryindex-key-value">var endIndex: DictionaryIndex&lt;Key, Value&gt;</a><div class="comment collapse" id="comment-var-endindex_-dictionaryindex-key-value"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+<p><strong>Complexity:</strong> Amortized O(1) if <code>self</code> does not wrap a bridged
+  <code>NSDictionary</code>, O(N) otherwise.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: DictionaryIndex&lt;Key, Value&gt; { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="var-first_-self-generator-element">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-first_-self-generator-element">var first: (Key, Value)?</a><div class="comment collapse" id="comment-var-first_-self-generator-element"><div class="p">
+    <p>Returns the first element of <code>self</code>, or <code>nil</code> if <code>self</code> is empty.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var first: (Key, Value)? { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-indices_-range-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-indices_-range-self-index">var indices: Range&lt;DictionaryIndex&lt;Key, Value&gt;&gt;</a><div class="comment collapse" id="comment-var-indices_-range-self-index"><div class="p">
+    <p>Returns the range of valid index values.</p>
+
+<p>The result&#39;s <code>endIndex</code> is the same as that of <code>self</code>.  Because
+<code>Range</code> is half-open, iterating the values of the result produces
+all valid subscript arguments for <code>self</code>, omitting its <code>endIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var indices: Range&lt;DictionaryIndex&lt;Key, Value&gt;&gt; { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p><code>true</code> iff <code>count == 0</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/Dictionary/"><code>Dictionary</code></a>
+        ,    <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="var-keys_-lazymapcollection-key_-value-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-keys_-lazymapcollection-key_-value-key">var keys: LazyMapCollection&lt;[Key : Value], Key&gt;</a><div class="comment collapse" id="comment-var-keys_-lazymapcollection-key_-value-key"><div class="p">
+    <p>A collection containing just the keys of <code>self</code>.</p>
+
+<p>Keys appear in the same order as they occur as the <code>.0</code> member
+of key-value pairs in <code>self</code>.  Each key in the result has a
+unique value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var keys: LazyMapCollection&lt;[Key : Value], Key&gt; { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="var-lazy_-lazycollection-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-lazy_-lazycollection-self">var lazy: LazyCollection&lt;Dictionary&lt;Key, Value&gt;&gt;</a><div class="comment collapse" id="comment-var-lazy_-lazycollection-self"><div class="p">
+    <p>A collection with contents identical to <code>self</code>, but on which
+normally-eager operations such as <code>map</code> and <code>filter</code> are
+implemented lazily.</p>
+
+<p><strong>See Also:</strong> <code>LazySequenceType</code>, <code>LazyCollectionType</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var lazy: LazyCollection&lt;Dictionary&lt;Key, Value&gt;&gt; { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="var-startindex_-dictionaryindex-key-value">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-dictionaryindex-key-value">var startIndex: DictionaryIndex&lt;Key, Value&gt;</a><div class="comment collapse" id="comment-var-startindex_-dictionaryindex-key-value"><div class="p">
+    <p>The position of the first element in a non-empty dictionary.</p>
+
+<p>Identical to <code>endIndex</code> in an empty dictionary.</p>
+
+<p><strong>Complexity:</strong> Amortized O(1) if <code>self</code> does not wrap a bridged
+  <code>NSDictionary</code>, O(N) otherwise.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: DictionaryIndex&lt;Key, Value&gt; { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-values_-lazymapcollection-key_-value-value">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-values_-lazymapcollection-key_-value-value">var values: LazyMapCollection&lt;[Key : Value], Value&gt;</a><div class="comment collapse" id="comment-var-values_-lazymapcollection-key_-value-value"><div class="p">
+    <p>A collection containing just the values of <code>self</code>.</p>
+
+<p>Values appear in the same order as they occur as the <code>.1</code> member
+of key-value pairs in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var values: LazyMapCollection&lt;[Key : Value], Value&gt; { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-dictionaryindex-key-value">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-dictionaryindex-key-value">subscript(_: DictionaryIndex&lt;Key, Value&gt;)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-dictionaryindex-key-value"><div class="p">
+    <p>Access the key-value pair at <code>position</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: DictionaryIndex&lt;Key, Value&gt;) -&gt; (Key, Value) { get }</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="subscript-subscript_-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-key">subscript(_: Key)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-key"><div class="p">
+    <p>Access the value associated with the given key.</p>
+
+<p>Reading a key that is not present in <code>self</code> yields <code>nil</code>.
+Writing <code>nil</code> as the value for a given key erases that key from
+<code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(key: Key) -&gt; Value?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="subscript-subscript_-range-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-range-self-index">subscript(_: Range&lt;DictionaryIndex&lt;Key, Value&gt;&gt;)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-range-self-index"><div class="p">
+    <p>Returns a collection representing a contiguous sub-range of
+<code>self</code>&#39;s elements.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(bounds: Range&lt;DictionaryIndex&lt;Key, Value&gt;&gt;) -&gt; Slice&lt;Dictionary&lt;Key, Value&gt;&gt; { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-contains_"><div class="p">
+    <p>Returns <code>true</code> iff an element in <code>self</code> satisfies <code>predicate</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(@noescape predicate: ((Key, Value)) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-dropfirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dropfirst">func dropFirst()</a>
+        
+<div class="comment collapse" id="comment-func-dropfirst"><div class="p">
+    <p>Returns a subsequence containing all but the first element.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst() -&gt; Slice&lt;Dictionary&lt;Key, Value&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-dropfirst_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dropfirst_">func dropFirst(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-dropfirst_"><div class="p">
+    <p>Returns a subsequence containing all but the first <code>n</code> elements.</p>
+
+<p><strong>Requires:</strong> <code>n &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>n</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst(n: Int) -&gt; Slice&lt;Dictionary&lt;Key, Value&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-droplast">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-droplast">func dropLast()</a>
+        
+<div class="comment collapse" id="comment-func-droplast"><div class="p">
+    <p>Returns a subsequence containing all but the last element.</p>
+
+<p><strong>Requires:</strong> <code>self</code> is a finite sequence.
+<strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast() -&gt; Slice&lt;Dictionary&lt;Key, Value&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-droplast_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-droplast_">func dropLast(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-droplast_"><div class="p">
+    <p>Returns a subsequence containing all but the last <code>n</code> elements.</p>
+
+<p><strong>Requires:</strong> <code>n &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast(n: Int) -&gt; Slice&lt;Dictionary&lt;Key, Value&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-elementsequal_isequivalent_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-elementsequal_isequivalent_">func elementsEqual(<wbr>_:<wbr>isEquivalent:)</a>
+        
+<div class="comment collapse" id="comment-func-elementsequal_isequivalent_"><div class="p">
+    <p>Returns <code>true</code> iff <code>self</code> and <code>other</code> contain equivalent elements, using
+<code>isEquivalent</code> as the equivalence test.</p>
+
+<p><strong>Requires:</strong> <code>isEquivalent</code> is an
+  <a href="http://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func elementsEqual&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence, @noescape isEquivalent: ((Key, Value), (Key, Value)) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-enumerate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-enumerate">func enumerate()</a>
+        
+<div class="comment collapse" id="comment-func-enumerate"><div class="p">
+    <p>Returns a lazy <code>SequenceType</code> containing pairs (<em>n</em>, <em>x</em>), where
+<em>n</em>s are consecutive <code>Int</code>s starting at zero, and <em>x</em>s are
+the elements of <code>base</code>:</p>
+
+<pre><code class="language-swift">&gt; for (n, c) in &quot;Swift&quot;.characters.enumerate() {
+    print(&quot;\(n): &#39;\(c)&#39;&quot;)
+  }
+0: &#39;S&#39;
+1: &#39;w&#39;
+2: &#39;i&#39;
+3: &#39;f&#39;
+4: &#39;t&#39;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func enumerate() -&gt; EnumerateSequence&lt;Dictionary&lt;Key, Value&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-filter_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-filter_">func filter(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-filter_"><div class="p">
+    <p>Returns an <code>Array</code> containing the elements of <code>self</code>,
+in order, that satisfy the predicate <code>includeElement</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func filter(@noescape includeElement: ((Key, Value)) throws -&gt; Bool) rethrows -&gt; [(Key, Value)]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-t_-self-generator-element-throws-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-t_-self-generator-element-throws-t">func flatMap&lt;T&gt;(<wbr>_: ((Key, Value)) throws -&gt; T?)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-t_-self-generator-element-throws-t"><div class="p">
+    <p>Returns an <code>Array</code> containing the non-nil results of mapping
+<code>transform</code> over <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>M</em> + <em>N</em>), where <em>M</em> is the length of <code>self</code>
+  and <em>N</em> is the length of the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;T&gt;(@noescape transform: ((Key, Value)) throws -&gt; T?) rethrows -&gt; [T]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-s_-sequencetype_-self-generator-element-throws-s">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-s_-sequencetype_-self-generator-element-throws-s">func <wbr>flatMap&lt;S : SequenceType&gt;(<wbr>_: ((Key, Value)) throws -&gt; S)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-s_-sequencetype_-self-generator-element-throws-s"><div class="p">
+    <p>Returns an <code>Array</code> containing the concatenated results of mapping
+<code>transform</code> over <code>self</code>.</p>
+
+<pre><code class="language-swift">s.flatMap(transform)</code></pre>
+
+<p>is equivalent to</p>
+
+<pre><code class="language-swift">Array(s.map(transform).flatten())</code></pre>
+
+<p><strong>Complexity:</strong> O(<em>M</em> + <em>N</em>), where <em>M</em> is the length of <code>self</code>
+  and <em>N</em> is the length of the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;S : SequenceType&gt;(transform: ((Key, Value)) throws -&gt; S) rethrows -&gt; [S.Generator.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-foreach_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-foreach_">func forEach(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-foreach_"><div class="p">
+    <p>Call <code>body</code> on each element in <code>self</code> in the same order as a
+<em>for-in loop.</em></p>
+
+<pre><code class="language-swift">sequence.forEach {
+  // body code
+}</code></pre>
+
+<p>is similar to:</p>
+
+<pre><code class="language-swift">for element in sequence {
+  // body code
+}</code></pre>
+
+<p><strong>Note:</strong> You cannot use the <code>break</code> or <code>continue</code> statement to exit the
+  current call of the <code>body</code> closure or skip subsequent calls.
+<strong>Note:</strong> Using the <code>return</code> statement in the <code>body</code> closure will only
+  exit from the current call to <code>body</code>, not any outer scope, and won&#39;t
+  skip subsequent calls.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func forEach(@noescape body: ((Key, Value)) throws -&gt; Void) rethrows</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Returns a generator over the (key, value) pairs.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; DictionaryGenerator&lt;Key, Value&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-indexforkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-indexforkey_">func indexForKey(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-indexforkey_"><div class="p">
+    <p>Returns the <code>Index</code> for the given key, or <code>nil</code> if the key is not
+present in the dictionary.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func indexForKey(key: Key) -&gt; DictionaryIndex&lt;Key, Value&gt;?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-indexof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-indexof_">func indexOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-indexof_"><div class="p">
+    <p>Returns the first index where <code>predicate</code> returns <code>true</code> for the
+corresponding value, or <code>nil</code> if such value is not found.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func indexOf(@noescape predicate: ((Key, Value)) throws -&gt; Bool) rethrows -&gt; DictionaryIndex&lt;Key, Value&gt;?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lexicographicalcompare_isorderedbefore_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lexicographicalcompare_isorderedbefore_">func lexicographicalCompare(<wbr>_:<wbr>isOrderedBefore:)</a>
+        
+<div class="comment collapse" id="comment-func-lexicographicalcompare_isorderedbefore_"><div class="p">
+    <p>Returns <code>true</code> iff <code>self</code> precedes <code>other</code> in a lexicographical 
+(&quot;dictionary&quot;) ordering, using <code>isOrderedBefore</code> as the comparison 
+between elements.</p>
+
+<p><strong>Note:</strong> This method implements the mathematical notion of lexicographical
+  ordering, which has no connection to Unicode.  If you are sorting strings
+  to present to the end-user, you should use <code>String</code> APIs that perform
+localized comparison.</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements of <code>self</code> and <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lexicographicalCompare&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence, @noescape isOrderedBefore: ((Key, Value), (Key, Value)) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-map_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-map_">func map(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-map_"><div class="p">
+    <p>Returns an <code>Array</code> containing the results of mapping <code>transform</code>
+over <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(N).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func map&lt;T&gt;(@noescape transform: ((Key, Value)) throws -&gt; T) rethrows -&gt; [T]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-maxelement_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-maxelement_">func maxElement(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-maxelement_"><div class="p">
+    <p>Returns the maximum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
+
+<p><strong>Complexity:</strong> O(<code>elements.count</code>).</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func maxElement(@noescape isOrderedBefore: ((Key, Value), (Key, Value)) throws -&gt; Bool) rethrows -&gt; (Key, Value)?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-minelement_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-minelement_">func minElement(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-minelement_"><div class="p">
+    <p>Returns the minimum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
+
+<p><strong>Complexity:</strong> O(<code>elements.count</code>).</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func minElement(@noescape isOrderedBefore: ((Key, Value), (Key, Value)) throws -&gt; Bool) rethrows -&gt; (Key, Value)?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-popfirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-popfirst">mutating func popFirst()</a>
+        
+<div class="comment collapse" id="comment-func-popfirst"><div class="p">
+    <p>If <code>!self.isEmpty</code>, return the first key-value pair in the sequence of
+elements, otherwise return <code>nil</code>.</p>
+
+<p><strong>Complexity:</strong> Amortized O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func popFirst() -&gt; (Key, Value)?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix_">func prefix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-prefix_"><div class="p">
+    <p>Returns a subsequence, up to <code>maxLength</code> in length, containing the
+initial elements.</p>
+
+<p>If <code>maxLength</code> exceeds <code>self.count</code>, the result contains all
+the elements of <code>self</code>.</p>
+
+<p><strong>Requires:</strong> <code>maxLength &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>maxLength</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(maxLength: Int) -&gt; Slice&lt;Dictionary&lt;Key, Value&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefixthrough_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefixthrough_">func prefixThrough(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-prefixthrough_"><div class="p">
+    <p>Returns <code>prefixUpTo(position.successor())</code></p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefixThrough(position: DictionaryIndex&lt;Key, Value&gt;) -&gt; Slice&lt;Dictionary&lt;Key, Value&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefixupto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefixupto_">func prefixUpTo(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-prefixupto_"><div class="p">
+    <p>Returns <code>self[startIndex..&lt;end]</code></p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefixUpTo(end: DictionaryIndex&lt;Key, Value&gt;) -&gt; Slice&lt;Dictionary&lt;Key, Value&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reduce_combine_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reduce_combine_">func reduce(<wbr>_:<wbr>combine:)</a>
+        
+<div class="comment collapse" id="comment-func-reduce_combine_"><div class="p">
+    <p>Returns the result of repeatedly calling <code>combine</code> with an
+accumulated value initialized to <code>initial</code> and each element of
+<code>self</code>, in turn, i.e. return
+<code>combine(combine(...combine(combine(initial, self[0]),
+self[1]),...self[count-2]), self[count-1])</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reduce&lt;T&gt;(initial: T, @noescape combine: (T, (Key, Value)) throws -&gt; T) rethrows -&gt; T</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-removeall-keepcapacity_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removeall-keepcapacity_">mutating func removeAll(<wbr>keepCapacity:)</a>
+        
+<div class="comment collapse" id="comment-func-removeall-keepcapacity_"><div class="p">
+    <p>Removes all elements.</p>
+
+<p><strong>Postcondition:</strong> <code>capacity == 0</code> if <code>keepCapacity</code> is <code>false</code>, otherwise
+  the capacity will not be decreased.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong><code>keepCapacity</code>:</strong>  If <code>true</code>, the operation preserves the
+  storage capacity that the collection has, otherwise the underlying
+  storage is released.  The default is <code>false</code>.</p>
+
+<p>Complexity: O(<code>self.count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeAll(keepCapacity keepCapacity: Bool = default)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-removeatindex_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removeatindex_">mutating func removeAtIndex(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-removeatindex_"><div class="p">
+    <p>Remove the key-value pair at <code>index</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeAtIndex(index: DictionaryIndex&lt;Key, Value&gt;) -&gt; (Key, Value)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-removevalueforkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removevalueforkey_">mutating func removeValueForKey(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-removevalueforkey_"><div class="p">
+    <p>Remove a given key and the associated value from the dictionary.
+Returns the value that was removed, or <code>nil</code> if the key was not present
+in the dictionary.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeValueForKey(key: Key) -&gt; Value?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reverse">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reverse">func reverse()</a>
+        
+<div class="comment collapse" id="comment-func-reverse"><div class="p">
+    <p>Returns an <code>Array</code> containing the elements of <code>self</code> in reverse
+order.</p>
+
+<p>Complexity: O(N), where N is the length of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reverse() -&gt; [(Key, Value)]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-sort_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sort_">func sort(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-sort_"><div class="p">
+    <p>Returns an <code>Array</code> containing the sorted elements of <code>source</code>
+according to <code>isOrderedBefore</code>.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements for which <code>isOrderedBefore</code> does not establish an order).</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sort(@noescape isOrderedBefore: ((Key, Value), (Key, Value)) -&gt; Bool) -&gt; [(Key, Value)]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-split_allowemptyslices_isseparator_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-split_allowemptyslices_isseparator_">func split(<wbr>_:<wbr>allowEmptySlices:<wbr>isSeparator:)</a>
+        
+<div class="comment collapse" id="comment-func-split_allowemptyslices_isseparator_"><div class="p">
+    <p>Returns the maximal <code>SubSequence</code>s of <code>self</code>, in order, that
+don&#39;t contain elements satisfying the predicate <code>isSeparator</code>.</p>
+
+<p><strong><code>maxSplit</code>:</strong>  The maximum number of <code>SubSequence</code>s to
+  return, minus 1.
+  If <code>maxSplit + 1</code> <code>SubSequence</code>s are returned, the last one is
+  a suffix of <code>self</code> containing the remaining elements.
+  The default value is <code>Int.max</code>.</p>
+
+<p><strong><code>allowEmptySubsequences</code>:</strong>  If <code>true</code>, an empty <code>SubSequence</code>
+  is produced in the result for each pair of consecutive elements
+  satisfying <code>isSeparator</code>.
+  The default value is <code>false</code>.</p>
+
+<p><strong>Requires:</strong> <code>maxSplit &gt;= 0</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split(maxSplit: Int = default, allowEmptySlices: Bool = default, @noescape isSeparator: ((Key, Value)) throws -&gt; Bool) rethrows -&gt; [Slice&lt;Dictionary&lt;Key, Value&gt;&gt;]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-startswith_isequivalent_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-startswith_isequivalent_">func startsWith(<wbr>_:<wbr>isEquivalent:)</a>
+        
+<div class="comment collapse" id="comment-func-startswith_isequivalent_"><div class="p">
+    <p>Returns <code>true</code> iff <code>self</code> begins with elements equivalent to those of
+<code>other</code>, using <code>isEquivalent</code> as the equivalence test.  Returns <code>true</code> if
+<code>other</code> is empty.</p>
+
+<p><strong>Requires:</strong> <code>isEquivalent</code> is an
+  <a href="http://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func startsWith&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence, @noescape isEquivalent: ((Key, Value), (Key, Value)) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-suffix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-suffix_">func suffix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-suffix_"><div class="p">
+    <p>Returns a slice, up to <code>maxLength</code> in length, containing the
+final elements of <code>s</code>.</p>
+
+<p>If <code>maxLength</code> exceeds <code>s.count</code>, the result contains all
+the elements of <code>s</code>.</p>
+
+<p><strong>Requires:</strong> <code>maxLength &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func suffix(maxLength: Int) -&gt; Slice&lt;Dictionary&lt;Key, Value&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-suffixfrom_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-suffixfrom_">func suffixFrom(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-suffixfrom_"><div class="p">
+    <p>Returns <code>self[start..&lt;endIndex]</code></p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func suffixFrom(start: DictionaryIndex&lt;Key, Value&gt;) -&gt; Slice&lt;Dictionary&lt;Key, Value&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-underestimatecount">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-underestimatecount">func underestimateCount()</a>
+        
+<div class="comment collapse" id="comment-func-underestimatecount"><div class="p">
+    <p>Returns a value less than or equal to the number of elements in
+<code>self</code>, <em>nondestructively</em>.</p>
+
+<p><strong>Complexity:</strong> O(N).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func underestimateCount() -&gt; Int</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-updatevalue_forkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-updatevalue_forkey_">mutating func updateValue(<wbr>_:<wbr>forKey:)</a>
+        
+<div class="comment collapse" id="comment-func-updatevalue_forkey_"><div class="p">
+    <p>Update the value stored in the dictionary for the given key, or, if the
+key does not exist, add a new key-value pair to the dictionary.</p>
+
+<p>Returns the value that was replaced, or <code>nil</code> if a new key-value pair
+was added.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func updateValue(value: Value, forKey key: Key) -&gt; Value?</code>
+    
+    
+</div></div>
+</div>
+
+

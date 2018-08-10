@@ -1,0 +1,100 @@
+---
+layout: "default"
+title: "Indexable"
+description: "Swift documentation for 'Indexable': A type that provides subscript access to its elements."
+keywords: "Indexable,protocol,swift,documentation,endIndex,startIndex,Index"
+root: "/v2.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Indexable</code></div>
+
+<div class="discussion comment">
+    <p>A type that provides subscript access to its elements.</p>
+
+<p><strong>Important:</strong> In most cases, it&#39;s best to ignore this protocol and use
+  <code>CollectionType</code> instead, as it has a more complete interface.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Index : ForwardIndexType</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-endindex_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-self-index">var endIndex: Self.Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-endindex_-self-index"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: Self.Index { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-startindex_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-self-index">var startIndex: Self.Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-startindex_-self-index"><div class="p">
+    <p>The position of the first element in a non-empty collection.</p>
+
+<p>In an empty collection, <code>startIndex == endIndex</code>.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: Self.Index { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-self-index">subscript(_: Self.Index)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-self-index"><div class="p">
+    <p>Returns the element at the given <code>position</code>.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: Self.Index) -&gt; Self._Element { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+
+

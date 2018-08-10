@@ -1,0 +1,211 @@
+---
+layout: "default"
+title: "Type Aliases"
+description: "Documentation for global type aliases in the Swift language."
+root: "/v2.2"
+---
+
+<div class="declaration">
+<code class="language-swift">typealias Any = protocol&lt;&gt;</code>
+<div class="comment">
+    <p>The protocol to which all types implicitly conform.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias AnyClass = AnyObject.Type</code>
+<div class="comment">
+    <p>The protocol to which all class types implicitly conform.</p>
+
+<p>When used as a concrete type, all known <code>@objc</code> <code>class</code> methods and
+properties are available, as implicitly-unwrapped-optional methods
+and properties respectively, on each instance of <code>AnyClass</code>. For
+example:</p>
+
+<pre><code class="language-swift">class C {
+  @objc class var cValue: Int { return 42 }
+}
+
+// If x has an @objc cValue: Int, return its value.
+// Otherwise, return `nil`.
+func getCValue(x: AnyClass) -&gt; Int? {
+  return x.cValue // &lt;===
+}</code></pre>
+
+<p><strong>See Also:</strong> <code>AnyObject</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias BooleanLiteralType = Bool</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained Boolean literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CBool = Bool</code>
+<div class="comment">
+    <p>The C &#39;_Bool&#39; and C++ &#39;bool&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CChar = Int8</code>
+<div class="comment">
+    <p>The C &#39;char&#39; type.</p>
+
+<p>This will be the same as either <code>CSignedChar</code> (in the common
+case) or <code>CUnsignedChar</code>, depending on the platform.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CChar16 = UInt16</code>
+<div class="comment">
+    <p>The C++11 &#39;char16_t&#39; type, which has UTF-16 encoding.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CChar32 = UnicodeScalar</code>
+<div class="comment">
+    <p>The C++11 &#39;char32_t&#39; type, which has UTF-32 encoding.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CDouble = Double</code>
+<div class="comment">
+    <p>The C &#39;double&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CFloat = Float</code>
+<div class="comment">
+    <p>The C &#39;float&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CInt = Int32</code>
+<div class="comment">
+    <p>The C &#39;int&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CLong = Int</code>
+<div class="comment">
+    <p>The C &#39;long&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CLongLong = Int64</code>
+<div class="comment">
+    <p>The C &#39;long long&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CShort = Int16</code>
+<div class="comment">
+    <p>The C &#39;short&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CSignedChar = Int8</code>
+<div class="comment">
+    <p>The C &#39;signed char&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedChar = UInt8</code>
+<div class="comment">
+    <p>The C &#39;unsigned char&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedInt = UInt32</code>
+<div class="comment">
+    <p>The C &#39;unsigned int&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedLong = UInt</code>
+<div class="comment">
+    <p>The C &#39;unsigned long&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedLongLong = UInt64</code>
+<div class="comment">
+    <p>The C &#39;unsigned long long&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedShort = UInt16</code>
+<div class="comment">
+    <p>The C &#39;unsigned short&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CWideChar = UnicodeScalar</code>
+<div class="comment">
+    <p>The C++ &#39;wchar_t&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias ExtendedGraphemeClusterType = String</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained Unicode extended
+grapheme cluster literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Float32 = Float</code>
+<div class="comment">
+    <p>A 32-bit floating point type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Float64 = Double</code>
+<div class="comment">
+    <p>A 64-bit floating point type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias FloatLiteralType = Double</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained floating point literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias IntMax = Int64</code>
+<div class="comment">
+    <p>The largest native signed integer type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias IntegerLiteralType = Int</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained integer literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias StringLiteralType = String</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained string literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UIntMax = UInt64</code>
+<div class="comment">
+    <p>The largest native unsigned integer type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnicodeScalarType = String</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained unicode scalar literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Void = ()</code>
+<div class="comment">
+    <p>The empty tuple type.</p>
+
+<p>This is the default return type of functions for which no explicit
+return type is specified.</p>
+</div>
+</div>

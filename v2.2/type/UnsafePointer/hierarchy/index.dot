@@ -1,0 +1,38 @@
+strict digraph "UnsafePointer<Memory> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BidirectionalIndexType" [URL="/protocol/BidirectionalIndexType/hierarchy/"]
+    "CVarArgType" [URL="/protocol/CVarArgType/hierarchy/"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ForwardIndexType" [URL="/protocol/ForwardIndexType/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "NilLiteralConvertible" [URL="/protocol/NilLiteralConvertible/hierarchy/"]
+    "RandomAccessIndexType" [URL="/protocol/RandomAccessIndexType/hierarchy/"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]
+    "UnsafePointer<Memory>" [URL="/type/UnsafePointer/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "_Incrementable" [URL="/protocol/_Incrementable/hierarchy/"]
+    "_PointerType" [URL="/protocol/_PointerType/hierarchy/"]
+    "_RandomAccessAmbiguity" [URL="/protocol/_RandomAccessAmbiguity/hierarchy/"]
+    "_Reflectable" [URL="/protocol/_Reflectable/hierarchy/"]    "RandomAccessIndexType" -> "UnsafePointer<Memory>"
+    "Hashable" -> "UnsafePointer<Memory>"
+    "NilLiteralConvertible" -> "UnsafePointer<Memory>"
+    "_PointerType" -> "UnsafePointer<Memory>"
+    "CustomDebugStringConvertible" -> "UnsafePointer<Memory>"
+    "_Reflectable" -> "UnsafePointer<Memory>"
+    "CVarArgType" -> "UnsafePointer<Memory>"
+    "BidirectionalIndexType" -> "RandomAccessIndexType"
+    "Strideable" -> "RandomAccessIndexType"
+    "_RandomAccessAmbiguity" -> "RandomAccessIndexType"
+    "ForwardIndexType" -> "BidirectionalIndexType"
+    "_Incrementable" -> "ForwardIndexType"
+    "Equatable" -> "_Incrementable"
+    "Comparable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "Hashable"
+    subgraph Types {
+        rank = max; "UnsafePointer<Memory>";
+    }
+}

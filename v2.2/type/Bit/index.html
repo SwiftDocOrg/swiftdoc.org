@@ -1,0 +1,238 @@
+---
+layout: "default"
+title: "Bit"
+description: "Swift documentation for 'Bit': A RandomAccessIndexType that has two possible values.  Used as."
+keywords: "Bit,enum,swift,documentation,addWithOverflow,advancedBy,advancedBy,distanceTo,divideWithOverflow,multiplyWithOverflow,predecessor,remainderWithOverflow,stride,stride,subtractWithOverflow,successor,toIntMax,Distance"
+root: "/v2.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum Bit</code></div>
+
+<div class="discussion comment">
+    <p>A <code>RandomAccessIndexType</code> that has two possible values.  Used as
+the <code>Index</code> type for <code>CollectionOfOne&lt;T&gt;</code>.</p>
+
+<p><em>Deprecated:</em> Bit is deprecated as of Swift 3. Use Int instead..</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">BidirectionalIndexType, Comparable, Equatable, ForwardIndexType, Int, IntegerArithmeticType, RandomAccessIndexType, Strideable, _Incrementable, _IntegerArithmeticType, _RandomAccessAmbiguity, _Reflectable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Distance = Int</code>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+<h3 id="cases">Cases</h3>
+<div class="declaration" id="case-Zero">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-Zero">case Zero</a>
+</div>
+<div class="declaration" id="case-One">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-One">case One</a>
+</div>
+
+
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-addwithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-addwithoverflow__">static func addWithOverflow(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-addwithoverflow__"><div class="p">
+    <p>Add <code>lhs</code> and <code>rhs</code>, returning a result and a <code>Bool</code> that is
+<code>true</code> iff the operation caused an arithmetic overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func addWithOverflow(lhs: Bit, _ rhs: Bit) -&gt; (Bit, overflow: Bool)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-dividewithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dividewithoverflow__">static func divideWithOverflow(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-dividewithoverflow__"><div class="p">
+    <p>Divide <code>lhs</code> and <code>rhs</code>, returning a result and a <code>Bool</code> that is
+<code>true</code> iff the operation caused an arithmetic overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func divideWithOverflow(lhs: Bit, _ rhs: Bit) -&gt; (Bit, overflow: Bool)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-multiplywithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-multiplywithoverflow__">static func multiplyWithOverflow(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-multiplywithoverflow__"><div class="p">
+    <p>Multiply <code>lhs</code> and <code>rhs</code>, returning a result and a <code>Bool</code> that is
+<code>true</code> iff the operation caused an arithmetic overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func multiplyWithOverflow(lhs: Bit, _ rhs: Bit) -&gt; (Bit, overflow: Bool)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-remainderwithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-remainderwithoverflow__">static func remainderWithOverflow(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-remainderwithoverflow__"><div class="p">
+    <p>Divide <code>lhs</code> and <code>rhs</code>, returning the remainder and a <code>Bool</code> that is
+<code>true</code> iff the operation caused an arithmetic overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func remainderWithOverflow(lhs: Bit, _ rhs: Bit) -&gt; (Bit, overflow: Bool)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-subtractwithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subtractwithoverflow__">static func subtractWithOverflow(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subtractwithoverflow__"><div class="p">
+    <p>Subtract <code>lhs</code> and <code>rhs</code>, returning a result and a <code>Bool</code> that is
+<code>true</code> iff the operation caused an arithmetic overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func subtractWithOverflow(lhs: Bit, _ rhs: Bit) -&gt; (Bit, overflow: Bool)</code>
+    
+    
+</div></div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-advancedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_">func advancedBy(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-advancedby_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: Distance) -&gt; Bit</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Bit/"><code>Bit</code></a>,    <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>,    <a href="../../protocol/_RandomAccessAmbiguity/"><code>_RandomAccessAmbiguity</code></a>,    <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-advancedby_limit_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_limit_">func advancedBy(<wbr>_:<wbr>limit:)</a>
+        
+<div class="comment collapse" id="comment-func-advancedby_limit_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: Bit.Distance, limit: Bit) -&gt; Bit</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>,    <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-distanceto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distanceto_">func distanceTo(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-distanceto_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distanceTo(other: Bit) -&gt; Int</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Bit/"><code>Bit</code></a>,    <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>,    <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-predecessor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-predecessor">func predecessor()</a>
+        
+<div class="comment collapse" id="comment-func-predecessor"><div class="p">
+    <p>Returns the previous consecutive value before <code>self</code>.</p>
+
+<p><strong>Requires:</strong> <code>self != .Zero</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func predecessor() -&gt; Bit</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-stride-through_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride-through_by_">func stride(<wbr>through:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-stride-through_by_"><div class="p">
+    <p>Returns the sequence of values (<code>self</code>, <code>self + stride</code>, <code>self +
+stride + stride</code>, ... <em>last</em>) where <em>last</em> is the last value in
+the progression less than or equal to <code>end</code>.</p>
+
+<p><strong>Note:</strong> There is no guarantee that <code>end</code> is an element of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func stride(through end: Bit, by stride: Bit.Stride) -&gt; StrideThrough&lt;Bit&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-stride-to_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride-to_by_">func stride(<wbr>to:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-stride-to_by_"><div class="p">
+    <p>Returns the sequence of values (<code>self</code>, <code>self + stride</code>, <code>self +
+stride + stride</code>, ... <em>last</em>) where <em>last</em> is the last value in
+the progression that is less than <code>end</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func stride(to end: Bit, by stride: Bit.Stride) -&gt; StrideTo&lt;Bit&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-successor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-successor">func successor()</a>
+        
+<div class="comment collapse" id="comment-func-successor"><div class="p">
+    <p>Returns the next consecutive value after <code>self</code>.</p>
+
+<p><strong>Requires:</strong> <code>self == .Zero</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func successor() -&gt; Bit</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-tointmax">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-tointmax">func toIntMax()</a>
+        
+<div class="comment collapse" id="comment-func-tointmax"><div class="p">
+    <p>Represent this number using Swift&#39;s widest native signed integer
+type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func toIntMax() -&gt; IntMax</code>
+    
+    
+</div></div>
+</div>
+
+

@@ -1,0 +1,63 @@
+---
+layout: "default"
+title: "AnyObject"
+description: "Swift documentation for 'AnyObject': The protocol to which all classes implicitly conform."
+keywords: "AnyObject,protocol,swift,documentation"
+root: "/v2.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol AnyObject</code></div>
+
+<div class="discussion comment">
+    <p>The protocol to which all classes implicitly conform.</p>
+
+<p>When used as a concrete type, all known <code>@objc</code> methods and
+properties are available, as implicitly-unwrapped-optional methods
+and properties respectively, on each instance of <code>AnyObject</code>.  For
+example:</p>
+
+<pre><code class="language-swift">class C {
+  @objc func getCValue() -&gt; Int { return 42 }
+}
+
+// If x has a method @objc getValue() -&gt; Int, call it and
+// return the result.  Otherwise, return `nil`.
+func getCValue1(x: AnyObject) -&gt; Int? {
+  if let f: () -&gt; Int = x.getCValue { // &lt;===
+    return f()
+  }
+  return nil
+}
+
+// A more idiomatic implementation using &quot;optional chaining&quot;
+func getCValue2(x: AnyObject) -&gt; Int? {
+  return x.getCValue?() // &lt;===
+}
+
+// An implementation that assumes the required method is present
+func getCValue3(x: AnyObject) -&gt; Int { // &lt;===
+  return x.getCValue() // x.getCValue is implicitly unwrapped. // &lt;===
+}</code></pre>
+
+<p><strong>See Also:</strong> <code>AnyClass</code></p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+
+

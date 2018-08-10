@@ -1,0 +1,203 @@
+---
+layout: "default"
+title: "UnicodeScalar"
+description: "Swift documentation for 'UnicodeScalar': A Unicode scalar value."
+keywords: "UnicodeScalar,struct,swift,documentation,escape,isASCII,writeTo,debugDescription,description,hashValue,value"
+root: "/v2.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct UnicodeScalar</code></div>
+
+<div class="discussion comment">
+    <p>A <a href="http://www.unicode.org/glossary/#unicode_scalar_value">Unicode scalar value</a>.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Comparable, CustomDebugStringConvertible, CustomStringConvertible, Equatable, Hashable, Streamable, UnicodeScalarLiteralConvertible, _Reflectable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Creates an instance of the NUL scalar value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-int">init(<wbr>_: Int)</a><div class="comment collapse" id="comment-init_-int"><div class="p">
+    <p>Construct with value <code>v</code>.</p>
+
+<p><strong>Requires:</strong> <code>v</code> is a valid unicode scalar value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-uint8">init(<wbr>_: UInt8)</a><div class="comment collapse" id="comment-init_-uint8"><div class="p">
+    <p>Create an instance with numeric value <code>v</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: UInt8)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-uint16">init(<wbr>_: UInt16)</a><div class="comment collapse" id="comment-init_-uint16"><div class="p">
+    <p>Create an instance with numeric value <code>v</code>.</p>
+
+<p><strong>Requires:</strong> <code>v</code> is a valid Unicode scalar value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: UInt16)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-uint32">init(<wbr>_: UInt32)</a><div class="comment collapse" id="comment-init_-uint32"><div class="p">
+    <p>Create an instance with numeric value <code>v</code>.</p>
+
+<p><strong>Requires:</strong> <code>v</code> is a valid Unicode scalar value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: UInt32)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unicodescalar">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unicodescalar">init(<wbr>_: UnicodeScalar)</a><div class="comment collapse" id="comment-init_-unicodescalar"><div class="p">
+    <p>Create a duplicate of <code>v</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: UnicodeScalar)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-builtinunicodescalarliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-builtinunicodescalarliteral_">init(<wbr>_builtinUnicodeScalarLiteral:)</a><div class="comment collapse" id="comment-init-builtinunicodescalarliteral_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_builtinUnicodeScalarLiteral value: Builtin.Int32)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-unicodescalarliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-unicodescalarliteral_">init(<wbr>unicodeScalarLiteral:)</a><div class="comment collapse" id="comment-init-unicodescalarliteral_"><div class="p">
+    <p>Create an instance initialized to <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(unicodeScalarLiteral value: UnicodeScalar)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code>.</p>
+
+<p><strong>Note:</strong> The hash value is not guaranteed to be stable across
+  different invocations of the same program.  Do not persist the
+  hash value across program runs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-value_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-value_-uint32">var value: UInt32</a><div class="comment collapse" id="comment-var-value_-uint32"><div class="p">
+    <p>A numeric representation of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var value: UInt32 { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-escape-asascii_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-escape-asascii_">func escape(<wbr>asASCII:)</a>
+        
+<div class="comment collapse" id="comment-func-escape-asascii_"><div class="p">
+    <p>Returns a String representation of <code>self</code> .</p>
+
+<p><strong><code>forceASCII</code>:</strong>  If <code>true</code>, forces most values into a numeric
+  representation.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func escape(asASCII forceASCII: Bool) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-isascii">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isascii">func isASCII()</a>
+        
+<div class="comment collapse" id="comment-func-isascii"><div class="p">
+    <p>Returns <code>true</code> if this is an ASCII character (code point 0 to 127
+inclusive).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isASCII() -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-writeto-inout_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-writeto-inout_">func writeTo(<wbr>inout:)</a>
+        
+<div class="comment collapse" id="comment-func-writeto-inout_"><div class="p">
+    <p>Write a textual representation of <code>self</code> into <code>target</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func writeTo&lt;Target : OutputStreamType&gt;(inout target: Target)</code>
+    
+    
+</div></div>
+</div>
+
+

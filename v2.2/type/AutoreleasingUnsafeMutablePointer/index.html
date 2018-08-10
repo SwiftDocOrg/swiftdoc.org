@@ -1,0 +1,126 @@
+---
+layout: "default"
+title: "AutoreleasingUnsafeMutablePointer"
+description: "Swift documentation for 'AutoreleasingUnsafeMutablePointer': A mutable pointer-to-ObjC-pointer argument."
+keywords: "AutoreleasingUnsafeMutablePointer,struct,swift,documentation,debugDescription,memory"
+root: "/v2.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct AutoreleasingUnsafeMutablePointer&lt;Memory&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A mutable pointer-to-ObjC-pointer argument.</p>
+
+<p>This type has implicit conversions to allow passing any of the following
+to a C or ObjC API:</p>
+
+<ul><li><code>nil</code>, which gets passed as a null pointer,</li><li>an inout argument of the referenced type, which gets passed as a pointer
+to a writeback temporary with autoreleasing ownership semantics,</li><li>an <code>UnsafeMutablePointer&lt;Memory&gt;</code>, which is passed as-is.</li></ul>
+
+<p>Passing pointers to mutable arrays of ObjC class pointers is not
+directly supported. Unlike <code>UnsafeMutablePointer&lt;Memory&gt;</code>,
+<code>AutoreleasingUnsafeMutablePointer&lt;Memory&gt;</code> must reference storage that
+does not own a reference count to the referenced
+value. UnsafeMutablePointer&#39;s operations, by contrast, assume that
+the referenced storage owns values loaded from or stored to it.</p>
+
+<p>This type does not carry an owner pointer unlike the other C*Pointer types
+because it only needs to reference the results of inout conversions, which
+already have writeback-scoped lifetime.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CVarArgType, CustomDebugStringConvertible, Equatable, NilLiteralConvertible, _PointerType</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Initialize to a null pointer.</p>
+
+<p><em>Deprecated:</em> init() will be removed in Swift 3.  Use <code>nil</code> instead.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Explicit construction from an UnsafeMutablePointer.</p>
+
+<p>This is inherently unsafe; UnsafeMutablePointer assumes the
+referenced memory has +1 strong ownership semantics, whereas
+AutoreleasingUnsafeMutablePointer implies +0 semantics.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;U&gt;(_ ptr: UnsafeMutablePointer&lt;U&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-nilliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-nilliteral_">init(<wbr>nilLiteral:)</a><div class="comment collapse" id="comment-init-nilliteral_"><div class="p">
+    <p>Create an instance initialized with <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(nilLiteral: ())</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-memory_-memory">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-memory_-memory">var memory: Memory</a><div class="comment collapse" id="comment-var-memory_-memory"><div class="p">
+    <p>Access the underlying raw memory, getting and
+setting values.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var memory: Memory { get set }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-int">subscript(_: Int)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-int"><div class="p">
+    <p>Access the <code>i</code>th element of the raw array pointed to by
+<code>self</code>.</p>
+
+<p><strong>Requires:</strong> <code>self != nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(i: Int) -&gt; Memory { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+
+

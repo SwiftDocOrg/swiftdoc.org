@@ -1,0 +1,52 @@
+---
+layout: "default"
+title: "debugPrint"
+description: "Swift documentation for 'debugPrint': Writes the textual representations of items most suitable for."
+keywords: "debugPrint,func,swift,documentation"
+root: "/v2.2"
+---
+
+<div class="declaration" id="func-debugprint_-any-separator_-string-terminator_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-debugprint_-any-separator_-string-terminator_-string">func debugPrint(<wbr>_:<wbr> Any..., separator:<wbr> String, terminator: String)</a>
+        
+<div class="comment collapse" id="comment-func-debugprint_-any-separator_-string-terminator_-string"><div class="p">
+    <p>Writes the textual representations of <code>items</code> most suitable for
+debugging, separated by <code>separator</code> and terminated by
+<code>terminator</code>, into the standard output.</p>
+
+<p>The textual representations are obtained for each <code>item</code> via
+the expression <code>String(reflecting: item)</code>.</p>
+
+<p><strong>Note:</strong> To print without a trailing newline, pass <code>terminator: &quot;&quot;</code></p>
+
+<p><strong>See Also:</strong> <code>print</code>, <code>Streamable</code>, <code>CustomStringConvertible</code>,
+  <code>CustomDebugStringConvertible</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func debugPrint(items: Any..., separator: String = default, terminator: String = default)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-debugprint-target_-outputstreamtype_-any-separator_-string-terminator_-string-inout-tostream_-target">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-debugprint-target_-outputstreamtype_-any-separator_-string-terminator_-string-inout-tostream_-target">func <wbr>debugPrint&lt;Target : OutputStreamType&gt;(<wbr>_:<wbr> Any..., separator:<wbr> String, terminator:<wbr> String, inout toStream: Target)</a>
+        
+<div class="comment collapse" id="comment-func-debugprint-target_-outputstreamtype_-any-separator_-string-terminator_-string-inout-tostream_-target"><div class="p">
+    <p>Writes the textual representations of <code>items</code> most suitable for
+debugging, separated by <code>separator</code> and terminated by
+<code>terminator</code>, into <code>output</code>.</p>
+
+<p>The textual representations are obtained for each <code>item</code> via
+the expression <code>String(reflecting: item)</code>.</p>
+
+<p><strong>Note:</strong> To print without a trailing newline, pass <code>terminator: &quot;&quot;</code></p>
+
+<p><strong>See Also:</strong> <code>print</code>, <code>Streamable</code>, <code>CustomStringConvertible</code>,
+  <code>CustomDebugStringConvertible</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func debugPrint&lt;Target : OutputStreamType&gt;(items: Any..., separator: String = default, terminator: String = default, inout toStream output: Target)</code>
+    
+    
+</div></div>
+</div>

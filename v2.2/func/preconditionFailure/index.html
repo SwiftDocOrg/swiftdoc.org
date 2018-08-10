@@ -1,0 +1,30 @@
+---
+layout: "default"
+title: "preconditionFailure"
+description: "Swift documentation for 'preconditionFailure': Indicate that a precondition was violated."
+keywords: "preconditionFailure,func,swift,documentation"
+root: "/v2.2"
+---
+
+<div class="declaration" id="func-preconditionfailure_-string-file_-staticstring-line_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-preconditionfailure_-string-file_-staticstring-line_-uint">@noreturn  func preconditionFailure(<wbr>_: (<wbr>) -&gt; String, file:<wbr> StaticString, line: UInt)</a>
+        
+<div class="comment collapse" id="comment-func-preconditionfailure_-string-file_-staticstring-line_-uint"><div class="p">
+    <p>Indicate that a precondition was violated.</p>
+
+<p>Use this function to stop the program when control flow can only
+reach the call if your API was improperly used.</p>
+
+<ul><li><p>In playgrounds and -Onone builds (the default for Xcode&#39;s Debug
+configuration), stop program execution in a debuggable state
+after printing <code>message</code>.</p></li><li><p>In -O builds (the default for Xcode&#39;s Release configuration),
+stop program execution.</p></li><li><p>In -Ounchecked builds, the optimizer may assume that this
+function will never be called. Failure to satisfy that assumption
+is a serious programming error.</p></li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@noreturn  func preconditionFailure(@autoclosure message: () -&gt; String = default, file: StaticString = #file, line: UInt = #line)</code>
+    
+    
+</div></div>
+</div>

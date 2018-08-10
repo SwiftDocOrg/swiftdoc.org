@@ -1,0 +1,669 @@
+---
+layout: "default"
+title: "UnsignedIntegerType"
+description: "Swift documentation for 'UnsignedIntegerType': A set of common requirements for Swift&#39;s unsigned integer types."
+keywords: "UnsignedIntegerType,protocol,swift,documentation,%,&,*,+,/,<,<=,==,>,>=,^,|,~,-,addWithOverflow,advancedBy,advancedBy,distanceTo,divideWithOverflow,multiplyWithOverflow,predecessor,remainderWithOverflow,subtractWithOverflow,successor,toIntMax,toUIntMax,allZeros,description,hashValue,Distance,IntegerLiteralType,Stride"
+root: "/v2.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol UnsignedIntegerType</code></div>
+
+<div class="discussion comment">
+    <p>A set of common requirements for Swift&#39;s unsigned integer types.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">BidirectionalIndexType, BitwiseOperationsType, Comparable, CustomStringConvertible, Equatable, ForwardIndexType, Hashable, IntegerArithmeticType, IntegerLiteralConvertible, IntegerType, RandomAccessIndexType, Strideable, _DisallowMixedSignArithmetic, _Incrementable, _IntegerArithmeticType, _IntegerType, _RandomAccessAmbiguity</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration inherited">
+<code class="language-swift">Distance : _SignedIntegerType = Int</code>
+<div class="comment">
+    <p>A type that can represent the number of steps between pairs of
+<code>Self</code> values where one value is reachable from the other.</p>
+
+<p>Reachability is defined by the ability to produce one value from
+the other via zero or more applications of <code>successor</code>.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">IntegerLiteralType</code>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">Stride : SignedNumberType</code>
+<div class="comment">
+    <p>A type that can represent the distance between two values of <code>Self</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Convert from Swift&#39;s widest unsigned integer type, trapping on
+overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_: UIntMax)</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="init-integerliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-integerliteral_">init(<wbr>integerLiteral:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-integerliteral_"><div class="p">
+    <p>Create an instance initialized to <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(integerLiteral value: Self.IntegerLiteralType)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/IntegerLiteralConvertible/"><code>IntegerLiteralConvertible</code></a>
+        </div></div>
+</div>
+
+<h3>Static Variables</h3>
+<div class="declaration inherited" id="static-var-allzeros_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-allzeros_-self">static var allZeros: Self</a> <span class="required">Required</span><div class="comment collapse" id="comment-static-var-allzeros_-self"><div class="p">
+    <p>The empty bitset.</p>
+
+<p>Also the <a href="http://en.wikipedia.org/wiki/Identity_element">identity element</a> for <code>|</code> and
+<code>^</code>, and the <a href="http://en.wikipedia.org/wiki/Fixed_point_(mathematics)">fixed point</a> for
+<code>&amp;</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var allZeros: Self { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BitwiseOperationsType/"><code>BitwiseOperationsType</code></a>
+        </div></div>
+</div>
+
+<h3>Instance Variables</h3>
+<div class="declaration inherited" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CustomStringConvertible/"><code>CustomStringConvertible</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code>.</p>
+
+<p><strong>Note:</strong> The hash value is not guaranteed to be stable across
+  different invocations of the same program.  Do not persist the
+  hash value across program runs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/Hashable/"><code>Hashable</code></a>
+        </div></div>
+</div>
+
+
+<h3>Static Methods</h3>
+<div class="declaration inherited" id="func-addwithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-addwithoverflow__">static func addWithOverflow(<wbr>_:<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-addwithoverflow__"><div class="p">
+    <p>Adds <code>lhs</code> and <code>rhs</code>, returning the result and a <code>Bool</code> that is
+<code>true</code> iff the operation caused an arithmetic overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func addWithOverflow(lhs: Self, _ rhs: Self) -&gt; (Self, overflow: Bool)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_IntegerArithmeticType/"><code>_IntegerArithmeticType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-dividewithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dividewithoverflow__">static func divideWithOverflow(<wbr>_:<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-dividewithoverflow__"><div class="p">
+    <p>Divides <code>lhs</code> and <code>rhs</code>, returning the result and a <code>Bool</code> that is
+<code>true</code> iff the operation caused an arithmetic overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func divideWithOverflow(lhs: Self, _ rhs: Self) -&gt; (Self, overflow: Bool)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_IntegerArithmeticType/"><code>_IntegerArithmeticType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-multiplywithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-multiplywithoverflow__">static func multiplyWithOverflow(<wbr>_:<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-multiplywithoverflow__"><div class="p">
+    <p>Multiplies <code>lhs</code> and <code>rhs</code>, returning the result and a <code>Bool</code> that is
+<code>true</code> iff the operation caused an arithmetic overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func multiplyWithOverflow(lhs: Self, _ rhs: Self) -&gt; (Self, overflow: Bool)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_IntegerArithmeticType/"><code>_IntegerArithmeticType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-remainderwithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-remainderwithoverflow__">static func remainderWithOverflow(<wbr>_:<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-remainderwithoverflow__"><div class="p">
+    <p>Divides <code>lhs</code> and <code>rhs</code>, returning the remainder and a <code>Bool</code> that is
+<code>true</code> iff the operation caused an arithmetic overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func remainderWithOverflow(lhs: Self, _ rhs: Self) -&gt; (Self, overflow: Bool)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_IntegerArithmeticType/"><code>_IntegerArithmeticType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subtractwithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subtractwithoverflow__">static func subtractWithOverflow(<wbr>_:<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-subtractwithoverflow__"><div class="p">
+    <p>Subtracts <code>lhs</code> and <code>rhs</code>, returning the result and a <code>Bool</code> that is
+<code>true</code> iff the operation caused an arithmetic overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func subtractWithOverflow(lhs: Self, _ rhs: Self) -&gt; (Self, overflow: Bool)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_IntegerArithmeticType/"><code>_IntegerArithmeticType</code></a>    
+</div></div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-pct_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-pct_rhs_">func %(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-pct_rhs_"><div class="p">
+    <p>Divides <code>lhs</code> and <code>rhs</code>, returning the remainder and trapping in case of
+arithmetic overflow (except in -Ounchecked builds).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func %(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerArithmeticType/"><code>IntegerArithmeticType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-amp_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-amp_rhs_">func &amp;(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-amp_rhs_"><div class="p">
+    <p>Returns the intersection of bits set in <code>lhs</code> and <code>rhs</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BitwiseOperationsType/"><code>BitwiseOperationsType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-star_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-star_rhs_">func *(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-star_rhs_"><div class="p">
+    <p>Multiplies <code>lhs</code> and <code>rhs</code>, returning the result and trapping in case of
+arithmetic overflow (except in -Ounchecked builds).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func *(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerArithmeticType/"><code>IntegerArithmeticType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-pls_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-pls_rhs_">func +(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-pls_rhs_"><div class="p">
+    <p>Adds <code>lhs</code> and <code>rhs</code>, returning the result and trapping in case of
+arithmetic overflow (except in -Ounchecked builds).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerArithmeticType/"><code>IntegerArithmeticType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-slash_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_rhs_">func /(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-slash_rhs_"><div class="p">
+    <p>Divides <code>lhs</code> and <code>rhs</code>, returning the result and trapping in case of
+arithmetic overflow (except in -Ounchecked builds).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerArithmeticType/"><code>IntegerArithmeticType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_rhs_">func &lt;(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-lt_rhs_"><div class="p">
+    <p>A <a href="http://en.wikipedia.org/wiki/Total_order#Strict_total_order">strict total order</a>
+over instances of <code>Self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lteq_rhs_">func &lt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-lteq_rhs_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Returns <code>true</code> if <code>lhs</code> is equal to <code>rhs</code>.</p>
+
+<p><strong>Equality implies substitutability</strong>.  When <code>x == y</code>, <code>x</code> and
+<code>y</code> are interchangeable in any code that only depends on their
+values.</p>
+
+<p>Class instance identity as distinguished by triple-equals <code>===</code>
+is notably not part of an instance&#39;s value.  Exposing other
+non-value aspects of <code>Equatable</code> types is discouraged, and any
+that <em>are</em> exposed should be explicitly pointed out in
+documentation.</p>
+
+<p><strong>Equality is an equivalence relation</strong></p>
+
+<ul><li><code>x == x</code> is <code>true</code></li><li><code>x == y</code> implies <code>y == x</code></li><li><code>x == y</code> and <code>y == z</code> implies <code>x == z</code></li></ul>
+
+<p><strong>Inequality is the inverse of equality</strong>, i.e. <code>!(x == y)</code> iff
+<code>x != y</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gt_rhs_">func &gt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gt_rhs_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_rhs_">func &gt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_rhs_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-crt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-crt_rhs_">func ^(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-crt_rhs_"><div class="p">
+    <p>Returns the bits that are set in exactly one of <code>lhs</code> and <code>rhs</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ^(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BitwiseOperationsType/"><code>BitwiseOperationsType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-bar_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-bar_rhs_">func |(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-bar_rhs_"><div class="p">
+    <p>Returns the union of bits set in <code>lhs</code> and <code>rhs</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func |(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BitwiseOperationsType/"><code>BitwiseOperationsType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-tilde_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-tilde_">prefix func ~(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-tilde_"><div class="p">
+    <p>Returns <code>x ^ ~Self.allZeros</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">prefix func ~(x: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BitwiseOperationsType/"><code>BitwiseOperationsType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-mns_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-mns_rhs_">func -(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-mns_rhs_"><div class="p">
+    <p>Subtracts <code>lhs</code> and <code>rhs</code>, returning the result and trapping in case of
+arithmetic overflow (except in -Ounchecked builds).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func -(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerArithmeticType/"><code>IntegerArithmeticType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-advancedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_">func advancedBy(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-advancedby_"><div class="p">
+    <p>Returns the result of advancing <code>self</code> by <code>n</code> positions.</p>
+
+<p><strong>Returns:</strong>
+  - If <code>n &gt; 0</code>, the result of applying <code>successor</code> to <code>self</code> <code>n</code> times.
+  - If <code>n &lt; 0</code>, the result of applying <code>predecessor</code> to <code>self</code> <code>-n</code> times.
+  - Otherwise, <code>self</code>.</p>
+
+<p><strong>Requires:</strong> <code>n &gt;= 0</code> if only conforming to <code>ForwardIndexType</code>
+<strong>Complexity:</strong>
+  - O(1) if conforming to <code>RandomAccessIndexType</code>
+  - O(<code>abs(n)</code>) otherwise</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: Self.Distance) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-advancedby_limit_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_limit_">func advancedBy(<wbr>_:<wbr>limit:)</a>
+        
+<div class="comment collapse" id="comment-func-advancedby_limit_"><div class="p">
+    <p>Returns the result of advancing <code>self</code> by <code>n</code> positions, or until it
+equals <code>limit</code>.</p>
+
+<p><strong>Returns:</strong>
+  - If <code>n &gt; 0</code>, the result of applying <code>successor</code> to <code>self</code> <code>n</code> times
+    but not past <code>limit</code>.
+  - If <code>n &lt; 0</code>, the result of applying <code>predecessor</code> to <code>self</code> <code>-n</code> times
+    but not past <code>limit</code>.
+  - Otherwise, <code>self</code>.</p>
+
+<p><strong>Requires:</strong> <code>n &gt;= 0</code> if only conforming to <code>ForwardIndexType</code>.</p>
+
+<p><strong>Complexity:</strong>
+  - O(1) if conforming to <code>RandomAccessIndexType</code>
+  - O(<code>abs(n)</code>) otherwise</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: Self.Distance, limit: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-distanceto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distanceto_">func distanceTo(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-distanceto_"><div class="p">
+    <p>Measure the distance between <code>self</code> and <code>end</code>.</p>
+
+<p><strong>Requires:</strong>
+  - <code>start</code> and <code>end</code> are part of the same sequence when conforming to
+    <code>RandomAccessSequenceType</code>.
+  - <code>end</code> is reachable from <code>self</code> by incrementation otherwise.</p>
+
+<p><strong>Complexity:</strong>
+  - O(1) if conforming to <code>RandomAccessIndexType</code>
+  - O(<code>n</code>) otherwise, where <code>n</code> is the function&#39;s result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distanceTo(end: Self) -&gt; Self.Distance</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-predecessor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-predecessor">func predecessor()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-predecessor"><div class="p">
+    <p>Returns the previous consecutive value in a discrete sequence.</p>
+
+<p>If <code>self</code> has a well-defined successor,
+<code>self.successor().predecessor() == self</code>.  If <code>self</code> has a
+well-defined predecessor, <code>self.predecessor().successor() ==
+self</code>.</p>
+
+<p><strong>Requires:</strong> <code>self</code> has a well-defined predecessor.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func predecessor() -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-successor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-successor">func successor()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-successor"><div class="p">
+    <p>Returns the next consecutive value in a discrete sequence of
+<code>Self</code> values.</p>
+
+<p><strong>Requires:</strong> <code>self</code> has a well-defined successor.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func successor() -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_Incrementable/"><code>_Incrementable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-tointmax">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-tointmax">func toIntMax()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-tointmax"><div class="p">
+    <p>Explicitly convert to <code>IntMax</code>, trapping on overflow (except in
+-Ounchecked builds).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func toIntMax() -&gt; IntMax</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerArithmeticType/"><code>IntegerArithmeticType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-touintmax">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-touintmax">func toUIntMax()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-touintmax"><div class="p">
+    <p>Represent this number using Swift&#39;s widest native unsigned
+integer type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func toUIntMax() -&gt; UIntMax</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+
+
+<div class="declaration inherited" id="func--advancedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--advancedby_">func advancedBy(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--advancedby_"><div class="p">
+    <p>Returns the result of advancing <code>self</code> by <code>n</code> positions.</p>
+
+<p><strong>Returns:</strong>
+  - If <code>n &gt; 0</code>, the result of applying <code>successor</code> to <code>self</code> <code>n</code> times.
+  - If <code>n &lt; 0</code>, the result of applying <code>predecessor</code> to <code>self</code> <code>-n</code> times.
+  - Otherwise, <code>self</code>.</p>
+
+<p><strong>Requires:</strong> <code>n &gt;= 0</code> if only conforming to <code>ForwardIndexType</code>
+<strong>Complexity:</strong>
+  - O(1) if conforming to <code>RandomAccessIndexType</code>
+  - O(<code>abs(n)</code>) otherwise</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: Self.Distance) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerType/"><code>IntegerType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>,    <a href="../../protocol/_RandomAccessAmbiguity/"><code>_RandomAccessAmbiguity</code></a>,    <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--advancedby_limit_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--advancedby_limit_">func advancedBy(<wbr>_:<wbr>limit:)</a>
+        
+<div class="comment collapse" id="comment-func--advancedby_limit_"><div class="p">
+    <p>Returns the result of advancing <code>self</code> by <code>n</code> positions, or until it
+equals <code>limit</code>.</p>
+
+<p><strong>Returns:</strong>
+  - If <code>n &gt; 0</code>, the result of applying <code>successor</code> to <code>self</code> <code>n</code> times
+    but not past <code>limit</code>.
+  - If <code>n &lt; 0</code>, the result of applying <code>predecessor</code> to <code>self</code> <code>-n</code> times
+    but not past <code>limit</code>.
+  - Otherwise, <code>self</code>.</p>
+
+<p><strong>Requires:</strong> <code>n &gt;= 0</code> if only conforming to <code>ForwardIndexType</code>.</p>
+
+<p><strong>Complexity:</strong>
+  - O(1) if conforming to <code>RandomAccessIndexType</code>
+  - O(<code>abs(n)</code>) otherwise</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: Self.Distance, limit: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerType/"><code>IntegerType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>,    <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--distanceto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--distanceto_">func distanceTo(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--distanceto_"><div class="p">
+    <p>Measure the distance between <code>self</code> and <code>end</code>.</p>
+
+<p><strong>Requires:</strong>
+  - <code>start</code> and <code>end</code> are part of the same sequence when conforming to
+    <code>RandomAccessSequenceType</code>.
+  - <code>end</code> is reachable from <code>self</code> by incrementation otherwise.</p>
+
+<p><strong>Complexity:</strong>
+  - O(1) if conforming to <code>RandomAccessIndexType</code>
+  - O(<code>n</code>) otherwise, where <code>n</code> is the function&#39;s result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distanceTo(end: Self) -&gt; Self.Distance</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerType/"><code>IntegerType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>,    <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--stride-through_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--stride-through_by_">func stride(<wbr>through:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func--stride-through_by_"><div class="p">
+    <p>Returns the sequence of values (<code>self</code>, <code>self + stride</code>, <code>self +
+stride + stride</code>, ... <em>last</em>) where <em>last</em> is the last value in
+the progression less than or equal to <code>end</code>.</p>
+
+<p><strong>Note:</strong> There is no guarantee that <code>end</code> is an element of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func stride(through end: Self, by stride: Self.Stride) -&gt; StrideThrough&lt;Self&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerType/"><code>IntegerType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--stride-to_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--stride-to_by_">func stride(<wbr>to:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func--stride-to_by_"><div class="p">
+    <p>Returns the sequence of values (<code>self</code>, <code>self + stride</code>, <code>self +
+stride + stride</code>, ... <em>last</em>) where <em>last</em> is the last value in
+the progression that is less than <code>end</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func stride(to end: Self, by stride: Self.Stride) -&gt; StrideTo&lt;Self&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerType/"><code>IntegerType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+
+
+
+
+

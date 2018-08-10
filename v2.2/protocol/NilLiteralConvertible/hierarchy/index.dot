@@ -1,0 +1,20 @@
+strict digraph "NilLiteralConvertible - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AutoreleasingUnsafeMutablePointer" [URL="/type/AutoreleasingUnsafeMutablePointer/hierarchy/", style=filled]
+    "COpaquePointer" [URL="/type/COpaquePointer/hierarchy/", style=filled]
+    "ImplicitlyUnwrappedOptional" [URL="/type/ImplicitlyUnwrappedOptional/hierarchy/", style=filled]
+    "NilLiteralConvertible" [URL="/protocol/NilLiteralConvertible/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "Optional" [URL="/type/Optional/hierarchy/", style=filled]
+    "UnsafeMutablePointer" [URL="/type/UnsafeMutablePointer/hierarchy/", style=filled]
+    "UnsafePointer" [URL="/type/UnsafePointer/hierarchy/", style=filled]    "NilLiteralConvertible" -> "AutoreleasingUnsafeMutablePointer"
+    "NilLiteralConvertible" -> "COpaquePointer"
+    "NilLiteralConvertible" -> "ImplicitlyUnwrappedOptional"
+    "NilLiteralConvertible" -> "Optional"
+    "NilLiteralConvertible" -> "UnsafeMutablePointer"
+    "NilLiteralConvertible" -> "UnsafePointer"
+    subgraph Types {
+        rank = max; "AutoreleasingUnsafeMutablePointer"; "COpaquePointer"; "ImplicitlyUnwrappedOptional"; "Optional"; "UnsafeMutablePointer"; "UnsafePointer";
+    }
+}
