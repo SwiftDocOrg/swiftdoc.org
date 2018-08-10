@@ -1,7 +1,7 @@
 # SwiftDoc.org
 
 Documentation and resources for the Swift community  
-*[http://swiftdoc.org/](http://swiftdoc.org/)*
+_[https://swiftdoc.org/](https://swiftdoc.org/)_
 
 ## Installation
 
@@ -26,12 +26,11 @@ Issues and pull requests should be filed in this repository relating to:
 - errors or bugs in SwiftDoc.org
 - feature requests
 
-For errors in the actual documentation on SwiftDoc.org, see [the swiftdoc-parser repository](http://github.com/SwiftDocOrg/swiftdoc-parser) instead.
+For errors in the actual documentation on SwiftDoc.org, see [the swiftdoc-parser repository](https://github.com/SwiftDocOrg/swiftdoc-parser) instead.
 
 ## Contact
 
-Follow [@SwiftDocOrg](http://twitter.com/SwiftDocOrg) on Twitter.
-
+Follow [@SwiftDocOrg](https://twitter.com/SwiftDocOrg) on Twitter.
 
 ## License
 
