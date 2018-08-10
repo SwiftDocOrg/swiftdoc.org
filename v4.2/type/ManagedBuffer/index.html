@@ -1,0 +1,134 @@
+---
+layout: "default"
+title: "ManagedBuffer"
+description: "Swift documentation for 'ManagedBuffer': A class whose instances contain a property of type Header and raw."
+keywords: "ManagedBuffer,class,swift,documentation,create,withUnsafeMutablePointerToElements,withUnsafeMutablePointerToHeader,withUnsafeMutablePointers,capacity,header"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">class ManagedBuffer&lt;Header, Element&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A class whose instances contain a property of type <code>Header</code> and raw
+storage for an array of <code>Element</code>, whose size is determined at
+instance creation.</p>
+
+<p>Note that the <code>Element</code> array is suitably-aligned <strong>raw memory</strong>.
+You are expected to construct and---if necessary---destroy objects
+there yourself, using the APIs on <code>UnsafeMutablePointer&lt;Element&gt;</code>.
+Typical usage stores a count and capacity in <code>Header</code> and destroys
+any live elements in the <code>deinit</code> of a subclass.
+<strong>Note:</strong> Subclasses must not have any stored properties; any storage
+  needed should be included in <code>Header</code>.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-capacity_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-capacity_-int">var capacity: Int</a><div class="comment collapse" id="comment-var-capacity_-int"><div class="p">
+    <p>The actual number of elements that can be stored in this object.</p>
+
+<p>This header may be nontrivial to compute; it is usually a good
+idea to store this information in the &quot;header&quot; area when
+an instance is created.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var capacity: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-header_-header">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-header_-header">var header: Header</a><div class="comment collapse" id="comment-var-header_-header"><div class="p">
+    <p>The stored <code>Header</code> instance.</p>
+
+<p>During instance creation, in particular during
+<code>ManagedBuffer.create</code>&#39;s call to initialize, <code>ManagedBuffer</code>&#39;s
+<code>header</code> property is as-yet uninitialized, and therefore
+reading the <code>header</code> property during <code>ManagedBuffer.create</code> is undefined.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var header: Header { get set }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-create_makingheaderwith_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-create_makingheaderwith_">final class func create(<wbr>_:<wbr>makingHeaderWith:)</a>
+        
+<div class="comment collapse" id="comment-func-create_makingheaderwith_"><div class="p">
+    <p>Create a new instance of the most-derived class, calling
+<code>factory</code> on the partially-constructed object to generate
+an initial <code>Header</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">final class func create(minimumCapacity: Int, makingHeaderWith factory: (ManagedBuffer&lt;Header, Element&gt;) throws -&gt; Header) rethrows -&gt; ManagedBuffer&lt;Header, Element&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-withunsafemutablepointertoelements_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafemutablepointertoelements_">final func withUnsafeMutablePointerToElements(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafemutablepointertoelements_"><div class="p">
+    <p>Call <code>body</code> with an <code>UnsafeMutablePointer</code> to the <code>Element</code>
+storage.</p>
+
+<p><strong>Note:</strong> This pointer is valid only for the duration of the
+  call to <code>body</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">final func withUnsafeMutablePointerToElements&lt;R&gt;(_ body: (UnsafeMutablePointer&lt;Element&gt;) throws -&gt; R) rethrows -&gt; R</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-withunsafemutablepointertoheader_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafemutablepointertoheader_">final func withUnsafeMutablePointerToHeader(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafemutablepointertoheader_"><div class="p">
+    <p>Call <code>body</code> with an <code>UnsafeMutablePointer</code> to the stored
+<code>Header</code>.</p>
+
+<p><strong>Note:</strong> This pointer is valid only for the duration of the
+  call to <code>body</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">final func withUnsafeMutablePointerToHeader&lt;R&gt;(_ body: (UnsafeMutablePointer&lt;Header&gt;) throws -&gt; R) rethrows -&gt; R</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-withunsafemutablepointers_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafemutablepointers_">final func withUnsafeMutablePointers(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafemutablepointers_"><div class="p">
+    <p>Call <code>body</code> with <code>UnsafeMutablePointer</code>s to the stored <code>Header</code>
+and raw <code>Element</code> storage.</p>
+
+<p><strong>Note:</strong> These pointers are valid only for the duration of the
+  call to <code>body</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">final func withUnsafeMutablePointers&lt;R&gt;(_ body: (UnsafeMutablePointer&lt;Header&gt;, UnsafeMutablePointer&lt;Element&gt;) throws -&gt; R) rethrows -&gt; R</code>
+    
+    
+</div></div>
+</div>
+
+

@@ -1,0 +1,249 @@
+---
+layout: "default"
+title: "PlaygroundQuickLook"
+description: "Swift documentation for 'PlaygroundQuickLook': The sum of types that can be used as a Quick Look representation."
+keywords: "PlaygroundQuickLook,enum,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum PlaygroundQuickLook</code></div>
+
+<div class="discussion comment">
+    <p>The sum of types that can be used as a Quick Look representation.</p>
+
+<p>The <code>PlaygroundQuickLook</code> protocol is deprecated, and will be removed from
+the standard library in a future Swift release. To customize the logging of
+your type in a playground, conform to the
+<code>CustomPlaygroundDisplayConvertible</code> protocol, which does not use the
+<code>PlaygroundQuickLook</code> enum.</p>
+
+<p>If you need to provide a customized playground representation in Swift 4.0
+or Swift 3.2 or earlier, use a conditional compilation block:</p>
+
+<pre><code class="language-swift">#if swift(&gt;=4.1) || (swift(&gt;=3.3) &amp;&amp; !swift(&gt;=4.0))
+    // With Swift 4.1 and later (including Swift 3.3 and later), use
+    // the CustomPlaygroundDisplayConvertible protocol.
+#else
+    // With Swift 4.0 and Swift 3.2 and earlier, use PlaygroundQuickLook
+    // and the CustomPlaygroundQuickLookable protocol.
+#endif</code></pre>
+
+<p><em>Deprecated:</em> PlaygroundQuickLook will be removed in a future Swift version. For customizing how types are presented in playgrounds, use CustomPlaygroundDisplayConvertible instead..</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+<h3 id="cases">Cases</h3>
+<div class="declaration" id="case-text">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-text">case text(String)</a>
+<div class="comment collapse" id="comment-case-text"><div class="p">
+    <p>Plain text.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-int">case int(Int64)</a>
+<div class="comment collapse" id="comment-case-int"><div class="p">
+    <p>An integer numeric value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-uInt">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-uInt">case uInt(UInt64)</a>
+<div class="comment collapse" id="comment-case-uInt"><div class="p">
+    <p>An unsigned integer numeric value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-float">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-float">case float(Float32)</a>
+<div class="comment collapse" id="comment-case-float"><div class="p">
+    <p>A single precision floating-point numeric value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-double">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-double">case double(Float64)</a>
+<div class="comment collapse" id="comment-case-double"><div class="p">
+    <p>A double precision floating-point numeric value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-image">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-image">case image(Any)</a>
+<div class="comment collapse" id="comment-case-image"><div class="p">
+    <p>An image.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-sound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-sound">case sound(Any)</a>
+<div class="comment collapse" id="comment-case-sound"><div class="p">
+    <p>A sound.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-color">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-color">case color(Any)</a>
+<div class="comment collapse" id="comment-case-color"><div class="p">
+    <p>A color.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-bezierPath">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-bezierPath">case bezierPath(Any)</a>
+<div class="comment collapse" id="comment-case-bezierPath"><div class="p">
+    <p>A bezier path.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-attributedString">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-attributedString">case attributedString(Any)</a>
+<div class="comment collapse" id="comment-case-attributedString"><div class="p">
+    <p>An attributed string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-rectangle">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-rectangle">case rectangle(Float64, Float64, Float64, Float64)</a>
+<div class="comment collapse" id="comment-case-rectangle"><div class="p">
+    <p>A rectangle.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-point">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-point">case point(Float64, Float64)</a>
+<div class="comment collapse" id="comment-case-point"><div class="p">
+    <p>A point.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-size">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-size">case size(Float64, Float64)</a>
+<div class="comment collapse" id="comment-case-size"><div class="p">
+    <p>A size.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-bool">case bool(Bool)</a>
+<div class="comment collapse" id="comment-case-bool"><div class="p">
+    <p>A boolean value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-range">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-range">case range(Int64, Int64)</a>
+<div class="comment collapse" id="comment-case-range"><div class="p">
+    <p>A range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-view">case view(Any)</a>
+<div class="comment collapse" id="comment-case-view"><div class="p">
+    <p>A GUI view.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-sprite">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-sprite">case sprite(Any)</a>
+<div class="comment collapse" id="comment-case-sprite"><div class="p">
+    <p>A graphical sprite.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-url">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-url">case url(String)</a>
+<div class="comment collapse" id="comment-case-url"><div class="p">
+    <p>A Uniform Resource Locator.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-_raw">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-_raw">case _raw([UInt8], String)</a>
+<div class="comment collapse" id="comment-case-_raw"><div class="p">
+    <p>Raw data that has already been encoded in a format the IDE understands.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-reflecting_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-reflecting_">init(<wbr>reflecting:)</a><div class="comment collapse" id="comment-init-reflecting_"><div class="p">
+    <p>Creates a new Quick Look for the given instance.</p>
+
+<p>If the dynamic type of <code>subject</code> conforms to
+<code>CustomPlaygroundQuickLookable</code>, the result is found by calling its
+<code>customPlaygroundQuickLook</code> property. Otherwise, the result is
+synthesized by the language. In some cases, the synthesized result may
+be <code>.text(String(reflecting: subject))</code>.</p>
+
+<p><strong>Note:</strong> If the dynamic type of <code>subject</code> has value semantics, subsequent
+  mutations of <code>subject</code> will not observable in the Quick Look. In
+  general, though, the observability of such mutations is unspecified.</p>
+
+<p><strong><code>subject</code>:</strong>  The instance to represent with the resulting Quick
+  Look.</p>
+
+<p><em>Deprecated:</em> PlaygroundQuickLook will be removed in a future Swift version..</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(reflecting subject: Any)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+
+

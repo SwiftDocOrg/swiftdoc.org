@@ -1,0 +1,39 @@
+---
+layout: "default"
+title: "withUnsafeMutableBytes"
+description: "Swift documentation for 'withUnsafeMutableBytes': Invokes the given closure with a mutable buffer pointer covering the raw."
+keywords: "withUnsafeMutableBytes,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-withunsafemutablebytes-t-result-of_-inout-t_-unsafemutablerawbufferpointer-throws-result">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafemutablebytes-t-result-of_-inout-t_-unsafemutablerawbufferpointer-throws-result">func withUnsafeMutableBytes&lt;T, Result&gt;(<wbr>of:<wbr> inout T, _: (UnsafeMutableRawBufferPointer) throws -&gt; Result)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafemutablebytes-t-result-of_-inout-t_-unsafemutablerawbufferpointer-throws-result"><div class="p">
+    <p>Invokes the given closure with a mutable buffer pointer covering the raw
+bytes of the given argument.</p>
+
+<p>The buffer pointer argument to the <code>body</code> closure provides a collection
+interface to the raw bytes of <code>value</code>. The buffer is the size of the
+instance passed as <code>value</code> and does not include any remote storage.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>value:</strong> An instance to temporarily access through a mutable raw buffer
+    pointer.
+    Note that the <code>inout</code> exclusivity rules mean that, like any other
+    <code>inout</code> argument, <code>value</code> cannot be directly accessed by other code
+    for the duration of <code>body</code>. Access must only occur through the pointer
+    argument to <code>body</code> until <code>body</code> returns.
+  <strong>body:</strong> A closure that takes a raw buffer pointer to the bytes of <code>value</code>
+    as its sole argument. If the closure has a return value, that value is
+    also used as the return value of the <code>withUnsafeMutableBytes(of:_:)</code>
+    function. The buffer pointer argument is valid only for the duration
+    of the closure&#39;s execution.
+<strong>Returns:</strong> The return value, if any, of the <code>body</code> closure.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withUnsafeMutableBytes&lt;T, Result&gt;(of value: inout T, _ body: (UnsafeMutableRawBufferPointer) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+    
+</div></div>
+</div>

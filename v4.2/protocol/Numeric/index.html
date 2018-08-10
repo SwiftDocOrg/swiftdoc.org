@@ -1,0 +1,406 @@
+---
+layout: "default"
+title: "Numeric"
+description: "Swift documentation for 'Numeric': Declares methods backing binary arithmetic operators--such as +, - and."
+keywords: "Numeric,protocol,swift,documentation,*,*=,+,+=,==,-,-=,magnitude,Magnitude,IntegerLiteralType"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Numeric</code></div>
+
+<div class="discussion comment">
+    <p>Declares methods backing binary arithmetic operators--such as <code>+</code>, <code>-</code> and
+<code>*</code>--and their mutating counterparts.</p>
+
+<p>The <code>Numeric</code> protocol provides a suitable basis for arithmetic on
+scalar values, such as integers and floating-point numbers. You can write
+generic methods that operate on any numeric type in the standard library
+by using the <code>Numeric</code> protocol as a generic constraint.</p>
+
+<p>The following example declares a method that calculates the total of any
+sequence with <code>Numeric</code> elements.</p>
+
+<pre><code class="language-swift">extension Sequence where Element: Numeric {
+    func sum() -&gt; Element {
+        return reduce(0, +)
+    }
+}</code></pre>
+
+<p>The <code>sum()</code> method is now available on any sequence or collection with
+numeric values, whether it is an array of <code>Double</code> or a countable range of
+<code>Int</code>.</p>
+
+<pre><code class="language-swift">let arraySum = [1.1, 2.2, 3.3, 4.4, 5.5].sum()
+// arraySum == 16.5
+
+let rangeSum = (1..&lt;10).sum()
+// rangeSum == 45</code></pre>
+
+<h1>Conforming to the Numeric Protocol</h1>
+
+<p>To add <code>Numeric</code> protocol conformance to your own custom type, implement
+the required mutating methods. Extensions to <code>Numeric</code> provide default
+implementations for the protocol&#39;s nonmutating methods based on the
+mutating variants.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Equatable, ExpressibleByIntegerLiteral</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Magnitude : Comparable, Numeric</code>
+<div class="comment">
+    <p>A type that can represent the absolute value of any possible value of the
+conforming type.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">IntegerLiteralType : _ExpressibleByBuiltinIntegerLiteral</code>
+<div class="comment">
+    <p>A type that represents an integer literal.</p>
+
+<p>The standard library integer and floating-point types are all valid types
+for <code>IntegerLiteralType</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-exactly_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-exactly_">init?(<wbr>exactly:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-exactly_"><div class="p">
+    <p>Creates a new instance from the given integer, if it can be represented
+exactly.</p>
+
+<p>If the value passed as <code>source</code> is not representable exactly, the result
+is <code>nil</code>. In the following example, the constant <code>x</code> is successfully
+created from a value of <code>100</code>, while the attempt to initialize the
+constant <code>y</code> from <code>1_000</code> fails because the <code>Int8</code> type can represent
+<code>127</code> at maximum:</p>
+
+<pre><code class="language-swift">let x = Int8(exactly: 100)
+// x == Optional(100)
+let y = Int8(exactly: 1_000)
+// y == nil</code></pre>
+
+<p><strong><code>source</code>:</strong>  A value to convert to this type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?&lt;T&gt;(exactly source: T)</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="init-integerliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-integerliteral_">init(<wbr>integerLiteral:)</a><div class="comment collapse" id="comment-init-integerliteral_"><div class="p">
+    <p>Creates an instance initialized to the specified integer value.</p>
+
+<p>Do not call this initializer directly. Instead, initialize a variable or
+constant using an integer literal. For example:</p>
+
+<pre><code class="language-swift">let x = 23</code></pre>
+
+<p>In this example, the assignment to the <code>x</code> constant calls this integer
+literal initializer behind the scenes.</p>
+
+<p><strong><code>value</code>:</strong>  The value to create.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(integerLiteral value: Self.IntegerLiteralType)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/ExpressibleByIntegerLiteral/"><code>ExpressibleByIntegerLiteral</code></a>
+        </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-magnitude_-self-magnitude">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-magnitude_-self-magnitude">var magnitude: Self.Magnitude</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-magnitude_-self-magnitude"><div class="p">
+    <p>The magnitude of this value.</p>
+
+<p>For any numeric value <code>x</code>, <code>x.magnitude</code> is the absolute value of <code>x</code>.
+You can use the <code>magnitude</code> property in operations that are simpler to
+implement in terms of unsigned values, such as printing the value of an
+integer, which is just printing a &#39;-&#39; character in front of an absolute
+value.</p>
+
+<pre><code class="language-swift">let x = -200
+// x.magnitude == 200</code></pre>
+
+<p>The global <code>abs(_:)</code> function provides more familiar syntax when you need
+to find an absolute value. In addition, because <code>abs(_:)</code> always returns
+a value of the same type, even in a generic context, using the function
+instead of the <code>magnitude</code> property is encouraged.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var magnitude: Self.Magnitude { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-star_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-star_rhs_">func *(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-star_rhs_"><div class="p">
+    <p>Multiplies two values and produces their product.</p>
+
+<p>The multiplication operator (<code>*</code>) calculates the product of its two
+arguments. For example:</p>
+
+<pre><code class="language-swift">2 * 3                   // 6
+100 * 21                // 2100
+-10 * 15                // -150
+3.5 * 2.25              // 7.875</code></pre>
+
+<p>You cannot use <code>*</code> with arguments of different types. To multiply values
+of different types, convert one of the values to the other value&#39;s type.</p>
+
+<pre><code class="language-swift">let x: Int8 = 21
+let y: Int = 1000000
+Int(x) * y              // 21000000</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to multiply.
+  <strong>rhs:</strong> The second value to multiply.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func *(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-stareq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stareq_rhs_">func *=(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-stareq_rhs_"><div class="p">
+    <p>Multiplies two values and stores the result in the left-hand-side
+variable.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to multiply.
+  <strong>rhs:</strong> The second value to multiply.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func *=(lhs: inout Self, rhs: Self)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-pls_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-pls_rhs_">func +(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-pls_rhs_"><div class="p">
+    <p>Adds two values and produces their sum.</p>
+
+<p>The addition operator (<code>+</code>) calculates the sum of its two arguments. For
+example:</p>
+
+<pre><code class="language-swift">1 + 2                   // 3
+-10 + 15                // 5
+-15 + -5                // -20
+21.5 + 3.25             // 24.75</code></pre>
+
+<p>You cannot use <code>+</code> with arguments of different types. To add values of
+different types, convert one of the values to the other value&#39;s type.</p>
+
+<pre><code class="language-swift">let x: Int8 = 21
+let y: Int = 1000000
+Int(x) + y              // 1000021</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_rhs_">func +=(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-plseq_rhs_"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Self, rhs: Self)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-mns_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-mns_rhs_">func -(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-mns_rhs_"><div class="p">
+    <p>Subtracts one value from another and produces their difference.</p>
+
+<p>The subtraction operator (<code>-</code>) calculates the difference of its two
+arguments. For example:</p>
+
+<pre><code class="language-swift">8 - 3                   // 5
+-10 - 5                 // -15
+100 - -5                // 105
+10.5 - 100.0            // -89.5</code></pre>
+
+<p>You cannot use <code>-</code> with arguments of different types. To subtract values
+of different types, convert one of the values to the other value&#39;s type.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 21
+let y: UInt = 1000000
+y - UInt(x)             // 999979</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A numeric value.
+  <strong>rhs:</strong> The value to subtract from <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func -(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-mnseq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-mnseq_rhs_">func -=(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-mnseq_rhs_"><div class="p">
+    <p>Subtracts the second value from the first and stores the difference in the
+left-hand-side variable.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A numeric value.
+  <strong>rhs:</strong> The value to subtract from <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func -=(lhs: inout Self, rhs: Self)</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+<div class="declaration inherited" id="-init-integerliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init-integerliteral_">init(<wbr>integerLiteral:)</a><div class="comment collapse" id="comment--init-integerliteral_"><div class="p">
+    <p>Creates an instance initialized to the specified integer value.</p>
+
+<p>Do not call this initializer directly. Instead, initialize a variable or
+constant using an integer literal. For example:</p>
+
+<pre><code class="language-swift">let x = 23</code></pre>
+
+<p>In this example, the assignment to the <code>x</code> constant calls this integer
+literal initializer behind the scenes.</p>
+
+<p><strong><code>value</code>:</strong>  The value to create.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(integerLiteral value: Self)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/ExpressibleByIntegerLiteral/"><code>ExpressibleByIntegerLiteral</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func--excleq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--excleq_rhs_">func !=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--excleq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether two values are not equal.</p>
+
+<p>Inequality is the inverse of equality. For any values <code>a</code> and <code>b</code>, <code>a != b</code>
+implies that <code>a == b</code> is <code>false</code>.</p>
+
+<p>This is the default implementation of the not-equal-to operator (<code>!=</code>)
+for any type that conforms to <code>Equatable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func !=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func--pls_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--pls_">prefix func +(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--pls_"><div class="p">
+    <p>Returns the given number unchanged.</p>
+
+<p>You can use the unary plus operator (<code>+</code>) to provide symmetry in your
+code for positive numbers when also using the unary minus operator.</p>
+
+<pre><code class="language-swift">let x = -21
+let y = +21
+// x == -21
+// y == 21</code></pre>
+
+<p><strong>Returns:</strong> The given argument without any changes.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">prefix func +(x: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+
+
+
+
+

@@ -1,0 +1,415 @@
+---
+layout: "default"
+title: "Operator: &>>="
+description: "Swift documentation for the '&>>=' operator."
+root: "/v4.2"
+---
+
+<code class="language-swift"> operator &amp;&gt;&gt;= {
+    associativity right
+    precedence 
+    assignment
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-ampgtgteq_-inout-int-rhs_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampgtgteq_-inout-int-rhs_-int">func &amp;&gt;&gt;=(<wbr>_:<wbr> inout Int, rhs: Int)</a>
+        
+<div class="comment collapse" id="comment-func-ampgtgteq_-inout-int-rhs_-int"><div class="p">
+    <p>Calculates the result of shifting a value&#39;s binary representation the
+specified number of digits to the right, masking the shift amount to the
+type&#39;s bit width, and stores the result in the left-hand-side variable.</p>
+
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111</code></pre>
+
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&gt;&gt;=(lhs: inout Int, rhs: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int/"><code>Int</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-ampgtgteq_-inout-int8-rhs_-int8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampgtgteq_-inout-int8-rhs_-int8">func &amp;&gt;&gt;=(<wbr>_:<wbr> inout Int8, rhs: Int8)</a>
+        
+<div class="comment collapse" id="comment-func-ampgtgteq_-inout-int8-rhs_-int8"><div class="p">
+    <p>Calculates the result of shifting a value&#39;s binary representation the
+specified number of digits to the right, masking the shift amount to the
+type&#39;s bit width, and stores the result in the left-hand-side variable.</p>
+
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111</code></pre>
+
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&gt;&gt;=(lhs: inout Int8, rhs: Int8)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int8/"><code>Int8</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-ampgtgteq_-inout-int16-rhs_-int16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampgtgteq_-inout-int16-rhs_-int16">func &amp;&gt;&gt;=(<wbr>_:<wbr> inout Int16, rhs: Int16)</a>
+        
+<div class="comment collapse" id="comment-func-ampgtgteq_-inout-int16-rhs_-int16"><div class="p">
+    <p>Calculates the result of shifting a value&#39;s binary representation the
+specified number of digits to the right, masking the shift amount to the
+type&#39;s bit width, and stores the result in the left-hand-side variable.</p>
+
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111</code></pre>
+
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&gt;&gt;=(lhs: inout Int16, rhs: Int16)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int16/"><code>Int16</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-ampgtgteq_-inout-int32-rhs_-int32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampgtgteq_-inout-int32-rhs_-int32">func &amp;&gt;&gt;=(<wbr>_:<wbr> inout Int32, rhs: Int32)</a>
+        
+<div class="comment collapse" id="comment-func-ampgtgteq_-inout-int32-rhs_-int32"><div class="p">
+    <p>Calculates the result of shifting a value&#39;s binary representation the
+specified number of digits to the right, masking the shift amount to the
+type&#39;s bit width, and stores the result in the left-hand-side variable.</p>
+
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111</code></pre>
+
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&gt;&gt;=(lhs: inout Int32, rhs: Int32)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int32/"><code>Int32</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-ampgtgteq_-inout-int64-rhs_-int64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampgtgteq_-inout-int64-rhs_-int64">func &amp;&gt;&gt;=(<wbr>_:<wbr> inout Int64, rhs: Int64)</a>
+        
+<div class="comment collapse" id="comment-func-ampgtgteq_-inout-int64-rhs_-int64"><div class="p">
+    <p>Calculates the result of shifting a value&#39;s binary representation the
+specified number of digits to the right, masking the shift amount to the
+type&#39;s bit width, and stores the result in the left-hand-side variable.</p>
+
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111</code></pre>
+
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&gt;&gt;=(lhs: inout Int64, rhs: Int64)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int64/"><code>Int64</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-ampgtgteq_-inout-uint-rhs_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampgtgteq_-inout-uint-rhs_-uint">func &amp;&gt;&gt;=(<wbr>_:<wbr> inout UInt, rhs: UInt)</a>
+        
+<div class="comment collapse" id="comment-func-ampgtgteq_-inout-uint-rhs_-uint"><div class="p">
+    <p>Calculates the result of shifting a value&#39;s binary representation the
+specified number of digits to the right, masking the shift amount to the
+type&#39;s bit width, and stores the result in the left-hand-side variable.</p>
+
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111</code></pre>
+
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&gt;&gt;=(lhs: inout UInt, rhs: UInt)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt/"><code>UInt</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-ampgtgteq_-inout-uint8-rhs_-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampgtgteq_-inout-uint8-rhs_-uint8">func &amp;&gt;&gt;=(<wbr>_:<wbr> inout UInt8, rhs: UInt8)</a>
+        
+<div class="comment collapse" id="comment-func-ampgtgteq_-inout-uint8-rhs_-uint8"><div class="p">
+    <p>Calculates the result of shifting a value&#39;s binary representation the
+specified number of digits to the right, masking the shift amount to the
+type&#39;s bit width, and stores the result in the left-hand-side variable.</p>
+
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111</code></pre>
+
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&gt;&gt;=(lhs: inout UInt8, rhs: UInt8)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt8/"><code>UInt8</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-ampgtgteq_-inout-uint16-rhs_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampgtgteq_-inout-uint16-rhs_-uint16">func &amp;&gt;&gt;=(<wbr>_:<wbr> inout UInt16, rhs: UInt16)</a>
+        
+<div class="comment collapse" id="comment-func-ampgtgteq_-inout-uint16-rhs_-uint16"><div class="p">
+    <p>Calculates the result of shifting a value&#39;s binary representation the
+specified number of digits to the right, masking the shift amount to the
+type&#39;s bit width, and stores the result in the left-hand-side variable.</p>
+
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111</code></pre>
+
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&gt;&gt;=(lhs: inout UInt16, rhs: UInt16)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt16/"><code>UInt16</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-ampgtgteq_-inout-uint32-rhs_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampgtgteq_-inout-uint32-rhs_-uint32">func &amp;&gt;&gt;=(<wbr>_:<wbr> inout UInt32, rhs: UInt32)</a>
+        
+<div class="comment collapse" id="comment-func-ampgtgteq_-inout-uint32-rhs_-uint32"><div class="p">
+    <p>Calculates the result of shifting a value&#39;s binary representation the
+specified number of digits to the right, masking the shift amount to the
+type&#39;s bit width, and stores the result in the left-hand-side variable.</p>
+
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111</code></pre>
+
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&gt;&gt;=(lhs: inout UInt32, rhs: UInt32)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt32/"><code>UInt32</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-ampgtgteq_-inout-uint64-rhs_-uint64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampgtgteq_-inout-uint64-rhs_-uint64">func &amp;&gt;&gt;=(<wbr>_:<wbr> inout UInt64, rhs: UInt64)</a>
+        
+<div class="comment collapse" id="comment-func-ampgtgteq_-inout-uint64-rhs_-uint64"><div class="p">
+    <p>Calculates the result of shifting a value&#39;s binary representation the
+specified number of digits to the right, masking the shift amount to the
+type&#39;s bit width, and stores the result in the left-hand-side variable.</p>
+
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111</code></pre>
+
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&gt;&gt;=(lhs: inout UInt64, rhs: UInt64)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt64/"><code>UInt64</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>

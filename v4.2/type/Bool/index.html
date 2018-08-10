@@ -1,0 +1,321 @@
+---
+layout: "default"
+title: "Bool"
+description: "Swift documentation for 'Bool': A value type whose instances are either true or false."
+keywords: "Bool,struct,swift,documentation,encode,hash,random,random,toggle,customMirror,customPlaygroundQuickLook,description,hashValue"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Bool</code></div>
+
+<div class="discussion comment">
+    <p>A value type whose instances are either <code>true</code> or <code>false</code>.</p>
+
+<p><code>Bool</code> represents Boolean values in Swift. Create instances of <code>Bool</code> by
+using one of the Boolean literals <code>true</code> or <code>false</code>, or by assigning the
+result of a Boolean method or operation to a variable or constant.</p>
+
+<pre><code class="language-swift">var godotHasArrived = false
+
+let numbers = 1...5
+let containsTen = numbers.contains(10)
+print(containsTen)
+// Prints &quot;false&quot;
+
+let (a, b) = (100, 101)
+let aFirst = a &lt; b
+print(aFirst)
+// Prints &quot;true&quot;</code></pre>
+
+<p>Swift uses only simple Boolean values in conditional contexts to help avoid
+accidental programming errors and to help maintain the clarity of each
+control statement. Unlike in other programming languages, in Swift, integers
+and strings cannot be used where a Boolean value is required.</p>
+
+<p>For example, the following code sample does not compile, because it
+attempts to use the integer <code>i</code> in a logical context:</p>
+
+<pre><code class="language-swift">var i = 5
+while i {
+    print(i)
+    i -= 1
+}</code></pre>
+
+<p>The correct approach in Swift is to compare the <code>i</code> value with zero in the
+<code>while</code> statement.</p>
+
+<pre><code class="language-swift">while i != 0 {
+    print(i)
+    i -= 1
+}</code></pre>
+
+<h1>Using Imported Boolean values</h1>
+
+<p>The C <code>bool</code> and <code>Boolean</code> types and the Objective-C <code>BOOL</code> type are all
+bridged into Swift as <code>Bool</code>. The single <code>Bool</code> type in Swift guarantees
+that functions, methods, and properties imported from C and Objective-C
+have a consistent type interface.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CVarArg, Codable, CustomPlaygroundQuickLookable, CustomReflectable, CustomStringConvertible, Equatable, ExpressibleByBooleanLiteral, Hashable, LosslessStringConvertible</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Creates an instance initialized to <code>false</code>.</p>
+
+<p>Do not call this initializer directly. Instead, use the Boolean literal
+<code>false</code> to create a new <code>Bool</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-bool">init(<wbr>_: Bool)</a><div class="comment collapse" id="comment-init_-bool"><div class="p">
+    <p>Creates an instance equal to the given Boolean value.</p>
+
+<p><strong><code>value</code>:</strong>  The Boolean value to copy.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ value: Bool)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-nsnumber">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-nsnumber">init(<wbr>_: NSNumber)</a><div class="comment collapse" id="comment-init_-nsnumber"><div class="p">
+    <p><em>[Foundation]</em></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ number: NSNumber)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-booleanliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-booleanliteral_">init(<wbr>booleanLiteral:)</a><div class="comment collapse" id="comment-init-booleanliteral_"><div class="p">
+    <p>Creates an instance initialized to the specified Boolean literal.</p>
+
+<p>Do not call this initializer directly. It is used by the compiler when
+you use a Boolean literal. Instead, create a new <code>Bool</code> instance by
+using one of the Boolean literals <code>true</code> or <code>false</code>.</p>
+
+<pre><code class="language-swift">var printedMessage = false
+
+if !printedMessage {
+    print(&quot;You look nice today!&quot;)
+    printedMessage = true
+}
+// Prints &quot;You look nice today!&quot;</code></pre>
+
+<p>In this example, both assignments to the <code>printedMessage</code> variable call
+this Boolean literal initializer behind the scenes.</p>
+
+<p><strong><code>value</code>:</strong>  The value of the new instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(booleanLiteral value: Bool)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init?(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Creates a new Boolean value from the given string.</p>
+
+<p>If the <code>description</code> value is any string other than <code>&quot;true&quot;</code> or
+<code>&quot;false&quot;</code>, the result is <code>nil</code>. This initializer is case sensitive.</p>
+
+<p><strong><code>description</code>:</strong>  A string representation of the Boolean value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ description: String)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>A mirror that reflects the <code>Bool</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-customplaygroundquicklook_-playgroundquicklook">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-customplaygroundquicklook_-playgroundquicklook">var customPlaygroundQuickLook: PlaygroundQuickLook</a><div class="comment collapse" id="comment-var-customplaygroundquicklook_-playgroundquicklook"><div class="p">
+    <p>A custom playground Quick Look for the <code>Bool</code> instance.</p>
+
+<p><em>Deprecated:</em> Bool.customPlaygroundQuickLook will be removed in a future Swift version.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customPlaygroundQuickLook: PlaygroundQuickLook { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of the Boolean value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The hash value for the Boolean value.</p>
+
+<p>Two values that are equal always have equal hash values.</p>
+
+<p><strong>Note:</strong> The hash value is not guaranteed to be stable across different
+  invocations of the same program. Do not persist the hash value across
+  program runs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-random">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-random">static func random()</a>
+        
+<div class="comment collapse" id="comment-func-random"><div class="p">
+    <p>Returns a random Boolean value.</p>
+
+<p>This method returns <code>true</code> and <code>false</code> with equal probability.</p>
+
+<pre><code class="language-swift">let flippedHeads = Boolean.random()
+if flippedHeads {
+    print(&quot;Heads, you win!&quot;)
+} else {
+    print(&quot;Maybe another try?&quot;)
+}</code></pre>
+
+<p><code>Bool.random()</code> uses the default random generator, <code>Random.default</code>. The
+call in the example above is equivalent to
+<code>Bool.random(using: &amp;Random.default)</code>.</p>
+
+<p><strong>Returns:</strong> Either <code>true</code> or <code>false</code>, randomly chosen with equal
+  probability.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func random() -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-random-using_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-random-using_">static func random(<wbr>using:)</a>
+        
+<div class="comment collapse" id="comment-func-random-using_"><div class="p">
+    <p>Returns a random Boolean value, using the given generator as a source for
+randomness.</p>
+
+<p>This method returns <code>true</code> and <code>false</code> with equal probability. Use this
+method to generate a random Boolean value when you are using a custom
+random number generator.</p>
+
+<pre><code class="language-swift">let flippedHeads = Boolean.random(using: &amp;myGenerator)
+if flippedHeads {
+    print(&quot;Heads, you win!&quot;)
+} else {
+    print(&quot;Maybe another try?&quot;)
+}</code></pre>
+
+<p><strong><code>generator</code>:</strong>  The random number generator to use when creating
+  the new random value.
+<strong>Returns:</strong> Either <code>true</code> or <code>false</code>, randomly chosen with equal
+  probability.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func random&lt;T&gt;(using generator: inout T) -&gt; Bool where T : RandomNumberGenerator</code>
+    
+    
+</div></div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-hash-into_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-hash-into_">func hash(<wbr>into:)</a>
+        
+<div class="comment collapse" id="comment-func-hash-into_"><div class="p">
+    <p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+
+<p><strong><code>hasher</code>:</strong>  The hasher to use when combining the components
+  of this instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func hash(into hasher: inout Hasher)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-toggle">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-toggle">mutating func toggle()</a>
+        
+<div class="comment collapse" id="comment-func-toggle"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func toggle()</code>
+    
+    
+</div></div>
+</div>
+
+

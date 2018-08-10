@@ -1,0 +1,358 @@
+---
+layout: "default"
+title: "Unicode.Scalar"
+description: "Swift documentation for 'Unicode.Scalar': A Unicode scalar value."
+keywords: "Unicode.Scalar,struct,swift,documentation,escaped,write,customMirror,customPlaygroundQuickLook,debugDescription,description,hashValue,isASCII,utf16,value"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Unicode.Scalar</code></div>
+
+<div class="discussion comment">
+    <p>A Unicode scalar value.</p>
+
+<p>The <code>Unicode.Scalar</code> type, representing a single Unicode scalar value, is
+the element type of a string&#39;s <code>unicodeScalars</code> collection.</p>
+
+<p>You can create a <code>Unicode.Scalar</code> instance by using a string literal that
+contains a single character representing exactly one Unicode scalar value.</p>
+
+<pre><code class="language-swift">let letterK: Unicode.Scalar = &quot;K&quot;
+let kim: Unicode.Scalar = &quot;김&quot;
+print(letterK, kim)
+// Prints &quot;K 김&quot;</code></pre>
+
+<p>You can also create Unicode scalar values directly from their numeric
+representation.</p>
+
+<pre><code class="language-swift">let airplane = Unicode.Scalar(9992)
+print(airplane)
+// Prints &quot;✈︎&quot;</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Comparable, CustomDebugStringConvertible, CustomPlaygroundQuickLookable, CustomReflectable, CustomStringConvertible, Equatable, ExpressibleByUnicodeScalarLiteral, Hashable, LosslessStringConvertible, TextOutputStreamable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+<tr>
+<th>Nested Types</th>
+<td><code class="nested">Unicode.Scalar.UTF16View</code></td>
+</tr>
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-uint8">init(<wbr>_: UInt8)</a><div class="comment collapse" id="comment-init_-uint8"><div class="p">
+    <p>Creates a Unicode scalar with the specified numeric value.</p>
+
+<p>For example, the following code sample creates a <code>Unicode.Scalar</code>
+instance with a value of <code>&quot;7&quot;</code>:</p>
+
+<pre><code class="language-swift">let codepoint: UInt8 = 55
+let seven = Unicode.Scalar(codepoint)
+print(seven)
+// Prints &quot;7&quot;</code></pre>
+
+<p><strong><code>v</code>:</strong>  The code point to use for the scalar.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: UInt8)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unicode-scalar">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unicode-scalar">init(<wbr>_: Unicode.Scalar)</a><div class="comment collapse" id="comment-init_-unicode-scalar"><div class="p">
+    <p>Creates a duplicate of the given Unicode scalar.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: Unicode.Scalar)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-unicodescalarliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-unicodescalarliteral_">init(<wbr>unicodeScalarLiteral:)</a><div class="comment collapse" id="comment-init-unicodescalarliteral_"><div class="p">
+    <p>Creates a Unicode scalar with the specified value.</p>
+
+<p>Do not call this initializer directly. It may be used by the compiler
+when you use a string literal to initialize a <code>Unicode.Scalar</code> instance.</p>
+
+<pre><code class="language-swift">let letterK: Unicode.Scalar = &quot;K&quot;
+print(letterK)
+// Prints &quot;K&quot;</code></pre>
+
+<p>In this example, the assignment to the <code>letterK</code> constant is handled by
+this initializer behind the scenes.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(unicodeScalarLiteral value: Unicode.Scalar)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-int">init?(<wbr>_: Int)</a><div class="comment collapse" id="comment-init_-int"><div class="p">
+    <p>Creates a Unicode scalar with the specified numeric value.</p>
+
+<p><strong><code>v</code>:</strong>  The Unicode code point to use for the scalar. <code>v</code> must be
+  a valid Unicode scalar value, in the ranges <code>0...0xD7FF</code> or
+  <code>0xE000...0x10FFFF</code>. In case of an invalid unicode scalar value, nil is
+  returned.</p>
+
+<p>For example, the following code sample creates a <code>Unicode.Scalar</code> instance
+with a value of an emoji character:</p>
+
+<pre><code class="language-swift">let codepoint = 127881
+let emoji = Unicode.Scalar(codepoint)
+print(emoji)
+// Prints &quot;🎉&quot;</code></pre>
+
+<p>In case of an invalid input value, nil is returned.</p>
+
+<pre><code class="language-swift">let codepoint: UInt32 = extValue // This might be an invalid value. 
+if let emoji = Unicode.Scalar(codepoint) {
+  print(emoji)
+} else {
+  // Do something else
+}</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ v: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-string">init?(<wbr>_: String)</a><div class="comment collapse" id="comment-init_-string"><div class="p">
+    <p>Instantiates an instance of the conforming type from a string
+representation.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ description: String)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-uint16">init?(<wbr>_: UInt16)</a><div class="comment collapse" id="comment-init_-uint16"><div class="p">
+    <p>Creates a Unicode scalar with the specified numeric value.</p>
+
+<p>For example, the following code sample creates a <code>Unicode.Scalar</code>
+instance with a value of <code>&quot;밥&quot;</code>, the Korean word for rice:</p>
+
+<pre><code class="language-swift">let codepoint: UInt16 = 48165
+let bap = Unicode.Scalar(codepoint)
+print(bap!)
+// Prints &quot;밥&quot;</code></pre>
+
+<p>In case of an invalid input value, the result is <code>nil</code>.</p>
+
+<pre><code class="language-swift">let codepoint: UInt16 = extValue   // This might be an invalid value
+if let bap = Unicode.Scalar(codepoint) {
+    print(bap)
+} else {
+    // Do something else
+}</code></pre>
+
+<p><strong><code>v</code>:</strong>  The Unicode code point to use for the scalar. The
+  initializer succeeds if <code>v</code> is a valid Unicode scalar value, in the
+  range <code>0...0xD7FF</code> or <code>0xE000...0x10FFFF</code>. If <code>v</code> is an invalid
+  unicode scalar value, the result is <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ v: UInt16)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-uint32">init?(<wbr>_: UInt32)</a><div class="comment collapse" id="comment-init_-uint32"><div class="p">
+    <p>Creates a Unicode scalar with the specified numeric value.</p>
+
+<p>For example, the following code sample creates a <code>Unicode.Scalar</code>
+instance with a value of an emoji character:</p>
+
+<pre><code class="language-swift">let codepoint: UInt32 = 127881
+let emoji = Unicode.Scalar(codepoint)
+print(emoji!)
+// Prints &quot;🎉&quot;</code></pre>
+
+<p>In case of an invalid input value, nil is returned.</p>
+
+<pre><code class="language-swift">let codepoint: UInt32 = extValue   // This might be an invalid value
+if let emoji = Unicode.Scalar(codepoint) {
+  print(emoji)
+} else {
+  // Do something else
+}</code></pre>
+
+<p><strong><code>v</code>:</strong>  The Unicode code point to use for the scalar. The
+  initializer succeeds if <code>v</code> is a valid Unicode scalar value---that is,
+  if <code>v</code> is in the range <code>0...0xD7FF</code> or <code>0xE000...0x10FFFF</code>. If <code>v</code> is
+  an invalid Unicode scalar value, the result is <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ v: UInt32)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>A mirror that reflects the <code>Unicode.Scalar</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-customplaygroundquicklook_-playgroundquicklook">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-customplaygroundquicklook_-playgroundquicklook">var customPlaygroundQuickLook: PlaygroundQuickLook</a><div class="comment collapse" id="comment-var-customplaygroundquicklook_-playgroundquicklook"><div class="p">
+    <p>A custom playground Quick Look for the <code>Unicode.Scalar</code> instance.</p>
+
+<p><em>Deprecated:</em> Unicode.Scalar.customPlaygroundQuickLook will be removed in a future Swift version.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customPlaygroundQuickLook: PlaygroundQuickLook { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>An escaped textual representation of the Unicode scalar, suitable for
+debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of the Unicode scalar.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The Unicode scalar&#39;s hash value.</p>
+
+<p>Hash values are not guaranteed to be equal across different executions of
+your program. Do not save hash values to use during a future execution.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-isascii_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isascii_-bool">var isASCII: Bool</a><div class="comment collapse" id="comment-var-isascii_-bool"><div class="p">
+    <p>A Boolean value indicating whether the Unicode scalar is an ASCII
+character.</p>
+
+<p>ASCII characters have a scalar value between 0 and 127, inclusive. For
+example:</p>
+
+<pre><code class="language-swift">let canyon = &quot;Cañón&quot;
+for scalar in canyon.unicodeScalars {
+    print(scalar, scalar.isASCII, scalar.value)
+}
+// Prints &quot;C true 67&quot;
+// Prints &quot;a true 97&quot;
+// Prints &quot;ñ false 241&quot;
+// Prints &quot;ó false 243&quot;
+// Prints &quot;n true 110&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isASCII: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-utf16_-unicode-scalar-utf16view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-utf16_-unicode-scalar-utf16view">var utf16: Unicode.Scalar.UTF16View</a><div class="comment collapse" id="comment-var-utf16_-unicode-scalar-utf16view"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var utf16: Unicode.Scalar.UTF16View { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-value_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-value_-uint32">var value: UInt32</a><div class="comment collapse" id="comment-var-value_-uint32"><div class="p">
+    <p>A numeric representation of the Unicode scalar.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var value: UInt32 { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-escaped-asascii_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-escaped-asascii_">func escaped(<wbr>asASCII:)</a>
+        
+<div class="comment collapse" id="comment-func-escaped-asascii_"><div class="p">
+    <p>Returns a string representation of the Unicode scalar.</p>
+
+<p>Scalar values representing characters that are normally unprintable or
+that otherwise require escaping are escaped with a backslash.</p>
+
+<pre><code class="language-swift">let tab = Unicode.Scalar(9)
+print(tab)
+// Prints &quot; &quot;
+print(tab.escaped(asASCII: false))
+// Prints &quot;\t&quot;</code></pre>
+
+<p>When the <code>forceASCII</code> parameter is <code>true</code>, a <code>Unicode.Scalar</code> instance
+with a value greater than 127 is represented using an escaped numeric
+value; otherwise, non-ASCII characters are represented using their
+typical string value.</p>
+
+<pre><code class="language-swift">let bap = Unicode.Scalar(48165)
+print(bap.escaped(asASCII: false))
+// Prints &quot;밥&quot;
+print(bap.escaped(asASCII: true))
+// Prints &quot;\u{BC25}&quot;</code></pre>
+
+<p><strong><code>forceASCII</code>:</strong>  Pass <code>true</code> if you need the result to use only
+  ASCII characters; otherwise, pass <code>false</code>.
+<strong>Returns:</strong> A string representation of the scalar.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func escaped(asASCII forceASCII: Bool) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-write-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-write-to_">func write(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-write-to_"><div class="p">
+    <p>Writes the textual representation of the Unicode scalar into the given
+output stream.</p>
+
+<p><strong><code>target</code>:</strong>  An output stream.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func write&lt;Target&gt;(to target: inout Target)</code>
+    
+    
+</div></div>
+</div>
+
+

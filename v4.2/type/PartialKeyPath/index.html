@@ -1,0 +1,212 @@
+---
+layout: "default"
+title: "PartialKeyPath"
+description: "Swift documentation for 'PartialKeyPath': A partially type-erased key path, from a concrete root type to any."
+keywords: "PartialKeyPath,class,swift,documentation,appending,appending,appending,appending,appending,appending"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">class PartialKeyPath&lt;Root&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A partially type-erased key path, from a concrete root type to any
+resulting value type.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">AnyKeyPath, Equatable, Hashable, _AppendKeyPath</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-appending-root_-anykeypath">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-appending-root_-anykeypath">func appending&lt;Root&gt;(<wbr>_: AnyKeyPath)</a>
+        
+<div class="comment collapse" id="comment-func-appending-root_-anykeypath"><div class="p">
+    <p>Returns a new key path created by appending the given key path to this
+one.</p>
+
+<p>Use this method to extend this key path to the value type of another key
+path. Appending the key path passed as <code>path</code> is successful only if the
+root type for <code>path</code> matches this key path&#39;s value type. This example
+creates key paths from <code>Array&lt;Int&gt;</code> to <code>String</code> and from <code>String</code> to
+<code>Int</code>, and then tries appending each to the other:</p>
+
+<pre><code class="language-swift">let arrayDescription: PartialKeyPath&lt;Array&lt;Int&gt;&gt; = \.description
+let stringLength: PartialKeyPath&lt;String&gt; = \.count
+
+// Creates a key path from `Array&lt;Int&gt;` to `Int`
+let arrayDescriptionLength = arrayDescription.appending(path: stringLength)
+
+let invalidKeyPath = stringLength.appending(path: arrayDescription)
+// invalidKeyPath == nil</code></pre>
+
+<p>The second call to <code>appending(path:)</code> returns <code>nil</code>
+because the root type of <code>arrayDescription</code>, <code>Array&lt;Int&gt;</code>, does not
+match the value type of <code>stringLength</code>, <code>Int</code>.</p>
+
+<p><strong><code>path</code>:</strong>  The key path to append.
+<strong>Returns:</strong> A key path from the root of this key path and the value type
+  of <code>path</code>, if <code>path</code> can be appended. If <code>path</code> can&#39;t be appended,
+  returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func appending&lt;Root&gt;(path: AnyKeyPath) -&gt; PartialKeyPath&lt;Root&gt;? where PartialKeyPath&lt;Root&gt; == PartialKeyPath&lt;Root&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_AppendKeyPath/"><code>_AppendKeyPath</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-appending-root-value-appendedvalue_-keypath-value-appendedvalue">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-appending-root-value-appendedvalue_-keypath-value-appendedvalue">func appending&lt;Root, Value, AppendedValue&gt;(<wbr>_: KeyPath&lt;Value, AppendedValue&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-appending-root-value-appendedvalue_-keypath-value-appendedvalue"><div class="p">
+    <p>Returns a new key path created by appending the given key path to this
+one.</p>
+
+<p>Use this method to extend this key path to the value type of another key
+path. Calling <code>appending(path:)</code> results in the same key path as if the
+given key path had been specified using dot notation. In the following
+example, <code>keyPath1</code> and <code>keyPath2</code> are equivalent:</p>
+
+<pre><code class="language-swift">let arrayDescription = \Array&lt;Int&gt;.description
+let keyPath1 = arrayDescription.appending(path: \String.count)
+
+let keyPath2 = \Array&lt;Int&gt;.description.count</code></pre>
+
+<p><strong><code>path</code>:</strong>  The key path to append.
+<strong>Returns:</strong> A key path from the root of this key path to the value type of
+  <code>path</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func appending&lt;Root, Value, AppendedValue&gt;(path: KeyPath&lt;Value, AppendedValue&gt;) -&gt; KeyPath&lt;Root, AppendedValue&gt; where PartialKeyPath&lt;Root&gt; : KeyPath&lt;Root, Value&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_AppendKeyPath/"><code>_AppendKeyPath</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-appending-root-value-appendedvalue_-referencewritablekeypath-value-appendedvalue">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-appending-root-value-appendedvalue_-referencewritablekeypath-value-appendedvalue">func appending&lt;Root, Value, AppendedValue&gt;(<wbr>_: ReferenceWritableKeyPath&lt;Value, AppendedValue&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-appending-root-value-appendedvalue_-referencewritablekeypath-value-appendedvalue"><div class="p">
+    <p>Returns a new key path created by appending the given key path to this
+one.</p>
+
+<p>Use this method to extend this key path to the value type of another key
+path. Calling <code>appending(path:)</code> results in the same key path as if the
+given key path had been specified using dot notation.</p>
+
+<p><strong><code>path</code>:</strong>  The key path to append.
+<strong>Returns:</strong> A key path from the root of this key path to the value type of
+  <code>path</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func appending&lt;Root, Value, AppendedValue&gt;(path: ReferenceWritableKeyPath&lt;Value, AppendedValue&gt;) -&gt; ReferenceWritableKeyPath&lt;Root, AppendedValue&gt; where PartialKeyPath&lt;Root&gt; == KeyPath&lt;Root, Value&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_AppendKeyPath/"><code>_AppendKeyPath</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-appending-root-value-appendedvalue_-writablekeypath-value-appendedvalue">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-appending-root-value-appendedvalue_-writablekeypath-value-appendedvalue">func appending&lt;Root, Value, AppendedValue&gt;(<wbr>_: WritableKeyPath&lt;Value, AppendedValue&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-appending-root-value-appendedvalue_-writablekeypath-value-appendedvalue"><div class="p">
+    <p>Returns a new key path created by appending the given key path to this
+one.</p>
+
+<p>Use this method to extend this key path to the value type of another key
+path. Calling <code>appending(path:)</code> results in the same key path as if the
+given key path had been specified using dot notation.</p>
+
+<p><strong><code>path</code>:</strong>  The key path to append.
+<strong>Returns:</strong> A key path from the root of this key path to the value type of
+  <code>path</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func appending&lt;Root, Value, AppendedValue&gt;(path: WritableKeyPath&lt;Value, AppendedValue&gt;) -&gt; WritableKeyPath&lt;Root, AppendedValue&gt; where PartialKeyPath&lt;Root&gt; == WritableKeyPath&lt;Root, Value&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_AppendKeyPath/"><code>_AppendKeyPath</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-appending-root-appendedroot-appendedvalue_-keypath-appendedroot-appendedvalue">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-appending-root-appendedroot-appendedvalue_-keypath-appendedroot-appendedvalue">func appending&lt;Root, AppendedRoot, AppendedValue&gt;(<wbr>_: KeyPath&lt;AppendedRoot, AppendedValue&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-appending-root-appendedroot-appendedvalue_-keypath-appendedroot-appendedvalue"><div class="p">
+    <p>Returns a new key path created by appending the given key path to this
+one.</p>
+
+<p>Use this method to extend this key path to the value type of another key
+path. Appending the key path passed as <code>path</code> is successful only if the
+root type for <code>path</code> matches this key path&#39;s value type. This example
+creates a key path from <code>Array&lt;Int&gt;</code> to <code>String</code>, and then tries
+appending compatible and incompatible key paths:</p>
+
+<pre><code class="language-swift">let arrayDescription: PartialKeyPath&lt;Array&lt;Int&gt;&gt; = \.description
+
+// Creates a key path from `Array&lt;Int&gt;` to `Int`
+let arrayDescriptionLength = arrayDescription.appending(path: \String.count)
+
+let invalidKeyPath = arrayDescription.appending(path: \Double.isZero)
+// invalidKeyPath == nil</code></pre>
+
+<p>The second call to <code>appending(path:)</code> returns <code>nil</code> because the root type
+of the <code>path</code> parameter, <code>Double</code>, does not match the value type of
+<code>arrayDescription</code>, <code>String</code>.</p>
+
+<p><strong><code>path</code>:</strong>  The key path to append.
+<strong>Returns:</strong> A key path from the root of this key path to the value type
+  of <code>path</code>, if <code>path</code> can be appended. If <code>path</code> can&#39;t be appended,
+  returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func appending&lt;Root, AppendedRoot, AppendedValue&gt;(path: KeyPath&lt;AppendedRoot, AppendedValue&gt;) -&gt; KeyPath&lt;Root, AppendedValue&gt;? where PartialKeyPath&lt;Root&gt; == PartialKeyPath&lt;Root&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_AppendKeyPath/"><code>_AppendKeyPath</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-appending-root-appendedroot-appendedvalue_-referencewritablekeypath-appendedroot-appendedvalue">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-appending-root-appendedroot-appendedvalue_-referencewritablekeypath-appendedroot-appendedvalue">func appending&lt;Root, AppendedRoot, AppendedValue&gt;(<wbr>_: ReferenceWritableKeyPath&lt;AppendedRoot, AppendedValue&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-appending-root-appendedroot-appendedvalue_-referencewritablekeypath-appendedroot-appendedvalue"><div class="p">
+    <p>Returns a new key path created by appending the given key path to this
+one.</p>
+
+<p>Use this method to extend this key path to the value type of another key
+path. Appending the key path passed as <code>path</code> is successful only if the
+root type for <code>path</code> matches this key path&#39;s value type.</p>
+
+<p><strong><code>path</code>:</strong>  The reference writeable key path to append.
+<strong>Returns:</strong> A key path from the root of this key path to the value type
+  of <code>path</code>, if <code>path</code> can be appended. If <code>path</code> can&#39;t be appended,
+  returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func appending&lt;Root, AppendedRoot, AppendedValue&gt;(path: ReferenceWritableKeyPath&lt;AppendedRoot, AppendedValue&gt;) -&gt; ReferenceWritableKeyPath&lt;Root, AppendedValue&gt;? where PartialKeyPath&lt;Root&gt; == PartialKeyPath&lt;Root&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_AppendKeyPath/"><code>_AppendKeyPath</code></a>    
+</div></div>
+</div>
+
+

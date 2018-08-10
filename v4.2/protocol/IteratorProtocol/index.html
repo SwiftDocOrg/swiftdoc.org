@@ -1,0 +1,250 @@
+---
+layout: "default"
+title: "IteratorProtocol"
+description: "Swift documentation for 'IteratorProtocol': A type that supplies the values of a sequence one at a time."
+keywords: "IteratorProtocol,protocol,swift,documentation,next,Element"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol IteratorProtocol</code></div>
+
+<div class="discussion comment">
+    <p>A type that supplies the values of a sequence one at a time.</p>
+
+<p>The <code>IteratorProtocol</code> protocol is tightly linked with the <code>Sequence</code>
+protocol. Sequences provide access to their elements by creating an
+iterator, which keeps track of its iteration process and returns one
+element at a time as it advances through the sequence.</p>
+
+<p>Whenever you use a <code>for</code>-<code>in</code> loop with an array, set, or any other
+collection or sequence, you&#39;re using that type&#39;s iterator. Swift uses a
+sequence&#39;s or collection&#39;s iterator internally to enable the <code>for</code>-<code>in</code>
+loop language construct.</p>
+
+<p>Using a sequence&#39;s iterator directly gives you access to the same elements
+in the same order as iterating over that sequence using a <code>for</code>-<code>in</code> loop.
+For example, you might typically use a <code>for</code>-<code>in</code> loop to print each of
+the elements in an array.</p>
+
+<pre><code class="language-swift">let animals = [&quot;Antelope&quot;, &quot;Butterfly&quot;, &quot;Camel&quot;, &quot;Dolphin&quot;]
+for animal in animals {
+    print(animal)
+}
+// Prints &quot;Antelope&quot;
+// Prints &quot;Butterfly&quot;
+// Prints &quot;Camel&quot;
+// Prints &quot;Dolphin&quot;</code></pre>
+
+<p>Behind the scenes, Swift uses the <code>animals</code> array&#39;s iterator to loop over
+the contents of the array.</p>
+
+<pre><code class="language-swift">var animalIterator = animals.makeIterator()
+while let animal = animalIterator.next() {
+    print(animal)
+}
+// Prints &quot;Antelope&quot;
+// Prints &quot;Butterfly&quot;
+// Prints &quot;Camel&quot;
+// Prints &quot;Dolphin&quot;</code></pre>
+
+<p>The call to <code>animals.makeIterator()</code> returns an instance of the array&#39;s
+iterator. Next, the <code>while</code> loop calls the iterator&#39;s <code>next()</code> method
+repeatedly, binding each element that is returned to <code>animal</code> and exiting
+when the <code>next()</code> method returns <code>nil</code>.</p>
+
+<h1>Using Iterators Directly</h1>
+
+<p>You rarely need to use iterators directly, because a <code>for</code>-<code>in</code> loop is the
+more idiomatic approach to traversing a sequence in Swift. Some
+algorithms, however, may call for direct iterator use.</p>
+
+<p>One example is the <code>reduce1(_:)</code> method. Similar to the <code>reduce(_:_:)</code>
+method defined in the standard library, which takes an initial value and a
+combining closure, <code>reduce1(_:)</code> uses the first element of the sequence as
+the initial value.</p>
+
+<p>Here&#39;s an implementation of the <code>reduce1(_:)</code> method. The sequence&#39;s
+iterator is used directly to retrieve the initial value before looping
+over the rest of the sequence.</p>
+
+<pre><code class="language-swift">extension Sequence {
+    func reduce1(
+        _ nextPartialResult: (Element, Element) -&gt; Element
+    ) -&gt; Element?
+    {
+        var i = makeIterator()
+        guard var accumulated = i.next() else {
+            return nil
+        }
+
+        while let element = i.next() {
+            accumulated = nextPartialResult(accumulated, element)
+        }
+        return accumulated
+    }
+}</code></pre>
+
+<p>The <code>reduce1(_:)</code> method makes certain kinds of sequence operations
+simpler. Here&#39;s how to find the longest string in a sequence, using the
+<code>animals</code> array introduced earlier as an example:</p>
+
+<pre><code class="language-swift">let longestAnimal = animals.reduce1 { current, element in
+    if current.count &gt; element.count {
+        return current
+    } else {
+        return element
+    }
+}
+print(longestAnimal)
+// Prints &quot;Butterfly&quot;</code></pre>
+
+<h1>Using Multiple Iterators</h1>
+
+<p>Whenever you use multiple iterators (or <code>for</code>-<code>in</code> loops) over a single
+sequence, be sure you know that the specific sequence supports repeated
+iteration, either because you know its concrete type or because the
+sequence is also constrained to the <code>Collection</code> protocol.</p>
+
+<p>Obtain each separate iterator from separate calls to the sequence&#39;s
+<code>makeIterator()</code> method rather than by copying. Copying an iterator is
+safe, but advancing one copy of an iterator by calling its <code>next()</code> method
+may invalidate other copies of that iterator. <code>for</code>-<code>in</code> loops are safe in
+this regard.</p>
+
+<h1>Adding IteratorProtocol Conformance to Your Type</h1>
+
+<p>Implementing an iterator that conforms to <code>IteratorProtocol</code> is simple.
+Declare a <code>next()</code> method that advances one step in the related sequence
+and returns the current element. When the sequence has been exhausted, the
+<code>next()</code> method returns <code>nil</code>.</p>
+
+<p>For example, consider a custom <code>Countdown</code> sequence. You can initialize the
+<code>Countdown</code> sequence with a starting integer and then iterate over the
+count down to zero. The <code>Countdown</code> structure&#39;s definition is short: It
+contains only the starting count and the <code>makeIterator()</code> method required
+by the <code>Sequence</code> protocol.</p>
+
+<pre><code class="language-swift">struct Countdown: Sequence {
+    let start: Int
+
+    func makeIterator() -&gt; CountdownIterator {
+        return CountdownIterator(self)
+    }
+}</code></pre>
+
+<p>The <code>makeIterator()</code> method returns another custom type, an iterator named
+<code>CountdownIterator</code>. The <code>CountdownIterator</code> type keeps track of both the
+<code>Countdown</code> sequence that it&#39;s iterating and the number of times it has
+returned a value.</p>
+
+<pre><code class="language-swift">struct CountdownIterator: IteratorProtocol {
+    let countdown: Countdown
+    var times = 0
+
+    init(_ countdown: Countdown) {
+        self.countdown = countdown
+    }
+
+    mutating func next() -&gt; Int? {
+        let nextNumber = countdown.start - times
+        guard nextNumber &gt; 0
+            else { return nil }
+
+        times += 1
+        return nextNumber
+    }
+}</code></pre>
+
+<p>Each time the <code>next()</code> method is called on a <code>CountdownIterator</code> instance,
+it calculates the new next value, checks to see whether it has reached
+zero, and then returns either the number, or <code>nil</code> if the iterator is
+finished returning elements of the sequence.</p>
+
+<p>Creating and iterating over a <code>Countdown</code> sequence uses a
+<code>CountdownIterator</code> to handle the iteration.</p>
+
+<pre><code class="language-swift">let threeTwoOne = Countdown(start: 3)
+for count in threeTwoOne {
+    print(&quot;\(count)...&quot;)
+}
+// Prints &quot;3...&quot;
+// Prints &quot;2...&quot;
+// Prints &quot;1...&quot;</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Element</code>
+<div class="comment">
+    <p>The type of element traversed by the iterator.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-next">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-next">mutating func next()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-next"><div class="p">
+    <p>Advances to the next element and returns it, or <code>nil</code> if no next element
+exists.</p>
+
+<p>Repeatedly calling this method returns, in order, all the elements of the
+underlying sequence. As soon as the sequence has run out of elements, all
+subsequent calls return <code>nil</code>.</p>
+
+<p>You must not call this method if any other copy of this iterator has been
+advanced with a call to its <code>next()</code> method.</p>
+
+<p>The following example shows how an iterator can be used explicitly to
+emulate a <code>for</code>-<code>in</code> loop. First, retrieve a sequence&#39;s iterator, and
+then call the iterator&#39;s <code>next()</code> method until it returns <code>nil</code>.</p>
+
+<pre><code class="language-swift">let numbers = [2, 3, 5, 7]
+var numbersIterator = numbers.makeIterator()
+
+while let num = numbersIterator.next() {
+    print(num)
+}
+// Prints &quot;2&quot;
+// Prints &quot;3&quot;
+// Prints &quot;5&quot;
+// Prints &quot;7&quot;</code></pre>
+
+<p><strong>Returns:</strong> The next element in the underlying sequence, if a next element
+  exists; otherwise, <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next() -&gt; Self.Element?</code>
+    
+    
+</div></div>
+</div>
+
+

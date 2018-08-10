@@ -1,0 +1,108 @@
+---
+layout: "default"
+title: "debugPrint"
+description: "Swift documentation for 'debugPrint': Writes the textual representations of the given items most suitable for."
+keywords: "debugPrint,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-debugprint_-any-separator_-string-terminator_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-debugprint_-any-separator_-string-terminator_-string">func debugPrint(<wbr>_:<wbr> Any..., separator:<wbr> String, terminator: String)</a>
+        
+<div class="comment collapse" id="comment-func-debugprint_-any-separator_-string-terminator_-string"><div class="p">
+    <p>Writes the textual representations of the given items most suitable for
+debugging into the standard output.</p>
+
+<p>You can pass zero or more items to the
+<code>debugPrint(_:separator:terminator:)</code> function. The textual representation
+for each item is the same as that obtained by calling
+<code>String(reflecting: item)</code>. The following example prints the debugging
+representation of a string, a closed range of integers, and a group of
+floating-point values to standard output:</p>
+
+<pre><code class="language-swift">debugPrint(&quot;One two three four five&quot;)
+// Prints &quot;One two three four five&quot;
+
+debugPrint(1...5)
+// Prints &quot;ClosedRange(1...5)&quot;
+
+debugPrint(1.0, 2.0, 3.0, 4.0, 5.0)
+// Prints &quot;1.0 2.0 3.0 4.0 5.0&quot;</code></pre>
+
+<p>To print the items separated by something other than a space, pass a string
+as <code>separator</code>.</p>
+
+<pre><code class="language-swift">debugPrint(1.0, 2.0, 3.0, 4.0, 5.0, separator: &quot; ... &quot;)
+// Prints &quot;1.0 ... 2.0 ... 3.0 ... 4.0 ... 5.0&quot;</code></pre>
+
+<p>The output from each call to <code>debugPrint(_:separator:terminator:)</code> includes
+a newline by default. To print the items without a trailing newline, pass
+an empty string as <code>terminator</code>.</p>
+
+<pre><code class="language-swift">for n in 1...5 {
+    debugPrint(n, terminator: &quot;&quot;)
+}
+// Prints &quot;12345&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>items:</strong> Zero or more items to print.
+  <strong>separator:</strong> A string to print between each item. The default is a single
+    space (<code>&quot; &quot;</code>).
+  <strong>terminator:</strong> The string to print after all items have been printed. The
+    default is a newline (<code>&quot;\n&quot;</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func debugPrint(_ items: Any..., separator: String = default, terminator: String = default)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-debugprint-target_-any-separator_-string-terminator_-string-to_-inout-target">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-debugprint-target_-any-separator_-string-terminator_-string-to_-inout-target">func debugPrint&lt;Target&gt;(<wbr>_:<wbr> Any..., separator:<wbr> String, terminator:<wbr> String, to: inout Target)</a>
+        
+<div class="comment collapse" id="comment-func-debugprint-target_-any-separator_-string-terminator_-string-to_-inout-target"><div class="p">
+    <p>Writes the textual representations of the given items most suitable for
+debugging into the given output stream.</p>
+
+<p>You can pass zero or more items to the
+<code>debugPrint(_:separator:terminator:to:)</code> function. The textual
+representation for each item is the same as that obtained by calling
+<code>String(reflecting: item)</code>. The following example prints a closed range of
+integers to a string:</p>
+
+<pre><code class="language-swift">var range = &quot;My range: &quot;
+debugPrint(1...5, to: &amp;range)
+// range == &quot;My range: ClosedRange(1...5)\n&quot;</code></pre>
+
+<p>To print the items separated by something other than a space, pass a string
+as <code>separator</code>.</p>
+
+<pre><code class="language-swift">var separated = &quot;&quot;
+debugPrint(1.0, 2.0, 3.0, 4.0, 5.0, separator: &quot; ... &quot;, to: &amp;separated)
+// separated == &quot;1.0 ... 2.0 ... 3.0 ... 4.0 ... 5.0\n&quot;</code></pre>
+
+<p>The output from each call to <code>debugPrint(_:separator:terminator:to:)</code>
+includes a newline by default. To print the items without a trailing
+newline, pass an empty string as <code>terminator</code>.</p>
+
+<pre><code class="language-swift">var numbers = &quot;&quot;
+for n in 1...5 {
+    debugPrint(n, terminator: &quot;&quot;, to: &amp;numbers)
+}
+// numbers == &quot;12345&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>items:</strong> Zero or more items to print.
+  <strong>separator:</strong> A string to print between each item. The default is a single
+    space (<code>&quot; &quot;</code>).
+  <strong>terminator:</strong> The string to print after all items have been printed. The
+    default is a newline (<code>&quot;\n&quot;</code>).
+  <strong>output:</strong> An output stream to receive the text representation of each
+    item.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func debugPrint&lt;Target&gt;(_ items: Any..., separator: String = default, terminator: String = default, to output: inout Target)</code>
+    
+    
+</div></div>
+</div>

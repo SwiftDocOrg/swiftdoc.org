@@ -1,0 +1,116 @@
+---
+layout: "default"
+title: "ExpressibleByIntegerLiteral"
+description: "Swift documentation for 'ExpressibleByIntegerLiteral': A type that can be initialized with an integer literal."
+keywords: "ExpressibleByIntegerLiteral,protocol,swift,documentation,IntegerLiteralType"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol ExpressibleByIntegerLiteral</code></div>
+
+<div class="discussion comment">
+    <p>A type that can be initialized with an integer literal.</p>
+
+<p>The standard library integer and floating-point types, such as <code>Int</code> and
+<code>Double</code>, conform to the <code>ExpressibleByIntegerLiteral</code> protocol. You can
+initialize a variable or constant of any of these types by assigning an
+integer literal.</p>
+
+<pre><code class="language-swift">// Type inferred as &#39;Int&#39;
+let cookieCount = 12
+
+// An array of &#39;Int&#39;
+let chipsPerCookie = [21, 22, 25, 23, 24, 19]
+
+// A floating-point value initialized using an integer literal
+let redPercentage: Double = 1
+// redPercentage == 1.0</code></pre>
+
+<h1>Conforming to ExpressibleByIntegerLiteral</h1>
+
+<p>To add <code>ExpressibleByIntegerLiteral</code> conformance to your custom type,
+implement the required initializer.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">IntegerLiteralType : _ExpressibleByBuiltinIntegerLiteral</code>
+<div class="comment">
+    <p>A type that represents an integer literal.</p>
+
+<p>The standard library integer and floating-point types are all valid types
+for <code>IntegerLiteralType</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-integerliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-integerliteral_">init(<wbr>integerLiteral:)</a><div class="comment collapse" id="comment-init-integerliteral_"><div class="p">
+    <p>Creates an instance initialized to the specified integer value.</p>
+
+<p>Do not call this initializer directly. Instead, initialize a variable or
+constant using an integer literal. For example:</p>
+
+<pre><code class="language-swift">let x = 23</code></pre>
+
+<p>In this example, the assignment to the <code>x</code> constant calls this integer
+literal initializer behind the scenes.</p>
+
+<p><strong><code>value</code>:</strong>  The value to create.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(integerLiteral value: Self.IntegerLiteralType)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+<div class="declaration" id="-init-integerliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init-integerliteral_">init(<wbr>integerLiteral:)</a><div class="comment collapse" id="comment--init-integerliteral_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(integerLiteral value: Self)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+
+
+

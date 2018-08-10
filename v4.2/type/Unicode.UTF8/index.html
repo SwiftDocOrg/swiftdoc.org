@@ -1,0 +1,237 @@
+---
+layout: "default"
+title: "Unicode.UTF8"
+description: "Swift documentation for enum 'Unicode.UTF8'."
+keywords: "Unicode.UTF8,enum,swift,documentation,decode,decode,encode,encode,isContinuation,transcode,encodedReplacementCharacter,CodeUnit,EncodedScalar"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum Unicode.UTF8</code></div>
+
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">UnicodeCodec, _UnicodeEncoding</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">CodeUnit = UInt8</code>
+<div class="comment">
+    <p>The basic unit of encoding</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">EncodedScalar</code>
+<div class="comment">
+    <p>A valid scalar value as represented in this encoding</p>
+</div>
+</div>
+</td>
+</tr>
+
+<tr>
+<th>Nested Types</th>
+<td><code class="nested">Unicode.UTF8.ForwardParser, Unicode.UTF8.ReverseParser</code></td>
+</tr>
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+<h3 id="cases">Cases</h3>
+<div class="declaration" id="case-_swift3Buffer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-_swift3Buffer">case _swift3Buffer(Unicode.UTF8.ForwardParser)</a>
+</div>
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Creates an instance of the UTF-8 codec.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+
+<h3>Static Variables</h3>
+<div class="declaration" id="static-var-encodedreplacementcharacter_-unicode-utf8-encodedscalar">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-encodedreplacementcharacter_-unicode-utf8-encodedscalar">static var encodedReplacementCharacter: Unicode.UTF8.EncodedScalar</a><div class="comment collapse" id="comment-static-var-encodedreplacementcharacter_-unicode-utf8-encodedscalar"><div class="p">
+    <p>A unicode scalar value to be used when repairing
+encoding/decoding errors, as represented in this encoding.</p>
+
+<p>If the Unicode replacement character U+FFFD is representable in this
+encoding, <code>encodedReplacementCharacter</code> encodes that scalar value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var encodedReplacementCharacter: Unicode.UTF8.EncodedScalar { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-decode_-unicode-utf8-encodedscalar">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-unicode-utf8-encodedscalar">static func decode(<wbr>_: Unicode.UTF8.EncodedScalar)</a>
+        
+<div class="comment collapse" id="comment-func-decode_-unicode-utf8-encodedscalar"><div class="p">
+    <p>Converts from encoded to encoding-independent representation</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func decode(_ source: Unicode.UTF8.EncodedScalar) -&gt; Unicode.Scalar</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_">static func encode(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-encode_"><div class="p">
+    <p>Converts from encoding-independent to encoded representation, returning
+<code>nil</code> if the scalar can&#39;t be represented in this encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func encode(_ source: Unicode.Scalar) -&gt; Unicode.UTF8.EncodedScalar?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_into_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_into_">static func encode(<wbr>_:<wbr>into:)</a>
+        
+<div class="comment collapse" id="comment-func-encode_into_"><div class="p">
+    <p>Encodes a Unicode scalar as a series of code units by calling the given
+closure on each code unit.</p>
+
+<p>For example, the musical fermata symbol (&quot;𝄐&quot;) is a single Unicode scalar
+value (<code>\u{1D110}</code>) but requires four code units for its UTF-8
+representation. The following code encodes a fermata in UTF-8:</p>
+
+<pre><code class="language-swift">var bytes: [UTF8.CodeUnit] = []
+UTF8.encode(&quot;𝄐&quot;, into: { bytes.append($0) })
+print(bytes)
+// Prints &quot;[240, 157, 132, 144]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>input:</strong> The Unicode scalar value to encode.
+  <strong>processCodeUnit:</strong> A closure that processes one code unit argument at a
+    time.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func encode(_ input: Unicode.Scalar, into processCodeUnit: (Unicode.UTF8.CodeUnit) -&gt; Void)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-iscontinuation_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iscontinuation_">static func isContinuation(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-iscontinuation_"><div class="p">
+    <p>Returns a Boolean value indicating whether the specified code unit is a
+UTF-8 continuation byte.</p>
+
+<p>Continuation bytes take the form <code>0b10xxxxxx</code>. For example, a lowercase
+&quot;e&quot; with an acute accent above it (<code>&quot;é&quot;</code>) uses 2 bytes for its UTF-8
+representation: <code>0b11000011</code> (195) and <code>0b10101001</code> (169). The second
+byte is a continuation byte.</p>
+
+<pre><code class="language-swift">let eAcute = &quot;é&quot;
+for codeUnit in eAcute.utf8 {
+    print(codeUnit, UTF8.isContinuation(codeUnit))
+}
+// Prints &quot;195 false&quot;
+// Prints &quot;169 true&quot;</code></pre>
+
+<p><strong><code>byte</code>:</strong>  A UTF-8 code unit.
+<strong>Returns:</strong> <code>true</code> if <code>byte</code> is a continuation byte; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func isContinuation(_ byte: Unicode.UTF8.CodeUnit) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-transcode_from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-transcode_from_">static func transcode(<wbr>_:<wbr>from:)</a>
+        
+<div class="comment collapse" id="comment-func-transcode_from_"><div class="p">
+    <p>Converts a scalar from another encoding&#39;s representation, returning
+<code>nil</code> if the scalar can&#39;t be represented in this encoding.</p>
+
+<p>A default implementation of this method will be provided 
+automatically for any conforming type that does not implement one.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func transcode&lt;FromEncoding&gt;(_ content: FromEncoding.EncodedScalar, from _: FromEncoding.Type) -&gt; Unicode.UTF8.EncodedScalar? where FromEncoding : _UnicodeEncoding</code>
+    
+    
+</div></div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-decode-i_-inout-i">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode-i_-inout-i">mutating func decode&lt;I&gt;(<wbr>_: inout I)</a>
+        
+<div class="comment collapse" id="comment-func-decode-i_-inout-i"><div class="p">
+    <p>Starts or continues decoding a UTF-8 sequence.</p>
+
+<p>To decode a code unit sequence completely, call this method repeatedly
+until it returns <code>UnicodeDecodingResult.emptyInput</code>. Checking that the
+iterator was exhausted is not sufficient, because the decoder can store
+buffered data from the input iterator.</p>
+
+<p>Because of buffering, it is impossible to find the corresponding position
+in the iterator for a given returned <code>Unicode.Scalar</code> or an error.</p>
+
+<p>The following example decodes the UTF-8 encoded bytes of a string into an
+array of <code>Unicode.Scalar</code> instances. This is a demonstration only---if
+you need the Unicode scalar representation of a string, use its
+<code>unicodeScalars</code> view.</p>
+
+<pre><code class="language-swift">let str = &quot;✨Unicode✨&quot;
+print(Array(str.utf8))
+// Prints &quot;[226, 156, 168, 85, 110, 105, 99, 111, 100, 101, 226, 156, 168]&quot;
+
+var bytesIterator = str.utf8.makeIterator()
+var scalars: [Unicode.Scalar] = []
+var utf8Decoder = UTF8()
+Decode: while true {
+    switch utf8Decoder.decode(&amp;bytesIterator) {
+    case .scalarValue(let v): scalars.append(v)
+    case .emptyInput: break Decode
+    case .error:
+        print(&quot;Decoding error&quot;)
+        break Decode
+    }
+}
+print(scalars)
+// Prints &quot;[&quot;\u{2728}&quot;, &quot;U&quot;, &quot;n&quot;, &quot;i&quot;, &quot;c&quot;, &quot;o&quot;, &quot;d&quot;, &quot;e&quot;, &quot;\u{2728}&quot;]&quot;</code></pre>
+
+<p><strong><code>input</code>:</strong>  An iterator of code units to be decoded. <code>input</code> must be
+  the same iterator instance in repeated calls to this method. Do not
+  advance the iterator or any copies of the iterator outside this
+  method.
+<strong>Returns:</strong> A <code>UnicodeDecodingResult</code> instance, representing the next
+  Unicode scalar, an indication of an error, or an indication that the
+  UTF sequence has been fully decoded.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode&lt;I&gt;(_ input: inout I) -&gt; UnicodeDecodingResult where I : IteratorProtocol, I.Element == Unicode.UTF8.CodeUnit</code>
+    
+    
+</div></div>
+</div>
+
+

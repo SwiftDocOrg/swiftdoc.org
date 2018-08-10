@@ -1,0 +1,1174 @@
+---
+layout: "default"
+title: "Operator: >="
+description: "Swift documentation for the '>=' operator."
+root: "/v4.2"
+---
+
+<code class="language-swift"> operator &gt;= {
+    associativity 
+    precedence 
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-gteq_-rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-rhs_">func &gt;=(<wbr>_: (<wbr>), rhs: ())</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the first tuple is ordered
+after or the same as the second in a lexicographical ordering.</p>
+
+<p>An arity zero tuple is always after or the same as another arity zero tuple
+in a lexicographical ordering.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An empty tuple.
+  <strong>rhs:</strong> An empty tuple.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: (), rhs: ()) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq-a-b-c-d-e-f_-a-b-c-d-e-f-rhs_-a-b-c-d-e-f">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-a-b-c-d-e-f_-a-b-c-d-e-f-rhs_-a-b-c-d-e-f">func &gt;= &lt;A, B, C, D, E, F&gt;(<wbr>_: (<wbr>A, B, C, D, E, F), rhs: (A, B, C, D, E, F))</a>
+        
+<div class="comment collapse" id="comment-func-gteq-a-b-c-d-e-f_-a-b-c-d-e-f-rhs_-a-b-c-d-e-f"><div class="p">
+    <p>Returns a Boolean value indicating whether the first tuple is ordered
+after or the same as the second in a lexicographical ordering.</p>
+
+<p>Given two tuples <code>(a1, a2, ..., aN)</code> and <code>(b1, b2, ..., bN)</code>, the first
+tuple is after or the same as the second tuple if and only if
+<code>a1 &gt; b1</code> or (<code>a1 == b1</code> and
+<code>(a2, ..., aN) &gt;= (b2, ..., bN)</code>).</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A tuple of <code>Comparable</code> elements.
+  <strong>rhs:</strong> Another tuple of elements of the same type as <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;A, B, C, D, E, F&gt;(lhs: (A, B, C, D, E, F), rhs: (A, B, C, D, E, F)) -&gt; Bool where A : Comparable, B : Comparable, C : Comparable, D : Comparable, E : Comparable, F : Comparable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq-a-b-c-d-e_-a-b-c-d-e-rhs_-a-b-c-d-e">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-a-b-c-d-e_-a-b-c-d-e-rhs_-a-b-c-d-e">func &gt;= &lt;A, B, C, D, E&gt;(<wbr>_: (<wbr>A, B, C, D, E), rhs: (A, B, C, D, E))</a>
+        
+<div class="comment collapse" id="comment-func-gteq-a-b-c-d-e_-a-b-c-d-e-rhs_-a-b-c-d-e"><div class="p">
+    <p>Returns a Boolean value indicating whether the first tuple is ordered
+after or the same as the second in a lexicographical ordering.</p>
+
+<p>Given two tuples <code>(a1, a2, ..., aN)</code> and <code>(b1, b2, ..., bN)</code>, the first
+tuple is after or the same as the second tuple if and only if
+<code>a1 &gt; b1</code> or (<code>a1 == b1</code> and
+<code>(a2, ..., aN) &gt;= (b2, ..., bN)</code>).</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A tuple of <code>Comparable</code> elements.
+  <strong>rhs:</strong> Another tuple of elements of the same type as <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;A, B, C, D, E&gt;(lhs: (A, B, C, D, E), rhs: (A, B, C, D, E)) -&gt; Bool where A : Comparable, B : Comparable, C : Comparable, D : Comparable, E : Comparable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq-a-b-c-d_-a-b-c-d-rhs_-a-b-c-d">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-a-b-c-d_-a-b-c-d-rhs_-a-b-c-d">func &gt;= &lt;A, B, C, D&gt;(<wbr>_: (<wbr>A, B, C, D), rhs: (A, B, C, D))</a>
+        
+<div class="comment collapse" id="comment-func-gteq-a-b-c-d_-a-b-c-d-rhs_-a-b-c-d"><div class="p">
+    <p>Returns a Boolean value indicating whether the first tuple is ordered
+after or the same as the second in a lexicographical ordering.</p>
+
+<p>Given two tuples <code>(a1, a2, ..., aN)</code> and <code>(b1, b2, ..., bN)</code>, the first
+tuple is after or the same as the second tuple if and only if
+<code>a1 &gt; b1</code> or (<code>a1 == b1</code> and
+<code>(a2, ..., aN) &gt;= (b2, ..., bN)</code>).</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A tuple of <code>Comparable</code> elements.
+  <strong>rhs:</strong> Another tuple of elements of the same type as <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;A, B, C, D&gt;(lhs: (A, B, C, D), rhs: (A, B, C, D)) -&gt; Bool where A : Comparable, B : Comparable, C : Comparable, D : Comparable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq-a-b-c_-a-b-c-rhs_-a-b-c">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-a-b-c_-a-b-c-rhs_-a-b-c">func &gt;= &lt;A, B, C&gt;(<wbr>_: (<wbr>A, B, C), rhs: (A, B, C))</a>
+        
+<div class="comment collapse" id="comment-func-gteq-a-b-c_-a-b-c-rhs_-a-b-c"><div class="p">
+    <p>Returns a Boolean value indicating whether the first tuple is ordered
+after or the same as the second in a lexicographical ordering.</p>
+
+<p>Given two tuples <code>(a1, a2, ..., aN)</code> and <code>(b1, b2, ..., bN)</code>, the first
+tuple is after or the same as the second tuple if and only if
+<code>a1 &gt; b1</code> or (<code>a1 == b1</code> and
+<code>(a2, ..., aN) &gt;= (b2, ..., bN)</code>).</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A tuple of <code>Comparable</code> elements.
+  <strong>rhs:</strong> Another tuple of elements of the same type as <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;A, B, C&gt;(lhs: (A, B, C), rhs: (A, B, C)) -&gt; Bool where A : Comparable, B : Comparable, C : Comparable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq-a-b_-a-b-rhs_-a-b">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-a-b_-a-b-rhs_-a-b">func &gt;= &lt;A, B&gt;(<wbr>_: (<wbr>A, B), rhs: (A, B))</a>
+        
+<div class="comment collapse" id="comment-func-gteq-a-b_-a-b-rhs_-a-b"><div class="p">
+    <p>Returns a Boolean value indicating whether the first tuple is ordered
+after or the same as the second in a lexicographical ordering.</p>
+
+<p>Given two tuples <code>(a1, a2, ..., aN)</code> and <code>(b1, b2, ..., bN)</code>, the first
+tuple is after or the same as the second tuple if and only if
+<code>a1 &gt; b1</code> or (<code>a1 == b1</code> and
+<code>(a2, ..., aN) &gt;= (b2, ..., bN)</code>).</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A tuple of <code>Comparable</code> elements.
+  <strong>rhs:</strong> Another tuple of elements of the same type as <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;A, B&gt;(lhs: (A, B), rhs: (A, B)) -&gt; Bool where A : Comparable, B : Comparable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq_-int-rhs_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-int-rhs_-int">func &gt;=(<wbr>_:<wbr> Int, rhs: Int)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-int-rhs_-int"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Int, rhs: Int) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int/"><code>Int</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq_-int8-rhs_-int8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-int8-rhs_-int8">func &gt;=(<wbr>_:<wbr> Int8, rhs: Int8)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-int8-rhs_-int8"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Int8, rhs: Int8) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int8/"><code>Int8</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq_-int16-rhs_-int16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-int16-rhs_-int16">func &gt;=(<wbr>_:<wbr> Int16, rhs: Int16)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-int16-rhs_-int16"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Int16, rhs: Int16) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int16/"><code>Int16</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq_-int32-rhs_-int32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-int32-rhs_-int32">func &gt;=(<wbr>_:<wbr> Int32, rhs: Int32)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-int32-rhs_-int32"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Int32, rhs: Int32) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int32/"><code>Int32</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq_-int64-rhs_-int64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-int64-rhs_-int64">func &gt;=(<wbr>_:<wbr> Int64, rhs: Int64)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-int64-rhs_-int64"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Int64, rhs: Int64) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int64/"><code>Int64</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryFloatingPoint/"><code>BinaryFloatingPoint</code></a>,    <a href="../../protocol/FloatingPoint/"><code>FloatingPoint</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq_-uint-rhs_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-uint-rhs_-uint">func &gt;=(<wbr>_:<wbr> UInt, rhs: UInt)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-uint-rhs_-uint"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: UInt, rhs: UInt) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt/"><code>UInt</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq_-uint8-rhs_-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-uint8-rhs_-uint8">func &gt;=(<wbr>_:<wbr> UInt8, rhs: UInt8)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-uint8-rhs_-uint8"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: UInt8, rhs: UInt8) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt8/"><code>UInt8</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq_-uint16-rhs_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-uint16-rhs_-uint16">func &gt;=(<wbr>_:<wbr> UInt16, rhs: UInt16)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-uint16-rhs_-uint16"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: UInt16, rhs: UInt16) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt16/"><code>UInt16</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq_-uint32-rhs_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-uint32-rhs_-uint32">func &gt;=(<wbr>_:<wbr> UInt32, rhs: UInt32)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-uint32-rhs_-uint32"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: UInt32, rhs: UInt32) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt32/"><code>UInt32</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-gteq_-uint64-rhs_-uint64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_-uint64-rhs_-uint64">func &gt;=(<wbr>_:<wbr> UInt64, rhs: UInt64)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_-uint64-rhs_-uint64"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: UInt64, rhs: UInt64) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt64/"><code>UInt64</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-other_-self-rhs_-other">func &gt;= &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gteq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-other_-self-rhs_-other">func &gt;= &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gteq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-other_-self-rhs_-other">func &gt;= &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gteq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-other_-self-rhs_-other">func &gt;= &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gteq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-other_-self-rhs_-other">func &gt;= &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gteq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-other_-self-rhs_-other">func &gt;= &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gteq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-other_-self-rhs_-other">func &gt;= &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gteq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-other_-self-rhs_-other">func &gt;= &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gteq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-other_-self-rhs_-other">func &gt;= &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gteq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-other_-self-rhs_-other">func &gt;= &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gteq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq-r_-self-rhs_-r">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq-r_-self-rhs_-r">func &gt;= &lt;R&gt;(<wbr>_:<wbr> Self, rhs: R)</a>
+        
+<div class="comment collapse" id="comment-func-gteq-r_-self-rhs_-r"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;R&gt;(lhs: Self, rhs: R) -&gt; Bool where R : StringProtocol</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/StringProtocol/"><code>StringProtocol</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>

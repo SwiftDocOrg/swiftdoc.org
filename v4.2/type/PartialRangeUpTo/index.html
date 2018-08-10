@@ -1,0 +1,151 @@
+---
+layout: "default"
+title: "PartialRangeUpTo"
+description: "Swift documentation for 'PartialRangeUpTo': A partial half-open interval up to, but not including, an upper bound."
+keywords: "PartialRangeUpTo,struct,swift,documentation,contains,relative,upperBound"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct PartialRangeUpTo&lt;Bound&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A partial half-open interval up to, but not including, an upper bound.</p>
+
+<p>You create <code>PartialRangeUpTo</code> instances by using the prefix half-open range
+operator (prefix <code>..&lt;</code>).</p>
+
+<pre><code class="language-swift">let upToFive = ..&lt;5.0</code></pre>
+
+<p>You can use a <code>PartialRangeUpTo</code> instance to quickly check if a value is
+contained in a particular range of values. For example:</p>
+
+<pre><code class="language-swift">upToFive.contains(3.14)       // true
+upToFive.contains(6.28)       // false
+upToFive.contains(5.0)        // false</code></pre>
+
+<p>You can use a <code>PartialRangeUpTo</code> instance of a collection&#39;s indices to
+represent the range from the start of the collection up to, but not
+including, the partial range&#39;s upper bound.</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[..&lt;3])
+// Prints &quot;[10, 20, 30]&quot;</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">RangeExpression</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ upperBound: PartialRangeUpTo&lt;Bound&gt;.Bound)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-upperbound_-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-upperbound_-bound">var upperBound: Bound</a><div class="comment collapse" id="comment-var-upperbound_-bound"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var upperBound: Bound { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-contains_"><div class="p">
+    <p>Returns a Boolean value indicating whether the given element is contained
+within the range expression.</p>
+
+<p><strong><code>element</code>:</strong>  The element to check for containment.
+<strong>Returns:</strong> <code>true</code> if <code>element</code> is contained in the range expression;
+  otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(_ element: Bound) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-relative-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-relative-to_">func relative(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-relative-to_"><div class="p">
+    <p>Returns the range of indices described by this range expression within
+the given collection.</p>
+
+<p>You can use the <code>relative(to:)</code> method to convert a range expression,
+which could be missing one or both of its endpoints, into a concrete
+range that is bounded on both sides. The following example uses this
+method to convert a partial range up to <code>4</code> into a half-open range,
+using an array instance to add the range&#39;s lower bound.</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+let upToFour = ..&lt;4
+
+let r1 = upToFour.relative(to: numbers)
+// r1 == 0..&lt;4</code></pre>
+
+<p>The <code>r1</code> range is bounded on the lower end by <code>0</code> because that is the
+starting index of the <code>numbers</code> array. When the collection passed to
+<code>relative(to:)</code> starts with a different index, that index is used as the
+lower bound instead. The next example creates a slice of <code>numbers</code>
+starting at index <code>2</code>, and then uses the slice with <code>relative(to:)</code> to
+convert <code>upToFour</code> to a concrete range.</p>
+
+<pre><code class="language-swift">let numbersSuffix = numbers[2...]
+// numbersSuffix == [30, 40, 50, 60, 70]
+
+let r2 = upToFour.relative(to: numbersSuffix)
+// r2 == 2..&lt;4</code></pre>
+
+<p>Use this method only if you need the concrete range it produces. To
+access a slice of a collection using a range expression, use the
+collection&#39;s generic subscript that uses a range expression as its
+parameter.</p>
+
+<pre><code class="language-swift">let numbersPrefix = numbers[upToFour]
+// numbersPrefix == [10, 20, 30, 40]</code></pre>
+
+<p><strong><code>collection</code>:</strong>  The collection to evaluate this range expression
+  in relation to.
+<strong>Returns:</strong> A range suitable for slicing <code>collection</code>. The returned range
+  is <em>not</em> guaranteed to be inside the bounds of <code>collection</code>. Callers
+  should apply the same preconditions to the return value as they would
+  to a range provided directly by the user.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func relative&lt;C&gt;(to collection: C) -&gt; Range&lt;Bound&gt; where Bound == C.Index, C : Collection</code>
+    
+    
+</div></div>
+</div>
+
+

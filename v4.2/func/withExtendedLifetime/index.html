@@ -1,0 +1,48 @@
+---
+layout: "default"
+title: "withExtendedLifetime"
+description: "Swift documentation for 'withExtendedLifetime': Evaluates a closure while ensuring that the given instance is not destroyed."
+keywords: "withExtendedLifetime,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-withextendedlifetime-t-result_-t_-throws-result">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withextendedlifetime-t-result_-t_-throws-result">func withExtendedLifetime&lt;T, Result&gt;(<wbr>_:<wbr> T, _: () throws -&gt; Result)</a>
+        
+<div class="comment collapse" id="comment-func-withextendedlifetime-t-result_-t_-throws-result"><div class="p">
+    <p>Evaluates a closure while ensuring that the given instance is not destroyed
+before the closure returns.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>x:</strong> An instance to preserve until the execution of <code>body</code> is completed.
+  <strong>body:</strong> A closure to execute that depends on the lifetime of <code>x</code> being
+    extended. If <code>body</code> has a return value, that value is also used as the
+    return value for the <code>withExtendedLifetime(_:_:)</code> method.
+<strong>Returns:</strong> The return value, if any, of the <code>body</code> closure parameter.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withExtendedLifetime&lt;T, Result&gt;(_ x: T, _ body: () throws -&gt; Result) rethrows -&gt; Result</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-withextendedlifetime-t-result_-t_-t-throws-result">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withextendedlifetime-t-result_-t_-t-throws-result">func withExtendedLifetime&lt;T, Result&gt;(<wbr>_:<wbr> T, _: (T) throws -&gt; Result)</a>
+        
+<div class="comment collapse" id="comment-func-withextendedlifetime-t-result_-t_-t-throws-result"><div class="p">
+    <p>Evaluates a closure while ensuring that the given instance is not destroyed
+before the closure returns.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>x:</strong> An instance to preserve until the execution of <code>body</code> is completed.
+  <strong>body:</strong> A closure to execute that depends on the lifetime of <code>x</code> being
+    extended. If <code>body</code> has a return value, that value is also used as the
+    return value for the <code>withExtendedLifetime(_:_:)</code> method.
+<strong>Returns:</strong> The return value, if any, of the <code>body</code> closure parameter.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withExtendedLifetime&lt;T, Result&gt;(_ x: T, _ body: (T) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+    
+</div></div>
+</div>

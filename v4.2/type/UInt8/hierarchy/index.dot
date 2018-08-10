@@ -1,0 +1,51 @@
+strict digraph "UInt8 - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BinaryInteger" [URL="/protocol/BinaryInteger/hierarchy/"]
+    "CVarArg" [URL="/protocol/CVarArg/hierarchy/"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "CustomPlaygroundQuickLookable" [URL="/protocol/CustomPlaygroundQuickLookable/hierarchy/"]
+    "CustomReflectable" [URL="/protocol/CustomReflectable/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByIntegerLiteral" [URL="/protocol/ExpressibleByIntegerLiteral/hierarchy/"]
+    "FixedWidthInteger" [URL="/protocol/FixedWidthInteger/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "LosslessStringConvertible" [URL="/protocol/LosslessStringConvertible/hierarchy/"]
+    "Numeric" [URL="/protocol/Numeric/hierarchy/"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]
+    "UInt8" [URL="/type/UInt8/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "UnsignedInteger" [URL="/protocol/UnsignedInteger/hierarchy/"]    "FixedWidthInteger" -> "UInt8"
+    "UnsignedInteger" -> "UInt8"
+    "Codable" -> "UInt8"
+    "CustomReflectable" -> "UInt8"
+    "CustomPlaygroundQuickLookable" -> "UInt8"
+    "CVarArg" -> "UInt8"
+    "BinaryInteger" -> "FixedWidthInteger"
+    "LosslessStringConvertible" -> "FixedWidthInteger"
+    "_BitwiseOperations" -> "FixedWidthInteger"
+    "CustomStringConvertible" -> "BinaryInteger"
+    "Hashable" -> "BinaryInteger"
+    "Numeric" -> "BinaryInteger"
+    "Strideable" -> "BinaryInteger"
+    "Equatable" -> "Hashable"
+    "Equatable" -> "Numeric"
+    "ExpressibleByIntegerLiteral" -> "Numeric"
+    "Comparable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    "CustomStringConvertible" -> "LosslessStringConvertible"
+    "BinaryInteger" -> "UnsignedInteger"
+    "CustomStringConvertible" -> "BinaryInteger"
+    "Hashable" -> "BinaryInteger"
+    "Numeric" -> "BinaryInteger"
+    "Strideable" -> "BinaryInteger"
+    "Equatable" -> "Hashable"
+    "Equatable" -> "Numeric"
+    "ExpressibleByIntegerLiteral" -> "Numeric"
+    "Comparable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "UInt8";
+    }
+}

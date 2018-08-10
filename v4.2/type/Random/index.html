@@ -1,0 +1,104 @@
+---
+layout: "default"
+title: "Random"
+description: "Swift documentation for 'Random': The default source of random data."
+keywords: "Random,struct,swift,documentation,next,next,`default`"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Random</code></div>
+
+<div class="discussion comment">
+    <p>The default source of random data.</p>
+
+<p>When you generate random values, shuffle a collection, or perform another
+operation that depends on random data, this type&#39;s <code>default</code> property is
+the generator used by default. For example, the two method calls in this
+example are equivalent:</p>
+
+<pre><code class="language-swift">let x = Int.random(in: 1...100)
+let y = Int.random(in: 1...100, using: &amp;Random.default)</code></pre>
+
+<p><code>Random.default</code> is automatically seeded, is safe to use in multiple
+threads, and uses a cryptographically secure algorithm whenever possible.</p>
+
+<h1>Platform Implementation of `Random`</h1>
+
+<p>While the <code>Random.default</code> generator is automatically seeded and
+thread-safe on every platform, the cryptographic quality of the stream of
+random data produced by the generator may vary. For more detail, see the
+documentation for the APIs used by each platform.</p>
+
+<ul><li>Apple platforms use <code>arc4random_buf(3)</code>.</li><li>Linux platforms use <code>getrandom(2)</code> when available; otherwise, they read
+from <code>/dev/urandom</code>.</li></ul>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">RandomNumberGenerator</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+<h3>Static Variables</h3>
+<div class="declaration" id="static-var-default_-random">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-default_-random">static var `default`: Random</a><div class="comment collapse" id="comment-static-var-default_-random"><div class="p">
+    <p>The default instance of the <code>Random</code> random number generator.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var `default`: Random { get set }</code>
+
+    </div></div>
+</div>
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-next">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-next">mutating func next()</a>
+        
+<div class="comment collapse" id="comment-func-next"><div class="p">
+    <p>Returns a value from a uniform, independent distribution of binary data.</p>
+
+<p><strong>Returns:</strong> An unsigned 64-bit random value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next() -&gt; UInt64</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Random/"><code>Random</code></a>,    <a href="../../protocol/RandomNumberGenerator/"><code>RandomNumberGenerator</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-next_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-next_">mutating func next(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-next_"><div class="p">
+    <p>Returns a random value that is less than the given upper bound.</p>
+
+<p><strong><code>upperBound</code>:</strong>  The upper bound for the randomly generated value.
+<strong>Returns:</strong> A random value of <code>T</code> in the range <code>0..&lt;upperBound</code>. Every
+  value in the range <code>0..&lt;upperBound</code> is equally likely to be returned.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next&lt;T&gt;(upperBound: T) -&gt; T where T : FixedWidthInteger, T : UnsignedInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RandomNumberGenerator/"><code>RandomNumberGenerator</code></a>    
+</div></div>
+</div>
+
+

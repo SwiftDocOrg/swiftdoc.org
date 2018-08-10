@@ -1,0 +1,144 @@
+---
+layout: "default"
+title: "ReversedCollection.Index"
+description: "Swift documentation for 'ReversedCollection.Index': An index that traverses the same positions as an underlying index,."
+keywords: "ReversedCollection.Index,struct,swift,documentation,hash,base,hashValue"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct ReversedCollection.Index</code></div>
+
+<div class="discussion comment">
+    <p>An index that traverses the same positions as an underlying index,
+with inverted traversal direction.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Comparable, Equatable, Hashable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Creates a new index into a reversed collection for the position before
+the specified index.</p>
+
+<p>When you create an index into a reversed collection using <code>base</code>, an
+index from the underlying collection, the resulting index is the
+position of the element <em>before</em> the element referenced by <code>base</code>. The
+following example creates a new <code>ReversedIndex</code> from the index of the
+<code>&quot;a&quot;</code> character in a string&#39;s character view.</p>
+
+<pre><code class="language-swift">let name = &quot;Horatio&quot;
+let aIndex = name.firstIndex(of: &quot;a&quot;)!
+// name[aIndex] == &quot;a&quot;
+
+let reversedName = name.reversed()
+let i = ReversedIndex&lt;String&gt;(aIndex)
+// reversedName[i] == &quot;r&quot;</code></pre>
+
+<p>The element at the position created using <code>ReversedIndex&lt;...&gt;(aIndex)</code> is
+<code>&quot;r&quot;</code>, the character before <code>&quot;a&quot;</code> in the <code>name</code> string.</p>
+
+<p><strong><code>base</code>:</strong>  The position after the element to create an index for.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ base: Base.Index)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-base_-base-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-base_-base-index">var base: Base.Index</a><div class="comment collapse" id="comment-var-base_-base-index"><div class="p">
+    <p>The position after this position in the underlying collection.</p>
+
+<p>To find the position that corresponds with this index in the original,
+underlying collection, use that collection&#39;s <code>index(before:)</code> method
+with the <code>base</code> property.</p>
+
+<p>The following example declares a function that returns the index of the
+last even number in the passed array, if one is found. First, the
+function finds the position of the last even number as a <code>ReversedIndex</code>
+in a reversed view of the array of numbers. Next, the function calls the
+array&#39;s <code>index(before:)</code> method to return the correct position in the
+passed array.</p>
+
+<pre><code class="language-swift">func indexOfLastEven(_ numbers: [Int]) -&gt; Int? {
+    let reversedNumbers = numbers.reversed()
+    guard let i = reversedNumbers.firstIndex(where: { $0 % 2 == 0 })
+        else { return nil }
+
+    return numbers.index(before: i.base)
+}
+
+let numbers = [10, 20, 13, 19, 30, 52, 17, 40, 51]
+if let lastEven = indexOfLastEven(numbers) {
+    print(&quot;Last even number: \(numbers[lastEven])&quot;)
+}
+// Prints &quot;Last even number: 40&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var base: Base.Index { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+
+<p><strong><code>hasher</code>:</strong>  The hasher to use when combining the components
+  of this instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-hash-into_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-hash-into_">func hash(<wbr>into:)</a>
+        
+<div class="comment collapse" id="comment-func-hash-into_"><div class="p">
+    <p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+
+<p>Implement this method to conform to the <code>Hashable</code> protocol. The
+components used for hashing must be the same as the components compared
+in your type&#39;s <code>==</code> operator implementation. Call <code>hasher.combine(_:)</code>
+with each of these components.</p>
+
+<p><strong>Important:</strong> Never call <code>finalize()</code> on <code>hasher</code>. Doing so may become a
+  compile-time error in the future.</p>
+
+<p><strong><code>hasher</code>:</strong>  The hasher to use when combining the components
+  of this instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func hash(into hasher: inout Hasher)</code>
+    
+    
+</div></div>
+</div>
+
+

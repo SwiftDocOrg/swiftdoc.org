@@ -1,0 +1,47 @@
+strict digraph "Substring - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BidirectionalCollection" [URL="/protocol/BidirectionalCollection/hierarchy/"]
+    "Collection" [URL="/protocol/Collection/hierarchy/"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/hierarchy/"]
+    "CustomPlaygroundQuickLookable" [URL="/protocol/CustomPlaygroundQuickLookable/hierarchy/"]
+    "CustomReflectable" [URL="/protocol/CustomReflectable/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByExtendedGraphemeClusterLiteral" [URL="/protocol/ExpressibleByExtendedGraphemeClusterLiteral/hierarchy/"]
+    "ExpressibleByStringLiteral" [URL="/protocol/ExpressibleByStringLiteral/hierarchy/"]
+    "ExpressibleByUnicodeScalarLiteral" [URL="/protocol/ExpressibleByUnicodeScalarLiteral/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "LosslessStringConvertible" [URL="/protocol/LosslessStringConvertible/hierarchy/"]
+    "RangeReplaceableCollection" [URL="/protocol/RangeReplaceableCollection/hierarchy/"]
+    "Sequence" [URL="/protocol/Sequence/hierarchy/"]
+    "StringProtocol" [URL="/protocol/StringProtocol/hierarchy/"]
+    "Substring" [URL="/type/Substring/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "TextOutputStream" [URL="/protocol/TextOutputStream/hierarchy/"]
+    "TextOutputStreamable" [URL="/protocol/TextOutputStreamable/hierarchy/"]    "StringProtocol" -> "Substring"
+    "CustomReflectable" -> "Substring"
+    "CustomPlaygroundQuickLookable" -> "Substring"
+    "CustomDebugStringConvertible" -> "Substring"
+    "RangeReplaceableCollection" -> "Substring"
+    "BidirectionalCollection" -> "StringProtocol"
+    "Comparable" -> "StringProtocol"
+    "ExpressibleByStringLiteral" -> "StringProtocol"
+    "Hashable" -> "StringProtocol"
+    "LosslessStringConvertible" -> "StringProtocol"
+    "TextOutputStream" -> "StringProtocol"
+    "TextOutputStreamable" -> "StringProtocol"
+    "Collection" -> "BidirectionalCollection"
+    "Sequence" -> "Collection"
+    "Equatable" -> "Comparable"
+    "ExpressibleByExtendedGraphemeClusterLiteral" -> "ExpressibleByStringLiteral"
+    "ExpressibleByUnicodeScalarLiteral" -> "ExpressibleByExtendedGraphemeClusterLiteral"
+    "Equatable" -> "Hashable"
+    "CustomStringConvertible" -> "LosslessStringConvertible"
+    "Collection" -> "RangeReplaceableCollection"
+    "Sequence" -> "Collection"
+    subgraph Types {
+        rank = max; "Substring";
+    }
+}

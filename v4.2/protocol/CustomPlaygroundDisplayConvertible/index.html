@@ -1,0 +1,76 @@
+---
+layout: "default"
+title: "CustomPlaygroundDisplayConvertible"
+description: "Swift documentation for 'CustomPlaygroundDisplayConvertible': A type that supplies a custom description for playground logging."
+keywords: "CustomPlaygroundDisplayConvertible,protocol,swift,documentation,playgroundDescription"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CustomPlaygroundDisplayConvertible</code></div>
+
+<div class="discussion comment">
+    <p>A type that supplies a custom description for playground logging.</p>
+
+<p>Playground logging can generate, at a minimum, a structured description
+of any type. If you want to provide a custom description of your type to be
+logged in place of the default description, conform to the
+<code>CustomPlaygroundDisplayConvertible</code> protocol.</p>
+
+<p>Playground logging generates a richer, more specialized description of core
+types. For example, the contents of a <code>String</code> are logged, as are the
+components of an <code>NSColor</code> or <code>UIColor</code>. The current playground logging
+implementation logs specialized descriptions of at least the following
+types:</p>
+
+<ul><li><code>String</code> and <code>NSString</code></li><li><code>Int</code>, <code>UInt</code>, and the other standard library integer types</li><li><code>Float</code> and <code>Double</code></li><li><code>Bool</code></li><li><code>Date</code> and <code>NSDate</code></li><li><code>NSAttributedString</code></li><li><code>NSNumber</code></li><li><code>NSRange</code></li><li><code>URL</code> and <code>NSURL</code></li><li><code>CGPoint</code>, <code>CGSize</code>, and <code>CGRect</code></li><li><code>NSColor</code>, <code>UIColor</code>, <code>CGColor</code>, and <code>CIColor</code></li><li><code>NSImage</code>, <code>UIImage</code>, <code>CGImage</code>, and <code>CIImage</code></li><li><code>NSBezierPath</code> and <code>UIBezierPath</code></li><li><code>NSView</code> and <code>UIView</code></li></ul>
+
+<p>Playground logging may also be able to support specialized descriptions
+of other types.</p>
+
+<h2>Conforming to the CustomPlaygroundDisplayConvertible Protocol</h2>
+
+<p>To add <code>CustomPlaygroundDisplayConvertible</code> conformance to your custom type,
+implement the <code>playgroundDescription</code> property. If your implementation
+returns an instance of one of the types above, that type&#39;s specialized
+description is used. If you return any other type, a structured description
+is generated.</p>
+
+<p>If your type has value semantics, the <code>playgroundDescription</code> should be
+unaffected by subsequent mutations, if possible.</p>
+
+<p>If your type&#39;s <code>playgroundDescription</code> returns an instance which itself
+conforms to <code>CustomPlaygroundDisplayConvertible</code>, then that type&#39;s
+<code>playgroundDescription</code> will be used, and so on. To prevent infinite loops,
+playground logging implementations can place a reasonable limit on this
+kind of chaining.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-playgrounddescription_-any">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-playgrounddescription_-any">var playgroundDescription: Any</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-playgrounddescription_-any"><div class="p">
+    <p>A custom playground description for this instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var playgroundDescription: Any { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+

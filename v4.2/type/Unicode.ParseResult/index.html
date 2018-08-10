@@ -1,0 +1,65 @@
+---
+layout: "default"
+title: "Unicode.ParseResult"
+description: "Swift documentation for 'Unicode.ParseResult': The result of attempting to parse a T from some input."
+keywords: "Unicode.ParseResult,enum,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum Unicode.ParseResult&lt;T&gt;</code></div>
+
+<div class="discussion comment">
+    <p>The result of attempting to parse a <code>T</code> from some input.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+<h3 id="cases">Cases</h3>
+<div class="declaration" id="case-valid">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-valid">case valid(T)</a>
+<div class="comment collapse" id="comment-case-valid"><div class="p">
+    <p>A <code>T</code> was parsed successfully</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-emptyInput">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-emptyInput">case emptyInput</a>
+<div class="comment collapse" id="comment-case-emptyInput"><div class="p">
+    <p>The input was entirely consumed.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-error">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-error">case error(length: Int)</a>
+<div class="comment collapse" id="comment-case-error"><div class="p">
+    <p>An encoding error was detected.</p>
+
+<p><code>length</code> is the number of underlying code units consumed by this
+error (the length of the longest prefix of a valid encoding
+sequence that could be recognized).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+
+
+
+
+
+
+
+

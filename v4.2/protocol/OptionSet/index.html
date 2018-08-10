@@ -1,0 +1,1939 @@
+---
+layout: "default"
+title: "OptionSet"
+description: "Swift documentation for 'OptionSet': A type that presents a mathematical set interface to a bit set."
+keywords: "OptionSet,protocol,swift,documentation,==,contains,formIntersection,formSymmetricDifference,formUnion,insert,intersection,isDisjoint,isSubset,isSuperset,remove,subtract,subtracting,symmetricDifference,union,update,rawValue,isEmpty,Element,ArrayLiteralElement,RawValue"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol OptionSet</code></div>
+
+<div class="discussion comment">
+    <p>A type that presents a mathematical set interface to a bit set.</p>
+
+<p>You use the <code>OptionSet</code> protocol to represent bitset types, where
+individual bits represent members of a set. Adopting this protocol in
+your custom types lets you perform set-related operations such as
+membership tests, unions, and intersections on those types. What&#39;s more,
+when implemented using specific criteria, adoption of this protocol
+requires no extra work on your part.</p>
+
+<p>When creating an option set, include a <code>rawValue</code> property in your type
+declaration. The <code>rawValue</code> property must be of a type that conforms to
+the <code>FixedWidthInteger</code> protocol, such as <code>Int</code> or <code>UInt8</code>. Next, create
+unique options as static properties of your custom type using unique
+powers of two (1, 2, 4, 8, 16, and so forth) for each individual
+property&#39;s raw value so that each property can be represented by a single
+bit of the type&#39;s raw value.</p>
+
+<p>For example, consider a custom type called <code>ShippingOptions</code> that is an
+option set of the possible ways to ship a customer&#39;s purchase.
+<code>ShippingOptions</code> includes a <code>rawValue</code> property of type <code>Int</code> that stores
+the bit mask of available shipping options. The static members <code>nextDay</code>,
+<code>secondDay</code>, <code>priority</code>, and <code>standard</code> are unique, individual options.</p>
+
+<pre><code class="language-swift">struct ShippingOptions: OptionSet {
+    let rawValue: Int
+
+    static let nextDay    = ShippingOptions(rawValue: 1 &lt;&lt; 0)
+    static let secondDay  = ShippingOptions(rawValue: 1 &lt;&lt; 1)
+    static let priority   = ShippingOptions(rawValue: 1 &lt;&lt; 2)
+    static let standard   = ShippingOptions(rawValue: 1 &lt;&lt; 3)
+
+    static let express: ShippingOptions = [.nextDay, .secondDay]
+    static let all: ShippingOptions = [.express, .priority, .standard]
+}</code></pre>
+
+<p>Declare additional preconfigured option set values as static properties
+initialized with an array literal containing other option values. In the
+example, because the <code>express</code> static property is assigned an array
+literal with the <code>nextDay</code> and <code>secondDay</code> options, it will contain those
+two elements.</p>
+
+<h1>Using an Option Set Type</h1>
+
+<p>When you need to create an instance of an option set, assign one of the
+type&#39;s static members to your variable or constant. Alternatively, to
+create an option set instance with multiple members, assign an array
+literal with multiple static members of the option set. To create an empty
+instance, assign an empty array literal to your variable.</p>
+
+<pre><code class="language-swift">let singleOption: ShippingOptions = .priority
+let multipleOptions: ShippingOptions = [.nextDay, .secondDay, .priority]
+let noOptions: ShippingOptions = []</code></pre>
+
+<p>Use set-related operations to check for membership and to add or remove
+members from an instance of your custom option set type. The following
+example shows how you can determine free shipping options based on a
+customer&#39;s purchase price:</p>
+
+<pre><code class="language-swift">let purchasePrice = 87.55
+
+var freeOptions: ShippingOptions = []
+if purchasePrice &gt; 50 {
+    freeOptions.insert(.priority)
+}
+
+if freeOptions.contains(.priority) {
+    print(&quot;You&#39;ve earned free priority shipping!&quot;)
+} else {
+    print(&quot;Add more to your cart for free priority shipping!&quot;)
+}
+// Prints &quot;You&#39;ve earned free priority shipping!&quot;</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Equatable, ExpressibleByArrayLiteral, RawRepresentable, SetAlgebra</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Element = Self</code>
+<div class="comment">
+    <p>The element type of the option set.</p>
+
+<p>To inherit all the default implementations from the <code>OptionSet</code> protocol,
+the <code>Element</code> type must be <code>Self</code>, the default.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">ArrayLiteralElement</code>
+<div class="comment">
+    <p>The type of the elements of an array literal.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">RawValue</code>
+<div class="comment">
+    <p>The raw type that can be used to represent all values of the conforming
+type.</p>
+
+<p>Every distinct value of the conforming type has a corresponding unique
+value of the <code>RawValue</code> type, but there may be values of the <code>RawValue</code>
+type that don&#39;t have a corresponding value of the conforming type.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-rawvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-rawvalue_">init(<wbr>rawValue:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-rawvalue_"><div class="p">
+    <p>Creates a new option set from the given raw value.</p>
+
+<p>This initializer always succeeds, even if the value passed as <code>rawValue</code>
+exceeds the static properties declared as part of the option set. This
+example creates an instance of <code>ShippingOptions</code> with a raw value beyond
+the highest element, with a bit mask that effectively contains all the
+declared static members.</p>
+
+<pre><code class="language-swift">let extraOptions = ShippingOptions(rawValue: 255)
+print(extraOptions.isStrictSuperset(of: .all))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>rawValue</code>:</strong>  The raw value of the option set to create. Each bit
+  of <code>rawValue</code> potentially represents an element of the option set,
+  though raw values may include bits that are not defined as distinct
+  values of the <code>OptionSet</code> type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(rawValue: Self.RawValue)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/OptionSet/"><code>OptionSet</code></a>
+        ,    <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-arrayliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-arrayliteral_">init(<wbr>arrayLiteral:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-arrayliteral_"><div class="p">
+    <p>Creates an instance initialized with the given elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(arrayLiteral elements: Self.ArrayLiteralElement...)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/ExpressibleByArrayLiteral/"><code>ExpressibleByArrayLiteral</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a> <span class="required">Required</span><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Creates an empty set.</p>
+
+<p>This initializer is equivalent to initializing with an empty array
+literal. For example, you create an empty <code>Set</code> instance with either
+this initializer or with an empty array literal.</p>
+
+<pre><code class="language-swift">var emptySet = Set&lt;Int&gt;()
+print(emptySet.isEmpty)
+// Prints &quot;true&quot;
+
+emptySet = []
+print(emptySet.isEmpty)
+// Prints &quot;true&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Creates a new set from a finite sequence of items.</p>
+
+<p>Use this initializer to create a new set from an existing sequence, like
+an array or a range:</p>
+
+<pre><code class="language-swift">let validIndices = Set(0..&lt;7).subtracting([2, 4, 5])
+print(validIndices)
+// Prints &quot;[6, 0, 1, 3]&quot;</code></pre>
+
+<p><strong><code>sequence</code>:</strong>  The elements to use as members of the new set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;S&gt;(_ sequence: S)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>
+        </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration inherited" id="var-rawvalue_-self-rawvalue">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-rawvalue_-self-rawvalue">var rawValue: Self.RawValue</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-rawvalue_-self-rawvalue"><div class="p">
+    <p>The corresponding value of the raw type.</p>
+
+<p>A new instance initialized with <code>rawValue</code> will be equivalent to this
+instance. For example:</p>
+
+<pre><code class="language-swift">enum PaperSize: String {
+    case A4, A5, Letter, Legal
+}
+
+let selectedSize = PaperSize.Letter
+print(selectedSize.rawValue)
+// Prints &quot;Letter&quot;
+
+print(selectedSize == PaperSize(rawValue: selectedSize.rawValue)!)
+// Prints &quot;true&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var rawValue: Self.RawValue { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p>A Boolean value that indicates whether the set has no elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>
+        </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains_">func contains(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-contains_"><div class="p">
+    <p>Returns a Boolean value that indicates whether the given element exists
+in the set.</p>
+
+<p>This example uses the <code>contains(_:)</code> method to test whether an integer is
+a member of a set of prime numbers.</p>
+
+<pre><code class="language-swift">let primes: Set = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]
+let x = 5
+if primes.contains(x) {
+    print(&quot;\(x) is prime!&quot;)
+} else {
+    print(&quot;\(x). Not prime.&quot;)
+}
+// Prints &quot;5 is prime!&quot;</code></pre>
+
+<p><strong><code>member</code>:</strong>  An element to look for in the set.
+<strong>Returns:</strong> <code>true</code> if <code>member</code> exists in the set; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(_ member: Self.Element) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formintersection_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formintersection_">mutating func formIntersection(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-formintersection_"><div class="p">
+    <p>Removes the elements of this set that aren&#39;t also in the given set.</p>
+
+<p>In the following example, the elements of the <code>employees</code> set that are
+not also members of the <code>neighbors</code> set are removed. In particular, the
+names <code>&quot;Alicia&quot;</code>, <code>&quot;Chris&quot;</code>, and <code>&quot;Diana&quot;</code> are removed.</p>
+
+<pre><code class="language-swift">var employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;, &quot;Greta&quot;]
+employees.formIntersection(neighbors)
+print(employees)
+// Prints &quot;[&quot;Bethany&quot;, &quot;Eric&quot;]&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func formIntersection(_ other: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formsymmetricdifference_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formsymmetricdifference_">mutating func formSymmetricDifference(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-formsymmetricdifference_"><div class="p">
+    <p>Removes the elements of the set that are also in the given set and adds
+the members of the given set that are not already in the set.</p>
+
+<p>In the following example, the elements of the <code>employees</code> set that are
+also members of <code>neighbors</code> are removed from <code>employees</code>, while the
+elements of <code>neighbors</code> that are not members of <code>employees</code> are added to
+<code>employees</code>. In particular, the names <code>&quot;Bethany&quot;</code> and <code>&quot;Eric&quot;</code> are
+removed from <code>employees</code> while the name <code>&quot;Forlani&quot;</code> is added.</p>
+
+<pre><code class="language-swift">var employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;]
+employees.formSymmetricDifference(neighbors)
+print(employees)
+// Prints &quot;[&quot;Diana&quot;, &quot;Forlani&quot;, &quot;Alicia&quot;]&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func formSymmetricDifference(_ other: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formunion_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formunion_">mutating func formUnion(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-formunion_"><div class="p">
+    <p>Adds the elements of the given set to the set.</p>
+
+<p>In the following example, the elements of the <code>visitors</code> set are added to
+the <code>attendees</code> set:</p>
+
+<pre><code class="language-swift">var attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+let visitors: Set = [&quot;Diana&quot;, &quot;Marcia&quot;, &quot;Nathaniel&quot;]
+attendees.formUnion(visitors)
+print(attendees)
+// Prints &quot;[&quot;Diana&quot;, &quot;Nathaniel&quot;, &quot;Bethany&quot;, &quot;Alicia&quot;, &quot;Marcia&quot;]&quot;</code></pre>
+
+<p>If the set already contains one or more elements that are also in
+<code>other</code>, the existing members are kept.</p>
+
+<pre><code class="language-swift">var initialIndices = Set(0..&lt;5)
+initialIndices.formUnion([2, 3, 6, 7])
+print(initialIndices)
+// Prints &quot;[2, 4, 6, 7, 0, 1, 3]&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func formUnion(_ other: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-insert_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-insert_">mutating func insert(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-insert_"><div class="p">
+    <p>Inserts the given element in the set if it is not already present.</p>
+
+<p>If an element equal to <code>newMember</code> is already contained in the set, this
+method has no effect. In this example, a new element is inserted into
+<code>classDays</code>, a set of days of the week. When an existing element is
+inserted, the <code>classDays</code> set does not change.</p>
+
+<pre><code class="language-swift">enum DayOfTheWeek: Int {
+    case sunday, monday, tuesday, wednesday, thursday,
+        friday, saturday
+}
+
+var classDays: Set&lt;DayOfTheWeek&gt; = [.wednesday, .friday]
+print(classDays.insert(.monday))
+// Prints &quot;(true, .monday)&quot;
+print(classDays)
+// Prints &quot;[.friday, .wednesday, .monday]&quot;
+
+print(classDays.insert(.friday))
+// Prints &quot;(false, .friday)&quot;
+print(classDays)
+// Prints &quot;[.friday, .wednesday, .monday]&quot;</code></pre>
+
+<p><strong><code>newMember</code>:</strong>  An element to insert into the set.
+<strong>Returns:</strong> <code>(true, newMember)</code> if <code>newMember</code> was not contained in the
+  set. If an element equal to <code>newMember</code> was already contained in the
+  set, the method returns <code>(false, oldMember)</code>, where <code>oldMember</code> is the
+  element that was equal to <code>newMember</code>. In some cases, <code>oldMember</code> may
+  be distinguishable from <code>newMember</code> by identity comparison or some
+  other means.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insert(_ newMember: Self.Element) -&gt; (inserted: Bool, memberAfterInsert: Self.Element)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-intersection_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-intersection_">func intersection(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-intersection_"><div class="p">
+    <p>Returns a new set with the elements that are common to both this set and
+the given set.</p>
+
+<p>In the following example, the <code>bothNeighborsAndEmployees</code> set is made up
+of the elements that are in <em>both</em> the <code>employees</code> and <code>neighbors</code> sets.
+Elements that are in only one or the other are left out of the result of
+the intersection.</p>
+
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;, &quot;Greta&quot;]
+let bothNeighborsAndEmployees = employees.intersection(neighbors)
+print(bothNeighborsAndEmployees)
+// Prints &quot;[&quot;Bethany&quot;, &quot;Eric&quot;]&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> A new set.</p>
+
+<p><strong>Note:</strong> if this set and <code>other</code> contain elements that are equal but
+  distinguishable (e.g. via <code>===</code>), which of these elements is present
+  in the result is unspecified.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func intersection(_ other: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-isdisjoint-with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isdisjoint-with_">func isDisjoint(<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-isdisjoint-with_"><div class="p">
+    <p>Returns a Boolean value that indicates whether the set has no members in
+common with the given set.</p>
+
+<p>In the following example, the <code>employees</code> set is disjoint with the
+<code>visitors</code> set because no name appears in both sets.</p>
+
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let visitors: Set = [&quot;Marcia&quot;, &quot;Nathaniel&quot;, &quot;Olivia&quot;]
+print(employees.isDisjoint(with: visitors))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> <code>true</code> if the set has no elements in common with <code>other</code>;
+  otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isDisjoint(with other: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-issubset-of_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-issubset-of_">func isSubset(<wbr>of:)</a>
+        
+<div class="comment collapse" id="comment-func-issubset-of_"><div class="p">
+    <p>Returns a Boolean value that indicates whether the set is a subset of
+another set.</p>
+
+<p>Set <em>A</em> is a subset of another set <em>B</em> if every member of <em>A</em> is also a
+member of <em>B</em>.</p>
+
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+print(attendees.isSubset(of: employees))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> <code>true</code> if the set is a subset of <code>other</code>; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isSubset(of other: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-issuperset-of_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-issuperset-of_">func isSuperset(<wbr>of:)</a>
+        
+<div class="comment collapse" id="comment-func-issuperset-of_"><div class="p">
+    <p>Returns a Boolean value that indicates whether the set is a superset of
+the given set.</p>
+
+<p>Set <em>A</em> is a superset of another set <em>B</em> if every member of <em>B</em> is also a
+member of <em>A</em>.</p>
+
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+print(employees.isSuperset(of: attendees))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> <code>true</code> if the set is a superset of <code>possibleSubset</code>;
+  otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isSuperset(of other: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-remove_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-remove_">mutating func remove(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-remove_"><div class="p">
+    <p>Removes the given element and any elements subsumed by the given element.</p>
+
+<p><strong><code>member</code>:</strong>  The element of the set to remove.
+<strong>Returns:</strong> For ordinary sets, an element equal to <code>member</code> if <code>member</code> is
+  contained in the set; otherwise, <code>nil</code>. In some cases, a returned
+  element may be distinguishable from <code>newMember</code> by identity comparison
+  or some other means.</p>
+
+<p>  For sets where the set type and element type are the same, like
+  <code>OptionSet</code> types, this method returns any intersection between the set
+  and <code>[member]</code>, or <code>nil</code> if the intersection is empty.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func remove(_ member: Self.Element) -&gt; Self.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subtract_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subtract_">mutating func subtract(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subtract_"><div class="p">
+    <p>Removes the elements of the given set from this set.</p>
+
+<p>In the following example, the elements of the <code>employees</code> set that are
+also members of the <code>neighbors</code> set are removed. In particular, the
+names <code>&quot;Bethany&quot;</code> and <code>&quot;Eric&quot;</code> are removed from <code>employees</code>.</p>
+
+<pre><code class="language-swift">var employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;, &quot;Greta&quot;]
+employees.subtract(neighbors)
+print(employees)
+// Prints &quot;[&quot;Diana&quot;, &quot;Chris&quot;, &quot;Alicia&quot;]&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func subtract(_ other: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subtracting_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subtracting_">func subtracting(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subtracting_"><div class="p">
+    <p>Returns a new set containing the elements of this set that do not occur
+in the given set.</p>
+
+<p>In the following example, the <code>nonNeighbors</code> set is made up of the
+elements of the <code>employees</code> set that are not elements of <code>neighbors</code>:</p>
+
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;, &quot;Greta&quot;]
+let nonNeighbors = employees.subtracting(neighbors)
+print(nonNeighbors)
+// Prints &quot;[&quot;Diana&quot;, &quot;Chris&quot;, &quot;Alicia&quot;]&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> A new set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func subtracting(_ other: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-symmetricdifference_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-symmetricdifference_">func symmetricDifference(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-symmetricdifference_"><div class="p">
+    <p>Returns a new set with the elements that are either in this set or in the
+given set, but not in both.</p>
+
+<p>In the following example, the <code>eitherNeighborsOrEmployees</code> set is made up
+of the elements of the <code>employees</code> and <code>neighbors</code> sets that are not in
+both <code>employees</code> <em>and</em> <code>neighbors</code>. In particular, the names <code>&quot;Bethany&quot;</code>
+and <code>&quot;Eric&quot;</code> do not appear in <code>eitherNeighborsOrEmployees</code>.</p>
+
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;]
+let eitherNeighborsOrEmployees = employees.symmetricDifference(neighbors)
+print(eitherNeighborsOrEmployees)
+// Prints &quot;[&quot;Diana&quot;, &quot;Forlani&quot;, &quot;Alicia&quot;]&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> A new set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func symmetricDifference(_ other: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-union_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-union_">func union(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-union_"><div class="p">
+    <p>Returns a new set with the elements of both this and the given set.</p>
+
+<p>In the following example, the <code>attendeesAndVisitors</code> set is made up
+of the elements of the <code>attendees</code> and <code>visitors</code> sets:</p>
+
+<pre><code class="language-swift">let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+let visitors = [&quot;Marcia&quot;, &quot;Nathaniel&quot;]
+let attendeesAndVisitors = attendees.union(visitors)
+print(attendeesAndVisitors)
+// Prints &quot;[&quot;Diana&quot;, &quot;Nathaniel&quot;, &quot;Bethany&quot;, &quot;Alicia&quot;, &quot;Marcia&quot;]&quot;</code></pre>
+
+<p>If the set already contains one or more elements that are also in
+<code>other</code>, the existing members are kept.</p>
+
+<pre><code class="language-swift">let initialIndices = Set(0..&lt;5)
+let expandedIndices = initialIndices.union([2, 3, 6, 7])
+print(expandedIndices)
+// Prints &quot;[2, 4, 6, 7, 0, 1, 3]&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> A new set with the unique elements of this set and <code>other</code>.</p>
+
+<p><strong>Note:</strong> if this set and <code>other</code> contain elements that are equal but
+  distinguishable (e.g. via <code>===</code>), which of these elements is present
+  in the result is unspecified.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func union(_ other: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-update-with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-update-with_">mutating func update(<wbr>with:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-update-with_"><div class="p">
+    <p>Inserts the given element into the set unconditionally.</p>
+
+<p>If an element equal to <code>newMember</code> is already contained in the set,
+<code>newMember</code> replaces the existing element. In this example, an existing
+element is inserted into <code>classDays</code>, a set of days of the week.</p>
+
+<pre><code class="language-swift">enum DayOfTheWeek: Int {
+    case sunday, monday, tuesday, wednesday, thursday,
+        friday, saturday
+}
+
+var classDays: Set&lt;DayOfTheWeek&gt; = [.monday, .wednesday, .friday]
+print(classDays.update(with: .monday))
+// Prints &quot;Optional(.monday)&quot;</code></pre>
+
+<p><strong><code>newMember</code>:</strong>  An element to insert into the set.
+<strong>Returns:</strong> For ordinary sets, an element equal to <code>newMember</code> if the set
+  already contained such a member; otherwise, <code>nil</code>. In some cases, the
+  returned element may be distinguishable from <code>newMember</code> by identity
+  comparison or some other means.</p>
+
+<p>  For sets where the set type and element type are the same, like
+  <code>OptionSet</code> types, this method returns any intersection between the 
+  set and <code>[newMember]</code>, or <code>nil</code> if the intersection is empty.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func update(with newMember: Self.Element) -&gt; Self.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+<div class="declaration inherited" id="-init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init_">init(<wbr>_:)</a><div class="comment collapse" id="comment--init_"><div class="p">
+    <p>Creates a new set from a finite sequence of items.</p>
+
+<p>Use this initializer to create a new set from an existing sequence, like
+an array or a range:</p>
+
+<pre><code class="language-swift">let validIndices = Set(0..&lt;7).subtracting([2, 4, 5])
+print(validIndices)
+// Prints &quot;[6, 0, 1, 3]&quot;</code></pre>
+
+<p><strong><code>sequence</code>:</strong>  The elements to use as members of the new set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;S&gt;(_ sequence: S)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>
+        </div></div>
+</div>
+
+<div class="declaration inherited" id="-var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment--var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment--var-isempty_-bool"><div class="p">
+    <p>A Boolean value that indicates whether the set has no elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>
+        </div></div>
+</div>
+
+
+<div class="declaration inherited" id="func--excleq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--excleq_rhs_">func !=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--excleq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether two values are not equal.</p>
+
+<p>Inequality is the inverse of equality. For any values <code>a</code> and <code>b</code>, <code>a != b</code>
+implies that <code>a == b</code> is <code>false</code>.</p>
+
+<p>This is the default implementation of the not-equal-to operator (<code>!=</code>)
+for any type that conforms to <code>Equatable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func !=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func--intersection_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--intersection_">func intersection(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--intersection_"><div class="p">
+    <p>Returns a new option set with only the elements contained in both this
+set and the given set.</p>
+
+<p>This example uses the <code>intersection(_:)</code> method to limit the available
+shipping options to what can be used with a PO Box destination.</p>
+
+<pre><code class="language-swift">// Can only ship standard or priority to PO Boxes
+let poboxShipping: ShippingOptions = [.standard, .priority]
+let memberShipping: ShippingOptions =
+        [.standard, .priority, .secondDay]
+
+let availableOptions = memberShipping.intersection(poboxShipping)
+print(availableOptions.contains(.priority))
+// Prints &quot;true&quot;
+print(availableOptions.contains(.secondDay))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  An option set.
+<strong>Returns:</strong> A new option set with only the elements contained in both this
+  set and <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func intersection(_ other: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--isdisjoint-with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--isdisjoint-with_">func isDisjoint(<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func--isdisjoint-with_"><div class="p">
+    <p>Returns a Boolean value that indicates whether the set has no members in
+common with the given set.</p>
+
+<p>In the following example, the <code>employees</code> set is disjoint with the
+<code>visitors</code> set because no name appears in both sets.</p>
+
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let visitors: Set = [&quot;Marcia&quot;, &quot;Nathaniel&quot;, &quot;Olivia&quot;]
+print(employees.isDisjoint(with: visitors))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> <code>true</code> if the set has no elements in common with <code>other</code>;
+  otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isDisjoint(with other: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--isstrictsubset-of_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--isstrictsubset-of_">func isStrictSubset(<wbr>of:)</a>
+        
+<div class="comment collapse" id="comment-func--isstrictsubset-of_"><div class="p">
+    <p>Returns a Boolean value that indicates whether this set is a strict
+subset of the given set.</p>
+
+<p>Set <em>A</em> is a strict subset of another set <em>B</em> if every member of <em>A</em> is
+also a member of <em>B</em> and <em>B</em> contains at least one element that is not a
+member of <em>A</em>.</p>
+
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+print(attendees.isStrictSubset(of: employees))
+// Prints &quot;true&quot;
+
+// A set is never a strict subset of itself:
+print(attendees.isStrictSubset(of: attendees))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> <code>true</code> if the set is a strict subset of <code>other</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isStrictSubset(of other: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--isstrictsuperset-of_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--isstrictsuperset-of_">func isStrictSuperset(<wbr>of:)</a>
+        
+<div class="comment collapse" id="comment-func--isstrictsuperset-of_"><div class="p">
+    <p>Returns a Boolean value that indicates whether this set is a strict
+superset of the given set.</p>
+
+<p>Set <em>A</em> is a strict superset of another set <em>B</em> if every member of <em>B</em> is
+also a member of <em>A</em> and <em>A</em> contains at least one element that is <em>not</em>
+a member of <em>B</em>.</p>
+
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+print(employees.isStrictSuperset(of: attendees))
+// Prints &quot;true&quot;
+
+// A set is never a strict superset of itself:
+print(employees.isStrictSuperset(of: employees))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> <code>true</code> if the set is a strict superset of <code>other</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isStrictSuperset(of other: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--issubset-of_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--issubset-of_">func isSubset(<wbr>of:)</a>
+        
+<div class="comment collapse" id="comment-func--issubset-of_"><div class="p">
+    <p>Returns a Boolean value that indicates whether the set is a subset of
+another set.</p>
+
+<p>Set <em>A</em> is a subset of another set <em>B</em> if every member of <em>A</em> is also a
+member of <em>B</em>.</p>
+
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+print(attendees.isSubset(of: employees))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> <code>true</code> if the set is a subset of <code>other</code>; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isSubset(of other: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--issuperset-of_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--issuperset-of_">func isSuperset(<wbr>of:)</a>
+        
+<div class="comment collapse" id="comment-func--issuperset-of_"><div class="p">
+    <p>Returns a Boolean value that indicates whether the set is a superset of
+the given set.</p>
+
+<p>Set <em>A</em> is a superset of another set <em>B</em> if every member of <em>B</em> is also a
+member of <em>A</em>.</p>
+
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+print(employees.isSuperset(of: attendees))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> <code>true</code> if the set is a superset of <code>other</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isSuperset(of other: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--subtract_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--subtract_">mutating func subtract(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--subtract_"><div class="p">
+    <p>Removes the elements of the given set from this set.</p>
+
+<p>In the following example, the elements of the <code>employees</code> set that are
+also members of the <code>neighbors</code> set are removed. In particular, the
+names <code>&quot;Bethany&quot;</code> and <code>&quot;Eric&quot;</code> are removed from <code>employees</code>.</p>
+
+<pre><code class="language-swift">var employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;, &quot;Greta&quot;]
+employees.subtract(neighbors)
+print(employees)
+// Prints &quot;[&quot;Diana&quot;, &quot;Chris&quot;, &quot;Alicia&quot;]&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func subtract(_ other: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--subtracting_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--subtracting_">func subtracting(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--subtracting_"><div class="p">
+    <p>Returns a new set containing the elements of this set that do not occur
+in the given set.</p>
+
+<p>In the following example, the <code>nonNeighbors</code> set is made up of the
+elements of the <code>employees</code> set that are not elements of <code>neighbors</code>:</p>
+
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;, &quot;Greta&quot;]
+let nonNeighbors = employees.subtract(neighbors)
+print(nonNeighbors)
+// Prints &quot;[&quot;Diana&quot;, &quot;Chris&quot;, &quot;Alicia&quot;]&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A set of the same type as the current set.
+<strong>Returns:</strong> A new set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func subtracting(_ other: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func--symmetricdifference_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--symmetricdifference_">func symmetricDifference(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--symmetricdifference_"><div class="p">
+    <p>Returns a new option set with the elements contained in this set or in
+the given set, but not in both.</p>
+
+<p><strong><code>other</code>:</strong>  An option set.
+<strong>Returns:</strong> A new option set with only the elements contained in either
+  this set or <code>other</code>, but not in both.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func symmetricDifference(_ other: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--union_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--union_">func union(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--union_"><div class="p">
+    <p>Returns a new option set of the elements contained in this set, in the
+given set, or in both.</p>
+
+<p>This example uses the <code>union(_:)</code> method to add two more shipping options
+to the default set.</p>
+
+<pre><code class="language-swift">let defaultShipping = ShippingOptions.standard
+let memberShipping = defaultShipping.union([.secondDay, .priority])
+print(memberShipping.contains(.priority))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  An option set.
+<strong>Returns:</strong> A new option set made up of the elements contained in this
+  set, in <code>other</code>, or in both.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func union(_ other: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+
+
+
+
+
+
+
+<h4>Where ArrayLiteralElement == Element</h4>
+
+<div class="declaration inherited" id="arrayliteralelement-element-init-arrayliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-arrayliteralelement-element-init-arrayliteral_">init(<wbr>arrayLiteral:)</a><div class="comment collapse" id="comment-arrayliteralelement-element-init-arrayliteral_"><div class="p">
+    <p>Creates a set containing the elements of the given array literal.</p>
+
+<p>Do not call this initializer directly. It is used by the compiler when
+you use an array literal. Instead, create a new set using an array
+literal as its value by enclosing a comma-separated list of values in
+square brackets. You can use an array literal anywhere a set is expected
+by the type context.</p>
+
+<p>Here, a set of strings is created from an array literal holding only
+strings:</p>
+
+<pre><code class="language-swift">let ingredients: Set = [&quot;cocoa beans&quot;, &quot;sugar&quot;, &quot;cocoa butter&quot;, &quot;salt&quot;]
+if ingredients.isSuperset(of: [&quot;sugar&quot;, &quot;salt&quot;]) {
+    print(&quot;Whatever it is, it&#39;s bound to be delicious!&quot;)
+}
+// Prints &quot;Whatever it is, it&#39;s bound to be delicious!&quot;</code></pre>
+
+<p><strong><code>arrayLiteral</code>:</strong>  A list of elements of the new set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(arrayLiteral: Self.Element...)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/SetAlgebra/"><code>SetAlgebra</code></a>
+        </div></div>
+</div>
+
+
+
+
+
+
+
+
+<h4>Where RawValue : FixedWidthInteger</h4>
+
+<div class="declaration" id="rawvalue_-fixedwidthinteger-init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue_-fixedwidthinteger-init">init()</a><div class="comment collapse" id="comment-rawvalue_-fixedwidthinteger-init"><div class="p">
+    <p>Creates an empty option set.</p>
+
+<p>This initializer creates an option set with a raw value of zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+
+
+
+<div class="declaration" id="func-rawvalue_-fixedwidthinteger-formintersection_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue_-fixedwidthinteger-formintersection_">mutating func formIntersection(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue_-fixedwidthinteger-formintersection_"><div class="p">
+    <p>Removes all elements of this option set that are not 
+also present in the given set.</p>
+
+<p>This method is implemented as a <code>&amp;</code> (bitwise AND) operation on the
+two sets&#39; raw values.</p>
+
+<p><strong><code>other</code>:</strong>  An option set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func formIntersection(_ other: Self)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-rawvalue_-fixedwidthinteger-formsymmetricdifference_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue_-fixedwidthinteger-formsymmetricdifference_">mutating func formSymmetricDifference(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue_-fixedwidthinteger-formsymmetricdifference_"><div class="p">
+    <p>Replaces this set with a new set containing all elements 
+contained in either this set or the given set, but not in both.</p>
+
+<p>This method is implemented as a <code>^</code> (bitwise XOR) operation on the two
+sets&#39; raw values.</p>
+
+<p><strong><code>other</code>:</strong>  An option set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func formSymmetricDifference(_ other: Self)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-rawvalue_-fixedwidthinteger-formunion_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue_-fixedwidthinteger-formunion_">mutating func formUnion(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue_-fixedwidthinteger-formunion_"><div class="p">
+    <p>Inserts the elements of another set into this option set.</p>
+
+<p>This method is implemented as a <code>|</code> (bitwise OR) operation on the
+two sets&#39; raw values.</p>
+
+<p><strong><code>other</code>:</strong>  An option set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func formUnion(_ other: Self)</code>
+    
+    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Bool</h4>
+
+<div class="declaration inherited" id="rawvalue-bool-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-bool-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-bool-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Bool</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-bool-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-bool-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-bool-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Bool</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Double</h4>
+
+<div class="declaration inherited" id="rawvalue-double-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-double-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-double-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Double</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-double-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-double-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-double-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Double</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Float</h4>
+
+<div class="declaration inherited" id="rawvalue-float-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-float-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-float-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Float</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-float-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-float-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-float-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Float</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Int</h4>
+
+<div class="declaration inherited" id="rawvalue-int-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-int-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-int-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Int</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-int-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-int-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-int-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Int</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Int16</h4>
+
+<div class="declaration inherited" id="rawvalue-int16-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-int16-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-int16-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Int16</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-int16-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-int16-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-int16-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Int16</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Int32</h4>
+
+<div class="declaration inherited" id="rawvalue-int32-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-int32-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-int32-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Int32</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-int32-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-int32-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-int32-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Int32</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Int64</h4>
+
+<div class="declaration inherited" id="rawvalue-int64-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-int64-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-int64-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Int64</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-int64-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-int64-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-int64-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Int64</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Int8</h4>
+
+<div class="declaration inherited" id="rawvalue-int8-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-int8-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-int8-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Int8</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-int8-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-int8-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-int8-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Int8</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == String</h4>
+
+<div class="declaration inherited" id="rawvalue-string-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-string-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-string-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>String</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-string-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-string-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-string-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>String</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == UInt</h4>
+
+<div class="declaration inherited" id="rawvalue-uint-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-uint-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-uint-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>UInt</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-uint-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-uint-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-uint-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>UInt</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == UInt16</h4>
+
+<div class="declaration inherited" id="rawvalue-uint16-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-uint16-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-uint16-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>UInt16</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-uint16-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-uint16-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-uint16-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>UInt16</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == UInt32</h4>
+
+<div class="declaration inherited" id="rawvalue-uint32-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-uint32-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-uint32-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>UInt32</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-uint32-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-uint32-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-uint32-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>UInt32</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == UInt64</h4>
+
+<div class="declaration inherited" id="rawvalue-uint64-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-uint64-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-uint64-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>UInt64</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-uint64-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-uint64-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-uint64-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>UInt64</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == UInt8</h4>
+
+<div class="declaration inherited" id="rawvalue-uint8-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-uint8-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-uint8-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>UInt8</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-uint8-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-uint8-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-uint8-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>UInt8</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Self == Element</h4>
+
+
+
+
+<div class="declaration" id="func-self-element-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-self-element-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-self-element-contains_"><div class="p">
+    <p>Returns a Boolean value that indicates whether a given element is a
+member of the option set.</p>
+
+<p>This example uses the <code>contains(_:)</code> method to check whether next-day
+shipping is in the <code>availableOptions</code> instance.</p>
+
+<pre><code class="language-swift">let availableOptions = ShippingOptions.express
+if availableOptions.contains(.nextDay) {
+    print(&quot;Next day shipping available&quot;)
+}
+// Prints &quot;Next day shipping available&quot;</code></pre>
+
+<p><strong><code>member</code>:</strong>  The element to look for in the option set.
+<strong>Returns:</strong> <code>true</code> if the option set contains <code>member</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(_ member: Self) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-self-element-insert_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-self-element-insert_">mutating func insert(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-self-element-insert_"><div class="p">
+    <p>Adds the given element to the option set if it is not already a member.</p>
+
+<p>In the following example, the <code>.secondDay</code> shipping option is added to
+the <code>freeOptions</code> option set if <code>purchasePrice</code> is greater than 50.0. For
+the <code>ShippingOptions</code> declaration, see the <code>OptionSet</code> protocol
+discussion.</p>
+
+<pre><code class="language-swift">let purchasePrice = 87.55
+
+var freeOptions: ShippingOptions = [.standard, .priority]
+if purchasePrice &gt; 50 {
+    freeOptions.insert(.secondDay)
+}
+print(freeOptions.contains(.secondDay))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>newMember</code>:</strong>  The element to insert.
+<strong>Returns:</strong> <code>(true, newMember)</code> if <code>newMember</code> was not contained in
+  <code>self</code>. Otherwise, returns <code>(false, oldMember)</code>, where <code>oldMember</code> is
+  the member of the set equal to <code>newMember</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insert(_ newMember: Self.Element) -&gt; (inserted: Bool, memberAfterInsert: Self.Element)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-self-element-remove_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-self-element-remove_">mutating func remove(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-self-element-remove_"><div class="p">
+    <p>Removes the given element and all elements subsumed by it.</p>
+
+<p>In the following example, the <code>.priority</code> shipping option is removed from
+the <code>options</code> option set. Attempting to remove the same shipping option
+a second time results in <code>nil</code>, because <code>options</code> no longer contains
+<code>.priority</code> as a member.</p>
+
+<pre><code class="language-swift">var options: ShippingOptions = [.secondDay, .priority]
+let priorityOption = options.remove(.priority)
+print(priorityOption == .priority)
+// Prints &quot;true&quot;
+
+print(options.remove(.priority))
+// Prints &quot;nil&quot;</code></pre>
+
+<p>In the next example, the <code>.express</code> element is passed to <code>remove(_:)</code>.
+Although <code>.express</code> is not a member of <code>options</code>, <code>.express</code> subsumes
+the remaining <code>.secondDay</code> element of the option set. Therefore,
+<code>options</code> is emptied and the intersection between <code>.express</code> and
+<code>options</code> is returned.</p>
+
+<pre><code class="language-swift">let expressOption = options.remove(.express)
+print(expressOption == .express)
+// Prints &quot;false&quot;
+print(expressOption == .secondDay)
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>member</code>:</strong>  The element of the set to remove.
+<strong>Returns:</strong> The intersection of <code>[member]</code> and the set, if the
+  intersection was nonempty; otherwise, <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func remove(_ member: Self.Element) -&gt; Self.Element?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-self-element-update-with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-self-element-update-with_">mutating func update(<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-self-element-update-with_"><div class="p">
+    <p>Inserts the given element into the set.</p>
+
+<p>If <code>newMember</code> is not contained in the set but subsumes current members
+of the set, the subsumed members are returned.</p>
+
+<pre><code class="language-swift">var options: ShippingOptions = [.secondDay, .priority]
+let replaced = options.update(with: .express)
+print(replaced == .secondDay)
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong>Returns:</strong> The intersection of <code>[newMember]</code> and the set if the
+  intersection was nonempty; otherwise, <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func update(with newMember: Self.Element) -&gt; Self.Element?</code>
+    
+    
+</div></div>
+</div>
+
+
+

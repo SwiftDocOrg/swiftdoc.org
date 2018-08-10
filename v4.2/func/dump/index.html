@@ -1,0 +1,58 @@
+---
+layout: "default"
+title: "dump"
+description: "Swift documentation for 'dump': Dumps the given object&#39;s contents using its mirror to standard output."
+keywords: "dump,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-dump-t_-t-name_-string-indent_-int-maxdepth_-int-maxitems_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dump-t_-t-name_-string-indent_-int-maxdepth_-int-maxitems_-int">func dump&lt;T&gt;(<wbr>_:<wbr> T, name:<wbr> String?, indent:<wbr> Int, maxDepth:<wbr> Int, maxItems: Int)</a>
+        
+<div class="comment collapse" id="comment-func-dump-t_-t-name_-string-indent_-int-maxdepth_-int-maxitems_-int"><div class="p">
+    <p>Dumps the given object&#39;s contents using its mirror to standard output.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>value:</strong> The value to output to the <code>target</code> stream.
+  <strong>name:</strong> A label to use when writing the contents of <code>value</code>. When <code>nil</code>
+    is passed, the label is omitted. The default is <code>nil</code>.
+  <strong>indent:</strong> The number of spaces to use as an indent for each line of the
+    output. The default is <code>0</code>.
+  <strong>maxDepth:</strong> The maximum depth to descend when writing the contents of a
+    value that has nested components. The default is <code>Int.max</code>.
+  <strong>maxItems:</strong> The maximum number of elements for which to write the full
+    contents. The default is <code>Int.max</code>.
+<strong>Returns:</strong> The instance passed as <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dump&lt;T&gt;(_ value: T, name: String? = default, indent: Int = default, maxDepth: Int = default, maxItems: Int = default) -&gt; T</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-dump-t-targetstream_-t-to_-inout-targetstream-name_-string-indent_-int-maxdepth_-int-maxitems_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dump-t-targetstream_-t-to_-inout-targetstream-name_-string-indent_-int-maxdepth_-int-maxitems_-int">func dump&lt;T, TargetStream&gt;(<wbr>_:<wbr> T, to:<wbr> inout TargetStream, name:<wbr> String?, indent:<wbr> Int, maxDepth:<wbr> Int, maxItems: Int)</a>
+        
+<div class="comment collapse" id="comment-func-dump-t-targetstream_-t-to_-inout-targetstream-name_-string-indent_-int-maxdepth_-int-maxitems_-int"><div class="p">
+    <p>Dumps the given object&#39;s contents using its mirror to the specified output
+stream.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>value:</strong> The value to output to the <code>target</code> stream.
+  <strong>target:</strong> The stream to use for writing the contents of <code>value</code>.
+  <strong>name:</strong> A label to use when writing the contents of <code>value</code>. When <code>nil</code>
+    is passed, the label is omitted. The default is <code>nil</code>.
+  <strong>indent:</strong> The number of spaces to use as an indent for each line of the
+    output. The default is <code>0</code>.
+  <strong>maxDepth:</strong> The maximum depth to descend when writing the contents of a
+    value that has nested components. The default is <code>Int.max</code>.
+  <strong>maxItems:</strong> The maximum number of elements for which to write the full
+    contents. The default is <code>Int.max</code>.
+<strong>Returns:</strong> The instance passed as <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dump&lt;T, TargetStream&gt;(_ value: T, to target: inout TargetStream, name: String? = default, indent: Int = default, maxDepth: Int = default, maxItems: Int = default) -&gt; T where TargetStream : TextOutputStream</code>
+    
+    
+</div></div>
+</div>

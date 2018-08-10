@@ -1,0 +1,35 @@
+---
+layout: "default"
+title: "getVaList"
+description: "Swift documentation for 'getVaList': Returns a CVaListPointer that is backed by autoreleased storage, built."
+keywords: "getVaList,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-getvalist_-cvararg">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-getvalist_-cvararg">func getVaList(<wbr>_: [CVarArg])</a>
+        
+<div class="comment collapse" id="comment-func-getvalist_-cvararg"><div class="p">
+    <p>Returns a <code>CVaListPointer</code> that is backed by autoreleased storage, built
+from the given array of arguments.</p>
+
+<p>You should prefer <code>withVaList(_:_:)</code> instead of this function. In some
+uses, such as in a <code>class</code> initializer, you may find that the language
+rules do not allow you to use <code>withVaList(_:_:)</code> as intended.</p>
+
+<p>If you need to pass an optional pointer as a <code>CVarArg</code> argument, use the
+<code>Int(bitPattern:)</code> initializer to interpret the optional pointer as an
+<code>Int</code> value, which has the same C variadic calling conventions as a pointer
+on all supported platforms.</p>
+
+<p><strong><code>args</code>:</strong>  An array of arguments to convert to a C <code>va_list</code>
+  pointer.
+<strong>Returns:</strong> A pointer that can be used with C functions that take a
+  <code>va_list</code> argument.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func getVaList(_ args: [CVarArg]) -&gt; CVaListPointer</code>
+    
+    
+</div></div>
+</div>

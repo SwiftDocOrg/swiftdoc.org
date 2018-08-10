@@ -1,0 +1,185 @@
+---
+layout: "default"
+title: "DecodingError"
+description: "Swift documentation for 'DecodingError': An error that occurs during the decoding of a value."
+keywords: "DecodingError,enum,swift,documentation,dataCorruptedError,dataCorruptedError,dataCorruptedError"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum DecodingError</code></div>
+
+<div class="discussion comment">
+    <p>An error that occurs during the decoding of a value.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Error</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+<tr>
+<th>Nested Types</th>
+<td><code class="nested">DecodingError.Context</code></td>
+</tr>
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+<h3 id="cases">Cases</h3>
+<div class="declaration" id="case-typeMismatch">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-typeMismatch">case typeMismatch(Any.Type, DecodingError.Context)</a>
+<div class="comment collapse" id="comment-case-typeMismatch"><div class="p">
+    <p>An indication that a value of the given type could not be decoded because
+it did not match the type of what was found in the encoded payload.</p>
+
+<p>As associated values, this case contains the attempted type and context
+for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-valueNotFound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-valueNotFound">case valueNotFound(Any.Type, DecodingError.Context)</a>
+<div class="comment collapse" id="comment-case-valueNotFound"><div class="p">
+    <p>An indication that a non-optional value of the given type was expected,
+but a null value was found.</p>
+
+<p>As associated values, this case contains the attempted type and context
+for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-keyNotFound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-keyNotFound">case keyNotFound(CodingKey, DecodingError.Context)</a>
+<div class="comment collapse" id="comment-case-keyNotFound"><div class="p">
+    <p> An indication that a keyed decoding container was asked for an entry for
+ the given key, but did not contain one.</p>
+
+<p>As associated values, this case contains the attempted key and context
+for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-dataCorrupted">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-dataCorrupted">case dataCorrupted(DecodingError.Context)</a>
+<div class="comment collapse" id="comment-case-dataCorrupted"><div class="p">
+    <p>An indication that the data is corrupted or otherwise invalid.</p>
+
+<p>As an associated value, this case contains the context for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+
+
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-datacorruptederror-forkey_in_debugdescription_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-datacorruptederror-forkey_in_debugdescription_">static func dataCorruptedError(<wbr>forKey:<wbr>in:<wbr>debugDescription:)</a>
+        
+<div class="comment collapse" id="comment-func-datacorruptederror-forkey_in_debugdescription_"><div class="p">
+    <p>Returns a new <code>.dataCorrupted</code> error using a constructed coding path and
+the given debug description.</p>
+
+<p>The coding path for the returned error is constructed by appending the
+given key to the given container&#39;s coding path.</p>
+
+<ul><li>param key: The key which caused the failure.</li><li>param container: The container in which the corrupted data was
+accessed.</li><li>param debugDescription: A description of the error to aid in debugging.</li></ul>
+
+<p><strong>Returns:</strong> A new <code>.dataCorrupted</code> error with the given information.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func dataCorruptedError&lt;C&gt;(forKey key: C.Key, in container: C, debugDescription: String) -&gt; DecodingError where C : KeyedDecodingContainerProtocol</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-datacorruptederror-in_-singlevaluedecodingcontainer-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-datacorruptederror-in_-singlevaluedecodingcontainer-debugdescription_-string">static func dataCorruptedError(<wbr>in:<wbr> SingleValueDecodingContainer, debugDescription: String)</a>
+        
+<div class="comment collapse" id="comment-func-datacorruptederror-in_-singlevaluedecodingcontainer-debugdescription_-string"><div class="p">
+    <p>Returns a new <code>.dataCorrupted</code> error using a constructed coding path and
+the given debug description.</p>
+
+<p>The coding path for the returned error is the given container&#39;s coding
+path.</p>
+
+<ul><li>param container: The container in which the corrupted data was
+accessed.</li><li>param debugDescription: A description of the error to aid in debugging.</li></ul>
+
+<p><strong>Returns:</strong> A new <code>.dataCorrupted</code> error with the given information.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func dataCorruptedError(in container: SingleValueDecodingContainer, debugDescription: String) -&gt; DecodingError</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-datacorruptederror-in_-unkeyeddecodingcontainer-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-datacorruptederror-in_-unkeyeddecodingcontainer-debugdescription_-string">static func dataCorruptedError(<wbr>in:<wbr> UnkeyedDecodingContainer, debugDescription: String)</a>
+        
+<div class="comment collapse" id="comment-func-datacorruptederror-in_-unkeyeddecodingcontainer-debugdescription_-string"><div class="p">
+    <p>Returns a new <code>.dataCorrupted</code> error using a constructed coding path and
+the given debug description.</p>
+
+<p>The coding path for the returned error is constructed by appending the
+given container&#39;s current index to its coding path.</p>
+
+<ul><li>param container: The container in which the corrupted data was
+accessed.</li><li>param debugDescription: A description of the error to aid in debugging.</li></ul>
+
+<p><strong>Returns:</strong> A new <code>.dataCorrupted</code> error with the given information.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func dataCorruptedError(in container: UnkeyedDecodingContainer, debugDescription: String) -&gt; DecodingError</code>
+    
+    
+</div></div>
+</div>
+
+
+
+<h3>Conditionally Inherited Items</h3>
+
+<p class="comment">The initializers, methods, and properties listed below may be available on this type under certain conditions (such as methods that are available on <code>Array</code> when its elements are <code>Equatable</code>) or may not ever be available if that determination is beyond SwiftDoc.org's capabilities. Please <a href="https://github.com/SwiftDocOrg/swiftdoc.org/issues">open an issue on GitHub</a> if you see something out of place!</p>
+
+
+
+
+
+<h4>Where RawValue : SignedInteger</h4>
+
+
+
+
+
+
+
+
+
+<h4>Where RawValue : UnsignedInteger</h4>
+
+
+
+
+
+
+

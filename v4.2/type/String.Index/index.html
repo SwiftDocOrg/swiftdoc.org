@@ -1,0 +1,362 @@
+---
+layout: "default"
+title: "String.Index"
+description: "Swift documentation for 'String.Index': A position of a character or code unit in a string."
+keywords: "String.Index,struct,swift,documentation,samePosition,samePosition,samePosition,samePosition,encodedOffset,hashValue"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct String.Index</code></div>
+
+<div class="discussion comment">
+    <p>A position of a character or code unit in a string.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Comparable, Equatable, Hashable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-encodedoffset_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-encodedoffset_">init(<wbr>encodedOffset:)</a><div class="comment collapse" id="comment-init-encodedoffset_"><div class="p">
+    <p>Creates a new index at the specified UTF-16 offset.</p>
+
+<p><strong><code>offset</code>:</strong>  An offset in UTF-16 code units.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(encodedOffset offset: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-string-index-within_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-string-index-within_-string">init?(<wbr>_:<wbr> String.Index, within: String)</a><div class="comment collapse" id="comment-init_-string-index-within_-string"><div class="p">
+    <p>Creates an index in the given string that corresponds exactly to the
+specified position.</p>
+
+<p>If the index passed as <code>sourcePosition</code> represents the start of an
+extended grapheme cluster---the element type of a string---then the
+initializer succeeds.</p>
+
+<p>The following example converts the position of the Unicode scalar <code>&quot;e&quot;</code>
+into its corresponding position in the string. The character at that
+position is the composed <code>&quot;é&quot;</code> character.</p>
+
+<pre><code class="language-swift">let cafe = &quot;Cafe\u{0301}&quot;
+print(cafe)
+// Prints &quot;Café&quot;
+
+let scalarsIndex = cafe.unicodeScalars.firstIndex(of: &quot;e&quot;)!
+let stringIndex = String.Index(scalarsIndex, within: cafe)!
+
+print(cafe[...stringIndex])
+// Prints &quot;Café&quot;</code></pre>
+
+<p>If the index passed as <code>sourcePosition</code> doesn&#39;t have an exact
+corresponding position in <code>target</code>, the result of the initializer is
+<code>nil</code>. For example, an attempt to convert the position of the combining
+acute accent (<code>&quot;\u{0301}&quot;</code>) fails. Combining Unicode scalars do not have
+their own position in a string.</p>
+
+<pre><code class="language-swift">let nextScalarsIndex = cafe.unicodeScalars.index(after: scalarsIndex)
+let nextStringIndex = String.Index(nextScalarsIndex, within: cafe)
+
+print(nextStringIndex)
+// Prints &quot;nil&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>sourcePosition:</strong> A position in a view of the <code>target</code> parameter.
+    <code>sourcePosition</code> must be a valid index of at least one of the views
+    of <code>target</code>.
+  <strong>target:</strong> The string referenced by the resulting index.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ sourcePosition: String.Index, within target: String)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-string-index-within_-string-utf8view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-string-index-within_-string-utf8view">init?(<wbr>_:<wbr> String.Index, within: String.UTF8View)</a><div class="comment collapse" id="comment-init_-string-index-within_-string-utf8view"><div class="p">
+    <p>Creates an index in the given UTF-8 view that corresponds exactly to the
+specified <code>UTF16View</code> position.</p>
+
+<p>The following example finds the position of a space in a string&#39;s <code>utf16</code>
+view and then converts that position to an index in the string&#39;s
+<code>utf8</code> view.</p>
+
+<pre><code class="language-swift">let cafe = &quot;Café 🍵&quot;
+
+let utf16Index = cafe.utf16.firstIndex(of: 32)!
+let utf8Index = String.UTF8View.Index(utf16Index, within: cafe.utf8)!
+
+print(Array(cafe.utf8[..&lt;utf8Index]))
+// Prints &quot;[67, 97, 102, 195, 169]&quot;</code></pre>
+
+<p>If the position passed in <code>utf16Index</code> doesn&#39;t have an exact
+corresponding position in <code>utf8</code>, the result of the initializer is
+<code>nil</code>. For example, because UTF-8 and UTF-16 represent high Unicode code
+points differently, an attempt to convert the position of the trailing
+surrogate of a UTF-16 surrogate pair fails.</p>
+
+<p>The next example attempts to convert the indices of the two UTF-16 code
+points that represent the teacup emoji (<code>&quot;🍵&quot;</code>). The index of the lead
+surrogate is successfully converted to a position in <code>utf8</code>, but the
+index of the trailing surrogate is not.</p>
+
+<pre><code class="language-swift">let emojiHigh = cafe.utf16.index(after: utf16Index)
+print(String.UTF8View.Index(emojiHigh, within: cafe.utf8))
+// Prints &quot;Optional(String.Index(...))&quot;
+
+let emojiLow = cafe.utf16.index(after: emojiHigh)
+print(String.UTF8View.Index(emojiLow, within: cafe.utf8))
+// Prints &quot;nil&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>sourcePosition:</strong> A position in a <code>String</code> or one of its views.
+  <strong>target:</strong> The <code>UTF8View</code> in which to find the new position.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ sourcePosition: String.Index, within target: String.UTF8View)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-string-index-within_-string-utf16view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-string-index-within_-string-utf16view">init?(<wbr>_:<wbr> String.Index, within: String.UTF16View)</a><div class="comment collapse" id="comment-init_-string-index-within_-string-utf16view"><div class="p">
+    <p>Creates an index in the given UTF-16 view that corresponds exactly to the
+specified string position.</p>
+
+<p>If the index passed as <code>sourcePosition</code> represents either the start of a
+Unicode scalar value or the position of a UTF-16 trailing surrogate,
+then the initializer succeeds. If <code>sourcePosition</code> does not have an
+exact corresponding position in <code>target</code>, then the result is <code>nil</code>. For
+example, an attempt to convert the position of a UTF-8 continuation byte
+results in <code>nil</code>.</p>
+
+<p>The following example finds the position of a space in a string and then
+converts that position to an index in the string&#39;s <code>utf16</code> view.</p>
+
+<pre><code class="language-swift">let cafe = &quot;Café 🍵&quot;
+
+let stringIndex = cafe.firstIndex(of: &quot;é&quot;)!
+let utf16Index = String.Index(stringIndex, within: cafe.utf16)!
+
+print(cafe.utf16[...utf16Index])
+// Prints &quot;Café&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>sourcePosition:</strong> A position in at least one of the views of the string
+    shared by <code>target</code>.
+  <strong>target:</strong> The <code>UTF16View</code> in which to find the new position.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ sourcePosition: String.Index, within target: String.UTF16View)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-string-utf16index-within_-string-unicodescalarview">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-string-utf16index-within_-string-unicodescalarview">init?(<wbr>_:<wbr> String.UTF16Index, within: String.UnicodeScalarView)</a><div class="comment collapse" id="comment-init_-string-utf16index-within_-string-unicodescalarview"><div class="p">
+    <p>Creates an index in the given Unicode scalars view that corresponds
+exactly to the specified <code>UTF16View</code> position.</p>
+
+<p>The following example finds the position of a space in a string&#39;s <code>utf16</code>
+view and then converts that position to an index in the string&#39;s
+<code>unicodeScalars</code> view:</p>
+
+<pre><code class="language-swift">let cafe = &quot;Café 🍵&quot;
+
+let utf16Index = cafe.utf16.firstIndex(of: 32)!
+let scalarIndex = String.Index(utf16Index, within: cafe.unicodeScalars)!
+
+print(String(cafe.unicodeScalars[..&lt;scalarIndex]))
+// Prints &quot;Café&quot;</code></pre>
+
+<p>If the index passed as <code>sourcePosition</code> doesn&#39;t have an exact
+corresponding position in <code>unicodeScalars</code>, the result of the
+initializer is <code>nil</code>. For example, an attempt to convert the position of
+the trailing surrogate of a UTF-16 surrogate pair results in <code>nil</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>sourcePosition:</strong> A position in the <code>utf16</code> view of a string. <code>utf16Index</code>
+    must be an element of <code>String(unicodeScalars).utf16.indices</code>.
+  <strong>unicodeScalars:</strong> The <code>UnicodeScalarView</code> in which to find the new
+    position.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ sourcePosition: String.UTF16Index, within unicodeScalars: String.UnicodeScalarView)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-encodedoffset_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-encodedoffset_-int">var encodedOffset: Int</a><div class="comment collapse" id="comment-var-encodedoffset_-int"><div class="p">
+    <p>The offset into a string&#39;s UTF-16 encoding for this index.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var encodedOffset: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+
+<p><strong><code>hasher</code>:</strong>  The hasher to use when combining the components
+  of this instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-sameposition-in_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sameposition-in_-string">func samePosition(<wbr>in: String)</a>
+        
+<div class="comment collapse" id="comment-func-sameposition-in_-string"><div class="p">
+    <p>Returns the position in the given string that corresponds exactly to this
+index.</p>
+
+<p>This example first finds the position of a space (UTF-8 code point <code>32</code>)
+in a string&#39;s <code>utf8</code> view and then uses this method find the same position
+in the string.</p>
+
+<pre><code class="language-swift">let cafe = &quot;Café 🍵&quot;
+let i = cafe.unicodeScalars.firstIndex(of: &quot;🍵&quot;)
+let j = i.samePosition(in: cafe)!
+print(cafe[j...])
+// Prints &quot;🍵&quot;</code></pre>
+
+<p><strong><code>characters</code>:</strong>  The string to use for the index conversion.
+  This index must be a valid index of at least one view of <code>characters</code>.
+<strong>Returns:</strong> The position in <code>characters</code> that corresponds exactly to
+  this index. If this index does not have an exact corresponding
+  position in <code>characters</code>, this method returns <code>nil</code>. For example,
+  an attempt to convert the position of a UTF-8 continuation byte
+  returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func samePosition(in characters: String) -&gt; String.Index?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-sameposition-in_-string-utf8view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sameposition-in_-string-utf8view">func samePosition(<wbr>in: String.UTF8View)</a>
+        
+<div class="comment collapse" id="comment-func-sameposition-in_-string-utf8view"><div class="p">
+    <p>Returns the position in the given UTF-8 view that corresponds exactly to
+this index.</p>
+
+<p>This example first finds the position of the character <code>&quot;é&quot;</code>, and then
+uses this method find the same position in the string&#39;s <code>utf8</code> view.</p>
+
+<pre><code class="language-swift">let cafe = &quot;Café&quot;
+if let i = cafe.firstIndex(of: &quot;é&quot;) {
+    let j = i.samePosition(in: cafe.utf8)!
+    print(Array(cafe.utf8[j...]))
+}
+// Prints &quot;[195, 169]&quot;</code></pre>
+
+<p><strong><code>utf8</code>:</strong>  The view to use for the index conversion. This index
+  must be a valid index of at least one view of the string shared by
+  <code>utf8</code>.
+<strong>Returns:</strong> The position in <code>utf8</code> that corresponds exactly to this index.
+  If this index does not have an exact corresponding position in <code>utf8</code>,
+  this method returns <code>nil</code>. For example, an attempt to convert the
+  position of a UTF-16 trailing surrogate returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func samePosition(in utf8: String.UTF8View) -&gt; String.UTF8View.Index?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-sameposition-in_-string-utf16view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sameposition-in_-string-utf16view">func samePosition(<wbr>in: String.UTF16View)</a>
+        
+<div class="comment collapse" id="comment-func-sameposition-in_-string-utf16view"><div class="p">
+    <p>Returns the position in the given UTF-16 view that corresponds exactly to
+this index.</p>
+
+<p>The index must be a valid index of <code>String(utf16)</code>.</p>
+
+<p>This example first finds the position of the character <code>&quot;é&quot;</code> and then
+uses this method find the same position in the string&#39;s <code>utf16</code> view.</p>
+
+<pre><code class="language-swift">let cafe = &quot;Café&quot;
+if let i = cafe.firstIndex(of: &quot;é&quot;) {
+    let j = i.samePosition(in: cafe.utf16)!
+    print(cafe.utf16[j])
+}
+// Prints &quot;233&quot;</code></pre>
+
+<p><strong><code>utf16</code>:</strong>  The view to use for the index conversion. This index
+  must be a valid index of at least one view of the string shared by
+  <code>utf16</code>.
+<strong>Returns:</strong> The position in <code>utf16</code> that corresponds exactly to this
+  index. If this index does not have an exact corresponding position in
+  <code>utf16</code>, this method returns <code>nil</code>. For example, an attempt to convert
+  the position of a UTF-8 continuation byte returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func samePosition(in utf16: String.UTF16View) -&gt; String.UTF16View.Index?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-sameposition-in_-string-unicodescalarview">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sameposition-in_-string-unicodescalarview">func samePosition(<wbr>in: String.UnicodeScalarView)</a>
+        
+<div class="comment collapse" id="comment-func-sameposition-in_-string-unicodescalarview"><div class="p">
+    <p>Returns the position in the given view of Unicode scalars that
+corresponds exactly to this index.</p>
+
+<p>This index must be a valid index of <code>String(unicodeScalars).utf16</code>.</p>
+
+<p>This example first finds the position of a space (UTF-16 code point <code>32</code>)
+in a string&#39;s <code>utf16</code> view and then uses this method to find the same
+position in the string&#39;s <code>unicodeScalars</code> view.</p>
+
+<pre><code class="language-swift">let cafe = &quot;Café 🍵&quot;
+let i = cafe.utf16.firstIndex(of: 32)!
+let j = i.samePosition(in: cafe.unicodeScalars)!
+print(cafe.unicodeScalars[..&lt;j])
+// Prints &quot;Café&quot;</code></pre>
+
+<p><strong><code>unicodeScalars</code>:</strong>  The view to use for the index conversion.
+  This index must be a valid index of at least one view of the string
+  shared by <code>unicodeScalars</code>.
+<strong>Returns:</strong> The position in <code>unicodeScalars</code> that corresponds exactly to
+  this index. If this index does not have an exact corresponding
+  position in <code>unicodeScalars</code>, this method returns <code>nil</code>. For example,
+  an attempt to convert the position of a UTF-16 trailing surrogate
+  returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func samePosition(in unicodeScalars: String.UnicodeScalarView) -&gt; String.UnicodeScalarIndex?</code>
+    
+    
+</div></div>
+</div>
+
+

@@ -1,0 +1,186 @@
+---
+layout: "default"
+title: "CodingKey"
+description: "Swift documentation for 'CodingKey': A type that can be used as a key for encoding and decoding."
+keywords: "CodingKey,protocol,swift,documentation,intValue,stringValue,debugDescription,description"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CodingKey</code></div>
+
+<div class="discussion comment">
+    <p>A type that can be used as a key for encoding and decoding.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CustomDebugStringConvertible, CustomStringConvertible</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-intvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-intvalue_">init?(<wbr>intValue:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-intvalue_"><div class="p">
+    <p>Creates a new instance from the specified integer.</p>
+
+<p>If the value passed as <code>intValue</code> does not correspond to any instance of
+this type, the result is <code>nil</code>.</p>
+
+<p><strong><code>intValue</code>:</strong>  The integer value of the desired key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(intValue: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-stringvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-stringvalue_">init?(<wbr>stringValue:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-stringvalue_"><div class="p">
+    <p>Creates a new instance from the given string.</p>
+
+<p>If the string passed as <code>stringValue</code> does not correspond to any instance
+of this type, the result is <code>nil</code>.</p>
+
+<p><strong><code>stringValue</code>:</strong>  The string value of the desired key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(stringValue: String)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-intvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-intvalue_-int">var intValue: Int?</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-intvalue_-int"><div class="p">
+    <p>The value to use in an integer-indexed collection (e.g. an int-keyed
+dictionary).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var intValue: Int? { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-stringvalue_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-stringvalue_-string">var stringValue: String</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-stringvalue_-string"><div class="p">
+    <p>The string to use in a named collection (e.g. a string-keyed dictionary).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var stringValue: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of this instance, suitable for debugging.</p>
+
+<p>Calling this property directly is discouraged. Instead, convert an
+instance of any type to a string by using the <code>String(reflecting:)</code>
+initializer. This initializer works with any type, and uses the custom
+<code>debugDescription</code> property for types that conform to
+<code>CustomDebugStringConvertible</code>:</p>
+
+<pre><code class="language-swift">struct Point: CustomDebugStringConvertible {
+    let x: Int, y: Int
+
+    var debugDescription: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(reflecting: p)
+print(s)
+// Prints &quot;(21, 30)&quot;</code></pre>
+
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type&#39;s <code>debugDescription</code> property.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CustomDebugStringConvertible/"><code>CustomDebugStringConvertible</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of this instance.</p>
+
+<p>Calling this property directly is discouraged. Instead, convert an
+instance of any type to a string by using the <code>String(describing:)</code>
+initializer. This initializer works with any type, and uses the custom
+<code>description</code> property for types that conform to
+<code>CustomStringConvertible</code>:</p>
+
+<pre><code class="language-swift">struct Point: CustomStringConvertible {
+    let x: Int, y: Int
+
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(describing: p)
+print(s)
+// Prints &quot;(21, 30)&quot;</code></pre>
+
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type&#39;s <code>description</code> property.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CustomStringConvertible/"><code>CustomStringConvertible</code></a>
+        </div></div>
+</div>
+
+
+
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+<div class="declaration" id="-var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment--var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment--var-debugdescription_-string"><div class="p">
+    <p>A textual representation of this key, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="-var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment--var-description_-string">var description: String</a><div class="comment collapse" id="comment--var-description_-string"><div class="p">
+    <p>A textual representation of this key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+
+

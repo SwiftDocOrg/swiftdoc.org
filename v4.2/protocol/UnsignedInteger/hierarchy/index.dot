@@ -1,0 +1,36 @@
+strict digraph "UnsignedInteger - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BinaryInteger" [URL="/protocol/BinaryInteger/hierarchy/"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByIntegerLiteral" [URL="/protocol/ExpressibleByIntegerLiteral/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "Numeric" [URL="/protocol/Numeric/hierarchy/"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]
+    "UInt" [URL="/type/UInt/hierarchy/", style=filled]
+    "UInt16" [URL="/type/UInt16/hierarchy/", style=filled]
+    "UInt32" [URL="/type/UInt32/hierarchy/", style=filled]
+    "UInt64" [URL="/type/UInt64/hierarchy/", style=filled]
+    "UInt8" [URL="/type/UInt8/hierarchy/", style=filled]
+    "UnsignedInteger" [URL="/protocol/UnsignedInteger/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]    "UnsignedInteger" -> "UInt"
+    "UnsignedInteger" -> "UInt16"
+    "UnsignedInteger" -> "UInt32"
+    "UnsignedInteger" -> "UInt64"
+    "UnsignedInteger" -> "UInt8"
+    "BinaryInteger" -> "UnsignedInteger"
+    "CustomStringConvertible" -> "BinaryInteger"
+    "Hashable" -> "BinaryInteger"
+    "Numeric" -> "BinaryInteger"
+    "Strideable" -> "BinaryInteger"
+    "Equatable" -> "Hashable"
+    "Equatable" -> "Numeric"
+    "ExpressibleByIntegerLiteral" -> "Numeric"
+    "Comparable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8";
+    }
+}

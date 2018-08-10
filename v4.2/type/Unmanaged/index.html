@@ -1,0 +1,194 @@
+---
+layout: "default"
+title: "Unmanaged"
+description: "Swift documentation for 'Unmanaged': A type for propagating an unmanaged object reference."
+keywords: "Unmanaged,struct,swift,documentation,autorelease,fromOpaque,passRetained,passUnretained,release,retain,takeRetainedValue,takeUnretainedValue,toOpaque"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Unmanaged&lt;Instance&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A type for propagating an unmanaged object reference.</p>
+
+<p>When you use this type, you become partially responsible for
+keeping the object alive.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-fromopaque_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-fromopaque_">static func fromOpaque(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-fromopaque_"><div class="p">
+    <p>Unsafely turns an opaque C pointer into an unmanaged class reference.</p>
+
+<p>This operation does not change reference counts.</p>
+
+<pre><code class="language-swift">let str: CFString = Unmanaged.fromOpaque(ptr).takeUnretainedValue()</code></pre>
+
+<p><strong><code>value</code>:</strong>  An opaque C pointer.
+<strong>Returns:</strong> An unmanaged class reference to <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func fromOpaque(_ value: UnsafeRawPointer) -&gt; Unmanaged&lt;Instance&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-passretained_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-passretained_">static func passRetained(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-passretained_"><div class="p">
+    <p>Creates an unmanaged reference with an unbalanced retain.</p>
+
+<p>The instance passed as <code>value</code> will leak if nothing eventually balances
+the retain.</p>
+
+<p>This is useful when passing an object to an API which Swift does not know
+the ownership rules for, but you know that the API expects you to pass
+the object at +1.</p>
+
+<p><strong><code>value</code>:</strong>  A class instance.
+<strong>Returns:</strong> An unmanaged reference to the object passed as <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func passRetained(_ value: Instance) -&gt; Unmanaged&lt;Instance&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-passunretained_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-passunretained_">static func passUnretained(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-passunretained_"><div class="p">
+    <p>Creates an unmanaged reference without performing an unbalanced
+retain.</p>
+
+<p>This is useful when passing a reference to an API which Swift
+does not know the ownership rules for, but you know that the
+API expects you to pass the object at +0.</p>
+
+<pre><code class="language-swift">CFArraySetValueAtIndex(.passUnretained(array), i,
+                       .passUnretained(object))</code></pre>
+
+<p><strong><code>value</code>:</strong>  A class instance.
+<strong>Returns:</strong> An unmanaged reference to the object passed as <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func passUnretained(_ value: Instance) -&gt; Unmanaged&lt;Instance&gt;</code>
+    
+    
+</div></div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-autorelease">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-autorelease">func autorelease()</a>
+        
+<div class="comment collapse" id="comment-func-autorelease"><div class="p">
+    <p>Performs an unbalanced autorelease of the object.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func autorelease() -&gt; Unmanaged&lt;Instance&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-release">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-release">func release()</a>
+        
+<div class="comment collapse" id="comment-func-release"><div class="p">
+    <p>Performs an unbalanced release of the object.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func release()</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-retain">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-retain">func retain()</a>
+        
+<div class="comment collapse" id="comment-func-retain"><div class="p">
+    <p>Performs an unbalanced retain of the object.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func retain() -&gt; Unmanaged&lt;Instance&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-takeretainedvalue">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-takeretainedvalue">func takeRetainedValue()</a>
+        
+<div class="comment collapse" id="comment-func-takeretainedvalue"><div class="p">
+    <p>Gets the value of this unmanaged reference as a managed
+reference and consumes an unbalanced retain of it.</p>
+
+<p>This is useful when a function returns an unmanaged reference
+and you know that you&#39;re responsible for releasing the result.</p>
+
+<p><strong>Returns:</strong> The object referenced by this <code>Unmanaged</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func takeRetainedValue() -&gt; Instance</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-takeunretainedvalue">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-takeunretainedvalue">func takeUnretainedValue()</a>
+        
+<div class="comment collapse" id="comment-func-takeunretainedvalue"><div class="p">
+    <p>Gets the value of this unmanaged reference as a managed
+reference without consuming an unbalanced retain of it.</p>
+
+<p>This is useful when a function returns an unmanaged reference
+and you know that you&#39;re not responsible for releasing the result.</p>
+
+<p><strong>Returns:</strong> The object referenced by this <code>Unmanaged</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func takeUnretainedValue() -&gt; Instance</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-toopaque">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-toopaque">func toOpaque()</a>
+        
+<div class="comment collapse" id="comment-func-toopaque"><div class="p">
+    <p>Unsafely converts an unmanaged class reference to a pointer.</p>
+
+<p>This operation does not change reference counts.</p>
+
+<pre><code class="language-swift">let str0 = &quot;boxcar&quot; as CFString
+let bits = Unmanaged.passUnretained(str0)
+let ptr = bits.toOpaque()</code></pre>
+
+<p><strong>Returns:</strong> An opaque pointer to the value of this unmanaged reference.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func toOpaque() -&gt; UnsafeMutableRawPointer</code>
+    
+    
+</div></div>
+</div>
+
+

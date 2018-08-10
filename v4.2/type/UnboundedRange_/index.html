@@ -1,0 +1,66 @@
+---
+layout: "default"
+title: "UnboundedRange_"
+description: "Swift documentation for 'UnboundedRange_': A range expression that represents the entire range of a collection."
+keywords: "UnboundedRange_,enum,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum UnboundedRange_</code></div>
+
+<div class="discussion comment">
+    <p>A range expression that represents the entire range of a collection.</p>
+
+<p>You can use the unbounded range operator (<code>...</code>) to create a slice of a
+collection that contains all of the collection&#39;s elements. Slicing with an
+unbounded range is essentially a conversion of a collection instance into
+its slice type.</p>
+
+<p>For example, the following code declares <code>countLetterChanges(_:_:)</code>, a
+function that finds the number of changes required to change one
+word or phrase into another. The function uses a recursive approach to
+perform the same comparisons on smaller and smaller pieces of the original
+strings. In order to use recursion without making copies of the strings at
+each step, <code>countLetterChanges(_:_:)</code> uses <code>Substring</code>, a string&#39;s slice
+type, for its parameters.</p>
+
+<pre><code class="language-swift">func countLetterChanges(_ s1: Substring, _ s2: Substring) -&gt; Int {
+    if s1.isEmpty { return s2.count }
+    if s2.isEmpty { return s1.count }
+
+    let cost = s1.first == s2.first ? 0 : 1
+
+    return min(
+        countLetterChanges(s1.dropFirst(), s2) + 1,
+        countLetterChanges(s1, s2.dropFirst()) + 1,
+        countLetterChanges(s1.dropFirst(), s2.dropFirst()) + cost)
+}</code></pre>
+
+<p>To call <code>countLetterChanges(_:_:)</code> with two strings, use an unbounded
+range in each string&#39;s subscript.</p>
+
+<pre><code class="language-swift">let word1 = &quot;grizzly&quot;
+let word2 = &quot;grisly&quot;
+let changes = countLetterChanges(word1[...], word2[...])
+// changes == 2</code></pre>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+
+

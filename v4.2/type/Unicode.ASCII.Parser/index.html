@@ -1,0 +1,66 @@
+---
+layout: "default"
+title: "Unicode.ASCII.Parser"
+description: "Swift documentation for struct 'Unicode.ASCII.Parser'."
+keywords: "Unicode.ASCII.Parser,struct,swift,documentation,parseScalar,Encoding"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Unicode.ASCII.Parser</code></div>
+
+
+<table class="standard">
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Encoding = Unicode.ASCII</code>
+<div class="comment">
+    <p>The encoding with which this parser is associated</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Constructs an instance that can be used to begin parsing <code>CodeUnit</code>s at
+any Unicode scalar boundary.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-parsescalar-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-parsescalar-from_">mutating func parseScalar(<wbr>from:)</a>
+        
+<div class="comment collapse" id="comment-func-parsescalar-from_"><div class="p">
+    <p>Parses a single Unicode scalar value from <code>input</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func parseScalar&lt;I&gt;(from input: inout I) -&gt; Unicode.ParseResult&lt;Unicode.ASCII.Parser.Encoding.EncodedScalar&gt; where I : IteratorProtocol, I.Element == Unicode.ASCII.Parser.Encoding.CodeUnit</code>
+    
+    
+</div></div>
+</div>
+
+

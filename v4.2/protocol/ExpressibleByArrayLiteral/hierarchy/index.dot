@@ -1,0 +1,20 @@
+strict digraph "ExpressibleByArrayLiteral - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Array" [URL="/type/Array/hierarchy/", style=filled]
+    "ArraySlice" [URL="/type/ArraySlice/hierarchy/", style=filled]
+    "ContiguousArray" [URL="/type/ContiguousArray/hierarchy/", style=filled]
+    "ExpressibleByArrayLiteral" [URL="/protocol/ExpressibleByArrayLiteral/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "OptionSet" [URL="/protocol/OptionSet/hierarchy/"]
+    "Set" [URL="/type/Set/hierarchy/", style=filled]
+    "SetAlgebra" [URL="/protocol/SetAlgebra/hierarchy/"]    "ExpressibleByArrayLiteral" -> "Array"
+    "ExpressibleByArrayLiteral" -> "ArraySlice"
+    "ExpressibleByArrayLiteral" -> "ContiguousArray"
+    "ExpressibleByArrayLiteral" -> "SetAlgebra"
+    "SetAlgebra" -> "OptionSet"
+    "SetAlgebra" -> "Set"
+    subgraph Types {
+        rank = max; "Array"; "ArraySlice"; "ContiguousArray"; "Set";
+    }
+}

@@ -1,0 +1,22 @@
+strict digraph "Optional<Wrapped> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/hierarchy/"]
+    "CustomReflectable" [URL="/protocol/CustomReflectable/hierarchy/"]
+    "Decodable" [URL="/protocol/Decodable/hierarchy/"]
+    "Encodable" [URL="/protocol/Encodable/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByNilLiteral" [URL="/protocol/ExpressibleByNilLiteral/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "Optional<Wrapped>" [URL="/type/Optional/", style="filled", fillcolor="#ee543d", color="#ee543d"]    "ExpressibleByNilLiteral" -> "Optional<Wrapped>"
+    "Encodable" -> "Optional<Wrapped>"
+    "Decodable" -> "Optional<Wrapped>"
+    "CustomDebugStringConvertible" -> "Optional<Wrapped>"
+    "CustomReflectable" -> "Optional<Wrapped>"
+    "Hashable" -> "Optional<Wrapped>"
+    "Equatable" -> "Hashable"
+    subgraph Types {
+        rank = max; "Optional<Wrapped>";
+    }
+}

@@ -1,0 +1,16 @@
+strict digraph "AnyRandomAccessCollection<Element> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AnyRandomAccessCollection<Element>" [URL="/type/AnyRandomAccessCollection/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "BidirectionalCollection" [URL="/protocol/BidirectionalCollection/hierarchy/"]
+    "Collection" [URL="/protocol/Collection/hierarchy/"]
+    "RandomAccessCollection" [URL="/protocol/RandomAccessCollection/hierarchy/"]
+    "Sequence" [URL="/protocol/Sequence/hierarchy/"]    "RandomAccessCollection" -> "AnyRandomAccessCollection<Element>"
+    "BidirectionalCollection" -> "RandomAccessCollection"
+    "Collection" -> "BidirectionalCollection"
+    "Sequence" -> "Collection"
+    subgraph Types {
+        rank = max; "AnyRandomAccessCollection<Element>";
+    }
+}

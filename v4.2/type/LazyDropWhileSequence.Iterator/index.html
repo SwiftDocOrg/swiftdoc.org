@@ -1,0 +1,96 @@
+---
+layout: "default"
+title: "LazyDropWhileSequence.Iterator"
+description: "Swift documentation for 'LazyDropWhileSequence.Iterator': An iterator over the elements traversed by a base iterator that follow the."
+keywords: "LazyDropWhileSequence.Iterator,struct,swift,documentation,next,Element"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct LazyDropWhileSequence.Iterator</code></div>
+
+<div class="discussion comment">
+    <p>An iterator over the elements traversed by a base iterator that follow the
+initial consecutive elements that satisfy a given predicate.</p>
+
+<p>This is the associated iterator for the <code>LazyDropWhileSequence</code>,
+<code>LazyDropWhileCollection</code>, and <code>LazyDropWhileBidirectionalCollection</code>
+types.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">IteratorProtocol</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Element = Base.Element</code>
+<div class="comment">
+    <p>The type of element traversed by the iterator.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-next">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-next">mutating func next()</a>
+        
+<div class="comment collapse" id="comment-func-next"><div class="p">
+    <p>Advances to the next element and returns it, or <code>nil</code> if no next element
+exists.</p>
+
+<p>Repeatedly calling this method returns, in order, all the elements of the
+underlying sequence. As soon as the sequence has run out of elements, all
+subsequent calls return <code>nil</code>.</p>
+
+<p>You must not call this method if any other copy of this iterator has been
+advanced with a call to its <code>next()</code> method.</p>
+
+<p>The following example shows how an iterator can be used explicitly to
+emulate a <code>for</code>-<code>in</code> loop. First, retrieve a sequence&#39;s iterator, and
+then call the iterator&#39;s <code>next()</code> method until it returns <code>nil</code>.</p>
+
+<pre><code class="language-swift">let numbers = [2, 3, 5, 7]
+var numbersIterator = numbers.makeIterator()
+
+while let num = numbersIterator.next() {
+    print(num)
+}
+// Prints &quot;2&quot;
+// Prints &quot;3&quot;
+// Prints &quot;5&quot;
+// Prints &quot;7&quot;</code></pre>
+
+<p><strong>Returns:</strong> The next element in the underlying sequence, if a next element
+  exists; otherwise, <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next() -&gt; LazyDropWhileSequence&lt;Base&gt;.Iterator.Element?</code>
+    
+    
+</div></div>
+</div>
+
+

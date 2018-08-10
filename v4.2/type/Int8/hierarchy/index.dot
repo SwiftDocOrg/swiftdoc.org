@@ -1,0 +1,56 @@
+strict digraph "Int8 - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BinaryInteger" [URL="/protocol/BinaryInteger/hierarchy/"]
+    "CVarArg" [URL="/protocol/CVarArg/hierarchy/"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "CustomPlaygroundQuickLookable" [URL="/protocol/CustomPlaygroundQuickLookable/hierarchy/"]
+    "CustomReflectable" [URL="/protocol/CustomReflectable/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByIntegerLiteral" [URL="/protocol/ExpressibleByIntegerLiteral/hierarchy/"]
+    "FixedWidthInteger" [URL="/protocol/FixedWidthInteger/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "Int8" [URL="/type/Int8/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "LosslessStringConvertible" [URL="/protocol/LosslessStringConvertible/hierarchy/"]
+    "Numeric" [URL="/protocol/Numeric/hierarchy/"]
+    "SignedInteger" [URL="/protocol/SignedInteger/hierarchy/"]
+    "SignedNumeric" [URL="/protocol/SignedNumeric/hierarchy/"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]    "FixedWidthInteger" -> "Int8"
+    "SignedInteger" -> "Int8"
+    "Codable" -> "Int8"
+    "CustomReflectable" -> "Int8"
+    "CustomPlaygroundQuickLookable" -> "Int8"
+    "CVarArg" -> "Int8"
+    "BinaryInteger" -> "FixedWidthInteger"
+    "LosslessStringConvertible" -> "FixedWidthInteger"
+    "_BitwiseOperations" -> "FixedWidthInteger"
+    "CustomStringConvertible" -> "BinaryInteger"
+    "Hashable" -> "BinaryInteger"
+    "Numeric" -> "BinaryInteger"
+    "Strideable" -> "BinaryInteger"
+    "Equatable" -> "Hashable"
+    "Equatable" -> "Numeric"
+    "ExpressibleByIntegerLiteral" -> "Numeric"
+    "Comparable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    "CustomStringConvertible" -> "LosslessStringConvertible"
+    "BinaryInteger" -> "SignedInteger"
+    "SignedNumeric" -> "SignedInteger"
+    "CustomStringConvertible" -> "BinaryInteger"
+    "Hashable" -> "BinaryInteger"
+    "Numeric" -> "BinaryInteger"
+    "Strideable" -> "BinaryInteger"
+    "Equatable" -> "Hashable"
+    "Equatable" -> "Numeric"
+    "ExpressibleByIntegerLiteral" -> "Numeric"
+    "Comparable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    "Numeric" -> "SignedNumeric"
+    "Equatable" -> "Numeric"
+    "ExpressibleByIntegerLiteral" -> "Numeric"
+    subgraph Types {
+        rank = max; "Int8";
+    }
+}

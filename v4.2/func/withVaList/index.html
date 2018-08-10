@@ -1,0 +1,39 @@
+---
+layout: "default"
+title: "withVaList"
+description: "Swift documentation for 'withVaList': Invokes the given closure with a C va_list argument derived from the."
+keywords: "withVaList,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-withvalist-r_-cvararg_-cvalistpointer-r">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withvalist-r_-cvararg_-cvalistpointer-r">func withVaList&lt;R&gt;(<wbr>_:<wbr> [CVarArg], _: (CVaListPointer) -&gt; R)</a>
+        
+<div class="comment collapse" id="comment-func-withvalist-r_-cvararg_-cvalistpointer-r"><div class="p">
+    <p>Invokes the given closure with a C <code>va_list</code> argument derived from the
+given array of arguments.</p>
+
+<p>The pointer passed as an argument to <code>body</code> is valid only during the
+execution of <code>withVaList(_:_:)</code>. Do not store or return the pointer for
+later use.</p>
+
+<p>If you need to pass an optional pointer as a <code>CVarArg</code> argument, use the
+<code>Int(bitPattern:)</code> initializer to interpret the optional pointer as an
+<code>Int</code> value, which has the same C variadic calling conventions as a pointer
+on all supported platforms.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>args:</strong> An array of arguments to convert to a C <code>va_list</code> pointer.
+  <strong>body:</strong> A closure with a <code>CVaListPointer</code> parameter that references the
+    arguments passed as <code>args</code>. If <code>body</code> has a return value, that value
+    is also used as the return value for the <code>withVaList(_:)</code> function.
+    The pointer argument is valid only for the duration of the function&#39;s
+    execution.
+<strong>Returns:</strong> The return value, if any, of the <code>body</code> closure parameter.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withVaList&lt;R&gt;(_ args: [CVarArg], _ body: (CVaListPointer) -&gt; R) -&gt; R</code>
+    
+    
+</div></div>
+</div>

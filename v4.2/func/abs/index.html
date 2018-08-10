@@ -1,0 +1,59 @@
+---
+layout: "default"
+title: "abs"
+description: "Swift documentation for 'abs': Returns the absolute value of the given number."
+keywords: "abs,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-abs-t_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-abs-t_-t">func abs&lt;T&gt;(<wbr>_: T)</a>
+
+<div class="comment collapse" id="comment-func-abs-t_-t"><div class="p">
+    <p>Returns the absolute value of the given number.</p>
+
+<p>The absolute value of <code>x</code> must be representable in the same type. In
+particular, the absolute value of a signed, fixed-width integer type&#39;s
+minimum cannot be represented.</p>
+
+<pre><code class="language-swift">let x = Int8.min
+// x == -128
+let y = abs(x)
+// Overflow error</code></pre>
+
+<p><strong><code>x</code>:</strong>  A signed number.
+<strong>Returns:</strong> The absolute value of <code>x</code>.</p>
+
+    <h4>Declaration</h4>
+    <code class="language-swift">func abs&lt;T&gt;(_ x: T) -&gt; T where T : Comparable, T : SignedNumeric</code>
+
+
+</div></div>
+</div>
+<div class="declaration" id="func-abs-t_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-abs-t_-t">func abs&lt;T&gt;(<wbr>_: T)</a>
+
+<div class="comment collapse" id="comment-func-abs-t_-t"><div class="p">
+    <p>Returns the absolute value of <code>x</code>.</p>
+
+    <h4>Declaration</h4>
+    <code class="language-swift">func abs&lt;T&gt;(_ x: T) -&gt; T where T : FloatingPoint, T == T.Magnitude</code>
+
+
+</div></div>
+</div>
+<div class="declaration" id="func-abs-t_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-abs-t_-t">func abs&lt;T&gt;(<wbr>_: T)</a>
+
+<div class="comment collapse" id="comment-func-abs-t_-t"><div class="p">
+    <p>Returns the absolute value of the given number.</p>
+
+<p><strong><code>x</code>:</strong>  A signed number.
+<strong>Returns:</strong> The absolute value of <code>x</code>.</p>
+
+    <h4>Declaration</h4>
+    <code class="language-swift">func abs&lt;T&gt;(_ x: T) -&gt; T where T : SignedNumeric, T == T.Magnitude</code>
+
+
+</div></div>
+</div>

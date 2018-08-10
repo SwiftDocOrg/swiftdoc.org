@@ -1,0 +1,57 @@
+---
+layout: "default"
+title: "Operator: ||"
+description: "Swift documentation for the '||' operator."
+root: "/v4.2"
+---
+
+<code class="language-swift"> operator || {
+    associativity left
+    precedence 
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-barbar_-bool-rhs_-autoclosure-throws-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-barbar_-bool-rhs_-autoclosure-throws-bool">func ||(<wbr>_:<wbr> Bool, rhs: @autoclosure () throws -&gt; Bool)</a>
+        
+<div class="comment collapse" id="comment-func-barbar_-bool-rhs_-autoclosure-throws-bool"><div class="p">
+    <p>Performs a logical OR operation on two Boolean values.</p>
+
+<p>The logical OR operator (<code>||</code>) combines two Boolean values and returns
+<code>true</code> if at least one of the values is <code>true</code>. If both values are
+<code>false</code>, the operator returns <code>false</code>.</p>
+
+<p>This operator uses short-circuit evaluation: The left-hand side (<code>lhs</code>) is
+evaluated first, and the right-hand side (<code>rhs</code>) is evaluated only if
+<code>lhs</code> evaluates to <code>false</code>. For example:</p>
+
+<pre><code class="language-swift">let majorErrors: Set = [&quot;No first name&quot;, &quot;No last name&quot;, ...]
+let error = &quot;&quot;
+
+if error.isEmpty || !majorErrors.contains(error) {
+    print(&quot;No major errors detected&quot;)
+} else {
+    print(&quot;Major error: \(error)&quot;)
+}
+// Prints &quot;No major errors detected&quot;</code></pre>
+
+<p>In this example, <code>lhs</code> tests whether <code>error</code> is an empty string.
+Evaluation of the <code>||</code> operator is one of the following:</p>
+
+<ul><li>When <code>error</code> is an empty string, <code>lhs</code> evaluates to <code>true</code> and <code>rhs</code> is
+not evaluated, skipping the call to <code>majorErrors.contains(_:)</code>. The
+result of the operation is <code>true</code>.</li><li>When <code>error</code> is not an empty string, <code>lhs</code> evaluates to <code>false</code> and
+<code>rhs</code> is evaluated. The result of evaluating <code>rhs</code> is the result of the
+<code>||</code> operation.</li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The left-hand side of the operation.
+  <strong>rhs:</strong> The right-hand side of the operation.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ||(lhs: Bool, rhs: @autoclosure () throws -&gt; Bool) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>

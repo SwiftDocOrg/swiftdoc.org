@@ -1,0 +1,15 @@
+strict digraph "UnicodeCodec - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Unicode.UTF16" [URL="/type/Unicode.UTF16/hierarchy/", style=filled]
+    "Unicode.UTF32" [URL="/type/Unicode.UTF32/hierarchy/", style=filled]
+    "Unicode.UTF8" [URL="/type/Unicode.UTF8/hierarchy/", style=filled]
+    "UnicodeCodec" [URL="/protocol/UnicodeCodec/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]    "UnicodeCodec" -> "Unicode.UTF8"
+    "UnicodeCodec" -> "Unicode.UTF16"
+    "UnicodeCodec" -> "Unicode.UTF32"
+    "_UnicodeEncoding" -> "UnicodeCodec"
+    subgraph Types {
+        rank = max; "Unicode.UTF8"; "Unicode.UTF16"; "Unicode.UTF32";
+    }
+}

@@ -1,0 +1,102 @@
+strict digraph "Comparable - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AnyIndex" [URL="/type/AnyIndex/hierarchy/", style=filled]
+    "BinaryFloatingPoint" [URL="/protocol/BinaryFloatingPoint/hierarchy/"]
+    "BinaryInteger" [URL="/protocol/BinaryInteger/hierarchy/"]
+    "Character" [URL="/type/Character/hierarchy/", style=filled]
+    "Character.UnicodeScalarView.Index" [URL="/type/Character.UnicodeScalarView.Index/hierarchy/", style=filled]
+    "ClosedRange.Index" [URL="/type/ClosedRange.Index/hierarchy/", style=filled]
+    "Comparable" [URL="/protocol/Comparable/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "Dictionary.Index" [URL="/type/Dictionary.Index/hierarchy/", style=filled]
+    "Double" [URL="/type/Double/hierarchy/", style=filled]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "FixedWidthInteger" [URL="/protocol/FixedWidthInteger/hierarchy/"]
+    "FlattenCollection.Index" [URL="/type/FlattenCollection.Index/hierarchy/", style=filled]
+    "Float" [URL="/type/Float/hierarchy/", style=filled]
+    "Float80" [URL="/type/Float80/hierarchy/", style=filled]
+    "FloatingPoint" [URL="/protocol/FloatingPoint/hierarchy/"]
+    "Int" [URL="/type/Int/hierarchy/", style=filled]
+    "Int16" [URL="/type/Int16/hierarchy/", style=filled]
+    "Int32" [URL="/type/Int32/hierarchy/", style=filled]
+    "Int64" [URL="/type/Int64/hierarchy/", style=filled]
+    "Int8" [URL="/type/Int8/hierarchy/", style=filled]
+    "LazyDropWhileCollection.Index" [URL="/type/LazyDropWhileCollection.Index/hierarchy/", style=filled]
+    "LazyPrefixWhileCollection.Index" [URL="/type/LazyPrefixWhileCollection.Index/hierarchy/", style=filled]
+    "ObjectIdentifier" [URL="/type/ObjectIdentifier/hierarchy/", style=filled]
+    "ReversedCollection.Index" [URL="/type/ReversedCollection.Index/hierarchy/", style=filled]
+    "Set.Index" [URL="/type/Set.Index/hierarchy/", style=filled]
+    "SignedInteger" [URL="/protocol/SignedInteger/hierarchy/"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]
+    "String" [URL="/type/String/hierarchy/", style=filled]
+    "String.Index" [URL="/type/String.Index/hierarchy/", style=filled]
+    "String.UTF16View.Index" [URL="/type/String.UTF16View.Index/hierarchy/", style=filled]
+    "StringProtocol" [URL="/protocol/StringProtocol/hierarchy/"]
+    "Substring" [URL="/type/Substring/hierarchy/", style=filled]
+    "UInt" [URL="/type/UInt/hierarchy/", style=filled]
+    "UInt16" [URL="/type/UInt16/hierarchy/", style=filled]
+    "UInt32" [URL="/type/UInt32/hierarchy/", style=filled]
+    "UInt64" [URL="/type/UInt64/hierarchy/", style=filled]
+    "UInt8" [URL="/type/UInt8/hierarchy/", style=filled]
+    "Unicode.Scalar" [URL="/type/Unicode.Scalar/hierarchy/", style=filled]
+    "UnsafeMutablePointer" [URL="/type/UnsafeMutablePointer/hierarchy/", style=filled]
+    "UnsafeMutableRawPointer" [URL="/type/UnsafeMutableRawPointer/hierarchy/", style=filled]
+    "UnsafePointer" [URL="/type/UnsafePointer/hierarchy/", style=filled]
+    "UnsafeRawPointer" [URL="/type/UnsafeRawPointer/hierarchy/", style=filled]
+    "UnsignedInteger" [URL="/protocol/UnsignedInteger/hierarchy/"]    "Comparable" -> "AnyIndex"
+    "Comparable" -> "Character"
+    "Comparable" -> "ObjectIdentifier"
+    "Comparable" -> "Strideable"
+    "Comparable" -> "StringProtocol"
+    "Comparable" -> "Character.UnicodeScalarView.Index"
+    "Comparable" -> "ClosedRange.Index"
+    "Comparable" -> "Dictionary.Index"
+    "Comparable" -> "FlattenCollection.Index"
+    "Comparable" -> "LazyDropWhileCollection.Index"
+    "Comparable" -> "LazyPrefixWhileCollection.Index"
+    "Comparable" -> "ReversedCollection.Index"
+    "Comparable" -> "Set.Index"
+    "Comparable" -> "String.Index"
+    "Comparable" -> "Unicode.Scalar"
+    "Strideable" -> "BinaryInteger"
+    "Strideable" -> "FloatingPoint"
+    "Strideable" -> "UnsafeMutablePointer"
+    "Strideable" -> "UnsafeMutableRawPointer"
+    "Strideable" -> "UnsafePointer"
+    "Strideable" -> "UnsafeRawPointer"
+    "Strideable" -> "String.UTF16View.Index"
+    "BinaryInteger" -> "FixedWidthInteger"
+    "BinaryInteger" -> "SignedInteger"
+    "BinaryInteger" -> "UnsignedInteger"
+    "FixedWidthInteger" -> "Int"
+    "FixedWidthInteger" -> "Int16"
+    "FixedWidthInteger" -> "Int32"
+    "FixedWidthInteger" -> "Int64"
+    "FixedWidthInteger" -> "Int8"
+    "FixedWidthInteger" -> "UInt"
+    "FixedWidthInteger" -> "UInt16"
+    "FixedWidthInteger" -> "UInt32"
+    "FixedWidthInteger" -> "UInt64"
+    "FixedWidthInteger" -> "UInt8"
+    "SignedInteger" -> "Int"
+    "SignedInteger" -> "Int16"
+    "SignedInteger" -> "Int32"
+    "SignedInteger" -> "Int64"
+    "SignedInteger" -> "Int8"
+    "UnsignedInteger" -> "UInt"
+    "UnsignedInteger" -> "UInt16"
+    "UnsignedInteger" -> "UInt32"
+    "UnsignedInteger" -> "UInt64"
+    "UnsignedInteger" -> "UInt8"
+    "FloatingPoint" -> "BinaryFloatingPoint"
+    "BinaryFloatingPoint" -> "Double"
+    "BinaryFloatingPoint" -> "Float"
+    "BinaryFloatingPoint" -> "Float80"
+    "StringProtocol" -> "String"
+    "StringProtocol" -> "Substring"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "AnyIndex"; "Character"; "ObjectIdentifier"; "Character.UnicodeScalarView.Index"; "ClosedRange.Index"; "Dictionary.Index"; "FlattenCollection.Index"; "LazyDropWhileCollection.Index"; "LazyPrefixWhileCollection.Index"; "ReversedCollection.Index"; "Set.Index"; "String.Index"; "Unicode.Scalar"; "UnsafeMutablePointer"; "UnsafeMutableRawPointer"; "UnsafePointer"; "UnsafeRawPointer"; "String.UTF16View.Index"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8"; "Double"; "Float"; "Float80"; "String"; "Substring";
+    }
+}

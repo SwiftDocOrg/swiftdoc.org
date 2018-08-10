@@ -1,0 +1,100 @@
+---
+layout: "default"
+title: "withoutActuallyEscaping"
+description: "Swift documentation for 'withoutActuallyEscaping': Allows a nonescaping closure to temporarily be used as if it were allowed."
+keywords: "withoutActuallyEscaping,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-withoutactuallyescaping-closuretype-resulttype_-closuretype-do_-closuretype-throws-resulttype">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withoutactuallyescaping-closuretype-resulttype_-closuretype-do_-closuretype-throws-resulttype">func withoutActuallyEscaping&lt;ClosureType, ResultType&gt;(<wbr>_:<wbr> ClosureType, do: (ClosureType) throws -&gt; ResultType)</a>
+        
+<div class="comment collapse" id="comment-func-withoutactuallyescaping-closuretype-resulttype_-closuretype-do_-closuretype-throws-resulttype"><div class="p">
+    <p>Allows a nonescaping closure to temporarily be used as if it were allowed
+to escape.</p>
+
+<p>You can use this function to call an API that takes an escaping closure in
+a way that doesn&#39;t allow the closure to escape in practice. The examples
+below demonstrate how to use <code>withoutActuallyEscaping(_:do:)</code> in
+conjunction with two common APIs that use escaping closures: lazy
+collection views and asynchronous operations.</p>
+
+<p>The following code declares an <code>allValues(in:match:)</code> function that checks
+whether all the elements in an array match a predicate. The function won&#39;t
+compile as written, because a lazy collection&#39;s <code>filter(_:)</code> method
+requires an escaping closure. The lazy collection isn&#39;t persisted, so the
+<code>predicate</code> closure won&#39;t actually escape the body of the function;
+nevertheless, it can&#39;t be used in this way.</p>
+
+<pre><code class="language-swift">func allValues(in array: [Int], match predicate: (Int) -&gt; Bool) -&gt; Bool {
+    return array.lazy.filter { !predicate($0) }.isEmpty
+}
+// error: closure use of non-escaping parameter &#39;predicate&#39;...</code></pre>
+
+<p><code>withoutActuallyEscaping(_:do:)</code> provides a temporarily escapable copy of
+<code>predicate</code> that <em>can</em> be used in a call to the lazy view&#39;s <code>filter(_:)</code>
+method. The second version of <code>allValues(in:match:)</code> compiles without
+error, with the compiler guaranteeing that the <code>escapablePredicate</code>
+closure doesn&#39;t last beyond the call to <code>withoutActuallyEscaping(_:do:)</code>.</p>
+
+<pre><code class="language-swift">func allValues(in array: [Int], match predicate: (Int) -&gt; Bool) -&gt; Bool {
+    return withoutActuallyEscaping(predicate) { escapablePredicate in
+        array.lazy.filter { !escapablePredicate($0) }.isEmpty
+    }
+}</code></pre>
+
+<p>Asynchronous calls are another type of API that typically escape their
+closure arguments. The following code declares a
+<code>perform(_:simultaneouslyWith:)</code> function that uses a dispatch queue to
+execute two closures concurrently.</p>
+
+<pre><code class="language-swift">func perform(_ f: () -&gt; Void, simultaneouslyWith g: () -&gt; Void) {
+    let queue = DispatchQueue(label: &quot;perform&quot;, attributes: .concurrent)
+    queue.async(execute: f)
+    queue.async(execute: g)
+    queue.sync(flags: .barrier) {}
+}
+// error: passing non-escaping parameter &#39;f&#39;...
+// error: passing non-escaping parameter &#39;g&#39;...</code></pre>
+
+<p>The <code>perform(_:simultaneouslyWith:)</code> function ends with a call to the
+<code>sync(flags:execute:)</code> method using the <code>.barrier</code> flag, which forces the
+function to wait until both closures have completed running before
+returning. Even though the barrier guarantees that neither closure will
+escape the function, the <code>async(execute:)</code> method still requires that the
+closures passed be marked as <code>@escaping</code>, so the first version of the
+function does not compile. To resolve these errors, you can use
+<code>withoutActuallyEscaping(_:do:)</code> to get copies of <code>f</code> and <code>g</code> that can be
+passed to <code>async(execute:)</code>.</p>
+
+<pre><code class="language-swift">func perform(_ f: () -&gt; Void, simultaneouslyWith g: () -&gt; Void) {
+    withoutActuallyEscaping(f) { escapableF in
+        withoutActuallyEscaping(g) { escapableG in
+            let queue = DispatchQueue(label: &quot;perform&quot;, attributes: .concurrent)
+            queue.async(execute: escapableF)
+            queue.async(execute: escapableG)
+            queue.sync(flags: .barrier) {}
+        }
+    }
+}</code></pre>
+
+<p><strong>Important:</strong> The escapable copy of <code>closure</code> passed to <code>body</code> is only valid
+  during the call to <code>withoutActuallyEscaping(_:do:)</code>. It is undefined
+  behavior for the escapable closure to be stored, referenced, or executed
+  after the function returns.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>closure:</strong> A nonescaping closure value that is made escapable for the
+    duration of the execution of the <code>body</code> closure. If <code>body</code> has a
+    return value, that value is also used as the return value for the
+    <code>withoutActuallyEscaping(_:do:)</code> function.
+  <strong>body:</strong> A closure that is executed immediately with an escapable copy of
+    <code>closure</code> as its argument.
+<strong>Returns:</strong> The return value, if any, of the <code>body</code> closure.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withoutActuallyEscaping&lt;ClosureType, ResultType&gt;(_ closure: ClosureType, do body: (ClosureType) throws -&gt; ResultType) rethrows -&gt; ResultType</code>
+    
+    
+</div></div>
+</div>

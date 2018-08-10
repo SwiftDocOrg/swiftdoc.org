@@ -1,0 +1,332 @@
+---
+layout: "default"
+title: "SingleValueEncodingContainer"
+description: "Swift documentation for 'SingleValueEncodingContainer': A container that can support the storage and direct encoding of a single."
+keywords: "SingleValueEncodingContainer,protocol,swift,documentation,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encodeNil,codingPath"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol SingleValueEncodingContainer</code></div>
+
+<div class="discussion comment">
+    <p>A container that can support the storage and direct encoding of a single
+non-keyed value.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-codingpath_-codingkey">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-codingpath_-codingkey">var codingPath: [CodingKey]</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-codingpath_-codingkey"><div class="p">
+    <p>The path of coding keys taken to get to this point in encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var codingPath: [CodingKey] { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-encode_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-bool">mutating func encode(<wbr>_: Bool)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-bool"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Bool) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-double">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-double">mutating func encode(<wbr>_: Double)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-double"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Double) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-float">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-float">mutating func encode(<wbr>_: Float)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-float"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Float) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int">mutating func encode(<wbr>_: Int)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int8">mutating func encode(<wbr>_: Int8)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int8"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int8) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int16">mutating func encode(<wbr>_: Int16)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int16"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int16) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int32">mutating func encode(<wbr>_: Int32)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int32"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int32) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int64">mutating func encode(<wbr>_: Int64)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int64"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int64) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-string">mutating func encode(<wbr>_: String)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-string"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: String) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint">mutating func encode(<wbr>_: UInt)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint8">mutating func encode(<wbr>_: UInt8)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint8"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt8) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint16">mutating func encode(<wbr>_: UInt16)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint16"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt16) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint32">mutating func encode(<wbr>_: UInt32)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint32"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt32) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint64">mutating func encode(<wbr>_: UInt64)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint64"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt64) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t_-t">mutating func encode&lt;T&gt;(<wbr>_: T)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode-t_-t"><div class="p">
+    <p>Encodes a single value of the given type.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(_ value: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodenil">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodenil">mutating func encodeNil()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encodenil"><div class="p">
+    <p>Encodes a null value.</p>
+
+<p><strong>throws:</strong> <code>EncodingError.invalidValue</code> if a null value is invalid in the
+  current context for this format.
+<strong>precondition:</strong> May not be called after a previous <code>self.encode(_:)</code>
+  call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeNil() throws</code>
+    
+    
+</div></div>
+</div>
+
+

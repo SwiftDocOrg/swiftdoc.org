@@ -1,0 +1,809 @@
+---
+layout: "default"
+title: "UnkeyedEncodingContainer"
+description: "Swift documentation for 'UnkeyedEncodingContainer': A type that provides a view into an encoder&#39;s storage and is used to hold."
+keywords: "UnkeyedEncodingContainer,protocol,swift,documentation,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encodeConditional,encodeNil,nestedContainer,nestedUnkeyedContainer,superEncoder,codingPath,count"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol UnkeyedEncodingContainer</code></div>
+
+<div class="discussion comment">
+    <p>A type that provides a view into an encoder&#39;s storage and is used to hold
+the encoded properties of an encodable type sequentially, without keys.</p>
+
+<p>Encoders should provide types conforming to <code>UnkeyedEncodingContainer</code> for
+their format.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-codingpath_-codingkey">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-codingpath_-codingkey">var codingPath: [CodingKey]</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-codingpath_-codingkey"><div class="p">
+    <p>The path of coding keys taken to get to this point in encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var codingPath: [CodingKey] { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    <p>The number of elements encoded into the container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-encode_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-bool">mutating func encode(<wbr>_: Bool)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-bool"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Bool) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-double">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-double">mutating func encode(<wbr>_: Double)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-double"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Double) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-float">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-float">mutating func encode(<wbr>_: Float)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-float"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Float) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int">mutating func encode(<wbr>_: Int)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int8">mutating func encode(<wbr>_: Int8)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int8"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int8) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int16">mutating func encode(<wbr>_: Int16)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int16"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int16) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int32">mutating func encode(<wbr>_: Int32)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int32"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int32) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int64">mutating func encode(<wbr>_: Int64)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int64"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int64) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-string">mutating func encode(<wbr>_: String)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-string"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: String) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint">mutating func encode(<wbr>_: UInt)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint8">mutating func encode(<wbr>_: UInt8)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint8"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt8) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint16">mutating func encode(<wbr>_: UInt16)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint16"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt16) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint32">mutating func encode(<wbr>_: UInt32)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint32"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt32) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint64">mutating func encode(<wbr>_: UInt64)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint64"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt64) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t_-t">mutating func encode&lt;T&gt;(<wbr>_: T)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode-t_-t"><div class="p">
+    <p>Encodes the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(_ value: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func-encode-t-contentsof_-t"><div class="p">
+    <p>Encodes the elements of the given sequence.</p>
+
+<p><strong><code>sequence</code>:</strong>  The sequences whose contents to encode.
+<strong>throws:</strong> An error if any of the contained values throws an error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeconditional_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeconditional_">mutating func encodeConditional(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-encodeconditional_"><div class="p">
+    <p>Encodes a reference to the given object only if it is encoded
+unconditionally elsewhere in the payload (previously, or in the future).</p>
+
+<p>For encoders which don&#39;t support this feature, the default implementation
+encodes the given object unconditionally.</p>
+
+<p>For formats which don&#39;t support this feature, the default implementation
+encodes the given object unconditionally.</p>
+
+<p><strong><code>object</code>:</strong>  The object to encode.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeConditional&lt;T&gt;(_ object: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodenil">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodenil">mutating func encodeNil()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encodenil"><div class="p">
+    <p>Encodes a null value.</p>
+
+<p><strong>throws:</strong> <code>EncodingError.invalidValue</code> if a null value is invalid in the
+  current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeNil() throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-nestedcontainer-keyedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-nestedcontainer-keyedby_">mutating func nestedContainer(<wbr>keyedBy:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-nestedcontainer-keyedby_"><div class="p">
+    <p>Encodes a nested container keyed by the given type and returns it.</p>
+
+<p><strong><code>keyType</code>:</strong>  The key type to use for the container.
+<strong>returns:</strong> A new keyed encoding container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func nestedContainer&lt;NestedKey&gt;(keyedBy keyType: NestedKey.Type) -&gt; KeyedEncodingContainer&lt;NestedKey&gt; where NestedKey : CodingKey</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-nestedunkeyedcontainer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-nestedunkeyedcontainer">mutating func nestedUnkeyedContainer()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-nestedunkeyedcontainer"><div class="p">
+    <p>Encodes an unkeyed encoding container and returns it.</p>
+
+<p><strong>returns:</strong> A new unkeyed encoding container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func nestedUnkeyedContainer() -&gt; UnkeyedEncodingContainer</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-superencoder">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-superencoder">mutating func superEncoder()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-superencoder"><div class="p">
+    <p>Encodes a nested container and returns an <code>Encoder</code> instance for encoding
+<code>super</code> into that container.</p>
+
+<p><strong>returns:</strong> A new encoder to pass to <code>super.encode(to:)</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func superEncoder() -&gt; Encoder</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+
+
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encode-t-contentsof_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encode-t-contentsof_-t">mutating func encode&lt;T&gt;(<wbr>contentsOf: T)</a>
+        
+<div class="comment collapse" id="comment-func--encode-t-contentsof_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(contentsOf sequence: T) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeconditional_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeconditional_">mutating func encodeConditional(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--encodeconditional_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeConditional&lt;T&gt;(_ object: T) throws</code>
+    
+    
+</div></div>
+</div>
+
+
+
+
+

@@ -1,0 +1,3117 @@
+---
+layout: "default"
+title: "String"
+description: "Swift documentation for 'String': A Unicode string value that is a collection of characters."
+keywords: "String,struct,swift,documentation,addingPercentEncoding,addingPercentEscapes,append,append,append,append,append,appending,appendingFormat,applyingTransform,availableStringEncodings,cString,canBeConverted,capitalized,caseInsensitiveCompare,commonPrefix,compare,completePath,components,components,contains,data,decodeCString,defaultCStringEncoding,distance,encode,enumerateLines,enumerateLinguisticTags,enumerateSubstrings,folding,getBytes,getCString,getLineStart,getParagraphStart,hasPrefix,hasSuffix,hash,index,index,index,index,insert,insert,lengthOfBytes,lineRange,linguisticTags,localizedCaseInsensitiveCompare,localizedCaseInsensitiveContains,localizedCompare,localizedName,localizedStandardCompare,localizedStandardContains,localizedStandardRange,localizedStringWithFormat,lowercased,lowercased,max,maximumLengthOfBytes,min,padding,paragraphRange,propertyList,propertyListFromStringsFileFormat,range,rangeOfCharacter,rangeOfComposedCharacterSequence,rangeOfComposedCharacterSequences,remove,removeAll,removeSubrange,replaceSubrange,replacingCharacters,replacingOccurrences,replacingPercentEscapes,reserveCapacity,substring,substring,substring,trimmingCharacters,uppercased,uppercased,withCString,withCString,withMutableCharacters,write,write,write,write,capitalized,characters,count,customMirror,customPlaygroundQuickLook,debugDescription,decomposedStringWithCanonicalMapping,decomposedStringWithCompatibilityMapping,description,endIndex,fastestEncoding,hash,hashValue,isEmpty,localizedCapitalized,localizedLowercase,localizedUppercase,precomposedStringWithCanonicalMapping,precomposedStringWithCompatibilityMapping,removingPercentEncoding,smallestEncoding,startIndex,unicodeScalars,utf8,utf8CString,utf16,UTF8Index,CharacterView,IndexDistance,SubSequence,UnicodeScalarIndex,UTF16Index"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct String</code></div>
+
+<div class="discussion comment">
+    <p>A Unicode string value that is a collection of characters.</p>
+
+<p>A string is a series of characters, such as <code>&quot;Swift&quot;</code>, that forms a
+collection. Strings in Swift are Unicode correct and locale insensitive,
+and are designed to be efficient. The <code>String</code> type bridges with the
+Objective-C class <code>NSString</code> and offers interoperability with C functions
+that works with strings.</p>
+
+<p>You can create new strings using string literals or string interpolations.
+A <em>string literal</em> is a series of characters enclosed in quotes.</p>
+
+<pre><code class="language-swift">let greeting = &quot;Welcome!&quot;</code></pre>
+
+<p><em>String interpolations</em> are string literals that evaluate any included
+expressions and convert the results to string form. String interpolations
+give you an easy way to build a string from multiple pieces. Wrap each
+expression in a string interpolation in parentheses, prefixed by a
+backslash.</p>
+
+<pre><code class="language-swift">let name = &quot;Rosa&quot;
+let personalizedGreeting = &quot;Welcome, \(name)!&quot;
+// personalizedGreeting == &quot;Welcome, Rosa!&quot;
+
+let price = 2
+let number = 3
+let cookiePrice = &quot;\(number) cookies: $\(price * number).&quot;
+// cookiePrice == &quot;3 cookies: $6.&quot;</code></pre>
+
+<p>Combine strings using the concatenation operator (<code>+</code>).</p>
+
+<pre><code class="language-swift">let longerGreeting = greeting + &quot; We&#39;re glad you&#39;re here!&quot;
+// longerGreeting == &quot;Welcome! We&#39;re glad you&#39;re here!&quot;</code></pre>
+
+<p>Multiline string literals are enclosed in three double quotation marks
+(<code>&quot;&quot;&quot;</code>), with each delimiter on its own line. Indentation is stripped from
+each line of a multiline string literal to match the indentation of the
+closing delimiter.</p>
+
+<pre><code class="language-swift">let banner = &quot;&quot;&quot;
+          _,
+         (           o  /) _/_
+          `.  , , , ,  //  /
+        (___)(_(_/_(_ //_ (__
+                     /)
+                    (/
+        &quot;&quot;&quot;</code></pre>
+
+<h1>Modifying and Comparing Strings</h1>
+
+<p>Strings always have value semantics. Modifying a copy of a string leaves
+the original unaffected.</p>
+
+<pre><code class="language-swift">var otherGreeting = greeting
+otherGreeting += &quot; Have a nice time!&quot;
+// otherGreeting == &quot;Welcome! Have a nice time!&quot;
+
+print(greeting)
+// Prints &quot;Welcome!&quot;</code></pre>
+
+<p>Comparing strings for equality using the equal-to operator (<code>==</code>) or a
+relational operator (like <code>&lt;</code> or <code>&gt;=</code>) is always performed using Unicode
+canonical representation. As a result, different representations of a
+string compare as being equal.</p>
+
+<pre><code class="language-swift">let cafe1 = &quot;Cafe\u{301}&quot;
+let cafe2 = &quot;Café&quot;
+print(cafe1 == cafe2)
+// Prints &quot;true&quot;</code></pre>
+
+<p>The Unicode scalar value <code>&quot;\u{301}&quot;</code> modifies the preceding character to
+include an accent, so <code>&quot;e\u{301}&quot;</code> has the same canonical representation
+as the single Unicode scalar value <code>&quot;é&quot;</code>.</p>
+
+<p>Basic string operations are not sensitive to locale settings, ensuring that
+string comparisons and other operations always have a single, stable
+result, allowing strings to be used as keys in <code>Dictionary</code> instances and
+for other purposes.</p>
+
+<h1>Accessing String Elements</h1>
+
+<p>A string is a collection of <em>extended grapheme clusters</em>, which approximate
+human-readable characters. Many individual characters, such as &quot;é&quot;, &quot;김&quot;,
+and &quot;🇮🇳&quot;, can be made up of multiple Unicode scalar values. These scalar
+values are combined by Unicode&#39;s boundary algorithms into extended
+grapheme clusters, represented by the Swift <code>Character</code> type. Each element
+of a string is represented by a <code>Character</code> instance.</p>
+
+<p>For example, to retrieve the first word of a longer string, you can search
+for a space and then create a substring from a prefix of the string up to
+that point:</p>
+
+<pre><code class="language-swift">let name = &quot;Marie Curie&quot;
+let firstSpace = name.firstIndex(of: &quot; &quot;) ?? name.endIndex
+let firstName = name[..&lt;firstSpace]
+// firstName == &quot;Marie&quot;</code></pre>
+
+<p>The <code>firstName</code> constant is an instance of the <code>Substring</code> type---a type
+that represents substrings of a string while sharing the original string&#39;s
+storage. Substrings present the same interface as strings.</p>
+
+<pre><code class="language-swift">print(&quot;\(name)&#39;s first name has \(firstName.count) letters.&quot;)
+// Prints &quot;Marie Curie&#39;s first name has 5 letters.&quot;</code></pre>
+
+<h1>Accessing a String&#39;s Unicode Representation</h1>
+
+<p>If you need to access the contents of a string as encoded in different
+Unicode encodings, use one of the string&#39;s <code>unicodeScalars</code>, <code>utf16</code>, or
+<code>utf8</code> properties. Each property provides access to a view of the string
+as a series of code units, each encoded in a different Unicode encoding.</p>
+
+<p>To demonstrate the different views available for every string, the
+following examples use this <code>String</code> instance:</p>
+
+<pre><code class="language-swift">let cafe = &quot;Cafe\u{301} du 🌍&quot;
+print(cafe)
+// Prints &quot;Café du 🌍&quot;</code></pre>
+
+<p>The <code>cafe</code> string is a collection of the nine characters that are visible
+when the string is displayed.</p>
+
+<pre><code class="language-swift">print(cafe.count)
+// Prints &quot;9&quot;
+print(Array(cafe))
+// Prints &quot;[&quot;C&quot;, &quot;a&quot;, &quot;f&quot;, &quot;é&quot;, &quot; &quot;, &quot;d&quot;, &quot;u&quot;, &quot; &quot;, &quot;🌍&quot;]&quot;</code></pre>
+
+<h2>Unicode Scalar View</h2>
+
+<p>A string&#39;s <code>unicodeScalars</code> property is a collection of Unicode scalar
+values, the 21-bit codes that are the basic unit of Unicode. Each scalar
+value is represented by a <code>Unicode.Scalar</code> instance and is equivalent to a
+UTF-32 code unit.</p>
+
+<pre><code class="language-swift">print(cafe.unicodeScalars.count)
+// Prints &quot;10&quot;
+print(Array(cafe.unicodeScalars))
+// Prints &quot;[&quot;C&quot;, &quot;a&quot;, &quot;f&quot;, &quot;e&quot;, &quot;\u{0301}&quot;, &quot; &quot;, &quot;d&quot;, &quot;u&quot;, &quot; &quot;, &quot;\u{0001F30D}&quot;]&quot;
+print(cafe.unicodeScalars.map { $0.value })
+// Prints &quot;[67, 97, 102, 101, 769, 32, 100, 117, 32, 127757]&quot;</code></pre>
+
+<p>The <code>unicodeScalars</code> view&#39;s elements comprise each Unicode scalar value in
+the <code>cafe</code> string. In particular, because <code>cafe</code> was declared using the
+decomposed form of the <code>&quot;é&quot;</code> character, <code>unicodeScalars</code> contains the
+scalar values for both the letter <code>&quot;e&quot;</code> (101) and the accent character
+<code>&quot;´&quot;</code> (769).</p>
+
+<h2>UTF-16 View</h2>
+
+<p>A string&#39;s <code>utf16</code> property is a collection of UTF-16 code units, the
+16-bit encoding form of the string&#39;s Unicode scalar values. Each code unit
+is stored as a <code>UInt16</code> instance.</p>
+
+<pre><code class="language-swift">print(cafe.utf16.count)
+// Prints &quot;11&quot;
+print(Array(cafe.utf16))
+// Prints &quot;[67, 97, 102, 101, 769, 32, 100, 117, 32, 55356, 57101]&quot;</code></pre>
+
+<p>The elements of the <code>utf16</code> view are the code units for the string when
+encoded in UTF-16. These elements match those accessed through indexed
+<code>NSString</code> APIs.</p>
+
+<pre><code class="language-swift">let nscafe = cafe as NSString
+print(nscafe.length)
+// Prints &quot;11&quot;
+print(nscafe.character(at: 3))
+// Prints &quot;101&quot;</code></pre>
+
+<h2>UTF-8 View</h2>
+
+<p>A string&#39;s <code>utf8</code> property is a collection of UTF-8 code units, the 8-bit
+encoding form of the string&#39;s Unicode scalar values. Each code unit is
+stored as a <code>UInt8</code> instance.</p>
+
+<pre><code class="language-swift">print(cafe.utf8.count)
+// Prints &quot;14&quot;
+print(Array(cafe.utf8))
+// Prints &quot;[67, 97, 102, 101, 204, 129, 32, 100, 117, 32, 240, 159, 140, 141]&quot;</code></pre>
+
+<p>The elements of the <code>utf8</code> view are the code units for the string when
+encoded in UTF-8. This representation matches the one used when <code>String</code>
+instances are passed to C APIs.</p>
+
+<pre><code class="language-swift">let cLength = strlen(cafe)
+print(cLength)
+// Prints &quot;14&quot;</code></pre>
+
+<h1>Measuring the Length of a String</h1>
+
+<p>When you need to know the length of a string, you must first consider what
+you&#39;ll use the length for. Are you measuring the number of characters that
+will be displayed on the screen, or are you measuring the amount of
+storage needed for the string in a particular encoding? A single string
+can have greatly differing lengths when measured by its different views.</p>
+
+<p>For example, an ASCII character like the capital letter <em>A</em> is represented
+by a single element in each of its four views. The Unicode scalar value of
+<em>A</em> is <code>65</code>, which is small enough to fit in a single code unit in both
+UTF-16 and UTF-8.</p>
+
+<pre><code class="language-swift">let capitalA = &quot;A&quot;
+print(capitalA.count)
+// Prints &quot;1&quot;
+print(capitalA.unicodeScalars.count)
+// Prints &quot;1&quot;
+print(capitalA.utf16.count)
+// Prints &quot;1&quot;
+print(capitalA.utf8.count)
+// Prints &quot;1&quot;</code></pre>
+
+<p>On the other hand, an emoji flag character is constructed from a pair of
+Unicode scalar values, like <code>&quot;\u{1F1F5}&quot;</code> and <code>&quot;\u{1F1F7}&quot;</code>. Each of these
+scalar values, in turn, is too large to fit into a single UTF-16 or UTF-8
+code unit. As a result, each view of the string <code>&quot;🇵🇷&quot;</code> reports a different
+length.</p>
+
+<pre><code class="language-swift">let flag = &quot;🇵🇷&quot;
+print(flag.count)
+// Prints &quot;1&quot;
+print(flag.unicodeScalars.count)
+// Prints &quot;2&quot;
+print(flag.utf16.count)
+// Prints &quot;4&quot;
+print(flag.utf8.count)
+// Prints &quot;8&quot;</code></pre>
+
+<p>To check whether a string is empty, use its <code>isEmpty</code> property instead of
+comparing the length of one of the views to <code>0</code>. Unlike with <code>isEmpty</code>,
+calculating a view&#39;s <code>count</code> property requires iterating through the
+elements of the string.</p>
+
+<h1>Accessing String View Elements</h1>
+
+<p>To find individual elements of a string, use the appropriate view for your
+task. For example, to retrieve the first word of a longer string, you can
+search the string for a space and then create a new string from a prefix
+of the string up to that point.</p>
+
+<pre><code class="language-swift">let name = &quot;Marie Curie&quot;
+let firstSpace = name.firstIndex(of: &quot; &quot;) ?? name.endIndex
+let firstName = name[..&lt;firstSpace]
+print(firstName)
+// Prints &quot;Marie&quot;</code></pre>
+
+<p>Strings and their views share indices, so you can access the UTF-8 view of
+the <code>name</code> string using the same <code>firstSpace</code> index.</p>
+
+<pre><code class="language-swift">print(Array(name.utf8[..&lt;firstSpace]))
+// Prints &quot;[77, 97, 114, 105, 101]&quot;</code></pre>
+
+<p>Note that an index into one view may not have an exact corresponding
+position in another view. For example, the <code>flag</code> string declared above
+comprises a single character, but is composed of eight code units when
+encoded as UTF-8. The following code creates constants for the first and
+second positions in the <code>flag.utf8</code> view. Accessing the <code>utf8</code> view with
+these indices yields the first and second code UTF-8 units.</p>
+
+<pre><code class="language-swift">let firstCodeUnit = flag.startIndex
+let secondCodeUnit = flag.utf8.index(after: firstCodeUnit)
+// flag.utf8[firstCodeUnit] == 240
+// flag.utf8[secondCodeUnit] == 159</code></pre>
+
+<p>When used to access the elements of the <code>flag</code> string itself, however, the
+<code>secondCodeUnit</code> index does not correspond to the position of a specific
+character. Instead of only accessing the specific UTF-8 code unit, that
+index is treated as the position of the character at the index&#39;s encoded
+offset. In the case of <code>secondCodeUnit</code>, that character is still the flag
+itself.</p>
+
+<pre><code class="language-swift">// flag[firstCodeUnit] == &quot;🇵🇷&quot;
+// flag[secondCodeUnit] == &quot;🇵🇷&quot;</code></pre>
+
+<p>If you need to validate that an index from one string&#39;s view corresponds
+with an exact position in another view, use the index&#39;s
+<code>samePosition(in:)</code> method or the <code>init(_:within:)</code> initializer.</p>
+
+<pre><code class="language-swift">if let exactIndex = secondCodeUnit.samePosition(in: flag) {
+    print(flag[exactIndex])
+} else {
+    print(&quot;No exact match for this position.&quot;)
+}
+// Prints &quot;No exact match for this position.&quot;</code></pre>
+
+<h1>Performance Optimizations</h1>
+
+<p>Although strings in Swift have value semantics, strings use a copy-on-write
+strategy to store their data in a buffer. This buffer can then be shared
+by different copies of a string. A string&#39;s data is only copied lazily,
+upon mutation, when more than one string instance is using the same
+buffer. Therefore, the first in any sequence of mutating operations may
+cost O(<em>n</em>) time and space.</p>
+
+<p>When a string&#39;s contiguous storage fills up, a new buffer must be allocated
+and data must be moved to the new storage. String buffers use an
+exponential growth strategy that makes appending to a string a constant
+time operation when averaged over many append operations.</p>
+
+<h1>Bridging Between String and NSString</h1>
+
+<p>Any <code>String</code> instance can be bridged to <code>NSString</code> using the type-cast
+operator (<code>as</code>), and any <code>String</code> instance that originates in Objective-C
+may use an <code>NSString</code> instance as its storage. Because any arbitrary
+subclass of <code>NSString</code> can become a <code>String</code> instance, there are no
+guarantees about representation or efficiency when a <code>String</code> instance is
+backed by <code>NSString</code> storage. Because <code>NSString</code> is immutable, it is just
+as though the storage was shared by a copy. The first in any sequence of
+mutating operations causes elements to be copied into unique, contiguous
+storage which may cost O(<em>n</em>) time and space, where <em>n</em> is the length of
+the string&#39;s encoded representation (or more, if the underlying <code>NSString</code>
+has unusual performance characteristics).</p>
+
+<p>For more information about the Unicode terms used in this discussion, see
+the <a href="http://www.unicode.org/glossary/">Unicode.org glossary</a>. In particular, this discussion
+mentions <a href="http://www.unicode.org/glossary/#extended_grapheme_cluster">extended grapheme clusters</a>, <a href="http://www.unicode.org/glossary/#unicode_scalar_value">Unicode scalar
+values</a>, and <a href="http://www.unicode.org/glossary/#canonical_equivalent">canonical equivalence</a>.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">BidirectionalCollection, Codable, Collection, Comparable, CustomDebugStringConvertible, CustomPlaygroundQuickLookable, CustomReflectable, CustomStringConvertible, Equatable, ExpressibleByExtendedGraphemeClusterLiteral, ExpressibleByStringLiteral, ExpressibleByUnicodeScalarLiteral, Hashable, LosslessStringConvertible, MirrorPath, RangeReplaceableCollection, Sequence, StringProtocol, TextOutputStream, TextOutputStreamable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">UTF8Index = String.UTF8View.Index</code>
+<div class="comment">
+    <p>The index type for subscripting a string.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">CharacterView</code>
+</div>
+<div class="declaration">
+<code class="language-swift">IndexDistance = Int</code>
+<div class="comment">
+    <p>A type that represents the number of steps between two <code>String.Index</code>
+values, where one value is reachable from the other.</p>
+
+<p>In Swift, <em>reachability</em> refers to the ability to produce one value from
+the other through zero or more applications of <code>index(after:)</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence = Substring</code>
+<div class="comment">
+    <p>A sequence that represents a contiguous subrange of the collection&#39;s
+elements.</p>
+
+<p>This associated type appears as a requirement in the <code>Sequence</code>
+protocol, but it is restated here with stricter constraints. In a
+collection, the subsequence should also conform to <code>Collection</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">UnicodeScalarIndex = String.UnicodeScalarView.Index</code>
+<div class="comment">
+    <p>The index type for a string&#39;s <code>unicodeScalars</code> view.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">UTF16Index = String.UTF16View.Index</code>
+<div class="comment">
+    <p>The index type for subscripting a string.</p>
+</div>
+</div>
+</td>
+</tr>
+
+<tr>
+<th>Nested Types</th>
+<td><code class="nested">String.UTF8View, String.Index, String.UnicodeScalarView, String.UTF16View, String.UTF8View.Iterator, String.UnicodeScalarView.Iterator, String.UTF16View.Indices</code></td>
+</tr>
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Creates an empty string.</p>
+
+<p>Using this initializer is equivalent to initializing a string with an
+empty string literal.</p>
+
+<pre><code class="language-swift">let empty = &quot;&quot;
+let alsoEmpty = String()</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-character">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-character">init(<wbr>_: Character)</a><div class="comment collapse" id="comment-init_-character"><div class="p">
+    <p>Creates a string containing the given character.</p>
+
+<p><strong><code>c</code>:</strong>  The character to convert to a string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ c: Character)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-nsstring">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-nsstring">init(<wbr>_: NSString)</a><div class="comment collapse" id="comment-init_-nsstring"><div class="p">
+    <p><em>[Foundation]</em></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ cocoaString: NSString)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-string-characterview">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-string-characterview">init(<wbr>_: String.CharacterView)</a><div class="comment collapse" id="comment-init_-string-characterview"><div class="p">
+    <p>Creates a string from the given character view.</p>
+
+<p>Use this initializer to recover a string after performing a collection
+slicing operation on a string&#39;s character view.</p>
+
+<pre><code class="language-swift">let poem = &quot;&quot;&quot;
+      &#39;Twas brillig, and the slithy toves /
+      Did gyre and gimbal in the wabe: /
+      All mimsy were the borogoves /
+      And the mome raths outgrabe.
+      &quot;&quot;&quot;
+let excerpt = String(poem.characters.prefix(22)) + &quot;...&quot;
+print(excerpt)
+// Prints &quot;&#39;Twas brillig, and the...&quot;</code></pre>
+
+<p><strong><code>characters</code>:</strong>  A character view to convert to a string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ characters: String.CharacterView)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-string-utf8view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-string-utf8view">init(<wbr>_: String.UTF8View)</a><div class="comment collapse" id="comment-init_-string-utf8view"><div class="p">
+    <p>Creates a string corresponding to the given sequence of UTF-8 code units.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ utf8: String.UTF8View)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-string-utf16view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-string-utf16view">init(<wbr>_: String.UTF16View)</a><div class="comment collapse" id="comment-init_-string-utf16view"><div class="p">
+    <p>Creates a string corresponding to the given sequence of UTF-16 code units.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ utf16: String.UTF16View)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-string-unicodescalarview">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-string-unicodescalarview">init(<wbr>_: String.UnicodeScalarView)</a><div class="comment collapse" id="comment-init_-string-unicodescalarview"><div class="p">
+    <p>Creates a string corresponding to the given collection of Unicode
+scalars.</p>
+
+<p>You can use this initializer to create a new string from a slice of
+another string&#39;s <code>unicodeScalars</code> view.</p>
+
+<pre><code class="language-swift">let picnicGuest = &quot;Deserving porcupine&quot;
+if let i = picnicGuest.unicodeScalars.firstIndex(of: &quot; &quot;) {
+    let adjective = String(picnicGuest.unicodeScalars[..&lt;i])
+    print(adjective)
+}
+// Prints &quot;Deserving&quot;</code></pre>
+
+<p>The <code>adjective</code> constant is created by calling this initializer with a
+slice of the <code>picnicGuest.unicodeScalars</code> view.</p>
+
+<p><strong><code>unicodeScalars</code>:</strong>  A collection of Unicode scalar values.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ unicodeScalars: String.UnicodeScalarView)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-substring">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-substring">init(<wbr>_: Substring)</a><div class="comment collapse" id="comment-init_-substring"><div class="p">
+    <p>Creates a new string from the given substring.</p>
+
+<p><strong><code>substring</code>:</strong>  A substring to convert to a standalone <code>String</code>
+  instance.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of <code>substring</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ substring: Substring)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-substring-characterview">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-substring-characterview">init(<wbr>_: Substring.CharacterView)</a><div class="comment collapse" id="comment-init_-substring-characterview"><div class="p">
+    <p>Creates a String having the given content.</p>
+
+<p><strong>Complexity:</strong> O(N), where N is the length of the resulting <code>String</code>&#39;s
+  UTF-16.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ content: Substring.CharacterView)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-substring-unicodescalarview">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-substring-unicodescalarview">init(<wbr>_: Substring.UnicodeScalarView)</a><div class="comment collapse" id="comment-init_-substring-unicodescalarview"><div class="p">
+    <p>Creates a String having the given content.</p>
+
+<p><strong>Complexity:</strong> O(N), where N is the length of the resulting <code>String</code>&#39;s
+  UTF-16.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ content: Substring.UnicodeScalarView)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unicode-scalar">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unicode-scalar">init(<wbr>_: Unicode.Scalar)</a><div class="comment collapse" id="comment-init_-unicode-scalar"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ scalar: Unicode.Scalar)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-s_-s">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-s_-s">init&lt;S&gt;(<wbr>_: S)</a><div class="comment collapse" id="comment-init-s_-s"><div class="p">
+    <p>Creates a new string containing the characters in the given sequence.</p>
+
+<p>You can use this initializer to create a new string from the result of
+one or more collection operations on a string&#39;s characters. For example:</p>
+
+<pre><code class="language-swift">let str = &quot;The rain in Spain stays mainly in the plain.&quot;
+
+let vowels: Set&lt;Character&gt; = [&quot;a&quot;, &quot;e&quot;, &quot;i&quot;, &quot;o&quot;, &quot;u&quot;]
+let disemvoweled = String(str.lazy.filter { !vowels.contains($0) })
+
+print(disemvoweled)
+// Prints &quot;Th rn n Spn stys mnly n th pln.&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A string instance or another sequence of
+  characters.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;S&gt;(_ other: S)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-s_-s">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-s_-s">init&lt;S&gt;(<wbr>_: S)</a><div class="comment collapse" id="comment-init-s_-s"><div class="p">
+    <p>Creates a new string containing the characters in the given sequence.</p>
+
+<p>You can use this initializer to create a new string from the result of
+one or more collection operations on a string&#39;s characters. For example:</p>
+
+<pre><code class="language-swift">let str = &quot;The rain in Spain stays mainly in the plain.&quot;
+
+let vowels: Set&lt;Character&gt; = [&quot;a&quot;, &quot;e&quot;, &quot;i&quot;, &quot;o&quot;, &quot;u&quot;]
+let disemvoweled = String(str.lazy.filter { !vowels.contains($0) })
+
+print(disemvoweled)
+// Prints &quot;Th rn n Spn stys mnly n th pln.&quot;</code></pre>
+
+<p><strong><code>characters</code>:</strong>  A string instance or another sequence of
+  characters.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;S&gt;(_ characters: S)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-t_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-t_-t">init&lt;T&gt;(<wbr>_: T)</a><div class="comment collapse" id="comment-init-t_-t"><div class="p">
+    <p>Creates an instance from the description of a given
+<code>LosslessStringConvertible</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(_ value: T)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_radix_uppercase_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_radix_uppercase_">init(<wbr>_:<wbr>radix:<wbr>uppercase:)</a><div class="comment collapse" id="comment-init_radix_uppercase_"><div class="p">
+    <p>Creates a string representing the given value in base 10, or some other
+specified base.</p>
+
+<p>The following example converts the maximal <code>Int</code> value to a string and
+prints its length:</p>
+
+<pre><code class="language-swift">let max = String(Int.max)
+print(&quot;\(max) has \(max.count) digits.&quot;)
+// Prints &quot;9223372036854775807 has 19 digits.&quot;</code></pre>
+
+<p>Numerals greater than 9 are represented as Roman letters. These letters
+start with <code>&quot;A&quot;</code> if <code>uppercase</code> is <code>true</code>; otherwise, with <code>&quot;a&quot;</code>.</p>
+
+<pre><code class="language-swift">let v = 999_999
+print(String(v, radix: 2))
+// Prints &quot;11110100001000111111&quot;
+
+print(String(v, radix: 16))
+// Prints &quot;f423f&quot;
+print(String(v, radix: 16, uppercase: true))
+// Prints &quot;F423F&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>value:</strong> The value to convert to a string.
+  <strong>radix:</strong> The base to use for the string representation. <code>radix</code> must be
+    at least 2 and at most 36. The default is 10.
+  <strong>uppercase:</strong> Pass <code>true</code> to use uppercase letters to represent numerals
+    greater than 9, or <code>false</code> to use lowercase letters. The default is
+    <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(_ value: T, radix: Int = default, uppercase: Bool = default)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-cstring_-unsafepointer-cchar">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-cstring_-unsafepointer-cchar">init(<wbr>cString: UnsafePointer&lt;CChar&gt;)</a><div class="comment collapse" id="comment-init-cstring_-unsafepointer-cchar"><div class="p">
+    <p>Creates a new string by copying the null-terminated UTF-8 data referenced
+by the given pointer.</p>
+
+<p>If <code>cString</code> contains ill-formed UTF-8 code unit sequences, this
+initializer replaces them with the Unicode replacement character
+(<code>&quot;\u{FFFD}&quot;</code>).</p>
+
+<p>The following example calls this initializer with pointers to the
+contents of two different <code>CChar</code> arrays---the first with well-formed
+UTF-8 code unit sequences and the second with an ill-formed sequence at
+the end.</p>
+
+<pre><code class="language-swift">let validUTF8: [CChar] = [67, 97, 102, -61, -87, 0]
+validUTF8.withUnsafeBufferPointer { ptr in
+    let s = String(cString: ptr.baseAddress!)
+    print(s)
+}
+// Prints &quot;Café&quot;
+
+let invalidUTF8: [CChar] = [67, 97, 102, -61, 0]
+invalidUTF8.withUnsafeBufferPointer { ptr in
+    let s = String(cString: ptr.baseAddress!)
+    print(s)
+}
+// Prints &quot;Caf�&quot;</code></pre>
+
+<p><strong><code>cString</code>:</strong>  A pointer to a null-terminated UTF-8 code sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(cString: UnsafePointer&lt;CChar&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-cstring_-unsafepointer-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-cstring_-unsafepointer-uint8">init(<wbr>cString: UnsafePointer&lt;UInt8&gt;)</a><div class="comment collapse" id="comment-init-cstring_-unsafepointer-uint8"><div class="p">
+    <p>Creates a new string by copying the null-terminated UTF-8 data referenced
+by the given pointer.</p>
+
+<p>This is identical to init(cString: UnsafePointer&lt;CChar&gt; but operates on an
+unsigned sequence of bytes.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(cString: UnsafePointer&lt;UInt8&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-contentsof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-contentsof_">init(<wbr>contentsOf:)</a><div class="comment collapse" id="comment-init-contentsof_"><div class="p">
+    <p><em>[Foundation]</em></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(contentsOf url: URL)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-contentsof_encoding_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-contentsof_encoding_">init(<wbr>contentsOf:<wbr>encoding:)</a><div class="comment collapse" id="comment-init-contentsof_encoding_"><div class="p">
+    <p><em>[Foundation]</em>
+Produces a string created by reading data from a given URL
+interpreted using a given encoding.  Errors are written into the
+inout <code>error</code> argument.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(contentsOf url: URL, encoding enc: String.Encoding)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-contentsof_usedencoding_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-contentsof_usedencoding_">init(<wbr>contentsOf:<wbr>usedEncoding:)</a><div class="comment collapse" id="comment-init-contentsof_usedencoding_"><div class="p">
+    <p><em>[Foundation]</em>
+Produces a string created by reading data from a given URL
+and returns by reference the encoding used to interpret the
+data.  Errors are written into the inout <code>error</code> argument.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(contentsOf url: URL, usedEncoding: inout String.Encoding)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-contentsoffile_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-contentsoffile_">init(<wbr>contentsOfFile:)</a><div class="comment collapse" id="comment-init-contentsoffile_"><div class="p">
+    <p><em>[Foundation]</em></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(contentsOfFile path: String)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-contentsoffile_encoding_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-contentsoffile_encoding_">init(<wbr>contentsOfFile:<wbr>encoding:)</a><div class="comment collapse" id="comment-init-contentsoffile_encoding_"><div class="p">
+    <p><em>[Foundation]</em>
+Produces a string created by reading data from the file at a
+given path interpreted using a given encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(contentsOfFile path: String, encoding enc: String.Encoding)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-contentsoffile_usedencoding_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-contentsoffile_usedencoding_">init(<wbr>contentsOfFile:<wbr>usedEncoding:)</a><div class="comment collapse" id="comment-init-contentsoffile_usedencoding_"><div class="p">
+    <p><em>[Foundation]</em>
+Produces a string created by reading data from the file at
+a given path and returns by reference the encoding used to
+interpret the file.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(contentsOfFile path: String, usedEncoding: inout String.Encoding)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-decoding_as_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-decoding_as_">init(<wbr>decoding:<wbr>as:)</a><div class="comment collapse" id="comment-init-decoding_as_"><div class="p">
+    <p>Creates a string from the given Unicode code units in the specified
+encoding.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>codeUnits:</strong> A collection of code units encoded in the encoding
+    specified in <code>sourceEncoding</code>.
+  <strong>sourceEncoding:</strong> The encoding in which <code>codeUnits</code> should be
+    interpreted.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;C, Encoding&gt;(decoding codeUnits: C, as sourceEncoding: Encoding.Type)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-decodingcstring_as_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-decodingcstring_as_">init(<wbr>decodingCString:<wbr>as:)</a><div class="comment collapse" id="comment-init-decodingcstring_as_"><div class="p">
+    <p>Creates a string from the null-terminated sequence of bytes at the given
+pointer.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>nullTerminatedCodeUnits:</strong> A pointer to a sequence of contiguous code
+    units in the encoding specified in <code>sourceEncoding</code>, ending just
+    before the first zero code unit.
+  <strong>sourceEncoding:</strong> The encoding in which the code units should be
+    interpreted.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;Encoding&gt;(decodingCString nullTerminatedCodeUnits: UnsafePointer&lt;Encoding.CodeUnit&gt;, as sourceEncoding: Encoding.Type)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-describing_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-describing_">init(<wbr>describing:)</a><div class="comment collapse" id="comment-init-describing_"><div class="p">
+    <p>Creates a string representing the given value.</p>
+
+<p>Use this initializer to convert an instance of any type to its preferred
+representation as a <code>String</code> instance. The initializer creates the
+string representation of <code>instance</code> in one of the following ways,
+depending on its protocol conformance:</p>
+
+<ul><li>If <code>instance</code> conforms to the <code>TextOutputStreamable</code> protocol, the
+result is obtained by calling <code>instance.write(to: s)</code> on an empty
+string <code>s</code>.</li><li>If <code>instance</code> conforms to the <code>CustomStringConvertible</code> protocol, the
+result is <code>instance.description</code>.</li><li>If <code>instance</code> conforms to the <code>CustomDebugStringConvertible</code> protocol,
+the result is <code>instance.debugDescription</code>.</li><li>An unspecified result is supplied automatically by the Swift standard
+library.</li></ul>
+
+<p>For example, this custom <code>Point</code> struct uses the default representation
+supplied by the standard library.</p>
+
+<pre><code class="language-swift">struct Point {
+    let x: Int, y: Int
+}
+
+let p = Point(x: 21, y: 30)
+print(String(describing: p))
+// Prints &quot;Point(x: 21, y: 30)&quot;</code></pre>
+
+<p>After adding <code>CustomStringConvertible</code> conformance by implementing the
+<code>description</code> property, <code>Point</code> provides its own custom representation.</p>
+
+<pre><code class="language-swift">extension Point: CustomStringConvertible {
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+print(String(describing: p))
+// Prints &quot;(21, 30)&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;Subject&gt;(describing instance: Subject)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-format__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-format__">init(<wbr>format:<wbr>_:)</a><div class="comment collapse" id="comment-init-format__"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a <code>String</code> object initialized by using a given
+format string as a template into which the remaining argument
+values are substituted.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(format: String, _ arguments: CVarArg...)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-format_arguments_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-format_arguments_">init(<wbr>format:<wbr>arguments:)</a><div class="comment collapse" id="comment-init-format_arguments_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a <code>String</code> object initialized by using a given
+format string as a template into which the remaining argument
+values are substituted according to the user&#39;s default locale.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(format: String, arguments: [CVarArg])</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-format_locale__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-format_locale__">init(<wbr>format:<wbr>locale:<wbr>_:)</a><div class="comment collapse" id="comment-init-format_locale__"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a <code>String</code> object initialized by using a given
+format string as a template into which the remaining argument
+values are substituted according to given locale information.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(format: String, locale: Locale?, _ args: CVarArg...)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-format_locale_arguments_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-format_locale_arguments_">init(<wbr>format:<wbr>locale:<wbr>arguments:)</a><div class="comment collapse" id="comment-init-format_locale_arguments_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a <code>String</code> object initialized by using a given
+format string as a template into which the remaining argument
+values are substituted according to given locale information.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(format: String, locale: Locale?, arguments: [CVarArg])</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-reflecting_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-reflecting_">init(<wbr>reflecting:)</a><div class="comment collapse" id="comment-init-reflecting_"><div class="p">
+    <p>Creates a string with a detailed representation of the given value,
+suitable for debugging.</p>
+
+<p>Use this initializer to convert an instance of any type to its custom
+debugging representation. The initializer creates the string
+representation of <code>instance</code> in one of the following ways, depending on
+its protocol conformance:</p>
+
+<ul><li>If <code>subject</code> conforms to the <code>CustomDebugStringConvertible</code> protocol,
+the result is <code>subject.debugDescription</code>.</li><li>If <code>subject</code> conforms to the <code>CustomStringConvertible</code> protocol, the
+result is <code>subject.description</code>.</li><li>If <code>subject</code> conforms to the <code>TextOutputStreamable</code> protocol, the
+result is obtained by calling <code>subject.write(to: s)</code> on an empty
+string <code>s</code>.</li><li>An unspecified result is supplied automatically by the Swift standard
+library.</li></ul>
+
+<p>For example, this custom <code>Point</code> struct uses the default representation
+supplied by the standard library.</p>
+
+<pre><code class="language-swift">struct Point {
+    let x: Int, y: Int
+}
+
+let p = Point(x: 21, y: 30)
+print(String(reflecting: p))
+// Prints &quot;p: Point = {
+//           x = 21
+//           y = 30
+//         }&quot;</code></pre>
+
+<p>After adding <code>CustomDebugStringConvertible</code> conformance by implementing
+the <code>debugDescription</code> property, <code>Point</code> provides its own custom
+debugging representation.</p>
+
+<pre><code class="language-swift">extension Point: CustomDebugStringConvertible {
+    var debugDescription: String {
+        return &quot;Point(x: \(x), y: \(y))&quot;
+    }
+}
+
+print(String(reflecting: p))
+// Prints &quot;Point(x: 21, y: 30)&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;Subject&gt;(reflecting subject: Subject)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-repeating_-character-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-repeating_-character-count_-int">init(<wbr>repeating:<wbr> Character, count: Int)</a><div class="comment collapse" id="comment-init-repeating_-character-count_-int"><div class="p">
+    <p>Creates a string representing the given character repeated the specified
+number of times.</p>
+
+<p>For example, use this initializer to create a string with ten <code>&quot;0&quot;</code>
+characters in a row.</p>
+
+<pre><code class="language-swift">let zeroes = String(repeating: &quot;0&quot; as Character, count: 10)
+print(zeroes)
+// Prints &quot;0000000000&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>repeatedValue:</strong> The character to repeat.
+  <strong>count:</strong> The number of times to repeat <code>repeatedValue</code> in the
+    resulting string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(repeating repeatedValue: Character, count: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-repeating_-string-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-repeating_-string-count_-int">init(<wbr>repeating:<wbr> String, count: Int)</a><div class="comment collapse" id="comment-init-repeating_-string-count_-int"><div class="p">
+    <p>Creates a new string representing the given string repeated the specified
+number of times.</p>
+
+<p>For example, you can use this initializer to create a string with ten
+<code>&quot;ab&quot;</code> strings in a row.</p>
+
+<pre><code class="language-swift">let s = String(repeating: &quot;ab&quot;, count: 10)
+print(s)
+// Prints &quot;abababababababababab&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>repeatedValue:</strong> The string to repeat.
+  <strong>count:</strong> The number of times to repeat <code>repeatedValue</code> in the resulting
+    string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(repeating repeatedValue: String, count: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-stringinterpolation_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-stringinterpolation_">init(<wbr>stringInterpolation:)</a><div class="comment collapse" id="comment-init-stringinterpolation_"><div class="p">
+    <p>Creates a new string by concatenating the given interpolations.</p>
+
+<p>Do not call this initializer directly. It is used by the compiler when
+you create a string using string interpolation. Instead, use string
+interpolation to create a new string by including values, literals,
+variables, or expressions enclosed in parentheses, prefixed by a
+backslash (<code>\(</code>...<code>)</code>).</p>
+
+<pre><code class="language-swift">let price = 2
+let number = 3
+let message = &quot;If one cookie costs \(price) dollars, &quot; +
+              &quot;\(number) cookies cost \(price * number) dollars.&quot;
+print(message)
+// Prints &quot;If one cookie costs 2 dollars, 3 cookies cost 6 dollars.&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(stringInterpolation strings: String...)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-t-stringinterpolationsegment_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-t-stringinterpolationsegment_-t">init&lt;T&gt;(<wbr>stringInterpolationSegment: T)</a><div class="comment collapse" id="comment-init-t-stringinterpolationsegment_-t"><div class="p">
+    <p>Creates a string containing the given value&#39;s textual representation.</p>
+
+<p>Do not call this initializer directly. It is used by the compiler when
+interpreting string interpolations.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(stringInterpolationSegment expr: T)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-t-stringinterpolationsegment_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-t-stringinterpolationsegment_-t">init&lt;T&gt;(<wbr>stringInterpolationSegment: T)</a><div class="comment collapse" id="comment-init-t-stringinterpolationsegment_-t"><div class="p">
+    <p>Creates a string containing the given value&#39;s textual representation.</p>
+
+<p>Do not call this initializer directly. It is used by the compiler when
+interpreting string interpolations.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(stringInterpolationSegment expr: T)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-t-stringinterpolationsegment_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-t-stringinterpolationsegment_-t">init&lt;T&gt;(<wbr>stringInterpolationSegment: T)</a><div class="comment collapse" id="comment-init-t-stringinterpolationsegment_-t"><div class="p">
+    <p>Creates a string containing the given value&#39;s textual representation.</p>
+
+<p>Do not call this initializer directly. It is used by the compiler when
+interpreting string interpolations.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(stringInterpolationSegment expr: T)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-t-stringinterpolationsegment_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-t-stringinterpolationsegment_-t">init&lt;T&gt;(<wbr>stringInterpolationSegment: T)</a><div class="comment collapse" id="comment-init-t-stringinterpolationsegment_-t"><div class="p">
+    <p>Creates a string containing the given expression&#39;s textual
+representation.</p>
+
+<p>Do not call this initializer directly. It is used by the compiler when
+interpreting string interpolations.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(stringInterpolationSegment expr: T)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-stringliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-stringliteral_">init(<wbr>stringLiteral:)</a><div class="comment collapse" id="comment-init-stringliteral_"><div class="p">
+    <p>Creates an instance initialized to the given string value.</p>
+
+<p>Do not call this initializer directly. It is used by the compiler when you
+initialize a string using a string literal. For example:</p>
+
+<pre><code class="language-swift">let nextStop = &quot;Clark &amp; Lake&quot;</code></pre>
+
+<p>This assignment to the <code>nextStop</code> constant calls this string literal
+initializer behind the scenes.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(stringLiteral value: String)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-utf16codeunits_count_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-utf16codeunits_count_">init(<wbr>utf16CodeUnits:<wbr>count:)</a><div class="comment collapse" id="comment-init-utf16codeunits_count_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns an initialized <code>String</code> object that contains a
+given number of characters from a given array of Unicode
+characters.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(utf16CodeUnits: UnsafePointer&lt;unichar&gt;, count: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-utf16codeunitsnocopy_count_freewhendone_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-utf16codeunitsnocopy_count_freewhendone_">init(<wbr>utf16CodeUnitsNoCopy:<wbr>count:<wbr>freeWhenDone:)</a><div class="comment collapse" id="comment-init-utf16codeunitsnocopy_count_freewhendone_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns an initialized <code>String</code> object that contains a given
+number of characters from a given array of UTF-16 Code Units</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(utf16CodeUnitsNoCopy: UnsafePointer&lt;unichar&gt;, count: Int, freeWhenDone flag: Bool)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-substring-utf8view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-substring-utf8view">init?(<wbr>_: Substring.UTF8View)</a><div class="comment collapse" id="comment-init_-substring-utf8view"><div class="p">
+    <p>Creates a String having the given content.</p>
+
+<p>If <code>codeUnits</code> is an ill-formed code unit sequence, the result is <code>nil</code>.</p>
+
+<p><strong>Complexity:</strong> O(N), where N is the length of the resulting <code>String</code>&#39;s
+  UTF-16.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ codeUnits: Substring.UTF8View)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-substring-utf16view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-substring-utf16view">init?(<wbr>_: Substring.UTF16View)</a><div class="comment collapse" id="comment-init_-substring-utf16view"><div class="p">
+    <p>Creates a String having the given content.</p>
+
+<p>If <code>codeUnits</code> is an ill-formed code unit sequence, the result is <code>nil</code>.</p>
+
+<p><strong>Complexity:</strong> O(N), where N is the length of the resulting <code>String</code>&#39;s
+  UTF-16.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ codeUnits: Substring.UTF16View)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-bytes_encoding_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-bytes_encoding_">init?(<wbr>bytes:<wbr>encoding:)</a><div class="comment collapse" id="comment-init-bytes_encoding_"><div class="p">
+    <p><em>[Foundation]</em>
+Produces an initialized <code>NSString</code> object equivalent to the given
+<code>bytes</code> interpreted in the given <code>encoding</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?&lt;S : Sequence where S.Iterator.Element == UInt8&gt;(bytes: S, encoding: String.Encoding)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-bytesnocopy_length_encoding_freewhendone_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-bytesnocopy_length_encoding_freewhendone_">init?(<wbr>bytesNoCopy:<wbr>length:<wbr>encoding:<wbr>freeWhenDone:)</a><div class="comment collapse" id="comment-init-bytesnocopy_length_encoding_freewhendone_"><div class="p">
+    <p><em>[Foundation]</em>
+Produces an initialized <code>String</code> object that contains a
+given number of bytes from a given buffer of bytes interpreted
+in a given encoding, and optionally frees the buffer.  WARNING:
+this initializer is not memory-safe!</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(bytesNoCopy bytes: UnsafeMutablePointer&lt;Swift.Void&gt;, length: Int, encoding: String.Encoding, freeWhenDone flag: Bool)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-cstring_encoding_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-cstring_encoding_">init?(<wbr>cString:<wbr>encoding:)</a><div class="comment collapse" id="comment-init-cstring_encoding_"><div class="p">
+    <p><em>[Foundation]</em>
+Produces a string containing the bytes in a given C array,
+interpreted according to a given encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(cString: UnsafePointer&lt;CChar&gt;, encoding enc: String.Encoding)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-data_encoding_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-data_encoding_">init?(<wbr>data:<wbr>encoding:)</a><div class="comment collapse" id="comment-init-data_encoding_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a <code>String</code> initialized by converting given <code>data</code> into
+Unicode characters using a given <code>encoding</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(data: Data, encoding: String.Encoding)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-utf8string_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-utf8string_">init?(<wbr>utf8String:)</a><div class="comment collapse" id="comment-init-utf8string_"><div class="p">
+    <p><em>[Foundation]</em>
+Produces a string created by copying the data from a given
+C array of UTF8-encoded bytes.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(utf8String bytes: UnsafePointer&lt;CChar&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-validatingutf8_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-validatingutf8_">init?(<wbr>validatingUTF8:)</a><div class="comment collapse" id="comment-init-validatingutf8_"><div class="p">
+    <p>Creates a new string by copying and validating the null-terminated UTF-8
+data referenced by the given pointer.</p>
+
+<p>This initializer does not try to repair ill-formed UTF-8 code unit
+sequences. If any are found, the result of the initializer is <code>nil</code>.</p>
+
+<p>The following example calls this initializer with pointers to the
+contents of two different <code>CChar</code> arrays---the first with well-formed
+UTF-8 code unit sequences and the second with an ill-formed sequence at
+the end.</p>
+
+<pre><code class="language-swift">let validUTF8: [CChar] = [67, 97, 102, -61, -87, 0]
+validUTF8.withUnsafeBufferPointer { ptr in
+    let s = String(validatingUTF8: ptr.baseAddress!)
+    print(s)
+}
+// Prints &quot;Optional(Café)&quot;
+
+let invalidUTF8: [CChar] = [67, 97, 102, -61, 0]
+invalidUTF8.withUnsafeBufferPointer { ptr in
+    let s = String(validatingUTF8: ptr.baseAddress!)
+    print(s)
+}
+// Prints &quot;nil&quot;</code></pre>
+
+<p><strong><code>cString</code>:</strong>  A pointer to a null-terminated UTF-8 code sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(validatingUTF8 cString: UnsafePointer&lt;CChar&gt;)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-capitalized_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-capitalized_-string">var capitalized: String</a><div class="comment collapse" id="comment-var-capitalized_-string"><div class="p">
+    <p><em>[Foundation]</em>
+Produce a string with the first character from each word changed
+to the corresponding uppercase value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var capitalized: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-characters_-string-characterview">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-characters_-string-characterview">var characters: String.CharacterView</a><div class="comment collapse" id="comment-var-characters_-string-characterview"><div class="p">
+    <p>A view of the string&#39;s contents as a collection of characters.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var characters: String.CharacterView { get set }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int</a><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    <p>The number of characters in a string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>A mirror that reflects the <code>String</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-customplaygroundquicklook_-playgroundquicklook">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-customplaygroundquicklook_-playgroundquicklook">var customPlaygroundQuickLook: PlaygroundQuickLook</a><div class="comment collapse" id="comment-var-customplaygroundquicklook_-playgroundquicklook"><div class="p">
+    <p>A custom playground Quick Look for the <code>String</code> instance.</p>
+
+<p><em>Deprecated:</em> String.customPlaygroundQuickLook will be removed in a future Swift version.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customPlaygroundQuickLook: PlaygroundQuickLook { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A representation of the string that is suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-decomposedstringwithcanonicalmapping_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-decomposedstringwithcanonicalmapping_-string">var decomposedStringWithCanonicalMapping: String</a><div class="comment collapse" id="comment-var-decomposedstringwithcanonicalmapping_-string"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a string made by normalizing the <code>String</code>&#39;s
+contents using Form D.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var decomposedStringWithCanonicalMapping: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-decomposedstringwithcompatibilitymapping_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-decomposedstringwithcompatibilitymapping_-string">var decomposedStringWithCompatibilityMapping: String</a><div class="comment collapse" id="comment-var-decomposedstringwithcompatibilitymapping_-string"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a string made by normalizing the <code>String</code>&#39;s
+contents using Form KD.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var decomposedStringWithCompatibilityMapping: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>The value of this string.</p>
+
+<p>Using this property directly is discouraged. Instead, use simple
+assignment to create a new constant or variable equal to this string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-endindex_-string-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-string-index">var endIndex: String.Index</a><div class="comment collapse" id="comment-var-endindex_-string-index"><div class="p">
+    <p>A string&#39;s &quot;past the end&quot; position---that is, the position one greater
+than the last valid subscript argument.</p>
+
+<p>In an empty string, <code>endIndex</code> is equal to <code>startIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: String.Index { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-fastestencoding_-string-encoding">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-fastestencoding_-string-encoding">var fastestEncoding: String.Encoding</a><div class="comment collapse" id="comment-var-fastestencoding_-string-encoding"><div class="p">
+    <p><em>[Foundation]</em>
+Returns the fastest encoding to which the <code>String</code> may be
+converted without loss of information.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var fastestEncoding: String.Encoding { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hash_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hash_-int">var hash: Int</a><div class="comment collapse" id="comment-var-hash_-int"><div class="p">
+    <p><em>[Foundation]</em>
+An unsigned integer that can be used as a hash table address.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hash: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The string&#39;s hash value.</p>
+
+<p>Hash values are not guaranteed to be equal across different executions of
+your program. Do not save hash values to use during a future execution.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p>A Boolean value indicating whether a string has no characters.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-localizedcapitalized_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-localizedcapitalized_-string">var localizedCapitalized: String</a><div class="comment collapse" id="comment-var-localizedcapitalized_-string"><div class="p">
+    <p><em>[Foundation]</em>
+A capitalized representation of the <code>String</code> that is produced
+using the current locale.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var localizedCapitalized: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-localizedlowercase_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-localizedlowercase_-string">var localizedLowercase: String</a><div class="comment collapse" id="comment-var-localizedlowercase_-string"><div class="p">
+    <p><em>[Foundation]</em>
+A lowercase version of the string that is produced using the current
+locale.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var localizedLowercase: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-localizeduppercase_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-localizeduppercase_-string">var localizedUppercase: String</a><div class="comment collapse" id="comment-var-localizeduppercase_-string"><div class="p">
+    <p><em>[Foundation]</em>
+An uppercase version of the string that is produced using the current
+locale.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var localizedUppercase: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-precomposedstringwithcanonicalmapping_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-precomposedstringwithcanonicalmapping_-string">var precomposedStringWithCanonicalMapping: String</a><div class="comment collapse" id="comment-var-precomposedstringwithcanonicalmapping_-string"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a string made by normalizing the <code>String</code>&#39;s
+contents using Form C.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var precomposedStringWithCanonicalMapping: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-precomposedstringwithcompatibilitymapping_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-precomposedstringwithcompatibilitymapping_-string">var precomposedStringWithCompatibilityMapping: String</a><div class="comment collapse" id="comment-var-precomposedstringwithcompatibilitymapping_-string"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a string made by normalizing the <code>String</code>&#39;s
+contents using Form KC.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var precomposedStringWithCompatibilityMapping: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-removingpercentencoding_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-removingpercentencoding_-string">var removingPercentEncoding: String?</a><div class="comment collapse" id="comment-var-removingpercentencoding_-string"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a new string made from the <code>String</code> by replacing
+all percent encoded sequences with the matching UTF-8
+characters.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var removingPercentEncoding: String? { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-smallestencoding_-string-encoding">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-smallestencoding_-string-encoding">var smallestEncoding: String.Encoding</a><div class="comment collapse" id="comment-var-smallestencoding_-string-encoding"><div class="p">
+    <p><em>[Foundation]</em>
+Returns the smallest encoding to which the <code>String</code> can
+be converted without loss of information.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var smallestEncoding: String.Encoding { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-startindex_-string-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-string-index">var startIndex: String.Index</a><div class="comment collapse" id="comment-var-startindex_-string-index"><div class="p">
+    <p>The position of the first character in a nonempty string.</p>
+
+<p>In an empty string, <code>startIndex</code> is equal to <code>endIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: String.Index { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-unicodescalars_-string-unicodescalarview">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-unicodescalars_-string-unicodescalarview">var unicodeScalars: String.UnicodeScalarView</a><div class="comment collapse" id="comment-var-unicodescalars_-string-unicodescalarview"><div class="p">
+    <p>The string&#39;s value represented as a collection of Unicode scalar values.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var unicodeScalars: String.UnicodeScalarView { get set }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-utf8_-string-utf8view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-utf8_-string-utf8view">var utf8: String.UTF8View</a><div class="comment collapse" id="comment-var-utf8_-string-utf8view"><div class="p">
+    <p>A UTF-8 encoding of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var utf8: String.UTF8View { get set }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-utf8cstring_-contiguousarray-cchar">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-utf8cstring_-contiguousarray-cchar">var utf8CString: ContiguousArray&lt;CChar&gt;</a><div class="comment collapse" id="comment-var-utf8cstring_-contiguousarray-cchar"><div class="p">
+    <p>A contiguously stored null-terminated UTF-8 representation of the string.</p>
+
+<p>To access the underlying memory, invoke <code>withUnsafeBufferPointer</code> on the
+array.</p>
+
+<pre><code class="language-swift">let s = &quot;Hello!&quot;
+let bytes = s.utf8CString
+print(bytes)
+// Prints &quot;[72, 101, 108, 108, 111, 33, 0]&quot;
+
+bytes.withUnsafeBufferPointer { ptr in
+    print(strlen(ptr.baseAddress!))
+}
+// Prints &quot;6&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var utf8CString: ContiguousArray&lt;CChar&gt; { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-utf16_-string-utf16view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-utf16_-string-utf16view">var utf16: String.UTF16View</a><div class="comment collapse" id="comment-var-utf16_-string-utf16view"><div class="p">
+    <p>A UTF-16 encoding of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var utf16: String.UTF16View { get set }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-string-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-string-index">subscript(_: String.Index)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-string-index"><div class="p">
+    <p>Accesses the character at the given position.</p>
+
+<p>You can use the same indices for subscripting a string and its substring.
+For example, this code finds the first letter after the first space:</p>
+
+<pre><code class="language-swift">let str = &quot;Greetings, friend! How are you?&quot;
+let firstSpace = str.firstIndex(of: &quot; &quot;) ?? str.endIndex
+let substr = str[firstSpace...]
+if let nextCapital = substr.firstIndex(where: { $0 &gt;= &quot;A&quot; &amp;&amp; $0 &lt;= &quot;Z&quot; }) {
+    print(&quot;Capital after a space: \(str[nextCapital])&quot;)
+}
+// Prints &quot;Capital after a space: H&quot;</code></pre>
+
+<p><strong><code>i</code>:</strong>  A valid index of the string. <code>i</code> must be less than the
+  string&#39;s end index.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(i: String.Index) -&gt; Character { get }</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="subscript-subscript_-range-string-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-range-string-index">subscript(_: Range&lt;String.Index&gt;)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-range-string-index"><div class="p">
+    <p>Accesses a contiguous subrange of the collection&#39;s elements.</p>
+
+<p>The accessed slice uses the same indices for the same elements as the
+original collection uses. Always use the slice&#39;s <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.firstIndex(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// Prints &quot;Evarts&quot;</code></pre>
+
+<p><strong><code>bounds</code>:</strong>  A range of the collection&#39;s indices. The bounds of
+  the range must be valid indices of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(r: Range&lt;String.Index&gt;) -&gt; Substring { get }</code>
+    
+    
+</div></div>
+</div>
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-availablestringencodings">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-availablestringencodings">static func availableStringEncodings()</a>
+        
+<div class="comment collapse" id="comment-func-availablestringencodings"><div class="p">
+    <p><em>[Foundation]</em>
+Returns an Array of the encodings string objects support
+in the application&#39;s environment.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func availableStringEncodings() -&gt; [String.Encoding]</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodecstring_as_repairinginvalidcodeunits_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodecstring_as_repairinginvalidcodeunits_">static func decodeCString(<wbr>_:<wbr>as:<wbr>repairingInvalidCodeUnits:)</a>
+        
+<div class="comment collapse" id="comment-func-decodecstring_as_repairinginvalidcodeunits_"><div class="p">
+    <p>Creates a new string by copying the null-terminated data referenced by
+the given pointer using the specified encoding.</p>
+
+<p>When you pass <code>true</code> as <code>isRepairing</code>, this method replaces ill-formed
+sequences with the Unicode replacement character (<code>&quot;\u{FFFD}&quot;</code>);
+otherwise, an ill-formed sequence causes this method to stop decoding
+and return <code>nil</code>.</p>
+
+<p>The following example calls this method with pointers to the contents of
+two different <code>CChar</code> arrays---the first with well-formed UTF-8 code
+unit sequences and the second with an ill-formed sequence at the end.</p>
+
+<pre><code class="language-swift">let validUTF8: [UInt8] = [67, 97, 102, 195, 169, 0]
+validUTF8.withUnsafeBufferPointer { ptr in
+    let s = String.decodeCString(ptr.baseAddress,
+                                 as: UTF8.self,
+                                 repairingInvalidCodeUnits: true)
+    print(s)
+}
+// Prints &quot;Optional((Café, false))&quot;
+
+let invalidUTF8: [UInt8] = [67, 97, 102, 195, 0]
+invalidUTF8.withUnsafeBufferPointer { ptr in
+    let s = String.decodeCString(ptr.baseAddress,
+                                 as: UTF8.self,
+                                 repairingInvalidCodeUnits: true)
+    print(s)
+}
+// Prints &quot;Optional((Caf�, true))&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>cString:</strong> A pointer to a null-terminated code sequence encoded in
+    <code>encoding</code>.
+  <strong>encoding:</strong> The Unicode encoding of the data referenced by <code>cString</code>.
+  <strong>isRepairing:</strong> Pass <code>true</code> to create a new string, even when the data
+    referenced by <code>cString</code> contains ill-formed sequences. Ill-formed
+    sequences are replaced with the Unicode replacement character
+    (<code>&quot;\u{FFFD}&quot;</code>). Pass <code>false</code> to interrupt the creation of the new
+    string if an ill-formed sequence is detected.
+<strong>Returns:</strong> A tuple with the new string and a Boolean value that indicates
+  whether any repairs were made. If <code>isRepairing</code> is <code>false</code> and an
+  ill-formed sequence is detected, this method returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func decodeCString&lt;Encoding&gt;(_ cString: UnsafePointer&lt;Encoding.CodeUnit&gt;?, as encoding: Encoding.Type, repairingInvalidCodeUnits isRepairing: Bool = default) -&gt; (result: String, repairsMade: Bool)? where Encoding : _UnicodeEncoding</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-defaultcstringencoding">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-defaultcstringencoding">static func defaultCStringEncoding()</a>
+        
+<div class="comment collapse" id="comment-func-defaultcstringencoding"><div class="p">
+    <p><em>[Foundation]</em>
+Returns the C-string encoding assumed for any method accepting
+a C string as an argument.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func defaultCStringEncoding() -&gt; String.Encoding</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-localizedname-of_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-localizedname-of_">static func localizedName(<wbr>of:)</a>
+        
+<div class="comment collapse" id="comment-func-localizedname-of_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a human-readable string giving the name of a given encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func localizedName(of encoding: String.Encoding) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-localizedstringwithformat__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-localizedstringwithformat__">static func localizedStringWithFormat(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-localizedstringwithformat__"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a string created by using a given format string as a
+template into which the remaining argument values are substituted
+according to the user&#39;s default locale.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func localizedStringWithFormat(_ format: String, _ arguments: CVarArg...) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-addingpercentencoding-withallowedcharacters_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-addingpercentencoding-withallowedcharacters_">func addingPercentEncoding(<wbr>withAllowedCharacters:)</a>
+        
+<div class="comment collapse" id="comment-func-addingpercentencoding-withallowedcharacters_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a new string made from the <code>String</code> by replacing
+all characters not in the specified set with percent encoded
+characters.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func addingPercentEncoding(withAllowedCharacters allowedCharacters: CharacterSet) -&gt; String?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-addingpercentescapes-using_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-addingpercentescapes-using_">func addingPercentEscapes(<wbr>using:)</a>
+        
+<div class="comment collapse" id="comment-func-addingpercentescapes-using_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a representation of the <code>String</code> using a given
+encoding to determine the percent escapes necessary to convert
+the <code>String</code> into a legal URL string.</p>
+
+<p><em>Deprecated:</em> Use addingPercentEncoding(withAllowedCharacters:) instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent since each URL component or subcomponent has different rules for what characters are valid..</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func addingPercentEscapes(using encoding: String.Encoding) -&gt; String?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-append_-character">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-append_-character">mutating func append(<wbr>_: Character)</a>
+        
+<div class="comment collapse" id="comment-func-append_-character"><div class="p">
+    <p>Appends the given character to the string.</p>
+
+<p>The following example adds an emoji globe to the end of a string.</p>
+
+<pre><code class="language-swift">var globe = &quot;Globe &quot;
+globe.append(&quot;🌍&quot;)
+print(globe)
+// Prints &quot;Globe 🌍&quot;</code></pre>
+
+<p><strong><code>c</code>:</strong>  The character to append to the string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func append(_ c: Character)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-append_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-append_-string">mutating func append(<wbr>_: String)</a>
+        
+<div class="comment collapse" id="comment-func-append_-string"><div class="p">
+    <p>Appends the given string to this string.</p>
+
+<p>The following example builds a customized greeting by using the
+<code>append(_:)</code> method:</p>
+
+<pre><code class="language-swift">var greeting = &quot;Hello, &quot;
+if let name = getUserName() {
+    greeting.append(name)
+} else {
+    greeting.append(&quot;friend&quot;)
+}
+print(greeting)
+// Prints &quot;Hello, friend&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  Another string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func append(_ other: String)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-append-contentsof_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-append-contentsof_-string">mutating func append(<wbr>contentsOf: String)</a>
+        
+<div class="comment collapse" id="comment-func-append-contentsof_-string"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func append(contentsOf newElements: String)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-append-contentsof_-substring">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-append-contentsof_-substring">mutating func append(<wbr>contentsOf: Substring)</a>
+        
+<div class="comment collapse" id="comment-func-append-contentsof_-substring"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func append(contentsOf newElements: Substring)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-append-s-contentsof_-s">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-append-s-contentsof_-s">mutating func append&lt;S&gt;(<wbr>contentsOf: S)</a>
+        
+<div class="comment collapse" id="comment-func-append-s-contentsof_-s"><div class="p">
+    <p>Appends the characters in the given sequence to the string.</p>
+
+<p><strong><code>newElements</code>:</strong>  A sequence of characters.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func append&lt;S&gt;(contentsOf newElements: S)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-appending_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-appending_">func appending(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-appending_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a new string made by appending a given string to
+the <code>String</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func appending(_ aString: String) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-appendingformat__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-appendingformat__">func appendingFormat(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-appendingformat__"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a string made by appending to the <code>String</code> a
+string constructed from a given format string and the following
+arguments.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func appendingFormat(_ format: String, _ arguments: CVarArg...) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-applyingtransform_reverse_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-applyingtransform_reverse_">func applyingTransform(<wbr>_:<wbr>reverse:)</a>
+        
+<div class="comment collapse" id="comment-func-applyingtransform_reverse_"><div class="p">
+    <p><em>[Foundation]</em>
+Perform string transliteration.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func applyingTransform(_ transform: StringTransform, reverse: Bool) -&gt; String?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-cstring-using_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-cstring-using_">func cString(<wbr>using:)</a>
+        
+<div class="comment collapse" id="comment-func-cstring-using_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a representation of the <code>String</code> as a C string
+using a given encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func cString(using encoding: String.Encoding) -&gt; [CChar]?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-canbeconverted-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-canbeconverted-to_">func canBeConverted(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-canbeconverted-to_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a Boolean value that indicates whether the
+<code>String</code> can be converted to a given encoding without loss of
+information.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func canBeConverted(to encoding: String.Encoding) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-capitalized-with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-capitalized-with_">func capitalized(<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-capitalized-with_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a capitalized representation of the <code>String</code>
+using the specified locale.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func capitalized(with locale: Locale?) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-caseinsensitivecompare_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-caseinsensitivecompare_">func caseInsensitiveCompare(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-caseinsensitivecompare_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns the result of invoking <code>compare:options:</code> with
+<code>NSCaseInsensitiveSearch</code> as the only option.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func caseInsensitiveCompare(_ aString: String) -&gt; ComparisonResult</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-commonprefix-with_options_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-commonprefix-with_options_">func commonPrefix(<wbr>with:<wbr>options:)</a>
+        
+<div class="comment collapse" id="comment-func-commonprefix-with_options_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a string containing characters the <code>String</code> and a
+given string have in common, starting from the beginning of each
+up to the first characters that aren&#39;t equivalent.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func commonPrefix(with aString: String, options: CompareOptions = default) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-compare_options_range_locale_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-compare_options_range_locale_">func compare(<wbr>_:<wbr>options:<wbr>range:<wbr>locale:)</a>
+        
+<div class="comment collapse" id="comment-func-compare_options_range_locale_"><div class="p">
+    <p><em>[Foundation]</em>
+Compares the string using the specified options and
+returns the lexical ordering for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func compare(_ aString: String, options mask: CompareOptions = default, range: Range&lt;Index&gt;? = default, locale: Locale? = default) -&gt; ComparisonResult</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-completepath-into_casesensitive_matchesinto_filtertypes_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-completepath-into_casesensitive_matchesinto_filtertypes_">func completePath(<wbr>into:<wbr>caseSensitive:<wbr>matchesInto:<wbr>filterTypes:)</a>
+        
+<div class="comment collapse" id="comment-func-completepath-into_casesensitive_matchesinto_filtertypes_"><div class="p">
+    <p><em>[Foundation]</em>
+Interprets the <code>String</code> as a path in the file system and
+attempts to perform filename completion, returning a numeric
+value that indicates whether a match was possible, and by
+reference the longest path that matches the <code>String</code>.
+Returns the actual number of matching paths.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func completePath(into outputName: UnsafeMutablePointer&lt;String&gt;? = default, caseSensitive: Bool, matchesInto outputArray: UnsafeMutablePointer&lt;[String]&gt;? = default, filterTypes: [String]? = default) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-components-separatedby_-characterset">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-components-separatedby_-characterset">func components(<wbr>separatedBy: CharacterSet)</a>
+        
+<div class="comment collapse" id="comment-func-components-separatedby_-characterset"><div class="p">
+    <p><em>[Foundation]</em>
+Returns an array containing substrings from the <code>String</code>
+that have been divided by characters in a given set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func components(separatedBy separator: CharacterSet) -&gt; [String]</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-components-separatedby_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-components-separatedby_-string">func components(<wbr>separatedBy: String)</a>
+        
+<div class="comment collapse" id="comment-func-components-separatedby_-string"><div class="p">
+    <p><em>[Foundation]</em>
+Returns an array containing substrings from the <code>String</code>
+that have been divided by a given separator.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func components(separatedBy separator: String) -&gt; [String]</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-contains_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns <code>true</code> iff <code>other</code> is non-empty and contained within
+<code>self</code> by case-sensitive, non-literal search.</p>
+
+<p>Equivalent to <code>self.rangeOfString(other) != nil</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(_ other: String) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-data-using_allowlossyconversion_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-data-using_allowlossyconversion_">func data(<wbr>using:<wbr>allowLossyConversion:)</a>
+        
+<div class="comment collapse" id="comment-func-data-using_allowlossyconversion_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a <code>Data</code> containing a representation of
+the <code>String</code> encoded using a given encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func data(using encoding: String.Encoding, allowLossyConversion: Bool = default) -&gt; Data?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-distance-from_to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distance-from_to_">func distance(<wbr>from:<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-distance-from_to_"><div class="p">
+    <p>Returns the distance between two indices.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>start:</strong> A valid index of the collection.
+  <strong>end:</strong> Another valid index of the collection. If <code>end</code> is equal to
+    <code>start</code>, the result is zero.
+<strong>Returns:</strong> The distance between <code>start</code> and <code>end</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the resulting distance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(from start: String.Index, to end: String.Index) -&gt; String.IndexDistance</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-enumeratelines-body_-line_-string_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-enumeratelines-body_-line_-string_">func enumerateLines(<wbr>_ body: (<wbr>line:<wbr> String,:)</a>
+        
+<div class="comment collapse" id="comment-func-enumeratelines-body_-line_-string_"><div class="p">
+    <p><em>[Foundation]</em>
+Enumerates all the lines in a string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func enumerateLines(_ body: (line: String, stop: inout Bool) -&gt; ())</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-enumeratelinguistictags-in_scheme_options_orthography__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-enumeratelinguistictags-in_scheme_options_orthography__">func enumerateLinguisticTags(<wbr>in:<wbr>scheme:<wbr>options:<wbr>orthography:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-enumeratelinguistictags-in_scheme_options_orthography__"><div class="p">
+    <p><em>[Foundation]</em>
+Performs linguistic analysis on the specified string by
+enumerating the specific range of the string, providing the
+Block with the located tags.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func enumerateLinguisticTags(in range: Range&lt;Index&gt;, scheme tagScheme: String, options opts: NSLinguisticTagger.Options = default, orthography: NSOrthography? = default, _ body: (String, Range&lt;Index&gt;, Range&lt;Index&gt;, inout Bool) -&gt; ())</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-enumeratesubstrings-in_options_-body_-substring_-string-substringrange_-range-index_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-enumeratesubstrings-in_options_-body_-substring_-string-substringrange_-range-index_">func enumerateSubstrings(<wbr>in:<wbr>options:<wbr>_ body: (<wbr>substring:<wbr> String?, substringRange:<wbr> Range&lt;Index&gt;,:)</a>
+        
+<div class="comment collapse" id="comment-func-enumeratesubstrings-in_options_-body_-substring_-string-substringrange_-range-index_"><div class="p">
+    <p><em>[Foundation]</em>
+Enumerates the substrings of the specified type in the
+specified range of the string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func enumerateSubstrings(in range: Range&lt;Index&gt;, options opts: EnumerationOptions = default, _ body: (substring: String?, substringRange: Range&lt;Index&gt;, enclosingRange: Range&lt;Index&gt;, inout Bool) -&gt; ())</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-folding_locale_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-folding_locale_">func folding(<wbr>_:<wbr>locale:)</a>
+        
+<div class="comment collapse" id="comment-func-folding_locale_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a string with the given character folding options
+applied.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func folding(_ options: CompareOptions = default, locale: Locale?) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-getbytes_maxlength_usedlength_encoding_options_range_remaining_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-getbytes_maxlength_usedlength_encoding_options_range_remaining_">func getBytes(<wbr>_:<wbr>maxLength:<wbr>usedLength:<wbr>encoding:<wbr>options:<wbr>range:<wbr>remaining:)</a>
+        
+<div class="comment collapse" id="comment-func-getbytes_maxlength_usedlength_encoding_options_range_remaining_"><div class="p">
+    <p><em>[Foundation]</em>
+Writes the given <code>range</code> of characters into <code>buffer</code> in a given
+<code>encoding</code>, without any allocations.  Does not NULL-terminate.</p>
+
+<p><strong><code>buffer</code>:</strong>  A buffer into which to store the bytes from
+  the receiver. The returned bytes are not NUL-terminated.</p>
+
+<p><strong><code>maxBufferCount</code>:</strong>  The maximum number of bytes to write
+  to buffer.</p>
+
+<p><strong><code>usedBufferCount</code>:</strong>  The number of bytes used from
+  buffer. Pass <code>nil</code> if you do not need this value.</p>
+
+<p><strong><code>encoding</code>:</strong>  The encoding to use for the returned bytes.</p>
+
+<p><strong><code>options</code>:</strong>  A mask to specify options to use for
+  converting the receiver&#39;s contents to <code>encoding</code> (if conversion
+  is necessary).</p>
+
+<p><strong><code>range</code>:</strong>  The range of characters in the receiver to get.</p>
+
+<p><strong><code>leftover</code>:</strong>  The remaining range. Pass <code>nil</code> If you do
+  not need this value.</p>
+
+<p><strong>Returns:</strong> <code>true</code> iff some characters were converted.</p>
+
+<p><strong>Note:</strong> Conversion stops when the buffer fills or when the
+  conversion isn&#39;t possible due to the chosen encoding.</p>
+
+<p><strong>Note:</strong> will get a maximum of <code>min(buffer.count, maxLength)</code> bytes.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func getBytes(_ buffer: inout [UInt8], maxLength maxBufferCount: Int, usedLength usedBufferCount: UnsafeMutablePointer&lt;Int&gt;, encoding: String.Encoding, options: EncodingConversionOptions = default, range: Range&lt;Index&gt;, remaining leftover: UnsafeMutablePointer&lt;Range&lt;Index&gt;&gt;) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-getcstring_maxlength_encoding_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-getcstring_maxlength_encoding_">func getCString(<wbr>_:<wbr>maxLength:<wbr>encoding:)</a>
+        
+<div class="comment collapse" id="comment-func-getcstring_maxlength_encoding_"><div class="p">
+    <p><em>[Foundation]</em>
+Converts the <code>String</code>&#39;s content to a given encoding and
+stores them in a buffer.
+<strong>Note:</strong> will store a maximum of <code>min(buffer.count, maxLength)</code> bytes.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func getCString(_ buffer: inout [CChar], maxLength: Int, encoding: String.Encoding) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-getlinestart_end_contentsend_for_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-getlinestart_end_contentsend_for_">func getLineStart(<wbr>_:<wbr>end:<wbr>contentsEnd:<wbr>for:)</a>
+        
+<div class="comment collapse" id="comment-func-getlinestart_end_contentsend_for_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns by reference the beginning of the first line and
+the end of the last line touched by the given range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func getLineStart(_ start: UnsafeMutablePointer&lt;Index&gt;, end: UnsafeMutablePointer&lt;Index&gt;, contentsEnd: UnsafeMutablePointer&lt;Index&gt;, for range: Range&lt;Index&gt;)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-getparagraphstart_end_contentsend_for_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-getparagraphstart_end_contentsend_for_">func getParagraphStart(<wbr>_:<wbr>end:<wbr>contentsEnd:<wbr>for:)</a>
+        
+<div class="comment collapse" id="comment-func-getparagraphstart_end_contentsend_for_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns by reference the beginning of the first paragraph
+and the end of the last paragraph touched by the given range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func getParagraphStart(_ start: UnsafeMutablePointer&lt;Index&gt;, end: UnsafeMutablePointer&lt;Index&gt;, contentsEnd: UnsafeMutablePointer&lt;Index&gt;, for range: Range&lt;Index&gt;)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-hasprefix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-hasprefix_">func hasPrefix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-hasprefix_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func hasPrefix(_ prefix: String) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-hassuffix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-hassuffix_">func hasSuffix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-hassuffix_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func hasSuffix(_ suffix: String) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-hash-into_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-hash-into_">func hash(<wbr>into:)</a>
+        
+<div class="comment collapse" id="comment-func-hash-into_"><div class="p">
+    <p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+
+<p><strong><code>hasher</code>:</strong>  The hasher to use when combining the components
+  of this instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func hash(into hasher: inout Hasher)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-index_offsetby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_offsetby_">func index(<wbr>_:<wbr>offsetBy:)</a>
+        
+<div class="comment collapse" id="comment-func-index_offsetby_"><div class="p">
+    <p>Returns an index that is the specified distance from the given index.</p>
+
+<p>The following example obtains an index advanced four positions from a
+string&#39;s starting index and then prints the character at that position.</p>
+
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+let i = s.index(s.startIndex, offsetBy: 4)
+print(s[i])
+// Prints &quot;t&quot;</code></pre>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the bounds of the
+collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>.
+<strong>Returns:</strong> An index offset by <code>n</code> from the index <code>i</code>. If <code>n</code> is positive,
+  this is the same value as the result of <code>n</code> calls to <code>index(after:)</code>.
+  If <code>n</code> is negative, this is the same value as the result of <code>-n</code> calls
+  to <code>index(before:)</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the absolute value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(_ i: String.Index, offsetBy n: String.IndexDistance) -&gt; String.Index</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-index_offsetby_limitedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_offsetby_limitedby_">func index(<wbr>_:<wbr>offsetBy:<wbr>limitedBy:)</a>
+        
+<div class="comment collapse" id="comment-func-index_offsetby_limitedby_"><div class="p">
+    <p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+
+<p>The following example obtains an index advanced four positions from a
+string&#39;s starting index and then prints the character at that position.
+The operation doesn&#39;t require going beyond the limiting <code>s.endIndex</code>
+value, so it succeeds.</p>
+
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+if let i = s.index(s.startIndex, offsetBy: 4, limitedBy: s.endIndex) {
+    print(s[i])
+}
+// Prints &quot;t&quot;</code></pre>
+
+<p>The next example attempts to retrieve an index six positions from
+<code>s.startIndex</code> but fails, because that distance is beyond the index
+passed as <code>limit</code>.</p>
+
+<pre><code class="language-swift">let j = s.index(s.startIndex, offsetBy: 6, limitedBy: s.endIndex)
+print(j)
+// Prints &quot;nil&quot;</code></pre>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the bounds of the
+collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>.
+  <strong>limit:</strong> A valid index of the collection to use as a limit. If <code>n &gt; 0</code>,
+    a limit that is less than <code>i</code> has no effect. Likewise, if <code>n &lt; 0</code>, a
+    limit that is greater than <code>i</code> has no effect.
+<strong>Returns:</strong> An index offset by <code>n</code> from the index <code>i</code>, unless that index
+  would be beyond <code>limit</code> in the direction of movement. In that case,
+  the method returns <code>nil</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the absolute value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(_ i: String.Index, offsetBy n: String.IndexDistance, limitedBy limit: String.Index) -&gt; String.Index?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-index-after_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index-after_">func index(<wbr>after:)</a>
+        
+<div class="comment collapse" id="comment-func-index-after_"><div class="p">
+    <p>Returns the position immediately after the given index.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be less than
+  <code>endIndex</code>.
+<strong>Returns:</strong> The index value immediately after <code>i</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(after i: String.Index) -&gt; String.Index</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-index-before_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index-before_">func index(<wbr>before:)</a>
+        
+<div class="comment collapse" id="comment-func-index-before_"><div class="p">
+    <p>Returns the position immediately before the given index.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be greater than
+  <code>startIndex</code>.
+<strong>Returns:</strong> The index value immediately before <code>i</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(before i: String.Index) -&gt; String.Index</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-insert_at_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-insert_at_">mutating func insert(<wbr>_:<wbr>at:)</a>
+        
+<div class="comment collapse" id="comment-func-insert_at_"><div class="p">
+    <p>Inserts a new character at the specified position.</p>
+
+<p>Calling this method invalidates any existing indices for use with this
+string.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>newElement:</strong> The new character to insert into the string.
+  <strong>i:</strong> A valid index of the string. If <code>i</code> is equal to the string&#39;s end
+    index, this methods appends <code>newElement</code> to the string.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insert(_ newElement: Character, at i: String.Index)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-insert-contentsof_at_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-insert-contentsof_at_">mutating func insert(<wbr>contentsOf:<wbr>at:)</a>
+        
+<div class="comment collapse" id="comment-func-insert-contentsof_at_"><div class="p">
+    <p>Inserts a collection of characters at the specified position.</p>
+
+<p>Calling this method invalidates any existing indices for use with this
+string.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>newElements:</strong> A collection of <code>Character</code> elements to insert into the
+    string.
+  <strong>i:</strong> A valid index of the string. If <code>i</code> is equal to the string&#39;s end
+    index, this methods appends the contents of <code>newElements</code> to the
+    string.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the combined length of the string and
+  <code>newElements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insert&lt;S&gt;(contentsOf newElements: S, at i: String.Index)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lengthofbytes-using_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lengthofbytes-using_">func lengthOfBytes(<wbr>using:)</a>
+        
+<div class="comment collapse" id="comment-func-lengthofbytes-using_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns the number of bytes required to store the
+<code>String</code> in a given encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lengthOfBytes(using encoding: String.Encoding) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-linerange-for_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-linerange-for_">func lineRange(<wbr>for:)</a>
+        
+<div class="comment collapse" id="comment-func-linerange-for_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns the range of characters representing the line or lines
+containing a given range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lineRange(for aRange: Range&lt;Index&gt;) -&gt; Range&lt;Index&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-linguistictags-in_scheme_options_orthography_tokenranges_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-linguistictags-in_scheme_options_orthography_tokenranges_">func linguisticTags(<wbr>in:<wbr>scheme:<wbr>options:<wbr>orthography:<wbr>tokenRanges:)</a>
+        
+<div class="comment collapse" id="comment-func-linguistictags-in_scheme_options_orthography_tokenranges_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns an array of linguistic tags for the specified
+range and requested tags within the receiving string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func linguisticTags(in range: Range&lt;Index&gt;, scheme tagScheme: String, options opts: NSLinguisticTagger.Options = default, orthography: NSOrthography? = default, tokenRanges: UnsafeMutablePointer&lt;[Range&lt;Index&gt;]&gt;? = default) -&gt; [String]</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-localizedcaseinsensitivecompare_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-localizedcaseinsensitivecompare_">func localizedCaseInsensitiveCompare(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-localizedcaseinsensitivecompare_"><div class="p">
+    <p><em>[Foundation]</em>
+Compares the string and a given string using a
+case-insensitive, localized, comparison.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func localizedCaseInsensitiveCompare(_ aString: String) -&gt; ComparisonResult</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-localizedcaseinsensitivecontains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-localizedcaseinsensitivecontains_">func localizedCaseInsensitiveContains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-localizedcaseinsensitivecontains_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns <code>true</code> iff <code>other</code> is non-empty and contained within
+<code>self</code> by case-insensitive, non-literal search, taking into
+account the current locale.</p>
+
+<p>Locale-independent case-insensitive operation, and other needs,
+can be achieved by calling
+<code>rangeOfString(_:options:, range:_locale:_)</code>.</p>
+
+<p>Equivalent to</p>
+
+<pre><code class="language-swift">self.rangeOf(
+  other, options: .CaseInsensitiveSearch,
+  locale: Locale.current()) != nil</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func localizedCaseInsensitiveContains(_ other: String) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-localizedcompare_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-localizedcompare_">func localizedCompare(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-localizedcompare_"><div class="p">
+    <p><em>[Foundation]</em>
+Compares the string and a given string using a localized
+comparison.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func localizedCompare(_ aString: String) -&gt; ComparisonResult</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-localizedstandardcompare_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-localizedstandardcompare_">func localizedStandardCompare(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-localizedstandardcompare_"><div class="p">
+    <p><em>[Foundation]</em>
+Compares strings as sorted by the Finder.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func localizedStandardCompare(_ string: String) -&gt; ComparisonResult</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-localizedstandardcontains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-localizedstandardcontains_">func localizedStandardContains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-localizedstandardcontains_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns <code>true</code> if <code>self</code> contains <code>string</code>, taking the current locale
+into account.</p>
+
+<p>This is the most appropriate method for doing user-level string searches,
+similar to how searches are done generally in the system.  The search is
+locale-aware, case and diacritic insensitive.  The exact list of search
+options applied may change over time.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func localizedStandardContains(_ string: String) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-localizedstandardrange-of_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-localizedstandardrange-of_">func localizedStandardRange(<wbr>of:)</a>
+        
+<div class="comment collapse" id="comment-func-localizedstandardrange-of_"><div class="p">
+    <p><em>[Foundation]</em>
+Finds and returns the range of the first occurrence of a given string,
+taking the current locale into account.  Returns <code>nil</code> if the string was
+not found.</p>
+
+<p>This is the most appropriate method for doing user-level string searches,
+similar to how searches are done generally in the system.  The search is
+locale-aware, case and diacritic insensitive.  The exact list of search
+options applied may change over time.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func localizedStandardRange(of string: String) -&gt; Range&lt;Index&gt;?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lowercased">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lowercased">func lowercased()</a>
+        
+<div class="comment collapse" id="comment-func-lowercased"><div class="p">
+    <p>Returns a lowercase version of the string.</p>
+
+<p>Here&#39;s an example of transforming a string to all lowercase letters.</p>
+
+<pre><code class="language-swift">let cafe = &quot;BBQ Café 🍵&quot;
+print(cafe.lowercased())
+// Prints &quot;bbq café 🍵&quot;</code></pre>
+
+<p><strong>Returns:</strong> A lowercase copy of the string.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lowercased() -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lowercased-with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lowercased-with_">func lowercased(<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-lowercased-with_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a version of the string with all letters
+converted to lowercase, taking into account the specified
+locale.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lowercased(with locale: Locale?) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-max__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-max__">func max(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-max__"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func max&lt;T&gt;(_ x: T, _ y: T) -&gt; T where T : Comparable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-maximumlengthofbytes-using_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-maximumlengthofbytes-using_">func maximumLengthOfBytes(<wbr>using:)</a>
+        
+<div class="comment collapse" id="comment-func-maximumlengthofbytes-using_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns the maximum number of bytes needed to store the
+<code>String</code> in a given encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func maximumLengthOfBytes(using encoding: String.Encoding) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-min__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-min__">func min(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-min__"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func min&lt;T&gt;(_ x: T, _ y: T) -&gt; T where T : Comparable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-padding-tolength_withpad_startingat_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-padding-tolength_withpad_startingat_">func padding(<wbr>toLength:<wbr>withPad:<wbr>startingAt:)</a>
+        
+<div class="comment collapse" id="comment-func-padding-tolength_withpad_startingat_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a new string formed from the <code>String</code> by either
+removing characters from the end, or by appending as many
+occurrences as necessary of a given pad string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func padding(toLength newLength: Int, withPad padString: String, startingAt padIndex: Int) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-paragraphrange-for_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-paragraphrange-for_">func paragraphRange(<wbr>for:)</a>
+        
+<div class="comment collapse" id="comment-func-paragraphrange-for_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns the range of characters representing the
+paragraph or paragraphs containing a given range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func paragraphRange(for aRange: Range&lt;Index&gt;) -&gt; Range&lt;Index&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-propertylist">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-propertylist">func propertyList()</a>
+        
+<div class="comment collapse" id="comment-func-propertylist"><div class="p">
+    <p><em>[Foundation]</em>
+Parses the <code>String</code> as a text representation of a
+property list, returning an NSString, NSData, NSArray, or
+NSDictionary object, according to the topmost element.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func propertyList() -&gt; AnyObject</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-propertylistfromstringsfileformat">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-propertylistfromstringsfileformat">func propertyListFromStringsFileFormat()</a>
+        
+<div class="comment collapse" id="comment-func-propertylistfromstringsfileformat"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a dictionary object initialized with the keys and
+values found in the <code>String</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func propertyListFromStringsFileFormat() -&gt; [String : String]</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-range-of_options_range_locale_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-range-of_options_range_locale_">func range(<wbr>of:<wbr>options:<wbr>range:<wbr>locale:)</a>
+        
+<div class="comment collapse" id="comment-func-range-of_options_range_locale_"><div class="p">
+    <p><em>[Foundation]</em>
+Finds and returns the range of the first occurrence of a
+given string within a given range of the <code>String</code>, subject to
+given options, using the specified locale, if any.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func range(of aString: String, options mask: CompareOptions = default, range searchRange: Range&lt;Index&gt;? = default, locale: Locale? = default) -&gt; Range&lt;Index&gt;?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-rangeofcharacter-from_options_range_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rangeofcharacter-from_options_range_">func rangeOfCharacter(<wbr>from:<wbr>options:<wbr>range:)</a>
+        
+<div class="comment collapse" id="comment-func-rangeofcharacter-from_options_range_"><div class="p">
+    <p><em>[Foundation]</em>
+Finds and returns the range in the <code>String</code> of the first
+character from a given character set found in a given range with
+given options.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func rangeOfCharacter(from aSet: CharacterSet, options mask: CompareOptions = default, range aRange: Range&lt;Index&gt;? = default) -&gt; Range&lt;Index&gt;?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-rangeofcomposedcharactersequence-at_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rangeofcomposedcharactersequence-at_">func rangeOfComposedCharacterSequence(<wbr>at:)</a>
+        
+<div class="comment collapse" id="comment-func-rangeofcomposedcharactersequence-at_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns the range in the <code>String</code> of the composed
+character sequence located at a given index.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func rangeOfComposedCharacterSequence(at anIndex: Index) -&gt; Range&lt;Index&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-rangeofcomposedcharactersequences-for_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rangeofcomposedcharactersequences-for_">func rangeOfComposedCharacterSequences(<wbr>for:)</a>
+        
+<div class="comment collapse" id="comment-func-rangeofcomposedcharactersequences-for_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns the range in the string of the composed character
+sequences for a given range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func rangeOfComposedCharacterSequences(for range: Range&lt;Index&gt;) -&gt; Range&lt;Index&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-remove-at_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-remove-at_">mutating func remove(<wbr>at:)</a>
+        
+<div class="comment collapse" id="comment-func-remove-at_"><div class="p">
+    <p>Removes and returns the character at the specified position.</p>
+
+<p>All the elements following <code>i</code> are moved to close the gap. This example
+removes the hyphen from the middle of a string.</p>
+
+<pre><code class="language-swift">var nonempty = &quot;non-empty&quot;
+if let i = nonempty.firstIndex(of: &quot;-&quot;) {
+    nonempty.remove(at: i)
+}
+print(nonempty)
+// Prints &quot;nonempty&quot;</code></pre>
+
+<p>Calling this method invalidates any existing indices for use with this
+string.</p>
+
+<p><strong><code>i</code>:</strong>  The position of the character to remove. <code>i</code> must be a
+  valid index of the string that is not equal to the string&#39;s end index.
+<strong>Returns:</strong> The character that was removed.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func remove(at i: String.Index) -&gt; Character</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-removeall-keepingcapacity_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removeall-keepingcapacity_">mutating func removeAll(<wbr>keepingCapacity:)</a>
+        
+<div class="comment collapse" id="comment-func-removeall-keepingcapacity_"><div class="p">
+    <p>Replaces this string with the empty string.</p>
+
+<p>Calling this method invalidates any existing indices for use with this
+string.</p>
+
+<p><strong><code>keepCapacity</code>:</strong>  Pass <code>true</code> to prevent the release of the
+  string&#39;s allocated storage. Retaining the storage can be a useful
+  optimization when you&#39;re planning to grow the string again. The
+  default value is <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeAll(keepingCapacity keepCapacity: Bool = default)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-removesubrange_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removesubrange_">mutating func removeSubrange(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-removesubrange_"><div class="p">
+    <p>Removes the characters in the given range.</p>
+
+<p>Calling this method invalidates any existing indices for use with this
+string.</p>
+
+<p><strong><code>bounds</code>:</strong>  The range of the elements to remove. The upper and
+  lower bounds of <code>bounds</code> must be valid indices of the string and not
+  equal to the string&#39;s end index.</p>
+
+<p><strong><code>bounds</code>:</strong>  The range of the elements to remove. The upper and
+  lower bounds of <code>bounds</code> must be valid indices of the string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeSubrange(_ bounds: Range&lt;String.Index&gt;)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-replacesubrange_with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-replacesubrange_with_">mutating func replaceSubrange(<wbr>_:<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-replacesubrange_with_"><div class="p">
+    <p>Replaces the text within the specified bounds with the given characters.</p>
+
+<p>Calling this method invalidates any existing indices for use with this
+string.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>bounds:</strong> The range of text to replace. The bounds of the range must be
+    valid indices of the string.
+  <strong>newElements:</strong> The new characters to add to the string.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em>), where <em>m</em> is the combined length of the string and
+  <code>newElements</code>. If the call to <code>replaceSubrange(_:with:)</code> simply
+  removes text at the end of the string, the complexity is O(<em>n</em>), where
+  <em>n</em> is equal to <code>bounds.count</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func replaceSubrange&lt;C&gt;(_ bounds: Range&lt;String.Index&gt;, with newElements: C)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-replacingcharacters-in_with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-replacingcharacters-in_with_">func replacingCharacters(<wbr>in:<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-replacingcharacters-in_with_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a new string in which the characters in a
+specified range of the <code>String</code> are replaced by a given string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func replacingCharacters(in range: Range&lt;Index&gt;, with replacement: String) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-replacingoccurrences-of_with_options_range_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-replacingoccurrences-of_with_options_range_">func replacingOccurrences(<wbr>of:<wbr>with:<wbr>options:<wbr>range:)</a>
+        
+<div class="comment collapse" id="comment-func-replacingoccurrences-of_with_options_range_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a new string in which all occurrences of a target
+string in a specified range of the <code>String</code> are replaced by
+another given string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func replacingOccurrences(of target: String, with replacement: String, options: CompareOptions = default, range searchRange: Range&lt;Index&gt;? = default) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-replacingpercentescapes-using_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-replacingpercentescapes-using_">func replacingPercentEscapes(<wbr>using:)</a>
+        
+<div class="comment collapse" id="comment-func-replacingpercentescapes-using_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a new string made by replacing in the <code>String</code>
+all percent escapes with the matching characters as determined
+by a given encoding.</p>
+
+<p><em>Deprecated:</em> Use removingPercentEncoding instead, which always uses the recommended UTF-8 encoding..</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func replacingPercentEscapes(using encoding: String.Encoding) -&gt; String?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-reservecapacity_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reservecapacity_">mutating func reserveCapacity(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-reservecapacity_"><div class="p">
+    <p>Reserves enough space in the string&#39;s underlying storage to store the
+specified number of ASCII characters.</p>
+
+<p>Because each character in a string can require more than a single ASCII
+character&#39;s worth of storage, additional allocation may be necessary
+when adding characters to a string after a call to
+<code>reserveCapacity(_:)</code>.</p>
+
+<p><strong><code>n</code>:</strong>  The minimum number of ASCII character&#39;s worth of storage
+  to allocate.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func reserveCapacity(_ n: Int)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-substring-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-substring-from_">func substring(<wbr>from:)</a>
+        
+<div class="comment collapse" id="comment-func-substring-from_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a new string containing the characters of the
+<code>String</code> from the one at a given index to the end.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func substring(from index: Index) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-substring-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-substring-to_">func substring(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-substring-to_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a new string containing the characters of the
+<code>String</code> up to, but not including, the one at a given index.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func substring(to index: Index) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-substring-with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-substring-with_">func substring(<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-substring-with_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a string object containing the characters of the
+<code>String</code> that lie within a given range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func substring(with aRange: Range&lt;Index&gt;) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-trimmingcharacters-in_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-trimmingcharacters-in_">func trimmingCharacters(<wbr>in:)</a>
+        
+<div class="comment collapse" id="comment-func-trimmingcharacters-in_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a new string made by removing from both ends of
+the <code>String</code> characters contained in a given character set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func trimmingCharacters(in set: CharacterSet) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-uppercased">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-uppercased">func uppercased()</a>
+        
+<div class="comment collapse" id="comment-func-uppercased"><div class="p">
+    <p>Returns an uppercase version of the string.</p>
+
+<p>The following example transforms a string to uppercase letters:</p>
+
+<pre><code class="language-swift">let cafe = &quot;Café 🍵&quot;
+print(cafe.uppercased())
+// Prints &quot;CAFÉ 🍵&quot;</code></pre>
+
+<p><strong>Returns:</strong> An uppercase copy of the string.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func uppercased() -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-uppercased-with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-uppercased-with_">func uppercased(<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-uppercased-with_"><div class="p">
+    <p><em>[Foundation]</em>
+Returns a version of the string with all letters
+converted to uppercase, taking into account the specified
+locale.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func uppercased(with locale: Locale?) -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-withcstring_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withcstring_">func withCString(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withcstring_"><div class="p">
+    <p>Calls the given closure with a pointer to the contents of the string,
+represented as a null-terminated sequence of UTF-8 code units.</p>
+
+<p>The pointer passed as an argument to <code>body</code> is valid only during the
+execution of <code>withCString(_:)</code>. Do not store or return the pointer for
+later use.</p>
+
+<p><strong><code>body</code>:</strong>  A closure with a pointer parameter that points to a
+  null-terminated sequence of UTF-8 code units. If <code>body</code> has a return
+  value, that value is also used as the return value for the
+  <code>withCString(_:)</code> method. The pointer argument is valid only for the
+  duration of the method&#39;s execution.
+<strong>Returns:</strong> The return value, if any, of the <code>body</code> closure parameter.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withCString&lt;Result&gt;(_ body: (UnsafePointer&lt;Int8&gt;) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-withcstring-encodedas__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withcstring-encodedas__">func withCString(<wbr>encodedAs:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withcstring-encodedas__"><div class="p">
+    <p>Calls the given closure with a pointer to the contents of the string,
+represented as a null-terminated sequence of code units.</p>
+
+<p>The pointer passed as an argument to <code>body</code> is valid only during the
+execution of <code>withCString(encodedAs:_:)</code>. Do not store or return the
+pointer for later use.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>body:</strong> A closure with a pointer parameter that points to a
+    null-terminated sequence of code units. If <code>body</code> has a return
+    value, that value is also used as the return value for the
+    <code>withCString(encodedAs:_:)</code> method. The pointer argument is valid
+    only for the duration of the method&#39;s execution.
+  <strong>targetEncoding:</strong> The encoding in which the code units should be
+    interpreted.
+<strong>Returns:</strong> The return value, if any, of the <code>body</code> closure parameter.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withCString&lt;Result, TargetEncoding&gt;(encodedAs targetEncoding: TargetEncoding.Type, _ body: (UnsafePointer&lt;TargetEncoding.CodeUnit&gt;) throws -&gt; Result) rethrows -&gt; Result where TargetEncoding : _UnicodeEncoding</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-withmutablecharacters_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withmutablecharacters_">mutating func withMutableCharacters(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withmutablecharacters_"><div class="p">
+    <p>Applies the given closure to a mutable view of the string&#39;s characters.</p>
+
+<p>Do not use the string that is the target of this method inside the
+closure passed to <code>body</code>, as it may not have its correct value. Instead,
+use the closure&#39;s <code>CharacterView</code> argument.</p>
+
+<p>This example below uses the <code>withMutableCharacters(_:)</code> method to
+truncate the string <code>str</code> at the first space and to return the remainder
+of the string.</p>
+
+<pre><code class="language-swift">var str = &quot;All this happened, more or less.&quot;
+let afterSpace = str.withMutableCharacters {
+    chars -&gt; String.CharacterView in
+    if let i = chars.firstIndex(of: &quot; &quot;) {
+        let result = chars[chars.index(after: i)...]
+        chars.removeSubrange(i...)
+        return result
+    }
+    return String.CharacterView()
+}
+
+print(str)
+// Prints &quot;All&quot;
+print(String(afterSpace))
+// Prints &quot;this happened, more or less.&quot;</code></pre>
+
+<p><strong><code>body</code>:</strong>  A closure that takes a character view as its argument.
+  If <code>body</code> has a return value, that value is also used as the return
+  value for the <code>withMutableCharacters(_:)</code> method. The <code>CharacterView</code>
+  argument is valid only for the duration of the closure&#39;s execution.
+<strong>Returns:</strong> The return value, if any, of the <code>body</code> closure parameter.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func withMutableCharacters&lt;R&gt;(_ body: (inout String.CharacterView) -&gt; R) -&gt; R</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-write_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-write_">mutating func write(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-write_"><div class="p">
+    <p>Appends the given string to this string.</p>
+
+<p><strong><code>other</code>:</strong>  A string to append.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func write(_ other: String)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-write-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-write-to_">func write(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-write-to_"><div class="p">
+    <p>Writes the string into the given output stream.</p>
+
+<p><strong><code>target</code>:</strong>  An output stream.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func write&lt;Target&gt;(to target: inout Target)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-write-to_atomically_encoding_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-write-to_atomically_encoding_">func write(<wbr>to:<wbr>atomically:<wbr>encoding:)</a>
+        
+<div class="comment collapse" id="comment-func-write-to_atomically_encoding_"><div class="p">
+    <p><em>[Foundation]</em>
+Writes the contents of the <code>String</code> to the URL specified
+by url using the specified encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func write(to url: URL, atomically useAuxiliaryFile: Bool, encoding enc: String.Encoding) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-write-tofile_atomically_encoding_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-write-tofile_atomically_encoding_">func write(<wbr>toFile:<wbr>atomically:<wbr>encoding:)</a>
+        
+<div class="comment collapse" id="comment-func-write-tofile_atomically_encoding_"><div class="p">
+    <p><em>[Foundation]</em>
+Writes the contents of the <code>String</code> to a file at a given
+path using a given encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func write(toFile path: String, atomically useAuxiliaryFile: Bool, encoding enc: String.Encoding) throws</code>
+    
+    
+</div></div>
+</div>
+
+

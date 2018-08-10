@@ -1,0 +1,653 @@
+---
+layout: "default"
+title: "UnsafePointer"
+description: "Swift documentation for 'UnsafePointer': A pointer for accessing  data of a."
+keywords: "UnsafePointer,struct,swift,documentation,advanced,deallocate,distance,hash,predecessor,successor,withMemoryRebound,customMirror,customPlaygroundQuickLook,debugDescription,hashValue,pointee,Distance"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct UnsafePointer&lt;Pointee&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A pointer for accessing  data of a
+specific type.</p>
+
+<p>You use instances of the <code>UnsafePointer</code> type to access data of a
+specific type in memory. The type of data that a pointer can access is the
+pointer&#39;s <code>Pointee</code> type. <code>UnsafePointer</code> provides no automated
+memory management or alignment guarantees. You are responsible for
+handling the life cycle of any memory you work with through unsafe
+pointers to avoid leaks or undefined behavior.</p>
+
+<p>Memory that you manually manage can be either <em>untyped</em> or <em>bound</em> to a
+specific type. You use the <code>UnsafePointer</code> type to access and
+manage memory that has been bound to a specific type.</p>
+
+<h1>Understanding a Pointer&#39;s Memory State</h1>
+
+<p>The memory referenced by an <code>UnsafePointer</code> instance can be in
+one of several states. Many pointer operations must only be applied to
+pointers with memory in a specific state---you must keep track of the
+state of the memory you are working with and understand the changes to
+that state that different operations perform. Memory can be untyped and
+uninitialized, bound to a type and uninitialized, or bound to a type and
+initialized to a value. Finally, memory that was allocated previously may
+have been deallocated, leaving existing pointers referencing unallocated
+memory.</p>
+
+<h2>Uninitialized Memory</h2>
+
+<p>Memory that has just been allocated through a typed pointer or has been
+deinitialized is in an <em>uninitialized</em> state. Uninitialized memory must be
+initialized before it can be accessed for reading.</p>
+
+<h2>Initialized Memory</h2>
+
+<p><em>Initialized</em> memory has a value that can be read using a pointer&#39;s
+<code>pointee</code> property or through subscript notation. In the following
+example, <code>ptr</code> is a pointer to memory initialized with a value of <code>23</code>:</p>
+
+<pre><code class="language-swift">let ptr: UnsafePointer&lt;Int&gt; = ...
+// ptr.pointee == 23
+// ptr[0] == 23</code></pre>
+
+<h1>Accessing a Pointer&#39;s Memory as a Different Type</h1>
+
+<p>When you access memory through an <code>UnsafePointer</code> instance, the
+<code>Pointee</code> type must be consistent with the bound type of the memory. If
+you do need to access memory that is bound to one type as a different
+type, Swift&#39;s pointer types provide type-safe ways to temporarily or
+permanently change the bound type of the memory, or to load typed
+instances directly from raw memory.</p>
+
+<p>An <code>UnsafePointer&lt;UInt8&gt;</code> instance allocated with eight bytes of
+memory, <code>uint8Pointer</code>, will be used for the examples below.</p>
+
+<pre><code class="language-swift">let uint8Pointer: UnsafePointer&lt;UInt8&gt; = fetchEightBytes()</code></pre>
+
+<p>When you only need to temporarily access a pointer&#39;s memory as a different
+type, use the <code>withMemoryRebound(to:capacity:)</code> method. For example, you
+can use this method to call an API that expects a pointer to a different
+type that is layout compatible with your pointer&#39;s <code>Pointee</code>. The following
+code temporarily rebinds the memory that <code>uint8Pointer</code> references from
+<code>UInt8</code> to <code>Int8</code> to call the imported C <code>strlen</code> function.</p>
+
+<pre><code class="language-swift">// Imported from C
+func strlen(_ __s: UnsafePointer&lt;Int8&gt;!) -&gt; UInt
+
+let length = uint8Pointer.withMemoryRebound(to: Int8.self, capacity: 8) {
+    return strlen($0)
+}
+// length == 7</code></pre>
+
+<p>When you need to permanently rebind memory to a different type, first
+obtain a raw pointer to the memory and then call the
+<code>bindMemory(to:capacity:)</code> method on the raw pointer. The following
+example binds the memory referenced by <code>uint8Pointer</code> to one instance of
+the <code>UInt64</code> type:</p>
+
+<pre><code class="language-swift">let uint64Pointer = UnsafeRawPointer(uint8Pointer)
+                          .bindMemory(to: UInt64.self, capacity: 1)</code></pre>
+
+<p>After rebinding the memory referenced by <code>uint8Pointer</code> to <code>UInt64</code>,
+accessing that pointer&#39;s referenced memory as a <code>UInt8</code> instance is
+undefined.</p>
+
+<pre><code class="language-swift">var fullInteger = uint64Pointer.pointee          // OK
+var firstByte = uint8Pointer.pointee             // undefined</code></pre>
+
+<p>Alternatively, you can access the same memory as a different type without
+rebinding through untyped memory access, so long as the bound type and the
+destination type are trivial types. Convert your pointer to an
+<code>UnsafeRawPointer</code> instance and then use the raw pointer&#39;s
+<code>load(fromByteOffset:as:)</code> method to read values.</p>
+
+<pre><code class="language-swift">let rawPointer = UnsafeRawPointer(uint64Pointer)
+fullInteger = rawPointer.load(as: UInt64.self)   // OK
+firstByte = rawPointer.load(as: UInt8.self)      // OK</code></pre>
+
+<h1>Performing Typed Pointer Arithmetic</h1>
+
+<p>Pointer arithmetic with a typed pointer is counted in strides of the
+pointer&#39;s <code>Pointee</code> type. When you add to or subtract from an <code>UnsafePointer</code>
+instance, the result is a new pointer of the same type, offset by that
+number of instances of the <code>Pointee</code> type.</p>
+
+<pre><code class="language-swift">// &#39;intPointer&#39; points to memory initialized with [10, 20, 30, 40]
+let intPointer: UnsafePointer&lt;Int&gt; = ...
+
+// Load the first value in memory
+let x = intPointer.pointee
+// x == 10
+
+// Load the third value in memory
+let offsetPointer = intPointer + 2
+let y = offsetPointer.pointee
+// y == 30</code></pre>
+
+<p>You can also use subscript notation to access the value in memory at a
+specific offset.</p>
+
+<pre><code class="language-swift">let z = intPointer[2]
+// z == 30</code></pre>
+
+<h1>Implicit Casting and Bridging</h1>
+
+<p>When calling a function or method with an <code>UnsafePointer</code> parameter, you can pass
+an instance of that specific pointer type, pass an instance of a
+compatible pointer type, or use Swift&#39;s implicit bridging to pass a
+compatible pointer.</p>
+
+<p>For example, the <code>printInt(atAddress:)</code> function in the following code
+sample expects an <code>UnsafePointer&lt;Int&gt;</code> instance as its first parameter:</p>
+
+<pre><code class="language-swift">func printInt(atAddress p: UnsafePointer&lt;Int&gt;) {
+    print(p.pointee)
+}</code></pre>
+
+<p>As is typical in Swift, you can call the <code>printInt(atAddress:)</code> function
+with an <code>UnsafePointer</code> instance. This example passes <code>intPointer</code>, a pointer to
+an <code>Int</code> value, to <code>print(address:)</code>.</p>
+
+<pre><code class="language-swift">printInt(atAddress: intPointer)
+// Prints &quot;42&quot;</code></pre>
+
+<p>Because a mutable typed pointer can be implicitly cast to an immutable
+pointer with the same <code>Pointee</code> type when passed as a parameter, you can
+also call <code>printInt(atAddress:)</code> with an <code>UnsafeMutablePointer</code> instance.</p>
+
+<pre><code class="language-swift">let mutableIntPointer = UnsafeMutablePointer(mutating: intPointer)
+printInt(atAddress: mutableIntPointer)
+// Prints &quot;42&quot;</code></pre>
+
+<p>Alternatively, you can use Swift&#39;s <em>implicit bridging</em> to pass a pointer to
+an instance or to the elements of an array. The following example passes a
+pointer to the <code>value</code> variable by using inout syntax:</p>
+
+<pre><code class="language-swift">var value: Int = 23
+printInt(atAddress: &amp;value)
+// Prints &quot;23&quot;</code></pre>
+
+<p>An immutable pointer to the elements of an array is implicitly created when
+you pass the array as an argument. This example uses implicit bridging to
+pass a pointer to the elements of <code>numbers</code> when calling
+<code>printInt(atAddress:)</code>.</p>
+
+<pre><code class="language-swift">let numbers = [5, 10, 15, 20]
+printInt(atAddress: numbers)
+// Prints &quot;5&quot;</code></pre>
+
+<p>You can also use inout syntax to pass a mutable pointer to the elements of
+an array. Because <code>printInt(atAddress:)</code> requires an immutable pointer,
+although this is syntactically valid, it isn&#39;t necessary.</p>
+
+<pre><code class="language-swift">var mutableNumbers = numbers
+printInt(atAddress: &amp;mutableNumbers)</code></pre>
+
+<p>No matter which way you call <code>printInt(atAddress:)</code>, Swift&#39;s type safety
+guarantees that you can only pass a pointer to the type required by the
+function---in this case, a pointer to an <code>Int</code>.</p>
+
+<p><strong>Important:</strong> The pointer created through implicit bridging of an instance
+  or of an array&#39;s elements is only valid during the execution of the
+  called function. Escaping the pointer to use after the execution of the
+  function is undefined behavior. In particular, do not use implicit
+  bridging when calling an <code>UnsafePointer</code> initializer.</p>
+
+<pre><code class="language-swift">  var number = 5
+  let numberPointer = UnsafePointer&lt;Int&gt;(&amp;number)
+  // Accessing &#39;numberPointer&#39; is undefined behavior.</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CVarArg, Comparable, CustomDebugStringConvertible, CustomPlaygroundQuickLookable, CustomReflectable, Equatable, Hashable, Strideable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Distance = Int</code>
+<div class="comment">
+    <p>A type that represents the distance between two pointers.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_-opaquepointer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-opaquepointer">init(<wbr>_: OpaquePointer)</a><div class="comment collapse" id="comment-init_-opaquepointer"><div class="p">
+    <p>Creates a new typed pointer from the given opaque pointer.</p>
+
+<p><strong><code>from</code>:</strong>  The opaque pointer to convert to a typed pointer.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ from: OpaquePointer)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unsafemutablepointer-pointee">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unsafemutablepointer-pointee">init(<wbr>_: UnsafeMutablePointer&lt;Pointee&gt;)</a><div class="comment collapse" id="comment-init_-unsafemutablepointer-pointee"><div class="p">
+    <p>Creates an immutable typed pointer referencing the same memory as the
+given mutable pointer.</p>
+
+<p><strong><code>other</code>:</strong>  The pointer to convert.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ other: UnsafeMutablePointer&lt;Pointee&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unsafepointer-pointee">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unsafepointer-pointee">init(<wbr>_: UnsafePointer&lt;Pointee&gt;)</a><div class="comment collapse" id="comment-init_-unsafepointer-pointee"><div class="p">
+    <p>Creates a new pointer from the given typed pointer.</p>
+
+<p><strong><code>other</code>:</strong>  The typed pointer to convert.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ other: UnsafePointer&lt;Pointee&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-opaquepointer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-opaquepointer">init?(<wbr>_: OpaquePointer?)</a><div class="comment collapse" id="comment-init_-opaquepointer"><div class="p">
+    <p>Creates a new typed pointer from the given opaque pointer.</p>
+
+<p><strong><code>from</code>:</strong>  The opaque pointer to convert to a typed pointer. If
+  <code>from</code> is <code>nil</code>, the result of this initializer is <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ from: OpaquePointer?)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unsafemutablepointer-pointee">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unsafemutablepointer-pointee">init?(<wbr>_: UnsafeMutablePointer&lt;Pointee&gt;?)</a><div class="comment collapse" id="comment-init_-unsafemutablepointer-pointee"><div class="p">
+    <p>Creates an immutable typed pointer referencing the same memory as the
+given mutable pointer.</p>
+
+<p><strong><code>other</code>:</strong>  The pointer to convert. If <code>other</code> is <code>nil</code>, the
+  result is <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ other: UnsafeMutablePointer&lt;Pointee&gt;?)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unsafepointer-pointee">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unsafepointer-pointee">init?(<wbr>_: UnsafePointer&lt;Pointee&gt;?)</a><div class="comment collapse" id="comment-init_-unsafepointer-pointee"><div class="p">
+    <p>Creates a new pointer from the given typed pointer.</p>
+
+<p><strong><code>other</code>:</strong>  The typed pointer to convert. If <code>other</code> is <code>nil</code>, the
+  result is <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ other: UnsafePointer&lt;Pointee&gt;?)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-bitpattern_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-bitpattern_-int">init?(<wbr>bitPattern: Int)</a><div class="comment collapse" id="comment-init-bitpattern_-int"><div class="p">
+    <p>Creates a new typed pointer from the given address, specified as a bit
+pattern.</p>
+
+<p>The address passed as <code>bitPattern</code> must have the correct alignment for
+the pointer&#39;s <code>Pointee</code> type. That is,
+<code>bitPattern % MemoryLayout&lt;Pointee&gt;.alignment</code> must be <code>0</code>.</p>
+
+<p><strong><code>bitPattern</code>:</strong>  A bit pattern to use for the address of the new
+  pointer. If <code>bitPattern</code> is zero, the result is <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(bitPattern: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-bitpattern_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-bitpattern_-uint">init?(<wbr>bitPattern: UInt)</a><div class="comment collapse" id="comment-init-bitpattern_-uint"><div class="p">
+    <p>Creates a new typed pointer from the given address, specified as a bit
+pattern.</p>
+
+<p>The address passed as <code>bitPattern</code> must have the correct alignment for
+the pointer&#39;s <code>Pointee</code> type. That is,
+<code>bitPattern % MemoryLayout&lt;Pointee&gt;.alignment</code> must be <code>0</code>.</p>
+
+<p><strong><code>bitPattern</code>:</strong>  A bit pattern to use for the address of the new
+  pointer. If <code>bitPattern</code> is zero, the result is <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(bitPattern: UInt)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>The custom mirror for this instance.</p>
+
+<p>If this type has value semantics, the mirror should be unaffected by
+subsequent mutations of the instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-customplaygroundquicklook_-playgroundquicklook">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-customplaygroundquicklook_-playgroundquicklook">var customPlaygroundQuickLook: PlaygroundQuickLook</a><div class="comment collapse" id="comment-var-customplaygroundquicklook_-playgroundquicklook"><div class="p">
+    <p>A custom playground Quick Look for this instance.</p>
+
+<p>If this type has value semantics, the <code>PlaygroundQuickLook</code> instance
+should be unaffected by subsequent mutations.</p>
+
+<p><em>Deprecated:</em> UnsafePointer.customPlaygroundQuickLook will be removed in a future Swift version.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customPlaygroundQuickLook: PlaygroundQuickLook { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of the pointer, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The pointer&#39;s hash value.</p>
+
+<p>The hash value is not guaranteed to be stable across different
+invocations of the same program.  Do not persist the hash value across
+program runs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-pointee_-pointee">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-pointee_-pointee">var pointee: Pointee</a><div class="comment collapse" id="comment-var-pointee_-pointee"><div class="p">
+    <p>Accesses the instance referenced by this pointer.</p>
+
+<p>When reading from the <code>pointee</code> property, the instance referenced by
+this pointer must already be initialized.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var pointee: Pointee { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-int">subscript(_: Int)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-int"><div class="p">
+    <p>Accesses the pointee at the specified offset from this pointer.</p>
+
+<p>For a pointer <code>p</code>, the memory at <code>p + i</code> must be initialized.</p>
+
+<p><strong><code>i</code>:</strong>  The offset from this pointer at which to access an
+  instance, measured in strides of the pointer&#39;s <code>Pointee</code> type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(i: Int) -&gt; Pointee { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-advanced-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advanced-by_">func advanced(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-advanced-by_"><div class="p">
+    <p>Returns a pointer offset from this pointer by the specified number of
+instances.</p>
+
+<p>With pointer <code>p</code> and distance <code>n</code>, the result of <code>p.advanced(by: n)</code> is
+equivalent to <code>p + n</code>.</p>
+
+<p>The resulting pointer must be within the bounds of the same allocation as
+this pointer.</p>
+
+<p><strong><code>n</code>:</strong>  The number of strides of the pointer&#39;s <code>Pointee</code> type to
+  offset this pointer. To access the stride, use
+  <code>MemoryLayout&lt;Pointee&gt;.stride</code>. <code>n</code> may be positive, negative, or
+  zero.
+<strong>Returns:</strong> A pointer offset from this pointer by <code>n</code> instances of the
+  <code>Pointee</code> type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advanced(by n: Int) -&gt; UnsafePointer&lt;Pointee&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-deallocate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-deallocate">func deallocate()</a>
+        
+<div class="comment collapse" id="comment-func-deallocate"><div class="p">
+    <p>Deallocates the memory block previously allocated at this pointer.</p>
+
+<p>This pointer must be a pointer to the start of a previously allocated memory 
+block. The memory must not be initialized or <code>Pointee</code> must be a trivial type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func deallocate()</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-distance-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distance-to_">func distance(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-distance-to_"><div class="p">
+    <p>Returns the distance from this pointer to the given pointer, counted as
+instances of the pointer&#39;s <code>Pointee</code> type.</p>
+
+<p>With pointers <code>p</code> and <code>q</code>, the result of <code>p.distance(to: q)</code> is
+equivalent to <code>q - p</code>.</p>
+
+<p>Typed pointers are required to be properly aligned for their <code>Pointee</code>
+type. Proper alignment ensures that the result of <code>distance(to:)</code>
+accurately measures the distance between the two pointers, counted in
+strides of <code>Pointee</code>. To find the distance in bytes between two
+pointers, convert them to <code>UnsafeRawPointer</code> instances before calling
+<code>distance(to:)</code>.</p>
+
+<p><strong><code>end</code>:</strong>  The pointer to calculate the distance to.
+<strong>Returns:</strong> The distance from this pointer to <code>end</code>, in strides of the
+  pointer&#39;s <code>Pointee</code> type. To access the stride, use
+  <code>MemoryLayout&lt;Pointee&gt;.stride</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(to end: UnsafePointer&lt;Pointee&gt;) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-hash-into_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-hash-into_">func hash(<wbr>into:)</a>
+        
+<div class="comment collapse" id="comment-func-hash-into_"><div class="p">
+    <p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+
+<p><strong><code>hasher</code>:</strong>  The hasher to use when combining the components
+  of this instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func hash(into hasher: inout Hasher)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-predecessor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-predecessor">func predecessor()</a>
+        
+<div class="comment collapse" id="comment-func-predecessor"><div class="p">
+    <p>Returns a pointer to the previous consecutive instance.</p>
+
+<p>The resulting pointer must be within the bounds of the same allocation as
+this pointer.</p>
+
+<p><strong>Returns:</strong> A pointer shifted backward from this pointer by
+  <code>MemoryLayout&lt;Pointee&gt;.stride</code> bytes.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func predecessor() -&gt; UnsafePointer&lt;Pointee&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-successor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-successor">func successor()</a>
+        
+<div class="comment collapse" id="comment-func-successor"><div class="p">
+    <p>Returns a pointer to the next consecutive instance.</p>
+
+<p>The resulting pointer must be within the bounds of the same allocation as
+this pointer.</p>
+
+<p><strong>Returns:</strong> A pointer advanced from this pointer by
+  <code>MemoryLayout&lt;Pointee&gt;.stride</code> bytes.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func successor() -&gt; UnsafePointer&lt;Pointee&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-withmemoryrebound-to_capacity__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withmemoryrebound-to_capacity__">func withMemoryRebound(<wbr>to:<wbr>capacity:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withmemoryrebound-to_capacity__"><div class="p">
+    <p>Executes the given closure while temporarily binding the specified number
+of instances to the given type.</p>
+
+<p>Use this method when you have a pointer to memory bound to one type and
+you need to access that memory as instances of another type. Accessing
+memory as type <code>T</code> requires that the memory be bound to that type. A
+memory location may only be bound to one type at a time, so accessing
+the same memory as an unrelated type without first rebinding the memory
+is undefined.</p>
+
+<p>The region of memory starting at this pointer and covering <code>count</code>
+instances of the pointer&#39;s <code>Pointee</code> type must be initialized.</p>
+
+<p>The following example temporarily rebinds the memory of a <code>UInt64</code>
+pointer to <code>Int64</code>, then accesses a property on the signed integer.</p>
+
+<pre><code class="language-swift">let uint64Pointer: UnsafePointer&lt;UInt64&gt; = fetchValue()
+let isNegative = uint64Pointer.withMemoryRebound(to: Int64.self) { ptr in
+    return ptr.pointee &lt; 0
+}</code></pre>
+
+<p>Because this pointer&#39;s memory is no longer bound to its <code>Pointee</code> type
+while the <code>body</code> closure executes, do not access memory using the
+original pointer from within <code>body</code>. Instead, use the <code>body</code> closure&#39;s
+pointer argument to access the values in memory as instances of type
+<code>T</code>.</p>
+
+<p>After executing <code>body</code>, this method rebinds memory back to the original
+<code>Pointee</code> type.</p>
+
+<p><strong>Note:</strong> Only use this method to rebind the pointer&#39;s memory to a type
+  with the same size and stride as the currently bound <code>Pointee</code> type.
+  To bind a region of memory to a type that is a different size, convert
+  the pointer to a raw pointer and use the <code>bindMemory(to:capacity:)</code>
+  method.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>type:</strong> The type to temporarily bind the memory referenced by this
+    pointer. The type <code>T</code> must be the same size and be layout compatible
+    with the pointer&#39;s <code>Pointee</code> type.
+  <strong>count:</strong> The number of instances of <code>T</code> to bind to <code>type</code>.
+  <strong>body:</strong> A closure that takes a  typed pointer to the
+    same memory as this pointer, only bound to type <code>T</code>. The closure&#39;s
+    pointer argument is valid only for the duration of the closure&#39;s
+    execution. If <code>body</code> has a return value, that value is also used as
+    the return value for the <code>withMemoryRebound(to:capacity:_:)</code> method.
+<strong>Returns:</strong> The return value, if any, of the <code>body</code> closure parameter.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withMemoryRebound&lt;T, Result&gt;(to type: T.Type, capacity count: Int, _ body: (UnsafePointer&lt;T&gt;) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Conditionally Inherited Items</h3>
+
+<p class="comment">The initializers, methods, and properties listed below may be available on this type under certain conditions (such as methods that are available on <code>Array</code> when its elements are <code>Equatable</code>) or may not ever be available if that determination is beyond SwiftDoc.org's capabilities. Please <a href="https://github.com/SwiftDocOrg/swiftdoc.org/issues">open an issue on GitHub</a> if you see something out of place!</p>
+
+
+
+
+
+<h4>Where Stride : SignedInteger</h4>
+
+
+
+
+<div class="declaration inherited" id="func-stride_-signedinteger-dotdotdot_maximum_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride_-signedinteger-dotdotdot_maximum_">func ...(<wbr>_:<wbr>maximum:)</a>
+        
+<div class="comment collapse" id="comment-func-stride_-signedinteger-dotdotdot_maximum_"><div class="p">
+    <p>Returns a countable closed range that contains both of its bounds.</p>
+
+<p>Use the closed range operator (<code>...</code>) to create a closed range of any type
+that conforms to the <code>Strideable</code> protocol with an associated signed
+integer <code>Stride</code> type, such as any of the standard library&#39;s integer
+types. This example creates a <code>ClosedRange&lt;Int&gt;</code> from zero up to,
+and including, nine.</p>
+
+<pre><code class="language-swift">let singleDigits = 0...9
+print(singleDigits.contains(9))
+// Prints &quot;true&quot;</code></pre>
+
+<p>You can use sequence or collection methods on the <code>singleDigits</code> range.</p>
+
+<pre><code class="language-swift">print(singleDigits.count)
+// Prints &quot;10&quot;
+print(singleDigits.last)
+// Prints &quot;9&quot;</code></pre>
+
+<p><strong>Parameters:</strong>)`.
+  <strong>minimum:</strong> The lower bound for the range.
+  <strong>maximum:</strong> The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ...(minimum: UnsafePointer&lt;Pointee&gt;, maximum: UnsafePointer&lt;Pointee&gt;) -&gt; ClosedRange&lt;UnsafePointer&lt;Pointee&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+
+
+

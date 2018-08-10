@@ -1,0 +1,106 @@
+---
+layout: "default"
+title: "Decoder"
+description: "Swift documentation for 'Decoder': A type that can decode values from a native format into in-memory."
+keywords: "Decoder,protocol,swift,documentation,container,singleValueContainer,unkeyedContainer,codingPath,userInfo"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Decoder</code></div>
+
+<div class="discussion comment">
+    <p>A type that can decode values from a native format into in-memory
+representations.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-codingpath_-codingkey">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-codingpath_-codingkey">var codingPath: [CodingKey]</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-codingpath_-codingkey"><div class="p">
+    <p>The path of coding keys taken to get to this point in decoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var codingPath: [CodingKey] { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-userinfo_-codinguserinfokey_-any">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-userinfo_-codinguserinfokey_-any">var userInfo: [CodingUserInfoKey : Any]</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-userinfo_-codinguserinfokey_-any"><div class="p">
+    <p>Any contextual information set by the user for decoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var userInfo: [CodingUserInfoKey : Any] { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-container-keyedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-container-keyedby_">func container(<wbr>keyedBy:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-container-keyedby_"><div class="p">
+    <p>Returns the data stored in this decoder as represented in a container
+keyed by the given key type.</p>
+
+<p><strong><code>type</code>:</strong>  The key type to use for the container.
+<strong>returns:</strong> A keyed decoding container view into this decoder.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered stored value is
+  not a keyed container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func container&lt;Key&gt;(keyedBy type: Key.Type) throws -&gt; KeyedDecodingContainer&lt;Key&gt; where Key : CodingKey</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-singlevaluecontainer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-singlevaluecontainer">func singleValueContainer()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-singlevaluecontainer"><div class="p">
+    <p>Returns the data stored in this decoder as represented in a container
+appropriate for holding a single primitive value.</p>
+
+<p><strong>returns:</strong> A single value container view into this decoder.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered stored value is
+  not a single value container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func singleValueContainer() throws -&gt; SingleValueDecodingContainer</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-unkeyedcontainer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-unkeyedcontainer">func unkeyedContainer()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-unkeyedcontainer"><div class="p">
+    <p>Returns the data stored in this decoder as represented in a container
+appropriate for holding values with no keys.</p>
+
+<p><strong>returns:</strong> An unkeyed container view into this decoder.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered stored value is
+  not an unkeyed container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func unkeyedContainer() throws -&gt; UnkeyedDecodingContainer</code>
+    
+    
+</div></div>
+</div>
+
+

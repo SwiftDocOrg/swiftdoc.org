@@ -1,0 +1,122 @@
+---
+layout: "default"
+title: "Unicode.ASCII"
+description: "Swift documentation for enum 'Unicode.ASCII'."
+keywords: "Unicode.ASCII,enum,swift,documentation,decode,encode,transcode,encodedReplacementCharacter,CodeUnit,EncodedScalar,ForwardParser,ReverseParser"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum Unicode.ASCII</code></div>
+
+
+<table class="standard">
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">CodeUnit = UInt8</code>
+<div class="comment">
+    <p>The basic unit of encoding</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">EncodedScalar = CollectionOfOne&lt;Unicode.ASCII.CodeUnit&gt;</code>
+<div class="comment">
+    <p>A valid scalar value as represented in this encoding</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">ForwardParser = Unicode.ASCII.Parser</code>
+<div class="comment">
+    <p>A type that can be used to parse <code>CodeUnits</code> into
+<code>EncodedScalar</code>s.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">ReverseParser = Unicode.ASCII.Parser</code>
+<div class="comment">
+    <p>A type that can be used to parse a reversed sequence of
+<code>CodeUnits</code> into <code>EncodedScalar</code>s.</p>
+</div>
+</div>
+</td>
+</tr>
+
+<tr>
+<th>Nested Types</th>
+<td><code class="nested">Unicode.ASCII.Parser</code></td>
+</tr>
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+<h3>Static Variables</h3>
+<div class="declaration" id="static-var-encodedreplacementcharacter_-unicode-ascii-encodedscalar">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-encodedreplacementcharacter_-unicode-ascii-encodedscalar">static var encodedReplacementCharacter: Unicode.ASCII.EncodedScalar</a><div class="comment collapse" id="comment-static-var-encodedreplacementcharacter_-unicode-ascii-encodedscalar"><div class="p">
+    <p>A unicode scalar value to be used when repairing
+encoding/decoding errors, as represented in this encoding.</p>
+
+<p>If the Unicode replacement character U+FFFD is representable in this
+encoding, <code>encodedReplacementCharacter</code> encodes that scalar value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var encodedReplacementCharacter: Unicode.ASCII.EncodedScalar { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-decode_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_">static func decode(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-decode_"><div class="p">
+    <p>Converts from encoded to encoding-independent representation</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func decode(_ source: Unicode.ASCII.EncodedScalar) -&gt; Unicode.Scalar</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_">static func encode(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-encode_"><div class="p">
+    <p>Converts from encoding-independent to encoded representation, returning
+<code>nil</code> if the scalar can&#39;t be represented in this encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func encode(_ source: Unicode.Scalar) -&gt; Unicode.ASCII.EncodedScalar?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-transcode_from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-transcode_from_">static func transcode(<wbr>_:<wbr>from:)</a>
+        
+<div class="comment collapse" id="comment-func-transcode_from_"><div class="p">
+    <p>Converts a scalar from another encoding&#39;s representation, returning
+<code>nil</code> if the scalar can&#39;t be represented in this encoding.</p>
+
+<p>A default implementation of this method will be provided 
+automatically for any conforming type that does not implement one.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func transcode&lt;FromEncoding&gt;(_ content: FromEncoding.EncodedScalar, from _: FromEncoding.Type) -&gt; Unicode.ASCII.EncodedScalar? where FromEncoding : _UnicodeEncoding</code>
+    
+    
+</div></div>
+</div>
+
+
+

@@ -1,0 +1,317 @@
+---
+layout: "default"
+title: "Operator: /"
+description: "Swift documentation for the '/' operator."
+root: "/v4.2"
+---
+
+<code class="language-swift"> operator / {
+    associativity left
+    precedence 
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-slash_-double-rhs_-double">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-double-rhs_-double">func /(<wbr>_:<wbr> Double, rhs: Double)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-double-rhs_-double"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second, rounded
+to a representable value.</p>
+
+<p>The division operator (<code>/</code>) calculates the quotient of the division if
+<code>rhs</code> is nonzero. If <code>rhs</code> is zero, the result of the division is
+infinity, with the sign of the result matching the sign of <code>lhs</code>.</p>
+
+<pre><code class="language-swift">let x = 16.875
+let y = x / 2.25
+// y == 7.5
+
+let z = x / 0
+// z.isInfinite == true</code></pre>
+
+<p>The <code>/</code> operator implements the division operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE
+754 specification</a>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: Double, rhs: Double) -&gt; Double</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-slash_-float-rhs_-float">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-float-rhs_-float">func /(<wbr>_:<wbr> Float, rhs: Float)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-float-rhs_-float"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second, rounded
+to a representable value.</p>
+
+<p>The division operator (<code>/</code>) calculates the quotient of the division if
+<code>rhs</code> is nonzero. If <code>rhs</code> is zero, the result of the division is
+infinity, with the sign of the result matching the sign of <code>lhs</code>.</p>
+
+<pre><code class="language-swift">let x = 16.875
+let y = x / 2.25
+// y == 7.5
+
+let z = x / 0
+// z.isInfinite == true</code></pre>
+
+<p>The <code>/</code> operator implements the division operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE
+754 specification</a>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: Float, rhs: Float) -&gt; Float</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-slash_-float80-rhs_-float80">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-float80-rhs_-float80">func /(<wbr>_:<wbr> Float80, rhs: Float80)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-float80-rhs_-float80"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second, rounded
+to a representable value.</p>
+
+<p>The division operator (<code>/</code>) calculates the quotient of the division if
+<code>rhs</code> is nonzero. If <code>rhs</code> is zero, the result of the division is
+infinity, with the sign of the result matching the sign of <code>lhs</code>.</p>
+
+<pre><code class="language-swift">let x = 16.875
+let y = x / 2.25
+// y == 7.5
+
+let z = x / 0
+// z.isInfinite == true</code></pre>
+
+<p>The <code>/</code> operator implements the division operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE
+754 specification</a>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: Float80, rhs: Float80) -&gt; Float80</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-slash_-int-rhs_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-int-rhs_-int">func /(<wbr>_:<wbr> Int, rhs: Int)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-int-rhs_-int"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second.</p>
+
+<p>For integer types, any remainder of the division is discarded.</p>
+
+<pre><code class="language-swift">let x = 21 / 5
+// x == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: Int, rhs: Int) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-slash_-int8-rhs_-int8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-int8-rhs_-int8">func /(<wbr>_:<wbr> Int8, rhs: Int8)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-int8-rhs_-int8"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second.</p>
+
+<p>For integer types, any remainder of the division is discarded.</p>
+
+<pre><code class="language-swift">let x = 21 / 5
+// x == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: Int8, rhs: Int8) -&gt; Int8</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-slash_-int16-rhs_-int16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-int16-rhs_-int16">func /(<wbr>_:<wbr> Int16, rhs: Int16)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-int16-rhs_-int16"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second.</p>
+
+<p>For integer types, any remainder of the division is discarded.</p>
+
+<pre><code class="language-swift">let x = 21 / 5
+// x == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: Int16, rhs: Int16) -&gt; Int16</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-slash_-int32-rhs_-int32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-int32-rhs_-int32">func /(<wbr>_:<wbr> Int32, rhs: Int32)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-int32-rhs_-int32"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second.</p>
+
+<p>For integer types, any remainder of the division is discarded.</p>
+
+<pre><code class="language-swift">let x = 21 / 5
+// x == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: Int32, rhs: Int32) -&gt; Int32</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-slash_-int64-rhs_-int64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-int64-rhs_-int64">func /(<wbr>_:<wbr> Int64, rhs: Int64)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-int64-rhs_-int64"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second.</p>
+
+<p>For integer types, any remainder of the division is discarded.</p>
+
+<pre><code class="language-swift">let x = 21 / 5
+// x == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: Int64, rhs: Int64) -&gt; Int64</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-slash_-uint-rhs_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-uint-rhs_-uint">func /(<wbr>_:<wbr> UInt, rhs: UInt)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-uint-rhs_-uint"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second.</p>
+
+<p>For integer types, any remainder of the division is discarded.</p>
+
+<pre><code class="language-swift">let x = 21 / 5
+// x == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: UInt, rhs: UInt) -&gt; UInt</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-slash_-uint8-rhs_-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-uint8-rhs_-uint8">func /(<wbr>_:<wbr> UInt8, rhs: UInt8)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-uint8-rhs_-uint8"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second.</p>
+
+<p>For integer types, any remainder of the division is discarded.</p>
+
+<pre><code class="language-swift">let x = 21 / 5
+// x == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: UInt8, rhs: UInt8) -&gt; UInt8</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-slash_-uint16-rhs_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-uint16-rhs_-uint16">func /(<wbr>_:<wbr> UInt16, rhs: UInt16)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-uint16-rhs_-uint16"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second.</p>
+
+<p>For integer types, any remainder of the division is discarded.</p>
+
+<pre><code class="language-swift">let x = 21 / 5
+// x == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: UInt16, rhs: UInt16) -&gt; UInt16</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-slash_-uint32-rhs_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-uint32-rhs_-uint32">func /(<wbr>_:<wbr> UInt32, rhs: UInt32)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-uint32-rhs_-uint32"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second.</p>
+
+<p>For integer types, any remainder of the division is discarded.</p>
+
+<pre><code class="language-swift">let x = 21 / 5
+// x == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: UInt32, rhs: UInt32) -&gt; UInt32</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-slash_-uint64-rhs_-uint64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_-uint64-rhs_-uint64">func /(<wbr>_:<wbr> UInt64, rhs: UInt64)</a>
+        
+<div class="comment collapse" id="comment-func-slash_-uint64-rhs_-uint64"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second.</p>
+
+<p>For integer types, any remainder of the division is discarded.</p>
+
+<pre><code class="language-swift">let x = 21 / 5
+// x == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: UInt64, rhs: UInt64) -&gt; UInt64</code>
+    
+    
+</div></div>
+</div>

@@ -1,0 +1,184 @@
+---
+layout: "default"
+title: "FloatingPointRoundingRule"
+description: "Swift documentation for 'FloatingPointRoundingRule': A rule for rounding a floating-point number."
+keywords: "FloatingPointRoundingRule,enum,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum FloatingPointRoundingRule</code></div>
+
+<div class="discussion comment">
+    <p>A rule for rounding a floating-point number.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+<h3 id="cases">Cases</h3>
+<div class="declaration" id="case-toNearestOrAwayFromZero">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-toNearestOrAwayFromZero">case toNearestOrAwayFromZero</a>
+<div class="comment collapse" id="comment-case-toNearestOrAwayFromZero"><div class="p">
+    <p>Round to the closest allowed value; if two values are equally close, the
+one with greater magnitude is chosen.</p>
+
+<p>This rounding rule is also known as &quot;schoolbook rounding.&quot; The following
+example shows the results of rounding numbers using this rule:</p>
+
+<pre><code class="language-swift">(5.2).rounded(.toNearestOrAwayFromZero)
+// 5.0
+(5.5).rounded(.toNearestOrAwayFromZero)
+// 6.0
+(-5.2).rounded(.toNearestOrAwayFromZero)
+// -5.0
+(-5.5).rounded(.toNearestOrAwayFromZero)
+// -6.0</code></pre>
+
+<p>This rule is equivalent to the C <code>round</code> function and implements the
+<code>roundToIntegralTiesToAway</code> operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754
+specification</a>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-toNearestOrEven">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-toNearestOrEven">case toNearestOrEven</a>
+<div class="comment collapse" id="comment-case-toNearestOrEven"><div class="p">
+    <p>Round to the closest allowed value; if two values are equally close, the
+even one is chosen.</p>
+
+<p>This rounding rule is also known as &quot;bankers rounding,&quot; and is the
+default IEEE 754 rounding mode for arithmetic. The following example
+shows the results of rounding numbers using this rule:</p>
+
+<pre><code class="language-swift">(5.2).rounded(.toNearestOrEven)
+// 5.0
+(5.5).rounded(.toNearestOrEven)
+// 6.0
+(4.5).rounded(.toNearestOrEven)
+// 4.0</code></pre>
+
+<p>This rule implements the <code>roundToIntegralTiesToEven</code> operation defined by
+the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754 specification</a>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-up">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-up">case up</a>
+<div class="comment collapse" id="comment-case-up"><div class="p">
+    <p>Round to the closest allowed value that is greater than or equal to the
+source.</p>
+
+<p>The following example shows the results of rounding numbers using this
+rule:</p>
+
+<pre><code class="language-swift">(5.2).rounded(.up)
+// 6.0
+(5.5).rounded(.up)
+// 6.0
+(-5.2).rounded(.up)
+// -5.0
+(-5.5).rounded(.up)
+// -5.0</code></pre>
+
+<p>This rule is equivalent to the C <code>ceil</code> function and implements the
+<code>roundToIntegralTowardPositive</code> operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754
+specification</a>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-down">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-down">case down</a>
+<div class="comment collapse" id="comment-case-down"><div class="p">
+    <p>Round to the closest allowed value that is less than or equal to the
+source.</p>
+
+<p>The following example shows the results of rounding numbers using this
+rule:</p>
+
+<pre><code class="language-swift">(5.2).rounded(.down)
+// 5.0
+(5.5).rounded(.down)
+// 5.0
+(-5.2).rounded(.down)
+// -6.0
+(-5.5).rounded(.down)
+// -6.0</code></pre>
+
+<p>This rule is equivalent to the C <code>floor</code> function and implements the
+<code>roundToIntegralTowardNegative</code> operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754
+specification</a>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-towardZero">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-towardZero">case towardZero</a>
+<div class="comment collapse" id="comment-case-towardZero"><div class="p">
+    <p>Round to the closest allowed value whose magnitude is less than or equal
+to that of the source.</p>
+
+<p>The following example shows the results of rounding numbers using this
+rule:</p>
+
+<pre><code class="language-swift">(5.2).rounded(.towardZero)
+// 5.0
+(5.5).rounded(.towardZero)
+// 5.0
+(-5.2).rounded(.towardZero)
+// -5.0
+(-5.5).rounded(.towardZero)
+// -5.0</code></pre>
+
+<p>This rule is equivalent to the C <code>trunc</code> function and implements the
+<code>roundToIntegralTowardZero</code> operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754
+specification</a>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+<div class="declaration" id="case-awayFromZero">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-awayFromZero">case awayFromZero</a>
+<div class="comment collapse" id="comment-case-awayFromZero"><div class="p">
+    <p>Round to the closest allowed value whose magnitude is greater than or
+equal to that of the source.</p>
+
+<p>The following example shows the results of rounding numbers using this
+rule:</p>
+
+<pre><code class="language-swift">(5.2).rounded(.awayFromZero)
+// 6.0
+(5.5).rounded(.awayFromZero)
+// 6.0
+(-5.2).rounded(.awayFromZero)
+// -6.0
+(-5.5).rounded(.awayFromZero)
+// -6.0</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift"></code>
+</div></div>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+strict digraph "Unicode.Scalar - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/hierarchy/"]
+    "CustomPlaygroundQuickLookable" [URL="/protocol/CustomPlaygroundQuickLookable/hierarchy/"]
+    "CustomReflectable" [URL="/protocol/CustomReflectable/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByUnicodeScalarLiteral" [URL="/protocol/ExpressibleByUnicodeScalarLiteral/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "LosslessStringConvertible" [URL="/protocol/LosslessStringConvertible/hierarchy/"]
+    "TextOutputStreamable" [URL="/protocol/TextOutputStreamable/hierarchy/"]
+    "Unicode.Scalar" [URL="/type/Unicode.Scalar/", style="filled", fillcolor="#ee543d", color="#ee543d"]    "ExpressibleByUnicodeScalarLiteral" -> "Unicode.Scalar"
+    "CustomDebugStringConvertible" -> "Unicode.Scalar"
+    "LosslessStringConvertible" -> "Unicode.Scalar"
+    "Hashable" -> "Unicode.Scalar"
+    "Comparable" -> "Unicode.Scalar"
+    "CustomReflectable" -> "Unicode.Scalar"
+    "CustomPlaygroundQuickLookable" -> "Unicode.Scalar"
+    "TextOutputStreamable" -> "Unicode.Scalar"
+    "CustomStringConvertible" -> "LosslessStringConvertible"
+    "Equatable" -> "Hashable"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "Unicode.Scalar";
+    }
+}

@@ -1,0 +1,37 @@
+---
+layout: "default"
+title: "unsafeDowncast"
+description: "Swift documentation for 'unsafeDowncast': Returns the given instance cast unconditionally to the specified type."
+keywords: "unsafeDowncast,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-unsafedowncast-t_-anyobject-to_-t-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-unsafedowncast-t_-anyobject-to_-t-type">func unsafeDowncast&lt;T&gt;(<wbr>_:<wbr> AnyObject, to: T.Type)</a>
+        
+<div class="comment collapse" id="comment-func-unsafedowncast-t_-anyobject-to_-t-type"><div class="p">
+    <p>Returns the given instance cast unconditionally to the specified type.</p>
+
+<p>The instance passed as <code>x</code> must be an instance of type <code>T</code>.</p>
+
+<p>Use this function instead of <code>unsafeBitcast(_:to:)</code> because this function
+is more restrictive and still performs a check in debug builds. In -O
+builds, no test is performed to ensure that <code>x</code> actually has the dynamic
+type <code>T</code>.</p>
+
+<p><strong>Warning:</strong> This function trades safety for performance. Use
+  <code>unsafeDowncast(_:to:)</code> only when you are confident that <code>x is T</code> always
+  evaluates to <code>true</code>, and only after <code>x as! T</code> has proven to be a
+  performance problem.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>x:</strong> An instance to cast to type <code>T</code>.
+  <strong>type:</strong> The type <code>T</code> to which <code>x</code> is cast.
+<strong>Returns:</strong> The instance <code>x</code>, cast to type <code>T</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func unsafeDowncast&lt;T&gt;(_ x: AnyObject, to type: T.Type) -&gt; T where T : AnyObject</code>
+    
+    
+</div></div>
+</div>

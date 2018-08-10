@@ -1,0 +1,67 @@
+---
+layout: "default"
+title: "CVarArg"
+description: "Swift documentation for 'CVarArg': A type whose instances can be encoded, and appropriately passed, as."
+keywords: "CVarArg,protocol,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CVarArg</code></div>
+
+<div class="discussion comment">
+    <p>A type whose instances can be encoded, and appropriately passed, as
+elements of a C <code>va_list</code>.</p>
+
+<p>You use this protocol to present a native Swift interface to a C &quot;varargs&quot;
+API. For example, a program can import a C API like the one defined here:</p>
+
+<p>~~~c
+int c<em>api(int, va</em>list arguments)
+~~~</p>
+
+<p>To create a wrapper for the <code>c_api</code> function, write a function that takes
+<code>CVarArg</code> arguments, and then call the imported C function using the
+<code>withVaList(_:_:)</code> function:</p>
+
+<pre><code class="language-swift">func swiftAPI(_ x: Int, arguments: CVarArg...) -&gt; Int {
+    return withVaList(arguments) { c_api(x, $0) }
+}</code></pre>
+
+<p>Swift only imports C variadic functions that use a <code>va_list</code> for their
+arguments. C functions that use the <code>...</code> syntax for variadic arguments
+are not imported, and therefore can&#39;t be called using <code>CVarArg</code> arguments.</p>
+
+<p>If you need to pass an optional pointer as a <code>CVarArg</code> argument, use the
+<code>Int(bitPattern:)</code> initializer to interpret the optional pointer as an
+<code>Int</code> value, which has the same C variadic calling conventions as a pointer
+on all supported platforms.</p>
+
+<p><strong>Note:</strong> Declaring conformance to the <code>CVarArg</code> protocol for types defined
+  outside the standard library is not supported.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+
+

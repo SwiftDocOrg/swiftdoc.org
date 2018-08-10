@@ -1,0 +1,40 @@
+strict digraph "Array<Element> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Array<Element>" [URL="/type/Array/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "BidirectionalCollection" [URL="/protocol/BidirectionalCollection/hierarchy/"]
+    "Collection" [URL="/protocol/Collection/hierarchy/"]
+    "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/hierarchy/"]
+    "CustomReflectable" [URL="/protocol/CustomReflectable/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Decodable" [URL="/protocol/Decodable/hierarchy/"]
+    "Encodable" [URL="/protocol/Encodable/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByArrayLiteral" [URL="/protocol/ExpressibleByArrayLiteral/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "MutableCollection" [URL="/protocol/MutableCollection/hierarchy/"]
+    "RandomAccessCollection" [URL="/protocol/RandomAccessCollection/hierarchy/"]
+    "RangeReplaceableCollection" [URL="/protocol/RangeReplaceableCollection/hierarchy/"]
+    "Sequence" [URL="/protocol/Sequence/hierarchy/"]    "RandomAccessCollection" -> "Array<Element>"
+    "MutableCollection" -> "Array<Element>"
+    "ExpressibleByArrayLiteral" -> "Array<Element>"
+    "RangeReplaceableCollection" -> "Array<Element>"
+    "CustomReflectable" -> "Array<Element>"
+    "CustomStringConvertible" -> "Array<Element>"
+    "CustomDebugStringConvertible" -> "Array<Element>"
+    "Hashable" -> "Array<Element>"
+    "Encodable" -> "Array<Element>"
+    "Decodable" -> "Array<Element>"
+    "BidirectionalCollection" -> "RandomAccessCollection"
+    "Collection" -> "BidirectionalCollection"
+    "Sequence" -> "Collection"
+    "Collection" -> "MutableCollection"
+    "Sequence" -> "Collection"
+    "Collection" -> "RangeReplaceableCollection"
+    "Sequence" -> "Collection"
+    "Equatable" -> "Hashable"
+    subgraph Types {
+        rank = max; "Array<Element>";
+    }
+}

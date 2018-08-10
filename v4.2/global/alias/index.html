@@ -1,0 +1,658 @@
+---
+layout: "default"
+title: "Type Aliases"
+description: "Documentation for global type aliases in the Swift language."
+root: "/v4.2"
+---
+
+<div class="declaration">
+<code class="language-swift">typealias AnyClass = AnyObject.Type</code>
+<div class="comment">
+    <p>The protocol to which all class types implicitly conform.</p>
+
+<p>You can use the <code>AnyClass</code> protocol as the concrete type for an instance of
+any class. When you do, all known <code>@objc</code> class methods and properties are
+available as implicitly unwrapped optional methods and properties,
+respectively. For example:</p>
+
+<pre><code class="language-swift">class IntegerRef {
+    @objc class func getDefaultValue() -&gt; Int {
+        return 42
+    }
+}
+
+func getDefaultValue(_ c: AnyClass) -&gt; Int? {
+    return c.getDefaultValue?()
+}</code></pre>
+
+<p>The <code>getDefaultValue(_:)</code> function uses optional chaining to safely call
+the implicitly unwrapped class method on <code>c</code>. Calling the function with
+different class types shows how the <code>getDefaultValue()</code> class method is
+only conditionally available.</p>
+
+<pre><code class="language-swift">print(getDefaultValue(IntegerRef.self))
+// Prints &quot;Optional(42)&quot;
+
+print(getDefaultValue(NSString.self))
+// Prints &quot;nil&quot;</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias AnyObject</code>
+<div class="comment">
+    <p>The protocol to which all classes implicitly conform.</p>
+
+<p>You use <code>AnyObject</code> when you need the flexibility of an untyped object or
+when you use bridged Objective-C methods and properties that return an
+untyped result. <code>AnyObject</code> can be used as the concrete type for an
+instance of any class, class type, or class-only protocol. For example:</p>
+
+<pre><code class="language-swift">class FloatRef {
+    let value: Float
+    init(_ value: Float) {
+        self.value = value
+    }
+}
+
+let x = FloatRef(2.3)
+let y: AnyObject = x
+let z: AnyObject = FloatRef.self</code></pre>
+
+<p><code>AnyObject</code> can also be used as the concrete type for an instance of a type
+that bridges to an Objective-C class. Many value types in Swift bridge to
+Objective-C counterparts, like <code>String</code> and <code>Int</code>.</p>
+
+<pre><code class="language-swift">let s: AnyObject = &quot;This is a bridged string.&quot; as NSString
+print(s is NSString)
+// Prints &quot;true&quot;
+
+let v: AnyObject = 100 as NSNumber
+print(type(of: v))
+// Prints &quot;__NSCFNumber&quot;</code></pre>
+
+<p>The flexible behavior of the <code>AnyObject</code> protocol is similar to
+Objective-C&#39;s <code>id</code> type. For this reason, imported Objective-C types
+frequently use <code>AnyObject</code> as the type for properties, method parameters,
+and return values.</p>
+
+<h1>Casting AnyObject Instances to a Known Type</h1>
+
+<p>Objects with a concrete type of <code>AnyObject</code> maintain a specific dynamic
+type and can be cast to that type using one of the type-cast operators
+(<code>as</code>, <code>as?</code>, or <code>as!</code>).</p>
+
+<p>This example uses the conditional downcast operator (<code>as?</code>) to
+conditionally cast the <code>s</code> constant declared above to an instance of
+Swift&#39;s <code>String</code> type.</p>
+
+<pre><code class="language-swift">if let message = s as? String {
+    print(&quot;Successful cast to String: \(message)&quot;)
+}
+// Prints &quot;Successful cast to String: This is a bridged string.&quot;</code></pre>
+
+<p>If you have prior knowledge that an <code>AnyObject</code> instance has a particular
+type, you can use the unconditional downcast operator (<code>as!</code>). Performing
+an invalid cast triggers a runtime error.</p>
+
+<pre><code class="language-swift">let message = s as! String
+print(&quot;Successful cast to String: \(message)&quot;)
+// Prints &quot;Successful cast to String: This is a bridged string.&quot;
+
+let badCase = v as! String
+// Runtime error</code></pre>
+
+<p>Casting is always safe in the context of a <code>switch</code> statement.</p>
+
+<pre><code class="language-swift">let mixedArray: [AnyObject] = [s, v]
+for object in mixedArray {
+    switch object {
+    case let x as String:
+        print(&quot;&#39;\(x)&#39; is a String&quot;)
+    default:
+        print(&quot;&#39;\(object)&#39; is not a String&quot;)
+    }
+}
+// Prints &quot;&#39;This is a bridged string.&#39; is a String&quot;
+// Prints &quot;&#39;100&#39; is not a String&quot;</code></pre>
+
+<h1>Accessing Objective-C Methods and Properties</h1>
+
+<p>When you use <code>AnyObject</code> as a concrete type, you have at your disposal
+every <code>@objc</code> method and property---that is, methods and properties
+imported from Objective-C or marked with the <code>@objc</code> attribute. Because
+Swift can&#39;t guarantee at compile time that these methods and properties
+are actually available on an <code>AnyObject</code> instance&#39;s underlying type, these
+<code>@objc</code> symbols are available as implicitly unwrapped optional methods and
+properties, respectively.</p>
+
+<p>This example defines an <code>IntegerRef</code> type with an <code>@objc</code> method named
+<code>getIntegerValue()</code>.</p>
+
+<pre><code class="language-swift">class IntegerRef {
+    let value: Int
+    init(_ value: Int) {
+        self.value = value
+    }
+
+    @objc func getIntegerValue() -&gt; Int {
+        return value
+    }
+}
+
+func getObject() -&gt; AnyObject {
+    return IntegerRef(100)
+}
+
+let obj: AnyObject = getObject()</code></pre>
+
+<p>In the example, <code>obj</code> has a static type of <code>AnyObject</code> and a dynamic type
+of <code>IntegerRef</code>. You can use optional chaining to call the <code>@objc</code> method
+<code>getIntegerValue()</code> on <code>obj</code> safely. If you&#39;re sure of the dynamic type of
+<code>obj</code>, you can call <code>getIntegerValue()</code> directly.</p>
+
+<pre><code class="language-swift">let possibleValue = obj.getIntegerValue?()
+print(possibleValue)
+// Prints &quot;Optional(100)&quot;
+
+let certainValue = obj.getIntegerValue()
+print(certainValue)
+// Prints &quot;100&quot;</code></pre>
+
+<p>If the dynamic type of <code>obj</code> doesn&#39;t implement a <code>getIntegerValue()</code>
+method, the system returns a runtime error when you initialize
+<code>certainValue</code>.</p>
+
+<p>Alternatively, if you need to test whether <code>obj.getIntegerValue()</code> exists,
+use optional binding before calling the method.</p>
+
+<pre><code class="language-swift">if let f = obj.getIntegerValue {
+    print(&quot;The value of &#39;obj&#39; is \(f())&quot;)
+} else {
+    print(&quot;&#39;obj&#39; does not have a &#39;getIntegerValue()&#39; method&quot;)
+}
+// Prints &quot;The value of &#39;obj&#39; is 100&quot;</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias ArrayLiteralConvertible = ExpressibleByArrayLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias BidirectionalIndexable = BidirectionalCollection</code>
+<div class="comment">
+    <p>A type that provides subscript access to its elements, with bidirectional
+index traversal.</p>
+
+<p>In most cases, it&#39;s best to ignore this protocol and use the
+<code>BidirectionalCollection</code> protocol instead, because it has a more complete
+interface.</p>
+
+<p><em>Deprecated:</em> it will be removed in Swift 4.0.  Please use &#39;BidirectionalCollection&#39; instead.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias BidirectionalSlice&lt;T&gt; = Slice&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias BooleanLiteralConvertible = ExpressibleByBooleanLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias BooleanLiteralType = Bool</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained Boolean literal.</p>
+
+<p>When you create a constant or variable using one of the Boolean literals
+<code>true</code> or <code>false</code>, the resulting type is determined by the
+<code>BooleanLiteralType</code> alias. For example:</p>
+
+<pre><code class="language-swift">let isBool = true
+print(&quot;isBool is a &#39;\(type(of: isBool))&#39;&quot;)
+// Prints &quot;isBool is a &#39;Bool&#39;&quot;</code></pre>
+
+<p>The type aliased by <code>BooleanLiteralType</code> must conform to the
+<code>ExpressibleByBooleanLiteral</code> protocol.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CBool = Bool</code>
+<div class="comment">
+    <p>The C &#39;_Bool&#39; and C++ &#39;bool&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CChar = Int8</code>
+<div class="comment">
+    <p>The C &#39;char&#39; type.</p>
+
+<p>This will be the same as either <code>CSignedChar</code> (in the common
+case) or <code>CUnsignedChar</code>, depending on the platform.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CChar16 = UInt16</code>
+<div class="comment">
+    <p>The C++11 &#39;char16_t&#39; type, which has UTF-16 encoding.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CChar32 = Unicode.Scalar</code>
+<div class="comment">
+    <p>The C++11 &#39;char32_t&#39; type, which has UTF-32 encoding.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CDouble = Double</code>
+<div class="comment">
+    <p>The C &#39;double&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CFloat = Float</code>
+<div class="comment">
+    <p>The C &#39;float&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CInt = Int32</code>
+<div class="comment">
+    <p>The C &#39;int&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CLong = Int</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CLongDouble = Float80</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CLongLong = Int64</code>
+<div class="comment">
+    <p>The C &#39;long long&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CShort = Int16</code>
+<div class="comment">
+    <p>The C &#39;short&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CSignedChar = Int8</code>
+<div class="comment">
+    <p>The C &#39;signed char&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedChar = UInt8</code>
+<div class="comment">
+    <p>The C &#39;unsigned char&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedInt = UInt32</code>
+<div class="comment">
+    <p>The C &#39;unsigned int&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedLong = UInt</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedLongLong = UInt64</code>
+<div class="comment">
+    <p>The C &#39;unsigned long long&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedShort = UInt16</code>
+<div class="comment">
+    <p>The C &#39;unsigned short&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CWideChar = Unicode.Scalar</code>
+<div class="comment">
+    <p>The C++ &#39;wchar_t&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias ClosedRangeIndex&lt;T&gt; = ClosedRange&lt;T&gt;.Index</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Codable = Decodable &amp; Encodable</code>
+<div class="comment">
+    <p>A type that can convert itself into and out of an external representation.</p>
+
+<p><code>Codable</code> is a type alias for the <code>Encodable</code> and <code>Decodable</code> protocols.
+When you use <code>Codable</code> as a type or a generic constraint, it matches
+any type that conforms to both protocols.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CountableClosedRange&lt;Bound&gt; = ClosedRange&lt;Bound&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CountablePartialRangeFrom&lt;Bound&gt; = PartialRangeFrom&lt;Bound&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CountableRange&lt;Bound&gt; = Range&lt;Bound&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias DefaultBidirectionalIndices&lt;T&gt; = DefaultIndices&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias DefaultRandomAccessIndices&lt;T&gt; = DefaultIndices&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias DictionaryIndex&lt;Key, = Dictionary&lt;Key, Value&gt;.Index</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias DictionaryLiteralConvertible = ExpressibleByDictionaryLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias EmptyIterator&lt;T&gt; = EmptyCollection&lt;T&gt;.Iterator</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias ExpressibleByStringInterpolation</code>
+<div class="comment">
+    <p>A type that can be initialized by string interpolation with a string
+literal that includes expressions.</p>
+
+<p>Use string interpolation to include one or more expressions in a string
+literal, wrapped in a set of parentheses and prefixed by a backslash. For
+example:</p>
+
+<pre><code class="language-swift">let price = 2
+let number = 3
+let message = &quot;One cookie: $\(price), \(number) cookies: $\(price * number).&quot;
+print(message)
+// Prints &quot;One cookie: $2, 3 cookies: $6.&quot;</code></pre>
+
+<h1>Conforming to the ExpressibleByStringInterpolation Protocol</h1>
+
+<p>The <code>ExpressibleByStringInterpolation</code> protocol is deprecated. Do not add
+new conformances to the protocol.</p>
+
+<p><em>Deprecated:</em> it will be replaced or redesigned in Swift 4.0.  Instead of conforming to &#39;ExpressibleByStringInterpolation&#39;, consider adding an &#39;init(_:String)&#39;.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias ExtendedGraphemeClusterLiteralConvertible = ExpressibleByExtendedGraphemeClusterLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias ExtendedGraphemeClusterType = String</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained Unicode extended
+grapheme cluster literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias FlattenBidirectionalCollection&lt;T&gt; = FlattenCollection&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias FlattenBidirectionalCollectionIndex&lt;T&gt; = FlattenCollection&lt;T&gt;.Index</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias FlattenCollectionIndex&lt;T&gt; = FlattenCollection&lt;T&gt;.Index</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Float32 = Float</code>
+<div class="comment">
+    <p>A 32-bit floating point type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Float64 = Double</code>
+<div class="comment">
+    <p>A 64-bit floating point type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias FloatLiteralConvertible = ExpressibleByFloatLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias FloatLiteralType = Double</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained floating point literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Indexable = Collection</code>
+<div class="comment">
+    <p>A type that provides subscript access to its elements, with forward index
+traversal.</p>
+
+<p>In most cases, it&#39;s best to ignore this protocol and use the <code>Collection</code>
+protocol instead, because it has a more complete interface.</p>
+
+<p><em>Deprecated:</em> it will be removed in Swift 4.0.  Please use &#39;Collection&#39; instead.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias IndexableBase = Collection</code>
+<div class="comment">
+    <p>A type that provides subscript access to its elements, with forward
+index traversal.</p>
+
+<p>In most cases, it&#39;s best to ignore this protocol and use the <code>Collection</code>
+protocol instead, because it has a more complete interface.</p>
+
+<p><em>Deprecated:</em> it will be removed in Swift 4.0.  Please use &#39;Collection&#39; instead.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias IntegerLiteralConvertible = ExpressibleByIntegerLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias IntegerLiteralType = Int</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained integer literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias JoinedIterator&lt;T&gt; = JoinedSequence&lt;T&gt;.Iterator</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyBidirectionalCollection&lt;T&gt; = LazyCollection&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyDropWhileBidirectionalCollection&lt;T&gt; = LazyDropWhileCollection&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyDropWhileIndex&lt;T&gt; = LazyDropWhileCollection&lt;T&gt;.Index</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyDropWhileIterator&lt;T&gt; = LazyDropWhileSequence&lt;T&gt;.Iterator</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyFilterBidirectionalCollection&lt;T&gt; = LazyFilterCollection&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyFilterIndex&lt;Base&gt; = Base.Index</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyFilterIterator&lt;T&gt; = LazyFilterSequence&lt;T&gt;.Iterator</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyMapBidirectionalCollection&lt;T, = LazyMapCollection&lt;T, E&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyMapIterator&lt;T, = LazyMapSequence&lt;T, E&gt;.Iterator</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyMapRandomAccessCollection&lt;T, = LazyMapCollection&lt;T, E&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyPrefixWhileBidirectionalCollection&lt;T&gt; = LazyPrefixWhileCollection&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyPrefixWhileIndex&lt;T&gt; = LazyPrefixWhileCollection&lt;T&gt;.Index</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyPrefixWhileIterator&lt;T&gt; = LazyPrefixWhileSequence&lt;T&gt;.Iterator</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias LazyRandomAccessCollection&lt;T&gt; = LazyCollection&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias MutableBidirectionalSlice&lt;T&gt; = Slice&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias MutableIndexable = MutableCollection</code>
+<div class="comment">
+    <p>A type that provides subscript access to its elements.</p>
+
+<p>In most cases, it&#39;s best to ignore this protocol and use the
+<code>MutableCollection</code> protocol instead, because it has a more complete
+interface.</p>
+
+<p><em>Deprecated:</em> it will be removed in Swift 4.0.  Please use &#39;MutableCollection&#39; instead.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias MutableRandomAccessSlice&lt;T&gt; = Slice&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias MutableRangeReplaceableBidirectionalSlice&lt;T&gt; = Slice&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias MutableRangeReplaceableRandomAccessSlice&lt;T&gt; = Slice&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias MutableRangeReplaceableSlice&lt;T&gt; = Slice&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias MutableSlice&lt;T&gt; = Slice&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias NilLiteralConvertible = ExpressibleByNilLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias RandomAccessIndexable = RandomAccessCollection</code>
+<div class="comment">
+    <p>A collection that supports efficient random-access index traversal.</p>
+
+<p>In most cases, it&#39;s best to ignore this protocol and use the
+<code>RandomAccessCollection</code> protocol instead, because it has a more complete
+interface.</p>
+
+<p><em>Deprecated:</em> it will be removed in Swift 4.0.  Please use &#39;RandomAccessCollection&#39; instead.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias RandomAccessSlice&lt;T&gt; = Slice&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias RangeReplaceableBidirectionalSlice&lt;T&gt; = Slice&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias RangeReplaceableIndexable = RangeReplaceableCollection</code>
+<div class="comment">
+    <p>A type that supports replacement of an arbitrary subrange of elements with
+the elements of another collection.</p>
+
+<p>In most cases, it&#39;s best to ignore this protocol and use the
+<code>RangeReplaceableCollection</code> protocol instead, because it has a more
+complete interface.</p>
+
+<p><em>Deprecated:</em> it will be removed in Swift 4.0.  Please use &#39;RandomAccessCollection&#39; instead.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias RangeReplaceableRandomAccessSlice&lt;T&gt; = Slice&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias RangeReplaceableSlice&lt;T&gt; = Slice&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias ReversedIndex&lt;T&gt; = ReversedCollection&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias ReversedRandomAccessCollection&lt;T&gt; = ReversedCollection&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias SetIndex&lt;Element&gt; = Set&lt;Element&gt;.Index</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias StringInterpolationConvertible</code>
+<div class="comment">
+    <p><em>Deprecated:</em> it will be replaced or redesigned in Swift 4.0.  Instead of conforming to &#39;StringInterpolationConvertible&#39;, consider adding an &#39;init(_:String)&#39;.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias StringLiteralConvertible = ExpressibleByStringLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias StringLiteralType = String</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained string literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UTF16 = Unicode.UTF16</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UTF32 = Unicode.UTF32</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UTF8 = Unicode.UTF8</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnboundedRange = (UnboundedRange_)</code>
+<div class="comment">
+    <p>The type of an unbounded range operator.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnfoldFirstSequence&lt;T&gt; = UnfoldSequence&lt;T, (T?, Bool)&gt;</code>
+<div class="comment">
+    <p>The return type of <code>sequence(first:next:)</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnicodeScalar = Unicode.Scalar</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnicodeScalarLiteralConvertible = ExpressibleByUnicodeScalarLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnicodeScalarType = String</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained unicode scalar literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnsafeBufferPointerIterator&lt;T&gt; = UnsafeBufferPointer&lt;T&gt;.Iterator</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnsafeMutableRawBufferPointerIterator&lt;T&gt; = UnsafeBufferPointer&lt;T&gt;.Iterator</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnsafeRawBufferPointerIterator&lt;T&gt; = UnsafeBufferPointer&lt;T&gt;.Iterator</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Void = ()</code>
+<div class="comment">
+    <p>The return type of functions that don&#39;t explicitly specify a return type,
+that is, an empty tuple <code>()</code>.</p>
+
+<p>When declaring a function or method, you don&#39;t need to specify a return
+type if no value will be returned. However, the type of a function,
+method, or closure always includes a return type, which is <code>Void</code> if
+otherwise unspecified.</p>
+
+<p>Use <code>Void</code> or an empty tuple as the return type when declaring a closure,
+function, or method that doesn&#39;t return a value.</p>
+
+<pre><code class="language-swift">// No return type declared:
+func logMessage(_ s: String) {
+    print(&quot;Message: \(s)&quot;)
+}
+
+let logger: (String) -&gt; Void = logMessage
+logger(&quot;This is a void function&quot;)
+// Prints &quot;Message: This is a void function&quot;</code></pre>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Zip2Iterator&lt;T, = Zip2Sequence&lt;T, U&gt;.Iterator</code>
+</div>

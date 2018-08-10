@@ -1,0 +1,112 @@
+---
+layout: "default"
+title: "Hasher"
+description: "Swift documentation for 'Hasher': The universal hash function used by Set and Dictionary."
+keywords: "Hasher,struct,swift,documentation,combine,combine,finalize"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Hasher</code></div>
+
+<div class="discussion comment">
+    <p>The universal hash function used by <code>Set</code> and <code>Dictionary</code>.</p>
+
+<p><code>Hasher</code> can be used to map an arbitrary sequence of bytes to an integer
+hash value. You can feed data to the hasher using a series of calls to
+mutating <code>combine</code> methods. When you&#39;ve finished feeding the hasher, the
+hash value can be retrieved by calling <code>finalize()</code>:</p>
+
+<pre><code class="language-swift">var hasher = Hasher()
+hasher.combine(23)
+hasher.combine(&quot;Hello&quot;)
+let hashValue = hasher.finalize()</code></pre>
+
+<p>Within the execution of a Swift program, <code>Hasher</code> guarantees that finalizing
+it will always produce the same hash value as long as it is fed the exact
+same sequence of bytes. However, the underlying hash algorithm is designed
+to exhibit avalanche effects: slight changes to the seed or the input byte
+sequence will typically produce drastic changes in the generated hash value.</p>
+
+<p><strong>Note:</strong> Do not save or otherwise reuse hash values across executions of your
+  program. <code>Hasher</code> is usually randomly seeded, which means it will return
+  different values on every new execution of your program. The hash
+  algorithm implemented by <code>Hasher</code> may itself change between any two
+  versions of the standard library.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Initialize a new hasher.  The hasher uses a per-execution seed value that
+is set during process startup, usually from a high-quality random source.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-combine_-unsaferawbufferpointer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-combine_-unsaferawbufferpointer">mutating func combine(<wbr>_: UnsafeRawBufferPointer)</a>
+        
+<div class="comment collapse" id="comment-func-combine_-unsaferawbufferpointer"><div class="p">
+    <p>Feed the contents of <code>buffer</code> into this hasher, mixing it into the hasher
+state.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func combine(bytes: UnsafeRawBufferPointer)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-combine-h_-h">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-combine-h_-h">mutating func combine&lt;H&gt;(<wbr>_: H)</a>
+        
+<div class="comment collapse" id="comment-func-combine-h_-h"><div class="p">
+    <p>Feed <code>value</code> to this hasher, mixing its essential parts into
+the hasher state.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func combine&lt;H&gt;(_ value: H)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-finalize">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-finalize">func finalize()</a>
+        
+<div class="comment collapse" id="comment-func-finalize"><div class="p">
+    <p>Finalize the hasher state and return the hash value.</p>
+
+<p>Finalizing consumes the hasher: it is illegal to finalize a hasher you
+don&#39;t own, or to perform operations on a finalized hasher. (These may
+become compile-time errors in the future.)</p>
+
+<p>Hash values are not guaranteed to be equal across different executions of
+your program. Do not save hash values to use during a future execution.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func finalize() -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+
+

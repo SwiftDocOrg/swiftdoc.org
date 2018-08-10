@@ -1,0 +1,984 @@
+---
+layout: "default"
+title: "Operator: <"
+description: "Swift documentation for the '<' operator."
+root: "/v4.2"
+---
+
+<code class="language-swift"> operator &lt; {
+    associativity 
+    precedence 
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-lt_-rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-rhs_">func &lt;(<wbr>_: (<wbr>), rhs: ())</a>
+        
+<div class="comment collapse" id="comment-func-lt_-rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the first tuple is ordered
+before the second in a lexicographical ordering.</p>
+
+<p>An arity zero tuple is never strictly before another arity zero tuple in a
+lexicographical ordering.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An empty tuple.
+  <strong>rhs:</strong> An empty tuple.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: (), rhs: ()) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt-a-b-c-d-e-f_-a-b-c-d-e-f-rhs_-a-b-c-d-e-f">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt-a-b-c-d-e-f_-a-b-c-d-e-f-rhs_-a-b-c-d-e-f">func &lt; &lt;A, B, C, D, E, F&gt;(<wbr>_: (<wbr>A, B, C, D, E, F), rhs: (A, B, C, D, E, F))</a>
+        
+<div class="comment collapse" id="comment-func-lt-a-b-c-d-e-f_-a-b-c-d-e-f-rhs_-a-b-c-d-e-f"><div class="p">
+    <p>Returns a Boolean value indicating whether the first tuple is ordered
+before the second in a lexicographical ordering.</p>
+
+<p>Given two tuples <code>(a1, a2, ..., aN)</code> and <code>(b1, b2, ..., bN)</code>, the first
+tuple is before the second tuple if and only if
+<code>a1 &lt; b1</code> or (<code>a1 == b1</code> and
+<code>(a2, ..., aN) &lt; (b2, ..., bN)</code>).</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A tuple of <code>Comparable</code> elements.
+  <strong>rhs:</strong> Another tuple of elements of the same type as <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;&lt;A, B, C, D, E, F&gt;(lhs: (A, B, C, D, E, F), rhs: (A, B, C, D, E, F)) -&gt; Bool where A : Comparable, B : Comparable, C : Comparable, D : Comparable, E : Comparable, F : Comparable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt-a-b-c-d-e_-a-b-c-d-e-rhs_-a-b-c-d-e">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt-a-b-c-d-e_-a-b-c-d-e-rhs_-a-b-c-d-e">func &lt; &lt;A, B, C, D, E&gt;(<wbr>_: (<wbr>A, B, C, D, E), rhs: (A, B, C, D, E))</a>
+        
+<div class="comment collapse" id="comment-func-lt-a-b-c-d-e_-a-b-c-d-e-rhs_-a-b-c-d-e"><div class="p">
+    <p>Returns a Boolean value indicating whether the first tuple is ordered
+before the second in a lexicographical ordering.</p>
+
+<p>Given two tuples <code>(a1, a2, ..., aN)</code> and <code>(b1, b2, ..., bN)</code>, the first
+tuple is before the second tuple if and only if
+<code>a1 &lt; b1</code> or (<code>a1 == b1</code> and
+<code>(a2, ..., aN) &lt; (b2, ..., bN)</code>).</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A tuple of <code>Comparable</code> elements.
+  <strong>rhs:</strong> Another tuple of elements of the same type as <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;&lt;A, B, C, D, E&gt;(lhs: (A, B, C, D, E), rhs: (A, B, C, D, E)) -&gt; Bool where A : Comparable, B : Comparable, C : Comparable, D : Comparable, E : Comparable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt-a-b-c-d_-a-b-c-d-rhs_-a-b-c-d">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt-a-b-c-d_-a-b-c-d-rhs_-a-b-c-d">func &lt; &lt;A, B, C, D&gt;(<wbr>_: (<wbr>A, B, C, D), rhs: (A, B, C, D))</a>
+        
+<div class="comment collapse" id="comment-func-lt-a-b-c-d_-a-b-c-d-rhs_-a-b-c-d"><div class="p">
+    <p>Returns a Boolean value indicating whether the first tuple is ordered
+before the second in a lexicographical ordering.</p>
+
+<p>Given two tuples <code>(a1, a2, ..., aN)</code> and <code>(b1, b2, ..., bN)</code>, the first
+tuple is before the second tuple if and only if
+<code>a1 &lt; b1</code> or (<code>a1 == b1</code> and
+<code>(a2, ..., aN) &lt; (b2, ..., bN)</code>).</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A tuple of <code>Comparable</code> elements.
+  <strong>rhs:</strong> Another tuple of elements of the same type as <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;&lt;A, B, C, D&gt;(lhs: (A, B, C, D), rhs: (A, B, C, D)) -&gt; Bool where A : Comparable, B : Comparable, C : Comparable, D : Comparable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt-a-b-c_-a-b-c-rhs_-a-b-c">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt-a-b-c_-a-b-c-rhs_-a-b-c">func &lt; &lt;A, B, C&gt;(<wbr>_: (<wbr>A, B, C), rhs: (A, B, C))</a>
+        
+<div class="comment collapse" id="comment-func-lt-a-b-c_-a-b-c-rhs_-a-b-c"><div class="p">
+    <p>Returns a Boolean value indicating whether the first tuple is ordered
+before the second in a lexicographical ordering.</p>
+
+<p>Given two tuples <code>(a1, a2, ..., aN)</code> and <code>(b1, b2, ..., bN)</code>, the first
+tuple is before the second tuple if and only if
+<code>a1 &lt; b1</code> or (<code>a1 == b1</code> and
+<code>(a2, ..., aN) &lt; (b2, ..., bN)</code>).</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A tuple of <code>Comparable</code> elements.
+  <strong>rhs:</strong> Another tuple of elements of the same type as <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;&lt;A, B, C&gt;(lhs: (A, B, C), rhs: (A, B, C)) -&gt; Bool where A : Comparable, B : Comparable, C : Comparable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt-a-b_-a-b-rhs_-a-b">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt-a-b_-a-b-rhs_-a-b">func &lt; &lt;A, B&gt;(<wbr>_: (<wbr>A, B), rhs: (A, B))</a>
+        
+<div class="comment collapse" id="comment-func-lt-a-b_-a-b-rhs_-a-b"><div class="p">
+    <p>Returns a Boolean value indicating whether the first tuple is ordered
+before the second in a lexicographical ordering.</p>
+
+<p>Given two tuples <code>(a1, a2, ..., aN)</code> and <code>(b1, b2, ..., bN)</code>, the first
+tuple is before the second tuple if and only if
+<code>a1 &lt; b1</code> or (<code>a1 == b1</code> and
+<code>(a2, ..., aN) &lt; (b2, ..., bN)</code>).</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A tuple of <code>Comparable</code> elements.
+  <strong>rhs:</strong> Another tuple of elements of the same type as <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;&lt;A, B&gt;(lhs: (A, B), rhs: (A, B)) -&gt; Bool where A : Comparable, B : Comparable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-anyindex-rhs_-anyindex">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-anyindex-rhs_-anyindex">func &lt;(<wbr>_:<wbr> AnyIndex, rhs: AnyIndex)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-anyindex-rhs_-anyindex"><div class="p">
+    <p>Returns a Boolean value indicating whether the first argument represents a
+position before the second argument.</p>
+
+<p>The types of the two underlying indices must be identical.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An index to compare.
+  <strong>rhs:</strong> Another index to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: AnyIndex, rhs: AnyIndex) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-character-rhs_-character">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-character-rhs_-character">func &lt;(<wbr>_:<wbr> Character, rhs: Character)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-character-rhs_-character"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Character, rhs: Character) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-character-unicodescalarview-index-rhs_-character-unicodescalarview-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-character-unicodescalarview-index-rhs_-character-unicodescalarview-index">func &lt;(<wbr>_:<wbr> Character.UnicodeScalarView.Index, rhs: Character.UnicodeScalarView.Index)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-character-unicodescalarview-index-rhs_-character-unicodescalarview-index"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Character.UnicodeScalarView.Index, rhs: Character.UnicodeScalarView.Index) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-closedrange-bound-index-rhs_-closedrange-bound-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-closedrange-bound-index-rhs_-closedrange-bound-index">func &lt;(<wbr>_:<wbr> ClosedRange&lt;Bound&gt;.Index, rhs: ClosedRange&lt;Bound&gt;.Index)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-closedrange-bound-index-rhs_-closedrange-bound-index"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: ClosedRange&lt;Bound&gt;.Index, rhs: ClosedRange&lt;Bound&gt;.Index) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-dictionary-key-value-index-rhs_-dictionary-key-value-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-dictionary-key-value-index-rhs_-dictionary-key-value-index">func &lt;(<wbr>_:<wbr> Dictionary&lt;Key, Value&gt;.Index, rhs: Dictionary&lt;Key, Value&gt;.Index)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-dictionary-key-value-index-rhs_-dictionary-key-value-index"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Dictionary&lt;Key, Value&gt;.Index, rhs: Dictionary&lt;Key, Value&gt;.Index) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-flattencollection-base-index-rhs_-flattencollection-base-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-flattencollection-base-index-rhs_-flattencollection-base-index">func &lt;(<wbr>_:<wbr> FlattenCollection&lt;Base&gt;.Index, rhs: FlattenCollection&lt;Base&gt;.Index)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-flattencollection-base-index-rhs_-flattencollection-base-index"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: FlattenCollection&lt;Base&gt;.Index, rhs: FlattenCollection&lt;Base&gt;.Index) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-int-rhs_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-int-rhs_-int">func &lt;(<wbr>_:<wbr> Int, rhs: Int)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-int-rhs_-int"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Int, rhs: Int) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int/"><code>Int</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-int8-rhs_-int8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-int8-rhs_-int8">func &lt;(<wbr>_:<wbr> Int8, rhs: Int8)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-int8-rhs_-int8"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Int8, rhs: Int8) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int8/"><code>Int8</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-int16-rhs_-int16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-int16-rhs_-int16">func &lt;(<wbr>_:<wbr> Int16, rhs: Int16)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-int16-rhs_-int16"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Int16, rhs: Int16) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int16/"><code>Int16</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-int32-rhs_-int32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-int32-rhs_-int32">func &lt;(<wbr>_:<wbr> Int32, rhs: Int32)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-int32-rhs_-int32"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Int32, rhs: Int32) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int32/"><code>Int32</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-int64-rhs_-int64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-int64-rhs_-int64">func &lt;(<wbr>_:<wbr> Int64, rhs: Int64)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-int64-rhs_-int64"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Int64, rhs: Int64) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int64/"><code>Int64</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-lazydropwhilecollection-base-index-rhs_-lazydropwhilecollection-base-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-lazydropwhilecollection-base-index-rhs_-lazydropwhilecollection-base-index">func &lt;(<wbr>_:<wbr> LazyDropWhileCollection&lt;Base&gt;.Index, rhs: LazyDropWhileCollection&lt;Base&gt;.Index)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-lazydropwhilecollection-base-index-rhs_-lazydropwhilecollection-base-index"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: LazyDropWhileCollection&lt;Base&gt;.Index, rhs: LazyDropWhileCollection&lt;Base&gt;.Index) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-lazyprefixwhilecollection-base-index-rhs_-lazyprefixwhilecollection-base-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-lazyprefixwhilecollection-base-index-rhs_-lazyprefixwhilecollection-base-index">func &lt;(<wbr>_:<wbr> LazyPrefixWhileCollection&lt;Base&gt;.Index, rhs: LazyPrefixWhileCollection&lt;Base&gt;.Index)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-lazyprefixwhilecollection-base-index-rhs_-lazyprefixwhilecollection-base-index"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: LazyPrefixWhileCollection&lt;Base&gt;.Index, rhs: LazyPrefixWhileCollection&lt;Base&gt;.Index) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-objectidentifier-rhs_-objectidentifier">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-objectidentifier-rhs_-objectidentifier">func &lt;(<wbr>_:<wbr> ObjectIdentifier, rhs: ObjectIdentifier)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-objectidentifier-rhs_-objectidentifier"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: ObjectIdentifier, rhs: ObjectIdentifier) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-reversedcollection-base-index-rhs_-reversedcollection-base-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-reversedcollection-base-index-rhs_-reversedcollection-base-index">func &lt;(<wbr>_:<wbr> ReversedCollection&lt;Base&gt;.Index, rhs: ReversedCollection&lt;Base&gt;.Index)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-reversedcollection-base-index-rhs_-reversedcollection-base-index"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: ReversedCollection&lt;Base&gt;.Index, rhs: ReversedCollection&lt;Base&gt;.Index) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-rhs_-self">func &lt;(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryFloatingPoint/"><code>BinaryFloatingPoint</code></a>,    <a href="../../protocol/FloatingPoint/"><code>FloatingPoint</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-set-element-index-rhs_-set-element-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-set-element-index-rhs_-set-element-index">func &lt;(<wbr>_:<wbr> Set&lt;Element&gt;.Index, rhs: Set&lt;Element&gt;.Index)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-set-element-index-rhs_-set-element-index"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Set&lt;Element&gt;.Index, rhs: Set&lt;Element&gt;.Index) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-string-rhs_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-string-rhs_-string">func &lt;(<wbr>_:<wbr> String, rhs: String)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-string-rhs_-string"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: String, rhs: String) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-string-index-rhs_-string-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-string-index-rhs_-string-index">func &lt;(<wbr>_:<wbr> String.Index, rhs: String.Index)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-string-index-rhs_-string-index"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: String.Index, rhs: String.Index) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-uint-rhs_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-uint-rhs_-uint">func &lt;(<wbr>_:<wbr> UInt, rhs: UInt)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-uint-rhs_-uint"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: UInt, rhs: UInt) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt/"><code>UInt</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-uint8-rhs_-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-uint8-rhs_-uint8">func &lt;(<wbr>_:<wbr> UInt8, rhs: UInt8)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-uint8-rhs_-uint8"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: UInt8, rhs: UInt8) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt8/"><code>UInt8</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-uint16-rhs_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-uint16-rhs_-uint16">func &lt;(<wbr>_:<wbr> UInt16, rhs: UInt16)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-uint16-rhs_-uint16"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: UInt16, rhs: UInt16) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt16/"><code>UInt16</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-uint32-rhs_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-uint32-rhs_-uint32">func &lt;(<wbr>_:<wbr> UInt32, rhs: UInt32)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-uint32-rhs_-uint32"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: UInt32, rhs: UInt32) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt32/"><code>UInt32</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-uint64-rhs_-uint64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-uint64-rhs_-uint64">func &lt;(<wbr>_:<wbr> UInt64, rhs: UInt64)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-uint64-rhs_-uint64"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: UInt64, rhs: UInt64) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt64/"><code>UInt64</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-unicode-scalar-rhs_-unicode-scalar">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-unicode-scalar-rhs_-unicode-scalar">func &lt;(<wbr>_:<wbr> Unicode.Scalar, rhs: Unicode.Scalar)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-unicode-scalar-rhs_-unicode-scalar"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Unicode.Scalar, rhs: Unicode.Scalar) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-unsafemutablepointer-pointee-rhs_-unsafemutablepointer-pointee">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-unsafemutablepointer-pointee-rhs_-unsafemutablepointer-pointee">func &lt;(<wbr>_:<wbr> UnsafeMutablePointer&lt;Pointee&gt;, rhs: UnsafeMutablePointer&lt;Pointee&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-unsafemutablepointer-pointee-rhs_-unsafemutablepointer-pointee"><div class="p">
+    <p>Returns a Boolean value indicating whether the first pointer references
+an earlier memory location than the second pointer.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A pointer.
+  <strong>rhs:</strong> Another pointer.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> references a memory address earlier than
+  <code>rhs</code>; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: UnsafeMutablePointer&lt;Pointee&gt;, rhs: UnsafeMutablePointer&lt;Pointee&gt;) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-unsafemutablerawpointer-rhs_-unsafemutablerawpointer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-unsafemutablerawpointer-rhs_-unsafemutablerawpointer">func &lt;(<wbr>_:<wbr> UnsafeMutableRawPointer, rhs: UnsafeMutableRawPointer)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-unsafemutablerawpointer-rhs_-unsafemutablerawpointer"><div class="p">
+    <p>Returns a Boolean value indicating whether the first pointer references
+an earlier memory location than the second pointer.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A pointer.
+  <strong>rhs:</strong> Another pointer.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> references a memory address earlier than
+  <code>rhs</code>; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: UnsafeMutableRawPointer, rhs: UnsafeMutableRawPointer) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-unsafepointer-pointee-rhs_-unsafepointer-pointee">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-unsafepointer-pointee-rhs_-unsafepointer-pointee">func &lt;(<wbr>_:<wbr> UnsafePointer&lt;Pointee&gt;, rhs: UnsafePointer&lt;Pointee&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-unsafepointer-pointee-rhs_-unsafepointer-pointee"><div class="p">
+    <p>Returns a Boolean value indicating whether the first pointer references
+an earlier memory location than the second pointer.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A pointer.
+  <strong>rhs:</strong> Another pointer.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> references a memory address earlier than
+  <code>rhs</code>; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: UnsafePointer&lt;Pointee&gt;, rhs: UnsafePointer&lt;Pointee&gt;) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lt_-unsaferawpointer-rhs_-unsaferawpointer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-unsaferawpointer-rhs_-unsaferawpointer">func &lt;(<wbr>_:<wbr> UnsafeRawPointer, rhs: UnsafeRawPointer)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-unsaferawpointer-rhs_-unsaferawpointer"><div class="p">
+    <p>Returns a Boolean value indicating whether the first pointer references
+an earlier memory location than the second pointer.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A pointer.
+  <strong>rhs:</strong> Another pointer.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> references a memory address earlier than
+  <code>rhs</code>; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: UnsafeRawPointer, rhs: UnsafeRawPointer) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryFloatingPoint/"><code>BinaryFloatingPoint</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_-self-y_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_-self-y_-self">func &lt;(<wbr>_:<wbr> Self, y: Self)</a>
+        
+<div class="comment collapse" id="comment-func-lt_-self-y_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt-r_-self-rhs_-r">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt-r_-self-rhs_-r">func &lt; &lt;R&gt;(<wbr>_:<wbr> Self, rhs: R)</a>
+        
+<div class="comment collapse" id="comment-func-lt-r_-self-rhs_-r"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;&lt;R&gt;(lhs: Self, rhs: R) -&gt; Bool where R : StringProtocol</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/StringProtocol/"><code>StringProtocol</code></a>    
+</div></div>
+</div>

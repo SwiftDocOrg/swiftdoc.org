@@ -1,0 +1,344 @@
+---
+layout: "default"
+title: "SingleValueDecodingContainer"
+description: "Swift documentation for 'SingleValueDecodingContainer': A container that can support the storage and direct decoding of a single."
+keywords: "SingleValueDecodingContainer,protocol,swift,documentation,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decodeNil,codingPath"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol SingleValueDecodingContainer</code></div>
+
+<div class="discussion comment">
+    <p>A container that can support the storage and direct decoding of a single
+nonkeyed value.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-codingpath_-codingkey">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-codingpath_-codingkey">var codingPath: [CodingKey]</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-codingpath_-codingkey"><div class="p">
+    <p>The path of coding keys taken to get to this point in encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var codingPath: [CodingKey] { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-decode_-bool-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-bool-type">func decode(<wbr>_: Bool.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-bool-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Bool.Type) throws -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-double-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-double-type">func decode(<wbr>_: Double.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-double-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Double.Type) throws -&gt; Double</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-float-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-float-type">func decode(<wbr>_: Float.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-float-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Float.Type) throws -&gt; Float</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int-type">func decode(<wbr>_: Int.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Int.Type) throws -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int8-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int8-type">func decode(<wbr>_: Int8.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int8-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Int8.Type) throws -&gt; Int8</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int16-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int16-type">func decode(<wbr>_: Int16.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int16-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Int16.Type) throws -&gt; Int16</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int32-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int32-type">func decode(<wbr>_: Int32.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int32-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Int32.Type) throws -&gt; Int32</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int64-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int64-type">func decode(<wbr>_: Int64.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int64-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Int64.Type) throws -&gt; Int64</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-string-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-string-type">func decode(<wbr>_: String.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-string-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: String.Type) throws -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint-type">func decode(<wbr>_: UInt.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: UInt.Type) throws -&gt; UInt</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint8-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint8-type">func decode(<wbr>_: UInt8.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint8-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: UInt8.Type) throws -&gt; UInt8</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint16-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint16-type">func decode(<wbr>_: UInt16.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint16-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: UInt16.Type) throws -&gt; UInt16</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint32-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint32-type">func decode(<wbr>_: UInt32.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint32-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: UInt32.Type) throws -&gt; UInt32</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint64-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint64-type">func decode(<wbr>_: UInt64.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint64-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: UInt64.Type) throws -&gt; UInt64</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode-t_-t-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode-t_-t-type">func decode&lt;T&gt;(<wbr>_: T.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode-t_-t-type"><div class="p">
+    <p>Decodes a single value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type to decode as.
+<strong>returns:</strong> A value of the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  cannot be converted to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode&lt;T&gt;(_ type: T.Type) throws -&gt; T where T : Decodable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodenil">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodenil">func decodeNil()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decodenil"><div class="p">
+    <p>Decodes a null value.</p>
+
+<p><strong>returns:</strong> Whether the encountered value was null.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeNil() -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+
+

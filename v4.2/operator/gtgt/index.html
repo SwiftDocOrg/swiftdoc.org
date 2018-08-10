@@ -1,0 +1,604 @@
+---
+layout: "default"
+title: "Operator: >>"
+description: "Swift documentation for the '>>' operator."
+root: "/v4.2"
+---
+
+<code class="language-swift"> operator &gt;&gt; {
+    associativity 
+    precedence 
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration inherited" id="func-gtgt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gtgt-other_-self-rhs_-other">func &gt;&gt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gtgt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the right.</p>
+
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gtgt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gtgt-other_-self-rhs_-other">func &gt;&gt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gtgt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the right.</p>
+
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gtgt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gtgt-other_-self-rhs_-other">func &gt;&gt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gtgt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the right.</p>
+
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gtgt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gtgt-other_-self-rhs_-other">func &gt;&gt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gtgt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the right.</p>
+
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gtgt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gtgt-other_-self-rhs_-other">func &gt;&gt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gtgt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the right.</p>
+
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gtgt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gtgt-other_-self-rhs_-other">func &gt;&gt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gtgt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the right.</p>
+
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gtgt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gtgt-other_-self-rhs_-other">func &gt;&gt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gtgt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the right.</p>
+
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gtgt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gtgt-other_-self-rhs_-other">func &gt;&gt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gtgt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the right.</p>
+
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gtgt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gtgt-other_-self-rhs_-other">func &gt;&gt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gtgt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the right.</p>
+
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gtgt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gtgt-other_-self-rhs_-other">func &gt;&gt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-gtgt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the right.</p>
+
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>

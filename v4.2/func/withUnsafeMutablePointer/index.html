@@ -1,0 +1,41 @@
+---
+layout: "default"
+title: "withUnsafeMutablePointer"
+description: "Swift documentation for 'withUnsafeMutablePointer': Calls the given closure with a mutable pointer to the given argument."
+keywords: "withUnsafeMutablePointer,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-withunsafemutablepointer-t-result-to_-inout-t_-unsafemutablepointer-t-throws-result">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafemutablepointer-t-result-to_-inout-t_-unsafemutablepointer-t-throws-result">func withUnsafeMutablePointer&lt;T, Result&gt;(<wbr>to:<wbr> inout T, _: (UnsafeMutablePointer&lt;T&gt;) throws -&gt; Result)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafemutablepointer-t-result-to_-inout-t_-unsafemutablepointer-t-throws-result"><div class="p">
+    <p>Calls the given closure with a mutable pointer to the given argument.</p>
+
+<p>The <code>withUnsafeMutablePointer(to:_:)</code> function is useful for calling
+Objective-C APIs that take in/out parameters (and default-constructible
+out parameters) by pointer.</p>
+
+<p>The pointer argument to <code>body</code> is valid only during the execution of
+<code>withUnsafeMutablePointer(to:_:)</code>. Do not store or return the pointer for
+later use.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>value:</strong> An instance to temporarily use via pointer. Note that the <code>inout</code>
+    exclusivity rules mean that, like any other <code>inout</code> argument, <code>value</code>
+    cannot be directly accessed by other code for the duration of <code>body</code>.
+    Access must only occur through the pointer argument to <code>body</code> until
+    <code>body</code> returns.
+  <strong>body:</strong> A closure that takes a mutable pointer to <code>value</code> as its sole
+    argument. If the closure has a return value, that value is also used
+    as the return value of the <code>withUnsafeMutablePointer(to:_:)</code> function.
+    The pointer argument is valid only for the duration of the function&#39;s
+    execution.
+<strong>Returns:</strong> The return value, if any, of the <code>body</code> closure.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withUnsafeMutablePointer&lt;T, Result&gt;(to value: inout T, _ body: (UnsafeMutablePointer&lt;T&gt;) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+    
+</div></div>
+</div>

@@ -1,0 +1,1121 @@
+---
+layout: "default"
+title: "KeyedDecodingContainerProtocol"
+description: "Swift documentation for 'KeyedDecodingContainerProtocol': A type that provides a view into a decoder&#39;s storage and is used to hold."
+keywords: "KeyedDecodingContainerProtocol,protocol,swift,documentation,contains,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeNil,nestedContainer,nestedUnkeyedContainer,superDecoder,superDecoder,allKeys,codingPath,Key"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol KeyedDecodingContainerProtocol</code></div>
+
+<div class="discussion comment">
+    <p>A type that provides a view into a decoder&#39;s storage and is used to hold
+the encoded properties of a decodable type in a keyed manner.</p>
+
+<p>Decoders should provide types conforming to <code>UnkeyedDecodingContainer</code> for
+their format.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Key : CodingKey</code>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-allkeys_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-allkeys_-self-key">var allKeys: [Self.Key]</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-allkeys_-self-key"><div class="p">
+    <p>All the keys the <code>Decoder</code> has for this container.</p>
+
+<p>Different keyed containers from the same <code>Decoder</code> may return different
+keys here; it is possible to encode with multiple key types which are
+not convertible to one another. This should report all keys present
+which are convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var allKeys: [Self.Key] { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-codingpath_-codingkey">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-codingpath_-codingkey">var codingPath: [CodingKey]</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-codingpath_-codingkey"><div class="p">
+    <p>The path of coding keys taken to get to this point in decoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var codingPath: [CodingKey] { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains_">func contains(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-contains_"><div class="p">
+    <p>Returns a Boolean value indicating whether the decoder contains a value
+associated with the given key.</p>
+
+<p>The value associated with <code>key</code> may be a null value as appropriate for
+the data format.</p>
+
+<p><strong><code>key</code>:</strong>  The key to search for.
+<strong>returns:</strong> Whether the <code>Decoder</code> has an entry for the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(_ key: Self.Key) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-bool-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-bool-type-forkey_-self-key">func decode(<wbr>_:<wbr> Bool.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-bool-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Bool.Type, forKey key: Self.Key) throws -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-double-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-double-type-forkey_-self-key">func decode(<wbr>_:<wbr> Double.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-double-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Double.Type, forKey key: Self.Key) throws -&gt; Double</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-float-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-float-type-forkey_-self-key">func decode(<wbr>_:<wbr> Float.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-float-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Float.Type, forKey key: Self.Key) throws -&gt; Float</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int-type-forkey_-self-key">func decode(<wbr>_:<wbr> Int.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Int.Type, forKey key: Self.Key) throws -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int8-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int8-type-forkey_-self-key">func decode(<wbr>_:<wbr> Int8.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int8-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Int8.Type, forKey key: Self.Key) throws -&gt; Int8</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int16-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int16-type-forkey_-self-key">func decode(<wbr>_:<wbr> Int16.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int16-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Int16.Type, forKey key: Self.Key) throws -&gt; Int16</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int32-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int32-type-forkey_-self-key">func decode(<wbr>_:<wbr> Int32.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int32-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Int32.Type, forKey key: Self.Key) throws -&gt; Int32</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int64-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int64-type-forkey_-self-key">func decode(<wbr>_:<wbr> Int64.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int64-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: Int64.Type, forKey key: Self.Key) throws -&gt; Int64</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-string-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-string-type-forkey_-self-key">func decode(<wbr>_:<wbr> String.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-string-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: String.Type, forKey key: Self.Key) throws -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint-type-forkey_-self-key">func decode(<wbr>_:<wbr> UInt.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: UInt.Type, forKey key: Self.Key) throws -&gt; UInt</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint8-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint8-type-forkey_-self-key">func decode(<wbr>_:<wbr> UInt8.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint8-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: UInt8.Type, forKey key: Self.Key) throws -&gt; UInt8</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint16-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint16-type-forkey_-self-key">func decode(<wbr>_:<wbr> UInt16.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint16-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: UInt16.Type, forKey key: Self.Key) throws -&gt; UInt16</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint32-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint32-type-forkey_-self-key">func decode(<wbr>_:<wbr> UInt32.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint32-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: UInt32.Type, forKey key: Self.Key) throws -&gt; UInt32</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint64-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint64-type-forkey_-self-key">func decode(<wbr>_:<wbr> UInt64.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint64-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode(_ type: UInt64.Type, forKey key: Self.Key) throws -&gt; UInt64</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode-t_-t-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode-t_-t-type-forkey_-self-key">func decode&lt;T&gt;(<wbr>_:<wbr> T.Type, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode-t_-t-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decode&lt;T&gt;(_ type: T.Type, forKey key: Self.Key) throws -&gt; T where T : Decodable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-bool-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-bool-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Bool.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-bool-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Bool.Type, forKey key: Self.Key) throws -&gt; Bool?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-double-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-double-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Double.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-double-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Double.Type, forKey key: Self.Key) throws -&gt; Double?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-float-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-float-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Float.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-float-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Float.Type, forKey key: Self.Key) throws -&gt; Float?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-int-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-int-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Int.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-int-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Int.Type, forKey key: Self.Key) throws -&gt; Int?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-int8-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-int8-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Int8.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-int8-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Int8.Type, forKey key: Self.Key) throws -&gt; Int8?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-int16-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-int16-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Int16.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-int16-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Int16.Type, forKey key: Self.Key) throws -&gt; Int16?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-int32-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-int32-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Int32.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-int32-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Int32.Type, forKey key: Self.Key) throws -&gt; Int32?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-int64-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-int64-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Int64.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-int64-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Int64.Type, forKey key: Self.Key) throws -&gt; Int64?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-string-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-string-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> String.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-string-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: String.Type, forKey key: Self.Key) throws -&gt; String?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-uint-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-uint-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> UInt.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-uint-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: UInt.Type, forKey key: Self.Key) throws -&gt; UInt?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-uint8-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-uint8-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> UInt8.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-uint8-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: UInt8.Type, forKey key: Self.Key) throws -&gt; UInt8?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-uint16-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-uint16-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> UInt16.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-uint16-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: UInt16.Type, forKey key: Self.Key) throws -&gt; UInt16?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-uint32-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-uint32-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> UInt32.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-uint32-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: UInt32.Type, forKey key: Self.Key) throws -&gt; UInt32?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-uint64-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-uint64-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> UInt64.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-uint64-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: UInt64.Type, forKey key: Self.Key) throws -&gt; UInt64?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent-t_-t-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent-t_-t-type-forkey_-self-key">func decodeIfPresent&lt;T&gt;(<wbr>_:<wbr> T.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent-t_-t-type-forkey_-self-key"><div class="p">
+    <p>Decodes a value of the given type for the given key, if present.</p>
+
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the
+  <code>Decoder</code> does not have an entry associated with the given key, or if
+  the value is a null value.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent&lt;T&gt;(_ type: T.Type, forKey key: Self.Key) throws -&gt; T? where T : Decodable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodenil-forkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodenil-forkey_">func decodeNil(<wbr>forKey:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decodenil-forkey_"><div class="p">
+    <p>Decodes a null value for the given key.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the decoded value is associated with.
+<strong>returns:</strong> Whether the encountered value was null.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeNil(forKey key: Self.Key) throws -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-nestedcontainer-keyedby_forkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-nestedcontainer-keyedby_forkey_">func nestedContainer(<wbr>keyedBy:<wbr>forKey:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-nestedcontainer-keyedby_forkey_"><div class="p">
+    <p>Returns the data stored for the given key as represented in a container
+keyed by the given key type.</p>
+
+<p><strong><code>type</code>:</strong>  The key type to use for the container.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the nested container is associated with.
+<strong>returns:</strong> A keyed decoding container view into <code>self</code>.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered stored value is
+  not a keyed container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func nestedContainer&lt;NestedKey&gt;(keyedBy type: NestedKey.Type, forKey key: Self.Key) throws -&gt; KeyedDecodingContainer&lt;NestedKey&gt; where NestedKey : CodingKey</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-nestedunkeyedcontainer-forkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-nestedunkeyedcontainer-forkey_">func nestedUnkeyedContainer(<wbr>forKey:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-nestedunkeyedcontainer-forkey_"><div class="p">
+    <p>Returns the data stored for the given key as represented in an unkeyed
+container.</p>
+
+<p><strong><code>key</code>:</strong>  The key that the nested container is associated with.
+<strong>returns:</strong> An unkeyed decoding container view into <code>self</code>.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered stored value is
+  not an unkeyed container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func nestedUnkeyedContainer(forKey key: Self.Key) throws -&gt; UnkeyedDecodingContainer</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-superdecoder">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-superdecoder">func superDecoder()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-superdecoder"><div class="p">
+    <p>Returns a <code>Decoder</code> instance for decoding <code>super</code> from the container
+associated with the default <code>super</code> key.</p>
+
+<p>Equivalent to calling <code>superDecoder(forKey:)</code> with
+<code>Key(stringValue: &quot;super&quot;, intValue: 0)</code>.</p>
+
+<p><strong>returns:</strong> A new <code>Decoder</code> to pass to <code>super.init(from:)</code>.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the default <code>super</code> key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the default <code>super</code> key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func superDecoder() throws -&gt; Decoder</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-superdecoder-forkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-superdecoder-forkey_">func superDecoder(<wbr>forKey:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-superdecoder-forkey_"><div class="p">
+    <p>Returns a <code>Decoder</code> instance for decoding <code>super</code> from the container
+associated with the given key.</p>
+
+<p><strong><code>key</code>:</strong>  The key to decode <code>super</code> for.
+<strong>returns:</strong> A new <code>Decoder</code> to pass to <code>super.init(from:)</code>.
+<strong>throws:</strong> <code>DecodingError.keyNotFound</code> if <code>self</code> does not have an entry
+  for the given key.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if <code>self</code> has a null entry for
+  the given key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func superDecoder(forKey key: Self.Key) throws -&gt; Decoder</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+
+
+<div class="declaration" id="func--decodeifpresent_-bool-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-bool-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Bool.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-bool-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Bool.Type, forKey key: Self.Key) throws -&gt; Bool?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-double-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-double-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Double.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-double-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Double.Type, forKey key: Self.Key) throws -&gt; Double?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-float-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-float-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Float.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-float-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Float.Type, forKey key: Self.Key) throws -&gt; Float?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-int-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-int-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Int.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-int-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Int.Type, forKey key: Self.Key) throws -&gt; Int?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-int8-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-int8-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Int8.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-int8-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Int8.Type, forKey key: Self.Key) throws -&gt; Int8?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-int16-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-int16-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Int16.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-int16-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Int16.Type, forKey key: Self.Key) throws -&gt; Int16?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-int32-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-int32-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Int32.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-int32-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Int32.Type, forKey key: Self.Key) throws -&gt; Int32?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-int64-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-int64-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> Int64.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-int64-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: Int64.Type, forKey key: Self.Key) throws -&gt; Int64?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-string-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-string-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> String.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-string-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: String.Type, forKey key: Self.Key) throws -&gt; String?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-uint-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-uint-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> UInt.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-uint-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: UInt.Type, forKey key: Self.Key) throws -&gt; UInt?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-uint8-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-uint8-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> UInt8.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-uint8-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: UInt8.Type, forKey key: Self.Key) throws -&gt; UInt8?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-uint16-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-uint16-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> UInt16.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-uint16-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: UInt16.Type, forKey key: Self.Key) throws -&gt; UInt16?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-uint32-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-uint32-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> UInt32.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-uint32-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: UInt32.Type, forKey key: Self.Key) throws -&gt; UInt32?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-uint64-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-uint64-type-forkey_-self-key">func decodeIfPresent(<wbr>_:<wbr> UInt64.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-uint64-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent(_ type: UInt64.Type, forKey key: Self.Key) throws -&gt; UInt64?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent-t_-t-type-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent-t_-t-type-forkey_-self-key">func decodeIfPresent&lt;T&gt;(<wbr>_:<wbr> T.Type, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent-t_-t-type-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func decodeIfPresent&lt;T&gt;(_ type: T.Type, forKey key: Self.Key) throws -&gt; T? where T : Decodable</code>
+    
+    
+</div></div>
+</div>
+
+
+
+
+

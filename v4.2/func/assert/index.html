@@ -1,0 +1,42 @@
+---
+layout: "default"
+title: "assert"
+description: "Swift documentation for 'assert': Performs a traditional C-style assert with an optional message."
+keywords: "assert,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-assert_-autoclosure-bool_-autoclosure-string-file_-staticstring-line_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-assert_-autoclosure-bool_-autoclosure-string-file_-staticstring-line_-uint">func assert(<wbr>_: @autoclosure (<wbr>) -&gt; Bool, _: @autoclosure (<wbr>) -&gt; String, file:<wbr> StaticString, line: UInt)</a>
+        
+<div class="comment collapse" id="comment-func-assert_-autoclosure-bool_-autoclosure-string-file_-staticstring-line_-uint"><div class="p">
+    <p>Performs a traditional C-style assert with an optional message.</p>
+
+<p>Use this function for internal sanity checks that are active during testing
+but do not impact performance of shipping code. To check for invalid usage
+in Release builds, see <code>precondition(_:_:file:line:)</code>.</p>
+
+<ul><li><p>In playgrounds and <code>-Onone</code> builds (the default for Xcode&#39;s Debug
+configuration): If <code>condition</code> evaluates to <code>false</code>, stop program
+execution in a debuggable state after printing <code>message</code>.</p></li><li><p>In <code>-O</code> builds (the default for Xcode&#39;s Release configuration),
+<code>condition</code> is not evaluated, and there are no effects.</p></li><li><p>In <code>-Ounchecked</code> builds, <code>condition</code> is not evaluated, but the optimizer
+may assume that it <em>always</em> evaluates to <code>true</code>. Failure to satisfy that
+assumption is a serious programming error.</p></li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>condition:</strong> The condition to test. <code>condition</code> is only evaluated in
+    playgrounds and <code>-Onone</code> builds.
+  <strong>message:</strong> A string to print if <code>condition</code> is evaluated to <code>false</code>. The
+    default is an empty string.
+  <strong>file:</strong> The file name to print with <code>message</code> if the assertion fails. The
+    default is the file where <code>assert(_:_:file:line:)</code> is called.
+  <strong>line:</strong> The line number to print along with <code>message</code> if the assertion
+    fails. The default is the line number where <code>assert(_:_:file:line:)</code>
+    is called.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func assert(_ condition: @autoclosure () -&gt; Bool, _ message: @autoclosure () -&gt; String = default, file: StaticString = #file, line: UInt = #line)</code>
+    
+    
+</div></div>
+</div>

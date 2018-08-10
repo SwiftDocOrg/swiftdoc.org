@@ -1,0 +1,970 @@
+---
+layout: "default"
+title: "UnkeyedDecodingContainer"
+description: "Swift documentation for 'UnkeyedDecodingContainer': A type that provides a view into a decoder&#39;s storage and is used to hold."
+keywords: "UnkeyedDecodingContainer,protocol,swift,documentation,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decode,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeIfPresent,decodeNil,nestedContainer,nestedUnkeyedContainer,superDecoder,codingPath,count,currentIndex,isAtEnd"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol UnkeyedDecodingContainer</code></div>
+
+<div class="discussion comment">
+    <p>A type that provides a view into a decoder&#39;s storage and is used to hold
+the encoded properties of a decodable type sequentially, without keys.</p>
+
+<p>Decoders should provide types conforming to <code>UnkeyedDecodingContainer</code> for
+their format.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-codingpath_-codingkey">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-codingpath_-codingkey">var codingPath: [CodingKey]</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-codingpath_-codingkey"><div class="p">
+    <p>The path of coding keys taken to get to this point in decoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var codingPath: [CodingKey] { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int?</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    <p>The number of elements contained within this container.</p>
+
+<p>If the number of elements is unknown, the value is <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int? { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-currentindex_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-currentindex_-int">var currentIndex: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-currentindex_-int"><div class="p">
+    <p>The current decoding index of the container (i.e. the index of the next
+element to be decoded.) Incremented after every successful decode call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var currentIndex: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-isatend_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isatend_-bool">var isAtEnd: Bool</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-isatend_-bool"><div class="p">
+    <p>A Boolean value indicating whether there are no more elements left to be
+decoded in the container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isAtEnd: Bool { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-decode_-bool-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-bool-type">mutating func decode(<wbr>_: Bool.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-bool-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: Bool.Type) throws -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-double-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-double-type">mutating func decode(<wbr>_: Double.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-double-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: Double.Type) throws -&gt; Double</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-float-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-float-type">mutating func decode(<wbr>_: Float.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-float-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: Float.Type) throws -&gt; Float</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int-type">mutating func decode(<wbr>_: Int.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: Int.Type) throws -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int8-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int8-type">mutating func decode(<wbr>_: Int8.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int8-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: Int8.Type) throws -&gt; Int8</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int16-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int16-type">mutating func decode(<wbr>_: Int16.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int16-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: Int16.Type) throws -&gt; Int16</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int32-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int32-type">mutating func decode(<wbr>_: Int32.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int32-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: Int32.Type) throws -&gt; Int32</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-int64-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-int64-type">mutating func decode(<wbr>_: Int64.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-int64-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: Int64.Type) throws -&gt; Int64</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-string-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-string-type">mutating func decode(<wbr>_: String.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-string-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: String.Type) throws -&gt; String</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint-type">mutating func decode(<wbr>_: UInt.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: UInt.Type) throws -&gt; UInt</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint8-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint8-type">mutating func decode(<wbr>_: UInt8.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint8-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: UInt8.Type) throws -&gt; UInt8</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint16-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint16-type">mutating func decode(<wbr>_: UInt16.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint16-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: UInt16.Type) throws -&gt; UInt16</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint32-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint32-type">mutating func decode(<wbr>_: UInt32.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint32-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: UInt32.Type) throws -&gt; UInt32</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode_-uint64-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_-uint64-type">mutating func decode(<wbr>_: UInt64.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_-uint64-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode(_ type: UInt64.Type) throws -&gt; UInt64</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decode-t_-t-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode-t_-t-type">mutating func decode&lt;T&gt;(<wbr>_: T.Type)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode-t_-t-type"><div class="p">
+    <p>Decodes a value of the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A value of the requested type, if present for the given key
+  and convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode&lt;T&gt;(_ type: T.Type) throws -&gt; T where T : Decodable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-bool-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-bool-type">mutating func decodeIfPresent(<wbr>_: Bool.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-bool-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Bool.Type) throws -&gt; Bool?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-double-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-double-type">mutating func decodeIfPresent(<wbr>_: Double.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-double-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Double.Type) throws -&gt; Double?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-float-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-float-type">mutating func decodeIfPresent(<wbr>_: Float.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-float-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Float.Type) throws -&gt; Float?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-int-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-int-type">mutating func decodeIfPresent(<wbr>_: Int.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-int-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Int.Type) throws -&gt; Int?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-int8-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-int8-type">mutating func decodeIfPresent(<wbr>_: Int8.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-int8-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Int8.Type) throws -&gt; Int8?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-int16-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-int16-type">mutating func decodeIfPresent(<wbr>_: Int16.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-int16-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Int16.Type) throws -&gt; Int16?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-int32-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-int32-type">mutating func decodeIfPresent(<wbr>_: Int32.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-int32-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Int32.Type) throws -&gt; Int32?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-int64-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-int64-type">mutating func decodeIfPresent(<wbr>_: Int64.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-int64-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Int64.Type) throws -&gt; Int64?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-string-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-string-type">mutating func decodeIfPresent(<wbr>_: String.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-string-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: String.Type) throws -&gt; String?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-uint-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-uint-type">mutating func decodeIfPresent(<wbr>_: UInt.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-uint-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: UInt.Type) throws -&gt; UInt?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-uint8-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-uint8-type">mutating func decodeIfPresent(<wbr>_: UInt8.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-uint8-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: UInt8.Type) throws -&gt; UInt8?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-uint16-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-uint16-type">mutating func decodeIfPresent(<wbr>_: UInt16.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-uint16-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: UInt16.Type) throws -&gt; UInt16?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-uint32-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-uint32-type">mutating func decodeIfPresent(<wbr>_: UInt32.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-uint32-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: UInt32.Type) throws -&gt; UInt32?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent_-uint64-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent_-uint64-type">mutating func decodeIfPresent(<wbr>_: UInt64.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent_-uint64-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: UInt64.Type) throws -&gt; UInt64?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodeifpresent-t_-t-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodeifpresent-t_-t-type">mutating func decodeIfPresent&lt;T&gt;(<wbr>_: T.Type)</a>
+        
+<div class="comment collapse" id="comment-func-decodeifpresent-t_-t-type"><div class="p">
+    <p>Decodes a value of the given type, if present.</p>
+
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+
+<p><strong><code>type</code>:</strong>  The type of value to decode.
+<strong>returns:</strong> A decoded value of the requested type, or <code>nil</code> if the value
+  is a null value, or if there are no more elements to decode.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered encoded value
+  is not convertible to the requested type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent&lt;T&gt;(_ type: T.Type) throws -&gt; T? where T : Decodable</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-decodenil">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decodenil">mutating func decodeNil()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decodenil"><div class="p">
+    <p>Decodes a null value.</p>
+
+<p>If the value is not null, does not increment currentIndex.</p>
+
+<p><strong>returns:</strong> Whether the encountered value was null.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if there are no more values to
+  decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeNil() throws -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-nestedcontainer-keyedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-nestedcontainer-keyedby_">mutating func nestedContainer(<wbr>keyedBy:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-nestedcontainer-keyedby_"><div class="p">
+    <p>Decodes a nested container keyed by the given type.</p>
+
+<p><strong><code>type</code>:</strong>  The key type to use for the container.
+<strong>returns:</strong> A keyed decoding container view into <code>self</code>.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered stored value is
+  not a keyed container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func nestedContainer&lt;NestedKey&gt;(keyedBy type: NestedKey.Type) throws -&gt; KeyedDecodingContainer&lt;NestedKey&gt; where NestedKey : CodingKey</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-nestedunkeyedcontainer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-nestedunkeyedcontainer">mutating func nestedUnkeyedContainer()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-nestedunkeyedcontainer"><div class="p">
+    <p>Decodes an unkeyed nested container.</p>
+
+<p><strong>returns:</strong> An unkeyed decoding container view into <code>self</code>.
+<strong>throws:</strong> <code>DecodingError.typeMismatch</code> if the encountered stored value is
+  not an unkeyed container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func nestedUnkeyedContainer() throws -&gt; UnkeyedDecodingContainer</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-superdecoder">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-superdecoder">mutating func superDecoder()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-superdecoder"><div class="p">
+    <p>Decodes a nested container and returns a <code>Decoder</code> instance for decoding
+<code>super</code> from that container.</p>
+
+<p><strong>returns:</strong> A new <code>Decoder</code> to pass to <code>super.init(from:)</code>.
+<strong>throws:</strong> <code>DecodingError.valueNotFound</code> if the encountered encoded value
+  is null, or of there are no more values to decode.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func superDecoder() throws -&gt; Decoder</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+
+
+<div class="declaration" id="func--decodeifpresent_-bool-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-bool-type">mutating func decodeIfPresent(<wbr>_: Bool.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-bool-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Bool.Type) throws -&gt; Bool?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-double-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-double-type">mutating func decodeIfPresent(<wbr>_: Double.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-double-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Double.Type) throws -&gt; Double?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-float-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-float-type">mutating func decodeIfPresent(<wbr>_: Float.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-float-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Float.Type) throws -&gt; Float?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-int-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-int-type">mutating func decodeIfPresent(<wbr>_: Int.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-int-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Int.Type) throws -&gt; Int?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-int8-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-int8-type">mutating func decodeIfPresent(<wbr>_: Int8.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-int8-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Int8.Type) throws -&gt; Int8?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-int16-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-int16-type">mutating func decodeIfPresent(<wbr>_: Int16.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-int16-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Int16.Type) throws -&gt; Int16?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-int32-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-int32-type">mutating func decodeIfPresent(<wbr>_: Int32.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-int32-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Int32.Type) throws -&gt; Int32?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-int64-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-int64-type">mutating func decodeIfPresent(<wbr>_: Int64.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-int64-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: Int64.Type) throws -&gt; Int64?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-string-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-string-type">mutating func decodeIfPresent(<wbr>_: String.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-string-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: String.Type) throws -&gt; String?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-uint-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-uint-type">mutating func decodeIfPresent(<wbr>_: UInt.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-uint-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: UInt.Type) throws -&gt; UInt?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-uint8-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-uint8-type">mutating func decodeIfPresent(<wbr>_: UInt8.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-uint8-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: UInt8.Type) throws -&gt; UInt8?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-uint16-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-uint16-type">mutating func decodeIfPresent(<wbr>_: UInt16.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-uint16-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: UInt16.Type) throws -&gt; UInt16?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-uint32-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-uint32-type">mutating func decodeIfPresent(<wbr>_: UInt32.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-uint32-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: UInt32.Type) throws -&gt; UInt32?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent_-uint64-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent_-uint64-type">mutating func decodeIfPresent(<wbr>_: UInt64.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent_-uint64-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent(_ type: UInt64.Type) throws -&gt; UInt64?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--decodeifpresent-t_-t-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--decodeifpresent-t_-t-type">mutating func decodeIfPresent&lt;T&gt;(<wbr>_: T.Type)</a>
+        
+<div class="comment collapse" id="comment-func--decodeifpresent-t_-t-type"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decodeIfPresent&lt;T&gt;(_ type: T.Type) throws -&gt; T? where T : Decodable</code>
+    
+    
+</div></div>
+</div>
+
+
+
+
+

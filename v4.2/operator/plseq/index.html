@@ -1,0 +1,610 @@
+---
+layout: "default"
+title: "Operator: +="
+description: "Swift documentation for the '+=' operator."
+root: "/v4.2"
+---
+
+<code class="language-swift"> operator += {
+    associativity right
+    precedence 
+    assignment
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-plseq_-inout-double-rhs_-double">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-double-rhs_-double">func +=(<wbr>_:<wbr> inout Double, rhs: Double)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-double-rhs_-double"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable,
+rounded to a representable value.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Double, rhs: Double)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-float-rhs_-float">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-float-rhs_-float">func +=(<wbr>_:<wbr> inout Float, rhs: Float)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-float-rhs_-float"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable,
+rounded to a representable value.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Float, rhs: Float)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-float80-rhs_-float80">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-float80-rhs_-float80">func +=(<wbr>_:<wbr> inout Float80, rhs: Float80)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-float80-rhs_-float80"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable,
+rounded to a representable value.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Float80, rhs: Float80)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Float80/"><code>Float80</code></a>,    <a href="../../protocol/BinaryFloatingPoint/"><code>BinaryFloatingPoint</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-int-rhs_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-int-rhs_-int">func +=(<wbr>_:<wbr> inout Int, rhs: Int)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-int-rhs_-int"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p>The sum of the two arguments must be representable in the arguments&#39;
+type. In the following example, the result of <code>21 + 120</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+
+<pre><code class="language-swift">var x: Int8 = 21
+x += 120
+// Overflow error</code></pre>
+
+<p><strong>Note:</strong> Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Int, rhs: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int/"><code>Int</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-int8-rhs_-int8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-int8-rhs_-int8">func +=(<wbr>_:<wbr> inout Int8, rhs: Int8)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-int8-rhs_-int8"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p>The sum of the two arguments must be representable in the arguments&#39;
+type. In the following example, the result of <code>21 + 120</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+
+<pre><code class="language-swift">var x: Int8 = 21
+x += 120
+// Overflow error</code></pre>
+
+<p><strong>Note:</strong> Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Int8, rhs: Int8)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int8/"><code>Int8</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-int16-rhs_-int16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-int16-rhs_-int16">func +=(<wbr>_:<wbr> inout Int16, rhs: Int16)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-int16-rhs_-int16"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p>The sum of the two arguments must be representable in the arguments&#39;
+type. In the following example, the result of <code>21 + 120</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+
+<pre><code class="language-swift">var x: Int8 = 21
+x += 120
+// Overflow error</code></pre>
+
+<p><strong>Note:</strong> Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Int16, rhs: Int16)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int16/"><code>Int16</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-int32-rhs_-int32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-int32-rhs_-int32">func +=(<wbr>_:<wbr> inout Int32, rhs: Int32)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-int32-rhs_-int32"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p>The sum of the two arguments must be representable in the arguments&#39;
+type. In the following example, the result of <code>21 + 120</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+
+<pre><code class="language-swift">var x: Int8 = 21
+x += 120
+// Overflow error</code></pre>
+
+<p><strong>Note:</strong> Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Int32, rhs: Int32)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int32/"><code>Int32</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-int64-rhs_-int64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-int64-rhs_-int64">func +=(<wbr>_:<wbr> inout Int64, rhs: Int64)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-int64-rhs_-int64"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p>The sum of the two arguments must be representable in the arguments&#39;
+type. In the following example, the result of <code>21 + 120</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+
+<pre><code class="language-swift">var x: Int8 = 21
+x += 120
+// Overflow error</code></pre>
+
+<p><strong>Note:</strong> Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Int64, rhs: Int64)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Int64/"><code>Int64</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq_-inout-self-rhs_-self-stride">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-self-rhs_-self-stride">func +=(<wbr>_:<wbr> inout Self, rhs: Self.Stride)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-self-rhs_-self-stride"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Self, rhs: Self.Stride)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq_-inout-self-rhs_-self-stride">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-self-rhs_-self-stride">func +=(<wbr>_:<wbr> inout Self, rhs: Self.Stride)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-self-rhs_-self-stride"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Self, rhs: Self.Stride)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq_-inout-self-rhs_-self-stride">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-self-rhs_-self-stride">func +=(<wbr>_:<wbr> inout Self, rhs: Self.Stride)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-self-rhs_-self-stride"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Self, rhs: Self.Stride)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq_-inout-self-rhs_-self-stride">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-self-rhs_-self-stride">func +=(<wbr>_:<wbr> inout Self, rhs: Self.Stride)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-self-rhs_-self-stride"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Self, rhs: Self.Stride)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq_-inout-self-rhs_-self-stride">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-self-rhs_-self-stride">func +=(<wbr>_:<wbr> inout Self, rhs: Self.Stride)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-self-rhs_-self-stride"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Self, rhs: Self.Stride)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-string-rhs_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-string-rhs_-string">func +=(<wbr>_:<wbr> inout String, rhs: String)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-string-rhs_-string"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout String, rhs: String)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-uint-rhs_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-uint-rhs_-uint">func +=(<wbr>_:<wbr> inout UInt, rhs: UInt)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-uint-rhs_-uint"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p>The sum of the two arguments must be representable in the arguments&#39;
+type. In the following example, the result of <code>21 + 120</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+
+<pre><code class="language-swift">var x: Int8 = 21
+x += 120
+// Overflow error</code></pre>
+
+<p><strong>Note:</strong> Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout UInt, rhs: UInt)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt/"><code>UInt</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-uint8-rhs_-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-uint8-rhs_-uint8">func +=(<wbr>_:<wbr> inout UInt8, rhs: UInt8)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-uint8-rhs_-uint8"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p>The sum of the two arguments must be representable in the arguments&#39;
+type. In the following example, the result of <code>21 + 120</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+
+<pre><code class="language-swift">var x: Int8 = 21
+x += 120
+// Overflow error</code></pre>
+
+<p><strong>Note:</strong> Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout UInt8, rhs: UInt8)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt8/"><code>UInt8</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-uint16-rhs_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-uint16-rhs_-uint16">func +=(<wbr>_:<wbr> inout UInt16, rhs: UInt16)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-uint16-rhs_-uint16"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p>The sum of the two arguments must be representable in the arguments&#39;
+type. In the following example, the result of <code>21 + 120</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+
+<pre><code class="language-swift">var x: Int8 = 21
+x += 120
+// Overflow error</code></pre>
+
+<p><strong>Note:</strong> Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout UInt16, rhs: UInt16)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt16/"><code>UInt16</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-uint32-rhs_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-uint32-rhs_-uint32">func +=(<wbr>_:<wbr> inout UInt32, rhs: UInt32)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-uint32-rhs_-uint32"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p>The sum of the two arguments must be representable in the arguments&#39;
+type. In the following example, the result of <code>21 + 120</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+
+<pre><code class="language-swift">var x: Int8 = 21
+x += 120
+// Overflow error</code></pre>
+
+<p><strong>Note:</strong> Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout UInt32, rhs: UInt32)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt32/"><code>UInt32</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-plseq_-inout-uint64-rhs_-uint64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_-inout-uint64-rhs_-uint64">func +=(<wbr>_:<wbr> inout UInt64, rhs: UInt64)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_-inout-uint64-rhs_-uint64"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p>The sum of the two arguments must be representable in the arguments&#39;
+type. In the following example, the result of <code>21 + 120</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+
+<pre><code class="language-swift">var x: Int8 = 21
+x += 120
+// Overflow error</code></pre>
+
+<p><strong>Note:</strong> Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout UInt64, rhs: UInt64)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt64/"><code>UInt64</code></a>,    <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq-other_-inout-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq-other_-inout-self-rhs_-other">func += &lt;Other&gt;(<wbr>_:<wbr> inout Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-plseq-other_-inout-self-rhs_-other"><div class="p">
+    <p>Appends the elements of a sequence to a range-replaceable collection.</p>
+
+<p>Use this operator to append the elements of a sequence to the end of
+range-replaceable collection with same <code>Element</code> type. This example appends
+the elements of a <code>Range&lt;Int&gt;</code> instance to an array of integers.</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers += 10...15
+print(numbers)
+// Prints &quot;[1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The array to append to.
+  <strong>rhs:</strong> A collection or finite sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the resulting array.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=&lt;Other&gt;(lhs: inout Self, rhs: Other)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq-other_-inout-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq-other_-inout-self-rhs_-other">func += &lt;Other&gt;(<wbr>_:<wbr> inout Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-plseq-other_-inout-self-rhs_-other"><div class="p">
+    <p>Appends the elements of a sequence to a range-replaceable collection.</p>
+
+<p>Use this operator to append the elements of a sequence to the end of
+range-replaceable collection with same <code>Element</code> type. This example appends
+the elements of a <code>Range&lt;Int&gt;</code> instance to an array of integers.</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers += 10...15
+print(numbers)
+// Prints &quot;[1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The array to append to.
+  <strong>rhs:</strong> A collection or finite sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the resulting array.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=&lt;Other&gt;(lhs: inout Self, rhs: Other)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq-other_-inout-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq-other_-inout-self-rhs_-other">func += &lt;Other&gt;(<wbr>_:<wbr> inout Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-plseq-other_-inout-self-rhs_-other"><div class="p">
+    <p>Appends the elements of a sequence to a range-replaceable collection.</p>
+
+<p>Use this operator to append the elements of a sequence to the end of
+range-replaceable collection with same <code>Element</code> type. This example appends
+the elements of a <code>Range&lt;Int&gt;</code> instance to an array of integers.</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers += 10...15
+print(numbers)
+// Prints &quot;[1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The array to append to.
+  <strong>rhs:</strong> A collection or finite sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the resulting array.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=&lt;Other&gt;(lhs: inout Self, rhs: Other)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq-other_-inout-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq-other_-inout-self-rhs_-other">func += &lt;Other&gt;(<wbr>_:<wbr> inout Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-plseq-other_-inout-self-rhs_-other"><div class="p">
+    <p>Appends the elements of a sequence to a range-replaceable collection.</p>
+
+<p>Use this operator to append the elements of a sequence to the end of
+range-replaceable collection with same <code>Element</code> type. This example appends
+the elements of a <code>Range&lt;Int&gt;</code> instance to an array of integers.</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers += 10...15
+print(numbers)
+// Prints &quot;[1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The array to append to.
+  <strong>rhs:</strong> A collection or finite sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the resulting array.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=&lt;Other&gt;(lhs: inout Self, rhs: Other)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq-other_-inout-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq-other_-inout-self-rhs_-other">func += &lt;Other&gt;(<wbr>_:<wbr> inout Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-plseq-other_-inout-self-rhs_-other"><div class="p">
+    <p>Appends the elements of a sequence to a range-replaceable collection.</p>
+
+<p>Use this operator to append the elements of a sequence to the end of
+range-replaceable collection with same <code>Element</code> type. This example appends
+the elements of a <code>Range&lt;Int&gt;</code> instance to an array of integers.</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers += 10...15
+print(numbers)
+// Prints &quot;[1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The array to append to.
+  <strong>rhs:</strong> A collection or finite sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the resulting array.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=&lt;Other&gt;(lhs: inout Self, rhs: Other)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq-other_-inout-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq-other_-inout-self-rhs_-other">func += &lt;Other&gt;(<wbr>_:<wbr> inout Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-plseq-other_-inout-self-rhs_-other"><div class="p">
+    <p>Appends the elements of a sequence to a range-replaceable collection.</p>
+
+<p>Use this operator to append the elements of a sequence to the end of
+range-replaceable collection with same <code>Element</code> type. This example appends
+the elements of a <code>Range&lt;Int&gt;</code> instance to an array of integers.</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers += 10...15
+print(numbers)
+// Prints &quot;[1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The array to append to.
+  <strong>rhs:</strong> A collection or finite sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the resulting array.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=&lt;Other&gt;(lhs: inout Self, rhs: Other)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq-other_-inout-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq-other_-inout-self-rhs_-other">func += &lt;Other&gt;(<wbr>_:<wbr> inout Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-plseq-other_-inout-self-rhs_-other"><div class="p">
+    <p>Appends the elements of a sequence to a range-replaceable collection.</p>
+
+<p>Use this operator to append the elements of a sequence to the end of
+range-replaceable collection with same <code>Element</code> type. This example appends
+the elements of a <code>Range&lt;Int&gt;</code> instance to an array of integers.</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers += 10...15
+print(numbers)
+// Prints &quot;[1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The array to append to.
+  <strong>rhs:</strong> A collection or finite sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the resulting array.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=&lt;Other&gt;(lhs: inout Self, rhs: Other)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>

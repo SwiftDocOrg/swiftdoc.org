@@ -1,0 +1,167 @@
+---
+layout: "default"
+title: "Error"
+description: "Swift documentation for 'Error': A type representing an error value that can be thrown."
+keywords: "Error,protocol,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Error</code></div>
+
+<div class="discussion comment">
+    <p>A type representing an error value that can be thrown.</p>
+
+<p>Any type that declares conformance to the <code>Error</code> protocol can be used to
+represent an error in Swift&#39;s error handling system. Because the <code>Error</code>
+protocol has no requirements of its own, you can declare conformance on
+any custom type you create.</p>
+
+<h1>Using Enumerations as Errors</h1>
+
+<p>Swift&#39;s enumerations are well suited to represent simple errors. Create an
+enumeration that conforms to the <code>Error</code> protocol with a case for each
+possible error. If there are additional details about the error that could
+be helpful for recovery, use associated values to include that
+information.</p>
+
+<p>The following example shows an <code>IntParsingError</code> enumeration that captures
+two different kinds of errors that can occur when parsing an integer from
+a string: overflow, where the value represented by the string is too large
+for the integer data type, and invalid input, where nonnumeric characters
+are found within the input.</p>
+
+<pre><code class="language-swift">enum IntParsingError: Error {
+    case overflow
+    case invalidInput(String)
+}</code></pre>
+
+<p>The <code>invalidInput</code> case includes the invalid character as an associated
+value.</p>
+
+<p>The next code sample shows a possible extension to the <code>Int</code> type that
+parses the integer value of a <code>String</code> instance, throwing an error when
+there is a problem during parsing.</p>
+
+<pre><code class="language-swift">extension Int {
+    init(validating input: String) throws {
+        // ...
+        if !_isValid(s) {
+            throw IntParsingError.invalidInput(s)
+        }
+        // ...
+    }
+}</code></pre>
+
+<p>When calling the new <code>Int</code> initializer within a <code>do</code> statement, you can use
+pattern matching to match specific cases of your custom error type and
+access their associated values, as in the example below.</p>
+
+<pre><code class="language-swift">do {
+    let price = try Int(validating: &quot;$100&quot;)
+} catch IntParsingError.invalidInput(let invalid) {
+    print(&quot;Invalid character: &#39;\(invalid)&#39;&quot;)
+} catch IntParsingError.overflow {
+    print(&quot;Overflow error&quot;)
+} catch {
+    print(&quot;Other error&quot;)
+}
+// Prints &quot;Invalid character: &#39;$&#39;&quot;</code></pre>
+
+<h1>Including More Data in Errors</h1>
+
+<p>Sometimes you may want different error states to include the same common
+data, such as the position in a file or some of your application&#39;s state.
+When you do, use a structure to represent errors. The following example
+uses a structure to represent an error when parsing an XML document,
+including the line and column numbers where the error occurred:</p>
+
+<pre><code class="language-swift">struct XMLParsingError: Error {
+    enum ErrorKind {
+        case invalidCharacter
+        case mismatchedTag
+        case internalError
+    }
+
+    let line: Int
+    let column: Int
+    let kind: ErrorKind
+}
+
+func parse(_ source: String) throws -&gt; XMLDoc {
+    // ...
+    throw XMLParsingError(line: 19, column: 5, kind: .mismatchedTag)
+    // ...
+}</code></pre>
+
+<p>Once again, use pattern matching to conditionally catch errors. Here&#39;s how
+you can catch any <code>XMLParsingError</code> errors thrown by the <code>parse(_:)</code>
+function:</p>
+
+<pre><code class="language-swift">do {
+    let xmlDoc = try parse(myXMLData)
+} catch let e as XMLParsingError {
+    print(&quot;Parsing error: \(e.kind) [\(e.line):\(e.column)]&quot;)
+} catch {
+    print(&quot;Other error: \(error)&quot;)
+}
+// Prints &quot;Parsing error: mismatchedTag [19:5]&quot;</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h4>Where RawValue : SignedInteger</h4>
+
+
+
+
+
+
+
+
+
+<h4>Where RawValue : UnsignedInteger</h4>
+
+
+
+
+
+
+

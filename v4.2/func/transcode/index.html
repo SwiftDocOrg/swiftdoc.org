@@ -1,0 +1,54 @@
+---
+layout: "default"
+title: "transcode"
+description: "Swift documentation for 'transcode': Translates the given input from one Unicode encoding to another by calling."
+keywords: "transcode,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-transcode-input-inputencoding-outputencoding_-input-from_-inputencoding-type-to_-outputencoding-type-stoppingonerror_-bool-into_-outputencoding-codeunit-void">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-transcode-input-inputencoding-outputencoding_-input-from_-inputencoding-type-to_-outputencoding-type-stoppingonerror_-bool-into_-outputencoding-codeunit-void">func transcode&lt;Input, InputEncoding, OutputEncoding&gt;(<wbr>_:<wbr> Input, from:<wbr> InputEncoding.Type, to:<wbr> OutputEncoding.Type, stoppingOnError:<wbr> Bool, into: (OutputEncoding.CodeUnit) -&gt; Void)</a>
+        
+<div class="comment collapse" id="comment-func-transcode-input-inputencoding-outputencoding_-input-from_-inputencoding-type-to_-outputencoding-type-stoppingonerror_-bool-into_-outputencoding-codeunit-void"><div class="p">
+    <p>Translates the given input from one Unicode encoding to another by calling
+the given closure.</p>
+
+<p>The following example transcodes the UTF-8 representation of the string
+<code>&quot;Fermata 𝄐&quot;</code> into UTF-32.</p>
+
+<pre><code class="language-swift">let fermata = &quot;Fermata 𝄐&quot;
+let bytes = fermata.utf8
+print(Array(bytes))
+// Prints &quot;[70, 101, 114, 109, 97, 116, 97, 32, 240, 157, 132, 144]&quot;
+
+var codeUnits: [UTF32.CodeUnit] = []
+let sink = { codeUnits.append($0) }
+transcode(bytes.makeIterator(), from: UTF8.self, to: UTF32.self,
+          stoppingOnError: false, into: sink)
+print(codeUnits)
+// Prints &quot;[70, 101, 114, 109, 97, 116, 97, 32, 119056]&quot;</code></pre>
+
+<p>The <code>sink</code> closure is called with each resulting UTF-32 code unit as the
+function iterates over its input.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>input:</strong> An iterator of code units to be translated, encoded as
+    <code>inputEncoding</code>. If <code>stopOnError</code> is <code>false</code>, the entire iterator will
+    be exhausted. Otherwise, iteration will stop if an encoding error is
+    detected.
+  <strong>inputEncoding:</strong> The Unicode encoding of <code>input</code>.
+  <strong>outputEncoding:</strong> The destination Unicode encoding.
+  <strong>stopOnError:</strong> Pass <code>true</code> to stop translation when an encoding error is
+    detected in <code>input</code>. Otherwise, a Unicode replacement character
+    (<code>&quot;\u{FFFD}&quot;</code>) is inserted for each detected error.
+  <strong>processCodeUnit:</strong> A closure that processes one <code>outputEncoding</code> code
+    unit at a time.
+<strong>Returns:</strong> <code>true</code> if the translation detected encoding errors in <code>input</code>;
+  otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func transcode&lt;Input, InputEncoding, OutputEncoding&gt;(_ input: Input, from inputEncoding: InputEncoding.Type, to outputEncoding: OutputEncoding.Type, stoppingOnError stopOnError: Bool, into processCodeUnit: (OutputEncoding.CodeUnit) -&gt; Void) -&gt; Bool where Input : IteratorProtocol, InputEncoding : _UnicodeEncoding, OutputEncoding : _UnicodeEncoding, Input.Element == InputEncoding.CodeUnit</code>
+    
+    
+</div></div>
+</div>

@@ -1,0 +1,57 @@
+---
+layout: "default"
+title: "CustomReflectable"
+description: "Swift documentation for 'CustomReflectable': A type that explicitly supplies its own mirror."
+keywords: "CustomReflectable,protocol,swift,documentation,customMirror"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CustomReflectable</code></div>
+
+<div class="discussion comment">
+    <p>A type that explicitly supplies its own mirror.</p>
+
+<p>You can create a mirror for any type using the <code>Mirror(reflecting:)</code>
+initializer, but if you are not satisfied with the mirror supplied for
+your type by default, you can make it conform to <code>CustomReflectable</code> and
+return a custom <code>Mirror</code> instance.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>The custom mirror for this instance.</p>
+
+<p>If this type has value semantics, the mirror should be unaffected by
+subsequent mutations of the instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+

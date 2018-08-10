@@ -1,0 +1,41 @@
+---
+layout: "default"
+title: "numericCast"
+description: "Swift documentation for 'numericCast': Returns the given integer as the equivalent value in a different integer."
+keywords: "numericCast,func,swift,documentation"
+root: "/v4.2"
+---
+
+<div class="declaration" id="func-numericcast-t-u_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-numericcast-t-u_-t">func numericCast&lt;T, U&gt;(<wbr>_: T)</a>
+        
+<div class="comment collapse" id="comment-func-numericcast-t-u_-t"><div class="p">
+    <p>Returns the given integer as the equivalent value in a different integer
+type.</p>
+
+<p>The <code>numericCast(_:)</code> function traps on overflow in <code>-O</code> and <code>-Onone</code>
+builds.</p>
+
+<p>You can use <code>numericCast(_:)</code> to convert a value when the destination type
+can be inferred from the context. In the following example, the
+<code>random(in:)</code> function uses <code>numericCast(_:)</code> twice to convert the
+argument and return value of the <code>arc4random_uniform(_:)</code> function to the
+appropriate type.</p>
+
+<pre><code class="language-swift">func random(in range: Range&lt;Int&gt;) -&gt; Int {
+    return numericCast(arc4random_uniform(numericCast(range.count)))
+        + range.lowerBound
+}
+
+let number = random(in: -10...&lt;10)
+// number == -3, perhaps</code></pre>
+
+<p><strong><code>x</code>:</strong>  The integer to convert, and instance of type <code>T</code>.
+<strong>Returns:</strong> The value of <code>x</code> converted to type <code>U</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func numericCast&lt;T, U&gt;(_ x: T) -&gt; U where T : BinaryInteger, U : BinaryInteger</code>
+    
+    
+</div></div>
+</div>

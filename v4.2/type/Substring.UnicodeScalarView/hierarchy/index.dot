@@ -1,0 +1,18 @@
+strict digraph "Substring.UnicodeScalarView - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BidirectionalCollection" [URL="/protocol/BidirectionalCollection/hierarchy/"]
+    "Collection" [URL="/protocol/Collection/hierarchy/"]
+    "RangeReplaceableCollection" [URL="/protocol/RangeReplaceableCollection/hierarchy/"]
+    "Sequence" [URL="/protocol/Sequence/hierarchy/"]
+    "Substring.UnicodeScalarView" [URL="/type/Substring.UnicodeScalarView/", style="filled", fillcolor="#ee543d", color="#ee543d"]    "BidirectionalCollection" -> "Substring.UnicodeScalarView"
+    "RangeReplaceableCollection" -> "Substring.UnicodeScalarView"
+    "Collection" -> "BidirectionalCollection"
+    "Sequence" -> "Collection"
+    "Collection" -> "RangeReplaceableCollection"
+    "Sequence" -> "Collection"
+    subgraph Types {
+        rank = max; "Substring.UnicodeScalarView";
+    }
+}

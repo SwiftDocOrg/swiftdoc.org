@@ -1,0 +1,41 @@
+strict digraph "SignedInteger - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BinaryInteger" [URL="/protocol/BinaryInteger/hierarchy/"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByIntegerLiteral" [URL="/protocol/ExpressibleByIntegerLiteral/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "Int" [URL="/type/Int/hierarchy/", style=filled]
+    "Int16" [URL="/type/Int16/hierarchy/", style=filled]
+    "Int32" [URL="/type/Int32/hierarchy/", style=filled]
+    "Int64" [URL="/type/Int64/hierarchy/", style=filled]
+    "Int8" [URL="/type/Int8/hierarchy/", style=filled]
+    "Numeric" [URL="/protocol/Numeric/hierarchy/"]
+    "SignedInteger" [URL="/protocol/SignedInteger/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "SignedNumeric" [URL="/protocol/SignedNumeric/hierarchy/"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]    "SignedInteger" -> "Int"
+    "SignedInteger" -> "Int16"
+    "SignedInteger" -> "Int32"
+    "SignedInteger" -> "Int64"
+    "SignedInteger" -> "Int8"
+    "BinaryInteger" -> "SignedInteger"
+    "SignedNumeric" -> "SignedInteger"
+    "CustomStringConvertible" -> "BinaryInteger"
+    "Hashable" -> "BinaryInteger"
+    "Numeric" -> "BinaryInteger"
+    "Strideable" -> "BinaryInteger"
+    "Equatable" -> "Hashable"
+    "Equatable" -> "Numeric"
+    "ExpressibleByIntegerLiteral" -> "Numeric"
+    "Comparable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    "Numeric" -> "SignedNumeric"
+    "Equatable" -> "Numeric"
+    "ExpressibleByIntegerLiteral" -> "Numeric"
+    subgraph Types {
+        rank = max; "Int"; "Int16"; "Int32"; "Int64"; "Int8";
+    }
+}

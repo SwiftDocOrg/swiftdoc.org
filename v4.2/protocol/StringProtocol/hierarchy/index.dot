@@ -1,0 +1,39 @@
+strict digraph "StringProtocol - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BidirectionalCollection" [URL="/protocol/BidirectionalCollection/hierarchy/"]
+    "Collection" [URL="/protocol/Collection/hierarchy/"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByExtendedGraphemeClusterLiteral" [URL="/protocol/ExpressibleByExtendedGraphemeClusterLiteral/hierarchy/"]
+    "ExpressibleByStringLiteral" [URL="/protocol/ExpressibleByStringLiteral/hierarchy/"]
+    "ExpressibleByUnicodeScalarLiteral" [URL="/protocol/ExpressibleByUnicodeScalarLiteral/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "LosslessStringConvertible" [URL="/protocol/LosslessStringConvertible/hierarchy/"]
+    "Sequence" [URL="/protocol/Sequence/hierarchy/"]
+    "String" [URL="/type/String/hierarchy/", style=filled]
+    "StringProtocol" [URL="/protocol/StringProtocol/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "Substring" [URL="/type/Substring/hierarchy/", style=filled]
+    "TextOutputStream" [URL="/protocol/TextOutputStream/hierarchy/"]
+    "TextOutputStreamable" [URL="/protocol/TextOutputStreamable/hierarchy/"]    "StringProtocol" -> "String"
+    "StringProtocol" -> "Substring"
+    "BidirectionalCollection" -> "StringProtocol"
+    "Comparable" -> "StringProtocol"
+    "ExpressibleByStringLiteral" -> "StringProtocol"
+    "Hashable" -> "StringProtocol"
+    "LosslessStringConvertible" -> "StringProtocol"
+    "TextOutputStream" -> "StringProtocol"
+    "TextOutputStreamable" -> "StringProtocol"
+    "Collection" -> "BidirectionalCollection"
+    "Sequence" -> "Collection"
+    "Equatable" -> "Comparable"
+    "ExpressibleByExtendedGraphemeClusterLiteral" -> "ExpressibleByStringLiteral"
+    "ExpressibleByUnicodeScalarLiteral" -> "ExpressibleByExtendedGraphemeClusterLiteral"
+    "Equatable" -> "Hashable"
+    "CustomStringConvertible" -> "LosslessStringConvertible"
+    subgraph Types {
+        rank = max; "String"; "Substring";
+    }
+}

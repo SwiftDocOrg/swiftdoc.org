@@ -1,0 +1,3031 @@
+---
+layout: "default"
+title: "UInt8.Words"
+description: "Swift documentation for 'UInt8.Words': A type that represents the words of this integer."
+keywords: "UInt8.Words,struct,swift,documentation,allSatisfy,compactMap,contains,distance,distance,distance,drop,dropFirst,dropFirst,dropLast,dropLast,elementsEqual,enumerated,filter,first,firstIndex,flatMap,flatMap,flatMap,forEach,formIndex,formIndex,formIndex,formIndex,formIndex,formIndex,index,index,index,index,index,index,index,index,last,lastIndex,lexicographicallyPrecedes,map,max,min,prefix,prefix,prefix,prefix,randomElement,randomElement,reduce,reduce,reversed,shuffled,shuffled,sorted,split,starts,suffix,suffix,count,endIndex,first,indices,isEmpty,last,lazy,startIndex,underestimatedCount,Indices,SubSequence"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct UInt8.Words</code></div>
+
+<div class="discussion comment">
+    <p>A type that represents the words of this integer.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">BidirectionalCollection, Collection, Sequence</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Indices = Range&lt;Int&gt;</code>
+<div class="comment">
+    <p>A type that represents the indices that are valid for subscripting the
+collection, in ascending order.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence = Slice&lt;UInt8.Words&gt;</code>
+<div class="comment">
+    <p>A type that represents a subsequence of some of the sequence&#39;s elements.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ value: UInt8)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int</a><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    <p>The number of elements in the collection.</p>
+
+<p>To check whether a collection is empty, use its <code>isEmpty</code> property
+instead of comparing <code>count</code> to zero. Unless the collection guarantees
+random-access performance, calculating <code>count</code> can be an O(<em>n</em>)
+operation.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length
+  of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/UInt8.Words/"><code>UInt8.Words</code></a>
+        ,    <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>
+        ,    <a href="../../protocol/Collection/"><code>Collection</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="var-endindex_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-int">var endIndex: Int</a><div class="comment collapse" id="comment-var-endindex_-int"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position---that is, the position one
+greater than the last valid subscript argument.</p>
+
+<p>When you need a range that includes the last element of a collection, use
+the half-open range operator (<code>..&lt;</code>) with <code>endIndex</code>. The <code>..&lt;</code> operator
+creates a range that doesn&#39;t include the upper bound, so it&#39;s always
+safe to use with <code>endIndex</code>. For example:</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let index = numbers.firstIndex(of: 30) {
+    print(numbers[index ..&lt; numbers.endIndex])
+}
+// Prints &quot;[30, 40, 50]&quot;</code></pre>
+
+<p>If the collection is empty, <code>endIndex</code> is equal to <code>startIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="var-first_-self-element">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-first_-self-element">var first: UInt8.Words.Element?</a><div class="comment collapse" id="comment-var-first_-self-element"><div class="p">
+    <p>The first element of the collection.</p>
+
+<p>If the collection is empty, the value of this property is <code>nil</code>.</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let firstNumber = numbers.first {
+    print(firstNumber)
+}
+// Prints &quot;10&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var first: UInt8.Words.Element? { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>
+        ,    <a href="../../protocol/Collection/"><code>Collection</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="var-indices_-uint8-words-indices">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-indices_-uint8-words-indices">var indices: UInt8.Words.Indices</a><div class="comment collapse" id="comment-var-indices_-uint8-words-indices"><div class="p">
+    <p>The indices that are valid for subscripting the collection, in ascending
+order.</p>
+
+<p>A collection&#39;s <code>indices</code> property can hold a strong reference to the
+collection itself, causing the collection to be non-uniquely referenced.
+If you mutate the collection while iterating over its indices, a strong
+reference can cause an unexpected copy of the collection. To avoid the
+unexpected copy, use the <code>index(after:)</code> method starting with
+<code>startIndex</code> to produce indices instead.</p>
+
+<pre><code class="language-swift">var c = MyFancyCollection([10, 20, 30, 40, 50])
+var i = c.startIndex
+while i != c.endIndex {
+    c[i] /= 5
+    i = c.index(after: i)
+}
+// c == MyFancyCollection([2, 4, 6, 8, 10])</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var indices: UInt8.Words.Indices { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p>A Boolean value indicating whether the collection is empty.</p>
+
+<p>When you need to check whether your collection is empty, use the
+<code>isEmpty</code> property instead of checking that the <code>count</code> property is
+equal to zero. For collections that don&#39;t conform to
+<code>RandomAccessCollection</code>, accessing the <code>count</code> property iterates
+through the elements of the collection.</p>
+
+<pre><code class="language-swift">let horseName = &quot;Silver&quot;
+if horseName.isEmpty {
+    print(&quot;I&#39;ve been through the desert on a horse with no name.&quot;)
+} else {
+    print(&quot;Hi ho, \(horseName)!&quot;)
+}
+// Prints &quot;Hi ho, Silver!&quot;)</code></pre>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>
+        ,    <a href="../../protocol/Collection/"><code>Collection</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-last_-self-element">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-last_-self-element">var last: UInt8.Words.Element?</a><div class="comment collapse" id="comment-var-last_-self-element"><div class="p">
+    <p>The last element of the collection.</p>
+
+<p>If the collection is empty, the value of this property is <code>nil</code>.</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let lastNumber = numbers.last {
+    print(lastNumber)
+}
+// Prints &quot;50&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var last: UInt8.Words.Element? { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-lazy_-lazycollection-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-lazy_-lazycollection-self">var lazy: LazyCollection&lt;UInt8.Words&gt;</a><div class="comment collapse" id="comment-var-lazy_-lazycollection-self"><div class="p">
+    <p>A view onto this collection that provides lazy implementations of
+normally eager operations, such as <code>map</code> and <code>filter</code>.</p>
+
+<p>Use the <code>lazy</code> property when chaining operations to prevent
+intermediate operations from allocating storage, or when you only
+need a part of the final collection to avoid unnecessary computation.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var lazy: LazyCollection&lt;UInt8.Words&gt; { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>
+        ,    <a href="../../protocol/Collection/"><code>Collection</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="var-startindex_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-int">var startIndex: Int</a><div class="comment collapse" id="comment-var-startindex_-int"><div class="p">
+    <p>The position of the first element in a nonempty collection.</p>
+
+<p>If the collection is empty, <code>startIndex</code> is equal to <code>endIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="var-underestimatedcount_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-underestimatedcount_-int">var underestimatedCount: Int</a><div class="comment collapse" id="comment-var-underestimatedcount_-int"><div class="p">
+    <p>A value less than or equal to the number of elements in the collection.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length
+  of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var underestimatedCount: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>
+        ,    <a href="../../protocol/Collection/"><code>Collection</code></a>
+        ,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>
+        </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration inherited" id="subscript-subscript_-unboundedrange">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-unboundedrange">subscript(_: (UnboundedRange_)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-unboundedrange"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(x: (UnboundedRange_) -&gt; ()) -&gt; UInt8.Words.SubSequence { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="subscript-subscript_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-int">subscript(_: Int)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-int"><div class="p">
+    <p>Accesses the element at the specified position.</p>
+
+<p>The following example accesses an element of an array through its
+subscript to print its value:</p>
+
+<pre><code class="language-swift">var streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+print(streets[1])
+// Prints &quot;Bryant&quot;</code></pre>
+
+<p>You can subscript a collection with any valid index other than the
+collection&#39;s end index. The end index refers to the position one past
+the last element of a collection, so it doesn&#39;t correspond with an
+element.</p>
+
+<p><strong><code>position</code>:</strong>  The position of the element to access. <code>position</code>
+  must be a valid index of the collection that is not equal to the
+  <code>endIndex</code> property.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: Int) -&gt; UInt { get }</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="subscript-subscript-r_-r">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript-r_-r">subscript&lt;R&gt;(_: R)</a>
+<div class="comment collapse" id="comment-subscript-subscript-r_-r"><div class="p">
+    <p>Accesses the contiguous subrange of the collection&#39;s elements specified
+by a range expression.</p>
+
+<p>The range expression is converted to a concrete subrange relative to this
+collection. For example, using a <code>PartialRangeFrom</code> range expression
+with an array accesses the subrange from the start of the range
+expression until the end of the array.</p>
+
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2...]
+print(streetsSlice)
+// [&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]</code></pre>
+
+<p>The accessed slice uses the same indices for the same elements as the
+original collection uses. This example searches <code>streetsSlice</code> for one
+of the strings in the slice, and then uses that index in the original
+array.</p>
+
+<pre><code class="language-swift">let index = streetsSlice.firstIndex(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// &quot;Evarts&quot;</code></pre>
+
+<p>Always use the slice&#39;s <code>startIndex</code> property instead of assuming that its
+indices start at a particular value. Attempting to access an element by
+using an index outside the bounds of the slice&#39;s indices may result in a
+runtime error, even if that index is valid for the original collection.</p>
+
+<pre><code class="language-swift">print(streetsSlice.startIndex)
+// 2
+print(streetsSlice[2])
+// &quot;Channing&quot;
+
+print(streetsSlice[0])
+// error: Index out of bounds</code></pre>
+
+<p><strong><code>bounds</code>:</strong>  A range of the collection&#39;s indices. The bounds of
+  the range must be valid indices of the collection.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript&lt;R&gt;(r: R) -&gt; UInt8.Words.SubSequence where R : RangeExpression, UInt8.Words.Index == R.Bound { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-allsatisfy_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-allsatisfy_">func allSatisfy(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-allsatisfy_"><div class="p">
+    <p>Returns a Boolean value indicating whether every element of a sequence
+satisfies a given predicate.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence
+  as its argument and returns a Boolean value that indicates whether
+  the passed element satisfies a condition.
+<strong>Returns:</strong> <code>true</code> if the sequence contains only elements that satisfy
+  <code>predicate</code>; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func allSatisfy(_ predicate: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-compactmap_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-compactmap_">func compactMap(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-compactmap_"><div class="p">
+    <p>Returns an array containing the non-<code>nil</code> results of calling the given
+transformation with each element of this sequence.</p>
+
+<p>Use this method to receive an array of nonoptional values when your
+transformation produces an optional value.</p>
+
+<p>In this example, note the difference in the result of using <code>map</code> and
+<code>compactMap</code> with a transformation that returns an optional <code>Int</code> value.</p>
+
+<pre><code class="language-swift">let possibleNumbers = [&quot;1&quot;, &quot;2&quot;, &quot;three&quot;, &quot;///4///&quot;, &quot;5&quot;]
+
+let mapped: [Int?] = possibleNumbers.map { str in Int(str) }
+// [1, 2, nil, nil, 5]
+
+let compactMapped: [Int] = possibleNumbers.compactMap { str in Int(str) }
+// [1, 2, 5]</code></pre>
+
+<p><strong><code>transform</code>:</strong>  A closure that accepts an element of this
+  sequence as its argument and returns an optional value.
+<strong>Returns:</strong> An array of the non-<code>nil</code> results of calling <code>transform</code>
+  with each element of the sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em> + <em>n</em>), where <em>m</em> is the length of this sequence
+  and <em>n</em> is the length of the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func compactMap&lt;ElementOfResult&gt;(_ transform: (UInt8.Words.Element) throws -&gt; ElementOfResult?) rethrows -&gt; [ElementOfResult]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-contains-where_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains-where_">func contains(<wbr>where:)</a>
+        
+<div class="comment collapse" id="comment-func-contains-where_"><div class="p">
+    <p>Returns a Boolean value indicating whether the sequence contains an
+element that satisfies the given predicate.</p>
+
+<p>You can use the predicate to check for an element of a type that
+doesn&#39;t conform to the <code>Equatable</code> protocol, such as the
+<code>HTTPResponse</code> enumeration in this example.</p>
+
+<pre><code class="language-swift">enum HTTPResponse {
+    case ok
+    case error(Int)
+}
+
+let lastThreeResponses: [HTTPResponse] = [.ok, .ok, .error(404)]
+let hadError = lastThreeResponses.contains { element in
+    if case .error = element {
+        return true
+    } else {
+        return false
+    }
+}
+// &#39;hadError&#39; == true</code></pre>
+
+<p>Alternatively, a predicate can be satisfied by a range of <code>Equatable</code>
+elements or a general condition. This example shows how you can check an
+array for an expense greater than $100.</p>
+
+<pre><code class="language-swift">let expenses = [21.37, 55.21, 9.32, 10.18, 388.77, 11.41]
+let hasBigPurchase = expenses.contains { $0 &gt; 100 }
+// &#39;hasBigPurchase&#39; == true</code></pre>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence
+  as its argument and returns a Boolean value that indicates whether
+  the passed element represents a match.
+<strong>Returns:</strong> <code>true</code> if the sequence contains an element that satisfies
+  <code>predicate</code>; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(where predicate: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-distance-from_-self-index-to_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distance-from_-self-index-to_-self-index">func distance(<wbr>from:<wbr> UInt8.Words.Index, to: UInt8.Words.Index)</a>
+        
+<div class="comment collapse" id="comment-func-distance-from_-self-index-to_-self-index"><div class="p">
+    <p>Returns the distance between two indices.</p>
+
+<p>Unless the collection conforms to the <code>BidirectionalCollection</code> protocol,
+<code>start</code> must be less than or equal to <code>end</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>start:</strong> A valid index of the collection.
+  <strong>end:</strong> Another valid index of the collection. If <code>end</code> is equal to
+    <code>start</code>, the result is zero.
+<strong>Returns:</strong> The distance between <code>start</code> and <code>end</code>. The result can be
+  negative only if the collection conforms to the
+  <code>BidirectionalCollection</code> protocol.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the
+  resulting distance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(from start: UInt8.Words.Index, to end: UInt8.Words.Index) -&gt; Int</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-distance-from_to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distance-from_to_">func distance(<wbr>from:<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-distance-from_to_"><div class="p">
+    <p>Returns the distance between two indices.</p>
+
+<p>Unless the collection conforms to the <code>BidirectionalCollection</code> protocol,
+<code>start</code> must be less than or equal to <code>end</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>start:</strong> A valid index of the collection.
+  <strong>end:</strong> Another valid index of the collection. If <code>end</code> is equal to
+    <code>start</code>, the result is zero.
+<strong>Returns:</strong> The distance between <code>start</code> and <code>end</code>. The result can be
+  negative only if the collection conforms to the
+  <code>BidirectionalCollection</code> protocol.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the
+  resulting distance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(from start: UInt8.Words.Index, to end: UInt8.Words.Index) -&gt; Int</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-distance-t-from_-self-index-to_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distance-t-from_-self-index-to_-self-index">func distance&lt;T&gt;(<wbr>from:<wbr> UInt8.Words.Index, to: UInt8.Words.Index)</a>
+        
+<div class="comment collapse" id="comment-func-distance-t-from_-self-index-to_-self-index"><div class="p">
+    <p><em>Deprecated:</em> all index distances are now of type Int.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance&lt;T&gt;(from start: UInt8.Words.Index, to end: UInt8.Words.Index) -&gt; T where T : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-drop-while_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-drop-while_">func drop(<wbr>while:)</a>
+        
+<div class="comment collapse" id="comment-func-drop-while_"><div class="p">
+    <p>Returns a subsequence by skipping elements while <code>predicate</code> returns
+<code>true</code> and returning the remaining elements.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the
+  sequence as its argument and returns <code>true</code> if the element should
+  be skipped or <code>false</code> if it should be included. Once the predicate
+  returns <code>false</code> it will not be called again.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func drop(while predicate: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; UInt8.Words.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-dropfirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dropfirst">func dropFirst()</a>
+        
+<div class="comment collapse" id="comment-func-dropfirst"><div class="p">
+    <p>Returns a subsequence containing all but the first element of the
+sequence.</p>
+
+<p>The following example drops the first element from an array of integers.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropFirst())
+// Prints &quot;[2, 3, 4, 5]&quot;</code></pre>
+
+<p>If the sequence has no elements, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let empty: [Int] = []
+print(empty.dropFirst())
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong>Returns:</strong> A subsequence starting after the first element of the
+  sequence.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst() -&gt; UInt8.Words.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-dropfirst_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dropfirst_">func dropFirst(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-dropfirst_"><div class="p">
+    <p>Returns a subsequence containing all but the given number of initial
+elements.</p>
+
+<p>If the number of elements to drop exceeds the number of elements in
+the collection, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropFirst(2))
+// Prints &quot;[3, 4, 5]&quot;
+print(numbers.dropFirst(10))
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong><code>n</code>:</strong>  The number of elements to drop from the beginning of
+  the collection. <code>n</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence starting after the specified number of
+  elements.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the number of elements to drop from
+  the beginning of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst(_ n: Int) -&gt; UInt8.Words.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-droplast">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-droplast">func dropLast()</a>
+        
+<div class="comment collapse" id="comment-func-droplast"><div class="p">
+    <p>Returns a subsequence containing all but the last element of the
+sequence.</p>
+
+<p>The sequence must be finite.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast())
+// Prints &quot;[1, 2, 3, 4]&quot;</code></pre>
+
+<p>If the sequence has no elements, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let empty: [Int] = []
+print(empty.dropLast())
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong>Returns:</strong> A subsequence leaving off the last element of the sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast() -&gt; UInt8.Words.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-droplast_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-droplast_">func dropLast(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-droplast_"><div class="p">
+    <p>Returns a subsequence containing all but the specified number of final
+elements.</p>
+
+<p>If the number of elements to drop exceeds the number of elements in the
+collection, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast(2))
+// Prints &quot;[1, 2, 3]&quot;
+print(numbers.dropLast(10))
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong><code>n</code>:</strong>  The number of elements to drop off the end of the
+  collection. <code>n</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence that leaves off <code>n</code> elements from the end.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the number of elements to drop.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast(_ n: Int) -&gt; UInt8.Words.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-elementsequal_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-elementsequal_by_">func elementsEqual(<wbr>_:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-elementsequal_by_"><div class="p">
+    <p>Returns a Boolean value indicating whether this sequence and another
+sequence contain equivalent elements in the same order, using the given
+predicate as the equivalence test.</p>
+
+<p>At least one of the sequences must be finite.</p>
+
+<p>The predicate must be a <em>equivalence relation</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areEquivalent(a, a)</code> is always <code>true</code>. (Reflexivity)</li><li><code>areEquivalent(a, b)</code> implies <code>areEquivalent(b, a)</code>. (Symmetry)</li><li>If <code>areEquivalent(a, b)</code> and <code>areEquivalent(b, c)</code> are both <code>true</code>, then
+<code>areEquivalent(a, c)</code> is also <code>true</code>. (Transitivity)</li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>other:</strong> A sequence to compare to this sequence.
+  <strong>areEquivalent:</strong> A predicate that returns <code>true</code> if its two arguments
+    are equivalent; otherwise, <code>false</code>.
+<strong>Returns:</strong> <code>true</code> if this sequence and <code>other</code> contain equivalent items,
+  using <code>areEquivalent</code> as the equivalence test; otherwise, <code>false.</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func elementsEqual&lt;OtherSequence&gt;(_ other: OtherSequence, by areEquivalent: (UInt8.Words.Element, OtherSequence.Element) throws -&gt; Bool) rethrows -&gt; Bool where OtherSequence : Sequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-enumerated">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-enumerated">func enumerated()</a>
+        
+<div class="comment collapse" id="comment-func-enumerated"><div class="p">
+    <p>Returns a sequence of pairs (<em>n</em>, <em>x</em>), where <em>n</em> represents a
+consecutive integer starting at zero and <em>x</em> represents an element of
+the sequence.</p>
+
+<p>This example enumerates the characters of the string &quot;Swift&quot; and prints
+each character along with its place in the string.</p>
+
+<pre><code class="language-swift">for (n, c) in &quot;Swift&quot;.enumerated() {
+    print(&quot;\(n): &#39;\(c)&#39;&quot;)
+}
+// Prints &quot;0: &#39;S&#39;&quot;
+// Prints &quot;1: &#39;w&#39;&quot;
+// Prints &quot;2: &#39;i&#39;&quot;
+// Prints &quot;3: &#39;f&#39;&quot;
+// Prints &quot;4: &#39;t&#39;&quot;</code></pre>
+
+<p>When you enumerate a collection, the integer part of each pair is a counter
+for the enumeration, but is not necessarily the index of the paired value.
+These counters can be used as indices only in instances of zero-based,
+integer-indexed collections, such as <code>Array</code> and <code>ContiguousArray</code>. For
+other collections the counters may be out of range or of the wrong type
+to use as an index. To iterate over the elements of a collection with its
+indices, use the <code>zip(_:_:)</code> function.</p>
+
+<p>This example iterates over the indices and elements of a set, building a
+list consisting of indices of names with five or fewer letters.</p>
+
+<pre><code class="language-swift">let names: Set = [&quot;Sofia&quot;, &quot;Camilla&quot;, &quot;Martina&quot;, &quot;Mateo&quot;, &quot;Nicolás&quot;]
+var shorterIndices: [SetIndex&lt;String&gt;] = []
+for (i, name) in zip(names.indices, names) {
+    if name.count &lt;= 5 {
+        shorterIndices.append(i)
+    }
+}</code></pre>
+
+<p>Now that the <code>shorterIndices</code> array holds the indices of the shorter
+names in the <code>names</code> set, you can use those indices to access elements in
+the set.</p>
+
+<pre><code class="language-swift">for i in shorterIndices {
+    print(names[i])
+}
+// Prints &quot;Sofia&quot;
+// Prints &quot;Mateo&quot;</code></pre>
+
+<p><strong>Returns:</strong> A sequence of pairs enumerating the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func enumerated() -&gt; EnumeratedSequence&lt;UInt8.Words&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-filter_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-filter_">func filter(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-filter_"><div class="p">
+    <p>Returns an array containing, in order, the elements of the sequence
+that satisfy the given predicate.</p>
+
+<p>In this example, <code>filter(_:)</code> is used to include only names shorter than
+five characters.</p>
+
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let shortNames = cast.filter { $0.count &lt; 5 }
+print(shortNames)
+// Prints &quot;[&quot;Kim&quot;, &quot;Karl&quot;]&quot;</code></pre>
+
+<p><strong><code>isIncluded</code>:</strong>  A closure that takes an element of the
+  sequence as its argument and returns a Boolean value indicating
+  whether the element should be included in the returned array.
+<strong>Returns:</strong> An array of the elements that <code>isIncluded</code> allowed.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func filter(_ isIncluded: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; [UInt8.Words.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-first-where_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-first-where_">func first(<wbr>where:)</a>
+        
+<div class="comment collapse" id="comment-func-first-where_"><div class="p">
+    <p>Returns the first element of the sequence that satisfies the given
+predicate.</p>
+
+<p>The following example uses the <code>first(where:)</code> method to find the first
+negative number in an array of integers:</p>
+
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+if let firstNegative = numbers.first(where: { $0 &lt; 0 }) {
+    print(&quot;The first negative number is \(firstNegative).&quot;)
+}
+// Prints &quot;The first negative number is -2.&quot;</code></pre>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence as
+  its argument and returns a Boolean value indicating whether the
+  element is a match.
+<strong>Returns:</strong> The first element of the sequence that satisfies <code>predicate</code>,
+  or <code>nil</code> if there is no element that satisfies <code>predicate</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func first(where predicate: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; UInt8.Words.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-firstindex-where_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-firstindex-where_">func firstIndex(<wbr>where:)</a>
+        
+<div class="comment collapse" id="comment-func-firstindex-where_"><div class="p">
+    <p>Returns the first index in which an element of the collection satisfies
+the given predicate.</p>
+
+<p>You can use the predicate to find an element of a type that doesn&#39;t
+conform to the <code>Equatable</code> protocol or to find an element that matches
+particular criteria. Here&#39;s an example that finds a student name that
+begins with the letter &quot;A&quot;:</p>
+
+<pre><code class="language-swift">let students = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+if let i = students.firstIndex(where: { $0.hasPrefix(&quot;A&quot;) }) {
+    print(&quot;\(students[i]) starts with &#39;A&#39;!&quot;)
+}
+// Prints &quot;Abena starts with &#39;A&#39;!&quot;</code></pre>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element as its argument
+  and returns a Boolean value that indicates whether the passed element
+  represents a match.
+<strong>Returns:</strong> The index of the first element for which <code>predicate</code> returns
+  <code>true</code>. If no elements in the collection satisfy the given predicate,
+  returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func firstIndex(where predicate: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; UInt8.Words.Index?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap_">func flatMap(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap(_ transform: (UInt8.Words.Element) throws -&gt; String?) rethrows -&gt; [String]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-elementofresult_-self-element-throws-elementofresult">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-elementofresult_-self-element-throws-elementofresult">func flatMap&lt;ElementOfResult&gt;(<wbr>_: (UInt8.Words.Element) throws -&gt; ElementOfResult?)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-elementofresult_-self-element-throws-elementofresult"><div class="p">
+    <p>Returns an array containing the non-<code>nil</code> results of calling the given
+transformation with each element of this sequence.</p>
+
+<p>Use this method to receive an array of nonoptional values when your
+transformation produces an optional value.</p>
+
+<p>In this example, note the difference in the result of using <code>map</code> and
+<code>flatMap</code> with a transformation that returns an optional <code>Int</code> value.</p>
+
+<pre><code class="language-swift">let possibleNumbers = [&quot;1&quot;, &quot;2&quot;, &quot;three&quot;, &quot;///4///&quot;, &quot;5&quot;]
+
+let mapped: [Int?] = possibleNumbers.map { str in Int(str) }
+// [1, 2, nil, nil, 5]
+
+let flatMapped: [Int] = possibleNumbers.flatMap { str in Int(str) }
+// [1, 2, 5]</code></pre>
+
+<p><strong><code>transform</code>:</strong>  A closure that accepts an element of this
+  sequence as its argument and returns an optional value.
+<strong>Returns:</strong> An array of the non-<code>nil</code> results of calling <code>transform</code>
+  with each element of the sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em> + <em>n</em>), where <em>m</em> is the length of this sequence
+  and <em>n</em> is the length of the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;ElementOfResult&gt;(_ transform: (UInt8.Words.Element) throws -&gt; ElementOfResult?) rethrows -&gt; [ElementOfResult]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-segmentofresult_-self-element-throws-segmentofresult">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-segmentofresult_-self-element-throws-segmentofresult">func flatMap&lt;SegmentOfResult&gt;(<wbr>_: (UInt8.Words.Element) throws -&gt; SegmentOfResult)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-segmentofresult_-self-element-throws-segmentofresult"><div class="p">
+    <p>Returns an array containing the concatenated results of calling the
+given transformation with each element of this sequence.</p>
+
+<p>Use this method to receive a single-level collection when your
+transformation produces a sequence or collection for each element.</p>
+
+<p>In this example, note the difference in the result of using <code>map</code> and
+<code>flatMap</code> with a transformation that returns an array.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4]
+
+let mapped = numbers.map { Array(repeating: $0, count: $0) }
+// [[1], [2, 2], [3, 3, 3], [4, 4, 4, 4]]
+
+let flatMapped = numbers.flatMap { Array(repeating: $0, count: $0) }
+// [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]</code></pre>
+
+<p>In fact, <code>s.flatMap(transform)</code>  is equivalent to
+<code>Array(s.map(transform).joined())</code>.</p>
+
+<p><strong><code>transform</code>:</strong>  A closure that accepts an element of this
+  sequence as its argument and returns a sequence or collection.
+<strong>Returns:</strong> The resulting flattened array.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em> + <em>n</em>), where <em>m</em> is the length of this sequence
+  and <em>n</em> is the length of the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;SegmentOfResult&gt;(_ transform: (UInt8.Words.Element) throws -&gt; SegmentOfResult) rethrows -&gt; [SegmentOfResult.Element] where SegmentOfResult : Sequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-foreach_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-foreach_">func forEach(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-foreach_"><div class="p">
+    <p>Calls the given closure on each element in the sequence in the same order
+as a <code>for</code>-<code>in</code> loop.</p>
+
+<p>The two loops in the following example produce the same output:</p>
+
+<pre><code class="language-swift">let numberWords = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;]
+for word in numberWords {
+    print(word)
+}
+// Prints &quot;one&quot;
+// Prints &quot;two&quot;
+// Prints &quot;three&quot;
+
+numberWords.forEach { word in
+    print(word)
+}
+// Same as above</code></pre>
+
+<p>Using the <code>forEach</code> method is distinct from a <code>for</code>-<code>in</code> loop in two
+important ways:</p>
+
+<ol><li>You cannot use a <code>break</code> or <code>continue</code> statement to exit the current
+call of the <code>body</code> closure or skip subsequent calls.</li><li>Using the <code>return</code> statement in the <code>body</code> closure will exit only from
+the current call to <code>body</code>, not from any outer scope, and won&#39;t skip
+subsequent calls.</li></ol>
+
+<p><strong><code>body</code>:</strong>  A closure that takes an element of the sequence as a
+  parameter.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func forEach(_ body: (UInt8.Words.Element) throws -&gt; Void) rethrows</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formindex_-inout-self-index-offsetby_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formindex_-inout-self-index-offsetby_-int">func formIndex(<wbr>_:<wbr> inout UInt8.Words.Index, offsetBy: Int)</a>
+        
+<div class="comment collapse" id="comment-func-formindex_-inout-self-index-offsetby_-int"><div class="p">
+    <p>Offsets the given index by the specified distance.</p>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the bounds of the
+collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex(_ i: inout UInt8.Words.Index, offsetBy n: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formindex-t_-inout-self-index-offsetby_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formindex-t_-inout-self-index-offsetby_-t">func formIndex&lt;T&gt;(<wbr>_:<wbr> inout UInt8.Words.Index, offsetBy: T)</a>
+        
+<div class="comment collapse" id="comment-func-formindex-t_-inout-self-index-offsetby_-t"><div class="p">
+    <p><em>Deprecated:</em> all index distances are now of type Int.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex&lt;T&gt;(_ i: inout UInt8.Words.Index, offsetBy n: T)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formindex_-inout-self-index-offsetby_-int-limitedby_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formindex_-inout-self-index-offsetby_-int-limitedby_-self-index">func formIndex(<wbr>_:<wbr> inout UInt8.Words.Index, offsetBy:<wbr> Int, limitedBy: UInt8.Words.Index)</a>
+        
+<div class="comment collapse" id="comment-func-formindex_-inout-self-index-offsetby_-int-limitedby_-self-index"><div class="p">
+    <p>Offsets the given index by the specified distance, or so that it equals
+the given limiting index.</p>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the bounds of the
+collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+  <strong>limit:</strong> A valid index of the collection to use as a limit. If <code>n &gt; 0</code>,
+    a limit that is less than <code>i</code> has no effect. Likewise, if <code>n &lt; 0</code>, a
+    limit that is greater than <code>i</code> has no effect.
+<strong>Returns:</strong> <code>true</code> if <code>i</code> has been offset by exactly <code>n</code> steps without
+  going beyond <code>limit</code>; otherwise, <code>false</code>. When the return value is
+  <code>false</code>, the value of <code>i</code> is equal to <code>limit</code>.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex(_ i: inout UInt8.Words.Index, offsetBy n: Int, limitedBy limit: UInt8.Words.Index) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formindex-t_-inout-self-index-offsetby_-t-limitedby_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formindex-t_-inout-self-index-offsetby_-t-limitedby_-self-index">func formIndex&lt;T&gt;(<wbr>_:<wbr> inout UInt8.Words.Index, offsetBy:<wbr> T, limitedBy: UInt8.Words.Index)</a>
+        
+<div class="comment collapse" id="comment-func-formindex-t_-inout-self-index-offsetby_-t-limitedby_-self-index"><div class="p">
+    <p><em>Deprecated:</em> all index distances are now of type Int.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex&lt;T&gt;(_ i: inout UInt8.Words.Index, offsetBy n: T, limitedBy limit: UInt8.Words.Index) -&gt; Bool where T : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formindex-after_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formindex-after_">func formIndex(<wbr>after:)</a>
+        
+<div class="comment collapse" id="comment-func-formindex-after_"><div class="p">
+    <p>Replaces the given index with its successor.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be less than
+  <code>endIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex(after i: inout UInt8.Words.Index)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formindex-before_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formindex-before_">func formIndex(<wbr>before:)</a>
+        
+<div class="comment collapse" id="comment-func-formindex-before_"><div class="p">
+    <p>Replaces the given index with its predecessor.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be greater than
+  <code>startIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex(before i: inout UInt8.Words.Index)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index_-self-index-offsetby_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_-self-index-offsetby_-int">func index(<wbr>_:<wbr> UInt8.Words.Index, offsetBy: Int)</a>
+        
+<div class="comment collapse" id="comment-func-index_-self-index-offsetby_-int"><div class="p">
+    <p>Returns an index that is the specified distance from the given index.</p>
+
+<p>The following example obtains an index advanced four positions from a
+string&#39;s starting index and then prints the character at that position.</p>
+
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+let i = s.index(s.startIndex, offsetBy: 4)
+print(s[i])
+// Prints &quot;t&quot;</code></pre>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the bounds of the
+collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+<strong>Returns:</strong> An index offset by <code>n</code> from the index <code>i</code>. If <code>n</code> is positive,
+  this is the same value as the result of <code>n</code> calls to <code>index(after:)</code>.
+  If <code>n</code> is negative, this is the same value as the result of <code>-n</code> calls
+  to <code>index(before:)</code>.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(_ i: UInt8.Words.Index, offsetBy n: Int) -&gt; UInt8.Words.Index</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index_offsetby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_offsetby_">func index(<wbr>_:<wbr>offsetBy:)</a>
+        
+<div class="comment collapse" id="comment-func-index_offsetby_"><div class="p">
+    <p>Returns an index that is the specified distance from the given index.</p>
+
+<p>The following example obtains an index advanced four positions from a
+string&#39;s starting index and then prints the character at that position.</p>
+
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+let i = s.index(s.startIndex, offsetBy: 4)
+print(s[i])
+// Prints &quot;t&quot;</code></pre>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the bounds of the
+collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+<strong>Returns:</strong> An index offset by <code>n</code> from the index <code>i</code>. If <code>n</code> is positive,
+  this is the same value as the result of <code>n</code> calls to <code>index(after:)</code>.
+  If <code>n</code> is negative, this is the same value as the result of <code>-n</code> calls
+  to <code>index(before:)</code>.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(_ i: UInt8.Words.Index, offsetBy n: Int) -&gt; UInt8.Words.Index</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index-t_-self-index-offsetby_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index-t_-self-index-offsetby_-t">func index&lt;T&gt;(<wbr>_:<wbr> UInt8.Words.Index, offsetBy: T)</a>
+        
+<div class="comment collapse" id="comment-func-index-t_-self-index-offsetby_-t"><div class="p">
+    <p><em>Deprecated:</em> all index distances are now of type Int.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index&lt;T&gt;(_ i: UInt8.Words.Index, offsetBy n: T) -&gt; UInt8.Words.Index where T : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index_-self-index-offsetby_-int-limitedby_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_-self-index-offsetby_-int-limitedby_-self-index">func index(<wbr>_:<wbr> UInt8.Words.Index, offsetBy:<wbr> Int, limitedBy: UInt8.Words.Index)</a>
+        
+<div class="comment collapse" id="comment-func-index_-self-index-offsetby_-int-limitedby_-self-index"><div class="p">
+    <p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+
+<p>The following example obtains an index advanced four positions from a
+string&#39;s starting index and then prints the character at that position.
+The operation doesn&#39;t require going beyond the limiting <code>s.endIndex</code>
+value, so it succeeds.</p>
+
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+if let i = s.index(s.startIndex, offsetBy: 4, limitedBy: s.endIndex) {
+    print(s[i])
+}
+// Prints &quot;t&quot;</code></pre>
+
+<p>The next example attempts to retrieve an index six positions from
+<code>s.startIndex</code> but fails, because that distance is beyond the index
+passed as <code>limit</code>.</p>
+
+<pre><code class="language-swift">let j = s.index(s.startIndex, offsetBy: 6, limitedBy: s.endIndex)
+print(j)
+// Prints &quot;nil&quot;</code></pre>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the bounds of the
+collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+  <strong>limit:</strong> A valid index of the collection to use as a limit. If <code>n &gt; 0</code>,
+    a limit that is less than <code>i</code> has no effect. Likewise, if <code>n &lt; 0</code>, a
+    limit that is greater than <code>i</code> has no effect.
+<strong>Returns:</strong> An index offset by <code>n</code> from the index <code>i</code>, unless that index
+  would be beyond <code>limit</code> in the direction of movement. In that case,
+  the method returns <code>nil</code>.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(_ i: UInt8.Words.Index, offsetBy n: Int, limitedBy limit: UInt8.Words.Index) -&gt; UInt8.Words.Index?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index_offsetby_limitedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_offsetby_limitedby_">func index(<wbr>_:<wbr>offsetBy:<wbr>limitedBy:)</a>
+        
+<div class="comment collapse" id="comment-func-index_offsetby_limitedby_"><div class="p">
+    <p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+
+<p>The following example obtains an index advanced four positions from a
+string&#39;s starting index and then prints the character at that position.
+The operation doesn&#39;t require going beyond the limiting <code>s.endIndex</code>
+value, so it succeeds.</p>
+
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+if let i = s.index(s.startIndex, offsetBy: 4, limitedBy: s.endIndex) {
+    print(s[i])
+}
+// Prints &quot;t&quot;</code></pre>
+
+<p>The next example attempts to retrieve an index six positions from
+<code>s.startIndex</code> but fails, because that distance is beyond the index
+passed as <code>limit</code>.</p>
+
+<pre><code class="language-swift">let j = s.index(s.startIndex, offsetBy: 6, limitedBy: s.endIndex)
+print(j)
+// Prints &quot;nil&quot;</code></pre>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the bounds of the
+collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+  <strong>limit:</strong> A valid index of the collection to use as a limit. If <code>n &gt; 0</code>,
+    a limit that is less than <code>i</code> has no effect. Likewise, if <code>n &lt; 0</code>, a
+    limit that is greater than <code>i</code> has no effect.
+<strong>Returns:</strong> An index offset by <code>n</code> from the index <code>i</code>, unless that index
+  would be beyond <code>limit</code> in the direction of movement. In that case,
+  the method returns <code>nil</code>.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(_ i: UInt8.Words.Index, offsetBy n: Int, limitedBy limit: UInt8.Words.Index) -&gt; UInt8.Words.Index?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index-t_-self-index-offsetby_-t-limitedby_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index-t_-self-index-offsetby_-t-limitedby_-self-index">func index&lt;T&gt;(<wbr>_:<wbr> UInt8.Words.Index, offsetBy:<wbr> T, limitedBy: UInt8.Words.Index)</a>
+        
+<div class="comment collapse" id="comment-func-index-t_-self-index-offsetby_-t-limitedby_-self-index"><div class="p">
+    <p><em>Deprecated:</em> all index distances are now of type Int.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index&lt;T&gt;(_ i: UInt8.Words.Index, offsetBy n: T, limitedBy limit: UInt8.Words.Index) -&gt; UInt8.Words.Index? where T : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-index-after_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index-after_">func index(<wbr>after:)</a>
+        
+<div class="comment collapse" id="comment-func-index-after_"><div class="p">
+    <p>Returns the position immediately after the given index.</p>
+
+<p>The successor of an index must be well defined. For an index <code>i</code> into a
+collection <code>c</code>, calling <code>c.index(after: i)</code> returns the same index every
+time.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be less than
+  <code>endIndex</code>.
+<strong>Returns:</strong> The index value immediately after <code>i</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(after i: Int) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-index-before_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index-before_">func index(<wbr>before:)</a>
+        
+<div class="comment collapse" id="comment-func-index-before_"><div class="p">
+    <p>Returns the position immediately before the given index.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be greater than
+  <code>startIndex</code>.
+<strong>Returns:</strong> The index value immediately before <code>i</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(before i: Int) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-last-where_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-last-where_">func last(<wbr>where:)</a>
+        
+<div class="comment collapse" id="comment-func-last-where_"><div class="p">
+    <p>Returns the last element of the sequence that satisfies the given
+predicate.</p>
+
+<p>This example uses the <code>last(where:)</code> method to find the last
+negative number in an array of integers:</p>
+
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+if let lastNegative = numbers.last(where: { $0 &lt; 0 }) {
+    print(&quot;The last negative number is \(firstNegative).&quot;)
+}
+// Prints &quot;The last negative number is -6.&quot;</code></pre>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence as
+  its argument and returns a Boolean value indicating whether the
+  element is a match.
+<strong>Returns:</strong> The last element of the sequence that satisfies <code>predicate</code>,
+  or <code>nil</code> if there is no element that satisfies <code>predicate</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func last(where predicate: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; UInt8.Words.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lastindex-where_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lastindex-where_">func lastIndex(<wbr>where:)</a>
+        
+<div class="comment collapse" id="comment-func-lastindex-where_"><div class="p">
+    <p>Returns the index of the last element in the collection that matches the
+given predicate.</p>
+
+<p>You can use the predicate to find an element of a type that doesn&#39;t
+conform to the <code>Equatable</code> protocol or to find an element that matches
+particular criteria. This example finds the index of the last name that
+begins with the letter &quot;A&quot;:</p>
+
+<pre><code class="language-swift">let students = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+if let i = students.lastIndex(where: { $0.hasPrefix(&quot;A&quot;) }) {
+    print(&quot;\(students[i]) starts with &#39;A&#39;!&quot;)
+}
+// Prints &quot;Akosua starts with &#39;A&#39;!&quot;</code></pre>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element as its argument
+  and returns a Boolean value that indicates whether the passed element
+  represents a match.
+<strong>Returns:</strong> The index of the last element in the collection that matches
+  <code>predicate</code>, or <code>nil</code> if no elements match.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lastIndex(where predicate: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; UInt8.Words.Index?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lexicographicallyprecedes_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lexicographicallyprecedes_by_">func lexicographicallyPrecedes(<wbr>_:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-lexicographicallyprecedes_by_"><div class="p">
+    <p>Returns a Boolean value indicating whether the sequence precedes another
+sequence in a lexicographical (dictionary) ordering, using the given
+predicate to compare elements.</p>
+
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areInIncreasingOrder(a, a)</code> is always <code>false</code>. (Irreflexivity)</li><li>If <code>areInIncreasingOrder(a, b)</code> and <code>areInIncreasingOrder(b, c)</code> are
+both <code>true</code>, then <code>areInIncreasingOrder(a, c)</code> is also
+<code>true</code>. (Transitive comparability)</li><li>Two elements are <em>incomparable</em> if neither is ordered before the other
+according to the predicate. If <code>a</code> and <code>b</code> are incomparable, and <code>b</code>
+and <code>c</code> are incomparable, then <code>a</code> and <code>c</code> are also incomparable.
+(Transitive incomparability)</li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>other:</strong> A sequence to compare to this sequence.
+  <strong>areInIncreasingOrder:</strong>  A predicate that returns <code>true</code> if its first
+    argument should be ordered before its second argument; otherwise,
+    <code>false</code>.
+<strong>Returns:</strong> <code>true</code> if this sequence precedes <code>other</code> in a dictionary
+  ordering as ordered by <code>areInIncreasingOrder</code>; otherwise, <code>false</code>.</p>
+
+<p><strong>Note:</strong> This method implements the mathematical notion of lexicographical
+  ordering, which has no connection to Unicode.  If you are sorting
+  strings to present to the end user, use <code>String</code> APIs that perform
+  localized comparison instead.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lexicographicallyPrecedes&lt;OtherSequence&gt;(_ other: OtherSequence, by areInIncreasingOrder: (UInt8.Words.Element, UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; Bool where OtherSequence : Sequence, UInt8.Words.Element == OtherSequence.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-map_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-map_">func map(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-map_"><div class="p">
+    <p>Returns an array containing the results of mapping the given closure
+over the sequence&#39;s elements.</p>
+
+<p>In this example, <code>map</code> is used first to convert the names in the array
+to lowercase strings and then to count their characters.</p>
+
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let lowercaseNames = cast.map { $0.lowercased() }
+// &#39;lowercaseNames&#39; == [&quot;vivien&quot;, &quot;marlon&quot;, &quot;kim&quot;, &quot;karl&quot;]
+let letterCounts = cast.map { $0.count }
+// &#39;letterCounts&#39; == [6, 6, 3, 4]</code></pre>
+
+<p><strong><code>transform</code>:</strong>  A mapping closure. <code>transform</code> accepts an
+  element of this sequence as its parameter and returns a transformed
+  value of the same or of a different type.
+<strong>Returns:</strong> An array containing the transformed elements of this
+  sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func map&lt;T&gt;(_ transform: (UInt8.Words.Element) throws -&gt; T) rethrows -&gt; [T]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-max-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-max-by_">@warn_unqualified_access
+     func max(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-max-by_"><div class="p">
+    <p>Returns the maximum element in the sequence, using the given predicate
+as the comparison between elements.</p>
+
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areInIncreasingOrder(a, a)</code> is always <code>false</code>. (Irreflexivity)</li><li>If <code>areInIncreasingOrder(a, b)</code> and <code>areInIncreasingOrder(b, c)</code> are
+both <code>true</code>, then <code>areInIncreasingOrder(a, c)</code> is also
+<code>true</code>. (Transitive comparability)</li><li>Two elements are <em>incomparable</em> if neither is ordered before the other
+according to the predicate. If <code>a</code> and <code>b</code> are incomparable, and <code>b</code>
+and <code>c</code> are incomparable, then <code>a</code> and <code>c</code> are also incomparable.
+(Transitive incomparability)</li></ul>
+
+<p>This example shows how to use the <code>max(by:)</code> method on a
+dictionary to find the key-value pair with the highest value.</p>
+
+<pre><code class="language-swift">let hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+let greatestHue = hues.max { a, b in a.value &lt; b.value }
+print(greatestHue)
+// Prints &quot;Optional((&quot;Heliotrope&quot;, 296))&quot;</code></pre>
+
+<p><strong><code>areInIncreasingOrder</code>:</strong>   A predicate that returns <code>true</code> if its
+  first argument should be ordered before its second argument;
+  otherwise, <code>false</code>.
+<strong>Returns:</strong> The sequence&#39;s maximum element if the sequence is not empty;
+  otherwise, <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@warn_unqualified_access
+     func max(by areInIncreasingOrder: (UInt8.Words.Element, UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; UInt8.Words.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-min-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-min-by_">func min(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-min-by_"><div class="p">
+    <p>Returns the minimum element in the sequence, using the given predicate as
+the comparison between elements.</p>
+
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areInIncreasingOrder(a, a)</code> is always <code>false</code>. (Irreflexivity)</li><li>If <code>areInIncreasingOrder(a, b)</code> and <code>areInIncreasingOrder(b, c)</code> are
+both <code>true</code>, then <code>areInIncreasingOrder(a, c)</code> is also
+<code>true</code>. (Transitive comparability)</li><li>Two elements are <em>incomparable</em> if neither is ordered before the other
+according to the predicate. If <code>a</code> and <code>b</code> are incomparable, and <code>b</code>
+and <code>c</code> are incomparable, then <code>a</code> and <code>c</code> are also incomparable.
+(Transitive incomparability)</li></ul>
+
+<p>This example shows how to use the <code>min(by:)</code> method on a
+dictionary to find the key-value pair with the lowest value.</p>
+
+<pre><code class="language-swift">let hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+let leastHue = hues.min { a, b in a.value &lt; b.value }
+print(leastHue)
+// Prints &quot;Optional((&quot;Coral&quot;, 16))&quot;</code></pre>
+
+<p><strong><code>areInIncreasingOrder</code>:</strong>  A predicate that returns <code>true</code>
+  if its first argument should be ordered before its second
+  argument; otherwise, <code>false</code>.
+<strong>Returns:</strong> The sequence&#39;s minimum element, according to
+  <code>areInIncreasingOrder</code>. If the sequence has no elements, returns
+  <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func min(by areInIncreasingOrder: (UInt8.Words.Element, UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; UInt8.Words.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix_">func prefix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-prefix_"><div class="p">
+    <p>Returns a subsequence, up to the specified maximum length, containing
+the initial elements of the collection.</p>
+
+<p>If the maximum length exceeds the number of elements in the collection,
+the result contains all the elements in the collection.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.prefix(2))
+// Prints &quot;[1, 2]&quot;
+print(numbers.prefix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;</code></pre>
+
+<p><strong><code>maxLength</code>:</strong>  The maximum number of elements to return.
+  <code>maxLength</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence starting at the beginning of this collection
+  with at most <code>maxLength</code> elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(_ maxLength: Int) -&gt; UInt8.Words.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefix-through_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix-through_">func prefix(<wbr>through:)</a>
+        
+<div class="comment collapse" id="comment-func-prefix-through_"><div class="p">
+    <p>Returns a subsequence from the start of the collection through the
+specified position.</p>
+
+<p>The resulting subsequence <em>includes</em> the element at the position <code>end</code>. 
+The following example searches for the index of the number <code>40</code> in an
+array of integers, and then prints the prefix of the array up to, and
+including, that index:</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60]
+if let i = numbers.firstIndex(of: 40) {
+    print(numbers.prefix(through: i))
+}
+// Prints &quot;[10, 20, 30, 40]&quot;</code></pre>
+
+<p>Using the <code>prefix(through:)</code> method is equivalent to using a partial
+closed range as the collection&#39;s subscript. The subscript notation is
+preferred over <code>prefix(through:)</code>.</p>
+
+<pre><code class="language-swift">if let i = numbers.firstIndex(of: 40) {
+    print(numbers[...i])
+}
+// Prints &quot;[10, 20, 30, 40]&quot;</code></pre>
+
+<p><strong><code>end</code>:</strong>  The index of the last element to include in the
+  resulting subsequence. <code>end</code> must be a valid index of the collection
+  that is not equal to the <code>endIndex</code> property.
+<strong>Returns:</strong> A subsequence up to, and including, the <code>end</code> position.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(through position: UInt8.Words.Index) -&gt; UInt8.Words.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefix-upto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix-upto_">func prefix(<wbr>upTo:)</a>
+        
+<div class="comment collapse" id="comment-func-prefix-upto_"><div class="p">
+    <p>Returns a subsequence from the start of the collection up to, but not
+including, the specified position.</p>
+
+<p>The resulting subsequence <em>does not include</em> the element at the position
+<code>end</code>. The following example searches for the index of the number <code>40</code>
+in an array of integers, and then prints the prefix of the array up to,
+but not including, that index:</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60]
+if let i = numbers.firstIndex(of: 40) {
+    print(numbers.prefix(upTo: i))
+}
+// Prints &quot;[10, 20, 30]&quot;</code></pre>
+
+<p>Passing the collection&#39;s starting index as the <code>end</code> parameter results in
+an empty subsequence.</p>
+
+<pre><code class="language-swift">print(numbers.prefix(upTo: numbers.startIndex))
+// Prints &quot;[]&quot;</code></pre>
+
+<p>Using the <code>prefix(upTo:)</code> method is equivalent to using a partial
+half-open range as the collection&#39;s subscript. The subscript notation is
+preferred over <code>prefix(upTo:)</code>.</p>
+
+<pre><code class="language-swift">if let i = numbers.firstIndex(of: 40) {
+    print(numbers[..&lt;i])
+}
+// Prints &quot;[10, 20, 30]&quot;</code></pre>
+
+<p><strong><code>end</code>:</strong>  The &quot;past the end&quot; index of the resulting subsequence.
+  <code>end</code> must be a valid index of the collection.
+<strong>Returns:</strong> A subsequence up to, but not including, the <code>end</code> position.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(upTo end: UInt8.Words.Index) -&gt; UInt8.Words.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefix-while_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix-while_">func prefix(<wbr>while:)</a>
+        
+<div class="comment collapse" id="comment-func-prefix-while_"><div class="p">
+    <p>Returns a subsequence containing the initial elements until <code>predicate</code>
+returns <code>false</code> and skipping the remaining elements.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the
+  sequence as its argument and returns <code>true</code> if the element should
+  be included or <code>false</code> if it should be excluded. Once the predicate
+  returns <code>false</code> it will not be called again.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(while predicate: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; UInt8.Words.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-randomelement">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-randomelement">func randomElement()</a>
+        
+<div class="comment collapse" id="comment-func-randomelement"><div class="p">
+    <p>Returns a random element of the collection.</p>
+
+<p>Call <code>randomElement()</code> to select a random element from an array or
+another collection. This example picks a name at random from an array:</p>
+
+<pre><code class="language-swift">let names = [&quot;Zoey&quot;, &quot;Chloe&quot;, &quot;Amani&quot;, &quot;Amaia&quot;]
+let randomName = names.randomElement()!
+// randomName == &quot;Amani&quot;</code></pre>
+
+<p>This method uses the default random generator, <code>Random.default</code>. The call
+to <code>names.randomElement()</code> above is equivalent to calling
+<code>names.randomElement(using: &amp;Random.default)</code>.</p>
+
+<p><strong>Returns:</strong> A random element from the collection. If the collection is
+  empty, the method returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func randomElement() -&gt; UInt8.Words.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-randomelement-using_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-randomelement-using_">func randomElement(<wbr>using:)</a>
+        
+<div class="comment collapse" id="comment-func-randomelement-using_"><div class="p">
+    <p>Returns a random element of the collection, using the given generator as
+a source for randomness.</p>
+
+<p>Call <code>randomElement(using:)</code> to select a random element from an array or
+another collection when you are using a custom random number generator.
+This example picks a name at random from an array:</p>
+
+<pre><code class="language-swift">let names = [&quot;Zoey&quot;, &quot;Chloe&quot;, &quot;Amani&quot;, &quot;Amaia&quot;]
+let randomName = names.randomElement(using: &amp;myGenerator)!
+// randomName == &quot;Amani&quot;</code></pre>
+
+<p><strong><code>generator</code>:</strong>  The random number generator to use when choosing
+  a random element.
+<strong>Returns:</strong> A random element from the collection. If the collection is
+  empty, the method returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func randomElement&lt;T&gt;(using generator: inout T) -&gt; UInt8.Words.Element? where T : RandomNumberGenerator</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reduce__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reduce__">func reduce(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-reduce__"><div class="p">
+    <p>Returns the result of combining the elements of the sequence using the
+given closure.</p>
+
+<p>Use the <code>reduce(_:_:)</code> method to produce a single value from the elements
+of an entire sequence. For example, you can use this method on an array
+of numbers to find their sum or product.</p>
+
+<p>The <code>nextPartialResult</code> closure is called sequentially with an
+accumulating value initialized to <code>initialResult</code> and each element of
+the sequence. This example shows how to find the sum of an array of
+numbers.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4]
+let numberSum = numbers.reduce(0, { x, y in
+    x + y
+})
+// numberSum == 10</code></pre>
+
+<p>When <code>numbers.reduce(_:_:)</code> is called, the following steps occur:</p>
+
+<ol><li>The <code>nextPartialResult</code> closure is called with <code>initialResult</code>---<code>0</code>
+in this case---and the first element of <code>numbers</code>, returning the sum:
+<code>1</code>.</li><li>The closure is called again repeatedly with the previous call&#39;s return
+value and each element of the sequence.</li><li>When the sequence is exhausted, the last value returned from the
+closure is returned to the caller.</li></ol>
+
+<p>If the sequence has no elements, <code>nextPartialResult</code> is never executed
+and <code>initialResult</code> is the result of the call to <code>reduce(_:_:)</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>initialResult:</strong> The value to use as the initial accumulating value.
+    <code>initialResult</code> is passed to <code>nextPartialResult</code> the first time the
+    closure is executed.
+  <strong>nextPartialResult:</strong> A closure that combines an accumulating value and
+    an element of the sequence into a new accumulating value, to be used
+    in the next call of the <code>nextPartialResult</code> closure or returned to
+    the caller.
+<strong>Returns:</strong> The final accumulated value. If the sequence has no elements,
+  the result is <code>initialResult</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reduce&lt;Result&gt;(_ initialResult: Result, _ nextPartialResult: (Result, UInt8.Words.Element) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reduce-into__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reduce-into__">func reduce(<wbr>into:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-reduce-into__"><div class="p">
+    <p>Returns the result of combining the elements of the sequence using the
+given closure.</p>
+
+<p>Use the <code>reduce(into:_:)</code> method to produce a single value from the
+elements of an entire sequence. For example, you can use this method on an
+array of integers to filter adjacent equal entries or count frequencies.</p>
+
+<p>This method is preferred over <code>reduce(_:_:)</code> for efficiency when the
+result is a copy-on-write type, for example an Array or a Dictionary.</p>
+
+<p>The <code>updateAccumulatingResult</code> closure is called sequentially with a
+mutable accumulating value initialized to <code>initialResult</code> and each element
+of the sequence. This example shows how to build a dictionary of letter
+frequencies of a string.</p>
+
+<pre><code class="language-swift">let letters = &quot;abracadabra&quot;
+let letterCount = letters.reduce(into: [:]) { counts, letter in
+    counts[letter, default: 0] += 1
+}
+// letterCount == [&quot;a&quot;: 5, &quot;b&quot;: 2, &quot;r&quot;: 2, &quot;c&quot;: 1, &quot;d&quot;: 1]</code></pre>
+
+<p>When <code>letters.reduce(into:_:)</code> is called, the following steps occur:</p>
+
+<ol><li>The <code>updateAccumulatingResult</code> closure is called with the initial
+accumulating value---<code>[:]</code> in this case---and the first character of
+<code>letters</code>, modifying the accumulating value by setting <code>1</code> for the key
+<code>&quot;a&quot;</code>.</li><li>The closure is called again repeatedly with the updated accumulating
+value and each element of the sequence.</li><li>When the sequence is exhausted, the accumulating value is returned to
+the caller.</li></ol>
+
+<p>If the sequence has no elements, <code>updateAccumulatingResult</code> is never
+executed and <code>initialResult</code> is the result of the call to
+<code>reduce(into:_:)</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>initialResult:</strong> The value to use as the initial accumulating value.
+  <strong>updateAccumulatingResult:</strong> A closure that updates the accumulating
+    value with an element of the sequence.
+<strong>Returns:</strong> The final accumulated value. If the sequence has no elements,
+  the result is <code>initialResult</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reduce&lt;Result&gt;(into initialResult: Result, _ updateAccumulatingResult: (inout Result, UInt8.Words.Element) throws -&gt; ()) rethrows -&gt; Result</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reversed">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reversed">func reversed()</a>
+        
+<div class="comment collapse" id="comment-func-reversed"><div class="p">
+    <p>Returns a view presenting the elements of the collection in reverse
+order.</p>
+
+<p>You can reverse a collection without allocating new space for its
+elements by calling this <code>reversed()</code> method. A <code>ReversedCollection</code>
+instance wraps an underlying collection and provides access to its
+elements in reverse order. This example prints the characters of a
+string in reverse order:</p>
+
+<pre><code class="language-swift">let word = &quot;Backwards&quot;
+for char in word.reversed() {
+    print(char, terminator: &quot;&quot;)
+}
+// Prints &quot;sdrawkcaB&quot;</code></pre>
+
+<p>If you need a reversed collection of the same type, you may be able to
+use the collection&#39;s sequence-based or collection-based initializer. For
+example, to get the reversed version of a string, reverse its
+characters and initialize a new <code>String</code> instance from the result.</p>
+
+<pre><code class="language-swift">let reversedWord = String(word.reversed())
+print(reversedWord)
+// Prints &quot;sdrawkcaB&quot;</code></pre>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reversed() -&gt; ReversedCollection&lt;UInt8.Words&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-shuffled">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-shuffled">func shuffled()</a>
+        
+<div class="comment collapse" id="comment-func-shuffled"><div class="p">
+    <p>Returns the elements of the sequence, shuffled.</p>
+
+<p>For example, you can shuffle the numbers between <code>0</code> and <code>9</code> by calling
+the <code>shuffled()</code> method on that range:</p>
+
+<pre><code class="language-swift">let numbers = 0...9
+let shuffledNumbers = numbers.shuffled()
+// shuffledNumbers == [1, 7, 6, 2, 8, 9, 4, 3, 5, 0]</code></pre>
+
+<p>This method uses the default random generator, <code>Random.default</code>. The call
+to <code>numbers.shuffled()</code> above is equivalent to calling
+<code>numbers.shuffled(using: &amp;Random.default)</code>.</p>
+
+<p><strong>Returns:</strong> A shuffled array of this sequence&#39;s elements.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func shuffled() -&gt; [UInt8.Words.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-shuffled-using_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-shuffled-using_">func shuffled(<wbr>using:)</a>
+        
+<div class="comment collapse" id="comment-func-shuffled-using_"><div class="p">
+    <p>Returns the elements of the sequence, shuffled using the given generator
+as a source for randomness.</p>
+
+<p>You use this method to randomize the elements of a sequence when you
+are using a custom random number generator. For example, you can shuffle
+the numbers between <code>0</code> and <code>9</code> by calling the <code>shuffled(using:)</code> method
+on that range:</p>
+
+<pre><code class="language-swift">let numbers = 0...9
+let shuffledNumbers = numbers.shuffled(using: &amp;myGenerator)
+// shuffledNumbers == [8, 9, 4, 3, 2, 6, 7, 0, 5, 1]</code></pre>
+
+<p><strong><code>generator</code>:</strong>  The random number generator to use when shuffling
+  the sequence.
+<strong>Returns:</strong> An array of this sequence&#39;s elements in a shuffled order.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func shuffled&lt;T&gt;(using generator: inout T) -&gt; [UInt8.Words.Element] where T : RandomNumberGenerator</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-sorted-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sorted-by_">func sorted(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-sorted-by_"><div class="p">
+    <p>Returns the elements of the sequence, sorted using the given predicate as
+the comparison between elements.</p>
+
+<p>When you want to sort a sequence of elements that don&#39;t conform to the
+<code>Comparable</code> protocol, pass a predicate to this method that returns
+<code>true</code> when the first element passed should be ordered before the
+second. The elements of the resulting array are ordered according to the
+given predicate.</p>
+
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areInIncreasingOrder(a, a)</code> is always <code>false</code>. (Irreflexivity)</li><li>If <code>areInIncreasingOrder(a, b)</code> and <code>areInIncreasingOrder(b, c)</code> are
+both <code>true</code>, then <code>areInIncreasingOrder(a, c)</code> is also <code>true</code>.
+(Transitive comparability)</li><li>Two elements are <em>incomparable</em> if neither is ordered before the other
+according to the predicate. If <code>a</code> and <code>b</code> are incomparable, and <code>b</code>
+and <code>c</code> are incomparable, then <code>a</code> and <code>c</code> are also incomparable.
+(Transitive incomparability)</li></ul>
+
+<p>The sorting algorithm is not stable. A nonstable sort may change the
+relative order of elements for which <code>areInIncreasingOrder</code> does not
+establish an order.</p>
+
+<p>In the following example, the predicate provides an ordering for an array
+of a custom <code>HTTPResponse</code> type. The predicate orders errors before
+successes and sorts the error responses by their error code.</p>
+
+<pre><code class="language-swift">enum HTTPResponse {
+    case ok
+    case error(Int)
+}
+
+let responses: [HTTPResponse] = [.error(500), .ok, .ok, .error(404), .error(403)]
+let sortedResponses = responses.sorted {
+    switch ($0, $1) {
+    // Order errors by code
+    case let (.error(aCode), .error(bCode)):
+        return aCode &lt; bCode
+
+    // All successes are equivalent, so none is before any other
+    case (.ok, .ok): return false
+
+    // Order errors before successes
+    case (.error, .ok): return true
+    case (.ok, .error): return false
+    }
+}
+print(sortedResponses)
+// Prints &quot;[.error(403), .error(404), .error(500), .ok, .ok]&quot;</code></pre>
+
+<p>You also use this method to sort elements that conform to the
+<code>Comparable</code> protocol in descending order. To sort your sequence in
+descending order, pass the greater-than operator (<code>&gt;</code>) as the
+<code>areInIncreasingOrder</code> parameter.</p>
+
+<pre><code class="language-swift">let students: Set = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+let descendingStudents = students.sorted(by: &gt;)
+print(descendingStudents)
+// Prints &quot;[&quot;Peter&quot;, &quot;Kweku&quot;, &quot;Kofi&quot;, &quot;Akosua&quot;, &quot;Abena&quot;]&quot;</code></pre>
+
+<p>Calling the related <code>sorted()</code> method is equivalent to calling this
+method and passing the less-than operator (<code>&lt;</code>) as the predicate.</p>
+
+<pre><code class="language-swift">print(students.sorted())
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;
+print(students.sorted(by: &lt;))
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;</code></pre>
+
+<p><strong><code>areInIncreasingOrder</code>:</strong>  A predicate that returns <code>true</code> if its
+  first argument should be ordered before its second argument;
+  otherwise, <code>false</code>.
+<strong>Returns:</strong> A sorted array of the sequence&#39;s elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sorted(by areInIncreasingOrder: (UInt8.Words.Element, UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; [UInt8.Words.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-split_omittingemptysubsequences_whereseparator_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-split_omittingemptysubsequences_whereseparator_">func split(<wbr>_:<wbr>omittingEmptySubsequences:<wbr>whereSeparator:)</a>
+        
+<div class="comment collapse" id="comment-func-split_omittingemptysubsequences_whereseparator_"><div class="p">
+    <p>Returns the longest possible subsequences of the collection, in order,
+that don&#39;t contain elements satisfying the given predicate.</p>
+
+<p>The resulting array consists of at most <code>maxSplits + 1</code> subsequences.
+Elements that are used to split the sequence are not returned as part of
+any subsequence.</p>
+
+<p>The following examples show the effects of the <code>maxSplits</code> and
+<code>omittingEmptySubsequences</code> parameters when splitting a string using a
+closure that matches spaces. The first use of <code>split</code> returns each word
+that was originally separated by one or more spaces.</p>
+
+<pre><code class="language-swift">let line = &quot;BLANCHE:   I don&#39;t want realism. I want magic!&quot;
+print(line.split(whereSeparator: { $0 == &quot; &quot; }))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p>The second example passes <code>1</code> for the <code>maxSplits</code> parameter, so the
+original string is split just once, into two new strings.</p>
+
+<pre><code class="language-swift">print(line.split(maxSplits: 1, whereSeparator: { $0 == &quot; &quot; }))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;  I don\&#39;t want realism. I want magic!&quot;]&quot;</code></pre>
+
+<p>The final example passes <code>false</code> for the <code>omittingEmptySubsequences</code>
+parameter, so the returned array contains empty strings where spaces
+were repeated.</p>
+
+<pre><code class="language-swift">print(line.split(omittingEmptySubsequences: false, whereSeparator: { $0 == &quot; &quot; }))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;&quot;, &quot;&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>maxSplits:</strong> The maximum number of times to split the collection, or
+    one less than the number of subsequences to return. If
+    <code>maxSplits + 1</code> subsequences are returned, the last one is a suffix
+    of the original collection containing the remaining elements.
+    <code>maxSplits</code> must be greater than or equal to zero. The default value
+    is <code>Int.max</code>.
+  <strong>omittingEmptySubsequences:</strong> If <code>false</code>, an empty subsequence is
+    returned in the result for each pair of consecutive elements
+    satisfying the <code>isSeparator</code> predicate and for each element at the
+    start or end of the collection satisfying the <code>isSeparator</code>
+    predicate. The default value is <code>true</code>.
+  <strong>isSeparator:</strong> A closure that takes an element as an argument and
+    returns a Boolean value indicating whether the collection should be
+    split at that element.
+<strong>Returns:</strong> An array of subsequences, split from this collection&#39;s
+  elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split(maxSplits: Int = default, omittingEmptySubsequences: Bool = default, whereSeparator isSeparator: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; [UInt8.Words.SubSequence]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-starts-with_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-starts-with_by_">func starts(<wbr>with:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-starts-with_by_"><div class="p">
+    <p>Returns a Boolean value indicating whether the initial elements of the
+sequence are equivalent to the elements in another sequence, using
+the given predicate as the equivalence test.</p>
+
+<p>The predicate must be a <em>equivalence relation</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areEquivalent(a, a)</code> is always <code>true</code>. (Reflexivity)</li><li><code>areEquivalent(a, b)</code> implies <code>areEquivalent(b, a)</code>. (Symmetry)</li><li>If <code>areEquivalent(a, b)</code> and <code>areEquivalent(b, c)</code> are both <code>true</code>, then
+<code>areEquivalent(a, c)</code> is also <code>true</code>. (Transitivity)</li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>possiblePrefix:</strong> A sequence to compare to this sequence.
+  <strong>areEquivalent:</strong> A predicate that returns <code>true</code> if its two arguments
+    are equivalent; otherwise, <code>false</code>.
+<strong>Returns:</strong> <code>true</code> if the initial elements of the sequence are equivalent
+  to the elements of <code>possiblePrefix</code>; otherwise, <code>false</code>. If
+  <code>possiblePrefix</code> has no elements, the return value is <code>true</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func starts&lt;PossiblePrefix&gt;(with possiblePrefix: PossiblePrefix, by areEquivalent: (UInt8.Words.Element, PossiblePrefix.Element) throws -&gt; Bool) rethrows -&gt; Bool where PossiblePrefix : Sequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-suffix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-suffix_">func suffix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-suffix_"><div class="p">
+    <p>Returns a subsequence, up to the given maximum length, containing the
+final elements of the collection.</p>
+
+<p>If the maximum length exceeds the number of elements in the collection,
+the result contains the entire collection.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.suffix(2))
+// Prints &quot;[4, 5]&quot;
+print(numbers.suffix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;</code></pre>
+
+<p><strong><code>maxLength</code>:</strong>  The maximum number of elements to return.
+  <code>maxLength</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence terminating at the end of the collection with at
+  most <code>maxLength</code> elements.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is equal to <code>maxLength</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func suffix(_ maxLength: Int) -&gt; UInt8.Words.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-suffix-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-suffix-from_">func suffix(<wbr>from:)</a>
+        
+<div class="comment collapse" id="comment-func-suffix-from_"><div class="p">
+    <p>Returns a subsequence from the specified position to the end of the
+collection.</p>
+
+<p>The following example searches for the index of the number <code>40</code> in an
+array of integers, and then prints the suffix of the array starting at
+that index:</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60]
+if let i = numbers.firstIndex(of: 40) {
+    print(numbers.suffix(from: i))
+}
+// Prints &quot;[40, 50, 60]&quot;</code></pre>
+
+<p>Passing the collection&#39;s <code>endIndex</code> as the <code>start</code> parameter results in
+an empty subsequence.</p>
+
+<pre><code class="language-swift">print(numbers.suffix(from: numbers.endIndex))
+// Prints &quot;[]&quot;</code></pre>
+
+<p>Using the <code>suffix(from:)</code> method is equivalent to using a partial range
+from the index as the collection&#39;s subscript. The subscript notation is
+preferred over <code>suffix(from:)</code>.</p>
+
+<pre><code class="language-swift">if let i = numbers.firstIndex(of: 40) {
+    print(numbers[i...])
+}
+// Prints &quot;[40, 50, 60]&quot;</code></pre>
+
+<p><strong><code>start</code>:</strong>  The index at which to start the resulting subsequence.
+  <code>start</code> must be a valid index of the collection.
+<strong>Returns:</strong> A subsequence starting at the <code>start</code> position.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func suffix(from start: UInt8.Words.Index) -&gt; UInt8.Words.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+
+
+<h3>Conditionally Inherited Items</h3>
+
+<p class="comment">The initializers, methods, and properties listed below may be available on this type under certain conditions (such as methods that are available on <code>Array</code> when its elements are <code>Equatable</code>) or may not ever be available if that determination is beyond SwiftDoc.org's capabilities. Please <a href="https://github.com/SwiftDocOrg/swiftdoc.org/issues">open an issue on GitHub</a> if you see something out of place!</p>
+
+
+
+
+
+<h4>Where Element : Collection</h4>
+
+
+
+
+<div class="declaration inherited" id="func-element_-collection-joined">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-collection-joined">func joined()</a>
+        
+<div class="comment collapse" id="comment-func-element_-collection-joined"><div class="p">
+    <p>Returns the elements of this collection of collections, concatenated.</p>
+
+<p>In this example, an array of three ranges is flattened so that the
+elements of each range can be iterated in turn.</p>
+
+<pre><code class="language-swift">let ranges = [0..&lt;3, 8..&lt;10, 15..&lt;17]
+
+// A for-in loop over &#39;ranges&#39; accesses each range:
+for range in ranges {
+  print(range)
+}
+// Prints &quot;0..&lt;3&quot;
+// Prints &quot;8..&lt;10&quot;
+// Prints &quot;15..&lt;17&quot;
+
+// Use &#39;joined()&#39; to access each element of each range:
+for index in ranges.joined() {
+    print(index, terminator: &quot; &quot;)
+}
+// Prints: &quot;0 1 2 8 9 15 16&quot;</code></pre>
+
+<p><strong>Returns:</strong> A flattened view of the elements of this
+  collection of collections.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joined() -&gt; FlattenCollection&lt;UInt8.Words&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Element : Comparable</h4>
+
+
+
+
+<div class="declaration inherited" id="func-element_-comparable-lexicographicallyprecedes_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-comparable-lexicographicallyprecedes_">func lexicographicallyPrecedes(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-comparable-lexicographicallyprecedes_"><div class="p">
+    <p>Returns a Boolean value indicating whether the sequence precedes another
+sequence in a lexicographical (dictionary) ordering, using the
+less-than operator (<code>&lt;</code>) to compare elements.</p>
+
+<p>This example uses the <code>lexicographicallyPrecedes</code> method to test which
+array of integers comes first in a lexicographical ordering.</p>
+
+<pre><code class="language-swift">let a = [1, 2, 2, 2]
+let b = [1, 2, 3, 4]
+
+print(a.lexicographicallyPrecedes(b))
+// Prints &quot;true&quot;
+print(b.lexicographicallyPrecedes(b))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A sequence to compare to this sequence.
+<strong>Returns:</strong> <code>true</code> if this sequence precedes <code>other</code> in a dictionary
+  ordering; otherwise, <code>false</code>.</p>
+
+<p><strong>Note:</strong> This method implements the mathematical notion of lexicographical
+  ordering, which has no connection to Unicode.  If you are sorting
+  strings to present to the end user, use <code>String</code> APIs that
+  perform localized comparison.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lexicographicallyPrecedes&lt;OtherSequence&gt;(_ other: OtherSequence) -&gt; Bool where OtherSequence : Sequence, UInt8.Words.Element == OtherSequence.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-comparable-max">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-comparable-max">@warn_unqualified_access
+     func max()</a>
+        
+<div class="comment collapse" id="comment-func-element_-comparable-max"><div class="p">
+    <p>Returns the maximum element in the sequence.</p>
+
+<p>This example finds the largest value in an array of height measurements.</p>
+
+<pre><code class="language-swift">let heights = [67.5, 65.7, 64.3, 61.1, 58.5, 60.3, 64.9]
+let greatestHeight = heights.max()
+print(greatestHeight)
+// Prints &quot;Optional(67.5)&quot;</code></pre>
+
+<p><strong>Returns:</strong> The sequence&#39;s maximum element. If the sequence has no
+  elements, returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@warn_unqualified_access
+     func max() -&gt; UInt8.Words.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-comparable-min">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-comparable-min">@warn_unqualified_access
+     func min()</a>
+        
+<div class="comment collapse" id="comment-func-element_-comparable-min"><div class="p">
+    <p>Returns the minimum element in the sequence.</p>
+
+<p>This example finds the smallest value in an array of height measurements.</p>
+
+<pre><code class="language-swift">let heights = [67.5, 65.7, 64.3, 61.1, 58.5, 60.3, 64.9]
+let lowestHeight = heights.min()
+print(lowestHeight)
+// Prints &quot;Optional(58.5)&quot;</code></pre>
+
+<p><strong>Returns:</strong> The sequence&#39;s minimum element. If the sequence has no
+  elements, returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@warn_unqualified_access
+     func min() -&gt; UInt8.Words.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-comparable-sorted">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-comparable-sorted">func sorted()</a>
+        
+<div class="comment collapse" id="comment-func-element_-comparable-sorted"><div class="p">
+    <p>Returns the elements of the sequence, sorted.</p>
+
+<p>You can sort any sequence of elements that conform to the <code>Comparable</code>
+protocol by calling this method. Elements are sorted in ascending order.</p>
+
+<p>The sorting algorithm is not stable. A nonstable sort may change the
+relative order of elements that compare equal.</p>
+
+<p>Here&#39;s an example of sorting a list of students&#39; names. Strings in Swift
+conform to the <code>Comparable</code> protocol, so the names are sorted in
+ascending order according to the less-than operator (<code>&lt;</code>).</p>
+
+<pre><code class="language-swift">let students: Set = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+let sortedStudents = students.sorted()
+print(sortedStudents)
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;</code></pre>
+
+<p>To sort the elements of your sequence in descending order, pass the
+greater-than operator (<code>&gt;</code>) to the <code>sorted(by:)</code> method.</p>
+
+<pre><code class="language-swift">let descendingStudents = students.sorted(by: &gt;)
+print(descendingStudents)
+// Prints &quot;[&quot;Peter&quot;, &quot;Kweku&quot;, &quot;Kofi&quot;, &quot;Akosua&quot;, &quot;Abena&quot;]&quot;</code></pre>
+
+<p><strong>Returns:</strong> A sorted array of the sequence&#39;s elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sorted() -&gt; [UInt8.Words.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Element : Equatable</h4>
+
+
+
+
+<div class="declaration inherited" id="func-element_-equatable-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-equatable-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-equatable-contains_"><div class="p">
+    <p>Returns a Boolean value indicating whether the sequence contains the
+given element.</p>
+
+<p>This example checks to see whether a favorite actor is in an array
+storing a movie&#39;s cast.</p>
+
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+print(cast.contains(&quot;Marlon&quot;))
+// Prints &quot;true&quot;
+print(cast.contains(&quot;James&quot;))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>element</code>:</strong>  The element to find in the sequence.
+<strong>Returns:</strong> <code>true</code> if the element was found in the sequence; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(_ element: UInt8.Words.Element) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-equatable-elementsequal_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-equatable-elementsequal_">func elementsEqual(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-equatable-elementsequal_"><div class="p">
+    <p>Returns a Boolean value indicating whether this sequence and another
+sequence contain the same elements in the same order.</p>
+
+<p>At least one of the sequences must be finite.</p>
+
+<p>This example tests whether one countable range shares the same elements
+as another countable range and an array.</p>
+
+<pre><code class="language-swift">let a = 1...3
+let b = 1...10
+
+print(a.elementsEqual(b))
+// Prints &quot;false&quot;
+print(a.elementsEqual([1, 2, 3]))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A sequence to compare to this sequence.
+<strong>Returns:</strong> <code>true</code> if this sequence and <code>other</code> contain the same elements
+  in the same order.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func elementsEqual&lt;OtherSequence&gt;(_ other: OtherSequence) -&gt; Bool where OtherSequence : Sequence, UInt8.Words.Element == OtherSequence.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-equatable-firstindex-of_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-equatable-firstindex-of_">func firstIndex(<wbr>of:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-equatable-firstindex-of_"><div class="p">
+    <p>Returns the first index where the specified value appears in the
+collection.</p>
+
+<p>After using <code>firstIndex(of:)</code> to find the position of a particular element
+in a collection, you can use it to access the element by subscripting.
+This example shows how you can modify one of the names in an array of
+students.</p>
+
+<pre><code class="language-swift">var students = [&quot;Ben&quot;, &quot;Ivy&quot;, &quot;Jordell&quot;, &quot;Maxime&quot;]
+if let i = students.firstIndex(of: &quot;Maxime&quot;) {
+    students[i] = &quot;Max&quot;
+}
+print(students)
+// Prints &quot;[&quot;Ben&quot;, &quot;Ivy&quot;, &quot;Jordell&quot;, &quot;Max&quot;]&quot;</code></pre>
+
+<p><strong><code>element</code>:</strong>  An element to search for in the collection.
+<strong>Returns:</strong> The first index where <code>element</code> is found. If <code>element</code> is not
+  found in the collection, returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func firstIndex(of element: UInt8.Words.Element) -&gt; UInt8.Words.Index?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-equatable-lastindex-of_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-equatable-lastindex-of_">func lastIndex(<wbr>of:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-equatable-lastindex-of_"><div class="p">
+    <p>Returns the last index where the specified value appears in the
+collection.</p>
+
+<p>After using <code>lastIndex(of:)</code> to find the position of the last instance of
+a particular element in a collection, you can use it to access the
+element by subscripting. This example shows how you can modify one of
+the names in an array of students.</p>
+
+<pre><code class="language-swift">var students = [&quot;Ben&quot;, &quot;Ivy&quot;, &quot;Jordell&quot;, &quot;Ben&quot;, &quot;Maxime&quot;]
+if let i = students.lastIndex(of: &quot;Ben&quot;) {
+    students[i] = &quot;Benjamin&quot;
+}
+print(students)
+// Prints &quot;[&quot;Ben&quot;, &quot;Ivy&quot;, &quot;Jordell&quot;, &quot;Benjamin&quot;, &quot;Max&quot;]&quot;</code></pre>
+
+<p><strong><code>element</code>:</strong>  An element to search for in the collection.
+<strong>Returns:</strong> The last index where <code>element</code> is found. If <code>element</code> is not
+  found in the collection, returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lastIndex(of element: UInt8.Words.Element) -&gt; UInt8.Words.Index?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-equatable-split_maxsplits_omittingemptysubsequences_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-equatable-split_maxsplits_omittingemptysubsequences_">func split(<wbr>_:<wbr>maxSplits:<wbr>omittingEmptySubsequences:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-equatable-split_maxsplits_omittingemptysubsequences_"><div class="p">
+    <p>Returns the longest possible subsequences of the collection, in order,
+around elements equal to the given element.</p>
+
+<p>The resulting array consists of at most <code>maxSplits + 1</code> subsequences.
+Elements that are used to split the collection are not returned as part
+of any subsequence.</p>
+
+<p>The following examples show the effects of the <code>maxSplits</code> and
+<code>omittingEmptySubsequences</code> parameters when splitting a string at each
+space character (&quot; &quot;). The first use of <code>split</code> returns each word that
+was originally separated by one or more spaces.</p>
+
+<pre><code class="language-swift">let line = &quot;BLANCHE:   I don&#39;t want realism. I want magic!&quot;
+print(line.split(separator: &quot; &quot;))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p>The second example passes <code>1</code> for the <code>maxSplits</code> parameter, so the
+original string is split just once, into two new strings.</p>
+
+<pre><code class="language-swift">print(line.split(separator: &quot; &quot;, maxSplits: 1))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;  I don\&#39;t want realism. I want magic!&quot;]&quot;</code></pre>
+
+<p>The final example passes <code>false</code> for the <code>omittingEmptySubsequences</code>
+parameter, so the returned array contains empty strings where spaces
+were repeated.</p>
+
+<pre><code class="language-swift">print(line.split(separator: &quot; &quot;, omittingEmptySubsequences: false))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;&quot;, &quot;&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>separator:</strong> The element that should be split upon.
+  <strong>maxSplits:</strong> The maximum number of times to split the collection, or
+    one less than the number of subsequences to return. If
+    <code>maxSplits + 1</code> subsequences are returned, the last one is a suffix
+    of the original collection containing the remaining elements.
+    <code>maxSplits</code> must be greater than or equal to zero. The default value
+    is <code>Int.max</code>.
+  <strong>omittingEmptySubsequences:</strong> If <code>false</code>, an empty subsequence is
+    returned in the result for each consecutive pair of <code>separator</code>
+    elements in the collection and for each instance of <code>separator</code> at
+    the start or end of the collection. If <code>true</code>, only nonempty
+    subsequences are returned. The default value is <code>true</code>.
+<strong>Returns:</strong> An array of subsequences, split from this collection&#39;s
+  elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split(separator: UInt8.Words.Element, maxSplits: Int = default, omittingEmptySubsequences: Bool = default) -&gt; [UInt8.Words.SubSequence]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-equatable-starts-with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-equatable-starts-with_">func starts(<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-equatable-starts-with_"><div class="p">
+    <p>Returns a Boolean value indicating whether the initial elements of the
+sequence are the same as the elements in another sequence.</p>
+
+<p>This example tests whether one countable range begins with the elements
+of another countable range.</p>
+
+<pre><code class="language-swift">let a = 1...3
+let b = 1...10
+
+print(b.starts(with: a))
+// Prints &quot;true&quot;</code></pre>
+
+<p>Passing a sequence with no elements or an empty collection as
+<code>possiblePrefix</code> always results in <code>true</code>.</p>
+
+<pre><code class="language-swift">print(b.starts(with: []))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>possiblePrefix</code>:</strong>  A sequence to compare to this sequence.
+<strong>Returns:</strong> <code>true</code> if the initial elements of the sequence are the same as
+  the elements of <code>possiblePrefix</code>; otherwise, <code>false</code>. If
+  <code>possiblePrefix</code> has no elements, the return value is <code>true</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func starts&lt;PossiblePrefix&gt;(with possiblePrefix: PossiblePrefix) -&gt; Bool where PossiblePrefix : Sequence, UInt8.Words.Element == PossiblePrefix.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Element : Sequence</h4>
+
+
+
+
+<div class="declaration inherited" id="func-element_-sequence-joined">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-sequence-joined">func joined()</a>
+        
+<div class="comment collapse" id="comment-func-element_-sequence-joined"><div class="p">
+    <p>Returns the elements of this sequence of sequences, concatenated.</p>
+
+<p>In this example, an array of three ranges is flattened so that the
+elements of each range can be iterated in turn.</p>
+
+<pre><code class="language-swift">let ranges = [0..&lt;3, 8..&lt;10, 15..&lt;17]
+
+// A for-in loop over &#39;ranges&#39; accesses each range:
+for range in ranges {
+  print(range)
+}
+// Prints &quot;0..&lt;3&quot;
+// Prints &quot;8..&lt;10&quot;
+// Prints &quot;15..&lt;17&quot;
+
+// Use &#39;joined()&#39; to access each element of each range:
+for index in ranges.joined() {
+    print(index, terminator: &quot; &quot;)
+}
+// Prints: &quot;0 1 2 8 9 15 16&quot;</code></pre>
+
+<p><strong>Returns:</strong> A flattened view of the elements of this
+  sequence of sequences.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joined() -&gt; FlattenSequence&lt;UInt8.Words&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-sequence-joined_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-sequence-joined_">func joined(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-sequence-joined_"><div class="p">
+    <p>Returns the concatenated elements of this sequence of sequences,
+inserting the given separator between each element.</p>
+
+<p>This example shows how an array of <code>[Int]</code> instances can be joined, using
+another <code>[Int]</code> instance as the separator:</p>
+
+<pre><code class="language-swift">let nestedNumbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+let joined = nestedNumbers.joined(separator: [-1, -2])
+print(Array(joined))
+// Prints &quot;[1, 2, 3, -1, -2, 4, 5, 6, -1, -2, 7, 8, 9]&quot;</code></pre>
+
+<p><strong><code>separator</code>:</strong>  A sequence to insert between each of this
+  sequence&#39;s elements.
+<strong>Returns:</strong> The joined sequence of elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joined&lt;Separator&gt;(separator: Separator) -&gt; JoinedSequence&lt;UInt8.Words&gt; where Separator : Sequence, Separator.Element == UInt8.Words.Element.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Element : StringProtocol</h4>
+
+
+
+
+<div class="declaration inherited" id="func-element_-stringprotocol-joined_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-stringprotocol-joined_">func joined(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-stringprotocol-joined_"><div class="p">
+    <p>Returns a new string by concatenating the elements of the sequence,
+adding the given separator between each element.</p>
+
+<p>The following example shows how an array of strings can be joined to a
+single, comma-separated string:</p>
+
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let list = cast.joined(separator: &quot;, &quot;)
+print(list)
+// Prints &quot;Vivien, Marlon, Kim, Karl&quot;</code></pre>
+
+<p><strong><code>separator</code>:</strong>  A string to insert between each of the elements
+  in this sequence. The default separator is an empty string.
+<strong>Returns:</strong> A single, concatenated string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joined(separator: String = default) -&gt; String</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Indices == DefaultIndices<Self></h4>
+
+
+<div class="declaration inherited" id="indices-defaultindices-self-var-indices_-defaultindices-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-indices-defaultindices-self-var-indices_-defaultindices-self">var indices: DefaultIndices&lt;UInt8.Words&gt;</a><div class="comment collapse" id="comment-indices-defaultindices-self-var-indices_-defaultindices-self"><div class="p">
+    <p>The indices that are valid for subscripting the collection, in ascending
+order.</p>
+
+<p>A collection&#39;s <code>indices</code> property can hold a strong reference to the
+collection itself, causing the collection to be non-uniquely referenced.
+If you mutate the collection while iterating over its indices, a strong
+reference can cause an unexpected copy of the collection. To avoid the
+unexpected copy, use the <code>index(after:)</code> method starting with
+<code>startIndex</code> to produce indices instead.</p>
+
+<pre><code class="language-swift">var c = MyFancyCollection([10, 20, 30, 40, 50])
+var i = c.startIndex
+while i != c.endIndex {
+    c[i] /= 5
+    i = c.index(after: i)
+}
+// c == MyFancyCollection([2, 4, 6, 8, 10])</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var indices: DefaultIndices&lt;UInt8.Words&gt; { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>
+        ,    <a href="../../protocol/Collection/"><code>Collection</code></a>
+        </div></div>
+</div>
+
+
+
+
+
+
+
+<h4>Where Iterator == IndexingIterator<Self></h4>
+
+
+
+
+<div class="declaration inherited" id="func-iterator-indexingiterator-self-makeiterator">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-indexingiterator-self-makeiterator">func makeIterator()</a>
+        
+<div class="comment collapse" id="comment-func-iterator-indexingiterator-self-makeiterator"><div class="p">
+    <p>Returns an iterator over the elements of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func makeIterator() -&gt; IndexingIterator&lt;UInt8.Words&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where SubSequence == AnySequence<Element></h4>
+
+
+
+
+<div class="declaration inherited" id="func-subsequence-anysequence-element-drop-while_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-drop-while_">func drop(<wbr>while:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-drop-while_"><div class="p">
+    <p>Returns a subsequence by skipping the initial, consecutive elements that
+satisfy the given predicate.</p>
+
+<p>The following example uses the <code>drop(while:)</code> method to skip over the
+positive numbers at the beginning of the <code>numbers</code> array. The result
+begins with the first element of <code>numbers</code> that does not satisfy
+<code>predicate</code>.</p>
+
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+let startingWithNegative = numbers.drop(while: { $0 &gt; 0 })
+// startingWithNegative == [-2, 9, -6, 10, 1]</code></pre>
+
+<p>If <code>predicate</code> matches every element in the sequence, the result is an
+empty sequence.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence as
+  its argument and returns a Boolean value indicating whether the
+  element should be included in the result.
+<strong>Returns:</strong> A subsequence starting after the initial, consecutive elements
+  that satisfy <code>predicate</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func drop(while predicate: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; AnySequence&lt;UInt8.Words.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-anysequence-element-dropfirst_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-dropfirst_">func dropFirst(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-dropfirst_"><div class="p">
+    <p>Returns a subsequence containing all but the given number of initial
+elements.</p>
+
+<p>If the number of elements to drop exceeds the number of elements in
+the sequence, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropFirst(2))
+// Prints &quot;[3, 4, 5]&quot;
+print(numbers.dropFirst(10))
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong><code>n</code>:</strong>  The number of elements to drop from the beginning of
+  the sequence. <code>n</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence starting after the specified number of
+  elements.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst(_ n: Int) -&gt; AnySequence&lt;UInt8.Words.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-anysequence-element-droplast_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-droplast_">func dropLast(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-droplast_"><div class="p">
+    <p>Returns a subsequence containing all but the given number of final
+elements.</p>
+
+<p>The sequence must be finite. If the number of elements to drop exceeds
+the number of elements in the sequence, the result is an empty
+subsequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast(2))
+// Prints &quot;[1, 2, 3]&quot;
+print(numbers.dropLast(10))
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong><code>n</code>:</strong>  The number of elements to drop off the end of the
+  sequence. <code>n</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence leaving off the specified number of elements.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast(_ n: Int) -&gt; AnySequence&lt;UInt8.Words.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-anysequence-element-prefix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-prefix_">func prefix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-prefix_"><div class="p">
+    <p>Returns a subsequence, up to the specified maximum length, containing the
+initial elements of the sequence.</p>
+
+<p>If the maximum length exceeds the number of elements in the sequence,
+the result contains all the elements in the sequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.prefix(2))
+// Prints &quot;[1, 2]&quot;
+print(numbers.prefix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;</code></pre>
+
+<p><strong><code>maxLength</code>:</strong>  The maximum number of elements to return. The
+  value of <code>maxLength</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence starting at the beginning of this sequence
+  with at most <code>maxLength</code> elements.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(_ maxLength: Int) -&gt; AnySequence&lt;UInt8.Words.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-anysequence-element-prefix-while_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-prefix-while_">func prefix(<wbr>while:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-prefix-while_"><div class="p">
+    <p>Returns a subsequence containing the initial, consecutive elements that
+satisfy the given predicate.</p>
+
+<p>The following example uses the <code>prefix(while:)</code> method to find the
+positive numbers at the beginning of the <code>numbers</code> array. Every element
+of <code>numbers</code> up to, but not including, the first negative value is
+included in the result.</p>
+
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+let positivePrefix = numbers.prefix(while: { $0 &gt; 0 })
+// positivePrefix == [3, 7, 4]</code></pre>
+
+<p>If <code>predicate</code> matches every element in the sequence, the resulting
+sequence contains every element of the sequence.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence as
+  its argument and returns a Boolean value indicating whether the
+  element should be included in the result.
+<strong>Returns:</strong> A subsequence of the initial, consecutive elements that
+  satisfy <code>predicate</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(while predicate: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; AnySequence&lt;UInt8.Words.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-anysequence-element-split_omittingemptysubsequences_whereseparator_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-split_omittingemptysubsequences_whereseparator_">func split(<wbr>_:<wbr>omittingEmptySubsequences:<wbr>whereSeparator:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-split_omittingemptysubsequences_whereseparator_"><div class="p">
+    <p>Returns the longest possible subsequences of the sequence, in order, that
+don&#39;t contain elements satisfying the given predicate. Elements that are
+used to split the sequence are not returned as part of any subsequence.</p>
+
+<p>The following examples show the effects of the <code>maxSplits</code> and
+<code>omittingEmptySubsequences</code> parameters when splitting a string using a
+closure that matches spaces. The first use of <code>split</code> returns each word
+that was originally separated by one or more spaces.</p>
+
+<pre><code class="language-swift">let line = &quot;BLANCHE:   I don&#39;t want realism. I want magic!&quot;
+print(line.split(whereSeparator: { $0 == &quot; &quot; })
+          .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p>The second example passes <code>1</code> for the <code>maxSplits</code> parameter, so the
+original string is split just once, into two new strings.</p>
+
+<pre><code class="language-swift">print(
+   line.split(maxSplits: 1, whereSeparator: { $0 == &quot; &quot; })
+                  .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;  I don\&#39;t want realism. I want magic!&quot;]&quot;</code></pre>
+
+<p>The final example passes <code>true</code> for the <code>allowEmptySlices</code> parameter, so
+the returned array contains empty strings where spaces were repeated.</p>
+
+<pre><code class="language-swift">print(
+    line.split(
+        omittingEmptySubsequences: false,
+        whereSeparator: { $0 == &quot; &quot; }
+    ).map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;&quot;, &quot;&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>maxSplits:</strong> The maximum number of times to split the sequence, or one
+    less than the number of subsequences to return. If <code>maxSplits + 1</code>
+    subsequences are returned, the last one is a suffix of the original
+    sequence containing the remaining elements. <code>maxSplits</code> must be
+    greater than or equal to zero. The default value is <code>Int.max</code>.
+  <strong>omittingEmptySubsequences:</strong> If <code>false</code>, an empty subsequence is
+    returned in the result for each pair of consecutive elements
+    satisfying the <code>isSeparator</code> predicate and for each element at the
+    start or end of the sequence satisfying the <code>isSeparator</code> predicate.
+    If <code>true</code>, only nonempty subsequences are returned. The default
+    value is <code>true</code>.
+  <strong>isSeparator:</strong> A closure that returns <code>true</code> if its argument should be
+    used to split the sequence; otherwise, <code>false</code>.
+<strong>Returns:</strong> An array of subsequences, split from this sequence&#39;s elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split(maxSplits: Int = default, omittingEmptySubsequences: Bool = default, whereSeparator isSeparator: (UInt8.Words.Element) throws -&gt; Bool) rethrows -&gt; [AnySequence&lt;UInt8.Words.Element&gt;]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-anysequence-element-suffix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-suffix_">func suffix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-suffix_"><div class="p">
+    <p>Returns a subsequence, up to the given maximum length, containing the
+final elements of the sequence.</p>
+
+<p>The sequence must be finite. If the maximum length exceeds the number of
+elements in the sequence, the result contains all the elements in the
+sequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.suffix(2))
+// Prints &quot;[4, 5]&quot;
+print(numbers.suffix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;</code></pre>
+
+<p><strong><code>maxLength</code>:</strong>  The maximum number of elements to return. The
+  value of <code>maxLength</code> must be greater than or equal to zero.
+<strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func suffix(_ maxLength: Int) -&gt; AnySequence&lt;UInt8.Words.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where SubSequence == Slice<Self></h4>
+
+
+
+<div class="declaration inherited" id="subscript-subsequence-slice-self-subscript_-range-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subsequence-slice-self-subscript_-range-self-index">subscript(_: Range&lt;UInt8.Words.Index&gt;)</a>
+<div class="comment collapse" id="comment-subscript-subsequence-slice-self-subscript_-range-self-index"><div class="p">
+    <p>Accesses a contiguous subrange of the collection&#39;s elements.</p>
+
+<p>The accessed slice uses the same indices for the same elements as the
+original collection. Always use the slice&#39;s <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.firstIndex(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// Prints &quot;Evarts&quot;</code></pre>
+
+<p><strong><code>bounds</code>:</strong>  A range of the collection&#39;s indices. The bounds of
+  the range must be valid indices of the collection.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(bounds: Range&lt;UInt8.Words.Index&gt;) -&gt; Slice&lt;UInt8.Words&gt; { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalCollection/"><code>BidirectionalCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+
+
+
+

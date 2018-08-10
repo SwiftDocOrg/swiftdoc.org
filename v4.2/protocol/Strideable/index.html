@@ -1,0 +1,652 @@
+---
+layout: "default"
+title: "Strideable"
+description: "Swift documentation for 'Strideable': A type representing continuous, one-dimensional values that can be offset."
+keywords: "Strideable,protocol,swift,documentation,<,<=,==,>,>=,advanced,distance,Stride"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Strideable</code></div>
+
+<div class="discussion comment">
+    <p>A type representing continuous, one-dimensional values that can be offset
+and measured.</p>
+
+<p>You can use a type that conforms to the <code>Strideable</code> protocol with the
+<code>stride(from:to:by:)</code> and <code>stride(from:through:by:)</code> functions. For
+example, you can use <code>stride(from:to:by:)</code> to iterate over an
+interval of floating-point values:</p>
+
+<pre><code class="language-swift">for radians in stride(from: 0.0, to: .pi * 2, by: .pi / 2) {
+    let degrees = Int(radians * 180 / .pi)
+    print(&quot;Degrees: \(degrees), radians: \(radians)&quot;)
+}
+// Degrees: 0, radians: 0.0
+// Degrees: 90, radians: 1.5707963267949
+// Degrees: 180, radians: 3.14159265358979
+// Degrees: 270, radians: 4.71238898038469</code></pre>
+
+<p>The last parameter of these functions is of the associated <code>Stride</code>
+type---the type that represents the distance between any two instances of
+the <code>Strideable</code> type.</p>
+
+<p>Types that have an integer <code>Stride</code> can be used as the boundaries of a
+countable range or as the lower bound of an iterable one-sided range. For
+example, you can iterate over a range of <code>Int</code> and use sequence and
+collection methods.</p>
+
+<pre><code class="language-swift">var sum = 0
+for x in 1...100 {
+    sum += x
+}
+// sum == 5050
+
+let digits = (0..&lt;10).map(String.init)
+// [&quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;]</code></pre>
+
+<h1>Conforming to the Strideable Protocol</h1>
+
+<p>To add <code>Strideable</code> conformance to a custom type, choose a <code>Stride</code> type
+that can represent the distance between two instances and implement the
+<code>advanced(by:)</code> and <code>distance(to:)</code> methods. For example, this
+hypothetical <code>Date</code> type stores its value as the number of days before or
+after January 1, 2000:</p>
+
+<pre><code class="language-swift">struct Date: Equatable, CustomStringConvertible {
+    var daysAfterY2K: Int
+
+    var description: String {
+        // ...
+    }
+}</code></pre>
+
+<p>The <code>Stride</code> type for <code>Date</code> is <code>Int</code>, inferred from the parameter and
+return types of <code>advanced(by:)</code> and <code>distance(to:)</code>:</p>
+
+<pre><code class="language-swift">extension Date: Strideable {
+    func advanced(by n: Int) -&gt; Date {
+        var result = self
+        result.daysAfterY2K += n
+        return result
+    }
+
+    func distance(to other: Date) -&gt; Int {
+        return other.daysAfterY2K - self.daysAfterY2K
+    }
+}</code></pre>
+
+<p>The <code>Date</code> type can now be used with the <code>stride(from:to:by:)</code> and
+<code>stride(from:through:by:)</code> functions and as the bounds of an iterable
+range.</p>
+
+<pre><code class="language-swift">let startDate = Date(daysAfterY2K: 0)   // January 1, 2000
+let endDate = Date(daysAfterY2K: 15)    // January 16, 2000
+
+for date in stride(from: startDate, to: endDate, by: 7) {
+    print(date)
+}
+// January 1, 2000
+// January 8, 2000
+// January 15, 2000</code></pre>
+
+<p><strong>Important:</strong> The <code>Strideable</code> protocol provides default implementations for
+  the equal-to (<code>==</code>) and less-than (<code>&lt;</code>) operators that depend on the
+  <code>Stride</code> type&#39;s implementations. If a type conforming to <code>Strideable</code> is
+  its own <code>Stride</code> type, it must provide concrete implementations of the
+  two operators to avoid infinite recursion.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Comparable, Equatable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Stride : Comparable, SignedNumeric</code>
+<div class="comment">
+    <p>A type that represents the distance between two values.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-lt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_rhs_">func &lt;(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-lt_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lteq_rhs_">func &lt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-lteq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gt_rhs_">func &gt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gt_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_rhs_">func &gt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-advanced-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advanced-by_">func advanced(<wbr>by:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-advanced-by_"><div class="p">
+    <p>Returns a value that is offset the specified distance from this value.</p>
+
+<p>Use the <code>advanced(by:)</code> method in generic code to offset a value by a
+specified distance. If you&#39;re working directly with numeric values, use
+the addition operator (<code>+</code>) instead of this method.</p>
+
+<pre><code class="language-swift">func addOne&lt;T: Strideable&gt;(to x: T) -&gt; T
+    where T.Stride : ExpressibleByIntegerLiteral
+{
+    return x.advanced(by: 1)
+}
+
+let x = addOne(to: 5)
+// x == 6
+let y = addOne(to: 3.5)
+// y = 4.5</code></pre>
+
+<p>If this type&#39;s <code>Stride</code> type conforms to <code>BinaryInteger</code>, then for a
+value <code>x</code>, a distance <code>n</code>, and a value <code>y = x.advanced(by: n)</code>,
+<code>x.distance(to: y) == n</code>. Using this method with types that have a
+noninteger <code>Stride</code> may result in an approximation.</p>
+
+<p><strong><code>n</code>:</strong>  The distance to advance this value.
+<strong>Returns:</strong> A value that is offset from this value by <code>n</code>.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advanced(by n: Self.Stride) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-distance-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distance-to_">func distance(<wbr>to:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-distance-to_"><div class="p">
+    <p>Returns the distance from this value to the given value, expressed as a 
+stride.</p>
+
+<p>If this type&#39;s <code>Stride</code> type conforms to <code>BinaryInteger</code>, then for two
+values <code>x</code> and <code>y</code>, and a distance <code>n = x.distance(to: y)</code>,
+<code>x.advanced(by: n) == y</code>. Using this method with types that have a
+noninteger <code>Stride</code> may result in an approximation.</p>
+
+<p><strong><code>other</code>:</strong>  The value to calculate the distance to.
+<strong>Returns:</strong> The distance from this value to <code>other</code>.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(to other: Self) -&gt; Self.Stride</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+
+
+<div class="declaration inherited" id="func--excleq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--excleq_rhs_">func !=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--excleq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether two values are not equal.</p>
+
+<p>Inequality is the inverse of equality. For any values <code>a</code> and <code>b</code>, <code>a != b</code>
+implies that <code>a == b</code> is <code>false</code>.</p>
+
+<p>This is the default implementation of the not-equal-to operator (<code>!=</code>)
+for any type that conforms to <code>Equatable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func !=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>,    <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func--pls_-self-rhs_-self-stride">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--pls_-self-rhs_-self-stride">func +(<wbr>_:<wbr> Self, rhs: Self.Stride)</a>
+        
+<div class="comment collapse" id="comment-func--pls_-self-rhs_-self-stride"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +(lhs: Self, rhs: Self.Stride) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--pls_-self-stride-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--pls_-self-stride-rhs_-self">func +(<wbr>_:<wbr> Self.Stride, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func--pls_-self-stride-rhs_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +(lhs: Self.Stride, rhs: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--plseq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--plseq_rhs_">func +=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--plseq_rhs_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Self, rhs: Self.Stride)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--dotdotdot_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--dotdotdot_-self">prefix func ...(<wbr>_: Self)</a>
+        
+<div class="comment collapse" id="comment-func--dotdotdot_-self"><div class="p">
+    <p>Returns a partial range up to, and including, its upper bound.</p>
+
+<p>Use the prefix closed range operator (prefix <code>...</code>) to create a partial
+range of any type that conforms to the <code>Comparable</code> protocol. This
+example creates a <code>PartialRangeThrough&lt;Double&gt;</code> instance that includes
+any value less than or equal to <code>5.0</code>.</p>
+
+<pre><code class="language-swift">let throughFive = ...5.0
+
+throughFive.contains(4.0)     // true
+throughFive.contains(5.0)     // true
+throughFive.contains(6.0)     // false</code></pre>
+
+<p>You can use this type of partial range of a collection&#39;s indices to
+represent the range from the start of the collection up to, and
+including, the partial range&#39;s upper bound.</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[...3])
+// Prints &quot;[10, 20, 30, 40]&quot;</code></pre>
+
+<p><strong><code>maximum</code>:</strong>  The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">prefix func ...(maximum: Self) -&gt; PartialRangeThrough&lt;Self&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--dotdotdot_maximum_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--dotdotdot_maximum_">func ...(<wbr>_:<wbr>maximum:)</a>
+        
+<div class="comment collapse" id="comment-func--dotdotdot_maximum_"><div class="p">
+    <p>Returns a closed range that contains both of its bounds.</p>
+
+<p>Use the closed range operator (<code>...</code>) to create a closed range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>ClosedRange&lt;Character&gt;</code> from &quot;a&quot; up to, and including, &quot;z&quot;.</p>
+
+<pre><code class="language-swift">let lowercase = &quot;a&quot;...&quot;z&quot;
+print(lowercase.contains(&quot;z&quot;))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>minimum:</strong> The lower bound for the range.
+  <strong>maximum:</strong> The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ...(minimum: Self, maximum: Self) -&gt; ClosedRange&lt;Self&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--dotdotlt_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--dotdotlt_">prefix func ..&lt;(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--dotdotlt_"><div class="p">
+    <p>Returns a partial range up to, but not including, its upper bound.</p>
+
+<p>Use the prefix half-open range operator (prefix <code>..&lt;</code>) to create a
+partial range of any type that conforms to the <code>Comparable</code> protocol.
+This example creates a <code>PartialRangeUpTo&lt;Double&gt;</code> instance that includes
+any value less than <code>5.0</code>.</p>
+
+<pre><code class="language-swift">let upToFive = ..&lt;5.0
+
+upToFive.contains(3.14)       // true
+upToFive.contains(6.28)       // false
+upToFive.contains(5.0)        // false</code></pre>
+
+<p>You can use this type of partial range of a collection&#39;s indices to
+represent the range from the start of the collection up to, but not
+including, the partial range&#39;s upper bound.</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[..&lt;3])
+// Prints &quot;[10, 20, 30]&quot;</code></pre>
+
+<p><strong><code>maximum</code>:</strong>  The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">prefix func ..&lt;(maximum: Self) -&gt; PartialRangeUpTo&lt;Self&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--dotdotlt_maximum_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--dotdotlt_maximum_">func ..&lt;(<wbr>_:<wbr>maximum:)</a>
+        
+<div class="comment collapse" id="comment-func--dotdotlt_maximum_"><div class="p">
+    <p>Returns a half-open range that contains its lower bound but not its upper
+bound.</p>
+
+<p>Use the half-open range operator (<code>..&lt;</code>) to create a range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>Range&lt;Double&gt;</code> from zero up to, but not including, 5.0.</p>
+
+<pre><code class="language-swift">let lessThanFive = 0.0..&lt;5.0
+print(lessThanFive.contains(3.14))  // Prints &quot;true&quot;
+print(lessThanFive.contains(5.0))   // Prints &quot;false&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>minimum:</strong> The lower bound for the range.
+  <strong>maximum:</strong> The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ..&lt;(minimum: Self, maximum: Self) -&gt; Range&lt;Self&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func--lt_y_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--lt_y_">func &lt;(<wbr>_:<wbr>y:)</a>
+        
+<div class="comment collapse" id="comment-func--lt_y_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--lteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--lteq_rhs_">func &lt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--lteq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is less than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the less-than-or-equal-to
+operator (<code>&lt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func--eqeq_y_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--eqeq_y_">func ==(<wbr>_:<wbr>y:)</a>
+        
+<div class="comment collapse" id="comment-func--eqeq_y_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(x: Self, y: Self) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--gt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--gt_rhs_">func &gt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--gt_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than operator (<code>&gt;</code>) for
+any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--gteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--gteq_rhs_">func &gt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--gteq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func--mns_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--mns_-self-rhs_-self">func -(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func--mns_-self-rhs_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func -(lhs: Self, rhs: Self) -&gt; Self.Stride</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--mns_-self-rhs_-self-stride">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--mns_-self-rhs_-self-stride">func -(<wbr>_:<wbr> Self, rhs: Self.Stride)</a>
+        
+<div class="comment collapse" id="comment-func--mns_-self-rhs_-self-stride"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func -(lhs: Self, rhs: Self.Stride) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--mnseq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--mnseq_rhs_">func -=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--mnseq_rhs_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func -=(lhs: inout Self, rhs: Self.Stride)</code>
+    
+    
+</div></div>
+</div>
+
+
+
+
+
+
+
+<h4>Where Stride : SignedInteger</h4>
+
+
+
+
+<div class="declaration" id="func-stride_-signedinteger-dotdotdot_maximum_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride_-signedinteger-dotdotdot_maximum_">func ...(<wbr>_:<wbr>maximum:)</a>
+        
+<div class="comment collapse" id="comment-func-stride_-signedinteger-dotdotdot_maximum_"><div class="p">
+    <p>Returns a countable closed range that contains both of its bounds.</p>
+
+<p>Use the closed range operator (<code>...</code>) to create a closed range of any type
+that conforms to the <code>Strideable</code> protocol with an associated signed
+integer <code>Stride</code> type, such as any of the standard library&#39;s integer
+types. This example creates a <code>ClosedRange&lt;Int&gt;</code> from zero up to,
+and including, nine.</p>
+
+<pre><code class="language-swift">let singleDigits = 0...9
+print(singleDigits.contains(9))
+// Prints &quot;true&quot;</code></pre>
+
+<p>You can use sequence or collection methods on the <code>singleDigits</code> range.</p>
+
+<pre><code class="language-swift">print(singleDigits.count)
+// Prints &quot;10&quot;
+print(singleDigits.last)
+// Prints &quot;9&quot;</code></pre>
+
+<p><strong>Parameters:</strong>)`.
+  <strong>minimum:</strong> The lower bound for the range.
+  <strong>maximum:</strong> The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ...(minimum: Self, maximum: Self) -&gt; ClosedRange&lt;Self&gt;</code>
+    
+    
+</div></div>
+</div>
+
+
+

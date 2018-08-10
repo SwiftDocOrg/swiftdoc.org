@@ -1,0 +1,133 @@
+---
+layout: "default"
+title: "RandomNumberGenerator"
+description: "Swift documentation for 'RandomNumberGenerator': A type that provides uniformly distributed random data."
+keywords: "RandomNumberGenerator,protocol,swift,documentation,next"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol RandomNumberGenerator</code></div>
+
+<div class="discussion comment">
+    <p>A type that provides uniformly distributed random data.</p>
+
+<p>When you call methods that use random data, such as creating new random
+values or shuffling a collection, you can pass a <code>RandomNumberGenerator</code>
+type to be used as the source for randomness. When you don&#39;t pass a
+generator, the default <code>Random</code> type is used.</p>
+
+<p>When providing new APIs that use randomness, provide a version that accepts
+a generator conforming to the <code>RandomNumberGenerator</code> protocol as well as a
+version that uses the default generator. For example, this <code>Weekday</code>
+enumeration provides static methods that return a random day of the week:</p>
+
+<pre><code class="language-swift">enum Weekday: CaseIterable {
+    case sunday, monday, tuesday, wednesday, thursday, friday, saturday
+
+    static func random&lt;G: RandomNumberGenerator&gt;(using generator: inout G) -&gt; Weekday {
+        return Weekday.allCases.randomElement(using: &amp;generator)!
+    }
+
+    static func random() -&gt; Weekday {
+        return Weekday.randomWeekday(using: &amp;Random.default)
+    }
+}</code></pre>
+
+<h1>Conforming to the RandomNumberGenerator Protocol</h1>
+
+<p>A custom <code>RandomNumberGenerator</code> type can have different characteristics
+than the default <code>Random</code> type. For example, a seedable generator can be
+used to generate the same sequence of random values for testing purposes.</p>
+
+<p>To make a custom type conform to the <code>RandomNumberGenerator</code> protocol,
+implement the required <code>next()</code> method. Each call to <code>next()</code> must produce
+a uniform and independent random value.</p>
+
+<p>Types that conform to <code>RandomNumberGenerator</code> should specifically document
+the thread safety and quality of the generator.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-next">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-next">mutating func next()</a>
+        
+<div class="comment collapse" id="comment-func-next"><div class="p">
+    <p>Returns a value from a uniform, independent distribution of binary data.</p>
+
+<p><strong>Returns:</strong> An unsigned 64-bit random value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next() -&gt; UInt64</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+
+
+<div class="declaration" id="func--next">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--next">mutating func next()</a>
+        
+<div class="comment collapse" id="comment-func--next"><div class="p">
+    <p>Returns a value from a uniform, independent distribution of binary data.</p>
+
+<p><strong>Returns:</strong> A random value of <code>T</code>. Bits are randomly distributed so that
+  every value of <code>T</code> is equally likely to be returned.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next&lt;T&gt;() -&gt; T where T : FixedWidthInteger, T : UnsignedInteger</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--next_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--next_">mutating func next(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--next_"><div class="p">
+    <p>Returns a random value that is less than the given upper bound.</p>
+
+<p><strong><code>upperBound</code>:</strong>  The upper bound for the randomly generated value.
+<strong>Returns:</strong> A random value of <code>T</code> in the range <code>0..&lt;upperBound</code>. Every
+  value in the range <code>0..&lt;upperBound</code> is equally likely to be returned.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next&lt;T&gt;(upperBound: T) -&gt; T where T : FixedWidthInteger, T : UnsignedInteger</code>
+    
+    
+</div></div>
+</div>
+
+
+
+
+

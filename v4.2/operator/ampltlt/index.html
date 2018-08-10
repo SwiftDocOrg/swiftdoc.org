@@ -1,0 +1,1384 @@
+---
+layout: "default"
+title: "Operator: &<<"
+description: "Swift documentation for the '&<<' operator."
+root: "/v4.2"
+---
+
+<code class="language-swift"> operator &amp;&lt;&lt; {
+    associativity 
+    precedence 
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-ampltlt_-int-rhs_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-int-rhs_-int">func &amp;&lt;&lt;(<wbr>_:<wbr> Int, rhs: Int)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-int-rhs_-int"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Int, rhs: Int) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-ampltlt_-int8-rhs_-int8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-int8-rhs_-int8">func &amp;&lt;&lt;(<wbr>_:<wbr> Int8, rhs: Int8)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-int8-rhs_-int8"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Int8, rhs: Int8) -&gt; Int8</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-ampltlt_-int16-rhs_-int16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-int16-rhs_-int16">func &amp;&lt;&lt;(<wbr>_:<wbr> Int16, rhs: Int16)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-int16-rhs_-int16"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Int16, rhs: Int16) -&gt; Int16</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-ampltlt_-int32-rhs_-int32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-int32-rhs_-int32">func &amp;&lt;&lt;(<wbr>_:<wbr> Int32, rhs: Int32)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-int32-rhs_-int32"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Int32, rhs: Int32) -&gt; Int32</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-ampltlt_-int64-rhs_-int64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-int64-rhs_-int64">func &amp;&lt;&lt;(<wbr>_:<wbr> Int64, rhs: Int64)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-int64-rhs_-int64"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Int64, rhs: Int64) -&gt; Int64</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-self-rhs_-self">func &amp;&lt;&lt;(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-self-rhs_-self"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-self-rhs_-self">func &amp;&lt;&lt;(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-self-rhs_-self"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-self-rhs_-self">func &amp;&lt;&lt;(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-self-rhs_-self"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-self-rhs_-self">func &amp;&lt;&lt;(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-self-rhs_-self"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-self-rhs_-self">func &amp;&lt;&lt;(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-self-rhs_-self"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-self-rhs_-self">func &amp;&lt;&lt;(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-self-rhs_-self"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-self-rhs_-self">func &amp;&lt;&lt;(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-self-rhs_-self"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-self-rhs_-self">func &amp;&lt;&lt;(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-self-rhs_-self"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-self-rhs_-self">func &amp;&lt;&lt;(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-self-rhs_-self"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-self-rhs_-self">func &amp;&lt;&lt;(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-self-rhs_-self"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-ampltlt_-uint-rhs_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-uint-rhs_-uint">func &amp;&lt;&lt;(<wbr>_:<wbr> UInt, rhs: UInt)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-uint-rhs_-uint"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: UInt, rhs: UInt) -&gt; UInt</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-ampltlt_-uint8-rhs_-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-uint8-rhs_-uint8">func &amp;&lt;&lt;(<wbr>_:<wbr> UInt8, rhs: UInt8)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-uint8-rhs_-uint8"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: UInt8, rhs: UInt8) -&gt; UInt8</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-ampltlt_-uint16-rhs_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-uint16-rhs_-uint16">func &amp;&lt;&lt;(<wbr>_:<wbr> UInt16, rhs: UInt16)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-uint16-rhs_-uint16"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: UInt16, rhs: UInt16) -&gt; UInt16</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-ampltlt_-uint32-rhs_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-uint32-rhs_-uint32">func &amp;&lt;&lt;(<wbr>_:<wbr> UInt32, rhs: UInt32)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-uint32-rhs_-uint32"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: UInt32, rhs: UInt32) -&gt; UInt32</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-ampltlt_-uint64-rhs_-uint64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt_-uint64-rhs_-uint64">func &amp;&lt;&lt;(<wbr>_:<wbr> UInt64, rhs: UInt64)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt_-uint64-rhs_-uint64"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;(lhs: UInt64, rhs: UInt64) -&gt; UInt64</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt-other_-self-rhs_-other">func &amp;&lt;&lt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt-other_-self-rhs_-other">func &amp;&lt;&lt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt-other_-self-rhs_-other">func &amp;&lt;&lt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt-other_-self-rhs_-other">func &amp;&lt;&lt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt-other_-self-rhs_-other">func &amp;&lt;&lt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt-other_-self-rhs_-other">func &amp;&lt;&lt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt-other_-self-rhs_-other">func &amp;&lt;&lt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt-other_-self-rhs_-other">func &amp;&lt;&lt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt-other_-self-rhs_-other">func &amp;&lt;&lt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampltlt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampltlt-other_-self-rhs_-other">func &amp;&lt;&lt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func-ampltlt-other_-self-rhs_-other"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left, masking the shift amount to the
+type&#39;s bit width.</p>
+
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110</code></pre>
+
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left. If <code>rhs</code> is
+    outside the range <code>0..&lt;lhs.bitWidth</code>, it is masked to produce a
+    value within that range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&lt;&lt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Self where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/FixedWidthInteger/"><code>FixedWidthInteger</code></a>    
+</div></div>
+</div>

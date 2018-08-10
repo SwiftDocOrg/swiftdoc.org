@@ -1,0 +1,2368 @@
+---
+layout: "default"
+title: "UnsignedInteger"
+description: "Swift documentation for 'UnsignedInteger': An integer type that can represent only nonnegative values."
+keywords: "UnsignedInteger,protocol,swift,documentation,%,%=,&,&=,*,*=,+,+=,/,/=,<,<<,<<=,<=,==,>,>=,>>,>>=,^,^=,|,|=,~,-,-=,advanced,distance,hash,quotientAndRemainder,signum,bitWidth,isSigned,trailingZeroBitCount,words,description,hashValue,magnitude,Words,IntegerLiteralType,Magnitude,Stride"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol UnsignedInteger</code></div>
+
+<div class="discussion comment">
+    <p>An integer type that can represent only nonnegative values.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">BinaryInteger, Comparable, CustomStringConvertible, Equatable, ExpressibleByIntegerLiteral, Hashable, Numeric, Strideable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration inherited">
+<code class="language-swift">Words : Sequence</code>
+<div class="comment">
+    <p>A type that represents the words of a binary integer.</p>
+
+<p>The <code>Words</code> type must conform to the <code>Collection</code> protocol with an
+<code>Element</code> type of <code>UInt</code>.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">IntegerLiteralType : _ExpressibleByBuiltinIntegerLiteral</code>
+<div class="comment">
+    <p>A type that represents an integer literal.</p>
+
+<p>The standard library integer and floating-point types are all valid types
+for <code>IntegerLiteralType</code>.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">Magnitude : Comparable, Numeric</code>
+<div class="comment">
+    <p>A type that can represent the absolute value of any possible value of the
+conforming type.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">Stride : Comparable, SignedNumeric</code>
+<div class="comment">
+    <p>A type that represents the distance between two values.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration inherited" id="init-t_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-t_-t">init&lt;T&gt;(<wbr>_: T)</a><div class="comment collapse" id="comment-init-t_-t"><div class="p">
+    <p>Creates an integer from the given floating-point value, rounding toward
+zero.</p>
+
+<p>Any fractional part of the value passed as <code>source</code> is removed, rounding
+the value toward zero.</p>
+
+<pre><code class="language-swift">let x = Int(21.5)
+// x == 21
+let y = Int(-21.5)
+// y == -21</code></pre>
+
+<p>If <code>source</code> is outside the bounds of this type after rounding toward
+zero, a runtime error may occur.</p>
+
+<pre><code class="language-swift">let z = UInt(-21.5)
+// Error: ...the result would be less than UInt.min</code></pre>
+
+<p><strong><code>source</code>:</strong>  A floating-point value to convert to an integer.
+  <code>source</code> must be representable in this type after rounding toward
+  zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(_ source: T)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-clamping_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-clamping_">init(<wbr>clamping:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-clamping_"><div class="p">
+    <p>Creates a new instance with the representable value that&#39;s closest to the
+given integer.</p>
+
+<p>If the value passed as <code>source</code> is greater than the maximum representable
+value in this type, the result is the type&#39;s <code>max</code> value. If <code>source</code> is
+less than the smallest representable value in this type, the result is
+the type&#39;s <code>min</code> value.</p>
+
+<p>In this example, <code>x</code> is initialized as an <code>Int8</code> instance by clamping
+<code>500</code> to the range <code>-128...127</code>, and <code>y</code> is initialized as a <code>UInt</code>
+instance by clamping <code>-500</code> to the range <code>0...UInt.max</code>.</p>
+
+<pre><code class="language-swift">let x = Int8(clamping: 500)
+// x == 127
+// x == Int8.max
+
+let y = UInt(clamping: -500)
+// y == 0</code></pre>
+
+<p><strong><code>source</code>:</strong>  An integer to convert to this type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(clamping source: T)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-truncatingifneeded_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-truncatingifneeded_">init(<wbr>truncatingIfNeeded:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-truncatingifneeded_"><div class="p">
+    <p>Creates a new instance from the bit pattern of the given instance by
+sign-extending or truncating to fit this type.</p>
+
+<p>When the bit width of <code>T</code> (the type of <code>source</code>) is equal to or greater
+than this type&#39;s bit width, the result is the truncated
+least-significant bits of <code>source</code>. For example, when converting a
+16-bit value to an 8-bit type, only the lower 8 bits of <code>source</code> are
+used.</p>
+
+<pre><code class="language-swift">let p: Int16 = -500
+// &#39;p&#39; has a binary representation of 11111110_00001100
+let q = Int8(truncatingIfNeeded: p)
+// q == 12
+// &#39;q&#39; has a binary representation of 00001100</code></pre>
+
+<p>When the bit width of <code>T</code> is less than this type&#39;s bit width, the result
+is <em>sign-extended</em> to fill the remaining bits. That is, if <code>source</code> is
+negative, the result is padded with ones; otherwise, the result is
+padded with zeros.</p>
+
+<pre><code class="language-swift">let u: Int8 = 21
+// &#39;u&#39; has a binary representation of 00010101
+let v = Int16(truncatingIfNeeded: u)
+// v == 21
+// &#39;v&#39; has a binary representation of 00000000_00010101
+
+let w: Int8 = -21
+// &#39;w&#39; has a binary representation of 11101011
+let x = Int16(truncatingIfNeeded: w)
+// x == -21
+// &#39;x&#39; has a binary representation of 11111111_11101011
+let y = UInt16(truncatingIfNeeded: w)
+// y == 65515
+// &#39;y&#39; has a binary representation of 11111111_11101011</code></pre>
+
+<p><strong><code>source</code>:</strong>  An integer to convert to this type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(truncatingIfNeeded source: T)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-exactly_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-exactly_">init?(<wbr>exactly:)</a><div class="comment collapse" id="comment-init-exactly_"><div class="p">
+    <p>Creates an integer from the given floating-point value, if it can be
+represented exactly.</p>
+
+<p>If the value passed as <code>source</code> is not representable exactly, the result
+is <code>nil</code>. In the following example, the constant <code>x</code> is successfully
+created from a value of <code>21.0</code>, while the attempt to initialize the
+constant <code>y</code> from <code>21.5</code> fails:</p>
+
+<pre><code class="language-swift">let x = Int(exactly: 21.0)
+// x == Optional(21)
+let y = Int(exactly: 21.5)
+// y == nil</code></pre>
+
+<p><strong><code>source</code>:</strong>  A floating-point value to convert to an integer.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?&lt;T&gt;(exactly source: T)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        ,    <a href="../../protocol/Numeric/"><code>Numeric</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-integerliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-integerliteral_">init(<wbr>integerLiteral:)</a><div class="comment collapse" id="comment-init-integerliteral_"><div class="p">
+    <p>Creates an instance initialized to the specified integer value.</p>
+
+<p>Do not call this initializer directly. Instead, initialize a variable or
+constant using an integer literal. For example:</p>
+
+<pre><code class="language-swift">let x = 23</code></pre>
+
+<p>In this example, the assignment to the <code>x</code> constant calls this integer
+literal initializer behind the scenes.</p>
+
+<p><strong><code>value</code>:</strong>  The value to create.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(integerLiteral value: Self.IntegerLiteralType)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/ExpressibleByIntegerLiteral/"><code>ExpressibleByIntegerLiteral</code></a>
+        </div></div>
+</div>
+
+<h3>Static Variables</h3>
+<div class="declaration inherited" id="static-var-issigned_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-issigned_-bool">static var isSigned: Bool</a><div class="comment collapse" id="comment-static-var-issigned_-bool"><div class="p">
+    <p>A Boolean value indicating whether this type is a signed integer type.</p>
+
+<p><em>Signed</em> integer types can represent both positive and negative values.
+<em>Unsigned</em> integer types can represent only nonnegative values.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var isSigned: Bool { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+
+<h3>Instance Variables</h3>
+<div class="declaration inherited" id="var-bitwidth_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-bitwidth_-int">var bitWidth: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-bitwidth_-int"><div class="p">
+    <p>The number of bits in the current binary representation of this value.</p>
+
+<p>This property is a constant for instances of fixed-width integer
+types.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var bitWidth: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-trailingzerobitcount_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-trailingzerobitcount_-int">var trailingZeroBitCount: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-trailingzerobitcount_-int"><div class="p">
+    <p>The number of trailing zeros in this value&#39;s binary representation.</p>
+
+<p>For example, in a fixed-width integer type with a <code>bitWidth</code> value of 8,
+the number -8 has three trailing zeros.</p>
+
+<pre><code class="language-swift">let x = Int8(bitPattern: 0b1111_1000)
+// x == -8
+// x.trailingZeroBitCount == 3</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var trailingZeroBitCount: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-words_-self-words">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-words_-self-words">var words: Self.Words</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-words_-self-words"><div class="p">
+    <p>A collection containing the words of this value&#39;s binary
+representation, in order from the least significant to most significant.</p>
+
+<p>Negative values are returned in two&#39;s complement representation,
+regardless of the type&#39;s underlying implementation.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var words: Self.Words { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of this instance.</p>
+
+<p>Calling this property directly is discouraged. Instead, convert an
+instance of any type to a string by using the <code>String(describing:)</code>
+initializer. This initializer works with any type, and uses the custom
+<code>description</code> property for types that conform to
+<code>CustomStringConvertible</code>:</p>
+
+<pre><code class="language-swift">struct Point: CustomStringConvertible {
+    let x: Int, y: Int
+
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(describing: p)
+print(s)
+// Prints &quot;(21, 30)&quot;</code></pre>
+
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type&#39;s <code>description</code> property.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CustomStringConvertible/"><code>CustomStringConvertible</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The hash value.</p>
+
+<p>Hash values are not guaranteed to be equal across different executions of
+your program. Do not save hash values to use during a future execution.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/Hashable/"><code>Hashable</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-magnitude_-self-magnitude">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-magnitude_-self-magnitude">var magnitude: Self.Magnitude</a><div class="comment collapse" id="comment-var-magnitude_-self-magnitude"><div class="p">
+    <p>The magnitude of this value.</p>
+
+<p>For any numeric value <code>x</code>, <code>x.magnitude</code> is the absolute value of <code>x</code>.
+You can use the <code>magnitude</code> property in operations that are simpler to
+implement in terms of unsigned values, such as printing the value of an
+integer, which is just printing a &#39;-&#39; character in front of an absolute
+value.</p>
+
+<pre><code class="language-swift">let x = -200
+// x.magnitude == 200</code></pre>
+
+<p>The global <code>abs(_:)</code> function provides more familiar syntax when you need
+to find an absolute value. In addition, because <code>abs(_:)</code> always returns
+a value of the same type, even in a generic context, using the function
+instead of the <code>magnitude</code> property is encouraged.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var magnitude: Self.Magnitude { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/Numeric/"><code>Numeric</code></a>
+        </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-pct_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-pct_rhs_">func %(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-pct_rhs_"><div class="p">
+    <p>Returns the remainder of dividing the first value by the second.</p>
+
+<p>The result of the modulo operator (<code>%</code>) has the same sign as <code>lhs</code> and is
+less than <code>rhs.magnitude</code>.</p>
+
+<pre><code class="language-swift">let x = 22 % 5
+// x == 2
+let y = 22 % -5
+// y == 2
+let z = -22 % -5
+// z == -2</code></pre>
+
+<p>For any two integers <code>a</code> and <code>b</code>, their quotient <code>q</code>, and their remainder
+<code>r</code>, <code>a == b * q + r</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func %(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-pcteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-pcteq_rhs_">func %=(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-pcteq_rhs_"><div class="p">
+    <p>Divides the first value by the second and stores the remainder in the
+left-hand-side variable.</p>
+
+<p>The result has the same sign as <code>lhs</code> and is less than <code>rhs.magnitude</code>.</p>
+
+<pre><code class="language-swift">var x = 22
+x %= 5
+// x == 2
+
+var y = 22
+y %= -5
+// y == 2
+
+var z = -22
+z %= -5
+// z == -2</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func %=(lhs: inout Self, rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-amp_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-amp_rhs_">func &amp;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-amp_rhs_"><div class="p">
+    <p>Returns the result of performing a bitwise AND operation on the two given
+values.</p>
+
+<p>A bitwise AND operation results in a value that has each bit set to <code>1</code>
+where <em>both</em> of its arguments have that bit set to <code>1</code>. For example:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x &amp; y             // 0b00000100
+// z == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer value.
+  <strong>rhs:</strong> Another integer value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ampeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampeq_rhs_">func &amp;=(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-ampeq_rhs_"><div class="p">
+    <p>Stores the result of performing a bitwise AND operation on the two given
+values in the left-hand-side variable.</p>
+
+<p>A bitwise AND operation results in a value that has each bit set to <code>1</code>
+where <em>both</em> of its arguments have that bit set to <code>1</code>. For example:</p>
+
+<pre><code class="language-swift">var x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+x &amp;= y                    // 0b00000100</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer value.
+  <strong>rhs:</strong> Another integer value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;=(lhs: inout Self, rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-star_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-star_rhs_">func *(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-star_rhs_"><div class="p">
+    <p>Multiplies two values and produces their product.</p>
+
+<p>The multiplication operator (<code>*</code>) calculates the product of its two
+arguments. For example:</p>
+
+<pre><code class="language-swift">2 * 3                   // 6
+100 * 21                // 2100
+-10 * 15                // -150
+3.5 * 2.25              // 7.875</code></pre>
+
+<p>You cannot use <code>*</code> with arguments of different types. To multiply values
+of different types, convert one of the values to the other value&#39;s type.</p>
+
+<pre><code class="language-swift">let x: Int8 = 21
+let y: Int = 1000000
+Int(x) * y              // 21000000</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to multiply.
+  <strong>rhs:</strong> The second value to multiply.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func *(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Numeric/"><code>Numeric</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-stareq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stareq_rhs_">func *=(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-stareq_rhs_"><div class="p">
+    <p>Multiplies two values and stores the result in the left-hand-side
+variable.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to multiply.
+  <strong>rhs:</strong> The second value to multiply.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func *=(lhs: inout Self, rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Numeric/"><code>Numeric</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-pls_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-pls_rhs_">func +(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-pls_rhs_"><div class="p">
+    <p>Adds two values and produces their sum.</p>
+
+<p>The addition operator (<code>+</code>) calculates the sum of its two arguments. For
+example:</p>
+
+<pre><code class="language-swift">1 + 2                   // 3
+-10 + 15                // 5
+-15 + -5                // -20
+21.5 + 3.25             // 24.75</code></pre>
+
+<p>You cannot use <code>+</code> with arguments of different types. To add values of
+different types, convert one of the values to the other value&#39;s type.</p>
+
+<pre><code class="language-swift">let x: Int8 = 21
+let y: Int = 1000000
+Int(x) + y              // 1000021</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Numeric/"><code>Numeric</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-plseq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq_rhs_">func +=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-plseq_rhs_"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Self, rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Numeric/"><code>Numeric</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-slash_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slash_rhs_">func /(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-slash_rhs_"><div class="p">
+    <p>Returns the quotient of dividing the first value by the second.</p>
+
+<p>For integer types, any remainder of the division is discarded.</p>
+
+<pre><code class="language-swift">let x = 21 / 5
+// x == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-slasheq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-slasheq_rhs_">func /=(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-slasheq_rhs_"><div class="p">
+    <p>Divides the first value by the second and stores the quotient in the
+left-hand-side variable.</p>
+
+<p>For integer types, any remainder of the division is discarded.</p>
+
+<pre><code class="language-swift">var x = 21
+x /= 5
+// x == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to divide.
+  <strong>rhs:</strong> The value to divide <code>lhs</code> by. <code>rhs</code> must not be zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func /=(lhs: inout Self, rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_rhs_">func &lt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-lt_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ltlt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ltlt_rhs_">func &lt;&lt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-ltlt_rhs_"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left.</p>
+
+<p>The <code>&lt;&lt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a right shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>, resulting in zero.</li><li>Using any other value for <code>rhs</code> performs a left shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted left by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &lt;&lt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a right shift
+with <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &lt;&lt; -3
+// a == 3                         // 0b00000011
+let b = x &gt;&gt; 3
+// b == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;&lt;&lt;RHS&gt;(lhs: Self, rhs: RHS) -&gt; Self where RHS : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-ltlteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ltlteq_rhs_">func &lt;&lt;=(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-ltlteq_rhs_"><div class="p">
+    <p>Stores the result of shifting a value&#39;s binary representation the
+specified number of digits to the left in the left-hand-side variable.</p>
+
+<p>The <code>&lt;&lt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a right shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>, resulting in zero.</li><li>Using any other value for <code>rhs</code> performs a left shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted left by two bits.</p>
+
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &lt;&lt;= 2
+// x == 120                       // 0b01111000</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &lt;&lt;= 11
+// y == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a right shift
+with <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">var a: UInt8 = 30                 // 0b00011110
+a &lt;&lt;= -3
+// a == 3                         // 0b00000011
+
+var b: UInt8 = 30                 // 0b00011110
+b &gt;&gt;= 3
+// b == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;&lt;=&lt;RHS&gt;(lhs: inout Self, rhs: RHS)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lteq_rhs_">func &lt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-lteq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gt_rhs_">func &gt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gt_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_rhs_">func &gt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gtgt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gtgt_rhs_">func &gt;&gt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gtgt_rhs_"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the right.</p>
+
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;&lt;RHS&gt;(lhs: Self, rhs: RHS) -&gt; Self where RHS : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gtgteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gtgteq_rhs_">func &gt;&gt;=(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-gtgteq_rhs_"><div class="p">
+    <p>Stores the result of shifting a value&#39;s binary representation the
+specified number of digits to the right in the left-hand-side variable.</p>
+
+<p>The <code>&gt;&gt;=</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &gt;&gt;= 2
+// x == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &gt;&gt;= 11
+// y == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">var a: UInt8 = 30                 // 0b00011110
+a &gt;&gt;= -3
+// a == 240                       // 0b11110000
+
+var b: UInt8 = 30                 // 0b00011110
+b &lt;&lt;= 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">var q: Int8 = -30                 // 0b11100010
+q &gt;&gt;= 2
+// q == -8                        // 0b11111000
+
+var r: Int8 = -30                 // 0b11100010
+r &gt;&gt;= 11
+// r == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;=&lt;RHS&gt;(lhs: inout Self, rhs: RHS)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-crt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-crt_rhs_">func ^(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-crt_rhs_"><div class="p">
+    <p>Returns the result of performing a bitwise XOR operation on the two given
+values.</p>
+
+<p>A bitwise XOR operation, also known as an exclusive OR operation, results
+in a value that has each bit set to <code>1</code> where <em>one or the other but not
+both</em> of its arguments had that bit set to <code>1</code>. For example:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x ^ y             // 0b00001011
+// z == 11</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer value.
+  <strong>rhs:</strong> Another integer value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ^(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-crteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-crteq_rhs_">func ^=(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-crteq_rhs_"><div class="p">
+    <p>Stores the result of performing a bitwise XOR operation on the two given
+values in the left-hand-side variable.</p>
+
+<p>A bitwise XOR operation, also known as an exclusive OR operation, results
+in a value that has each bit set to <code>1</code> where <em>one or the other but not
+both</em> of its arguments had that bit set to <code>1</code>. For example:</p>
+
+<pre><code class="language-swift">var x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+x ^= y                    // 0b00001011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer value.
+  <strong>rhs:</strong> Another integer value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ^=(lhs: inout Self, rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-bar_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-bar_rhs_">func |(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-bar_rhs_"><div class="p">
+    <p>Returns the result of performing a bitwise OR operation on the two given
+values.</p>
+
+<p>A bitwise OR operation results in a value that has each bit set to <code>1</code>
+where <em>one or both</em> of its arguments have that bit set to <code>1</code>. For
+example:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x | y             // 0b00001111
+// z == 15</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer value.
+  <strong>rhs:</strong> Another integer value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func |(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-bareq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-bareq_rhs_">func |=(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-bareq_rhs_"><div class="p">
+    <p>Stores the result of performing a bitwise OR operation on the two given
+values in the left-hand-side variable.</p>
+
+<p>A bitwise OR operation results in a value that has each bit set to <code>1</code>
+where <em>one or both</em> of its arguments have that bit set to <code>1</code>. For
+example:</p>
+
+<pre><code class="language-swift">var x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+x |= y                    // 0b00001111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer value.
+  <strong>rhs:</strong> Another integer value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func |=(lhs: inout Self, rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-tilde_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-tilde_">prefix func ~(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-tilde_"><div class="p">
+    <p>Returns the inverse of the bits set in the argument.</p>
+
+<p>The bitwise NOT operator (<code>~</code>) is a prefix operator that returns a value
+in which all the bits of its argument are flipped: Bits that are <code>1</code> in
+the argument are <code>0</code> in the result, and bits that are <code>0</code> in the argument
+are <code>1</code> in the result. This is equivalent to the inverse of a set. For
+example:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5        // 0b00000101
+let notX = ~x           // 0b11111010</code></pre>
+
+<p>Performing a bitwise NOT operation on 0 returns a value with every bit
+set to <code>1</code>.</p>
+
+<pre><code class="language-swift">let allOnes = ~UInt8.min   // 0b11111111</code></pre>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">prefix func ~(x: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-mns_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-mns_rhs_">func -(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-mns_rhs_"><div class="p">
+    <p>Subtracts one value from another and produces their difference.</p>
+
+<p>The subtraction operator (<code>-</code>) calculates the difference of its two
+arguments. For example:</p>
+
+<pre><code class="language-swift">8 - 3                   // 5
+-10 - 5                 // -15
+100 - -5                // 105
+10.5 - 100.0            // -89.5</code></pre>
+
+<p>You cannot use <code>-</code> with arguments of different types. To subtract values
+of different types, convert one of the values to the other value&#39;s type.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 21
+let y: UInt = 1000000
+y - UInt(x)             // 999979</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A numeric value.
+  <strong>rhs:</strong> The value to subtract from <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func -(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Numeric/"><code>Numeric</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-mnseq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-mnseq_rhs_">func -=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-mnseq_rhs_"><div class="p">
+    <p>Subtracts the second value from the first and stores the difference in the
+left-hand-side variable.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A numeric value.
+  <strong>rhs:</strong> The value to subtract from <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func -=(lhs: inout Self, rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Numeric/"><code>Numeric</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-advanced-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advanced-by_">func advanced(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-advanced-by_"><div class="p">
+    <p>Returns a value that is offset the specified distance from this value.</p>
+
+<p>Use the <code>advanced(by:)</code> method in generic code to offset a value by a
+specified distance. If you&#39;re working directly with numeric values, use
+the addition operator (<code>+</code>) instead of this method.</p>
+
+<pre><code class="language-swift">func addOne&lt;T: Strideable&gt;(to x: T) -&gt; T
+    where T.Stride : ExpressibleByIntegerLiteral
+{
+    return x.advanced(by: 1)
+}
+
+let x = addOne(to: 5)
+// x == 6
+let y = addOne(to: 3.5)
+// y = 4.5</code></pre>
+
+<p>If this type&#39;s <code>Stride</code> type conforms to <code>BinaryInteger</code>, then for a
+value <code>x</code>, a distance <code>n</code>, and a value <code>y = x.advanced(by: n)</code>,
+<code>x.distance(to: y) == n</code>. Using this method with types that have a
+noninteger <code>Stride</code> may result in an approximation.</p>
+
+<p><strong><code>n</code>:</strong>  The distance to advance this value.
+<strong>Returns:</strong> A value that is offset from this value by <code>n</code>.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advanced(by n: Self.Stride) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-distance-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distance-to_">func distance(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-distance-to_"><div class="p">
+    <p>Returns the distance from this value to the given value, expressed as a 
+stride.</p>
+
+<p>If this type&#39;s <code>Stride</code> type conforms to <code>BinaryInteger</code>, then for two
+values <code>x</code> and <code>y</code>, and a distance <code>n = x.distance(to: y)</code>,
+<code>x.advanced(by: n) == y</code>. Using this method with types that have a
+noninteger <code>Stride</code> may result in an approximation.</p>
+
+<p><strong><code>other</code>:</strong>  The value to calculate the distance to.
+<strong>Returns:</strong> The distance from this value to <code>other</code>.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(to other: Self) -&gt; Self.Stride</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-hash-into_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-hash-into_">func hash(<wbr>into:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-hash-into_"><div class="p">
+    <p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+
+<p>Implement this method to conform to the <code>Hashable</code> protocol. The
+components used for hashing must be the same as the components compared
+in your type&#39;s <code>==</code> operator implementation. Call <code>hasher.combine(_:)</code>
+with each of these components.</p>
+
+<p><strong>Important:</strong> Never call <code>finalize()</code> on <code>hasher</code>. Doing so may become a
+  compile-time error in the future.</p>
+
+<p><strong><code>hasher</code>:</strong>  The hasher to use when combining the components
+  of this instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func hash(into hasher: inout Hasher)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Hashable/"><code>Hashable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-quotientandremainder-dividingby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-quotientandremainder-dividingby_">func quotientAndRemainder(<wbr>dividingBy:)</a>
+        
+<div class="comment collapse" id="comment-func-quotientandremainder-dividingby_"><div class="p">
+    <p>Returns the quotient and remainder of this value divided by the given
+value.</p>
+
+<p>Use this method to calculate the quotient and remainder of a division at
+the same time.</p>
+
+<pre><code class="language-swift">let x = 1_000_000
+let (q, r) = x.quotientAndRemainder(dividingBy: 933)
+// q == 1071
+// r == 757</code></pre>
+
+<p><strong><code>rhs</code>:</strong>  The value to divide this value by.
+<strong>Returns:</strong> A tuple containing the quotient and remainder of this value
+  divided by <code>rhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func quotientAndRemainder(dividingBy rhs: Self) -&gt; (quotient: Self, remainder: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-signum">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-signum">func signum()</a>
+        
+<div class="comment collapse" id="comment-func-signum"><div class="p">
+    <p>Returns <code>-1</code> if this value is negative and <code>1</code> if it&#39;s positive;
+otherwise, <code>0</code>.</p>
+
+<p><strong>Returns:</strong> The sign of this number, expressed as an integer of the same
+  type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func signum() -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+<div class="declaration inherited" id="-init">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init">init()</a><div class="comment collapse" id="comment--init"><div class="p">
+    <p>Creates a new value equal to zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="-init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init_">init(<wbr>_:)</a><div class="comment collapse" id="comment--init_"><div class="p">
+    <p>Creates a new instance from the given integer.</p>
+
+<p>Use this initializer to convert from another integer type when you know
+the value is within the bounds of this type. Passing a value that can&#39;t
+be represented in this type results in a runtime error.</p>
+
+<p>In the following example, the constant <code>y</code> is successfully created from
+<code>x</code>, an <code>Int</code> instance with a value of <code>100</code>. Because the <code>Int8</code> type
+can represent <code>127</code> at maximum, the attempt to create <code>z</code> with a value
+of <code>1000</code> results in a runtime error.</p>
+
+<pre><code class="language-swift">let x = 100
+let y = Int8(x)
+// y == 100
+let z = Int8(x * 10)
+// Error: Not enough bits to represent the given value</code></pre>
+
+<p><strong><code>source</code>:</strong>  A value to convert to this type of integer. The value
+  passed as <code>source</code> must be representable in this type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(_ source: T)</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="-init-integerliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init-integerliteral_">init(<wbr>integerLiteral:)</a><div class="comment collapse" id="comment--init-integerliteral_"><div class="p">
+    <p>Creates an instance initialized to the specified integer value.</p>
+
+<p>Do not call this initializer directly. Instead, initialize a variable or
+constant using an integer literal. For example:</p>
+
+<pre><code class="language-swift">let x = 23</code></pre>
+
+<p>In this example, the assignment to the <code>x</code> constant calls this integer
+literal initializer behind the scenes.</p>
+
+<p><strong><code>value</code>:</strong>  The value to create.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(integerLiteral value: Self)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        ,    <a href="../../protocol/Numeric/"><code>Numeric</code></a>
+        ,    <a href="../../protocol/ExpressibleByIntegerLiteral/"><code>ExpressibleByIntegerLiteral</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="-init-exactly_">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init-exactly_">init?(<wbr>exactly:)</a><div class="comment collapse" id="comment--init-exactly_"><div class="p">
+    <p>Creates a new instance from the given integer, if it can be represented
+exactly.</p>
+
+<p>If the value passed as <code>source</code> is not representable exactly, the result
+is <code>nil</code>. In the following example, the constant <code>x</code> is successfully
+created from a value of <code>100</code>, while the attempt to initialize the
+constant <code>y</code> from <code>1_000</code> fails because the <code>Int8</code> type can represent
+<code>127</code> at maximum:</p>
+
+<pre><code class="language-swift">let x = Int8(exactly: 100)
+// x == Optional(100)
+let y = Int8(exactly: 1_000)
+// y == nil</code></pre>
+
+<p><strong><code>source</code>:</strong>  A value to convert to this type of integer.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?&lt;T&gt;(exactly source: T)</code>
+
+    </div></div>
+</div>
+
+<div class="declaration" id="-static-var-issigned_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment--static-var-issigned_-bool">static var isSigned: Bool</a><div class="comment collapse" id="comment--static-var-issigned_-bool"><div class="p">
+    <p>A Boolean value indicating whether this type is a signed integer type.</p>
+
+<p>This property is always <code>false</code> for unsigned integer types.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var isSigned: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="-static-var-max_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment--static-var-max_-self">static var max: Self</a><div class="comment collapse" id="comment--static-var-max_-self"><div class="p">
+    <p>The maximum representable integer in this type.</p>
+
+<p>For unsigned integer types, this value is <code>(2 ** bitWidth) - 1</code>, where
+<code>**</code> is exponentiation.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var max: Self { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="-static-var-min_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment--static-var-min_-self">static var min: Self</a><div class="comment collapse" id="comment--static-var-min_-self"><div class="p">
+    <p>The minimum representable integer in this type.</p>
+
+<p>For unsigned integer types, this value is always <code>0</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var min: Self { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="-var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment--var-description_-string">var description: String</a><div class="comment collapse" id="comment--var-description_-string"><div class="p">
+    <p>A textual representation of this value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="-var-magnitude_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment--var-magnitude_-self">var magnitude: Self</a><div class="comment collapse" id="comment--var-magnitude_-self"><div class="p">
+    <p>The magnitude of this value.</p>
+
+<p>Every unsigned integer is its own magnitude, so for any value <code>x</code>,
+<code>x == x.magnitude</code>.</p>
+
+<p>The global <code>abs(_:)</code> function provides more familiar syntax when you need
+to find an absolute value. In addition, because <code>abs(_:)</code> always returns
+a value of the same type, even in a generic context, using the function
+instead of the <code>magnitude</code> property is encouraged.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var magnitude: Self { get }</code>
+
+    </div></div>
+</div>
+
+
+<div class="declaration inherited" id="func--excleq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--excleq_-self-rhs_-self">func !=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func--excleq_-self-rhs_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func !=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--excleq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--excleq_rhs_">func !=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--excleq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether two values are not equal.</p>
+
+<p>Inequality is the inverse of equality. For any values <code>a</code> and <code>b</code>, <code>a != b</code>
+implies that <code>a == b</code> is <code>false</code>.</p>
+
+<p>This is the default implementation of the not-equal-to operator (<code>!=</code>)
+for any type that conforms to <code>Equatable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func !=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Hashable/"><code>Hashable</code></a>,    <a href="../../protocol/Numeric/"><code>Numeric</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Equatable/"><code>Equatable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--excleq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--excleq-other_-self-rhs_-other">func != &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func--excleq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the two given values are not
+equal.</p>
+
+<p>You can check the inequality of instances of any <code>BinaryInteger</code> types
+using the not-equal-to operator (<code>!=</code>). For example, you can test
+whether the first <code>UInt8</code> value in a string&#39;s UTF-8 encoding is not
+equal to the first <code>UInt32</code> value in its Unicode scalar view:</p>
+
+<pre><code class="language-swift">let gameName = &quot;Red Light, Green Light&quot;
+if let firstUTF8 = gameName.utf8.first,
+    let firstScalar = gameName.unicodeScalars.first?.value {
+    print(&quot;First code values are different: \(firstUTF8 != firstScalar)&quot;)
+}
+// Prints &quot;First code values are different: false&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func !=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--amp_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--amp_rhs_">func &amp;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--amp_rhs_"><div class="p">
+    <p>Returns the result of performing a bitwise AND operation on the two given
+values.</p>
+
+<p>A bitwise AND operation results in a value that has each bit set to <code>1</code>
+where <em>both</em> of its arguments have that bit set to <code>1</code>. For example:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x &amp; y             // 0b00000100
+// z == 4</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer value.
+  <strong>rhs:</strong> Another integer value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--pls_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--pls_">prefix func +(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--pls_"><div class="p">
+    <p>Returns the given number unchanged.</p>
+
+<p>You can use the unary plus operator (<code>+</code>) to provide symmetry in your
+code for positive numbers when also using the unary minus operator.</p>
+
+<pre><code class="language-swift">let x = -21
+let y = +21
+// x == -21
+// y == 21</code></pre>
+
+<p><strong>Returns:</strong> The given argument without any changes.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">prefix func +(x: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Numeric/"><code>Numeric</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--pls_-self-rhs_-self-stride">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--pls_-self-rhs_-self-stride">func +(<wbr>_:<wbr> Self, rhs: Self.Stride)</a>
+        
+<div class="comment collapse" id="comment-func--pls_-self-rhs_-self-stride"><div class="p">
+    <p>Adds two values and produces their sum.</p>
+
+<p>The addition operator (<code>+</code>) calculates the sum of its two arguments. For
+example:</p>
+
+<pre><code class="language-swift">1 + 2                   // 3
+-10 + 15                // 5
+-15 + -5                // -20
+21.5 + 3.25             // 24.75</code></pre>
+
+<p>You cannot use <code>+</code> with arguments of different types. To add values of
+different types, convert one of the values to the other value&#39;s type.</p>
+
+<pre><code class="language-swift">let x: Int8 = 21
+let y: Int = 1000000
+Int(x) + y              // 1000021</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +(lhs: Self, rhs: Self.Stride) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--pls_-self-stride-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--pls_-self-stride-rhs_-self">func +(<wbr>_:<wbr> Self.Stride, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func--pls_-self-stride-rhs_-self"><div class="p">
+    <p>Adds two values and produces their sum.</p>
+
+<p>The addition operator (<code>+</code>) calculates the sum of its two arguments. For
+example:</p>
+
+<pre><code class="language-swift">1 + 2                   // 3
+-10 + 15                // 5
+-15 + -5                // -20
+21.5 + 3.25             // 24.75</code></pre>
+
+<p>You cannot use <code>+</code> with arguments of different types. To add values of
+different types, convert one of the values to the other value&#39;s type.</p>
+
+<pre><code class="language-swift">let x: Int8 = 21
+let y: Int = 1000000
+Int(x) + y              // 1000021</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +(lhs: Self.Stride, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--plseq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--plseq_rhs_">func +=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--plseq_rhs_"><div class="p">
+    <p>Adds two values and stores the result in the left-hand-side variable.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The first value to add.
+  <strong>rhs:</strong> The second value to add.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=(lhs: inout Self, rhs: Self.Stride)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--dotdotdot_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--dotdotdot_-self">prefix func ...(<wbr>_: Self)</a>
+        
+<div class="comment collapse" id="comment-func--dotdotdot_-self"><div class="p">
+    <p>Returns a partial range up to, and including, its upper bound.</p>
+
+<p>Use the prefix closed range operator (prefix <code>...</code>) to create a partial
+range of any type that conforms to the <code>Comparable</code> protocol. This
+example creates a <code>PartialRangeThrough&lt;Double&gt;</code> instance that includes
+any value less than or equal to <code>5.0</code>.</p>
+
+<pre><code class="language-swift">let throughFive = ...5.0
+
+throughFive.contains(4.0)     // true
+throughFive.contains(5.0)     // true
+throughFive.contains(6.0)     // false</code></pre>
+
+<p>You can use this type of partial range of a collection&#39;s indices to
+represent the range from the start of the collection up to, and
+including, the partial range&#39;s upper bound.</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[...3])
+// Prints &quot;[10, 20, 30, 40]&quot;</code></pre>
+
+<p><strong><code>maximum</code>:</strong>  The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">prefix func ...(maximum: Self) -&gt; PartialRangeThrough&lt;Self&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--dotdotdot_maximum_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--dotdotdot_maximum_">func ...(<wbr>_:<wbr>maximum:)</a>
+        
+<div class="comment collapse" id="comment-func--dotdotdot_maximum_"><div class="p">
+    <p>Returns a closed range that contains both of its bounds.</p>
+
+<p>Use the closed range operator (<code>...</code>) to create a closed range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>ClosedRange&lt;Character&gt;</code> from &quot;a&quot; up to, and including, &quot;z&quot;.</p>
+
+<pre><code class="language-swift">let lowercase = &quot;a&quot;...&quot;z&quot;
+print(lowercase.contains(&quot;z&quot;))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>minimum:</strong> The lower bound for the range.
+  <strong>maximum:</strong> The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ...(minimum: Self, maximum: Self) -&gt; ClosedRange&lt;Self&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--dotdotlt_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--dotdotlt_">prefix func ..&lt;(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--dotdotlt_"><div class="p">
+    <p>Returns a partial range up to, but not including, its upper bound.</p>
+
+<p>Use the prefix half-open range operator (prefix <code>..&lt;</code>) to create a
+partial range of any type that conforms to the <code>Comparable</code> protocol.
+This example creates a <code>PartialRangeUpTo&lt;Double&gt;</code> instance that includes
+any value less than <code>5.0</code>.</p>
+
+<pre><code class="language-swift">let upToFive = ..&lt;5.0
+
+upToFive.contains(3.14)       // true
+upToFive.contains(6.28)       // false
+upToFive.contains(5.0)        // false</code></pre>
+
+<p>You can use this type of partial range of a collection&#39;s indices to
+represent the range from the start of the collection up to, but not
+including, the partial range&#39;s upper bound.</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[..&lt;3])
+// Prints &quot;[10, 20, 30]&quot;</code></pre>
+
+<p><strong><code>maximum</code>:</strong>  The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">prefix func ..&lt;(maximum: Self) -&gt; PartialRangeUpTo&lt;Self&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--dotdotlt_maximum_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--dotdotlt_maximum_">func ..&lt;(<wbr>_:<wbr>maximum:)</a>
+        
+<div class="comment collapse" id="comment-func--dotdotlt_maximum_"><div class="p">
+    <p>Returns a half-open range that contains its lower bound but not its upper
+bound.</p>
+
+<p>Use the half-open range operator (<code>..&lt;</code>) to create a range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>Range&lt;Double&gt;</code> from zero up to, but not including, 5.0.</p>
+
+<pre><code class="language-swift">let lessThanFive = 0.0..&lt;5.0
+print(lessThanFive.contains(3.14))  // Prints &quot;true&quot;
+print(lessThanFive.contains(5.0))   // Prints &quot;false&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>minimum:</strong> The lower bound for the range.
+  <strong>maximum:</strong> The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ..&lt;(minimum: Self, maximum: Self) -&gt; Range&lt;Self&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--lt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--lt_rhs_">func &lt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--lt_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+less-than operator (<code>&lt;</code>), even if the two instances are of different
+types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--lt_y_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--lt_y_">func &lt;(<wbr>_:<wbr>y:)</a>
+        
+<div class="comment collapse" id="comment-func--lt_y_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--ltlt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--ltlt_rhs_">func &lt;&lt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--ltlt_rhs_"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the left.</p>
+
+<p>The <code>&lt;&lt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a right shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>, resulting in zero.</li><li>Using any other value for <code>rhs</code> performs a left shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted left by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &lt;&lt; 2
+// y == 120                       // 0b01111000</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &lt;&lt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a right shift
+with <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &lt;&lt; -3
+// a == 3                         // 0b00000011
+let b = x &gt;&gt; 3
+// b == 3                         // 0b00000011</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the left.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;&lt;&lt;RHS&gt;(lhs: Self, rhs: RHS) -&gt; Self where RHS : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--lteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--lteq_-self-rhs_-self">func &lt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func--lteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--lteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--lteq_rhs_">func &lt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--lteq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is less than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the less-than-or-equal-to
+operator (<code>&lt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--lteq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--lteq-other_-self-rhs_-other">func &lt;= &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func--lteq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than or equal to that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+less-than-or-equal-to operator (<code>&lt;=</code>), even if the two instances are of
+different types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--eqeq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the two given values are
+equal.</p>
+
+<p>You can check the equality of instances of any <code>BinaryInteger</code> types
+using the equal-to operator (<code>==</code>). For example, you can test whether
+the first <code>UInt8</code> value in a string&#39;s UTF-8 encoding is equal to the
+first <code>UInt32</code> value in its Unicode scalar view:</p>
+
+<pre><code class="language-swift">let gameName = &quot;Red Light, Green Light&quot;
+if let firstUTF8 = gameName.utf8.first,
+    let firstScalar = gameName.unicodeScalars.first?.value {
+    print(&quot;First code values are equal: \(firstUTF8 == firstScalar)&quot;)
+}
+// Prints &quot;First code values are equal: true&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--eqeq_y_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--eqeq_y_">func ==(<wbr>_:<wbr>y:)</a>
+        
+<div class="comment collapse" id="comment-func--eqeq_y_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(x: Self, y: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--gt_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--gt_-self-rhs_-self">func &gt;(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func--gt_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--gt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--gt_rhs_">func &gt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--gt_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than operator (<code>&gt;</code>) for
+any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--gt-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--gt-other_-self-rhs_-other">func &gt; &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func--gt-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than operator (<code>&gt;</code>), even if the two instances are of different
+types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--gteq_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--gteq_-self-rhs_-self">func &gt;=(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func--gteq_-self-rhs_-self"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--gteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--gteq_rhs_">func &gt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--gteq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.
+<strong>Returns:</strong> <code>true</code> if <code>lhs</code> is greater than or equal to <code>rhs</code>; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--gteq-other_-self-rhs_-other">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--gteq-other_-self-rhs_-other">func &gt;= &lt;Other&gt;(<wbr>_:<wbr> Self, rhs: Other)</a>
+        
+<div class="comment collapse" id="comment-func--gteq-other_-self-rhs_-other"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer to compare.
+  <strong>rhs:</strong> Another integer to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=&lt;Other&gt;(lhs: Self, rhs: Other) -&gt; Bool where Other : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--gtgt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--gtgt_rhs_">func &gt;&gt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--gtgt_rhs_"><div class="p">
+    <p>Returns the result of shifting a value&#39;s binary representation the
+specified number of digits to the right.</p>
+
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+
+<ul><li>Using a negative value for <code>rhs</code> performs a left shift using
+<code>abs(rhs)</code>.</li><li>Using a value for <code>rhs</code> that is greater than or equal to the bit width
+of <code>lhs</code> is an <em>overshift</em>. An overshift results in <code>-1</code> for a
+negative value of <code>lhs</code> or <code>0</code> for a nonnegative value.</li><li>Using any other value for <code>rhs</code> performs a right shift on <code>lhs</code> by that
+amount.</li></ul>
+
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111</code></pre>
+
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000</code></pre>
+
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000</code></pre>
+
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The value to shift.
+  <strong>rhs:</strong> The number of bits to shift <code>lhs</code> to the right.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;&gt;&lt;RHS&gt;(lhs: Self, rhs: RHS) -&gt; Self where RHS : BinaryInteger</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--crt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--crt_rhs_">func ^(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--crt_rhs_"><div class="p">
+    <p>Returns the result of performing a bitwise XOR operation on the two given
+values.</p>
+
+<p>A bitwise XOR operation, also known as an exclusive OR operation, results
+in a value that has each bit set to <code>1</code> where <em>one or the other but not
+both</em> of its arguments had that bit set to <code>1</code>. For example:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x ^ y             // 0b00001011
+// z == 11</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer value.
+  <strong>rhs:</strong> Another integer value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ^(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--bar_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--bar_rhs_">func |(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--bar_rhs_"><div class="p">
+    <p>Returns the result of performing a bitwise OR operation on the two given
+values.</p>
+
+<p>A bitwise OR operation results in a value that has each bit set to <code>1</code>
+where <em>one or both</em> of its arguments have that bit set to <code>1</code>. For
+example:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x | y             // 0b00001111
+// z == 15</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> An integer value.
+  <strong>rhs:</strong> Another integer value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func |(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--mns_-self-rhs_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--mns_-self-rhs_-self">func -(<wbr>_:<wbr> Self, rhs: Self)</a>
+        
+<div class="comment collapse" id="comment-func--mns_-self-rhs_-self"><div class="p">
+    <p>Subtracts one value from another and produces their difference.</p>
+
+<p>The subtraction operator (<code>-</code>) calculates the difference of its two
+arguments. For example:</p>
+
+<pre><code class="language-swift">8 - 3                   // 5
+-10 - 5                 // -15
+100 - -5                // 105
+10.5 - 100.0            // -89.5</code></pre>
+
+<p>You cannot use <code>-</code> with arguments of different types. To subtract values
+of different types, convert one of the values to the other value&#39;s type.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 21
+let y: UInt = 1000000
+y - UInt(x)             // 999979</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A numeric value.
+  <strong>rhs:</strong> The value to subtract from <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func -(lhs: Self, rhs: Self) -&gt; Self.Stride</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--mns_-self-rhs_-self-stride">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--mns_-self-rhs_-self-stride">func -(<wbr>_:<wbr> Self, rhs: Self.Stride)</a>
+        
+<div class="comment collapse" id="comment-func--mns_-self-rhs_-self-stride"><div class="p">
+    <p>Subtracts one value from another and produces their difference.</p>
+
+<p>The subtraction operator (<code>-</code>) calculates the difference of its two
+arguments. For example:</p>
+
+<pre><code class="language-swift">8 - 3                   // 5
+-10 - 5                 // -15
+100 - -5                // 105
+10.5 - 100.0            // -89.5</code></pre>
+
+<p>You cannot use <code>-</code> with arguments of different types. To subtract values
+of different types, convert one of the values to the other value&#39;s type.</p>
+
+<pre><code class="language-swift">let x: UInt8 = 21
+let y: UInt = 1000000
+y - UInt(x)             // 999979</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A numeric value.
+  <strong>rhs:</strong> The value to subtract from <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func -(lhs: Self, rhs: Self.Stride) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--mnseq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--mnseq_rhs_">func -=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func--mnseq_rhs_"><div class="p">
+    <p>Subtracts the second value from the first and stores the difference in the
+left-hand-side variable.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A numeric value.
+  <strong>rhs:</strong> The value to subtract from <code>lhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func -=(lhs: inout Self, rhs: Self.Stride)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--advanced-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--advanced-by_">func advanced(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func--advanced-by_"><div class="p">
+    <p>Returns a value that is offset the specified distance from this value.</p>
+
+<p>Use the <code>advanced(by:)</code> method in generic code to offset a value by a
+specified distance. If you&#39;re working directly with numeric values, use
+the addition operator (<code>+</code>) instead of this method.</p>
+
+<p>For a value <code>x</code>, a distance <code>n</code>, and a value <code>y = x.advanced(by: n)</code>,
+<code>x.distance(to: y) == n</code>.</p>
+
+<p><strong><code>n</code>:</strong>  The distance to advance this value.
+<strong>Returns:</strong> A value that is offset from this value by <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advanced(by n: Int) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--distance-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--distance-to_">func distance(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func--distance-to_"><div class="p">
+    <p>Returns the distance from this value to the given value, expressed as a
+stride.</p>
+
+<p>For two values <code>x</code> and <code>y</code>, and a distance <code>n = x.distance(to: y)</code>,
+<code>x.advanced(by: n) == y</code>.</p>
+
+<p><strong><code>other</code>:</strong>  The value to calculate the distance to.
+<strong>Returns:</strong> The distance from this value to <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(to other: Self) -&gt; Int</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--quotientandremainder-dividingby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--quotientandremainder-dividingby_">func quotientAndRemainder(<wbr>dividingBy:)</a>
+        
+<div class="comment collapse" id="comment-func--quotientandremainder-dividingby_"><div class="p">
+    <p>Returns the quotient and remainder of this value divided by the given
+value.</p>
+
+<p>Use this method to calculate the quotient and remainder of a division at
+the same time.</p>
+
+<pre><code class="language-swift">let x = 1_000_000
+let (q, r) = x.quotientAndRemainder(dividingBy: 933)
+// q == 1071
+// r == 757</code></pre>
+
+<p><strong><code>rhs</code>:</strong>  The value to divide this value by.
+<strong>Returns:</strong> A tuple containing the quotient and remainder of this value
+  divided by <code>rhs</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func quotientAndRemainder(dividingBy rhs: Self) -&gt; (quotient: Self, remainder: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--signum">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--signum">func signum()</a>
+        
+<div class="comment collapse" id="comment-func--signum"><div class="p">
+    <p>Returns <code>-1</code> if this value is negative and <code>1</code> if it&#39;s positive;
+otherwise, <code>0</code>.</p>
+
+<p><strong>Returns:</strong> The sign of this number, expressed as an integer of the same
+  type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func signum() -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+
+
+<h4>Where Stride : SignedInteger</h4>
+
+
+
+
+<div class="declaration inherited" id="func-stride_-signedinteger-dotdotdot_maximum_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride_-signedinteger-dotdotdot_maximum_">func ...(<wbr>_:<wbr>maximum:)</a>
+        
+<div class="comment collapse" id="comment-func-stride_-signedinteger-dotdotdot_maximum_"><div class="p">
+    <p>Returns a countable closed range that contains both of its bounds.</p>
+
+<p>Use the closed range operator (<code>...</code>) to create a closed range of any type
+that conforms to the <code>Strideable</code> protocol with an associated signed
+integer <code>Stride</code> type, such as any of the standard library&#39;s integer
+types. This example creates a <code>ClosedRange&lt;Int&gt;</code> from zero up to,
+and including, nine.</p>
+
+<pre><code class="language-swift">let singleDigits = 0...9
+print(singleDigits.contains(9))
+// Prints &quot;true&quot;</code></pre>
+
+<p>You can use sequence or collection methods on the <code>singleDigits</code> range.</p>
+
+<pre><code class="language-swift">print(singleDigits.count)
+// Prints &quot;10&quot;
+print(singleDigits.last)
+// Prints &quot;9&quot;</code></pre>
+
+<p><strong>Parameters:</strong>)`.
+  <strong>minimum:</strong> The lower bound for the range.
+  <strong>maximum:</strong> The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ...(minimum: Self, maximum: Self) -&gt; ClosedRange&lt;Self&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+
+
+

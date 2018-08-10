@@ -1,0 +1,912 @@
+---
+layout: "default"
+title: "KeyedEncodingContainerProtocol"
+description: "Swift documentation for 'KeyedEncodingContainerProtocol': A type that provides a view into an encoder&#39;s storage and is used to hold."
+keywords: "KeyedEncodingContainerProtocol,protocol,swift,documentation,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encode,encodeConditional,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeIfPresent,encodeNil,nestedContainer,nestedUnkeyedContainer,superEncoder,superEncoder,codingPath,Key"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol KeyedEncodingContainerProtocol</code></div>
+
+<div class="discussion comment">
+    <p>A type that provides a view into an encoder&#39;s storage and is used to hold
+the encoded properties of an encodable type in a keyed manner.</p>
+
+<p>Encoders should provide types conforming to
+<code>KeyedEncodingContainerProtocol</code> for their format.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Key : CodingKey</code>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-codingpath_-codingkey">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-codingpath_-codingkey">var codingPath: [CodingKey]</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-codingpath_-codingkey"><div class="p">
+    <p>The path of coding keys taken to get to this point in encoding.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var codingPath: [CodingKey] { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-encode_-bool-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-bool-forkey_-self-key">mutating func encode(<wbr>_:<wbr> Bool, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-bool-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Bool, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-double-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-double-forkey_-self-key">mutating func encode(<wbr>_:<wbr> Double, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-double-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Double, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-float-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-float-forkey_-self-key">mutating func encode(<wbr>_:<wbr> Float, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-float-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Float, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int-forkey_-self-key">mutating func encode(<wbr>_:<wbr> Int, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int8-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int8-forkey_-self-key">mutating func encode(<wbr>_:<wbr> Int8, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int8-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int8, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int16-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int16-forkey_-self-key">mutating func encode(<wbr>_:<wbr> Int16, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int16-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int16, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int32-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int32-forkey_-self-key">mutating func encode(<wbr>_:<wbr> Int32, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int32-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int32, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-int64-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-int64-forkey_-self-key">mutating func encode(<wbr>_:<wbr> Int64, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-int64-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: Int64, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-string-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-string-forkey_-self-key">mutating func encode(<wbr>_:<wbr> String, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-string-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: String, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint-forkey_-self-key">mutating func encode(<wbr>_:<wbr> UInt, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint8-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint8-forkey_-self-key">mutating func encode(<wbr>_:<wbr> UInt8, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint8-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt8, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint16-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint16-forkey_-self-key">mutating func encode(<wbr>_:<wbr> UInt16, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint16-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt16, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint32-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint32-forkey_-self-key">mutating func encode(<wbr>_:<wbr> UInt32, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint32-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt32, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode_-uint64-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_-uint64-forkey_-self-key">mutating func encode(<wbr>_:<wbr> UInt64, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_-uint64-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode(_ value: UInt64, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encode-t_-t-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode-t_-t-forkey_-self-key">mutating func encode&lt;T&gt;(<wbr>_:<wbr> T, forKey: Self.Key)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode-t_-t-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encode&lt;T&gt;(_ value: T, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeconditional_forkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeconditional_forkey_">mutating func encodeConditional(<wbr>_:<wbr>forKey:)</a>
+        
+<div class="comment collapse" id="comment-func-encodeconditional_forkey_"><div class="p">
+    <p>Encodes a reference to the given object only if it is encoded
+unconditionally elsewhere in the payload (previously, or in the future).</p>
+
+<p>For encoders which don&#39;t support this feature, the default implementation
+encodes the given object unconditionally.</p>
+
+<p><strong><code>object</code>:</strong>  The object to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the object with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeConditional&lt;T&gt;(_ object: T, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-bool-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-bool-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Bool?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-bool-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Bool?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-double-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-double-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Double?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-double-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Double?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-float-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-float-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Float?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-float-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Float?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-int-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-int-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Int?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-int-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Int?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-int8-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-int8-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Int8?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-int8-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Int8?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-int16-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-int16-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Int16?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-int16-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Int16?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-int32-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-int32-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Int32?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-int32-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Int32?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-int64-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-int64-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Int64?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-int64-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Int64?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-string-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-string-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> String?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-string-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: String?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-uint-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-uint-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> UInt?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-uint-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: UInt?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-uint8-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-uint8-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> UInt8?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-uint8-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: UInt8?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-uint16-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-uint16-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> UInt16?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-uint16-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: UInt16?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-uint32-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-uint32-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> UInt32?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-uint32-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: UInt32?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent_-uint64-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent_-uint64-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> UInt64?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent_-uint64-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: UInt64?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodeifpresent-t_-t-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodeifpresent-t_-t-forkey_-self-key">mutating func encodeIfPresent&lt;T&gt;(<wbr>_:<wbr> T?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func-encodeifpresent-t_-t-forkey_-self-key"><div class="p">
+    <p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+
+<p><strong><code>value</code>:</strong>  The value to encode.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if the given value is invalid in
+  the current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent&lt;T&gt;(_ value: T?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-encodenil-forkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encodenil-forkey_">mutating func encodeNil(<wbr>forKey:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encodenil-forkey_"><div class="p">
+    <p>Encodes a null value for the given key.</p>
+
+<p><strong><code>key</code>:</strong>  The key to associate the value with.
+<strong>throws:</strong> <code>EncodingError.invalidValue</code> if a null value is invalid in the
+  current context for this format.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeNil(forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-nestedcontainer-keyedby_forkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-nestedcontainer-keyedby_forkey_">mutating func nestedContainer(<wbr>keyedBy:<wbr>forKey:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-nestedcontainer-keyedby_forkey_"><div class="p">
+    <p>Stores a keyed encoding container for the given key and returns it.</p>
+
+<p><strong><code>keyType</code>:</strong>  The key type to use for the container.</p>
+
+<p><strong><code>key</code>:</strong>  The key to encode the container for.
+<strong>returns:</strong> A new keyed encoding container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func nestedContainer&lt;NestedKey&gt;(keyedBy keyType: NestedKey.Type, forKey key: Self.Key) -&gt; KeyedEncodingContainer&lt;NestedKey&gt; where NestedKey : CodingKey</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-nestedunkeyedcontainer-forkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-nestedunkeyedcontainer-forkey_">mutating func nestedUnkeyedContainer(<wbr>forKey:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-nestedunkeyedcontainer-forkey_"><div class="p">
+    <p>Stores an unkeyed encoding container for the given key and returns it.</p>
+
+<p><strong><code>key</code>:</strong>  The key to encode the container for.
+<strong>returns:</strong> A new unkeyed encoding container.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func nestedUnkeyedContainer(forKey key: Self.Key) -&gt; UnkeyedEncodingContainer</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-superencoder">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-superencoder">mutating func superEncoder()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-superencoder"><div class="p">
+    <p>Stores a new nested container for the default <code>super</code> key and returns A
+new encoder instance for encoding <code>super</code> into that container.</p>
+
+<p>Equivalent to calling <code>superEncoder(forKey:)</code> with
+<code>Key(stringValue: &quot;super&quot;, intValue: 0)</code>.</p>
+
+<p><strong>returns:</strong> A new encoder to pass to <code>super.encode(to:)</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func superEncoder() -&gt; Encoder</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-superencoder-forkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-superencoder-forkey_">mutating func superEncoder(<wbr>forKey:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-superencoder-forkey_"><div class="p">
+    <p>Stores a new nested container for the given key and returns A new encoder
+instance for encoding <code>super</code> into that container.</p>
+
+<p><strong><code>key</code>:</strong>  The key to encode <code>super</code> for.
+<strong>returns:</strong> A new encoder to pass to <code>super.encode(to:)</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func superEncoder(forKey key: Self.Key) -&gt; Encoder</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+
+
+<div class="declaration" id="func--encodeconditional_forkey_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeconditional_forkey_">mutating func encodeConditional(<wbr>_:<wbr>forKey:)</a>
+        
+<div class="comment collapse" id="comment-func--encodeconditional_forkey_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeConditional&lt;T&gt;(_ object: T, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-bool-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-bool-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Bool?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-bool-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Bool?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-double-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-double-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Double?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-double-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Double?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-float-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-float-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Float?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-float-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Float?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-int-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-int-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Int?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-int-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Int?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-int8-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-int8-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Int8?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-int8-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Int8?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-int16-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-int16-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Int16?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-int16-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Int16?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-int32-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-int32-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Int32?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-int32-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Int32?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-int64-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-int64-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> Int64?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-int64-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: Int64?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-string-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-string-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> String?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-string-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: String?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-uint-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-uint-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> UInt?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-uint-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: UInt?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-uint8-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-uint8-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> UInt8?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-uint8-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: UInt8?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-uint16-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-uint16-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> UInt16?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-uint16-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: UInt16?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-uint32-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-uint32-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> UInt32?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-uint32-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: UInt32?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent_-uint64-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent_-uint64-forkey_-self-key">mutating func encodeIfPresent(<wbr>_:<wbr> UInt64?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent_-uint64-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent(_ value: UInt64?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--encodeifpresent-t_-t-forkey_-self-key">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--encodeifpresent-t_-t-forkey_-self-key">mutating func encodeIfPresent&lt;T&gt;(<wbr>_:<wbr> T?, forKey: Self.Key)</a>
+        
+<div class="comment collapse" id="comment-func--encodeifpresent-t_-t-forkey_-self-key"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func encodeIfPresent&lt;T&gt;(_ value: T?, forKey key: Self.Key) throws</code>
+    
+    
+</div></div>
+</div>
+
+
+
+
+

@@ -1,0 +1,22 @@
+strict digraph "AnyKeyPath - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AnyKeyPath" [URL="/type/AnyKeyPath/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "KeyPath" [URL="/type/KeyPath/hierarchy/", style=filled]
+    "PartialKeyPath" [URL="/type/PartialKeyPath/hierarchy/", style=filled]
+    "ReferenceWritableKeyPath" [URL="/type/ReferenceWritableKeyPath/hierarchy/", style=filled]
+    "WritableKeyPath" [URL="/type/WritableKeyPath/hierarchy/", style=filled]
+    "_AppendKeyPath" [URL="/protocol/_AppendKeyPath/hierarchy/"]    "AnyKeyPath" -> "PartialKeyPath"
+    "PartialKeyPath" -> "KeyPath"
+    "KeyPath" -> "WritableKeyPath"
+    "WritableKeyPath" -> "ReferenceWritableKeyPath"
+    "Hashable" -> "AnyKeyPath"
+    "_AppendKeyPath" -> "AnyKeyPath"
+    "Equatable" -> "Hashable"
+    subgraph Types {
+        rank = max; "AnyKeyPath"; "PartialKeyPath"; "KeyPath"; "WritableKeyPath"; "ReferenceWritableKeyPath";
+    }
+}

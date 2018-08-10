@@ -1,0 +1,82 @@
+---
+layout: "default"
+title: "EncodingError.Context"
+description: "Swift documentation for 'EncodingError.Context': The context in which the error occurred."
+keywords: "EncodingError.Context,struct,swift,documentation,codingPath,debugDescription,underlyingError"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct EncodingError.Context</code></div>
+
+<div class="discussion comment">
+    <p>The context in which the error occurred.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-codingpath_debugdescription_underlyingerror_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-codingpath_debugdescription_underlyingerror_">init(<wbr>codingPath:<wbr>debugDescription:<wbr>underlyingError:)</a><div class="comment collapse" id="comment-init-codingpath_debugdescription_underlyingerror_"><div class="p">
+    <p>Creates a new context with the given path of coding keys and a
+description of what went wrong.</p>
+
+<p><strong><code>codingPath</code>:</strong>  The path of coding keys taken to get to the
+  point of the failing encode call.</p>
+
+<p><strong><code>debugDescription</code>:</strong>  A description of what went wrong, for
+  debugging purposes.</p>
+
+<p><strong><code>underlyingError</code>:</strong>  The underlying error which caused this
+  error, if any.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(codingPath: [CodingKey], debugDescription: String, underlyingError: Error? = default)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-codingpath_-codingkey">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-codingpath_-codingkey">var codingPath: [CodingKey]</a><div class="comment collapse" id="comment-var-codingpath_-codingkey"><div class="p">
+    <p>The path of coding keys taken to get to the point of the failing encode
+call.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var codingPath: [CodingKey] { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A description of what went wrong, for debugging purposes.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-underlyingerror_-error">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-underlyingerror_-error">var underlyingError: Error?</a><div class="comment collapse" id="comment-var-underlyingerror_-error"><div class="p">
+    <p>The underlying error which caused this error, if any.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var underlyingError: Error? { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+

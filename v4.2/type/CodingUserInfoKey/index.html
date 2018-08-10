@@ -1,0 +1,738 @@
+---
+layout: "default"
+title: "CodingUserInfoKey"
+description: "Swift documentation for 'CodingUserInfoKey': A user-defined key for providing context during encoding and decoding."
+keywords: "CodingUserInfoKey,struct,swift,documentation,hashValue,rawValue,RawValue"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct CodingUserInfoKey</code></div>
+
+<div class="discussion comment">
+    <p>A user-defined key for providing context during encoding and decoding.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Equatable, Hashable, RawRepresentable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">RawValue = String</code>
+<div class="comment">
+    <p>The raw type that can be used to represent all values of the conforming
+type.</p>
+
+<p>Every distinct value of the conforming type has a corresponding unique
+value of the <code>RawValue</code> type, but there may be values of the <code>RawValue</code>
+type that don&#39;t have a corresponding value of the conforming type.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-rawvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-rawvalue_">init?(<wbr>rawValue:)</a><div class="comment collapse" id="comment-init-rawvalue_"><div class="p">
+    <p>Creates a new instance with the given raw value.</p>
+
+<p><strong><code>rawValue</code>:</strong>  The value of the key.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(rawValue: String)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The key&#39;s hash value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-rawvalue_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-rawvalue_-string">var rawValue: String</a><div class="comment collapse" id="comment-var-rawvalue_-string"><div class="p">
+    <p>The key&#39;s string value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var rawValue: String { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+<h3>Conditionally Inherited Items</h3>
+
+<p class="comment">The initializers, methods, and properties listed below may be available on this type under certain conditions (such as methods that are available on <code>Array</code> when its elements are <code>Equatable</code>) or may not ever be available if that determination is beyond SwiftDoc.org's capabilities. Please <a href="https://github.com/SwiftDocOrg/swiftdoc.org/issues">open an issue on GitHub</a> if you see something out of place!</p>
+
+
+
+
+
+<h4>Where RawValue == Bool</h4>
+
+<div class="declaration inherited" id="rawvalue-bool-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-bool-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-bool-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Bool</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-bool-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-bool-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-bool-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Bool</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Double</h4>
+
+<div class="declaration inherited" id="rawvalue-double-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-double-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-double-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Double</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-double-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-double-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-double-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Double</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Float</h4>
+
+<div class="declaration inherited" id="rawvalue-float-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-float-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-float-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Float</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-float-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-float-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-float-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Float</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Int</h4>
+
+<div class="declaration inherited" id="rawvalue-int-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-int-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-int-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Int</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-int-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-int-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-int-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Int</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Int16</h4>
+
+<div class="declaration inherited" id="rawvalue-int16-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-int16-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-int16-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Int16</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-int16-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-int16-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-int16-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Int16</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Int32</h4>
+
+<div class="declaration inherited" id="rawvalue-int32-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-int32-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-int32-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Int32</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-int32-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-int32-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-int32-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Int32</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Int64</h4>
+
+<div class="declaration inherited" id="rawvalue-int64-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-int64-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-int64-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Int64</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-int64-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-int64-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-int64-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Int64</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == Int8</h4>
+
+<div class="declaration inherited" id="rawvalue-int8-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-int8-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-int8-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>Int8</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-int8-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-int8-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-int8-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>Int8</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == String</h4>
+
+<div class="declaration inherited" id="rawvalue-string-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-string-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-string-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>String</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-string-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-string-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-string-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>String</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == UInt</h4>
+
+<div class="declaration inherited" id="rawvalue-uint-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-uint-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-uint-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>UInt</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-uint-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-uint-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-uint-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>UInt</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == UInt16</h4>
+
+<div class="declaration inherited" id="rawvalue-uint16-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-uint16-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-uint16-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>UInt16</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-uint16-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-uint16-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-uint16-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>UInt16</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == UInt32</h4>
+
+<div class="declaration inherited" id="rawvalue-uint32-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-uint32-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-uint32-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>UInt32</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-uint32-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-uint32-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-uint32-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>UInt32</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == UInt64</h4>
+
+<div class="declaration inherited" id="rawvalue-uint64-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-uint64-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-uint64-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>UInt64</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-uint64-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-uint64-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-uint64-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>UInt64</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where RawValue == UInt8</h4>
+
+<div class="declaration inherited" id="rawvalue-uint8-init-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-rawvalue-uint8-init-from_">init(<wbr>from:)</a><div class="comment collapse" id="comment-rawvalue-uint8-init-from_"><div class="p">
+    <p>Creates a new instance by decoding from the given decoder, when the
+type&#39;s <code>RawValue</code> is <code>UInt8</code>.</p>
+
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+
+<p><strong><code>decoder</code>:</strong>  The decoder to read data from.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(from decoder: Decoder)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<div class="declaration inherited" id="func-rawvalue-uint8-encode-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-rawvalue-uint8-encode-to_">func encode(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-rawvalue-uint8-encode-to_"><div class="p">
+    <p>Encodes this value into the given encoder, when the type&#39;s <code>RawValue</code>
+is <code>UInt8</code>.</p>
+
+<p>This function throws an error if any values are invalid for the given
+encoder&#39;s format.</p>
+
+<p><strong><code>encoder</code>:</strong>  The encoder to write data to.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode(to encoder: Encoder) throws</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>    
+</div></div>
+</div>
+
+
+

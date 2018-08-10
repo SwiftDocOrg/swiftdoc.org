@@ -1,0 +1,1679 @@
+---
+layout: "default"
+title: "LazyMapSequence"
+description: "Swift documentation for 'LazyMapSequence': A Sequence whose elements consist of those in a Base."
+keywords: "LazyMapSequence,struct,swift,documentation,allSatisfy,compactMap,contains,drop,dropFirst,dropLast,elementsEqual,enumerated,filter,first,flatMap,flatMap,flatMap,flatMap,forEach,lexicographicallyPrecedes,makeIterator,map,max,min,prefix,reduce,reduce,reversed,shuffled,shuffled,sorted,starts,lazy,underestimatedCount,Elements"
+root: "/v4.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct LazyMapSequence&lt;Base, Element&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A <code>Sequence</code> whose elements consist of those in a <code>Base</code>
+<code>Sequence</code> passed through a transform function returning <code>Element</code>.
+These elements are computed lazily, each time they&#39;re read, by
+calling the transform function on a base element.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">LazySequenceProtocol, Sequence</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Elements = LazyMapSequence&lt;Base, Element&gt;</code>
+<div class="comment">
+    <p>A <code>Sequence</code> that can contain the same elements as this one,
+possibly with a simpler type.</p>
+
+<p><strong>See Also:</strong> <code>elements</code></p>
+</div>
+</div>
+</td>
+</tr>
+
+<tr>
+<th>Nested Types</th>
+<td><code class="nested">LazyMapSequence.Iterator</code></td>
+</tr>
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration inherited" id="var-lazy_-lazysequence-self-elements">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-lazy_-lazysequence-self-elements">var lazy: LazySequence&lt;LazyMapSequence&lt;Base, Element&gt;.Elements&gt;</a><div class="comment collapse" id="comment-var-lazy_-lazysequence-self-elements"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var lazy: LazySequence&lt;LazyMapSequence&lt;Base, Element&gt;.Elements&gt; { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/LazySequenceProtocol/"><code>LazySequenceProtocol</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="var-underestimatedcount_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-underestimatedcount_-int">var underestimatedCount: Int</a><div class="comment collapse" id="comment-var-underestimatedcount_-int"><div class="p">
+    <p>A value less than or equal to the number of elements in the sequence,
+calculated nondestructively.</p>
+
+<p>The default implementation returns 0. If you provide your own
+implementation, make sure to compute the value nondestructively.</p>
+
+<p><strong>Complexity:</strong> O(1), except if the sequence also conforms to <code>Collection</code>.
+  In this case, see the documentation of <code>Collection.underestimatedCount</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var underestimatedCount: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/LazyMapSequence/"><code>LazyMapSequence</code></a>
+        ,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>
+        </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-allsatisfy_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-allsatisfy_">func allSatisfy(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-allsatisfy_"><div class="p">
+    <p>Returns a Boolean value indicating whether every element of a sequence
+satisfies a given predicate.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence
+  as its argument and returns a Boolean value that indicates whether
+  the passed element satisfies a condition.
+<strong>Returns:</strong> <code>true</code> if the sequence contains only elements that satisfy
+  <code>predicate</code>; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func allSatisfy(_ predicate: (LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-compactmap_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-compactmap_">func compactMap(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-compactmap_"><div class="p">
+    <p>Returns the non-<code>nil</code> results of mapping the given transformation over
+this sequence.</p>
+
+<p>Use this method to receive a sequence of nonoptional values when your
+transformation produces an optional value.</p>
+
+<p><strong><code>transform</code>:</strong>  A closure that accepts an element of this sequence
+  as its argument and returns an optional value.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func compactMap&lt;ElementOfResult&gt;(_ transform: @escaping (LazyMapSequence&lt;Base, Element&gt;.Elements.Element) -&gt; ElementOfResult?) -&gt; LazyMapSequence&lt;LazyFilterSequence&lt;LazyMapSequence&lt;LazyMapSequence&lt;Base, Element&gt;.Elements, ElementOfResult?&gt;&gt;, ElementOfResult&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/LazySequenceProtocol/"><code>LazySequenceProtocol</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-contains-where_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains-where_">func contains(<wbr>where:)</a>
+        
+<div class="comment collapse" id="comment-func-contains-where_"><div class="p">
+    <p>Returns a Boolean value indicating whether the sequence contains an
+element that satisfies the given predicate.</p>
+
+<p>You can use the predicate to check for an element of a type that
+doesn&#39;t conform to the <code>Equatable</code> protocol, such as the
+<code>HTTPResponse</code> enumeration in this example.</p>
+
+<pre><code class="language-swift">enum HTTPResponse {
+    case ok
+    case error(Int)
+}
+
+let lastThreeResponses: [HTTPResponse] = [.ok, .ok, .error(404)]
+let hadError = lastThreeResponses.contains { element in
+    if case .error = element {
+        return true
+    } else {
+        return false
+    }
+}
+// &#39;hadError&#39; == true</code></pre>
+
+<p>Alternatively, a predicate can be satisfied by a range of <code>Equatable</code>
+elements or a general condition. This example shows how you can check an
+array for an expense greater than $100.</p>
+
+<pre><code class="language-swift">let expenses = [21.37, 55.21, 9.32, 10.18, 388.77, 11.41]
+let hasBigPurchase = expenses.contains { $0 &gt; 100 }
+// &#39;hasBigPurchase&#39; == true</code></pre>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence
+  as its argument and returns a Boolean value that indicates whether
+  the passed element represents a match.
+<strong>Returns:</strong> <code>true</code> if the sequence contains an element that satisfies
+  <code>predicate</code>; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(where predicate: (LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-drop-while_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-drop-while_">func drop(<wbr>while:)</a>
+        
+<div class="comment collapse" id="comment-func-drop-while_"><div class="p">
+    <p>Returns a lazy sequence that skips any initial elements that satisfy
+<code>predicate</code>.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence as
+  its argument and returns <code>true</code> if the element should be skipped or
+  <code>false</code> otherwise. Once <code>predicate</code> returns <code>false</code> it will not be
+  called again.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func drop(while predicate: @escaping (LazyMapSequence&lt;Base, Element&gt;.Elements.Element) -&gt; Bool) -&gt; LazyDropWhileSequence&lt;LazyMapSequence&lt;Base, Element&gt;.Elements&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/LazySequenceProtocol/"><code>LazySequenceProtocol</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-dropfirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dropfirst">func dropFirst()</a>
+        
+<div class="comment collapse" id="comment-func-dropfirst"><div class="p">
+    <p>Returns a subsequence containing all but the first element of the
+sequence.</p>
+
+<p>The following example drops the first element from an array of integers.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropFirst())
+// Prints &quot;[2, 3, 4, 5]&quot;</code></pre>
+
+<p>If the sequence has no elements, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let empty: [Int] = []
+print(empty.dropFirst())
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong>Returns:</strong> A subsequence starting after the first element of the
+  sequence.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst() -&gt; LazyMapSequence&lt;Base, Element&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-droplast">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-droplast">func dropLast()</a>
+        
+<div class="comment collapse" id="comment-func-droplast"><div class="p">
+    <p>Returns a subsequence containing all but the last element of the
+sequence.</p>
+
+<p>The sequence must be finite.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast())
+// Prints &quot;[1, 2, 3, 4]&quot;</code></pre>
+
+<p>If the sequence has no elements, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let empty: [Int] = []
+print(empty.dropLast())
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong>Returns:</strong> A subsequence leaving off the last element of the sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast() -&gt; LazyMapSequence&lt;Base, Element&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-elementsequal_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-elementsequal_by_">func elementsEqual(<wbr>_:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-elementsequal_by_"><div class="p">
+    <p>Returns a Boolean value indicating whether this sequence and another
+sequence contain equivalent elements in the same order, using the given
+predicate as the equivalence test.</p>
+
+<p>At least one of the sequences must be finite.</p>
+
+<p>The predicate must be a <em>equivalence relation</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areEquivalent(a, a)</code> is always <code>true</code>. (Reflexivity)</li><li><code>areEquivalent(a, b)</code> implies <code>areEquivalent(b, a)</code>. (Symmetry)</li><li>If <code>areEquivalent(a, b)</code> and <code>areEquivalent(b, c)</code> are both <code>true</code>, then
+<code>areEquivalent(a, c)</code> is also <code>true</code>. (Transitivity)</li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>other:</strong> A sequence to compare to this sequence.
+  <strong>areEquivalent:</strong> A predicate that returns <code>true</code> if its two arguments
+    are equivalent; otherwise, <code>false</code>.
+<strong>Returns:</strong> <code>true</code> if this sequence and <code>other</code> contain equivalent items,
+  using <code>areEquivalent</code> as the equivalence test; otherwise, <code>false.</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func elementsEqual&lt;OtherSequence&gt;(_ other: OtherSequence, by areEquivalent: (LazyMapSequence&lt;Base, Element&gt;.Element, OtherSequence.Element) throws -&gt; Bool) rethrows -&gt; Bool where OtherSequence : Sequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-enumerated">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-enumerated">func enumerated()</a>
+        
+<div class="comment collapse" id="comment-func-enumerated"><div class="p">
+    <p>Returns a sequence of pairs (<em>n</em>, <em>x</em>), where <em>n</em> represents a
+consecutive integer starting at zero and <em>x</em> represents an element of
+the sequence.</p>
+
+<p>This example enumerates the characters of the string &quot;Swift&quot; and prints
+each character along with its place in the string.</p>
+
+<pre><code class="language-swift">for (n, c) in &quot;Swift&quot;.enumerated() {
+    print(&quot;\(n): &#39;\(c)&#39;&quot;)
+}
+// Prints &quot;0: &#39;S&#39;&quot;
+// Prints &quot;1: &#39;w&#39;&quot;
+// Prints &quot;2: &#39;i&#39;&quot;
+// Prints &quot;3: &#39;f&#39;&quot;
+// Prints &quot;4: &#39;t&#39;&quot;</code></pre>
+
+<p>When you enumerate a collection, the integer part of each pair is a counter
+for the enumeration, but is not necessarily the index of the paired value.
+These counters can be used as indices only in instances of zero-based,
+integer-indexed collections, such as <code>Array</code> and <code>ContiguousArray</code>. For
+other collections the counters may be out of range or of the wrong type
+to use as an index. To iterate over the elements of a collection with its
+indices, use the <code>zip(_:_:)</code> function.</p>
+
+<p>This example iterates over the indices and elements of a set, building a
+list consisting of indices of names with five or fewer letters.</p>
+
+<pre><code class="language-swift">let names: Set = [&quot;Sofia&quot;, &quot;Camilla&quot;, &quot;Martina&quot;, &quot;Mateo&quot;, &quot;Nicolás&quot;]
+var shorterIndices: [SetIndex&lt;String&gt;] = []
+for (i, name) in zip(names.indices, names) {
+    if name.count &lt;= 5 {
+        shorterIndices.append(i)
+    }
+}</code></pre>
+
+<p>Now that the <code>shorterIndices</code> array holds the indices of the shorter
+names in the <code>names</code> set, you can use those indices to access elements in
+the set.</p>
+
+<pre><code class="language-swift">for i in shorterIndices {
+    print(names[i])
+}
+// Prints &quot;Sofia&quot;
+// Prints &quot;Mateo&quot;</code></pre>
+
+<p><strong>Returns:</strong> A sequence of pairs enumerating the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func enumerated() -&gt; EnumeratedSequence&lt;LazyMapSequence&lt;Base, Element&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-filter_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-filter_">func filter(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-filter_"><div class="p">
+    <p>Returns the elements of <code>self</code> that satisfy <code>isIncluded</code>.</p>
+
+<p><strong>Note:</strong> The elements of the result are computed on-demand, as
+  the result is used. No buffering storage is allocated and each
+  traversal step invokes <code>predicate</code> on one or more underlying
+  elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func filter(_ isIncluded: @escaping (LazyMapSequence&lt;Base, Element&gt;.Elements.Element) -&gt; Bool) -&gt; LazyFilterSequence&lt;LazyMapSequence&lt;Base, Element&gt;.Elements&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/LazySequenceProtocol/"><code>LazySequenceProtocol</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-first-where_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-first-where_">func first(<wbr>where:)</a>
+        
+<div class="comment collapse" id="comment-func-first-where_"><div class="p">
+    <p>Returns the first element of the sequence that satisfies the given
+predicate.</p>
+
+<p>The following example uses the <code>first(where:)</code> method to find the first
+negative number in an array of integers:</p>
+
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+if let firstNegative = numbers.first(where: { $0 &lt; 0 }) {
+    print(&quot;The first negative number is \(firstNegative).&quot;)
+}
+// Prints &quot;The first negative number is -2.&quot;</code></pre>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence as
+  its argument and returns a Boolean value indicating whether the
+  element is a match.
+<strong>Returns:</strong> The first element of the sequence that satisfies <code>predicate</code>,
+  or <code>nil</code> if there is no element that satisfies <code>predicate</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func first(where predicate: (LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; Bool) rethrows -&gt; LazyMapSequence&lt;Base, Element&gt;.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-elementofresult_-self-element-throws-elementofresult">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-elementofresult_-self-element-throws-elementofresult">func flatMap&lt;ElementOfResult&gt;(<wbr>_: (LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; ElementOfResult?)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-elementofresult_-self-element-throws-elementofresult"><div class="p">
+    <p>Returns an array containing the non-<code>nil</code> results of calling the given
+transformation with each element of this sequence.</p>
+
+<p>Use this method to receive an array of nonoptional values when your
+transformation produces an optional value.</p>
+
+<p>In this example, note the difference in the result of using <code>map</code> and
+<code>flatMap</code> with a transformation that returns an optional <code>Int</code> value.</p>
+
+<pre><code class="language-swift">let possibleNumbers = [&quot;1&quot;, &quot;2&quot;, &quot;three&quot;, &quot;///4///&quot;, &quot;5&quot;]
+
+let mapped: [Int?] = possibleNumbers.map { str in Int(str) }
+// [1, 2, nil, nil, 5]
+
+let flatMapped: [Int] = possibleNumbers.flatMap { str in Int(str) }
+// [1, 2, 5]</code></pre>
+
+<p><strong><code>transform</code>:</strong>  A closure that accepts an element of this
+  sequence as its argument and returns an optional value.
+<strong>Returns:</strong> An array of the non-<code>nil</code> results of calling <code>transform</code>
+  with each element of the sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em> + <em>n</em>), where <em>m</em> is the length of this sequence
+  and <em>n</em> is the length of the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;ElementOfResult&gt;(_ transform: (LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; ElementOfResult?) rethrows -&gt; [ElementOfResult]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-elementofresult_-escaping-self-elements-element-elementofresult">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-elementofresult_-escaping-self-elements-element-elementofresult">func flatMap&lt;ElementOfResult&gt;(<wbr>_: @escaping (LazyMapSequence&lt;Base, Element&gt;.Elements.Element) -&gt; ElementOfResult?)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-elementofresult_-escaping-self-elements-element-elementofresult"><div class="p">
+    <p>Returns the non-<code>nil</code> results of mapping the given transformation over
+this sequence.</p>
+
+<p>Use this method to receive a sequence of nonoptional values when your
+transformation produces an optional value.</p>
+
+<p><strong><code>transform</code>:</strong>  A closure that accepts an element of this sequence
+  as its argument and returns an optional value.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;ElementOfResult&gt;(_ transform: @escaping (LazyMapSequence&lt;Base, Element&gt;.Elements.Element) -&gt; ElementOfResult?) -&gt; LazyMapSequence&lt;LazyFilterSequence&lt;LazyMapSequence&lt;LazyMapSequence&lt;Base, Element&gt;.Elements, ElementOfResult?&gt;&gt;, ElementOfResult&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/LazySequenceProtocol/"><code>LazySequenceProtocol</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-segmentofresult_-self-element-throws-segmentofresult">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-segmentofresult_-self-element-throws-segmentofresult">func flatMap&lt;SegmentOfResult&gt;(<wbr>_: (LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; SegmentOfResult)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-segmentofresult_-self-element-throws-segmentofresult"><div class="p">
+    <p>Returns an array containing the concatenated results of calling the
+given transformation with each element of this sequence.</p>
+
+<p>Use this method to receive a single-level collection when your
+transformation produces a sequence or collection for each element.</p>
+
+<p>In this example, note the difference in the result of using <code>map</code> and
+<code>flatMap</code> with a transformation that returns an array.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4]
+
+let mapped = numbers.map { Array(repeating: $0, count: $0) }
+// [[1], [2, 2], [3, 3, 3], [4, 4, 4, 4]]
+
+let flatMapped = numbers.flatMap { Array(repeating: $0, count: $0) }
+// [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]</code></pre>
+
+<p>In fact, <code>s.flatMap(transform)</code>  is equivalent to
+<code>Array(s.map(transform).joined())</code>.</p>
+
+<p><strong><code>transform</code>:</strong>  A closure that accepts an element of this
+  sequence as its argument and returns a sequence or collection.
+<strong>Returns:</strong> The resulting flattened array.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em> + <em>n</em>), where <em>m</em> is the length of this sequence
+  and <em>n</em> is the length of the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;SegmentOfResult&gt;(_ transform: (LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; SegmentOfResult) rethrows -&gt; [SegmentOfResult.Element] where SegmentOfResult : Sequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-segmentofresult_-escaping-self-elements-element-segmentofresult">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-segmentofresult_-escaping-self-elements-element-segmentofresult">func flatMap&lt;SegmentOfResult&gt;(<wbr>_: @escaping (LazyMapSequence&lt;Base, Element&gt;.Elements.Element) -&gt; SegmentOfResult)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-segmentofresult_-escaping-self-elements-element-segmentofresult"><div class="p">
+    <p>Returns the concatenated results of mapping the given transformation over
+this sequence.</p>
+
+<p>Use this method to receive a single-level sequence when your
+transformation produces a sequence or collection for each element.
+Calling <code>flatMap(_:)</code> on a sequence <code>s</code> is equivalent to calling
+<code>s.map(transform).joined()</code>.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;SegmentOfResult&gt;(_ transform: @escaping (LazyMapSequence&lt;Base, Element&gt;.Elements.Element) -&gt; SegmentOfResult) -&gt; LazySequence&lt;FlattenSequence&lt;LazyMapSequence&lt;LazyMapSequence&lt;Base, Element&gt;.Elements, SegmentOfResult&gt;&gt;&gt; where SegmentOfResult : Sequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/LazySequenceProtocol/"><code>LazySequenceProtocol</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-foreach_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-foreach_">func forEach(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-foreach_"><div class="p">
+    <p>Calls the given closure on each element in the sequence in the same order
+as a <code>for</code>-<code>in</code> loop.</p>
+
+<p>The two loops in the following example produce the same output:</p>
+
+<pre><code class="language-swift">let numberWords = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;]
+for word in numberWords {
+    print(word)
+}
+// Prints &quot;one&quot;
+// Prints &quot;two&quot;
+// Prints &quot;three&quot;
+
+numberWords.forEach { word in
+    print(word)
+}
+// Same as above</code></pre>
+
+<p>Using the <code>forEach</code> method is distinct from a <code>for</code>-<code>in</code> loop in two
+important ways:</p>
+
+<ol><li>You cannot use a <code>break</code> or <code>continue</code> statement to exit the current
+call of the <code>body</code> closure or skip subsequent calls.</li><li>Using the <code>return</code> statement in the <code>body</code> closure will exit only from
+the current call to <code>body</code>, not from any outer scope, and won&#39;t skip
+subsequent calls.</li></ol>
+
+<p><strong><code>body</code>:</strong>  A closure that takes an element of the sequence as a
+  parameter.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func forEach(_ body: (LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; Void) rethrows</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lexicographicallyprecedes_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lexicographicallyprecedes_by_">func lexicographicallyPrecedes(<wbr>_:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-lexicographicallyprecedes_by_"><div class="p">
+    <p>Returns a Boolean value indicating whether the sequence precedes another
+sequence in a lexicographical (dictionary) ordering, using the given
+predicate to compare elements.</p>
+
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areInIncreasingOrder(a, a)</code> is always <code>false</code>. (Irreflexivity)</li><li>If <code>areInIncreasingOrder(a, b)</code> and <code>areInIncreasingOrder(b, c)</code> are
+both <code>true</code>, then <code>areInIncreasingOrder(a, c)</code> is also
+<code>true</code>. (Transitive comparability)</li><li>Two elements are <em>incomparable</em> if neither is ordered before the other
+according to the predicate. If <code>a</code> and <code>b</code> are incomparable, and <code>b</code>
+and <code>c</code> are incomparable, then <code>a</code> and <code>c</code> are also incomparable.
+(Transitive incomparability)</li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>other:</strong> A sequence to compare to this sequence.
+  <strong>areInIncreasingOrder:</strong>  A predicate that returns <code>true</code> if its first
+    argument should be ordered before its second argument; otherwise,
+    <code>false</code>.
+<strong>Returns:</strong> <code>true</code> if this sequence precedes <code>other</code> in a dictionary
+  ordering as ordered by <code>areInIncreasingOrder</code>; otherwise, <code>false</code>.</p>
+
+<p><strong>Note:</strong> This method implements the mathematical notion of lexicographical
+  ordering, which has no connection to Unicode.  If you are sorting
+  strings to present to the end user, use <code>String</code> APIs that perform
+  localized comparison instead.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lexicographicallyPrecedes&lt;OtherSequence&gt;(_ other: OtherSequence, by areInIncreasingOrder: (LazyMapSequence&lt;Base, Element&gt;.Element, LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; Bool) rethrows -&gt; Bool where OtherSequence : Sequence, LazyMapSequence&lt;Base, Element&gt;.Element == OtherSequence.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-makeiterator">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-makeiterator">func makeIterator()</a>
+        
+<div class="comment collapse" id="comment-func-makeiterator"><div class="p">
+    <p>Returns an iterator over the elements of this sequence.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func makeIterator() -&gt; LazyMapSequence&lt;Base, Element&gt;.Iterator</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-map_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-map_">func map(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-map_"><div class="p">
+    <p>Returns a <code>LazyMapSequence</code> over this <code>Sequence</code>.  The elements of
+the result are computed lazily, each time they are read, by
+calling <code>transform</code> function on a base element.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func map&lt;U&gt;(_ transform: @escaping (LazyMapSequence&lt;Base, Element&gt;.Elements.Element) -&gt; U) -&gt; LazyMapSequence&lt;LazyMapSequence&lt;Base, Element&gt;.Elements, U&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/LazySequenceProtocol/"><code>LazySequenceProtocol</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-max-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-max-by_">@warn_unqualified_access
+     func max(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-max-by_"><div class="p">
+    <p>Returns the maximum element in the sequence, using the given predicate
+as the comparison between elements.</p>
+
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areInIncreasingOrder(a, a)</code> is always <code>false</code>. (Irreflexivity)</li><li>If <code>areInIncreasingOrder(a, b)</code> and <code>areInIncreasingOrder(b, c)</code> are
+both <code>true</code>, then <code>areInIncreasingOrder(a, c)</code> is also
+<code>true</code>. (Transitive comparability)</li><li>Two elements are <em>incomparable</em> if neither is ordered before the other
+according to the predicate. If <code>a</code> and <code>b</code> are incomparable, and <code>b</code>
+and <code>c</code> are incomparable, then <code>a</code> and <code>c</code> are also incomparable.
+(Transitive incomparability)</li></ul>
+
+<p>This example shows how to use the <code>max(by:)</code> method on a
+dictionary to find the key-value pair with the highest value.</p>
+
+<pre><code class="language-swift">let hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+let greatestHue = hues.max { a, b in a.value &lt; b.value }
+print(greatestHue)
+// Prints &quot;Optional((&quot;Heliotrope&quot;, 296))&quot;</code></pre>
+
+<p><strong><code>areInIncreasingOrder</code>:</strong>   A predicate that returns <code>true</code> if its
+  first argument should be ordered before its second argument;
+  otherwise, <code>false</code>.
+<strong>Returns:</strong> The sequence&#39;s maximum element if the sequence is not empty;
+  otherwise, <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@warn_unqualified_access
+     func max(by areInIncreasingOrder: (LazyMapSequence&lt;Base, Element&gt;.Element, LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; Bool) rethrows -&gt; LazyMapSequence&lt;Base, Element&gt;.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-min-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-min-by_">func min(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-min-by_"><div class="p">
+    <p>Returns the minimum element in the sequence, using the given predicate as
+the comparison between elements.</p>
+
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areInIncreasingOrder(a, a)</code> is always <code>false</code>. (Irreflexivity)</li><li>If <code>areInIncreasingOrder(a, b)</code> and <code>areInIncreasingOrder(b, c)</code> are
+both <code>true</code>, then <code>areInIncreasingOrder(a, c)</code> is also
+<code>true</code>. (Transitive comparability)</li><li>Two elements are <em>incomparable</em> if neither is ordered before the other
+according to the predicate. If <code>a</code> and <code>b</code> are incomparable, and <code>b</code>
+and <code>c</code> are incomparable, then <code>a</code> and <code>c</code> are also incomparable.
+(Transitive incomparability)</li></ul>
+
+<p>This example shows how to use the <code>min(by:)</code> method on a
+dictionary to find the key-value pair with the lowest value.</p>
+
+<pre><code class="language-swift">let hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+let leastHue = hues.min { a, b in a.value &lt; b.value }
+print(leastHue)
+// Prints &quot;Optional((&quot;Coral&quot;, 16))&quot;</code></pre>
+
+<p><strong><code>areInIncreasingOrder</code>:</strong>  A predicate that returns <code>true</code>
+  if its first argument should be ordered before its second
+  argument; otherwise, <code>false</code>.
+<strong>Returns:</strong> The sequence&#39;s minimum element, according to
+  <code>areInIncreasingOrder</code>. If the sequence has no elements, returns
+  <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func min(by areInIncreasingOrder: (LazyMapSequence&lt;Base, Element&gt;.Element, LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; Bool) rethrows -&gt; LazyMapSequence&lt;Base, Element&gt;.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefix-while_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix-while_">func prefix(<wbr>while:)</a>
+        
+<div class="comment collapse" id="comment-func-prefix-while_"><div class="p">
+    <p>Returns a lazy sequence of the initial consecutive elements that satisfy
+<code>predicate</code>.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence as
+  its argument and returns <code>true</code> if the element should be included or
+  <code>false</code> otherwise. Once <code>predicate</code> returns <code>false</code> it will not be
+  called again.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(while predicate: @escaping (LazyMapSequence&lt;Base, Element&gt;.Elements.Element) -&gt; Bool) -&gt; LazyPrefixWhileSequence&lt;LazyMapSequence&lt;Base, Element&gt;.Elements&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/LazySequenceProtocol/"><code>LazySequenceProtocol</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reduce__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reduce__">func reduce(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-reduce__"><div class="p">
+    <p>Returns the result of combining the elements of the sequence using the
+given closure.</p>
+
+<p>Use the <code>reduce(_:_:)</code> method to produce a single value from the elements
+of an entire sequence. For example, you can use this method on an array
+of numbers to find their sum or product.</p>
+
+<p>The <code>nextPartialResult</code> closure is called sequentially with an
+accumulating value initialized to <code>initialResult</code> and each element of
+the sequence. This example shows how to find the sum of an array of
+numbers.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4]
+let numberSum = numbers.reduce(0, { x, y in
+    x + y
+})
+// numberSum == 10</code></pre>
+
+<p>When <code>numbers.reduce(_:_:)</code> is called, the following steps occur:</p>
+
+<ol><li>The <code>nextPartialResult</code> closure is called with <code>initialResult</code>---<code>0</code>
+in this case---and the first element of <code>numbers</code>, returning the sum:
+<code>1</code>.</li><li>The closure is called again repeatedly with the previous call&#39;s return
+value and each element of the sequence.</li><li>When the sequence is exhausted, the last value returned from the
+closure is returned to the caller.</li></ol>
+
+<p>If the sequence has no elements, <code>nextPartialResult</code> is never executed
+and <code>initialResult</code> is the result of the call to <code>reduce(_:_:)</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>initialResult:</strong> The value to use as the initial accumulating value.
+    <code>initialResult</code> is passed to <code>nextPartialResult</code> the first time the
+    closure is executed.
+  <strong>nextPartialResult:</strong> A closure that combines an accumulating value and
+    an element of the sequence into a new accumulating value, to be used
+    in the next call of the <code>nextPartialResult</code> closure or returned to
+    the caller.
+<strong>Returns:</strong> The final accumulated value. If the sequence has no elements,
+  the result is <code>initialResult</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reduce&lt;Result&gt;(_ initialResult: Result, _ nextPartialResult: (Result, LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reduce-into__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reduce-into__">func reduce(<wbr>into:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-reduce-into__"><div class="p">
+    <p>Returns the result of combining the elements of the sequence using the
+given closure.</p>
+
+<p>Use the <code>reduce(into:_:)</code> method to produce a single value from the
+elements of an entire sequence. For example, you can use this method on an
+array of integers to filter adjacent equal entries or count frequencies.</p>
+
+<p>This method is preferred over <code>reduce(_:_:)</code> for efficiency when the
+result is a copy-on-write type, for example an Array or a Dictionary.</p>
+
+<p>The <code>updateAccumulatingResult</code> closure is called sequentially with a
+mutable accumulating value initialized to <code>initialResult</code> and each element
+of the sequence. This example shows how to build a dictionary of letter
+frequencies of a string.</p>
+
+<pre><code class="language-swift">let letters = &quot;abracadabra&quot;
+let letterCount = letters.reduce(into: [:]) { counts, letter in
+    counts[letter, default: 0] += 1
+}
+// letterCount == [&quot;a&quot;: 5, &quot;b&quot;: 2, &quot;r&quot;: 2, &quot;c&quot;: 1, &quot;d&quot;: 1]</code></pre>
+
+<p>When <code>letters.reduce(into:_:)</code> is called, the following steps occur:</p>
+
+<ol><li>The <code>updateAccumulatingResult</code> closure is called with the initial
+accumulating value---<code>[:]</code> in this case---and the first character of
+<code>letters</code>, modifying the accumulating value by setting <code>1</code> for the key
+<code>&quot;a&quot;</code>.</li><li>The closure is called again repeatedly with the updated accumulating
+value and each element of the sequence.</li><li>When the sequence is exhausted, the accumulating value is returned to
+the caller.</li></ol>
+
+<p>If the sequence has no elements, <code>updateAccumulatingResult</code> is never
+executed and <code>initialResult</code> is the result of the call to
+<code>reduce(into:_:)</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>initialResult:</strong> The value to use as the initial accumulating value.
+  <strong>updateAccumulatingResult:</strong> A closure that updates the accumulating
+    value with an element of the sequence.
+<strong>Returns:</strong> The final accumulated value. If the sequence has no elements,
+  the result is <code>initialResult</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reduce&lt;Result&gt;(into initialResult: Result, _ updateAccumulatingResult: (inout Result, LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; ()) rethrows -&gt; Result</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reversed">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reversed">func reversed()</a>
+        
+<div class="comment collapse" id="comment-func-reversed"><div class="p">
+    <p>Returns an array containing the elements of this sequence in reverse
+order.</p>
+
+<p>The sequence must be finite.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+
+<p><strong>Returns:</strong> An array containing the elements of this sequence in
+  reverse order.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reversed() -&gt; [LazyMapSequence&lt;Base, Element&gt;.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-shuffled">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-shuffled">func shuffled()</a>
+        
+<div class="comment collapse" id="comment-func-shuffled"><div class="p">
+    <p>Returns the elements of the sequence, shuffled.</p>
+
+<p>For example, you can shuffle the numbers between <code>0</code> and <code>9</code> by calling
+the <code>shuffled()</code> method on that range:</p>
+
+<pre><code class="language-swift">let numbers = 0...9
+let shuffledNumbers = numbers.shuffled()
+// shuffledNumbers == [1, 7, 6, 2, 8, 9, 4, 3, 5, 0]</code></pre>
+
+<p>This method uses the default random generator, <code>Random.default</code>. The call
+to <code>numbers.shuffled()</code> above is equivalent to calling
+<code>numbers.shuffled(using: &amp;Random.default)</code>.</p>
+
+<p><strong>Returns:</strong> A shuffled array of this sequence&#39;s elements.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func shuffled() -&gt; [LazyMapSequence&lt;Base, Element&gt;.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-shuffled-using_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-shuffled-using_">func shuffled(<wbr>using:)</a>
+        
+<div class="comment collapse" id="comment-func-shuffled-using_"><div class="p">
+    <p>Returns the elements of the sequence, shuffled using the given generator
+as a source for randomness.</p>
+
+<p>You use this method to randomize the elements of a sequence when you
+are using a custom random number generator. For example, you can shuffle
+the numbers between <code>0</code> and <code>9</code> by calling the <code>shuffled(using:)</code> method
+on that range:</p>
+
+<pre><code class="language-swift">let numbers = 0...9
+let shuffledNumbers = numbers.shuffled(using: &amp;myGenerator)
+// shuffledNumbers == [8, 9, 4, 3, 2, 6, 7, 0, 5, 1]</code></pre>
+
+<p><strong><code>generator</code>:</strong>  The random number generator to use when shuffling
+  the sequence.
+<strong>Returns:</strong> An array of this sequence&#39;s elements in a shuffled order.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func shuffled&lt;T&gt;(using generator: inout T) -&gt; [LazyMapSequence&lt;Base, Element&gt;.Element] where T : RandomNumberGenerator</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-sorted-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sorted-by_">func sorted(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-sorted-by_"><div class="p">
+    <p>Returns the elements of the sequence, sorted using the given predicate as
+the comparison between elements.</p>
+
+<p>When you want to sort a sequence of elements that don&#39;t conform to the
+<code>Comparable</code> protocol, pass a predicate to this method that returns
+<code>true</code> when the first element passed should be ordered before the
+second. The elements of the resulting array are ordered according to the
+given predicate.</p>
+
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areInIncreasingOrder(a, a)</code> is always <code>false</code>. (Irreflexivity)</li><li>If <code>areInIncreasingOrder(a, b)</code> and <code>areInIncreasingOrder(b, c)</code> are
+both <code>true</code>, then <code>areInIncreasingOrder(a, c)</code> is also <code>true</code>.
+(Transitive comparability)</li><li>Two elements are <em>incomparable</em> if neither is ordered before the other
+according to the predicate. If <code>a</code> and <code>b</code> are incomparable, and <code>b</code>
+and <code>c</code> are incomparable, then <code>a</code> and <code>c</code> are also incomparable.
+(Transitive incomparability)</li></ul>
+
+<p>The sorting algorithm is not stable. A nonstable sort may change the
+relative order of elements for which <code>areInIncreasingOrder</code> does not
+establish an order.</p>
+
+<p>In the following example, the predicate provides an ordering for an array
+of a custom <code>HTTPResponse</code> type. The predicate orders errors before
+successes and sorts the error responses by their error code.</p>
+
+<pre><code class="language-swift">enum HTTPResponse {
+    case ok
+    case error(Int)
+}
+
+let responses: [HTTPResponse] = [.error(500), .ok, .ok, .error(404), .error(403)]
+let sortedResponses = responses.sorted {
+    switch ($0, $1) {
+    // Order errors by code
+    case let (.error(aCode), .error(bCode)):
+        return aCode &lt; bCode
+
+    // All successes are equivalent, so none is before any other
+    case (.ok, .ok): return false
+
+    // Order errors before successes
+    case (.error, .ok): return true
+    case (.ok, .error): return false
+    }
+}
+print(sortedResponses)
+// Prints &quot;[.error(403), .error(404), .error(500), .ok, .ok]&quot;</code></pre>
+
+<p>You also use this method to sort elements that conform to the
+<code>Comparable</code> protocol in descending order. To sort your sequence in
+descending order, pass the greater-than operator (<code>&gt;</code>) as the
+<code>areInIncreasingOrder</code> parameter.</p>
+
+<pre><code class="language-swift">let students: Set = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+let descendingStudents = students.sorted(by: &gt;)
+print(descendingStudents)
+// Prints &quot;[&quot;Peter&quot;, &quot;Kweku&quot;, &quot;Kofi&quot;, &quot;Akosua&quot;, &quot;Abena&quot;]&quot;</code></pre>
+
+<p>Calling the related <code>sorted()</code> method is equivalent to calling this
+method and passing the less-than operator (<code>&lt;</code>) as the predicate.</p>
+
+<pre><code class="language-swift">print(students.sorted())
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;
+print(students.sorted(by: &lt;))
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;</code></pre>
+
+<p><strong><code>areInIncreasingOrder</code>:</strong>  A predicate that returns <code>true</code> if its
+  first argument should be ordered before its second argument;
+  otherwise, <code>false</code>.
+<strong>Returns:</strong> A sorted array of the sequence&#39;s elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sorted(by areInIncreasingOrder: (LazyMapSequence&lt;Base, Element&gt;.Element, LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; Bool) rethrows -&gt; [LazyMapSequence&lt;Base, Element&gt;.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-starts-with_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-starts-with_by_">func starts(<wbr>with:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-starts-with_by_"><div class="p">
+    <p>Returns a Boolean value indicating whether the initial elements of the
+sequence are equivalent to the elements in another sequence, using
+the given predicate as the equivalence test.</p>
+
+<p>The predicate must be a <em>equivalence relation</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areEquivalent(a, a)</code> is always <code>true</code>. (Reflexivity)</li><li><code>areEquivalent(a, b)</code> implies <code>areEquivalent(b, a)</code>. (Symmetry)</li><li>If <code>areEquivalent(a, b)</code> and <code>areEquivalent(b, c)</code> are both <code>true</code>, then
+<code>areEquivalent(a, c)</code> is also <code>true</code>. (Transitivity)</li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>possiblePrefix:</strong> A sequence to compare to this sequence.
+  <strong>areEquivalent:</strong> A predicate that returns <code>true</code> if its two arguments
+    are equivalent; otherwise, <code>false</code>.
+<strong>Returns:</strong> <code>true</code> if the initial elements of the sequence are equivalent
+  to the elements of <code>possiblePrefix</code>; otherwise, <code>false</code>. If
+  <code>possiblePrefix</code> has no elements, the return value is <code>true</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func starts&lt;PossiblePrefix&gt;(with possiblePrefix: PossiblePrefix, by areEquivalent: (LazyMapSequence&lt;Base, Element&gt;.Element, PossiblePrefix.Element) throws -&gt; Bool) rethrows -&gt; Bool where PossiblePrefix : Sequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+<h3>Conditionally Inherited Items</h3>
+
+<p class="comment">The initializers, methods, and properties listed below may be available on this type under certain conditions (such as methods that are available on <code>Array</code> when its elements are <code>Equatable</code>) or may not ever be available if that determination is beyond SwiftDoc.org's capabilities. Please <a href="https://github.com/SwiftDocOrg/swiftdoc.org/issues">open an issue on GitHub</a> if you see something out of place!</p>
+
+
+
+
+
+<h4>Where Element : Comparable</h4>
+
+
+
+
+<div class="declaration inherited" id="func-element_-comparable-lexicographicallyprecedes_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-comparable-lexicographicallyprecedes_">func lexicographicallyPrecedes(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-comparable-lexicographicallyprecedes_"><div class="p">
+    <p>Returns a Boolean value indicating whether the sequence precedes another
+sequence in a lexicographical (dictionary) ordering, using the
+less-than operator (<code>&lt;</code>) to compare elements.</p>
+
+<p>This example uses the <code>lexicographicallyPrecedes</code> method to test which
+array of integers comes first in a lexicographical ordering.</p>
+
+<pre><code class="language-swift">let a = [1, 2, 2, 2]
+let b = [1, 2, 3, 4]
+
+print(a.lexicographicallyPrecedes(b))
+// Prints &quot;true&quot;
+print(b.lexicographicallyPrecedes(b))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A sequence to compare to this sequence.
+<strong>Returns:</strong> <code>true</code> if this sequence precedes <code>other</code> in a dictionary
+  ordering; otherwise, <code>false</code>.</p>
+
+<p><strong>Note:</strong> This method implements the mathematical notion of lexicographical
+  ordering, which has no connection to Unicode.  If you are sorting
+  strings to present to the end user, use <code>String</code> APIs that
+  perform localized comparison.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lexicographicallyPrecedes&lt;OtherSequence&gt;(_ other: OtherSequence) -&gt; Bool where OtherSequence : Sequence, LazyMapSequence&lt;Base, Element&gt;.Element == OtherSequence.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-comparable-max">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-comparable-max">@warn_unqualified_access
+     func max()</a>
+        
+<div class="comment collapse" id="comment-func-element_-comparable-max"><div class="p">
+    <p>Returns the maximum element in the sequence.</p>
+
+<p>This example finds the largest value in an array of height measurements.</p>
+
+<pre><code class="language-swift">let heights = [67.5, 65.7, 64.3, 61.1, 58.5, 60.3, 64.9]
+let greatestHeight = heights.max()
+print(greatestHeight)
+// Prints &quot;Optional(67.5)&quot;</code></pre>
+
+<p><strong>Returns:</strong> The sequence&#39;s maximum element. If the sequence has no
+  elements, returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@warn_unqualified_access
+     func max() -&gt; LazyMapSequence&lt;Base, Element&gt;.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-comparable-min">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-comparable-min">@warn_unqualified_access
+     func min()</a>
+        
+<div class="comment collapse" id="comment-func-element_-comparable-min"><div class="p">
+    <p>Returns the minimum element in the sequence.</p>
+
+<p>This example finds the smallest value in an array of height measurements.</p>
+
+<pre><code class="language-swift">let heights = [67.5, 65.7, 64.3, 61.1, 58.5, 60.3, 64.9]
+let lowestHeight = heights.min()
+print(lowestHeight)
+// Prints &quot;Optional(58.5)&quot;</code></pre>
+
+<p><strong>Returns:</strong> The sequence&#39;s minimum element. If the sequence has no
+  elements, returns <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@warn_unqualified_access
+     func min() -&gt; LazyMapSequence&lt;Base, Element&gt;.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-comparable-sorted">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-comparable-sorted">func sorted()</a>
+        
+<div class="comment collapse" id="comment-func-element_-comparable-sorted"><div class="p">
+    <p>Returns the elements of the sequence, sorted.</p>
+
+<p>You can sort any sequence of elements that conform to the <code>Comparable</code>
+protocol by calling this method. Elements are sorted in ascending order.</p>
+
+<p>The sorting algorithm is not stable. A nonstable sort may change the
+relative order of elements that compare equal.</p>
+
+<p>Here&#39;s an example of sorting a list of students&#39; names. Strings in Swift
+conform to the <code>Comparable</code> protocol, so the names are sorted in
+ascending order according to the less-than operator (<code>&lt;</code>).</p>
+
+<pre><code class="language-swift">let students: Set = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+let sortedStudents = students.sorted()
+print(sortedStudents)
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;</code></pre>
+
+<p>To sort the elements of your sequence in descending order, pass the
+greater-than operator (<code>&gt;</code>) to the <code>sorted(by:)</code> method.</p>
+
+<pre><code class="language-swift">let descendingStudents = students.sorted(by: &gt;)
+print(descendingStudents)
+// Prints &quot;[&quot;Peter&quot;, &quot;Kweku&quot;, &quot;Kofi&quot;, &quot;Akosua&quot;, &quot;Abena&quot;]&quot;</code></pre>
+
+<p><strong>Returns:</strong> A sorted array of the sequence&#39;s elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sorted() -&gt; [LazyMapSequence&lt;Base, Element&gt;.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Element : Equatable</h4>
+
+
+
+
+<div class="declaration inherited" id="func-element_-equatable-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-equatable-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-equatable-contains_"><div class="p">
+    <p>Returns a Boolean value indicating whether the sequence contains the
+given element.</p>
+
+<p>This example checks to see whether a favorite actor is in an array
+storing a movie&#39;s cast.</p>
+
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+print(cast.contains(&quot;Marlon&quot;))
+// Prints &quot;true&quot;
+print(cast.contains(&quot;James&quot;))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>element</code>:</strong>  The element to find in the sequence.
+<strong>Returns:</strong> <code>true</code> if the element was found in the sequence; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(_ element: LazyMapSequence&lt;Base, Element&gt;.Element) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-equatable-elementsequal_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-equatable-elementsequal_">func elementsEqual(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-equatable-elementsequal_"><div class="p">
+    <p>Returns a Boolean value indicating whether this sequence and another
+sequence contain the same elements in the same order.</p>
+
+<p>At least one of the sequences must be finite.</p>
+
+<p>This example tests whether one countable range shares the same elements
+as another countable range and an array.</p>
+
+<pre><code class="language-swift">let a = 1...3
+let b = 1...10
+
+print(a.elementsEqual(b))
+// Prints &quot;false&quot;
+print(a.elementsEqual([1, 2, 3]))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A sequence to compare to this sequence.
+<strong>Returns:</strong> <code>true</code> if this sequence and <code>other</code> contain the same elements
+  in the same order.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func elementsEqual&lt;OtherSequence&gt;(_ other: OtherSequence) -&gt; Bool where OtherSequence : Sequence, LazyMapSequence&lt;Base, Element&gt;.Element == OtherSequence.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-equatable-split_maxsplits_omittingemptysubsequences_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-equatable-split_maxsplits_omittingemptysubsequences_">func split(<wbr>_:<wbr>maxSplits:<wbr>omittingEmptySubsequences:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-equatable-split_maxsplits_omittingemptysubsequences_"><div class="p">
+    <p>Returns the longest possible subsequences of the sequence, in order,
+around elements equal to the given element.</p>
+
+<p>The resulting array consists of at most <code>maxSplits + 1</code> subsequences.
+Elements that are used to split the sequence are not returned as part of
+any subsequence.</p>
+
+<p>The following examples show the effects of the <code>maxSplits</code> and
+<code>omittingEmptySubsequences</code> parameters when splitting a string at each
+space character (&quot; &quot;). The first use of <code>split</code> returns each word that
+was originally separated by one or more spaces.</p>
+
+<pre><code class="language-swift">let line = &quot;BLANCHE:   I don&#39;t want realism. I want magic!&quot;
+print(line.split(separator: &quot; &quot;)
+          .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p>The second example passes <code>1</code> for the <code>maxSplits</code> parameter, so the
+original string is split just once, into two new strings.</p>
+
+<pre><code class="language-swift">print(line.split(separator: &quot; &quot;, maxSplits: 1)
+          .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;  I don\&#39;t want realism. I want magic!&quot;]&quot;</code></pre>
+
+<p>The final example passes <code>false</code> for the <code>omittingEmptySubsequences</code>
+parameter, so the returned array contains empty strings where spaces
+were repeated.</p>
+
+<pre><code class="language-swift">print(line.split(separator: &quot; &quot;, omittingEmptySubsequences: false)
+          .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;&quot;, &quot;&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>separator:</strong> The element that should be split upon.
+  <strong>maxSplits:</strong> The maximum number of times to split the sequence, or one
+    less than the number of subsequences to return. If <code>maxSplits + 1</code>
+    subsequences are returned, the last one is a suffix of the original
+    sequence containing the remaining elements. <code>maxSplits</code> must be
+    greater than or equal to zero. The default value is <code>Int.max</code>.
+  <strong>omittingEmptySubsequences:</strong> If <code>false</code>, an empty subsequence is
+    returned in the result for each consecutive pair of <code>separator</code>
+    elements in the sequence and for each instance of <code>separator</code> at the
+    start or end of the sequence. If <code>true</code>, only nonempty subsequences
+    are returned. The default value is <code>true</code>.
+<strong>Returns:</strong> An array of subsequences, split from this sequence&#39;s elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split(separator: LazyMapSequence&lt;Base, Element&gt;.Element, maxSplits: Int = default, omittingEmptySubsequences: Bool = default) -&gt; [LazyMapSequence&lt;Base, Element&gt;.SubSequence]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-equatable-starts-with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-equatable-starts-with_">func starts(<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-equatable-starts-with_"><div class="p">
+    <p>Returns a Boolean value indicating whether the initial elements of the
+sequence are the same as the elements in another sequence.</p>
+
+<p>This example tests whether one countable range begins with the elements
+of another countable range.</p>
+
+<pre><code class="language-swift">let a = 1...3
+let b = 1...10
+
+print(b.starts(with: a))
+// Prints &quot;true&quot;</code></pre>
+
+<p>Passing a sequence with no elements or an empty collection as
+<code>possiblePrefix</code> always results in <code>true</code>.</p>
+
+<pre><code class="language-swift">print(b.starts(with: []))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>possiblePrefix</code>:</strong>  A sequence to compare to this sequence.
+<strong>Returns:</strong> <code>true</code> if the initial elements of the sequence are the same as
+  the elements of <code>possiblePrefix</code>; otherwise, <code>false</code>. If
+  <code>possiblePrefix</code> has no elements, the return value is <code>true</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func starts&lt;PossiblePrefix&gt;(with possiblePrefix: PossiblePrefix) -&gt; Bool where PossiblePrefix : Sequence, LazyMapSequence&lt;Base, Element&gt;.Element == PossiblePrefix.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Element : Sequence</h4>
+
+
+
+
+<div class="declaration inherited" id="func-element_-sequence-joined">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-sequence-joined">func joined()</a>
+        
+<div class="comment collapse" id="comment-func-element_-sequence-joined"><div class="p">
+    <p>Returns a lazy sequence that concatenates the elements of this sequence of
+sequences.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joined() -&gt; LazySequence&lt;FlattenSequence&lt;LazyMapSequence&lt;Base, Element&gt;.Elements&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/LazySequenceProtocol/"><code>LazySequenceProtocol</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-element_-sequence-joined_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-sequence-joined_">func joined(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-sequence-joined_"><div class="p">
+    <p>Returns the concatenated elements of this sequence of sequences,
+inserting the given separator between each element.</p>
+
+<p>This example shows how an array of <code>[Int]</code> instances can be joined, using
+another <code>[Int]</code> instance as the separator:</p>
+
+<pre><code class="language-swift">let nestedNumbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+let joined = nestedNumbers.joined(separator: [-1, -2])
+print(Array(joined))
+// Prints &quot;[1, 2, 3, -1, -2, 4, 5, 6, -1, -2, 7, 8, 9]&quot;</code></pre>
+
+<p><strong><code>separator</code>:</strong>  A sequence to insert between each of this
+  sequence&#39;s elements.
+<strong>Returns:</strong> The joined sequence of elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joined&lt;Separator&gt;(separator: Separator) -&gt; JoinedSequence&lt;LazyMapSequence&lt;Base, Element&gt;&gt; where Separator : Sequence, Separator.Element == LazyMapSequence&lt;Base, Element&gt;.Element.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Element : StringProtocol</h4>
+
+
+
+
+<div class="declaration inherited" id="func-element_-stringprotocol-joined_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_-stringprotocol-joined_">func joined(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-element_-stringprotocol-joined_"><div class="p">
+    <p>Returns a new string by concatenating the elements of the sequence,
+adding the given separator between each element.</p>
+
+<p>The following example shows how an array of strings can be joined to a
+single, comma-separated string:</p>
+
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let list = cast.joined(separator: &quot;, &quot;)
+print(list)
+// Prints &quot;Vivien, Marlon, Kim, Karl&quot;</code></pre>
+
+<p><strong><code>separator</code>:</strong>  A string to insert between each of the elements
+  in this sequence. The default separator is an empty string.
+<strong>Returns:</strong> A single, concatenated string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joined(separator: String = default) -&gt; String</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Elements : LazySequenceProtocol</h4>
+
+
+<div class="declaration inherited" id="elements_-lazysequenceprotocol-var-lazy_-self-elements">
+<a class="toggle-link" data-toggle="collapse" href="#comment-elements_-lazysequenceprotocol-var-lazy_-self-elements">var lazy: LazyMapSequence&lt;Base, Element&gt;.Elements</a><div class="comment collapse" id="comment-elements_-lazysequenceprotocol-var-lazy_-self-elements"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var lazy: LazyMapSequence&lt;Base, Element&gt;.Elements { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/LazySequenceProtocol/"><code>LazySequenceProtocol</code></a>
+        </div></div>
+</div>
+
+
+
+
+
+
+
+<h4>Where SubSequence == AnySequence<Element></h4>
+
+
+
+
+<div class="declaration inherited" id="func-subsequence-anysequence-element-drop-while_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-drop-while_">func drop(<wbr>while:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-drop-while_"><div class="p">
+    <p>Returns a subsequence by skipping the initial, consecutive elements that
+satisfy the given predicate.</p>
+
+<p>The following example uses the <code>drop(while:)</code> method to skip over the
+positive numbers at the beginning of the <code>numbers</code> array. The result
+begins with the first element of <code>numbers</code> that does not satisfy
+<code>predicate</code>.</p>
+
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+let startingWithNegative = numbers.drop(while: { $0 &gt; 0 })
+// startingWithNegative == [-2, 9, -6, 10, 1]</code></pre>
+
+<p>If <code>predicate</code> matches every element in the sequence, the result is an
+empty sequence.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence as
+  its argument and returns a Boolean value indicating whether the
+  element should be included in the result.
+<strong>Returns:</strong> A subsequence starting after the initial, consecutive elements
+  that satisfy <code>predicate</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func drop(while predicate: (LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; Bool) rethrows -&gt; AnySequence&lt;LazyMapSequence&lt;Base, Element&gt;.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-anysequence-element-dropfirst_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-dropfirst_">func dropFirst(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-dropfirst_"><div class="p">
+    <p>Returns a subsequence containing all but the given number of initial
+elements.</p>
+
+<p>If the number of elements to drop exceeds the number of elements in
+the sequence, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropFirst(2))
+// Prints &quot;[3, 4, 5]&quot;
+print(numbers.dropFirst(10))
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong><code>n</code>:</strong>  The number of elements to drop from the beginning of
+  the sequence. <code>n</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence starting after the specified number of
+  elements.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst(_ n: Int) -&gt; AnySequence&lt;LazyMapSequence&lt;Base, Element&gt;.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-anysequence-element-droplast_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-droplast_">func dropLast(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-droplast_"><div class="p">
+    <p>Returns a subsequence containing all but the given number of final
+elements.</p>
+
+<p>The sequence must be finite. If the number of elements to drop exceeds
+the number of elements in the sequence, the result is an empty
+subsequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast(2))
+// Prints &quot;[1, 2, 3]&quot;
+print(numbers.dropLast(10))
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong><code>n</code>:</strong>  The number of elements to drop off the end of the
+  sequence. <code>n</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence leaving off the specified number of elements.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast(_ n: Int) -&gt; AnySequence&lt;LazyMapSequence&lt;Base, Element&gt;.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-anysequence-element-prefix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-prefix_">func prefix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-prefix_"><div class="p">
+    <p>Returns a subsequence, up to the specified maximum length, containing the
+initial elements of the sequence.</p>
+
+<p>If the maximum length exceeds the number of elements in the sequence,
+the result contains all the elements in the sequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.prefix(2))
+// Prints &quot;[1, 2]&quot;
+print(numbers.prefix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;</code></pre>
+
+<p><strong><code>maxLength</code>:</strong>  The maximum number of elements to return. The
+  value of <code>maxLength</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence starting at the beginning of this sequence
+  with at most <code>maxLength</code> elements.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(_ maxLength: Int) -&gt; AnySequence&lt;LazyMapSequence&lt;Base, Element&gt;.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-anysequence-element-prefix-while_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-prefix-while_">func prefix(<wbr>while:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-prefix-while_"><div class="p">
+    <p>Returns a subsequence containing the initial, consecutive elements that
+satisfy the given predicate.</p>
+
+<p>The following example uses the <code>prefix(while:)</code> method to find the
+positive numbers at the beginning of the <code>numbers</code> array. Every element
+of <code>numbers</code> up to, but not including, the first negative value is
+included in the result.</p>
+
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+let positivePrefix = numbers.prefix(while: { $0 &gt; 0 })
+// positivePrefix == [3, 7, 4]</code></pre>
+
+<p>If <code>predicate</code> matches every element in the sequence, the resulting
+sequence contains every element of the sequence.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence as
+  its argument and returns a Boolean value indicating whether the
+  element should be included in the result.
+<strong>Returns:</strong> A subsequence of the initial, consecutive elements that
+  satisfy <code>predicate</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(while predicate: (LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; Bool) rethrows -&gt; AnySequence&lt;LazyMapSequence&lt;Base, Element&gt;.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-anysequence-element-split_omittingemptysubsequences_whereseparator_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-split_omittingemptysubsequences_whereseparator_">func split(<wbr>_:<wbr>omittingEmptySubsequences:<wbr>whereSeparator:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-split_omittingemptysubsequences_whereseparator_"><div class="p">
+    <p>Returns the longest possible subsequences of the sequence, in order, that
+don&#39;t contain elements satisfying the given predicate. Elements that are
+used to split the sequence are not returned as part of any subsequence.</p>
+
+<p>The following examples show the effects of the <code>maxSplits</code> and
+<code>omittingEmptySubsequences</code> parameters when splitting a string using a
+closure that matches spaces. The first use of <code>split</code> returns each word
+that was originally separated by one or more spaces.</p>
+
+<pre><code class="language-swift">let line = &quot;BLANCHE:   I don&#39;t want realism. I want magic!&quot;
+print(line.split(whereSeparator: { $0 == &quot; &quot; })
+          .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p>The second example passes <code>1</code> for the <code>maxSplits</code> parameter, so the
+original string is split just once, into two new strings.</p>
+
+<pre><code class="language-swift">print(
+   line.split(maxSplits: 1, whereSeparator: { $0 == &quot; &quot; })
+                  .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;  I don\&#39;t want realism. I want magic!&quot;]&quot;</code></pre>
+
+<p>The final example passes <code>true</code> for the <code>allowEmptySlices</code> parameter, so
+the returned array contains empty strings where spaces were repeated.</p>
+
+<pre><code class="language-swift">print(
+    line.split(
+        omittingEmptySubsequences: false,
+        whereSeparator: { $0 == &quot; &quot; }
+    ).map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;&quot;, &quot;&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>maxSplits:</strong> The maximum number of times to split the sequence, or one
+    less than the number of subsequences to return. If <code>maxSplits + 1</code>
+    subsequences are returned, the last one is a suffix of the original
+    sequence containing the remaining elements. <code>maxSplits</code> must be
+    greater than or equal to zero. The default value is <code>Int.max</code>.
+  <strong>omittingEmptySubsequences:</strong> If <code>false</code>, an empty subsequence is
+    returned in the result for each pair of consecutive elements
+    satisfying the <code>isSeparator</code> predicate and for each element at the
+    start or end of the sequence satisfying the <code>isSeparator</code> predicate.
+    If <code>true</code>, only nonempty subsequences are returned. The default
+    value is <code>true</code>.
+  <strong>isSeparator:</strong> A closure that returns <code>true</code> if its argument should be
+    used to split the sequence; otherwise, <code>false</code>.
+<strong>Returns:</strong> An array of subsequences, split from this sequence&#39;s elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split(maxSplits: Int = default, omittingEmptySubsequences: Bool = default, whereSeparator isSeparator: (LazyMapSequence&lt;Base, Element&gt;.Element) throws -&gt; Bool) rethrows -&gt; [AnySequence&lt;LazyMapSequence&lt;Base, Element&gt;.Element&gt;]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-anysequence-element-suffix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-anysequence-element-suffix_">func suffix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-anysequence-element-suffix_"><div class="p">
+    <p>Returns a subsequence, up to the given maximum length, containing the
+final elements of the sequence.</p>
+
+<p>The sequence must be finite. If the maximum length exceeds the number of
+elements in the sequence, the result contains all the elements in the
+sequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.suffix(2))
+// Prints &quot;[4, 5]&quot;
+print(numbers.suffix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;</code></pre>
+
+<p><strong><code>maxLength</code>:</strong>  The maximum number of elements to return. The
+  value of <code>maxLength</code> must be greater than or equal to zero.
+<strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func suffix(_ maxLength: Int) -&gt; AnySequence&lt;LazyMapSequence&lt;Base, Element&gt;.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
