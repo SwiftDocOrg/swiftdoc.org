@@ -1,0 +1,134 @@
+---
+layout: "default"
+title: "IntervalType"
+description: "Swift documentation for 'IntervalType': An interval over a Comparable type."
+keywords: "IntervalType,protocol,swift,documentation,clamp,contains,end,isEmpty,start,Bound"
+root: "/v2.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol IntervalType</code></div>
+
+<div class="discussion comment">
+    <p>An interval over a <code>Comparable</code> type.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Bound : Comparable</code>
+<div class="comment">
+    <p>The type of the <code>Interval</code>&#39;s endpoints.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-end_-self-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-end_-self-bound">var end: Self.Bound</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-end_-self-bound"><div class="p">
+    <p>The <code>Interval</code>&#39;s upper bound.</p>
+
+<p>Invariant: <code>start</code> &lt;= <code>end</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var end: Self.Bound { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p><code>true</code> iff <code>self</code> is empty.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-start_-self-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-start_-self-bound">var start: Self.Bound</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-start_-self-bound"><div class="p">
+    <p>The <code>Interval</code>&#39;s lower bound.</p>
+
+<p>Invariant: <code>start</code> &lt;= <code>end</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var start: Self.Bound { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-clamp_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-clamp_">func clamp(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-clamp_"><div class="p">
+    <p>Return <code>rhs</code> clamped to <code>self</code>.  The bounds of the result, even
+if it is empty, are always within the bounds of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func clamp(intervalToClamp: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains_">func contains(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-contains_"><div class="p">
+    <p>Returns <code>true</code> iff the interval contains <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(value: Self.Bound) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+
+
+<div class="declaration" id="func--overlaps_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--overlaps_">func overlaps(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--overlaps_"><div class="p">
+    <p>Returns <code>true</code> if <code>lhs</code> and <code>rhs</code> have a non-empty intersection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func overlaps&lt;I : IntervalType where I.Bound == Bound&gt;(other: I) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+
+
+
+
+

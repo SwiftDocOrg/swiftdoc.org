@@ -1,0 +1,33 @@
+---
+layout: "default"
+title: "assertionFailure"
+description: "Swift documentation for 'assertionFailure': Indicate that an internal sanity check failed."
+keywords: "assertionFailure,func,swift,documentation"
+root: "/v2.1"
+---
+
+<div class="declaration" id="func-assertionfailure_-string-file_-staticstring-line_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-assertionfailure_-string-file_-staticstring-line_-uint">func assertionFailure(<wbr>_: (<wbr>) -&gt; String, file:<wbr> StaticString, line: UInt)</a>
+        
+<div class="comment collapse" id="comment-func-assertionfailure_-string-file_-staticstring-line_-uint"><div class="p">
+    <p>Indicate that an internal sanity check failed.</p>
+
+<p>Use this function to stop the program, without impacting the
+performance of shipping code, when control flow is not expected to
+reach the call (e.g. in the <code>default</code> case of a <code>switch</code> where you
+have knowledge that one of the other cases must be satisfied). To
+protect code from invalid usage in Release builds; see
+<code>preconditionFailure</code>.</p>
+
+<ul><li><p>In playgrounds and -Onone builds (the default for Xcode&#39;s Debug
+configuration) stop program execution in a debuggable state
+after printing <code>message</code>.</p></li><li><p>In -O builds, has no effect.</p></li><li><p>In -Ounchecked builds, the optimizer may assume that this
+function will never be called. Failure to satisfy that assumption
+is a serious programming error.</p></li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func assertionFailure(@autoclosure message: () -&gt; String = default, file: StaticString = default, line: UInt = default)</code>
+    
+    
+</div></div>
+</div>

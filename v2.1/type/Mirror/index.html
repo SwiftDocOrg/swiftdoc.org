@@ -1,0 +1,312 @@
+---
+layout: "default"
+title: "Mirror"
+description: "Swift documentation for 'Mirror': Representation of the sub-structure and optional &quot;display style&quot;
+of any arbitrary subject instance."
+keywords: "Mirror,struct,swift,documentation,customMirror,descendant,superclassMirror,children,description,displayStyle,subjectType,Child,Children"
+root: "/v2.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Mirror</code></div>
+
+<div class="discussion comment">
+    <p>Representation of the sub-structure and optional &quot;display style&quot;
+of any arbitrary subject instance.</p>
+
+<p>Describes the parts---such as stored properties, collection
+elements, tuple elements, or the active enumeration case---that
+make up a particular instance.  May also supply a &quot;display style&quot;
+property that suggests how this structure might be rendered.</p>
+
+<p>Mirrors are used by playgrounds and the debugger.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CustomReflectable, CustomStringConvertible</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Child = (label: String?, value: Any)</code>
+<div class="comment">
+    <p>An element of the reflected instance&#39;s structure.  The optional
+<code>label</code> may be used when appropriate, e.g. to represent the name
+of a stored property or of an active <code>enum</code> case, and will be
+used for lookup when <code>String</code>s are passed to the <code>descendant</code>
+method.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Children = AnyForwardCollection&lt;Child&gt;</code>
+<div class="comment">
+    <p>The type used to represent sub-structure.</p>
+
+<p>Depending on your needs, you may find it useful to &quot;upgrade&quot;
+instances of this type to <code>AnyBidirectionalCollection</code> or
+<code>AnyRandomAccessCollection</code>.  For example, to display the last
+20 children of a mirror if they can be accessed efficiently, you
+might write:</p>
+
+<pre><code class="language-swift">if let b = AnyBidirectionalCollection(someMirror.children) {
+  for i in b.endIndex.advancedBy(-20, limit: b.startIndex)..&lt;b.endIndex {
+     print(b[i])
+  }
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+
+<tr>
+<th>Nested Types</th>
+<td><code class="nested">Mirror.AncestorRepresentation, Mirror.DisplayStyle</code></td>
+</tr>
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-t_-t-children_-dictionaryliteral-string-any-displaystyle_-mirror-displaystyle-ancestorrepresentation_-mirror-ancestorrepresentation">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-t_-t-children_-dictionaryliteral-string-any-displaystyle_-mirror-displaystyle-ancestorrepresentation_-mirror-ancestorrepresentation">init&lt;T&gt;(<wbr>_:<wbr> T, children:<wbr> DictionaryLiteral&lt;String, Any&gt;, displayStyle:<wbr> Mirror.DisplayStyle?, ancestorRepresentation: Mirror.AncestorRepresentation)</a><div class="comment collapse" id="comment-init-t_-t-children_-dictionaryliteral-string-any-displaystyle_-mirror-displaystyle-ancestorrepresentation_-mirror-ancestorrepresentation"><div class="p">
+    <p>Represent <code>subject</code> with labeled structure described by
+<code>children</code>, using an optional <code>displayStyle</code>.</p>
+
+<p>Pass a dictionary literal with <code>String</code> keys as <code>children</code>.  Be
+aware that although an <em>actual</em> <code>Dictionary</code> is
+arbitrarily-ordered, the ordering of the <code>Mirror</code>&#39;s <code>children</code>
+will exactly match that of the literal you pass.</p>
+
+<p>If <code>subject</code> is not a class instance, <code>ancestorRepresentation</code>
+is ignored.  Otherwise, <code>ancestorRepresentation</code> determines
+whether ancestor classes will be represented and whether their
+<code>customMirror</code> implementations will be used.  By default, a
+representation is automatically generated and any <code>customMirror</code>
+implementation is bypassed.  To prevent bypassing customized
+ancestors, <code>customMirror</code> overrides should initialize the
+<code>Mirror</code> with:</p>
+
+<pre><code class="language-swift">ancestorRepresentation: .Customized(super.customMirror)</code></pre>
+
+<p><strong>Note:</strong> The resulting <code>Mirror</code>&#39;s <code>children</code> may be upgraded to
+  <code>AnyRandomAccessCollection</code> later.  See the failable
+  initializers of <code>AnyBidirectionalCollection</code> and
+<code>AnyRandomAccessCollection</code> for details.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(_ subject: T, children: DictionaryLiteral&lt;String, Any&gt;, displayStyle: Mirror.DisplayStyle? = default, ancestorRepresentation: Mirror.AncestorRepresentation = default)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-t-c_-collectiontype-where-c-generator-element-child_-t-children_-c-displaystyle_-mirror-displaystyle-ancestorrepresentation_-mirror-ancestorrepresentation">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-t-c_-collectiontype-where-c-generator-element-child_-t-children_-c-displaystyle_-mirror-displaystyle-ancestorrepresentation_-mirror-ancestorrepresentation"><wbr>init&lt;T, C : CollectionType where C.Generator.Element == Child&gt;(<wbr>_:<wbr> T, children:<wbr> C, displayStyle:<wbr> Mirror.DisplayStyle?, ancestorRepresentation: Mirror.AncestorRepresentation)</a><div class="comment collapse" id="comment-init-t-c_-collectiontype-where-c-generator-element-child_-t-children_-c-displaystyle_-mirror-displaystyle-ancestorrepresentation_-mirror-ancestorrepresentation"><div class="p">
+    <p>Represent <code>subject</code> with structure described by <code>children</code>,
+using an optional <code>displayStyle</code>.</p>
+
+<p>If <code>subject</code> is not a class instance, <code>ancestorRepresentation</code>
+is ignored.  Otherwise, <code>ancestorRepresentation</code> determines
+whether ancestor classes will be represented and whether their
+<code>customMirror</code> implementations will be used.  By default, a
+representation is automatically generated and any <code>customMirror</code>
+implementation is bypassed.  To prevent bypassing customized
+ancestors, <code>customMirror</code> overrides should initialize the
+<code>Mirror</code> with:</p>
+
+<pre><code class="language-swift">ancestorRepresentation: .Customized(super.customMirror)</code></pre>
+
+<p><strong>Note:</strong> The traversal protocol modeled by <code>children</code>&#39;s indices
+  (<code>ForwardIndexType</code>, <code>BidirectionalIndexType</code>, or
+  <code>RandomAccessIndexType</code>) is captured so that the resulting
+<code>Mirror</code>&#39;s <code>children</code> may be upgraded later.  See the failable
+initializers of <code>AnyBidirectionalCollection</code> and
+<code>AnyRandomAccessCollection</code> for details.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T, C : CollectionType where C.Generator.Element == Child&gt;(_ subject: T, children: C, displayStyle: Mirror.DisplayStyle? = default, ancestorRepresentation: Mirror.AncestorRepresentation = default)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_unlabeledchildren_displaystyle_ancestorrepresentation_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_unlabeledchildren_displaystyle_ancestorrepresentation_">init(<wbr>_:<wbr>unlabeledChildren:<wbr>displayStyle:<wbr>ancestorRepresentation:)</a><div class="comment collapse" id="comment-init_unlabeledchildren_displaystyle_ancestorrepresentation_"><div class="p">
+    <p>Represent <code>subject</code> with child values given by
+<code>unlabeledChildren</code>, using an optional <code>displayStyle</code>.  The
+result&#39;s child labels will all be <code>nil</code>.</p>
+
+<p>This initializer is especially useful for the mirrors of
+collections, e.g.:</p>
+
+<pre><code class="language-swift">extension MyArray : CustomReflectable {
+  func customMirror() -&gt; Mirror {
+    return Mirror(self, unlabeledChildren: self, displayStyle: .Collection)
+  }
+}</code></pre>
+
+<p>If <code>subject</code> is not a class instance, <code>ancestorRepresentation</code>
+is ignored.  Otherwise, <code>ancestorRepresentation</code> determines
+whether ancestor classes will be represented and whether their
+<code>customMirror</code> implementations will be used.  By default, a
+representation is automatically generated and any <code>customMirror</code>
+implementation is bypassed.  To prevent bypassing customized
+ancestors, <code>customMirror</code> overrides should initialize the
+<code>Mirror</code> with:</p>
+
+<pre><code class="language-swift">ancestorRepresentation: .Customized(super.customMirror)</code></pre>
+
+<p><strong>Note:</strong> The traversal protocol modeled by <code>children</code>&#39;s indices
+  (<code>ForwardIndexType</code>, <code>BidirectionalIndexType</code>, or
+  <code>RandomAccessIndexType</code>) is captured so that the resulting
+<code>Mirror</code>&#39;s <code>children</code> may be upgraded later.  See the failable
+initializers of <code>AnyBidirectionalCollection</code> and
+<code>AnyRandomAccessCollection</code> for details.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T, C : CollectionType&gt;(_ subject: T, unlabeledChildren: C, displayStyle: Mirror.DisplayStyle? = default, ancestorRepresentation: Mirror.AncestorRepresentation = default)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-reflecting_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-reflecting_">init(<wbr>reflecting:)</a><div class="comment collapse" id="comment-init-reflecting_"><div class="p">
+    <p>Reflect upon the given <code>subject</code>.</p>
+
+<p>If the dynamic type of <code>subject</code> conforms to <code>CustomReflectable</code>,
+the resulting mirror is determined by its <code>customMirror</code> method.
+Otherwise, the result is generated by the language.</p>
+
+<p><strong>Note:</strong> If the dynamic type of <code>subject</code> has value semantics,
+  subsequent mutations of <code>subject</code> will not observable in
+  <code>Mirror</code>.  In general, though, the observability of such
+mutations is unspecified.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(reflecting subject: Any)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-children_-children">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-children_-children">var children: Children</a><div class="comment collapse" id="comment-var-children_-children"><div class="p">
+    <p>A collection of <code>Child</code> elements describing the structure of the
+reflected subject.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var children: Children { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-displaystyle_-mirror-displaystyle">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-displaystyle_-mirror-displaystyle">var displayStyle: Mirror.DisplayStyle?</a><div class="comment collapse" id="comment-var-displaystyle_-mirror-displaystyle"><div class="p">
+    <p>Suggests a display style for the reflected subject.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var displayStyle: Mirror.DisplayStyle? { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-subjecttype_-any-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-subjecttype_-any-type">var subjectType: Any.Type</a><div class="comment collapse" id="comment-var-subjecttype_-any-type"><div class="p">
+    <p>The static type of the subject being reflected.</p>
+
+<p>This type may differ from the subject&#39;s dynamic type when <code>self</code>
+is the <code>superclassMirror()</code> of another mirror.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var subjectType: Any.Type { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-custommirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-custommirror">func customMirror()</a>
+        
+<div class="comment collapse" id="comment-func-custommirror"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func customMirror() -&gt; Mirror</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-descendant__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-descendant__">func descendant(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-descendant__"><div class="p">
+    <p>Return a specific descendant of the reflected subject, or <code>nil</code>
+if no such descendant exists.</p>
+
+<p>A <code>String</code> argument selects the first <code>Child</code> with a matching label.
+An integer argument <em>n</em> select the <em>n</em>th <code>Child</code>.  For example:</p>
+
+<pre><code class="language-swift">var d = Mirror(reflecting: x).descendant(1, &quot;two&quot;, 3)</code></pre>
+
+<p>is equivalent to:</p>
+
+<pre><code class="language-swift">var d = nil
+let children = Mirror(reflecting: x).children
+let p0 = children.startIndex.advancedBy(1, limit: children.endIndex)
+if p0 != children.endIndex {
+  let grandChildren = Mirror(reflecting: children[p0].value).children
+  SeekTwo: for g in grandChildren {
+    if g.label == &quot;two&quot; {
+      let greatGrandChildren = Mirror(reflecting: g.value).children
+      let p1 = greatGrandChildren.startIndex.advancedBy(3,
+        limit: greatGrandChildren.endIndex)
+      if p1 != endIndex { d = greatGrandChildren[p1].value }
+      break SeekTwo
+    }
+  }</code></pre>
+
+<p>As you can see, complexity for each element of the argument list
+depends on the argument type and capabilities of the collection
+used to initialize the corresponding subject&#39;s parent&#39;s mirror.
+Each <code>String</code> argument results in a linear search.  In short,
+this function is suitable for exploring the structure of a
+<code>Mirror</code> in a REPL or playground, but don&#39;t expect it to be
+efficient.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func descendant(first: MirrorPathType, _ rest: MirrorPathType...) -&gt; Any?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-superclassmirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-superclassmirror">func superclassMirror()</a>
+        
+<div class="comment collapse" id="comment-func-superclassmirror"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func superclassMirror() -&gt; Mirror?</code>
+    
+    
+</div></div>
+</div>
+
+

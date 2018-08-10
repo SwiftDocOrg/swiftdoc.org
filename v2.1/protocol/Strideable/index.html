@@ -1,0 +1,219 @@
+---
+layout: "default"
+title: "Strideable"
+description: "Swift documentation for 'Strideable': Conforming types are notionally continuous, one-dimensional
+values that can be offset and measured."
+keywords: "Strideable,protocol,swift,documentation,<,<=,==,>,>=,advancedBy,distanceTo,Stride"
+root: "/v2.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Strideable</code></div>
+
+<div class="discussion comment">
+    <p>Conforming types are notionally continuous, one-dimensional
+values that can be offset and measured.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Comparable, Equatable, _Strideable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Stride : SignedNumberType</code>
+<div class="comment">
+    <p>A type that can represent the distance between two values of <code>Self</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-lt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_rhs_">func &lt;(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-lt_rhs_"><div class="p">
+    <p>A <a href="http://en.wikipedia.org/wiki/Total_order#Strict_total_order">strict total order</a>
+over instances of <code>Self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lteq_rhs_">func &lt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-lteq_rhs_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Return true if <code>lhs</code> is equal to <code>rhs</code>.</p>
+
+<p><strong>Equality implies substitutability</strong>.  When <code>x == y</code>, <code>x</code> and
+<code>y</code> are interchangeable in any code that only depends on their
+values.</p>
+
+<p>Class instance identity as distinguished by triple-equals <code>===</code>
+is notably not part of an instance&#39;s value.  Exposing other
+non-value aspects of <code>Equatable</code> types is discouraged, and any
+that <em>are</em> exposed should be explicitly pointed out in
+documentation.</p>
+
+<p><strong>Equality is an equivalence relation</strong></p>
+
+<ul><li><code>x == x</code> is <code>true</code></li><li><code>x == y</code> implies <code>y == x</code></li><li><code>x == y</code> and <code>y == z</code> implies <code>x == z</code></li></ul>
+
+<p><strong>Inequality is the inverse of equality</strong>, i.e. <code>!(x == y)</code> iff
+<code>x != y</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gt_rhs_">func &gt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gt_rhs_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_rhs_">func &gt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_rhs_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-advancedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_">func advancedBy(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-advancedby_"><div class="p">
+    <p>Returns a <code>Self</code> <code>x</code> such that <code>self.distanceTo(x)</code> approximates
+<code>n</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+<p><strong>See Also:</strong> <code>RandomAccessIndexType</code>&#39;s <code>advancedBy</code>, which
+  provides a stronger semantic guarantee.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: Self.Stride) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/_Strideable/"><code>_Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-distanceto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distanceto_">func distanceTo(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-distanceto_"><div class="p">
+    <p>Returns a stride <code>x</code> such that <code>self.advancedBy(x)</code> approximates
+<code>other</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+<p><strong>See Also:</strong> <code>RandomAccessIndexType</code>&#39;s <code>distanceTo</code>, which provides a
+  stronger semantic guarantee.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distanceTo(other: Self) -&gt; Self.Stride</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Strideable/"><code>Strideable</code></a>,    <a href="../../protocol/_Strideable/"><code>_Strideable</code></a>    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+
+
+<div class="declaration" id="func--stride-through_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--stride-through_by_">func stride(<wbr>through:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func--stride-through_by_"><div class="p">
+    <p>Return the sequence of values (<code>start</code>, <code>start + stride</code>, <code>start +
+stride + stride</code>, ... <em>last</em>) where <em>last</em> is the last value in
+the progression less than or equal to <code>end</code>.</p>
+
+<p><strong>Note:</strong> There is no guarantee that <code>end</code> is an element of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func stride(through end: Self, by stride: Self.Stride) -&gt; StrideThrough&lt;Self&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--stride-to_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--stride-to_by_">func stride(<wbr>to:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func--stride-to_by_"><div class="p">
+    <p>Return the sequence of values (<code>self</code>, <code>self + stride</code>, <code>self +
+stride + stride</code>, ... <em>last</em>) where <em>last</em> is the last value in
+the progression that is less than <code>end</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func stride(to end: Self, by stride: Self.Stride) -&gt; StrideTo&lt;Self&gt;</code>
+    
+    
+</div></div>
+</div>
+
+
+
+
+

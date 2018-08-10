@@ -1,0 +1,22 @@
+strict digraph "Range<Element : ForwardIndexType> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "CollectionType" [URL="/protocol/CollectionType/hierarchy/"]
+    "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "Indexable" [URL="/protocol/Indexable/hierarchy/"]
+    "Range<Element : ForwardIndexType>" [URL="/type/Range/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "SequenceType" [URL="/protocol/SequenceType/hierarchy/"]
+    "_Reflectable" [URL="/protocol/_Reflectable/hierarchy/"]    "Equatable" -> "Range<Element : ForwardIndexType>"
+    "CollectionType" -> "Range<Element : ForwardIndexType>"
+    "CustomStringConvertible" -> "Range<Element : ForwardIndexType>"
+    "CustomDebugStringConvertible" -> "Range<Element : ForwardIndexType>"
+    "_Reflectable" -> "Range<Element : ForwardIndexType>"
+    "Indexable" -> "CollectionType"
+    "SequenceType" -> "CollectionType"
+    subgraph Types {
+        rank = max; "Range<Element : ForwardIndexType>";
+    }
+}

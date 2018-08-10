@@ -1,0 +1,53 @@
+---
+layout: "default"
+title: "anyGenerator"
+description: "Swift documentation for 'anyGenerator': Return a GeneratorType instance that wraps base but whose type
+depends only on the type of G.Element."
+keywords: "anyGenerator,func,swift,documentation"
+root: "/v2.1"
+---
+
+<div class="declaration" id="func-anygenerator-g_-generatortype_-g">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-anygenerator-g_-generatortype_-g">func <wbr>anyGenerator&lt;G : GeneratorType&gt;(<wbr>_: G)</a>
+        
+<div class="comment collapse" id="comment-func-anygenerator-g_-generatortype_-g"><div class="p">
+    <p>Return a <code>GeneratorType</code> instance that wraps <code>base</code> but whose type
+depends only on the type of <code>G.Element</code>.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-swift">func countStrings() -&gt; AnyGenerator&lt;String&gt; {
+  let lazyStrings = (0..&lt;10).lazy.map { String($0) }
+
+  // This is a really complicated type of no interest to our
+  // clients.
+  let g: MapSequenceGenerator&lt;RangeGenerator&lt;Int&gt;, String&gt;
+    = lazyStrings.generate()
+  return anyGenerator(g)
+}</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func anyGenerator&lt;G : GeneratorType&gt;(base: G) -&gt; AnyGenerator&lt;G.Element&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-anygenerator-element_-element">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-anygenerator-element_-element">func anyGenerator&lt;Element&gt;(<wbr>_: () -&gt; Element?)</a>
+        
+<div class="comment collapse" id="comment-func-anygenerator-element_-element"><div class="p">
+    <p>Return a <code>GeneratorType</code> instance whose <code>next</code> method invokes
+<code>body</code> and returns the result.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-swift">var x = 7
+let g = anyGenerator { x &lt; 15 ? x++ : nil }
+let a = Array(g) // [ 7, 8, 9, 10, 11, 12, 13, 14 ]</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func anyGenerator&lt;Element&gt;(body: () -&gt; Element?) -&gt; AnyGenerator&lt;Element&gt;</code>
+    
+    
+</div></div>
+</div>

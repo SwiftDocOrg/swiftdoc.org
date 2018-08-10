@@ -1,0 +1,60 @@
+---
+layout: "default"
+title: "CustomReflectable"
+description: "Swift documentation for 'CustomReflectable': A type that explicitly supplies its own Mirror."
+keywords: "CustomReflectable,protocol,swift,documentation,customMirror"
+root: "/v2.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CustomReflectable</code></div>
+
+<div class="discussion comment">
+    <p>A type that explicitly supplies its own Mirror.</p>
+
+<p>Instances of any type can be <code>Mirror(reflect:)</code>&#39;ed upon, but if you are
+not satisfied with the <code>Mirror</code> supplied for your type by default,
+you can make it conform to <code>CustomReflectable</code> and return a custom
+<code>Mirror</code>.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-custommirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-custommirror">func customMirror()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-custommirror"><div class="p">
+    <p>Return the <code>Mirror</code> for <code>self</code>.</p>
+
+<p><strong>Note:</strong> If <code>Self</code> has value semantics, the <code>Mirror</code> should be
+  unaffected by subsequent mutations of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func customMirror() -&gt; Mirror</code>
+    
+    
+</div></div>
+</div>
+
+

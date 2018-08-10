@@ -1,0 +1,29 @@
+---
+layout: "default"
+title: "unsafeUnwrap"
+description: "Swift documentation for 'unsafeUnwrap': Returns: nonEmpty!."
+keywords: "unsafeUnwrap,func,swift,documentation"
+root: "/v2.1"
+---
+
+<div class="declaration" id="func-unsafeunwrap-t_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-unsafeunwrap-t_-t">func unsafeUnwrap&lt;T&gt;(<wbr>_: T?)</a>
+        
+<div class="comment collapse" id="comment-func-unsafeunwrap-t_-t"><div class="p">
+    <p><strong>Returns:</strong> <code>nonEmpty!</code>.</p>
+
+<p><strong>Requires:</strong> <code>nonEmpty != nil</code>.  In particular, in -O builds, no test
+  is performed to ensure that <code>nonEmpty</code> actually is non-nil.</p>
+
+<p><strong>Warning:</strong> Trades safety for performance.  Use <code>unsafeUnwrap</code>
+  only when <code>nonEmpty!</code> has proven to be a performance problem and
+  you are confident that, always, <code>nonEmpty != nil</code>.  It is better
+  than an <code>unsafeBitCast</code> because it&#39;s more restrictive, and
+  because checking is still performed in debug builds.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func unsafeUnwrap&lt;T&gt;(nonEmpty: T?) -&gt; T</code>
+    
+    
+</div></div>
+</div>

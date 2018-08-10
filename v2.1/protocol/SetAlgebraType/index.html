@@ -1,0 +1,528 @@
+---
+layout: "default"
+title: "SetAlgebraType"
+description: "Swift documentation for 'SetAlgebraType': A generalized set whose distinct elements are not necessarily
+disjoint."
+keywords: "SetAlgebraType,protocol,swift,documentation,==,contains,element,element,exclusiveOr,exclusiveOrInPlace,insert,intersect,intersectInPlace,isDisjointWith,isSubsetOf,isSupersetOf,remove,subtract,subtractInPlace,union,unionInPlace,isEmpty,Element"
+root: "/v2.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol SetAlgebraType</code></div>
+
+<div class="discussion comment">
+    <p>A generalized set whose distinct elements are not necessarily
+disjoint.</p>
+
+<p>In a model of <code>SetAlgebraType</code>, some elements may subsume other
+elements, where</p>
+
+<blockquote><p><code>a</code> <strong>subsumes</strong> <code>b</code> iff <code>([a] as Self).isSupersetOf([b])</code></p></blockquote>
+
+<p>In many models of <code>SetAlgebraType</code> such as <code>Set&lt;T&gt;</code>, <code>a</code>
+<em>subsumes</em> <code>b</code> if and only if <code>a == b</code>, but that is not always the
+case.  For example, option sets typically do not satisfy that
+property.</p>
+
+<p>Two elements are <strong>disjoint</strong> when neither one <em>subsumes</em> the other.</p>
+
+<p><strong>See Also:</strong> <code>OptionSetType</code>.</p>
+
+<ul><li><p>Axioms, where <code>S</code> conforms to <code>SetAlgebraType</code>, <code>x</code> and <code>y</code> are
+of type <code>S</code>, and <code>e</code> is of type <code>S.Element</code>:</p><ul><li><p><code>S() == []</code></p></li><li><code>x.intersect(x) == x</code></li><li><code>x.intersect([]) == []</code></li><li><code>x.union(x) == x</code></li><li><code>x.union([]) == x</code></li><li><code>x.contains(e)</code> implies <code>x.union(y).contains(e)</code></li><li><code>x.union(y).contains(e)</code> implies <code>x.contains(e) || y.contains(e)</code></li><li><code>x.contains(e) &amp;&amp; y.contains(e)</code> iff <code>x.intersect(y).contains(e)</code></li><li><code>x.isSubsetOf(y)</code> iff <code>y.isSupersetOf(x)</code></li><li><code>x.isStrictSupersetOf(y)</code> iff <code>x.isSupersetOf(y) &amp;&amp; x != y</code></li><li><code>x.isStrictSubsetOf(y)</code> iff <code>x.isSubsetOf(y) &amp;&amp; x != y</code></li></ul></li></ul>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">ArrayLiteralConvertible, Equatable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Element</code>
+<div class="comment">
+    <p>A type for which <code>Self</code> provides a containment test.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a> <span class="required">Required</span><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Creates an empty set.</p>
+
+<ul><li>Equivalent to <code>[] as Self</code></li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Creates the set containing all elements of <code>sequence</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;S : SequenceType where S.Generator.Element == Element&gt;(_ sequence: S)</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="init-arrayliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-arrayliteral_">init(<wbr>arrayLiteral:)</a><div class="comment collapse" id="comment-init-arrayliteral_"><div class="p">
+    <p>Create an instance initialized with <code>elements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(arrayLiteral elements: Self.Element...)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/ArrayLiteralConvertible/"><code>ArrayLiteralConvertible</code></a>
+        </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p>Return true iff <code>self.contains(e)</code> is <code>false</code> for all <code>e</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+    </div></div>
+</div>
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-element_isdisjointwith_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_isdisjointwith_">static func element(<wbr>_:<wbr>isDisjointWith:)</a>
+        
+<div class="comment collapse" id="comment-func-element_isdisjointwith_"><div class="p">
+    <p>Returns <code>true</code> iff <code>a</code> is disjoint with <code>b</code>.</p>
+
+<p>Two elements are disjoint when neither one subsumes the other.</p>
+
+<p><strong>See Also:</strong> <code>Self.element(, subsumes:_)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func element(a: Self.Element, isDisjointWith b: Self.Element) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-element_subsumes_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-element_subsumes_">static func element(<wbr>_:<wbr>subsumes:)</a>
+        
+<div class="comment collapse" id="comment-func-element_subsumes_"><div class="p">
+    <p>Returns <code>true</code> iff <code>a</code> subsumes <code>b</code>.</p>
+
+<ul><li>Equivalent to <code>([a] as Self).isSupersetOf([b])</code></li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func element(a: Self.Element, subsumes b: Self.Element) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Return true if <code>lhs</code> is equal to <code>rhs</code>.</p>
+
+<p><strong>Equality implies substitutability</strong>.  When <code>x == y</code>, <code>x</code> and
+<code>y</code> are interchangeable in any code that only depends on their
+values.</p>
+
+<p>Class instance identity as distinguished by triple-equals <code>===</code>
+is notably not part of an instance&#39;s value.  Exposing other
+non-value aspects of <code>Equatable</code> types is discouraged, and any
+that <em>are</em> exposed should be explicitly pointed out in
+documentation.</p>
+
+<p><strong>Equality is an equivalence relation</strong></p>
+
+<ul><li><code>x == x</code> is <code>true</code></li><li><code>x == y</code> implies <code>y == x</code></li><li><code>x == y</code> and <code>y == z</code> implies <code>x == z</code></li></ul>
+
+<p><strong>Inequality is the inverse of equality</strong>, i.e. <code>!(x == y)</code> iff
+<code>x != y</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains_">func contains(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-contains_"><div class="p">
+    <p>Returns <code>true</code> if <code>self</code> contains <code>member</code>.</p>
+
+<ul><li>Equivalent to <code>self.intersect([member]) == [member]</code></li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(member: Self.Element) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-exclusiveor_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-exclusiveor_">func exclusiveOr(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-exclusiveor_"><div class="p">
+    <p>Returns the set of elements contained in <code>self</code> or in <code>other</code>,
+but not in both <code>self</code> and <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func exclusiveOr(other: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-exclusiveorinplace_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-exclusiveorinplace_">mutating func exclusiveOrInPlace(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-exclusiveorinplace_"><div class="p">
+    <p>Replaces <code>self</code> with a set containing all elements contained in
+either <code>self</code> or <code>other</code>, but not both.</p>
+
+<ul><li>Equivalent to replacing <code>self</code> with <code>self.exclusiveOr(other)</code></li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func exclusiveOrInPlace(other: Self)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-insert_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-insert_">mutating func insert(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-insert_"><div class="p">
+    <p>If <code>member</code> is not already contained in <code>self</code>, inserts it.</p>
+
+<ul><li>Equivalent to <code>self.unionInPlace([member])</code>
+<strong>Postcondition:</strong> <code>self.contains(member)</code></li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insert(member: Self.Element)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-intersect_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-intersect_">func intersect(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-intersect_"><div class="p">
+    <p>Returns the set of elements contained in both <code>self</code> and <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func intersect(other: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-intersectinplace_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-intersectinplace_">mutating func intersectInPlace(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-intersectinplace_"><div class="p">
+    <p>Removes all elements of <code>self</code> that are not also present in
+<code>other</code>.</p>
+
+<ul><li>Equivalent to replacing <code>self</code> with <code>self.intersect(other)</code>
+<strong>Postcondition:</strong> <code>self.isSubsetOf(other)</code></li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func intersectInPlace(other: Self)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-isdisjointwith_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isdisjointwith_">func isDisjointWith(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-isdisjointwith_"><div class="p">
+    <p>Return true iff <code>self.intersect(other).isEmpty</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isDisjointWith(other: Self) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-issubsetof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-issubsetof_">func isSubsetOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-issubsetof_"><div class="p">
+    <p>Return true iff every element of <code>self</code> is contained in <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isSubsetOf(other: Self) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-issupersetof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-issupersetof_">func isSupersetOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-issupersetof_"><div class="p">
+    <p>Return true iff every element of <code>other</code> is contained in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isSupersetOf(other: Self) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-remove_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-remove_">mutating func remove(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-remove_"><div class="p">
+    <p>If <code>member</code> is contained in <code>self</code>, removes and returns it.
+Otherwise, removes all elements subsumed by <code>member</code> and returns
+<code>nil</code>.</p>
+
+<p><strong>Postcondition:</strong> <code>self.intersect([member]).isEmpty</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func remove(member: Self.Element) -&gt; Self.Element?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-subtract_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subtract_">func subtract(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subtract_"><div class="p">
+    <p>Return true iff <code>self.intersect(other).isEmpty</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func subtract(other: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-subtractinplace_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subtractinplace_">mutating func subtractInPlace(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subtractinplace_"><div class="p">
+    <p>Removes all elements of <code>other</code> from <code>self</code>.</p>
+
+<ul><li>Equivalent to replacing <code>self</code> with <code>self.subtract(other)</code>.</li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func subtractInPlace(other: Self)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-union_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-union_">func union(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-union_"><div class="p">
+    <p>Returns the set of elements contained in <code>self</code>, in <code>other</code>, or in
+both <code>self</code> and <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func union(other: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-unioninplace_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-unioninplace_">mutating func unionInPlace(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-unioninplace_"><div class="p">
+    <p>Insert all elements of <code>other</code> into <code>self</code>.</p>
+
+<ul><li>Equivalent to replacing <code>self</code> with <code>self.union(other)</code>.
+<strong>Postcondition:</strong> <code>self.isSupersetOf(other)</code></li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func unionInPlace(other: Self)</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+<div class="declaration" id="-init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init_">init(<wbr>_:)</a><div class="comment collapse" id="comment--init_"><div class="p">
+    <p>Creates the set containing all elements of <code>sequence</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;S : SequenceType where S.Generator.Element == Element&gt;(_ sequence: S)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="-init-arrayliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init-arrayliteral_">init(<wbr>arrayLiteral:)</a><div class="comment collapse" id="comment--init-arrayliteral_"><div class="p">
+    <p>Creates a set containing all elements of the given <code>arrayLiteral</code>.</p>
+
+<p>This initializer allows an array literal containing
+<code>Self.Element</code> to represent an instance of the set, wherever it
+is implied by the type context.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(arrayLiteral: Self.Element...)</code>
+
+    </div></div>
+</div>
+
+<div class="declaration" id="-var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment--var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment--var-isempty_-bool"><div class="p">
+    <p>Returns true iff <code>self.contains(e)</code> is <code>false</code> for all <code>e</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+    </div></div>
+</div>
+
+
+<div class="declaration" id="func--element_isdisjointwith_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--element_isdisjointwith_">static func element(<wbr>_:<wbr>isDisjointWith:)</a>
+        
+<div class="comment collapse" id="comment-func--element_isdisjointwith_"><div class="p">
+    <p>Returns <code>true</code> iff <code>a</code> is disjoint with <code>b</code>.</p>
+
+<p>Two elements are disjoint when neither one subsumes the other.</p>
+
+<p><strong>See Also:</strong> <code>Self.element(, subsumes:_)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func element(a: Self.Element, isDisjointWith b: Self.Element) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--element_subsumes_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--element_subsumes_">static func element(<wbr>_:<wbr>subsumes:)</a>
+        
+<div class="comment collapse" id="comment-func--element_subsumes_"><div class="p">
+    <p>Returns <code>true</code> iff <code>a</code> subsumes <code>b</code>.</p>
+
+<ul><li>Equivalent to <code>([a] as Self).isSupersetOf([b])</code></li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func element(a: Self.Element, subsumes b: Self.Element) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--isdisjointwith_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--isdisjointwith_">func isDisjointWith(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--isdisjointwith_"><div class="p">
+    <p>Returns true iff <code>self.intersect(other).isEmpty</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isDisjointWith(other: Self) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--isstrictsubsetof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--isstrictsubsetof_">func isStrictSubsetOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--isstrictsubsetof_"><div class="p">
+    <p>Return true iff every element of <code>self</code> is contained in <code>other</code>
+and <code>other</code> contains an element that is not contained in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isStrictSubsetOf(other: Self) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--isstrictsupersetof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--isstrictsupersetof_">func isStrictSupersetOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--isstrictsupersetof_"><div class="p">
+    <p>Returns true iff every element of <code>other</code> is contained in <code>self</code>
+and <code>self</code> contains an element that is not contained in <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isStrictSupersetOf(other: Self) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--issubsetof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--issubsetof_">func isSubsetOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--issubsetof_"><div class="p">
+    <p>Returns true iff every element of <code>self</code> is contained in <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isSubsetOf(other: Self) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--issupersetof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--issupersetof_">func isSupersetOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--issupersetof_"><div class="p">
+    <p>Returns true iff every element of <code>other</code> is contained in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isSupersetOf(other: Self) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--subtract_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--subtract_">func subtract(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--subtract_"><div class="p">
+    <p>Returns true iff <code>self.intersect(other).isEmpty</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func subtract(other: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func--subtractinplace_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--subtractinplace_">mutating func subtractInPlace(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--subtractinplace_"><div class="p">
+    <p>Removes all elements of <code>other</code> from <code>self</code>.</p>
+
+<ul><li>Equivalent to replacing <code>self</code> with <code>self.subtract(other)</code>.</li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func subtractInPlace(other: Self)</code>
+    
+    
+</div></div>
+</div>
+
+
+
+
+

@@ -1,0 +1,104 @@
+---
+layout: "default"
+title: "_NSArrayCoreType"
+description: "Swift documentation for '_NSArrayCoreType': A shadow for the &quot;core operations&quot; of NSArray."
+keywords: "_NSArrayCoreType,protocol,swift,documentation,copyWithZone,countByEnumeratingWithState,getObjects,objectAtIndex,count"
+root: "/v2.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol _NSArrayCoreType</code></div>
+
+<div class="discussion comment">
+    <p>A shadow for the &quot;core operations&quot; of NSArray.</p>
+
+<p>Covers a set of operations everyone needs to implement in order to
+be a useful <code>NSArray</code> subclass.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">_NSCopyingType, _NSFastEnumerationType, _ShadowProtocol</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-copywithzone_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-copywithzone_">func copyWithZone(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-copywithzone_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func copyWithZone(zone: _SwiftNSZone) -&gt; AnyObject</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_NSCopyingType/"><code>_NSCopyingType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-countbyenumeratingwithstate_objects_count_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-countbyenumeratingwithstate_objects_count_">func countByEnumeratingWithState(<wbr>_:<wbr>objects:<wbr>count:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-countbyenumeratingwithstate_objects_count_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func countByEnumeratingWithState(state: UnsafeMutablePointer&lt;_SwiftNSFastEnumerationState&gt;, objects: UnsafeMutablePointer&lt;AnyObject&gt;, count: Int) -&gt; Int</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_NSArrayCoreType/"><code>_NSArrayCoreType</code></a>,    <a href="../../protocol/_NSFastEnumerationType/"><code>_NSFastEnumerationType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-getobjects_range_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-getobjects_range_">func getObjects(<wbr>_:<wbr>range:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-getobjects_range_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func getObjects(_: UnsafeMutablePointer&lt;AnyObject&gt;, range: _SwiftNSRange)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-objectatindex_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-objectatindex_">func objectAtIndex(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-objectatindex_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func objectAtIndex(index: Int) -&gt; AnyObject</code>
+    
+    
+</div></div>
+</div>
+
+

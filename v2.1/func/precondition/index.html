@@ -1,0 +1,31 @@
+---
+layout: "default"
+title: "precondition"
+description: "Swift documentation for 'precondition': Check a necessary condition for making forward progress."
+keywords: "precondition,func,swift,documentation"
+root: "/v2.1"
+---
+
+<div class="declaration" id="func-precondition_-bool_-string-file_-staticstring-line_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-precondition_-bool_-string-file_-staticstring-line_-uint">func precondition(<wbr>_: (<wbr>) -&gt; Bool,  _: (<wbr>) -&gt; String, file:<wbr> StaticString, line: UInt)</a>
+        
+<div class="comment collapse" id="comment-func-precondition_-bool_-string-file_-staticstring-line_-uint"><div class="p">
+    <p>Check a necessary condition for making forward progress.</p>
+
+<p>Use this function to detect conditions that must prevent the
+program from proceeding even in shipping code.</p>
+
+<ul><li><p>In playgrounds and -Onone builds (the default for Xcode&#39;s Debug
+configuration): if <code>condition</code> evaluates to false, stop program
+execution in a debuggable state after printing <code>message</code>.</p></li><li><p>In -O builds (the default for Xcode&#39;s Release configuration):
+if <code>condition</code> evaluates to false, stop program execution.</p></li><li><p>In -Ounchecked builds, <code>condition</code> is not evaluated, but the
+optimizer may assume that it <em>would</em> evaluate to <code>true</code>. Failure
+to satisfy that assumption in -Ounchecked builds is a serious
+programming error.</p></li></ul>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func precondition(@autoclosure condition: () -&gt; Bool, @autoclosure _ message: () -&gt; String = default, file: StaticString = default, line: UInt = default)</code>
+    
+    
+</div></div>
+</div>

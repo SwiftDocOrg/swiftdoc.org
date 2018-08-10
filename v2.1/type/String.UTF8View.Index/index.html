@@ -1,0 +1,213 @@
+---
+layout: "default"
+title: "String.UTF8View.Index"
+description: "Swift documentation for 'String.UTF8View.Index': A position in a String.UTF8View."
+keywords: "String.UTF8View.Index,struct,swift,documentation,advancedBy,advancedBy,distanceTo,samePositionIn,samePositionIn,samePositionIn,successor"
+root: "/v2.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct String.UTF8View.Index</code></div>
+
+<div class="discussion comment">
+    <p>A position in a <code>String.UTF8View</code>.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Equatable, ForwardIndexType, _Incrementable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_-index-within_-string-utf8view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-index-within_-string-utf8view">init(<wbr>_:<wbr> Index, within: String.UTF8View)</a><div class="comment collapse" id="comment-init_-index-within_-string-utf8view"><div class="p">
+    <p>Construct the position in <code>utf8</code> that corresponds exactly to
+<code>characterIndex</code>.</p>
+
+<p><strong>Requires:</strong> <code>characterIndex</code> is an element of
+  <code>String(utf8)!.indices</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ characterIndex: Index, within utf8: String.UTF8View)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unicodescalarindex-within_-string-utf8view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unicodescalarindex-within_-string-utf8view">init(<wbr>_:<wbr> UnicodeScalarIndex, within: String.UTF8View)</a><div class="comment collapse" id="comment-init_-unicodescalarindex-within_-string-utf8view"><div class="p">
+    <p>Construct the position in <code>utf8</code> that corresponds exactly to
+<code>unicodeScalarIndex</code>.</p>
+
+<p><strong>Requires:</strong> <code>unicodeScalarIndex</code> is an element of
+  <code>String(utf8)!.unicodeScalars.indices</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ unicodeScalarIndex: UnicodeScalarIndex, within utf8: String.UTF8View)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_within_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_within_">init?(<wbr>_:<wbr>within:)</a><div class="comment collapse" id="comment-init_within_"><div class="p">
+    <p>Construct the position in <code>utf8</code> that corresponds exactly to
+<code>utf16Index</code>. If no such position exists, the result is <code>nil</code>.</p>
+
+<p><strong>Requires:</strong> <code>utf8Index</code> is an element of
+  <code>String(utf16)!.utf8.indices</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ utf16Index: UTF16Index, within utf8: String.UTF8View)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-advancedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_">func advancedBy(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-advancedby_"><div class="p">
+    <p>Return the result of advancing <code>self</code> by <code>n</code> positions.</p>
+
+<p><strong>Returns:</strong>
+  - If <code>n &gt; 0</code>, the result of applying <code>successor</code> to <code>self</code> <code>n</code> times.
+  - If <code>n &lt; 0</code>, the result of applying <code>predecessor</code> to <code>self</code> <code>-n</code> times.
+  - Otherwise, <code>self</code>.</p>
+
+<p><strong>Requires:</strong> <code>n &gt;= 0</code> if only conforming to <code>ForwardIndexType</code>
+<strong>Complexity:</strong>
+  - O(1) if conforming to <code>RandomAccessIndexType</code>
+  - O(<code>abs(n)</code>) otherwise</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: String.UTF8View.Index.Distance) -&gt; String.UTF8View.Index</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-advancedby_limit_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_limit_">func advancedBy(<wbr>_:<wbr>limit:)</a>
+        
+<div class="comment collapse" id="comment-func-advancedby_limit_"><div class="p">
+    <p>Return the result of advancing <code>self</code> by <code>n</code> positions, or until it
+equals <code>limit</code>.</p>
+
+<p><strong>Returns:</strong>
+  - If <code>n &gt; 0</code>, the result of applying <code>successor</code> to <code>self</code> <code>n</code> times
+    but not past <code>limit</code>.
+  - If <code>n &lt; 0</code>, the result of applying <code>predecessor</code> to <code>self</code> <code>-n</code> times
+    but not past <code>limit</code>.
+  - Otherwise, <code>self</code>.</p>
+
+<p><strong>Requires:</strong> <code>n &gt;= 0</code> if only conforming to <code>ForwardIndexType</code>.</p>
+
+<p><strong>Complexity:</strong>
+  - O(1) if conforming to <code>RandomAccessIndexType</code>
+  - O(<code>abs(n)</code>) otherwise</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: String.UTF8View.Index.Distance, limit: String.UTF8View.Index) -&gt; String.UTF8View.Index</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-distanceto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distanceto_">func distanceTo(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-distanceto_"><div class="p">
+    <p>Measure the distance between <code>self</code> and <code>end</code>.</p>
+
+<p><strong>Requires:</strong>
+  - <code>start</code> and <code>end</code> are part of the same sequence when conforming to
+    <code>RandomAccessSequenceType</code>.
+  - <code>end</code> is reachable from <code>self</code> by incrementation otherwise.</p>
+
+<p><strong>Complexity:</strong>
+  - O(1) if conforming to <code>RandomAccessIndexType</code>
+  - O(<code>n</code>) otherwise, where <code>n</code> is the function&#39;s result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distanceTo(end: String.UTF8View.Index) -&gt; String.UTF8View.Index.Distance</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-samepositionin_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-samepositionin_-string">func samePositionIn(<wbr>_: String)</a>
+        
+<div class="comment collapse" id="comment-func-samepositionin_-string"><div class="p">
+    <p>Return the position in <code>characters</code> that corresponds exactly
+to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
+
+<p><strong>Requires:</strong> <code>self</code> is an element of <code>characters.utf8.indices</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func samePositionIn(characters: String) -&gt; Index?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-samepositionin_-string-utf16view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-samepositionin_-string-utf16view">func samePositionIn(<wbr>_: String.UTF16View)</a>
+        
+<div class="comment collapse" id="comment-func-samepositionin_-string-utf16view"><div class="p">
+    <p>Return the position in <code>utf16</code> that corresponds exactly
+to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
+
+<p><strong>Requires:</strong> <code>self</code> is an element of <code>String(utf16)!.utf8.indices</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func samePositionIn(utf16: String.UTF16View) -&gt; String.UTF16View.Index?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-samepositionin_-string-unicodescalarview">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-samepositionin_-string-unicodescalarview">func samePositionIn(<wbr>_: String.UnicodeScalarView)</a>
+        
+<div class="comment collapse" id="comment-func-samepositionin_-string-unicodescalarview"><div class="p">
+    <p>Return the position in <code>unicodeScalars</code> that corresponds exactly
+to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
+
+<p><strong>Requires:</strong> <code>self</code> is an element of
+  <code>String(unicodeScalars).utf8.indices</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func samePositionIn(unicodeScalars: String.UnicodeScalarView) -&gt; UnicodeScalarIndex?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-successor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-successor">func successor()</a>
+        
+<div class="comment collapse" id="comment-func-successor"><div class="p">
+    <p>Returns the next consecutive value after <code>self</code>.</p>
+
+<p><strong>Requires:</strong> The next value is representable.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func successor() -&gt; String.UTF8View.Index</code>
+    
+    
+</div></div>
+</div>
+
+

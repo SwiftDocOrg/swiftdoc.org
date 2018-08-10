@@ -1,0 +1,26 @@
+---
+layout: "default"
+title: "transcode"
+description: "Swift documentation for 'transcode': Translate input, in the given InputEncoding, into output, in
+the given OutputEncoding."
+keywords: "transcode,func,swift,documentation"
+root: "/v2.1"
+---
+
+<div class="declaration" id="func-transcode-input_-generatortype-inputencoding_-unicodecodectype-outputencoding_-unicodecodectype-where-inputencoding-codeunit-input-element_-inputencoding-type_-outputencoding-type_-input_-outputencoding-codeunit-stoponerror_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-transcode-input_-generatortype-inputencoding_-unicodecodectype-outputencoding_-unicodecodectype-where-inputencoding-codeunit-input-element_-inputencoding-type_-outputencoding-type_-input_-outputencoding-codeunit-stoponerror_-bool">func <wbr>transcode&lt;Input :<wbr> GeneratorType, InputEncoding :<wbr> UnicodeCodecType, OutputEncoding : UnicodeCodecType where InputEncoding.CodeUnit == Input.Element&gt;(<wbr>_:<wbr> InputEncoding.Type, _:<wbr> OutputEncoding.Type, _:<wbr> Input, _: (OutputEncoding.CodeUnit) -&gt; (<wbr>), stopOnError: Bool)</a>
+        
+<div class="comment collapse" id="comment-func-transcode-input_-generatortype-inputencoding_-unicodecodectype-outputencoding_-unicodecodectype-where-inputencoding-codeunit-input-element_-inputencoding-type_-outputencoding-type_-input_-outputencoding-codeunit-stoponerror_-bool"><div class="p">
+    <p>Translate <code>input</code>, in the given <code>InputEncoding</code>, into <code>output</code>, in
+the given <code>OutputEncoding</code>.</p>
+
+<p><strong><code>stopOnError</code>:</strong>  Causes encoding to stop when an encoding
+  error is detected in <code>input</code>, if <code>true</code>.  Otherwise, U+FFFD
+  replacement characters are inserted for each detected error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func transcode&lt;Input : GeneratorType, InputEncoding : UnicodeCodecType, OutputEncoding : UnicodeCodecType where InputEncoding.CodeUnit == Input.Element&gt;(inputEncoding: InputEncoding.Type, _ outputEncoding: OutputEncoding.Type, _ input: Input, _ output: (OutputEncoding.CodeUnit) -&gt; (), stopOnError: Bool) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>

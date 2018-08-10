@@ -1,0 +1,39 @@
+---
+layout: "default"
+title: "Operator: &&"
+description: "Swift documentation for the '&&' operator."
+root: "/v2.1"
+---
+
+<code class="language-swift">infix operator &amp;&amp; {
+    associativity left
+    precedence 120
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-ampamp-t_-booleantype-u_-booleantype_-t-rhs_-throws-u">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampamp-t_-booleantype-u_-booleantype_-t-rhs_-throws-u">func <wbr>&amp;&amp; &lt;T :<wbr> BooleanType, U : BooleanType&gt;(<wbr>_:<wbr> T, rhs: () throws -&gt; U)</a>
+        
+<div class="comment collapse" id="comment-func-ampamp-t_-booleantype-u_-booleantype_-t-rhs_-throws-u"><div class="p">
+    <p>If <code>lhs</code> is <code>false</code>, return it.  Otherwise, evaluate <code>rhs</code> and
+return its <code>boolValue</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&amp;&lt;T : BooleanType, U : BooleanType&gt;(lhs: T, @autoclosure rhs: () throws -&gt; U) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-ampamp-t_-booleantype_-t-rhs_-throws-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampamp-t_-booleantype_-t-rhs_-throws-bool">func <wbr>&amp;&amp; &lt;T : BooleanType&gt;(<wbr>_:<wbr> T, rhs: () throws -&gt; Bool)</a>
+        
+<div class="comment collapse" id="comment-func-ampamp-t_-booleantype_-t-rhs_-throws-bool"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&amp;&lt;T : BooleanType&gt;(lhs: T, @autoclosure rhs: () throws -&gt; Bool) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>

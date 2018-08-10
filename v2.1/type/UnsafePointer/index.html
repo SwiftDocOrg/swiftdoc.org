@@ -1,0 +1,280 @@
+---
+layout: "default"
+title: "UnsafePointer"
+description: "Swift documentation for 'UnsafePointer': A pointer to an object of type Memory.  This type provides no automated
+memory management, and therefore the user must take care to allocate
+and free memory appropriately."
+keywords: "UnsafePointer,struct,swift,documentation,advancedBy,advancedBy,distanceTo,predecessor,stride,stride,successor,debugDescription,hashValue,memory,Distance"
+root: "/v2.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct UnsafePointer&lt;Memory&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A pointer to an object of type <code>Memory</code>.  This type provides no automated
+memory management, and therefore the user must take care to allocate
+and free memory appropriately.</p>
+
+<p>The pointer should be aligned to <code>alignof(Memory.self)</code>.</p>
+
+<p>The pointer can be in one of the following states:</p>
+
+<ul><li><p>memory is not allocated (for example, pointer is null, or memory has
+been deallocated previously);</p></li><li><p>memory is allocated, but value has not been initialized;</p></li><li><p>memory is allocated and value is initialized.</p></li></ul>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">BidirectionalIndexType, CVarArgType, Comparable, CustomDebugStringConvertible, Equatable, ForwardIndexType, Hashable, NilLiteralConvertible, RandomAccessIndexType, Strideable, _Incrementable, _PointerType, _RandomAccessAmbiguity, _Reflectable, _Strideable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Distance = Int</code>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Construct a null pointer.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-copaquepointer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-copaquepointer">init(<wbr>_: COpaquePointer)</a><div class="comment collapse" id="comment-init_-copaquepointer"><div class="p">
+    <p>Convert from an opaque C pointer to a typed pointer.</p>
+
+<p>This is a fundamentally unsafe conversion.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ other: COpaquePointer)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-u_-unsafemutablepointer-u">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-u_-unsafemutablepointer-u">init&lt;U&gt;(<wbr>_: UnsafeMutablePointer&lt;U&gt;)</a><div class="comment collapse" id="comment-init-u_-unsafemutablepointer-u"><div class="p">
+    <p>Convert from an <code>UnsafeMutablePointer</code> of a different type.</p>
+
+<p>This is a fundamentally unsafe conversion.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;U&gt;(_ from: UnsafeMutablePointer&lt;U&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-u_-unsafepointer-u">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-u_-unsafepointer-u">init&lt;U&gt;(<wbr>_: UnsafePointer&lt;U&gt;)</a><div class="comment collapse" id="comment-init-u_-unsafepointer-u"><div class="p">
+    <p>Convert from a <code>UnsafePointer</code> of a different type.</p>
+
+<p>This is a fundamentally unsafe conversion.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;U&gt;(_ from: UnsafePointer&lt;U&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-bitpattern_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-bitpattern_-int">init(<wbr>bitPattern: Int)</a><div class="comment collapse" id="comment-init-bitpattern_-int"><div class="p">
+    <p>Construct an <code>UnsafePointer</code> from a given address in memory.</p>
+
+<p>This is a fundamentally unsafe conversion.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(bitPattern: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-bitpattern_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-bitpattern_-uint">init(<wbr>bitPattern: UInt)</a><div class="comment collapse" id="comment-init-bitpattern_-uint"><div class="p">
+    <p>Construct an <code>UnsafePointer</code> from a given address in memory.</p>
+
+<p>This is a fundamentally unsafe conversion.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(bitPattern: UInt)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-nilliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-nilliteral_">init(<wbr>nilLiteral:)</a><div class="comment collapse" id="comment-init-nilliteral_"><div class="p">
+    <p>Create an instance initialized with <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(nilLiteral: ())</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code>.</p>
+
+<p><strong>Note:</strong> The hash value is not guaranteed to be stable across
+  different invocations of the same program.  Do not persist the
+  hash value across program runs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-memory_-memory">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-memory_-memory">var memory: Memory</a><div class="comment collapse" id="comment-var-memory_-memory"><div class="p">
+    <p>Access the underlying raw memory, getting values.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var memory: Memory { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-int">subscript(_: Int)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(i: Int) -&gt; Memory { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-advancedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_">func advancedBy(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-advancedby_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: Int) -&gt; UnsafePointer&lt;Memory&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UnsafePointer/"><code>UnsafePointer</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>,    <a href="../../protocol/_RandomAccessAmbiguity/"><code>_RandomAccessAmbiguity</code></a>,    <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-advancedby_limit_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_limit_">func advancedBy(<wbr>_:<wbr>limit:)</a>
+        
+<div class="comment collapse" id="comment-func-advancedby_limit_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: UnsafePointer&lt;Memory&gt;.Distance, limit: UnsafePointer&lt;Memory&gt;) -&gt; UnsafePointer&lt;Memory&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>,    <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-distanceto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distanceto_">func distanceTo(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-distanceto_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distanceTo(x: UnsafePointer&lt;Memory&gt;) -&gt; Int</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UnsafePointer/"><code>UnsafePointer</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>,    <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-predecessor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-predecessor">func predecessor()</a>
+        
+<div class="comment collapse" id="comment-func-predecessor"><div class="p">
+    <p>Returns the previous consecutive value before <code>self</code>.</p>
+
+<p><strong>Requires:</strong> The previous value is representable.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func predecessor() -&gt; UnsafePointer&lt;Memory&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-stride-through_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride-through_by_">func stride(<wbr>through:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-stride-through_by_"><div class="p">
+    <p>Return the sequence of values (<code>start</code>, <code>start + stride</code>, <code>start +
+stride + stride</code>, ... <em>last</em>) where <em>last</em> is the last value in
+the progression less than or equal to <code>end</code>.</p>
+
+<p><strong>Note:</strong> There is no guarantee that <code>end</code> is an element of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func stride(through end: UnsafePointer&lt;Memory&gt;, by stride: UnsafePointer&lt;Memory&gt;.Stride) -&gt; StrideThrough&lt;UnsafePointer&lt;Memory&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-stride-to_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride-to_by_">func stride(<wbr>to:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-stride-to_by_"><div class="p">
+    <p>Return the sequence of values (<code>self</code>, <code>self + stride</code>, <code>self +
+stride + stride</code>, ... <em>last</em>) where <em>last</em> is the last value in
+the progression that is less than <code>end</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func stride(to end: UnsafePointer&lt;Memory&gt;, by stride: UnsafePointer&lt;Memory&gt;.Stride) -&gt; StrideTo&lt;UnsafePointer&lt;Memory&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-successor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-successor">func successor()</a>
+        
+<div class="comment collapse" id="comment-func-successor"><div class="p">
+    <p>Returns the next consecutive value after <code>self</code>.</p>
+
+<p><strong>Requires:</strong> The next value is representable.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func successor() -&gt; UnsafePointer&lt;Memory&gt;</code>
+    
+    
+</div></div>
+</div>
+
+
