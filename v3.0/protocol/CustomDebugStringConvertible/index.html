@@ -1,0 +1,96 @@
+---
+layout: "default"
+title: "CustomDebugStringConvertible"
+description: "Swift documentation for 'CustomDebugStringConvertible': A type with a customized textual representation suitable for debugging."
+keywords: "CustomDebugStringConvertible,protocol,swift,documentation,debugDescription"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CustomDebugStringConvertible</code></div>
+
+<div class="discussion comment">
+    <p>A type with a customized textual representation suitable for debugging
+purposes.</p>
+
+<p>Swift provides a default debugging textual representation for any type.
+That default representation is used by the <code>String(reflecting:)</code>
+initializer and the <code>debugPrint(_:)</code> function for types that don&#39;t provide
+their own. To customize that representation, make your type conform to the
+<code>CustomDebugStringConvertible</code> protocol.</p>
+
+<p>Because the <code>String(reflecting:)</code> initializer works for instances of <em>any</em>
+type, returning an instance&#39;s <code>debugDescription</code> if the value passed
+conforms to <code>CustomDebugStringConvertible</code>, accessing a type&#39;s
+<code>debugDescription</code> property directly or using
+<code>CustomDebugStringConvertible</code> as a generic constraint is discouraged.</p>
+
+<h1>Conforming to the CustomDebugStringConvertible Protocol</h1>
+
+<p>Add <code>CustomDebugStringConvertible</code> conformance to your custom types by
+defining a <code>debugDescription</code> property.</p>
+
+<p>For example, this custom <code>Point</code> struct uses the default representation
+supplied by the standard library:</p>
+
+<pre><code class="language-swift">struct Point {
+    let x: Int, y: Int
+}
+
+let p = Point(x: 21, y: 30)
+print(String(reflecting: p))
+// Prints &quot;p: Point = {
+//           x = 21
+//           y = 30
+//         }&quot;</code></pre>
+
+<p>After adding <code>CustomDebugStringConvertible</code> conformance by implementing the
+<code>debugDescription</code> property, <code>Point</code> provides its own custom debugging
+representation.</p>
+
+<pre><code class="language-swift">extension Point: CustomDebugStringConvertible {
+    var debugDescription: String {
+        return &quot;Point(x: \(x), y: \(y))&quot;
+    }
+}
+
+print(String(reflecting: p))
+// Prints &quot;Point(x: 21, y: 30)&quot;</code></pre>
+
+<p><strong>See Also:</strong> <code>String.init&lt;T&gt;(reflecting: T)</code>, <code>CustomStringConvertible</code></p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of this instance, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+

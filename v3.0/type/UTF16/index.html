@@ -1,0 +1,352 @@
+---
+layout: "default"
+title: "UTF16"
+description: "Swift documentation for 'UTF16': A codec for translating between Unicode scalar values and UTF-16 code."
+keywords: "UTF16,struct,swift,documentation,decode,encode,isLeadSurrogate,isTrailSurrogate,leadSurrogate,trailSurrogate,transcodedLength,width,CodeUnit"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct UTF16</code></div>
+
+<div class="discussion comment">
+    <p>A codec for translating between Unicode scalar values and UTF-16 code
+units.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">UnicodeCodec</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">CodeUnit = UInt16</code>
+<div class="comment">
+    <p>A type that can hold code unit values for this encoding.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Creates an instance of the UTF-16 codec.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-encode_into_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_into_">static func encode(<wbr>_:<wbr>into:)</a>
+        
+<div class="comment collapse" id="comment-func-encode_into_"><div class="p">
+    <p>Encodes a Unicode scalar as a series of code units by calling the given
+closure on each code unit.</p>
+
+<p>For example, the musical fermata symbol (&quot;𝄐&quot;) is a single Unicode scalar
+value (<code>\u{1D110}</code>) but requires two code units for its UTF-16
+representation. The following code encodes a fermata in UTF-16:</p>
+
+<pre><code class="language-swift">var codeUnits: [UTF16.CodeUnit] = []
+UTF16.encode(&quot;𝄐&quot;, into: { codeUnits.append($0) })
+print(codeUnits)
+// Prints &quot;[55348, 56592]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>input:</strong> The Unicode scalar value to encode.
+  <strong>processCodeUnit:</strong> A closure that processes one code unit argument at a
+    time.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func encode(_ input: UnicodeScalar, into processCodeUnit: (UTF16.CodeUnit) -&gt; Swift.Void)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-isleadsurrogate_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isleadsurrogate_">static func isLeadSurrogate(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-isleadsurrogate_"><div class="p">
+    <p>Returns a Boolean value indicating whether the specified code unit is a
+high-surrogate code unit.</p>
+
+<p>Here&#39;s an example of checking whether each code unit in a string&#39;s
+<code>utf16</code> view is a lead surrogate. The <code>apple</code> string contains a single
+emoji character made up of a surrogate pair when encoded in UTF-16.</p>
+
+<pre><code class="language-swift">let apple = &quot;🍎&quot;
+for unit in apple.utf16 {
+    print(UTF16.isLeadSurrogate(unit))
+}
+// Prints &quot;true&quot;
+// Prints &quot;false&quot;</code></pre>
+
+<p>This method does not validate the encoding of a UTF-16 sequence beyond
+the specified code unit. Specifically, it does not validate that a
+low-surrogate code unit follows <code>x</code>.</p>
+
+<p><strong><code>x</code>:</strong>  A UTF-16 code unit.
+<strong>Returns:</strong> <code>true</code> if <code>x</code> is a high-surrogate code unit; otherwise,
+  <code>false</code>.</p>
+
+<p><strong>See Also:</strong> <code>UTF16.width(_:)</code>, <code>UTF16.leadSurrogate(_:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func isLeadSurrogate(_ x: UTF16.CodeUnit) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-istrailsurrogate_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-istrailsurrogate_">static func isTrailSurrogate(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-istrailsurrogate_"><div class="p">
+    <p>Returns a Boolean value indicating whether the specified code unit is a
+low-surrogate code unit.</p>
+
+<p>Here&#39;s an example of checking whether each code unit in a string&#39;s
+<code>utf16</code> view is a trailing surrogate. The <code>apple</code> string contains a
+single emoji character made up of a surrogate pair when encoded in
+UTF-16.</p>
+
+<pre><code class="language-swift">let apple = &quot;🍎&quot;
+for unit in apple.utf16 {
+    print(UTF16.isTrailSurrogate(unit))
+}
+// Prints &quot;false&quot;
+// Prints &quot;true&quot;</code></pre>
+
+<p>This method does not validate the encoding of a UTF-16 sequence beyond
+the specified code unit. Specifically, it does not validate that a
+high-surrogate code unit precedes <code>x</code>.</p>
+
+<p><strong><code>x</code>:</strong>  A UTF-16 code unit.
+<strong>Returns:</strong> <code>true</code> if <code>x</code> is a low-surrogate code unit; otherwise,
+  <code>false</code>.</p>
+
+<p><strong>See Also:</strong> <code>UTF16.width(_:)</code>, <code>UTF16.leadSurrogate(_:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func isTrailSurrogate(_ x: UTF16.CodeUnit) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-leadsurrogate_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-leadsurrogate_">static func leadSurrogate(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-leadsurrogate_"><div class="p">
+    <p>Returns the high-surrogate code unit of the surrogate pair representing
+the specified Unicode scalar.</p>
+
+<p>Because a Unicode scalar value can require up to 21 bits to store its
+value, some Unicode scalars are represented in UTF-16 by a pair of
+16-bit code units. The first and second code units of the pair,
+designated <em>leading</em> and <em>trailing</em> surrogates, make up a <em>surrogate
+pair</em>.</p>
+
+<pre><code class="language-swift">let apple: UnicodeScalar = &quot;🍎&quot;
+print(UTF16.leadSurrogate(apple)
+// Prints &quot;55356&quot;</code></pre>
+
+<p><strong><code>x</code>:</strong>  A Unicode scalar value. <code>x</code> must be represented by a
+  surrogate pair when encoded in UTF-16. To check whether <code>x</code> is
+  represented by a surrogate pair, use <code>UTF16.width(x) == 2</code>.
+<strong>Returns:</strong> The leading surrogate code unit of <code>x</code> when encoded in UTF-16.</p>
+
+<p><strong>See Also:</strong> <code>UTF16.width(_:)</code>, <code>UTF16.trailSurrogate(_:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func leadSurrogate(_ x: UnicodeScalar) -&gt; UTF16.CodeUnit</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-trailsurrogate_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-trailsurrogate_">static func trailSurrogate(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-trailsurrogate_"><div class="p">
+    <p>Returns the low-surrogate code unit of the surrogate pair representing
+the specified Unicode scalar.</p>
+
+<p>Because a Unicode scalar value can require up to 21 bits to store its
+value, some Unicode scalars are represented in UTF-16 by a pair of
+16-bit code units. The first and second code units of the pair,
+designated <em>leading</em> and <em>trailing</em> surrogates, make up a <em>surrogate
+pair</em>.</p>
+
+<pre><code class="language-swift">let apple: UnicodeScalar = &quot;🍎&quot;
+print(UTF16.trailSurrogate(apple)
+// Prints &quot;57166&quot;</code></pre>
+
+<p><strong><code>x</code>:</strong>  A Unicode scalar value. <code>x</code> must be represented by a
+  surrogate pair when encoded in UTF-16. To check whether <code>x</code> is
+  represented by a surrogate pair, use <code>UTF16.width(x) == 2</code>.
+<strong>Returns:</strong> The trailing surrogate code unit of <code>x</code> when encoded in UTF-16.</p>
+
+<p><strong>See Also:</strong> <code>UTF16.width(_:)</code>, <code>UTF16.leadSurrogate(_:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func trailSurrogate(_ x: UnicodeScalar) -&gt; UTF16.CodeUnit</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-transcodedlength-of_decodedas_repairingillformedsequences_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-transcodedlength-of_decodedas_repairingillformedsequences_">static func transcodedLength(<wbr>of:<wbr>decodedAs:<wbr>repairingIllFormedSequences:)</a>
+        
+<div class="comment collapse" id="comment-func-transcodedlength-of_decodedas_repairingillformedsequences_"><div class="p">
+    <p>Returns the number of UTF-16 code units required for the given code unit
+sequence when transcoded to UTF-16, and a Boolean value indicating
+whether the sequence was found to contain only ASCII characters.</p>
+
+<p>The following example finds the length of the UTF-16 encoding of the
+string <code>&quot;Fermata 𝄐&quot;</code>, starting with its UTF-8 representation.</p>
+
+<pre><code class="language-swift">let fermata = &quot;Fermata 𝄐&quot;
+let bytes = fermata.utf8
+print(Array(bytes))
+// Prints &quot;[70, 101, 114, 109, 97, 116, 97, 32, 240, 157, 132, 144]&quot;
+
+let result = transcodedLength(of: bytes.makeIterator(),
+                              decodedAs: UTF8.self,
+                              repairingIllFormedSequences: false)
+print(result)
+// Prints &quot;Optional((10, false))&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>input:</strong> An iterator of code units to be translated, encoded as
+    <code>sourceEncoding</code>. If <code>repairingIllFormedSequences</code> is <code>true</code>, the
+    entire iterator will be exhausted. Otherwise, iteration will stop if
+    an ill-formed sequence is detected.
+  <strong>sourceEncoding:</strong> The Unicode encoding of <code>input</code>.
+  <strong>repairingIllFormedSequences:</strong> Pass <code>true</code> to measure the length of
+    <code>input</code> even when <code>input</code> contains ill-formed sequences. Each
+    ill-formed sequence is replaced with a Unicode replacement character
+    (<code>&quot;\u{FFFD}&quot;</code>) and is measured as such. Pass <code>false</code> to immediately
+    stop measuring <code>input</code> when an ill-formed sequence is encountered.
+<strong>Returns:</strong> A tuple containing the number of UTF-16 code units required to
+  encode <code>input</code> and a Boolean value that indicates whether the <code>input</code>
+  contained only ASCII characters. If <code>repairingIllFormedSequences</code> is
+  <code>false</code> and an ill-formed sequence is detected, this method returns
+  <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func transcodedLength&lt;Input, Encoding where Input : IteratorProtocol, Encoding : UnicodeCodec, Encoding.CodeUnit == Input.Element&gt;(of input: Input, decodedAs sourceEncoding: Encoding.Type, repairingIllFormedSequences: Bool) -&gt; (count: Int, isASCII: Bool)?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-width_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-width_">static func width(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-width_"><div class="p">
+    <p>Returns the number of code units required to encode the given Unicode
+scalar.</p>
+
+<p>Because a Unicode scalar value can require up to 21 bits to store its
+value, some Unicode scalars are represented in UTF-16 by a pair of
+16-bit code units. The first and second code units of the pair,
+designated <em>leading</em> and <em>trailing</em> surrogates, make up a <em>surrogate
+pair</em>.</p>
+
+<pre><code class="language-swift">let anA: UnicodeScalar = &quot;A&quot;
+print(anA.value)
+// Prints &quot;65&quot;
+print(UTF16.width(anA))
+// Prints &quot;1&quot;
+
+let anApple: UnicodeScalar = &quot;🍎&quot;
+print(anApple.value)
+// Prints &quot;127822&quot;
+print(UTF16.width(anApple))
+// Prints &quot;2&quot;</code></pre>
+
+<p><strong><code>x</code>:</strong>  A Unicode scalar value.
+<strong>Returns:</strong> The width of <code>x</code> when encoded in UTF-16, either <code>1</code> or <code>2</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func width(_ x: UnicodeScalar) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-decode_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_">mutating func decode(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-decode_"><div class="p">
+    <p>Starts or continues decoding a UTF-16 sequence.</p>
+
+<p>To decode a code unit sequence completely, call this method repeatedly
+until it returns <code>UnicodeDecodingResult.emptyInput</code>. Checking that the
+iterator was exhausted is not sufficient, because the decoder can store
+buffered data from the input iterator.</p>
+
+<p>Because of buffering, it is impossible to find the corresponding position
+in the iterator for a given returned <code>UnicodeScalar</code> or an error.</p>
+
+<p>The following example decodes the UTF-16 encoded bytes of a string into an
+array of <code>UnicodeScalar</code> instances. This is a demonstration only---if
+you need the Unicode scalar representation of a string, use its
+<code>unicodeScalars</code> view.</p>
+
+<pre><code class="language-swift">let str = &quot;✨Unicode✨&quot;
+print(Array(str.utf16))
+// Prints &quot;[10024, 85, 110, 105, 99, 111, 100, 101, 10024]&quot;
+
+var codeUnitIterator = str.utf16.makeIterator()
+var scalars: [UnicodeScalar] = []
+var utf16Decoder = UTF16()
+Decode: while true {
+    switch utf16Decoder.decode(&amp;codeUnitIterator) {
+    case .scalarValue(let v): scalars.append(v)
+    case .emptyInput: break Decode
+    case .error:
+        print(&quot;Decoding error&quot;)
+        break Decode
+    }
+}
+print(scalars)
+// Prints &quot;[&quot;\u{2728}&quot;, &quot;U&quot;, &quot;n&quot;, &quot;i&quot;, &quot;c&quot;, &quot;o&quot;, &quot;d&quot;, &quot;e&quot;, &quot;\u{2728}&quot;]&quot;</code></pre>
+
+<p><strong><code>input</code>:</strong>  An iterator of code units to be decoded. <code>input</code> must be
+  the same iterator instance in repeated calls to this method. Do not
+  advance the iterator or any copies of the iterator outside this
+  method.
+<strong>Returns:</strong> A <code>UnicodeDecodingResult</code> instance, representing the next
+  Unicode scalar, an indication of an error, or an indication that the
+  UTF sequence has been fully decoded.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode&lt;I : IteratorProtocol where I.Element == CodeUnit&gt;(_ input: inout I) -&gt; UnicodeDecodingResult</code>
+    
+    
+</div></div>
+</div>
+
+

@@ -1,0 +1,65 @@
+strict digraph "BidirectionalIndex - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AnyBidirectionalIndex" [URL="/type/AnyBidirectionalIndex/hierarchy/", style=filled]
+    "AnyRandomAccessIndex" [URL="/type/AnyRandomAccessIndex/hierarchy/", style=filled]
+    "BidirectionalIndex" [URL="/protocol/BidirectionalIndex/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "FlattenBidirectionalCollectionIndex" [URL="/type/FlattenBidirectionalCollectionIndex/hierarchy/", style=filled]
+    "ForwardIndex" [URL="/protocol/ForwardIndex/hierarchy/"]
+    "Int" [URL="/type/Int/hierarchy/", style=filled]
+    "Int16" [URL="/type/Int16/hierarchy/", style=filled]
+    "Int32" [URL="/type/Int32/hierarchy/", style=filled]
+    "Int64" [URL="/type/Int64/hierarchy/", style=filled]
+    "Int8" [URL="/type/Int8/hierarchy/", style=filled]
+    "Integer" [URL="/protocol/Integer/hierarchy/"]
+    "RandomAccessIndex" [URL="/protocol/RandomAccessIndex/hierarchy/"]
+    "ReverseIndex" [URL="/type/ReverseIndex/hierarchy/", style=filled]
+    "ReverseIndexProtocol" [URL="/protocol/ReverseIndexProtocol/hierarchy/"]
+    "ReverseRandomAccessIndex" [URL="/type/ReverseRandomAccessIndex/hierarchy/", style=filled]
+    "SignedInteger" [URL="/protocol/SignedInteger/hierarchy/"]
+    "String.CharacterView.Index" [URL="/type/String.CharacterView.Index/hierarchy/", style=filled]
+    "String.UTF16View.Index" [URL="/type/String.UTF16View.Index/hierarchy/", style=filled]
+    "String.UnicodeScalarView.Index" [URL="/type/String.UnicodeScalarView.Index/hierarchy/", style=filled]
+    "UInt" [URL="/type/UInt/hierarchy/", style=filled]
+    "UInt16" [URL="/type/UInt16/hierarchy/", style=filled]
+    "UInt32" [URL="/type/UInt32/hierarchy/", style=filled]
+    "UInt64" [URL="/type/UInt64/hierarchy/", style=filled]
+    "UInt8" [URL="/type/UInt8/hierarchy/", style=filled]
+    "UnsafeMutablePointer" [URL="/type/UnsafeMutablePointer/hierarchy/", style=filled]
+    "UnsafePointer" [URL="/type/UnsafePointer/hierarchy/", style=filled]
+    "UnsignedInteger" [URL="/protocol/UnsignedInteger/hierarchy/"]
+    "_Incrementable" [URL="/protocol/_Incrementable/hierarchy/"]    "BidirectionalIndex" -> "AnyBidirectionalIndex"
+    "BidirectionalIndex" -> "FlattenBidirectionalCollectionIndex"
+    "BidirectionalIndex" -> "RandomAccessIndex"
+    "BidirectionalIndex" -> "ReverseIndexProtocol"
+    "BidirectionalIndex" -> "String.CharacterView.Index"
+    "BidirectionalIndex" -> "String.UnicodeScalarView.Index"
+    "BidirectionalIndex" -> "String.UTF16View.Index"
+    "RandomAccessIndex" -> "AnyRandomAccessIndex"
+    "RandomAccessIndex" -> "Integer"
+    "RandomAccessIndex" -> "ReverseRandomAccessIndex"
+    "RandomAccessIndex" -> "UnsafeMutablePointer"
+    "RandomAccessIndex" -> "UnsafePointer"
+    "Integer" -> "SignedInteger"
+    "Integer" -> "UnsignedInteger"
+    "SignedInteger" -> "Int"
+    "SignedInteger" -> "Int16"
+    "SignedInteger" -> "Int32"
+    "SignedInteger" -> "Int64"
+    "SignedInteger" -> "Int8"
+    "UnsignedInteger" -> "UInt"
+    "UnsignedInteger" -> "UInt16"
+    "UnsignedInteger" -> "UInt32"
+    "UnsignedInteger" -> "UInt64"
+    "UnsignedInteger" -> "UInt8"
+    "ReverseIndexProtocol" -> "ReverseIndex"
+    "ReverseIndexProtocol" -> "ReverseRandomAccessIndex"
+    "ForwardIndex" -> "BidirectionalIndex"
+    "_Incrementable" -> "ForwardIndex"
+    "Equatable" -> "_Incrementable"
+    subgraph Types {
+        rank = max; "AnyBidirectionalIndex"; "FlattenBidirectionalCollectionIndex"; "String.CharacterView.Index"; "String.UnicodeScalarView.Index"; "String.UTF16View.Index"; "AnyRandomAccessIndex"; "ReverseRandomAccessIndex"; "UnsafeMutablePointer"; "UnsafePointer"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8"; "ReverseIndex";
+    }
+}

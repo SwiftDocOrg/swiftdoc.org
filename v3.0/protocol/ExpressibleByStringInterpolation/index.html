@@ -1,0 +1,126 @@
+---
+layout: "default"
+title: "ExpressibleByStringInterpolation"
+description: "Swift documentation for 'ExpressibleByStringInterpolation': A type that can be initialized by string interpolation with a string."
+keywords: "ExpressibleByStringInterpolation,protocol,swift,documentation"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol ExpressibleByStringInterpolation</code></div>
+
+<div class="discussion comment">
+    <p>A type that can be initialized by string interpolation with a string
+literal that includes expressions.</p>
+
+<p>Use string interpolation to include one or more expressions in a string
+literal, wrapped in a set of parentheses and prefixed by a backslash. For
+example:</p>
+
+<pre><code class="language-swift">let price = 2
+let number = 3
+let message = &quot;One cookie: $\(price), \(number) cookies: $\(price * number).&quot;
+print(message)
+// Prints &quot;One cookie: $2, 3 cookies: $6.&quot;</code></pre>
+
+<h1>Conforming to the ExpressibleByStringInterpolation Protocol</h1>
+
+<p>To use string interpolation to initialize instances of your custom type,
+implement the required initializers for <code>ExpressibleByStringInterpolation</code>
+conformance. String interpolation is a multiple-step initialization
+process. When you use string interpolation, the following steps occur:</p>
+
+<ol><li>The string literal is broken into pieces. Each segment of the string
+literal before, between, and after any included expressions, along with
+the individual expressions themselves, are passed to the
+<code>init(stringInterpolationSegment:)</code> initializer.</li><li>The results of those calls are passed to the
+<code>init(stringInterpolation:)</code> initializer in the order in which they
+appear in the string literal.</li></ol>
+
+<p>In other words, initializing the <code>message</code> constant in the example above
+using string interpolation is equivalent to the following code:</p>
+
+<pre><code class="language-swift">let message = String(stringInterpolation:
+      String(stringInterpolationSegment: &quot;One cookie: $&quot;),
+      String(stringInterpolationSegment: price),
+      String(stringInterpolationSegment: &quot;, &quot;),
+      String(stringInterpolationSegment: number),
+      String(stringInterpolationSegment: &quot; cookies: $&quot;),
+      String(stringInterpolationSegment: price * number),
+      String(stringInterpolationSegment: &quot;.&quot;))</code></pre>
+
+<p><em>Deprecated:</em> it will be replaced or redesigned in Swift 4.0.  Instead of conforming to &#39;ExpressibleByStringInterpolation&#39;, consider adding an &#39;init(_:String)&#39;.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-stringinterpolation_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-stringinterpolation_">init(<wbr>stringInterpolation:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-stringinterpolation_"><div class="p">
+    <p>Creates an instance by concatenating the given values.</p>
+
+<p>Do not call this initializer directly. It is used by the compiler when
+you use string interpolation. For example:</p>
+
+<pre><code class="language-swift">let s = &quot;\(5) x \(2) = \(5 * 2)&quot;
+print(s)
+// Prints &quot;5 x 2 = 10&quot;</code></pre>
+
+<p>After calling <code>init(stringInterpolationSegment:)</code> with each segment of
+the string literal, this initializer is called with their string
+representations.</p>
+
+<p><strong><code>strings</code>:</strong>  An array of instances of the conforming type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(stringInterpolation strings: Self...)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-stringinterpolationsegment_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-stringinterpolationsegment_">init(<wbr>stringInterpolationSegment:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-stringinterpolationsegment_"><div class="p">
+    <p>Creates an instance containing the appropriate representation for the
+given value.</p>
+
+<p>Do not call this initializer directly. It is used by the compiler for
+each string interpolation segment when you use string interpolation. For
+example:</p>
+
+<pre><code class="language-swift">let s = &quot;\(5) x \(2) = \(5 * 2)&quot;
+print(s)
+// Prints &quot;5 x 2 = 10&quot;</code></pre>
+
+<p>This initializer is called five times when processing the string literal
+in the example above; once each for the following: the integer <code>5</code>, the
+string <code>&quot; x &quot;</code>, the integer <code>2</code>, the string <code>&quot; = &quot;</code>, and the result of
+the expression <code>5 * 2</code>.</p>
+
+<p><strong><code>expr</code>:</strong>  The expression to represent.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(stringInterpolationSegment expr: T)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+
+

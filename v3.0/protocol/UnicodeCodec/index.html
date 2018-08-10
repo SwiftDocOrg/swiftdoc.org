@@ -1,0 +1,152 @@
+---
+layout: "default"
+title: "UnicodeCodec"
+description: "Swift documentation for 'UnicodeCodec': A Unicode encoding form that translates between Unicode scalar values and."
+keywords: "UnicodeCodec,protocol,swift,documentation,decode,encode,CodeUnit"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol UnicodeCodec</code></div>
+
+<div class="discussion comment">
+    <p>A Unicode encoding form that translates between Unicode scalar values and
+form-specific code units.</p>
+
+<p>The <code>UnicodeCodec</code> protocol declares methods that decode code unit
+sequences into Unicode scalar values and encode Unicode scalar values
+into code unit sequences. The standard library implements codecs for the
+UTF-8, UTF-16, and UTF-32 encoding schemes as the <code>UTF8</code>, <code>UTF16</code>, and
+<code>UTF32</code> types, respectively. Use the <code>UnicodeScalar</code> type to work with
+decoded Unicode scalar values.</p>
+
+<p><strong>See Also:</strong> <code>UTF8</code>, <code>UTF16</code>, <code>UTF32</code>, <code>UnicodeScalar</code></p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">CodeUnit</code>
+<div class="comment">
+    <p>A type that can hold code unit values for this encoding.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a> <span class="required">Required</span><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Creates an instance of the codec.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-encode_into_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_into_">static func encode(<wbr>_:<wbr>into:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_into_"><div class="p">
+    <p>Encodes a Unicode scalar as a series of code units by calling the given
+closure on each code unit.</p>
+
+<p>For example, the musical fermata symbol (&quot;𝄐&quot;) is a single Unicode scalar
+value (<code>\u{1D110}</code>) but requires four code units for its UTF-8
+representation. The following code uses the <code>UTF8</code> codec to encode a
+fermata in UTF-8:</p>
+
+<pre><code class="language-swift">var bytes: [UTF8.CodeUnit] = []
+UTF8.encode(&quot;𝄐&quot;, into: { bytes.append($0) })
+print(bytes)
+// Prints &quot;[240, 157, 132, 144]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>input:</strong> The Unicode scalar value to encode.
+  <strong>processCodeUnit:</strong> A closure that processes one code unit argument at a
+    time.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func encode(_ input: UnicodeScalar, into processCodeUnit: (Self.CodeUnit) -&gt; Swift.Void)</code>
+    
+    
+</div></div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-decode_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode_">mutating func decode(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode_"><div class="p">
+    <p>Starts or continues decoding a code unit sequence into Unicode scalar
+values.</p>
+
+<p>To decode a code unit sequence completely, call this method repeatedly
+until it returns <code>UnicodeDecodingResult.emptyInput</code>. Checking that the
+iterator was exhausted is not sufficient, because the decoder can store
+buffered data from the input iterator.</p>
+
+<p>Because of buffering, it is impossible to find the corresponding position
+in the iterator for a given returned <code>UnicodeScalar</code> or an error.</p>
+
+<p>The following example decodes the UTF-8 encoded bytes of a string into an
+array of <code>UnicodeScalar</code> instances:</p>
+
+<pre><code class="language-swift">let str = &quot;✨Unicode✨&quot;
+print(Array(str.utf8))
+// Prints &quot;[226, 156, 168, 85, 110, 105, 99, 111, 100, 101, 226, 156, 168]&quot;
+
+var bytesIterator = str.utf8.makeIterator()
+var scalars: [UnicodeScalar] = []
+var utf8Decoder = UTF8()
+Decode: while true {
+    switch utf8Decoder.decode(&amp;bytesIterator) {
+    case .scalarValue(let v): scalars.append(v)
+    case .emptyInput: break Decode
+    case .error:
+        print(&quot;Decoding error&quot;)
+        break Decode
+    }
+}
+print(scalars)
+// Prints &quot;[&quot;\u{2728}&quot;, &quot;U&quot;, &quot;n&quot;, &quot;i&quot;, &quot;c&quot;, &quot;o&quot;, &quot;d&quot;, &quot;e&quot;, &quot;\u{2728}&quot;]&quot;</code></pre>
+
+<p><strong><code>input</code>:</strong>  An iterator of code units to be decoded. <code>input</code> must be
+  the same iterator instance in repeated calls to this method. Do not
+  advance the iterator or any copies of the iterator outside this
+  method.
+<strong>Returns:</strong> A <code>UnicodeDecodingResult</code> instance, representing the next
+  Unicode scalar, an indication of an error, or an indication that the
+  UTF sequence has been fully decoded.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode&lt;I : IteratorProtocol where I.Element == CodeUnit&gt;(_ input: inout I) -&gt; UnicodeDecodingResult</code>
+    
+    
+</div></div>
+</div>
+
+

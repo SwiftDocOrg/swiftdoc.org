@@ -1,0 +1,61 @@
+---
+layout: "default"
+title: "ReverseRandomAccessCollection"
+description: "Swift documentation for 'ReverseRandomAccessCollection': A Collection that presents the elements of its Base collection
+in reverse order."
+keywords: "ReverseRandomAccessCollection,struct,swift,documentation,Index,Iterator"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct ReverseRandomAccessCollection&lt;Base : Collection where Base.Index : RandomAccessIndex&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A Collection that presents the elements of its <code>Base</code> collection
+in reverse order.</p>
+
+<p><strong>Note:</strong> This type is the result of <code>x.reversed()</code> where <code>x</code> is a
+  collection having random access indices.
+<strong>See Also:</strong> <code>ReverseCollection</code></p>
+</div>
+
+<table class="standard">
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Index = ReverseRandomAccessIndex&lt;Base.Index&gt;</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Iterator = IndexingIterator&lt;ReverseRandomAccessCollection&lt;Base&gt;&gt;</code>
+<div class="comment">
+    <p>A type that provides the sequence&#39;s iteration interface and
+encapsulates its iteration state.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+
+

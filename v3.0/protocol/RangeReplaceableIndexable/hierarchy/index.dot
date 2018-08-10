@@ -1,0 +1,36 @@
+strict digraph "RangeReplaceableIndexable - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Array" [URL="/type/Array/hierarchy/", style=filled]
+    "ArraySlice" [URL="/type/ArraySlice/hierarchy/", style=filled]
+    "ContiguousArray" [URL="/type/ContiguousArray/hierarchy/", style=filled]
+    "Indexable" [URL="/protocol/Indexable/hierarchy/"]
+    "IndexableBase" [URL="/protocol/IndexableBase/hierarchy/"]
+    "MutableRangeReplaceableBidirectionalSlice" [URL="/type/MutableRangeReplaceableBidirectionalSlice/hierarchy/", style=filled]
+    "MutableRangeReplaceableRandomAccessSlice" [URL="/type/MutableRangeReplaceableRandomAccessSlice/hierarchy/", style=filled]
+    "MutableRangeReplaceableSlice" [URL="/type/MutableRangeReplaceableSlice/hierarchy/", style=filled]
+    "RangeReplaceableBidirectionalSlice" [URL="/type/RangeReplaceableBidirectionalSlice/hierarchy/", style=filled]
+    "RangeReplaceableCollection" [URL="/protocol/RangeReplaceableCollection/hierarchy/"]
+    "RangeReplaceableIndexable" [URL="/protocol/RangeReplaceableIndexable/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "RangeReplaceableRandomAccessSlice" [URL="/type/RangeReplaceableRandomAccessSlice/hierarchy/", style=filled]
+    "RangeReplaceableSlice" [URL="/type/RangeReplaceableSlice/hierarchy/", style=filled]
+    "String.CharacterView" [URL="/type/String.CharacterView/hierarchy/", style=filled]
+    "String.UnicodeScalarView" [URL="/type/String.UnicodeScalarView/hierarchy/", style=filled]    "RangeReplaceableIndexable" -> "RangeReplaceableCollection"
+    "RangeReplaceableCollection" -> "Array"
+    "RangeReplaceableCollection" -> "ArraySlice"
+    "RangeReplaceableCollection" -> "ContiguousArray"
+    "RangeReplaceableCollection" -> "MutableRangeReplaceableBidirectionalSlice"
+    "RangeReplaceableCollection" -> "MutableRangeReplaceableRandomAccessSlice"
+    "RangeReplaceableCollection" -> "MutableRangeReplaceableSlice"
+    "RangeReplaceableCollection" -> "RangeReplaceableBidirectionalSlice"
+    "RangeReplaceableCollection" -> "RangeReplaceableRandomAccessSlice"
+    "RangeReplaceableCollection" -> "RangeReplaceableSlice"
+    "RangeReplaceableCollection" -> "String.CharacterView"
+    "RangeReplaceableCollection" -> "String.UnicodeScalarView"
+    "Indexable" -> "RangeReplaceableIndexable"
+    "IndexableBase" -> "Indexable"
+    subgraph Types {
+        rank = max; "Array"; "ArraySlice"; "ContiguousArray"; "MutableRangeReplaceableBidirectionalSlice"; "MutableRangeReplaceableRandomAccessSlice"; "MutableRangeReplaceableSlice"; "RangeReplaceableBidirectionalSlice"; "RangeReplaceableRandomAccessSlice"; "RangeReplaceableSlice"; "String.CharacterView"; "String.UnicodeScalarView";
+    }
+}

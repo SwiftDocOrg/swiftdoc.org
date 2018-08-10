@@ -1,0 +1,294 @@
+---
+layout: "default"
+title: "RandomAccessIndex"
+description: "Swift documentation for 'RandomAccessIndex': An index that can be offset by an arbitrary number of positions,
+and can measure the distance to any reachable value, in O(1)."
+keywords: "RandomAccessIndex,protocol,swift,documentation,<,<=,==,>,>=,advanced,advanced,distance,predecessor,successor,Distance,Stride"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol RandomAccessIndex</code></div>
+
+<div class="discussion comment">
+    <p>An index that can be offset by an arbitrary number of positions,
+and can measure the distance to any reachable value, in O(1).</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">BidirectionalIndex, Comparable, Equatable, ForwardIndex, Strideable, _Incrementable, _RandomAccessAmbiguity</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration inherited">
+<code class="language-swift">Distance : _SignedInteger = Int</code>
+<div class="comment">
+    <p>A type that can represent the number of steps between pairs of
+<code>Self</code> values where one value is reachable from the other.</p>
+
+<p>Reachability is defined by the ability to produce one value from
+the other via zero or more applications of <code>successor</code>.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">Stride : SignedNumber</code>
+<div class="comment">
+    <p>A type that can represent the distance between two values of <code>Self</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-lt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_rhs_">func &lt;(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-lt_rhs_"><div class="p">
+    <p>A <a href="http://en.wikipedia.org/wiki/Total_order#Strict_total_order">strict total order</a>
+over instances of <code>Self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lteq_rhs_">func &lt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-lteq_rhs_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Returns <code>true</code> if <code>lhs</code> is equal to <code>rhs</code>.</p>
+
+<p><strong>Equality implies substitutability</strong>.  When <code>x == y</code>, <code>x</code> and
+<code>y</code> are interchangeable in any code that only depends on their
+values.</p>
+
+<p>Class instance identity as distinguished by triple-equals <code>===</code>
+is notably not part of an instance&#39;s value.  Exposing other
+non-value aspects of <code>Equatable</code> types is discouraged, and any
+that <em>are</em> exposed should be explicitly pointed out in
+documentation.</p>
+
+<p><strong>Equality is an equivalence relation</strong></p>
+
+<ul><li><code>x == x</code> is <code>true</code></li><li><code>x == y</code> implies <code>y == x</code></li><li><code>x == y</code> and <code>y == z</code> implies <code>x == z</code></li></ul>
+
+<p><strong>Inequality is the inverse of equality</strong>, i.e. <code>!(x == y)</code> iff
+<code>x != y</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gt_rhs_">func &gt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gt_rhs_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_rhs_">func &gt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_rhs_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-advanced-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advanced-by_">func advanced(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-advanced-by_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advanced(by n: Self.Distance) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RandomAccessIndex/"><code>RandomAccessIndex</code></a>,    <a href="../../protocol/ForwardIndex/"><code>ForwardIndex</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-advanced-by_limit_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advanced-by_limit_">func advanced(<wbr>by:<wbr>limit:)</a>
+        
+<div class="comment collapse" id="comment-func-advanced-by_limit_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advanced(by n: Self.Distance, limit: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RandomAccessIndex/"><code>RandomAccessIndex</code></a>,    <a href="../../protocol/ForwardIndex/"><code>ForwardIndex</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-distance-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distance-to_">func distance(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-distance-to_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(to other: Self) -&gt; Self.Distance</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RandomAccessIndex/"><code>RandomAccessIndex</code></a>,    <a href="../../protocol/ForwardIndex/"><code>ForwardIndex</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-predecessor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-predecessor">func predecessor()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-predecessor"><div class="p">
+    <p>Returns the previous consecutive value in a discrete sequence.</p>
+
+<p>If <code>self</code> has a well-defined successor,
+<code>self.successor().predecessor() == self</code>.  If <code>self</code> has a
+well-defined predecessor, <code>self.predecessor().successor() ==
+self</code>.</p>
+
+<p><strong>Precondition:</strong> <code>self</code> has a well-defined predecessor.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func predecessor() -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalIndex/"><code>BidirectionalIndex</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-successor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-successor">func successor()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-successor"><div class="p">
+    <p>Returns the next consecutive value in a discrete sequence of
+<code>Self</code> values.</p>
+
+<p><strong>Precondition:</strong> <code>self</code> has a well-defined successor.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func successor() -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_Incrementable/"><code>_Incrementable</code></a>    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+
+
+<div class="declaration inherited" id="func--advanced-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--advanced-by_">func advanced(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func--advanced-by_"><div class="p">
+    <p>Returns the result of advancing <code>self</code> by <code>n</code> positions.</p>
+
+<p><strong>Returns:</strong>
+  - If <code>n &gt; 0</code>, the result of applying <code>successor</code> to <code>self</code> <code>n</code> times.
+  - If <code>n &lt; 0</code>, the result of applying <code>predecessor</code> to <code>self</code> <code>-n</code> times.
+  - Otherwise, <code>self</code>.</p>
+
+<p><strong>Precondition:</strong> <code>n &gt;= 0</code> if only conforming to <code>ForwardIndex</code>
+<strong>Complexity:</strong>
+  - O(1) if conforming to <code>RandomAccessIndex</code>
+  - O(<code>abs(n)</code>) otherwise</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advanced(by n: Self.Distance) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalIndex/"><code>BidirectionalIndex</code></a>,    <a href="../../protocol/_RandomAccessAmbiguity/"><code>_RandomAccessAmbiguity</code></a>,    <a href="../../protocol/ForwardIndex/"><code>ForwardIndex</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func--advanced-by_limit_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--advanced-by_limit_">func advanced(<wbr>by:<wbr>limit:)</a>
+        
+<div class="comment collapse" id="comment-func--advanced-by_limit_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advanced(by n: Self.Distance, limit: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RandomAccessIndex/"><code>RandomAccessIndex</code></a>,    <a href="../../protocol/BidirectionalIndex/"><code>BidirectionalIndex</code></a>,    <a href="../../protocol/ForwardIndex/"><code>ForwardIndex</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--distance-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--distance-to_">func distance(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func--distance-to_"><div class="p">
+    <p>Measure the distance between <code>self</code> and <code>end</code>.</p>
+
+<p><strong>Precondition:</strong>
+  - <code>start</code> and <code>end</code> are part of the same sequence when conforming to
+    <code>RandomAccessIndex</code>.
+  - <code>end</code> is reachable from <code>self</code> by incrementation otherwise.</p>
+
+<p><strong>Complexity:</strong>
+  - O(1) if conforming to <code>RandomAccessIndex</code>
+  - O(<code>n</code>) otherwise, where <code>n</code> is the function&#39;s result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(to end: Self) -&gt; Self.Distance</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BidirectionalIndex/"><code>BidirectionalIndex</code></a>,    <a href="../../protocol/ForwardIndex/"><code>ForwardIndex</code></a>    
+</div></div>
+</div>
+
+
+
+
+

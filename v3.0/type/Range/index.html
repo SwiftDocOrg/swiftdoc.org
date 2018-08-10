@@ -1,0 +1,413 @@
+---
+layout: "default"
+title: "Range"
+description: "Swift documentation for 'Range': A half-open interval over a comparable type, from a lower bound up to, but."
+keywords: "Range,struct,swift,documentation,==,~=,clamped,contains,overlaps,overlaps,overlaps,overlaps,count,customMirror,debugDescription,description,isEmpty,lowerBound,upperBound"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Range&lt;Bound : Comparable&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A half-open interval over a comparable type, from a lower bound up to, but
+not including, an upper bound.</p>
+
+<p>You create <code>Range</code> instances by using the half-open range operator (<code>..&lt;</code>).</p>
+
+<pre><code class="language-swift">let underFive = 0.0..&lt;5.0</code></pre>
+
+<p>You can use a <code>Range</code> instance to quickly check if a value is contained in
+a particular range of values. For example:</p>
+
+<pre><code class="language-swift">print(underFive.contains(3.14))     // Prints &quot;true&quot;
+print(underFive.contains(6.28))     // Prints &quot;false&quot;
+print(underFive.contains(5.0))      // Prints &quot;false&quot;</code></pre>
+
+<p><code>Range</code> instances can represent an empty interval, unlike <code>ClosedRange</code>.</p>
+
+<pre><code class="language-swift">let empty = 0.0..&lt;0.0
+print(empty.contains(0.0))          // Prints &quot;false&quot;
+print(empty.isEmpty)                // Prints &quot;true&quot;</code></pre>
+
+<p><strong>See Also:</strong> <code>CountableRange</code>, <code>ClosedRange</code>, <code>CountableClosedRange</code></p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CustomDebugStringConvertible, CustomReflectable, CustomStringConvertible, Equatable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_-closedrange-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-closedrange-bound">init(<wbr>_: ClosedRange&lt;Bound&gt;)</a><div class="comment collapse" id="comment-init_-closedrange-bound"><div class="p">
+    <p>Creates an instance equivalent to the given range.</p>
+
+<p>An equivalent range must be representable as an instance of <code>Range</code>.
+For example, passing a closed range with an upper bound of <code>Int.max</code>
+triggers a runtime error, because the resulting half-open range would
+require an upper bound of <code>Int.max + 1</code>, which is not representable as
+an <code>Int</code>.</p>
+
+<p><strong><code>other</code>:</strong>  A range to convert to a <code>Range</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ other: ClosedRange&lt;Bound&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-countableclosedrange-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-countableclosedrange-bound">init(<wbr>_: CountableClosedRange&lt;Bound&gt;)</a><div class="comment collapse" id="comment-init_-countableclosedrange-bound"><div class="p">
+    <p>Creates an instance equivalent to the given range.</p>
+
+<p>An equivalent range must be representable as an instance of <code>Range</code>.
+For example, passing a closed range with an upper bound of <code>Int.max</code>
+triggers a runtime error, because the resulting half-open range would
+require an upper bound of <code>Int.max + 1</code>, which is not representable as
+an <code>Int</code>.</p>
+
+<p><strong><code>other</code>:</strong>  A range to convert to a <code>Range</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ other: CountableClosedRange&lt;Bound&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-countablerange-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-countablerange-bound">init(<wbr>_: CountableRange&lt;Bound&gt;)</a><div class="comment collapse" id="comment-init_-countablerange-bound"><div class="p">
+    <p>Creates an instance equivalent to the given range.</p>
+
+<p><strong><code>other</code>:</strong>  A range to convert to a <code>Range</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ other: CountableRange&lt;Bound&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-range-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-range-bound">init(<wbr>_: Range&lt;Bound&gt;)</a><div class="comment collapse" id="comment-init_-range-bound"><div class="p">
+    <p>Creates an instance equivalent to the given range.</p>
+
+<p><strong><code>other</code>:</strong>  A range to convert to a <code>Range</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ other: Range&lt;Bound&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-uncheckedbounds-bounds_-lower_-bound_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-uncheckedbounds-bounds_-lower_-bound_">init(<wbr>uncheckedBounds bounds: (<wbr>lower:<wbr> Bound,:)</a><div class="comment collapse" id="comment-init-uncheckedbounds-bounds_-lower_-bound_"><div class="p">
+    <p>Creates an instance with the given bounds.</p>
+
+<p>Because this initializer does not perform any checks, it should be used
+as an optimization only when you are absolutely certain that <code>lower</code> is
+less than or equal to <code>upper</code>. Using the half-open range operator
+(<code>..&lt;</code>) to form <code>Range</code> instances is preferred.</p>
+
+<p><strong><code>bounds</code>:</strong>  A tuple of the lower and upper bounds of the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(uncheckedBounds bounds: (lower: Bound, upper: Bound))</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-count_-bound-stride">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-bound-stride">var count: Bound.Stride</a><div class="comment collapse" id="comment-var-count_-bound-stride"><div class="p">
+    <p>The number of values contained in the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Bound.Stride { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>The custom mirror for this instance.</p>
+
+<p>If this type has value semantics, the mirror should be unaffected by
+subsequent mutations of the instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of the range, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p>A Boolean value indicating whether the range contains no elements.</p>
+
+<p>An empty <code>Range</code> instance has equal lower and upper bounds.</p>
+
+<pre><code class="language-swift">let empty: Range = 10..&lt;10
+print(empty.isEmpty)
+// Prints &quot;true&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-lowerbound_-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-lowerbound_-bound">var lowerBound: Bound</a><div class="comment collapse" id="comment-var-lowerbound_-bound"><div class="p">
+    <p>The range&#39;s lower bound.</p>
+
+<p>In an empty range, <code>lowerBound</code> is equal to <code>upperBound</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var lowerBound: Bound { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-upperbound_-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-upperbound_-bound">var upperBound: Bound</a><div class="comment collapse" id="comment-var-upperbound_-bound"><div class="p">
+    <p>The range&#39;s upper bound.</p>
+
+<p>In an empty range, <code>upperBound</code> is equal to <code>lowerBound</code>. A <code>Range</code>
+instance does not contain its upper bound.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var upperBound: Bound { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Range&lt;Bound&gt;, rhs: Range&lt;Bound&gt;) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-tildeeq_value_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-tildeeq_value_">func ~=(<wbr>_:<wbr>value:)</a>
+        
+<div class="comment collapse" id="comment-func-tildeeq_value_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ~=(pattern: Range&lt;Bound&gt;, value: Bound) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-clamped-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-clamped-to_">func clamped(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-clamped-to_"><div class="p">
+    <p>Returns a copy of this range clamped to the given limiting range.</p>
+
+<p>The bounds of the result are always limited to the bounds of <code>limits</code>.
+For example:</p>
+
+<pre><code class="language-swift">let x: Range = 0..&lt;20
+print(x.clamped(to: 10..&lt;1000))
+// Prints &quot;10..&lt;20&quot;</code></pre>
+
+<p>If the two ranges do not overlap, the result is an empty range within the
+bounds of <code>limits</code>.</p>
+
+<pre><code class="language-swift">let y: Range = 0..&lt;5
+print(y.clamped(to: 10..&lt;1000))
+// Prints &quot;10..&lt;10&quot;</code></pre>
+
+<p><strong><code>limits</code>:</strong>  The range to clamp the bounds of this range.
+<strong>Returns:</strong> A new range clamped to the bounds of <code>limits</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func clamped(to limits: Range&lt;Bound&gt;) -&gt; Range&lt;Bound&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-contains_"><div class="p">
+    <p>Returns a Boolean value indicating whether the given element is contained
+within the range.</p>
+
+<p>Because <code>Range</code> represents a half-open range, a <code>Range</code> instance does not
+contain its upper bound. <code>element</code> is contained in the range if it is
+greater than or equal to the lower bound and less than the upper bound.</p>
+
+<p><strong><code>element</code>:</strong>  The element to check for containment.
+<strong>Returns:</strong> <code>true</code> if <code>element</code> is contained in the range; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(_ element: Bound) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-overlaps_-closedrange-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-overlaps_-closedrange-bound">func overlaps(<wbr>_: ClosedRange&lt;Bound&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-overlaps_-closedrange-bound"><div class="p">
+    <p>Returns a Boolean value indicating whether this range and the given range
+contain an element in common.</p>
+
+<p>This example shows two overlapping ranges:</p>
+
+<pre><code class="language-swift">let x: Range = 0..&lt;20
+print(x.overlaps(10...1000 as ClosedRange))
+// Prints &quot;true&quot;</code></pre>
+
+<p>Because a half-open range does not include its upper bound, the ranges
+in the following example do not overlap:</p>
+
+<pre><code class="language-swift">let y: ClosedRange = 20..&lt;30
+print(x.overlaps(y))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A range to check for elements in common.
+<strong>Returns:</strong> <code>true</code> if this range and <code>other</code> have at least one element in
+  common; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func overlaps(_ other: ClosedRange&lt;Bound&gt;) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-overlaps_-countableclosedrange-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-overlaps_-countableclosedrange-bound">func overlaps(<wbr>_: CountableClosedRange&lt;Bound&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-overlaps_-countableclosedrange-bound"><div class="p">
+    <p>Returns a Boolean value indicating whether this range and the given range
+contain an element in common.</p>
+
+<p>This example shows two overlapping ranges:</p>
+
+<pre><code class="language-swift">let x: Range = 0..&lt;20
+print(x.overlaps(10...1000 as CountableClosedRange))
+// Prints &quot;true&quot;</code></pre>
+
+<p>Because a half-open range does not include its upper bound, the ranges
+in the following example do not overlap:</p>
+
+<pre><code class="language-swift">let y: CountableClosedRange = 20..&lt;30
+print(x.overlaps(y))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A range to check for elements in common.
+<strong>Returns:</strong> <code>true</code> if this range and <code>other</code> have at least one element in
+  common; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func overlaps(_ other: CountableClosedRange&lt;Bound&gt;) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-overlaps_-countablerange-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-overlaps_-countablerange-bound">func overlaps(<wbr>_: CountableRange&lt;Bound&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-overlaps_-countablerange-bound"><div class="p">
+    <p>Returns a Boolean value indicating whether this range and the given range
+contain an element in common.</p>
+
+<p>This example shows two overlapping ranges:</p>
+
+<pre><code class="language-swift">let x: Range = 0..&lt;20
+print(x.overlaps(10..&lt;1000 as CountableRange))
+// Prints &quot;true&quot;</code></pre>
+
+<p>Because a half-open range does not include its upper bound, the ranges
+in the following example do not overlap:</p>
+
+<pre><code class="language-swift">let y: CountableRange = 20..&lt;30
+print(x.overlaps(y))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A range to check for elements in common.
+<strong>Returns:</strong> <code>true</code> if this range and <code>other</code> have at least one element in
+  common; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func overlaps(_ other: CountableRange&lt;Bound&gt;) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-overlaps_-range-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-overlaps_-range-bound">func overlaps(<wbr>_: Range&lt;Bound&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-overlaps_-range-bound"><div class="p">
+    <p>Returns a Boolean value indicating whether this range and the given range
+contain an element in common.</p>
+
+<p>This example shows two overlapping ranges:</p>
+
+<pre><code class="language-swift">let x: Range = 0..&lt;20
+print(x.overlaps(10..&lt;1000 as Range))
+// Prints &quot;true&quot;</code></pre>
+
+<p>Because a half-open range does not include its upper bound, the ranges
+in the following example do not overlap:</p>
+
+<pre><code class="language-swift">let y: Range = 20..&lt;30
+print(x.overlaps(y))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A range to check for elements in common.
+<strong>Returns:</strong> <code>true</code> if this range and <code>other</code> have at least one element in
+  common; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func overlaps(_ other: Range&lt;Bound&gt;) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+
+

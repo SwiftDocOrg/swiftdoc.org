@@ -1,0 +1,39 @@
+strict digraph "String - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/hierarchy/"]
+    "CustomPlaygroundQuickLookable" [URL="/protocol/CustomPlaygroundQuickLookable/hierarchy/"]
+    "CustomReflectable" [URL="/protocol/CustomReflectable/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByExtendedGraphemeClusterLiteral" [URL="/protocol/ExpressibleByExtendedGraphemeClusterLiteral/hierarchy/"]
+    "ExpressibleByStringInterpolation" [URL="/protocol/ExpressibleByStringInterpolation/hierarchy/"]
+    "ExpressibleByStringLiteral" [URL="/protocol/ExpressibleByStringLiteral/hierarchy/"]
+    "ExpressibleByUnicodeScalarLiteral" [URL="/protocol/ExpressibleByUnicodeScalarLiteral/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "LosslessStringConvertible" [URL="/protocol/LosslessStringConvertible/hierarchy/"]
+    "MirrorPath" [URL="/protocol/MirrorPath/hierarchy/"]
+    "String" [URL="/type/String/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "TextOutputStream" [URL="/protocol/TextOutputStream/hierarchy/"]
+    "TextOutputStreamable" [URL="/protocol/TextOutputStreamable/hierarchy/"]    "CustomReflectable" -> "String"
+    "CustomPlaygroundQuickLookable" -> "String"
+    "TextOutputStream" -> "String"
+    "TextOutputStreamable" -> "String"
+    "ExpressibleByStringLiteral" -> "String"
+    "CustomDebugStringConvertible" -> "String"
+    "Hashable" -> "String"
+    "LosslessStringConvertible" -> "String"
+    "Comparable" -> "String"
+    "ExpressibleByStringInterpolation" -> "String"
+    "MirrorPath" -> "String"
+    "ExpressibleByExtendedGraphemeClusterLiteral" -> "ExpressibleByStringLiteral"
+    "ExpressibleByUnicodeScalarLiteral" -> "ExpressibleByExtendedGraphemeClusterLiteral"
+    "Equatable" -> "Hashable"
+    "CustomStringConvertible" -> "LosslessStringConvertible"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "String";
+    }
+}

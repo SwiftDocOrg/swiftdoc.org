@@ -1,0 +1,40 @@
+strict digraph "MutableIndexable - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Array" [URL="/type/Array/hierarchy/", style=filled]
+    "ArraySlice" [URL="/type/ArraySlice/hierarchy/", style=filled]
+    "CollectionOfOne" [URL="/type/CollectionOfOne/hierarchy/", style=filled]
+    "ContiguousArray" [URL="/type/ContiguousArray/hierarchy/", style=filled]
+    "EmptyCollection" [URL="/type/EmptyCollection/hierarchy/", style=filled]
+    "Indexable" [URL="/protocol/Indexable/hierarchy/"]
+    "IndexableBase" [URL="/protocol/IndexableBase/hierarchy/"]
+    "MutableBidirectionalSlice" [URL="/type/MutableBidirectionalSlice/hierarchy/", style=filled]
+    "MutableCollection" [URL="/protocol/MutableCollection/hierarchy/"]
+    "MutableIndexable" [URL="/protocol/MutableIndexable/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "MutableRandomAccessSlice" [URL="/type/MutableRandomAccessSlice/hierarchy/", style=filled]
+    "MutableRangeReplaceableBidirectionalSlice" [URL="/type/MutableRangeReplaceableBidirectionalSlice/hierarchy/", style=filled]
+    "MutableRangeReplaceableRandomAccessSlice" [URL="/type/MutableRangeReplaceableRandomAccessSlice/hierarchy/", style=filled]
+    "MutableRangeReplaceableSlice" [URL="/type/MutableRangeReplaceableSlice/hierarchy/", style=filled]
+    "MutableSlice" [URL="/type/MutableSlice/hierarchy/", style=filled]
+    "UnsafeMutableBufferPointer" [URL="/type/UnsafeMutableBufferPointer/hierarchy/", style=filled]
+    "UnsafeMutableRawBufferPointer" [URL="/type/UnsafeMutableRawBufferPointer/hierarchy/", style=filled]    "MutableIndexable" -> "MutableCollection"
+    "MutableCollection" -> "Array"
+    "MutableCollection" -> "ArraySlice"
+    "MutableCollection" -> "CollectionOfOne"
+    "MutableCollection" -> "ContiguousArray"
+    "MutableCollection" -> "EmptyCollection"
+    "MutableCollection" -> "MutableBidirectionalSlice"
+    "MutableCollection" -> "MutableRandomAccessSlice"
+    "MutableCollection" -> "MutableRangeReplaceableBidirectionalSlice"
+    "MutableCollection" -> "MutableRangeReplaceableRandomAccessSlice"
+    "MutableCollection" -> "MutableRangeReplaceableSlice"
+    "MutableCollection" -> "MutableSlice"
+    "MutableCollection" -> "UnsafeMutableBufferPointer"
+    "MutableCollection" -> "UnsafeMutableRawBufferPointer"
+    "Indexable" -> "MutableIndexable"
+    "IndexableBase" -> "Indexable"
+    subgraph Types {
+        rank = max; "Array"; "ArraySlice"; "CollectionOfOne"; "ContiguousArray"; "EmptyCollection"; "MutableBidirectionalSlice"; "MutableRandomAccessSlice"; "MutableRangeReplaceableBidirectionalSlice"; "MutableRangeReplaceableRandomAccessSlice"; "MutableRangeReplaceableSlice"; "MutableSlice"; "UnsafeMutableBufferPointer"; "UnsafeMutableRawBufferPointer";
+    }
+}

@@ -1,0 +1,604 @@
+---
+layout: "default"
+title: "RangeIterator"
+description: "Swift documentation for 'RangeIterator': An iterator over the elements of Range&lt;Element&gt;."
+keywords: "RangeIterator,struct,swift,documentation,contains,dropFirst,dropFirst,dropLast,dropLast,elementsEqual,elementsEqual,enumerated,filter,flatMap,flatMap,forEach,lexicographicallyPrecedes,map,max,min,next,prefix,reduce,reversed,sorted,split,split,starts,starts,suffix,lazy,underestimatedCount,Element"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct RangeIterator&lt;Element : ForwardIndex&gt;</code></div>
+
+<div class="discussion comment">
+    <p>An iterator over the elements of <code>Range&lt;Element&gt;</code>.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">IteratorProtocol, Sequence</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Element = ForwardIndex</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration inherited" id="var-lazy_-lazysequence-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-lazy_-lazysequence-self">var lazy: LazySequence&lt;RangeIterator&lt;Element&gt;&gt;</a><div class="comment collapse" id="comment-var-lazy_-lazysequence-self"><div class="p">
+    <p>A sequence containing the same elements as a <code>Base</code> sequence,
+but on which some operations such as <code>map</code> and <code>filter</code> are
+implemented lazily.</p>
+
+<p><strong>See Also:</strong> <code>LazySequenceProtocol</code>, <code>LazySequence</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var lazy: LazySequence&lt;RangeIterator&lt;Element&gt;&gt; { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/Sequence/"><code>Sequence</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-underestimatedcount_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-underestimatedcount_-int">var underestimatedCount: Int</a><div class="comment collapse" id="comment-var-underestimatedcount_-int"><div class="p">
+    <p>Returns a value less than or equal to the number of elements in
+<code>self</code>, <strong>nondestructively</strong>.</p>
+
+<p><strong>Complexity:</strong> O(N).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var underestimatedCount: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/Sequence/"><code>Sequence</code></a>
+        </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-contains_"><div class="p">
+    <p>Returns <code>true</code> iff an element in <code>self</code> satisfies <code>predicate</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(@noescape predicate: (ForwardIndex) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-dropfirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dropfirst">func dropFirst()</a>
+        
+<div class="comment collapse" id="comment-func-dropfirst"><div class="p">
+    <p>Returns a subsequence containing all but the first element.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst() -&gt; RangeIterator&lt;Element&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-dropfirst_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dropfirst_">func dropFirst(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-dropfirst_"><div class="p">
+    <p>Returns a subsequence containing all but the first <code>n</code> elements.</p>
+
+<p><strong>Precondition:</strong> <code>n &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>n</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst(n: Int) -&gt; AnySequence&lt;ForwardIndex&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-droplast">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-droplast">func dropLast()</a>
+        
+<div class="comment collapse" id="comment-func-droplast"><div class="p">
+    <p>Returns a subsequence containing all but the last element.</p>
+
+<p><strong>Precondition:</strong> <code>self</code> is a finite sequence.
+<strong>Precondition:</strong> <code>n &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast() -&gt; RangeIterator&lt;Element&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-droplast_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-droplast_">func dropLast(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-droplast_"><div class="p">
+    <p>Returns a subsequence containing all but the last <code>n</code> elements.</p>
+
+<p><strong>Precondition:</strong> <code>self</code> is a finite collection.
+<strong>Precondition:</strong> <code>n &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast(n: Int) -&gt; AnySequence&lt;ForwardIndex&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-elementsequal_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-elementsequal_">func elementsEqual(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-elementsequal_"><div class="p">
+    <p>Returns <code>true</code> iff <code>self</code> and <code>other</code> contain the same elements in the
+same order.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func elementsEqual&lt;OtherSequence : Sequence where OtherSequence.Iterator.Element == Iterator.Element&gt;(other: OtherSequence) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-elementsequal_isequivalent_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-elementsequal_isequivalent_">func elementsEqual(<wbr>_:<wbr>isEquivalent:)</a>
+        
+<div class="comment collapse" id="comment-func-elementsequal_isequivalent_"><div class="p">
+    <p>Returns <code>true</code> iff <code>self</code> and <code>other</code> contain equivalent elements, using
+<code>isEquivalent</code> as the equivalence test.</p>
+
+<p><strong>Precondition:</strong> <code>isEquivalent</code> is an
+  <a href="http://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func elementsEqual&lt;OtherSequence : Sequence where OtherSequence.Iterator.Element == Iterator.Element&gt;(other: OtherSequence, @noescape isEquivalent: (ForwardIndex, ForwardIndex) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-enumerated">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-enumerated">func enumerated()</a>
+        
+<div class="comment collapse" id="comment-func-enumerated"><div class="p">
+    <p>Returns a lazy <code>Sequence</code> containing pairs (<em>n</em>, <em>x</em>), where
+<em>n</em>s are consecutive <code>Int</code>s starting at zero, and <em>x</em>s are
+the elements of <code>self</code>:</p>
+
+<pre><code class="language-swift">&gt; for (n, c) in &quot;Swift&quot;.characters.enumerated() {
+    print(&quot;\(n): &#39;\(c)&#39;&quot;)
+  }
+0: &#39;S&#39;
+1: &#39;w&#39;
+2: &#39;i&#39;
+3: &#39;f&#39;
+4: &#39;t&#39;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func enumerated() -&gt; EnumeratedSequence&lt;RangeIterator&lt;Element&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-filter_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-filter_">func filter(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-filter_"><div class="p">
+    <p>Returns an <code>Array</code> containing the elements of <code>self</code>,
+in order, that satisfy the predicate <code>includeElement</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func filter(@noescape includeElement: (ForwardIndex) throws -&gt; Bool) rethrows -&gt; [ForwardIndex]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-t_-self-iterator-element-throws-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-t_-self-iterator-element-throws-t">func flatMap&lt;T&gt;(<wbr>_: (ForwardIndex) throws -&gt; T?)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-t_-self-iterator-element-throws-t"><div class="p">
+    <p>Returns an <code>Array</code> containing the non-nil results of mapping
+<code>transform</code> over <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>M</em> + <em>N</em>), where <em>M</em> is the length of <code>self</code>
+  and <em>N</em> is the length of the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;T&gt;(@noescape transform: (ForwardIndex) throws -&gt; T?) rethrows -&gt; [T]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-s_-sequence_-self-iterator-element-throws-s">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-s_-sequence_-self-iterator-element-throws-s">func <wbr>flatMap&lt;S : Sequence&gt;(<wbr>_: (ForwardIndex) throws -&gt; S)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-s_-sequence_-self-iterator-element-throws-s"><div class="p">
+    <p>Returns an <code>Array</code> containing the concatenated results of mapping
+<code>transform</code> over <code>self</code>.</p>
+
+<pre><code class="language-swift">s.flatMap(transform)</code></pre>
+
+<p>is equivalent to</p>
+
+<pre><code class="language-swift">Array(s.map(transform).flatten())</code></pre>
+
+<p><strong>Complexity:</strong> O(<em>M</em> + <em>N</em>), where <em>M</em> is the length of <code>self</code>
+  and <em>N</em> is the length of the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;S : Sequence&gt;(@noescape transform: (ForwardIndex) throws -&gt; S) rethrows -&gt; [S.Iterator.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-foreach_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-foreach_">func forEach(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-foreach_"><div class="p">
+    <p>Call <code>body</code> on each element in <code>self</code> in the same order as a
+<em>for-in loop.</em></p>
+
+<pre><code class="language-swift">sequence.forEach {
+  // body code
+}</code></pre>
+
+<p>is similar to:</p>
+
+<pre><code class="language-swift">for element in sequence {
+  // body code
+}</code></pre>
+
+<p><strong>Note:</strong> You cannot use the <code>break</code> or <code>continue</code> statement to exit the
+  current call of the <code>body</code> closure or skip subsequent calls.
+<strong>Note:</strong> Using the <code>return</code> statement in the <code>body</code> closure will only
+  exit from the current call to <code>body</code>, not any outer scope, and won&#39;t
+  skip subsequent calls.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func forEach(@noescape body: (ForwardIndex) throws -&gt; Swift.Void) rethrows</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lexicographicallyprecedes_isorderedbefore_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lexicographicallyprecedes_isorderedbefore_">func lexicographicallyPrecedes(<wbr>_:<wbr>isOrderedBefore:)</a>
+        
+<div class="comment collapse" id="comment-func-lexicographicallyprecedes_isorderedbefore_"><div class="p">
+    <p>Returns <code>true</code> iff <code>self</code> precedes <code>other</code> in a lexicographical 
+(&quot;dictionary&quot;) ordering, using <code>isOrderedBefore</code> as the comparison 
+between elements.</p>
+
+<p><strong>Note:</strong> This method implements the mathematical notion of lexicographical
+  ordering, which has no connection to Unicode.  If you are sorting strings
+  to present to the end-user, you should use <code>String</code> APIs that perform
+localized comparison.</p>
+
+<p><strong>Precondition:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements of <code>self</code> and <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lexicographicallyPrecedes&lt;OtherSequence : Sequence where OtherSequence.Iterator.Element == Iterator.Element&gt;(other: OtherSequence, @noescape isOrderedBefore: (ForwardIndex, ForwardIndex) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-map_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-map_">func map(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-map_"><div class="p">
+    <p>Returns an <code>Array</code> containing the results of mapping <code>transform</code>
+over <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(N).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func map&lt;T&gt;(@noescape transform: (ForwardIndex) throws -&gt; T) rethrows -&gt; [T]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-max-isorderedbefore_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-max-isorderedbefore_">func max(<wbr> isOrderedBefore:)</a>
+        
+<div class="comment collapse" id="comment-func-max-isorderedbefore_"><div class="p">
+    <p>Returns the maximum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
+
+<p><strong>Complexity:</strong> O(<code>elements.count</code>).</p>
+
+<p><strong>Precondition:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func max(@noescape isOrderedBefore isOrderedBefore: (ForwardIndex, ForwardIndex) throws -&gt; Bool) rethrows -&gt; ForwardIndex?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-min-isorderedbefore_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-min-isorderedbefore_">func min(<wbr> isOrderedBefore:)</a>
+        
+<div class="comment collapse" id="comment-func-min-isorderedbefore_"><div class="p">
+    <p>Returns the minimum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
+
+<p><strong>Complexity:</strong> O(<code>elements.count</code>).</p>
+
+<p><strong>Precondition:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func min(@noescape isOrderedBefore isOrderedBefore: (ForwardIndex, ForwardIndex) throws -&gt; Bool) rethrows -&gt; ForwardIndex?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-next">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-next">mutating func next()</a>
+        
+<div class="comment collapse" id="comment-func-next"><div class="p">
+    <p>Advance to the next element and return it, or <code>nil</code> if no next
+element exists.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next() -&gt; Element?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix_">func prefix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-prefix_"><div class="p">
+    <p>Returns a subsequence, up to <code>maxLength</code> in length, containing the
+initial elements.</p>
+
+<p>If <code>maxLength</code> exceeds <code>self.count</code>, the result contains all
+the elements of <code>self</code>.</p>
+
+<p><strong>Precondition:</strong> <code>maxLength &gt;= 0</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(maxLength: Int) -&gt; AnySequence&lt;ForwardIndex&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reduce_combine_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reduce_combine_">func reduce(<wbr>_:<wbr>combine:)</a>
+        
+<div class="comment collapse" id="comment-func-reduce_combine_"><div class="p">
+    <p>Returns the result of repeatedly calling <code>combine</code> with an
+accumulated value initialized to <code>initial</code> and each element of
+<code>self</code>, in turn, i.e. return
+<code>combine(combine(...combine(combine(initial, self[0]),
+self[1]),...self[count-2]), self[count-1])</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reduce&lt;T&gt;(initial: T, @noescape combine: (T, ForwardIndex) throws -&gt; T) rethrows -&gt; T</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reversed">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reversed">func reversed()</a>
+        
+<div class="comment collapse" id="comment-func-reversed"><div class="p">
+    <p>Returns an <code>Array</code> containing the elements of <code>self</code> in reverse
+order.</p>
+
+<p>Complexity: O(N), where N is the length of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reversed() -&gt; [ForwardIndex]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-sorted-isorderedbefore_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sorted-isorderedbefore_">func sorted(<wbr> isOrderedBefore:)</a>
+        
+<div class="comment collapse" id="comment-func-sorted-isorderedbefore_"><div class="p">
+    <p>Returns an <code>Array</code> containing the sorted elements of <code>source</code>
+according to <code>isOrderedBefore</code>.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements for which <code>isOrderedBefore</code> does not establish an order).</p>
+
+<p><strong>Precondition:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sorted(@noescape isOrderedBefore isOrderedBefore: (ForwardIndex, ForwardIndex) -&gt; Bool) -&gt; [ForwardIndex]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-split-maxsplits_omittingemptysubsequences_isseparator_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-split-maxsplits_omittingemptysubsequences_isseparator_">func split(<wbr>maxSplits:<wbr>omittingEmptySubsequences:<wbr>isSeparator:)</a>
+        
+<div class="comment collapse" id="comment-func-split-maxsplits_omittingemptysubsequences_isseparator_"><div class="p">
+    <p>Returns the maximal <code>SubSequence</code>s of <code>self</code>, in order, that
+don&#39;t contain elements satisfying the predicate <code>isSeparator</code>.</p>
+
+<p><strong><code>maxSplits</code>:</strong>  The maximum number of <code>SubSequence</code>s to
+  return, minus 1.
+  If <code>maxSplits + 1</code> <code>SubSequence</code>s are returned, the last one is
+  a suffix of <code>self</code> containing <em>all</em> the elements of <code>self</code> following the
+  last split point.
+  The default value is <code>Int.max</code>.</p>
+
+<p><strong><code>omittingEmptySubsequences</code>:</strong>  If <code>false</code>, an empty <code>SubSequence</code>
+  is produced in the result for each pair of consecutive elements
+  satisfying <code>isSeparator</code>.
+  The default value is <code>true</code>.</p>
+
+<p><strong>Precondition:</strong> <code>maxSplits &gt;= 0</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split(maxSplits maxSplits: Int = default, omittingEmptySubsequences: Bool = default, @noescape isSeparator: (ForwardIndex) throws -&gt; Bool) rethrows -&gt; [AnySequence&lt;ForwardIndex&gt;]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-split-separator_maxsplits_omittingemptysubsequences_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-split-separator_maxsplits_omittingemptysubsequences_">func split(<wbr>separator:<wbr>maxSplits:<wbr>omittingEmptySubsequences:)</a>
+        
+<div class="comment collapse" id="comment-func-split-separator_maxsplits_omittingemptysubsequences_"><div class="p">
+    <p>Returns the maximal <code>SubSequence</code>s of <code>self</code>, in order, around a
+<code>separator</code> element.</p>
+
+<p><strong><code>maxSplits</code>:</strong>  The maximum number of <code>SubSequence</code>s to
+  return, minus 1.
+  If <code>maxSplits + 1</code> <code>SubSequence</code>s are returned, the last one is
+  a suffix of <code>self</code> containing <em>all</em> the elements of <code>self</code> following the
+  last split point.
+  The default value is <code>Int.max</code>.</p>
+
+<p><strong><code>omittingEmptySubsequences</code>:</strong>  If <code>false</code>, an empty <code>SubSequence</code>
+  is produced in the result for each pair of consecutive elements
+  equal to <code>separator</code>.
+  The default value is <code>true</code>.</p>
+
+<p><strong>Precondition:</strong> <code>maxSplits &gt;= 0</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split(separator separator: ForwardIndex, maxSplits: Int = default, omittingEmptySubsequences: Bool = default) -&gt; [AnySequence&lt;ForwardIndex&gt;]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-starts-with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-starts-with_">func starts(<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-starts-with_"><div class="p">
+    <p>Returns <code>true</code> iff the initial elements of <code>self</code> are equal to <code>prefix</code>.
+Returns <code>true</code> if <code>other</code> is empty.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func starts&lt;PossiblePrefix : Sequence where PossiblePrefix.Iterator.Element == Iterator.Element&gt;(with possiblePrefix: PossiblePrefix) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-starts-with_isequivalent_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-starts-with_isequivalent_">func starts(<wbr>with:<wbr>isEquivalent:)</a>
+        
+<div class="comment collapse" id="comment-func-starts-with_isequivalent_"><div class="p">
+    <p>Returns <code>true</code> iff <code>self</code> begins with elements equivalent to those of
+<code>other</code>, using <code>isEquivalent</code> as the equivalence test.  Returns <code>true</code> if
+<code>other</code> is empty.</p>
+
+<p><strong>Precondition:</strong> <code>isEquivalent</code> is an
+  <a href="http://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func starts&lt;PossiblePrefix : Sequence where PossiblePrefix.Iterator.Element == Iterator.Element&gt;(with possiblePrefix: PossiblePrefix, @noescape isEquivalent: (ForwardIndex, ForwardIndex) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-suffix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-suffix_">func suffix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-suffix_"><div class="p">
+    <p>Returns a slice, up to <code>maxLength</code> in length, containing the
+final elements of <code>s</code>.</p>
+
+<p>If <code>maxLength</code> exceeds <code>s.count</code>, the result contains all
+the elements of <code>s</code>.</p>
+
+<p><strong>Precondition:</strong> <code>self</code> is a finite sequence.
+<strong>Precondition:</strong> <code>maxLength &gt;= 0</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func suffix(maxLength: Int) -&gt; AnySequence&lt;ForwardIndex&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+<h3>Conditionally Inherited Items</h3>
+
+<p class="comment">The initializers, methods, and properties listed below may be available on this type under certain conditions (such as methods that are available on <code>Array</code> when its elements are <code>Equatable</code>) or may not ever be available if that determination is beyond SwiftDoc.org's capabilities. Please <a href="https://github.com/SwiftDocOrg/swiftdoc.org/issues">open an issue on GitHub</a> if you see something out of place!</p>
+
+
+
+
+
+<h4>Where Iterator == Self, Self : IteratorProtocol</h4>
+
+
+
+
+<div class="declaration inherited" id="func-iterator-self-self_-iteratorprotocol-makeiterator">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-self-self_-iteratorprotocol-makeiterator">func makeIterator()</a>
+        
+<div class="comment collapse" id="comment-func-iterator-self-self_-iteratorprotocol-makeiterator"><div class="p">
+    <p>A default makeIterator() function for <code>IteratorProtocol</code> instances that
+are declared to conform to <code>Sequence</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func makeIterator() -&gt; RangeIterator&lt;Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+

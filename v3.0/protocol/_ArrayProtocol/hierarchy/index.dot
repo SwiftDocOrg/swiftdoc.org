@@ -1,0 +1,24 @@
+strict digraph "_ArrayProtocol - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Array" [URL="/type/Array/hierarchy/", style=filled]
+    "ArrayLiteralConvertible" [URL="/protocol/ArrayLiteralConvertible/hierarchy/"]
+    "ArraySlice" [URL="/type/ArraySlice/hierarchy/", style=filled]
+    "Collection" [URL="/protocol/Collection/hierarchy/"]
+    "ContiguousArray" [URL="/type/ContiguousArray/hierarchy/", style=filled]
+    "Indexable" [URL="/protocol/Indexable/hierarchy/"]
+    "RangeReplaceableCollection" [URL="/protocol/RangeReplaceableCollection/hierarchy/"]
+    "Sequence" [URL="/protocol/Sequence/hierarchy/"]
+    "_ArrayProtocol" [URL="/protocol/_ArrayProtocol/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]    "_ArrayProtocol" -> "Array"
+    "_ArrayProtocol" -> "ArraySlice"
+    "_ArrayProtocol" -> "ContiguousArray"
+    "RangeReplaceableCollection" -> "_ArrayProtocol"
+    "ArrayLiteralConvertible" -> "_ArrayProtocol"
+    "Collection" -> "RangeReplaceableCollection"
+    "Indexable" -> "Collection"
+    "Sequence" -> "Collection"
+    subgraph Types {
+        rank = max; "Array"; "ArraySlice"; "ContiguousArray";
+    }
+}

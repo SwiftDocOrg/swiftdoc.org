@@ -1,0 +1,180 @@
+---
+layout: "default"
+title: "IndexableBase"
+description: "Swift documentation for 'IndexableBase': A type that provides subscript access to its elements, with forward."
+keywords: "IndexableBase,protocol,swift,documentation,formIndex,index,endIndex,startIndex,Index,SubSequence"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol IndexableBase</code></div>
+
+<div class="discussion comment">
+    <p>A type that provides subscript access to its elements, with forward
+index traversal.</p>
+
+<p>In most cases, it&#39;s best to ignore this protocol and use the <code>Collection</code>
+protocol instead, because it has a more complete interface.</p>
+
+<p><em>Deprecated:</em> it will be removed in Swift 4.0.  Please use &#39;Collection&#39; instead.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Index : Comparable</code>
+<div class="comment">
+    <p>A type that represents a position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript
+argument.</p>
+
+<p><strong>See Also:</strong> endIndex</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence</code>
+<div class="comment">
+    <p>A sequence that can represent a contiguous subrange of the collection&#39;s
+elements.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-endindex_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-self-index">var endIndex: Self.Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-endindex_-self-index"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position---that is, the position one
+greater than the last valid subscript argument.</p>
+
+<p>When you need a range that includes the last element of a collection, use
+the half-open range operator (<code>..&lt;</code>) with <code>endIndex</code>. The <code>..&lt;</code> operator
+creates a range that doesn&#39;t include the upper bound, so it&#39;s always
+safe to use with <code>endIndex</code>. For example:</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let index = numbers.index(of: 30) {
+    print(numbers[index ..&lt; numbers.endIndex])
+}
+// Prints &quot;[30, 40, 50]&quot;</code></pre>
+
+<p>If the collection is empty, <code>endIndex</code> is equal to <code>startIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: Self.Index { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-startindex_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-self-index">var startIndex: Self.Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-startindex_-self-index"><div class="p">
+    <p>The position of the first element in a nonempty collection.</p>
+
+<p>If the collection is empty, <code>startIndex</code> is equal to <code>endIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: Self.Index { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-self-index">subscript(_: Self.Index)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-self-index"><div class="p">
+    <p>Accesses the element at the specified position.</p>
+
+<p>The following example accesses an element of an array through its
+subscript to print its value:</p>
+
+<pre><code class="language-swift">var streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+print(streets[1])
+// Prints &quot;Bryant&quot;</code></pre>
+
+<p>You can subscript a collection with any valid index other than the
+collection&#39;s end index. The end index refers to the position one past
+the last element of a collection, so it doesn&#39;t correspond with an
+element.</p>
+
+<p><strong><code>position</code>:</strong>  The position of the element to access. <code>position</code>
+  must be a valid index of the collection that is not equal to the
+  <code>endIndex</code> property.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: Self.Index) -&gt; Self._Element { get }</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="subscript-subscript_-range-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-range-self-index">subscript(_: Range&lt;Self.Index&gt;)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-range-self-index"><div class="p">
+    <p>Accesses the subsequence bounded by the given range.</p>
+
+<p><strong><code>bounds</code>:</strong>  A range of the collection&#39;s indices. The upper and
+  lower bounds of the <code>bounds</code> range must be valid indices of the
+  collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(bounds: Range&lt;Self.Index&gt;) -&gt; Self.SubSequence { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-formindex-after_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formindex-after_">func formIndex(<wbr>after:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-formindex-after_"><div class="p">
+    <p>Replaces the given index with its successor.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be less than
+  <code>endIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex(after i: inout Self.Index)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-index-after_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index-after_">func index(<wbr>after:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-index-after_"><div class="p">
+    <p>Returns the position immediately after the given index.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be less than
+  <code>endIndex</code>.
+<strong>Returns:</strong> The index value immediately after <code>i</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(after i: Self.Index) -&gt; Self.Index</code>
+    
+    
+</div></div>
+</div>
+
+

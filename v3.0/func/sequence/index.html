@@ -1,0 +1,88 @@
+---
+layout: "default"
+title: "sequence"
+description: "Swift documentation for 'sequence': Returns a sequence formed from first and repeated lazy applications of."
+keywords: "sequence,func,swift,documentation"
+root: "/v3.0"
+---
+
+<div class="declaration" id="func-sequence-t_-t-next_-escaping-t-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sequence-t_-t-next_-escaping-t-t">func sequence&lt;T&gt;(<wbr>_:<wbr> T, next: @escaping (T) -&gt; T?)</a>
+        
+<div class="comment collapse" id="comment-func-sequence-t_-t-next_-escaping-t-t"><div class="p">
+    <p>Returns a sequence formed from <code>first</code> and repeated lazy applications of
+<code>next</code>.</p>
+
+<p>The first element in the sequence is always <code>first</code>, and each successive
+element is the result of invoking <code>next</code> with the previous element. The
+sequence ends when <code>next</code> returns <code>nil</code>. If <code>next</code> never returns <code>nil</code>, the
+sequence is infinite.</p>
+
+<p>This function can be used to replace many cases that were previously handled
+using C-style <code>for</code> loops.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-swift">// Walk the elements of a tree from a node up to the root
+for node in sequence(first: leaf, next: { $0.parent }) {
+  // node is leaf, then leaf.parent, then leaf.parent.parent, etc.
+}
+
+// Iterate over all powers of two (ignoring overflow)
+for value in sequence(first: 1, next: { $0 * 2 }) {
+  // value is 1, then 2, then 4, then 8, etc.
+}</code></pre>
+
+<p><strong><code>first</code>:</strong>  The first element to be returned from the sequence.</p>
+
+<p><strong><code>next</code>:</strong>  A closure that accepts the previous sequence element and
+  returns the next element.
+<strong>Returns:</strong> A sequence that starts with <code>first</code> and continues with every
+  value returned by passing the previous element to <code>next</code>.</p>
+
+<p><strong>See Also:</strong> <code>sequence(state:next:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sequence&lt;T&gt;(first: T, next: @escaping (T) -&gt; T?) -&gt; UnfoldSequence&lt;T, (T?, Bool)&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-sequence-t-state_-state-next_-escaping-inout-state-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sequence-t-state_-state-next_-escaping-inout-state-t">func sequence&lt;T, State&gt;(<wbr>_:<wbr> State, next: @escaping (inout State) -&gt; T?)</a>
+        
+<div class="comment collapse" id="comment-func-sequence-t-state_-state-next_-escaping-inout-state-t"><div class="p">
+    <p>Returns a sequence formed from repeated lazy applications of <code>next</code> to a
+mutable <code>state</code>.</p>
+
+<p>The elements of the sequence are obtained by invoking <code>next</code> with a mutable
+state. The same state is passed to all invocations of <code>next</code>, so subsequent
+calls will see any mutations made by previous calls. The sequence ends when
+<code>next</code> returns <code>nil</code>. If <code>next</code> never returns <code>nil</code>, the sequence is
+infinite.</p>
+
+<p>This function can be used to replace many instances of <code>AnyIterator</code> that
+wrap a closure.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-swift">// Interleave two sequences that yield the same element type
+sequence(state: (false, seq1.makeIterator(), seq2.makeIterator()), next: { iters in
+  iters.0 = !iters.0
+  return iters.0 ? iters.1.next() : iters.2.next()
+})</code></pre>
+
+<p><strong><code>state</code>:</strong>  The initial state that will be passed to the closure.</p>
+
+<p><strong><code>next</code>:</strong>  A closure that accepts an <code>inout</code> state and returns the
+  next element of the sequence.
+<strong>Returns:</strong> A sequence that yields each successive value from <code>next</code>.</p>
+
+<p><strong>See Also:</strong> <code>sequence(first:next:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sequence&lt;T, State&gt;(state: State, next: @escaping (inout State) -&gt; T?) -&gt; UnfoldSequence&lt;T, State&gt;</code>
+    
+    
+</div></div>
+</div>

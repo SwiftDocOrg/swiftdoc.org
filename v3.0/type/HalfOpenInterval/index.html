@@ -1,0 +1,163 @@
+---
+layout: "default"
+title: "HalfOpenInterval"
+description: "Swift documentation for 'HalfOpenInterval': A half-open Interval, which contains its start but not its
+end.  Can represent an empty interval."
+keywords: "HalfOpenInterval,struct,swift,documentation,clamp,contains,overlaps,customMirror,customPlaygroundQuickLook,debugDescription,description,end,isEmpty,start"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct HalfOpenInterval&lt;Bound : Comparable&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A half-open <code>Interval</code>, which contains its <code>start</code> but not its
+<code>end</code>.  Can represent an empty interval.</p>
+
+<p><strong><code>Bound</code>:</strong>  The type of the endpoints.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CustomDebugStringConvertible, CustomPlaygroundQuickLookable, CustomReflectable, CustomStringConvertible, Equatable, Interval</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Construct a copy of <code>x</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ x: HalfOpenInterval&lt;Bound&gt;)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-customplaygroundquicklook_-playgroundquicklook">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-customplaygroundquicklook_-playgroundquicklook">var customPlaygroundQuickLook: PlaygroundQuickLook</a><div class="comment collapse" id="comment-var-customplaygroundquicklook_-playgroundquicklook"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customPlaygroundQuickLook: PlaygroundQuickLook { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-end_-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-end_-bound">var end: Bound</a><div class="comment collapse" id="comment-var-end_-bound"><div class="p">
+    <p>The <code>Interval</code>&#39;s upper bound.</p>
+
+<p>Invariant: <code>start</code> &lt;= <code>end</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var end: Bound { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p><code>true</code> iff the <code>Interval</code> is empty.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-start_-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-start_-bound">var start: Bound</a><div class="comment collapse" id="comment-var-start_-bound"><div class="p">
+    <p>The <code>Interval</code>&#39;s lower bound.</p>
+
+<p>Invariant: <code>start</code> &lt;= <code>end</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var start: Bound { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-clamp_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-clamp_">func clamp(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-clamp_"><div class="p">
+    <p>Returns <code>intervalToClamp</code> clamped to <code>self</code>.</p>
+
+<p>The bounds of the result, even if it is empty, are always limited to the bounds of
+<code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func clamp(intervalToClamp: HalfOpenInterval&lt;Bound&gt;) -&gt; HalfOpenInterval&lt;Bound&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-contains_"><div class="p">
+    <p>Returns <code>true</code> iff the <code>Interval</code> contains <code>x</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(x: Bound) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-overlaps_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-overlaps_">func overlaps(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-overlaps_"><div class="p">
+    <p>Returns <code>true</code> iff <code>lhs</code> and <code>rhs</code> have a non-empty intersection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func overlaps&lt;I : Interval where I.Bound == Bound&gt;(other: I) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Interval/"><code>Interval</code></a>    
+</div></div>
+</div>
+
+

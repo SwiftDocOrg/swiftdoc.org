@@ -1,0 +1,79 @@
+---
+layout: "default"
+title: "isKnownUniquelyReferenced"
+description: "Swift documentation for 'isKnownUniquelyReferenced': Returns a Boolean value indicating whether the given object is a."
+keywords: "isKnownUniquelyReferenced,func,swift,documentation"
+root: "/v3.0"
+---
+
+<div class="declaration" id="func-isknownuniquelyreferenced-t_-anyobject_-inout-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isknownuniquelyreferenced-t_-anyobject_-inout-t">func <wbr>isKnownUniquelyReferenced&lt;T : AnyObject&gt;(<wbr>_: inout T)</a>
+        
+<div class="comment collapse" id="comment-func-isknownuniquelyreferenced-t_-anyobject_-inout-t"><div class="p">
+    <p>Returns a Boolean value indicating whether the given object is a
+class instance known to have a single strong reference.</p>
+
+<p>The <code>isKnownUniquelyReferenced(_:)</code> function is useful for implementating
+the copy-on-write optimization for the deep storage of value types:</p>
+
+<pre><code class="language-swift">mutating func modifyMe(_ arg: X) {
+    if isKnownUniquelyReferenced(&amp;myStorage) {
+        myStorage.modifyInPlace(arg)
+    } else {
+        myStorage = self.createModified(myStorage, arg)
+    }
+}</code></pre>
+
+<p>Weak references do not affect the result of this function.</p>
+
+<p>This function is safe to use for mutating functions in multithreaded code
+because a false positive implies that there is already a user-level data
+race on the value being mutated.</p>
+
+<p><strong><code>object</code>:</strong>  An instance of a class. This function does <em>not</em> modify
+  <code>object</code>; the use of <code>inout</code> is an implementation artifact.
+<strong>Returns:</strong> <code>true</code> if <code>object</code> is a known to have a
+  single strong reference; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isKnownUniquelyReferenced&lt;T : AnyObject&gt;(_ object: inout T) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-isknownuniquelyreferenced-t_-anyobject_-inout-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isknownuniquelyreferenced-t_-anyobject_-inout-t">func <wbr>isKnownUniquelyReferenced&lt;T : AnyObject&gt;(<wbr>_: inout T?)</a>
+        
+<div class="comment collapse" id="comment-func-isknownuniquelyreferenced-t_-anyobject_-inout-t"><div class="p">
+    <p>Returns a Boolean value indicating whether the given object is a
+class instance known to have a single strong reference.</p>
+
+<p>The <code>isKnownUniquelyReferenced(_:)</code> function is useful for implementating
+the copy-on-write optimization for the deep storage of value types:</p>
+
+<pre><code class="language-swift">mutating func modifyMe(_ arg: X) {
+    if isKnownUniquelyReferenced(&amp;myStorage) {
+        myStorage.modifyInPlace(arg)
+    } else {
+        myStorage = self.createModified(myStorage, arg)
+    }
+}</code></pre>
+
+<p>Weak references do not affect the result of this function.</p>
+
+<p>This function is safe to use for mutating functions in multithreaded code
+because a false positive implies that there is already a user-level data
+race on the value being mutated.</p>
+
+<p><strong><code>object</code>:</strong>  An instance of a class. This function does <em>not</em> modify
+  <code>object</code>; the use of <code>inout</code> is an implementation artifact.
+<strong>Returns:</strong> <code>true</code> if <code>object</code> is a known to have a
+  single strong reference; otherwise, <code>false</code>. If <code>object</code> is <code>nil</code>, the
+  return value is <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isKnownUniquelyReferenced&lt;T : AnyObject&gt;(_ object: inout T?) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>

@@ -1,0 +1,66 @@
+---
+layout: "default"
+title: "String.CharacterView.Index"
+description: "Swift documentation for 'String.CharacterView.Index': A position in a string&#39;s CharacterView instance."
+keywords: "String.CharacterView.Index,struct,swift,documentation,customPlaygroundQuickLook"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct String.CharacterView.Index</code></div>
+
+<div class="discussion comment">
+    <p>A position in a string&#39;s <code>CharacterView</code> instance.</p>
+
+<p>You can convert between indices of the different string views by using
+conversion initializers and the <code>samePosition(in:)</code> method overloads.
+The following example finds the index of the first space in the string&#39;s
+character view and then converts that to the same position in the UTF-8
+view:</p>
+
+<pre><code class="language-swift">let hearts = &quot;Hearts &lt;3 ♥︎ 💘&quot;
+if let i = hearts.characters.index(of: &quot; &quot;) {
+    let j = i.samePosition(in: hearts.utf8)
+    print(Array(hearts.utf8.prefix(upTo: j)))
+}
+// Prints &quot;[72, 101, 97, 114, 116, 115]&quot;</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Comparable, CustomPlaygroundQuickLookable, Equatable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-customplaygroundquicklook_-playgroundquicklook">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-customplaygroundquicklook_-playgroundquicklook">var customPlaygroundQuickLook: PlaygroundQuickLook</a><div class="comment collapse" id="comment-var-customplaygroundquicklook_-playgroundquicklook"><div class="p">
+    <p>A custom playground Quick Look for this instance.</p>
+
+<p>If this type has value semantics, the <code>PlaygroundQuickLook</code> instance
+should be unaffected by subsequent mutations.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customPlaygroundQuickLook: PlaygroundQuickLook { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+

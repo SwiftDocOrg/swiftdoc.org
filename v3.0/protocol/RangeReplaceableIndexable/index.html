@@ -1,0 +1,906 @@
+---
+layout: "default"
+title: "RangeReplaceableIndexable"
+description: "Swift documentation for 'RangeReplaceableIndexable': A type that supports replacement of an arbitrary subrange of elements with."
+keywords: "RangeReplaceableIndexable,protocol,swift,documentation,distance,formIndex,formIndex,formIndex,index,index,index,insert,insert,remove,removeSubrange,replaceSubrange,endIndex,startIndex,IndexDistance,Index,SubSequence"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol RangeReplaceableIndexable</code></div>
+
+<div class="discussion comment">
+    <p>A type that supports replacement of an arbitrary subrange of elements with
+the elements of another collection.</p>
+
+<p>In most cases, it&#39;s best to ignore this protocol and use the
+<code>RangeReplaceableCollection</code> protocol instead, because it has a more
+complete interface.</p>
+
+<p><em>Deprecated:</em> it will be removed in Swift 4.0.  Please use &#39;RandomAccessCollection&#39; instead.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Indexable, IndexableBase</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration inherited">
+<code class="language-swift">IndexDistance : SignedInteger = Int</code>
+<div class="comment">
+    <p>A type used to represent the number of steps between two indices, where
+one value is reachable from the other.</p>
+
+<p>In Swift, <em>reachability</em> refers to the ability to produce one value from
+the other through zero or more applications of <code>index(after:)</code>.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">Index : Comparable</code>
+<div class="comment">
+    <p>A type that represents a position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript
+argument.</p>
+
+<p><strong>See Also:</strong> endIndex</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">SubSequence</code>
+<div class="comment">
+    <p>A sequence that can represent a contiguous subrange of the collection&#39;s
+elements.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a> <span class="required">Required</span><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Creates an empty instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Creates a new instance of a collection containing the elements of a
+sequence.</p>
+
+<p><strong><code>elements</code>:</strong>  The sequence of elements for the new collection.
+  <code>elements</code> must be finite.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;S : Sequence where S.Iterator.Element == _Element&gt;(_ elements: S)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-repeating_count_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-repeating_count_">init(<wbr>repeating:<wbr>count:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-repeating_count_"><div class="p">
+    <p>Creates a new collection containing the specified number of a single,
+repeated value.</p>
+
+<p>Here&#39;s an example of creating an array initialized with five strings
+containing the letter <em>Z</em>.</p>
+
+<pre><code class="language-swift">let fiveZs = Array(repeating: &quot;Z&quot;, count: 5)
+print(fiveZs)
+// Prints &quot;[&quot;Z&quot;, &quot;Z&quot;, &quot;Z&quot;, &quot;Z&quot;, &quot;Z&quot;]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>repeatedValue:</strong> The element to repeat.
+  <strong>count:</strong> The number of times to repeat the value passed in the
+    <code>repeating</code> parameter. <code>count</code> must be zero or greater.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(repeating repeatedValue: Self._Element, count: Int)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration inherited" id="var-endindex_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-self-index">var endIndex: Self.Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-endindex_-self-index"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position---that is, the position one
+greater than the last valid subscript argument.</p>
+
+<p>When you need a range that includes the last element of a collection, use
+the half-open range operator (<code>..&lt;</code>) with <code>endIndex</code>. The <code>..&lt;</code> operator
+creates a range that doesn&#39;t include the upper bound, so it&#39;s always
+safe to use with <code>endIndex</code>. For example:</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let index = numbers.index(of: 30) {
+    print(numbers[index ..&lt; numbers.endIndex])
+}
+// Prints &quot;[30, 40, 50]&quot;</code></pre>
+
+<p>If the collection is empty, <code>endIndex</code> is equal to <code>startIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: Self.Index { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/IndexableBase/"><code>IndexableBase</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-startindex_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-self-index">var startIndex: Self.Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-startindex_-self-index"><div class="p">
+    <p>The position of the first element in a nonempty collection.</p>
+
+<p>If the collection is empty, <code>startIndex</code> is equal to <code>endIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: Self.Index { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/IndexableBase/"><code>IndexableBase</code></a>
+        </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration inherited" id="subscript-subscript_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-self-index">subscript(_: Self.Index)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-self-index"><div class="p">
+    <p>Accesses the element at the specified position.</p>
+
+<p>The following example accesses an element of an array through its
+subscript to print its value:</p>
+
+<pre><code class="language-swift">var streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+print(streets[1])
+// Prints &quot;Bryant&quot;</code></pre>
+
+<p>You can subscript a collection with any valid index other than the
+collection&#39;s end index. The end index refers to the position one past
+the last element of a collection, so it doesn&#39;t correspond with an
+element.</p>
+
+<p><strong><code>position</code>:</strong>  The position of the element to access. <code>position</code>
+  must be a valid index of the collection that is not equal to the
+  <code>endIndex</code> property.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: Self.Index) -&gt; Self._Element { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IndexableBase/"><code>IndexableBase</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="subscript-subscript_-range-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-range-self-index">subscript(_: Range&lt;Self.Index&gt;)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-range-self-index"><div class="p">
+    <p>Accesses the subsequence bounded by the given range.</p>
+
+<p><strong><code>bounds</code>:</strong>  A range of the collection&#39;s indices. The upper and
+  lower bounds of the <code>bounds</code> range must be valid indices of the
+  collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(bounds: Range&lt;Self.Index&gt;) -&gt; Self.SubSequence { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IndexableBase/"><code>IndexableBase</code></a>    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-distance-from_to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distance-from_to_">func distance(<wbr>from:<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-distance-from_to_"><div class="p">
+    <p>Returns the distance between two indices.</p>
+
+<p>Unless the collection conforms to the <code>BidirectionalCollection</code> protocol,
+<code>start</code> must be less than or equal to <code>end</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>start:</strong> A valid index of the collection.
+  <strong>end:</strong> Another valid index of the collection. If <code>end</code> is equal to
+    <code>start</code>, the result is zero.
+<strong>Returns:</strong> The distance between <code>start</code> and <code>end</code>. The result can be
+  negative only if the collection conforms to the
+  <code>BidirectionalCollection</code> protocol.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the
+  resulting distance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(from start: Self.Index, to end: Self.Index) -&gt; Self.IndexDistance</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formindex_offsetby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formindex_offsetby_">func formIndex(<wbr>_:<wbr>offsetBy:)</a>
+        
+<div class="comment collapse" id="comment-func-formindex_offsetby_"><div class="p">
+    <p>Offsets the given index by the specified distance.</p>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the <code>endIndex</code> or
+before the <code>startIndex</code> of this collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.</p>
+
+<p><strong>See Also:</strong> <code>index(_:offsetBy:)</code>, <code>formIndex(_:offsetBy:limitedBy:)</code>
+<strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex(_ i: inout Self.Index, offsetBy n: Self.IndexDistance)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formindex_offsetby_limitedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formindex_offsetby_limitedby_">func formIndex(<wbr>_:<wbr>offsetBy:<wbr>limitedBy:)</a>
+        
+<div class="comment collapse" id="comment-func-formindex_offsetby_limitedby_"><div class="p">
+    <p>Offsets the given index by the specified distance, or so that it equals
+the given limiting index.</p>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the <code>endIndex</code> or
+before the <code>startIndex</code> of this collection, unless the index passed as
+<code>limit</code> prevents offsetting beyond those bounds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+<strong>Returns:</strong> <code>true</code> if <code>i</code> has been offset by exactly <code>n</code> steps without
+  going beyond <code>limit</code>; otherwise, <code>false</code>. When the return value is
+  <code>false</code>, the value of <code>i</code> is equal to <code>limit</code>.</p>
+
+<p><strong>See Also:</strong> <code>index(_:offsetBy:)</code>, <code>formIndex(_:offsetBy:limitedBy:)</code>
+<strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex(_ i: inout Self.Index, offsetBy n: Self.IndexDistance, limitedBy limit: Self.Index) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formindex-after_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formindex-after_">func formIndex(<wbr>after:)</a>
+        
+<div class="comment collapse" id="comment-func-formindex-after_"><div class="p">
+    <p>Replaces the given index with its successor.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be less than
+  <code>endIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex(after i: inout Self.Index)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IndexableBase/"><code>IndexableBase</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index_offsetby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_offsetby_">func index(<wbr>_:<wbr>offsetBy:)</a>
+        
+<div class="comment collapse" id="comment-func-index_offsetby_"><div class="p">
+    <p>Returns an index that is the specified distance from the given index.</p>
+
+<p>The following example obtains an index advanced four positions from a
+string&#39;s starting index and then prints the character at that position.</p>
+
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+let i = s.index(s.startIndex, offsetBy: 4)
+print(s[i])
+// Prints &quot;t&quot;</code></pre>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the <code>endIndex</code> or
+before the <code>startIndex</code> of this collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+<strong>Returns:</strong> An index offset by <code>n</code> from the index <code>i</code>. If <code>n</code> is positive,
+  this is the same value as the result of <code>n</code> calls to <code>index(after:)</code>.
+  If <code>n</code> is negative, this is the same value as the result of <code>-n</code> calls
+  to <code>index(before:)</code>.</p>
+
+<p><strong>See Also:</strong> <code>index(_:offsetBy:limitedBy:)</code>, <code>formIndex(_:offsetBy:)</code>
+<strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(_ i: Self.Index, offsetBy n: Self.IndexDistance) -&gt; Self.Index</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index_offsetby_limitedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_offsetby_limitedby_">func index(<wbr>_:<wbr>offsetBy:<wbr>limitedBy:)</a>
+        
+<div class="comment collapse" id="comment-func-index_offsetby_limitedby_"><div class="p">
+    <p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+
+<p>The following example obtains an index advanced four positions from a
+string&#39;s starting index and then prints the character at that position.
+The operation doesn&#39;t require going beyond the limiting <code>s.endIndex</code>
+value, so it succeeds.</p>
+
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+if let i = s.index(s.startIndex, offsetBy: 4, limitedBy: s.endIndex) {
+    print(s[i])
+}
+// Prints &quot;t&quot;</code></pre>
+
+<p>The next example attempts to retrieve an index six positions from
+<code>s.startIndex</code> but fails, because that distance is beyond the index
+passed as <code>limit</code>.</p>
+
+<pre><code class="language-swift">let j = s.index(s.startIndex, offsetBy: 6, limitedBy: s.endIndex)
+print(j)
+// Prints &quot;nil&quot;</code></pre>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the <code>endIndex</code> or
+before the <code>startIndex</code> of this collection, unless the index passed as
+<code>limit</code> prevents offsetting beyond those bounds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+  <strong>limit:</strong> A valid index of the collection to use as a limit. If <code>n &gt; 0</code>,
+    a limit that is less than <code>i</code> has no effect. Likewise, if <code>n &lt; 0</code>, a
+    limit that is greater than <code>i</code> has no effect.
+<strong>Returns:</strong> An index offset by <code>n</code> from the index <code>i</code>, unless that index
+  would be beyond <code>limit</code> in the direction of movement. In that case,
+  the method returns <code>nil</code>.</p>
+
+<p><strong>See Also:</strong> <code>index(_:offsetBy:)</code>, <code>formIndex(_:offsetBy:limitedBy:)</code>
+<strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(_ i: Self.Index, offsetBy n: Self.IndexDistance, limitedBy limit: Self.Index) -&gt; Self.Index?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index-after_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index-after_">func index(<wbr>after:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-index-after_"><div class="p">
+    <p>Returns the position immediately after the given index.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be less than
+  <code>endIndex</code>.
+<strong>Returns:</strong> The index value immediately after <code>i</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(after i: Self.Index) -&gt; Self.Index</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IndexableBase/"><code>IndexableBase</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-insert_at_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-insert_at_">mutating func insert(<wbr>_:<wbr>at:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-insert_at_"><div class="p">
+    <p>Inserts a new element into the collection at the specified position.</p>
+
+<p>The new element is inserted before the element currently at the specified
+index. If you pass the collection&#39;s <code>endIndex</code> property as the <code>i</code>
+parameter, the new element is appended to the collection.</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers.insert(100, at: 3)
+numbers.insert(200, at: numbers.endIndex)
+
+print(numbers)
+// Prints &quot;[1, 2, 3, 100, 4, 5, 200]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>newElement:</strong> The new element to insert into the collection.
+  <strong>i:</strong> The position at which to insert the new element. <code>i</code> must be a
+    valid index into the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insert(_ newElement: Self._Element, at i: Self.Index)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-insert-contentsof_at_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-insert-contentsof_at_">mutating func insert(<wbr>contentsOf:<wbr>at:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-insert-contentsof_at_"><div class="p">
+    <p>Inserts the elements of a sequence into the collection at the specified
+position.</p>
+
+<p>The new elements are inserted before the element currently at the
+specified index. If you pass the collection&#39;s <code>endIndex</code> property as the
+<code>i</code> parameter, the new elements are appended to the collection.</p>
+
+<p>Here&#39;s an example of inserting a range of integers into an array of the
+same type:</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers.insert(contentsOf: 100...103, at: 3)
+print(numbers)
+// Prints &quot;[1, 2, 3, 100, 101, 102, 103, 4, 5]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>newElements:</strong> The new elements to insert into the collection.
+  <strong>i:</strong> The position at which to insert the new elements. <code>i</code> must be a
+    valid index of the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em>), where <em>m</em> is the combined length of the collection
+  and <code>newElements</code>. If <code>i</code> is equal to the collection&#39;s <code>endIndex</code>
+  property, the complexity is O(<em>n</em>), where <em>n</em> is the length of
+  <code>newElements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insert&lt;S : Collection where S.Iterator.Element == _Element&gt;(contentsOf newElements: S, at i: Self.Index)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-remove-at_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-remove-at_">mutating func remove(<wbr>at:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-remove-at_"><div class="p">
+    <p>Removes and returns the element at the specified position.</p>
+
+<p>All the elements following the specified position are moved to close the
+gap. This example removes the middle element from an array of
+measurements.</p>
+
+<pre><code class="language-swift">var measurements = [1.2, 1.5, 2.9, 1.2, 1.6]
+let removed = measurements.remove(at: 2)
+print(measurements)
+// Prints &quot;[1.2, 1.5, 1.2, 1.6]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong><code>i</code>:</strong>  The position of the element to remove. <code>i</code> must be a valid
+  index of the collection that is not equal to the collection&#39;s end
+  index.
+<strong>Returns:</strong> The removed element.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func remove(at i: Self.Index) -&gt; Self._Element</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-removesubrange_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removesubrange_">mutating func removeSubrange(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-removesubrange_"><div class="p">
+    <p>Removes the specified subrange of elements from the collection.</p>
+
+<pre><code class="language-swift">var bugs = [&quot;Aphid&quot;, &quot;Bumblebee&quot;, &quot;Cicada&quot;, &quot;Damselfly&quot;, &quot;Earwig&quot;]
+bugs.removeSubrange(1...3)
+print(bugs)
+// Prints &quot;[&quot;Aphid&quot;, &quot;Earwig&quot;]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong><code>bounds</code>:</strong>  The subrange of the collection to remove. The bounds
+  of the range must be valid indices of the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeSubrange(_ bounds: Range&lt;Self.Index&gt;)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-replacesubrange_with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-replacesubrange_with_">mutating func replaceSubrange(<wbr>_:<wbr>with:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-replacesubrange_with_"><div class="p">
+    <p>Replaces the specified subrange of elements with the given collection.</p>
+
+<p>This method has the effect of removing the specified range of elements
+from the collection and inserting the new elements at the same location.
+The number of new elements need not match the number of elements being
+removed.</p>
+
+<p>In this example, three elements in the middle of an array of integers are
+replaced by the five elements of a <code>Repeated&lt;Int&gt;</code> instance.</p>
+
+<pre><code class="language-swift"> var nums = [10, 20, 30, 40, 50]
+ nums.replaceSubrange(1...3, with: repeatElement(1, count: 5))
+ print(nums)
+ // Prints &quot;[10, 1, 1, 1, 1, 1, 50]&quot;</code></pre>
+
+<p>If you pass a zero-length range as the <code>subrange</code> parameter, this method
+inserts the elements of <code>newElements</code> at <code>subrange.startIndex</code>. Calling
+the <code>insert(contentsOf:at:)</code> method instead is preferred.</p>
+
+<p>Likewise, if you pass a zero-length collection as the <code>newElements</code>
+parameter, this method removes the elements in the given subrange
+without replacement. Calling the <code>removeSubrange(_:)</code> method instead is
+preferred.</p>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>subrange:</strong> The subrange of the collection to replace. The bounds of
+    the range must be valid indices of the collection.
+  <strong>newElements:</strong> The new elements to add to the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em>), where <em>m</em> is the combined length of the collection
+  and <code>newElements</code>. If the call to <code>replaceSubrange</code> simply appends the
+  contents of <code>newElements</code> to the collection, the complexity is O(<em>n</em>),
+  where <em>n</em> is the length of <code>newElements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func replaceSubrange&lt;C where C : Collection, C.Iterator.Element == _Element&gt;(_ subrange: Range&lt;Self.Index&gt;, with newElements: C)</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+
+<div class="declaration inherited" id="subscript--subscript_-closedrange-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript--subscript_-closedrange-self-index">subscript(_: ClosedRange&lt;Self.Index&gt;)</a>
+<div class="comment collapse" id="comment-subscript--subscript_-closedrange-self-index"><div class="p">
+    <p>Accesses a contiguous subrange of the collection&#39;s elements.</p>
+
+<p>The accessed slice uses the same indices for the same elements as the
+original collection. Always use the slice&#39;s <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.index(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// Prints &quot;Evarts&quot;</code></pre>
+
+<p><strong><code>bounds</code>:</strong>  A range of the collection&#39;s indices. The bounds of
+  the range must be valid indices of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(bounds: ClosedRange&lt;Self.Index&gt;) -&gt; Self.SubSequence { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+
+<div class="declaration inherited" id="func--distance-from_to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--distance-from_to_">func distance(<wbr>from:<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func--distance-from_to_"><div class="p">
+    <p>Returns the distance between two indices.</p>
+
+<p>Unless the collection conforms to the <code>BidirectionalCollection</code> protocol,
+<code>start</code> must be less than or equal to <code>end</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>start:</strong> A valid index of the collection.
+  <strong>end:</strong> Another valid index of the collection. If <code>end</code> is equal to
+    <code>start</code>, the result is zero.
+<strong>Returns:</strong> The distance between <code>start</code> and <code>end</code>. The result can be
+  negative only if the collection conforms to the
+  <code>BidirectionalCollection</code> protocol.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the
+  resulting distance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(from start: Self.Index, to end: Self.Index) -&gt; Self.IndexDistance</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--formindex_offsetby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--formindex_offsetby_">func formIndex(<wbr>_:<wbr>offsetBy:)</a>
+        
+<div class="comment collapse" id="comment-func--formindex_offsetby_"><div class="p">
+    <p>Offsets the given index by the specified distance.</p>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the <code>endIndex</code> or
+before the <code>startIndex</code> of this collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.</p>
+
+<p><strong>See Also:</strong> <code>index(_:offsetBy:)</code>, <code>formIndex(_:offsetBy:limitedBy:)</code>
+<strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex(_ i: inout Self.Index, offsetBy n: Self.IndexDistance)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--formindex_offsetby_limitedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--formindex_offsetby_limitedby_">func formIndex(<wbr>_:<wbr>offsetBy:<wbr>limitedBy:)</a>
+        
+<div class="comment collapse" id="comment-func--formindex_offsetby_limitedby_"><div class="p">
+    <p>Offsets the given index by the specified distance, or so that it equals
+the given limiting index.</p>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the <code>endIndex</code> or
+before the <code>startIndex</code> of this collection, unless the index passed as
+<code>limit</code> prevents offsetting beyond those bounds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+<strong>Returns:</strong> <code>true</code> if <code>i</code> has been offset by exactly <code>n</code> steps without
+  going beyond <code>limit</code>; otherwise, <code>false</code>. When the return value is
+  <code>false</code>, the value of <code>i</code> is equal to <code>limit</code>.</p>
+
+<p><strong>See Also:</strong> <code>index(_:offsetBy:)</code>, <code>formIndex(_:offsetBy:limitedBy:)</code>
+<strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex(_ i: inout Self.Index, offsetBy n: Self.IndexDistance, limitedBy limit: Self.Index) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--formindex-after_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--formindex-after_">func formIndex(<wbr>after:)</a>
+        
+<div class="comment collapse" id="comment-func--formindex-after_"><div class="p">
+    <p>Replaces the given index with its successor.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be less than
+  <code>endIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex(after i: inout Self.Index)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--index_offsetby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--index_offsetby_">func index(<wbr>_:<wbr>offsetBy:)</a>
+        
+<div class="comment collapse" id="comment-func--index_offsetby_"><div class="p">
+    <p>Returns an index that is the specified distance from the given index.</p>
+
+<p>The following example obtains an index advanced four positions from a
+string&#39;s starting index and then prints the character at that position.</p>
+
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+let i = s.index(s.startIndex, offsetBy: 4)
+print(s[i])
+// Prints &quot;t&quot;</code></pre>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the <code>endIndex</code> or
+before the <code>startIndex</code> of this collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+<strong>Returns:</strong> An index offset by <code>n</code> from the index <code>i</code>. If <code>n</code> is positive,
+  this is the same value as the result of <code>n</code> calls to <code>index(after:)</code>.
+  If <code>n</code> is negative, this is the same value as the result of <code>-n</code> calls
+  to <code>index(before:)</code>.</p>
+
+<p><strong>See Also:</strong> <code>index(_:offsetBy:limitedBy:)</code>, <code>formIndex(_:offsetBy:)</code>
+<strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(_ i: Self.Index, offsetBy n: Self.IndexDistance) -&gt; Self.Index</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--index_offsetby_limitedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--index_offsetby_limitedby_">func index(<wbr>_:<wbr>offsetBy:<wbr>limitedBy:)</a>
+        
+<div class="comment collapse" id="comment-func--index_offsetby_limitedby_"><div class="p">
+    <p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+
+<p>The following example obtains an index advanced four positions from a
+string&#39;s starting index and then prints the character at that position.
+The operation doesn&#39;t require going beyond the limiting <code>s.endIndex</code>
+value, so it succeeds.</p>
+
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+if let i = s.index(s.startIndex, offsetBy: 4, limitedBy: s.endIndex) {
+    print(s[i])
+}
+// Prints &quot;t&quot;</code></pre>
+
+<p>The next example attempts to retrieve an index six positions from
+<code>s.startIndex</code> but fails, because that distance is beyond the index
+passed as <code>limit</code>.</p>
+
+<pre><code class="language-swift">let j = s.index(s.startIndex, offsetBy: 6, limitedBy: s.endIndex)
+print(j)
+// Prints &quot;nil&quot;</code></pre>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the <code>endIndex</code> or
+before the <code>startIndex</code> of this collection, unless the index passed as
+<code>limit</code> prevents offsetting beyond those bounds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+  <strong>limit:</strong> A valid index of the collection to use as a limit. If <code>n &gt; 0</code>,
+    a limit that is less than <code>i</code> has no effect. Likewise, if <code>n &lt; 0</code>, a
+    limit that is greater than <code>i</code> has no effect.
+<strong>Returns:</strong> An index offset by <code>n</code> from the index <code>i</code>, unless that index
+  would be beyond <code>limit</code> in the direction of movement. In that case,
+  the method returns <code>nil</code>.</p>
+
+<p><strong>See Also:</strong> <code>index(_:offsetBy:)</code>, <code>formIndex(_:offsetBy:limitedBy:)</code>
+<strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(_ i: Self.Index, offsetBy n: Self.IndexDistance, limitedBy limit: Self.Index) -&gt; Self.Index?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+
+
+<h4>Where Index : Strideable, Index.Stride : SignedInteger</h4>
+
+
+
+<div class="declaration inherited" id="subscript-index_-strideable-index-stride_-signedinteger-subscript_-countableclosedrange-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-index_-strideable-index-stride_-signedinteger-subscript_-countableclosedrange-self-index">subscript(_: CountableClosedRange&lt;Self.Index&gt;)</a>
+<div class="comment collapse" id="comment-subscript-index_-strideable-index-stride_-signedinteger-subscript_-countableclosedrange-self-index"><div class="p">
+    <p>Accesses a contiguous subrange of the collection&#39;s elements.</p>
+
+<p>The accessed slice uses the same indices for the same elements as the
+original collection. Always use the slice&#39;s <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.index(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// Prints &quot;Evarts&quot;</code></pre>
+
+<p><strong><code>bounds</code>:</strong>  A range of the collection&#39;s indices. The bounds of
+  the range must be valid indices of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(bounds: CountableClosedRange&lt;Self.Index&gt;) -&gt; Self.SubSequence { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="subscript-index_-strideable-index-stride_-signedinteger-subscript_-countablerange-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-index_-strideable-index-stride_-signedinteger-subscript_-countablerange-self-index">subscript(_: CountableRange&lt;Self.Index&gt;)</a>
+<div class="comment collapse" id="comment-subscript-index_-strideable-index-stride_-signedinteger-subscript_-countablerange-self-index"><div class="p">
+    <p>Accesses a contiguous subrange of the collection&#39;s elements.</p>
+
+<p>The accessed slice uses the same indices for the same elements as the
+original collection. Always use the slice&#39;s <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.index(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// Prints &quot;Evarts&quot;</code></pre>
+
+<p><strong><code>bounds</code>:</strong>  A range of the collection&#39;s indices. The bounds of
+  the range must be valid indices of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(bounds: CountableRange&lt;Self.Index&gt;) -&gt; Self.SubSequence { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Indexable/"><code>Indexable</code></a>    
+</div></div>
+</div>
+
+
+
+

@@ -1,0 +1,116 @@
+---
+layout: "default"
+title: "MemoryLayout"
+description: "Swift documentation for 'MemoryLayout': The memory layout of a type, describing its size, stride, and alignment."
+keywords: "MemoryLayout,enum,swift,documentation,alignment,size,stride,alignment,size,stride"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum MemoryLayout&lt;T&gt;</code></div>
+
+<div class="discussion comment">
+    <p>The memory layout of a type, describing its size, stride, and alignment.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+<h3>Static Variables</h3>
+<div class="declaration" id="static-var-alignment_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-alignment_-int">static var alignment: Int</a><div class="comment collapse" id="comment-static-var-alignment_-int"><div class="p">
+    <p>The default memory alignment of <code>T</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var alignment: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="static-var-size_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-size_-int">static var size: Int</a><div class="comment collapse" id="comment-static-var-size_-int"><div class="p">
+    <p>The contiguous memory footprint of <code>T</code>.</p>
+
+<p>Does not include any dynamically-allocated or &quot;remote&quot; storage. In
+particular, <code>MemoryLayout&lt;T&gt;.size</code>, when <code>T</code> is a class type, is the same
+regardless of how many stored properties <code>T</code> has.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var size: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="static-var-stride_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-stride_-int">static var stride: Int</a><div class="comment collapse" id="comment-static-var-stride_-int"><div class="p">
+    <p>The number of bytes from the start of one instance of <code>T</code> to the start of
+the next in an <code>Array&lt;T&gt;</code>.</p>
+
+<p>This is the same as the number of bytes moved when an <code>UnsafePointer&lt;T&gt;</code>
+is incremented. <code>T</code> may have a lower minimal alignment that trades runtime
+performance for space efficiency. The result is always positive.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var stride: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-alignment-ofvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-alignment-ofvalue_">static func alignment(<wbr>ofValue:)</a>
+        
+<div class="comment collapse" id="comment-func-alignment-ofvalue_"><div class="p">
+    <p>Returns the default memory alignment of <code>T</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func alignment(ofValue _: T) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-size-ofvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-size-ofvalue_">static func size(<wbr>ofValue:)</a>
+        
+<div class="comment collapse" id="comment-func-size-ofvalue_"><div class="p">
+    <p>Returns the contiguous memory footprint of <code>T</code>.</p>
+
+<p>Does not include any dynamically-allocated or &quot;remote&quot; storage. In
+particular, <code>MemoryLayout.size(ofValue: x)</code>, when <code>x</code> is a class instance,
+is the same regardless of how many stored properties <code>T</code> has.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func size(ofValue _: T) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-stride-ofvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride-ofvalue_">static func stride(<wbr>ofValue:)</a>
+        
+<div class="comment collapse" id="comment-func-stride-ofvalue_"><div class="p">
+    <p>Returns the number of bytes from the start of one instance of <code>T</code> to the
+start of the next in an <code>Array&lt;T&gt;</code>.</p>
+
+<p>This is the same as the number of bytes moved when an <code>UnsafePointer&lt;T&gt;</code>
+is incremented. <code>T</code> may have a lower minimal alignment that trades runtime
+performance for space efficiency. The result is always positive.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func stride(ofValue _: T) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+
+
+

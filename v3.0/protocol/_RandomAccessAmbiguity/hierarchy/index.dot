@@ -1,0 +1,44 @@
+strict digraph "_RandomAccessAmbiguity - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AnyRandomAccessIndex" [URL="/type/AnyRandomAccessIndex/hierarchy/", style=filled]
+    "Int" [URL="/type/Int/hierarchy/", style=filled]
+    "Int16" [URL="/type/Int16/hierarchy/", style=filled]
+    "Int32" [URL="/type/Int32/hierarchy/", style=filled]
+    "Int64" [URL="/type/Int64/hierarchy/", style=filled]
+    "Int8" [URL="/type/Int8/hierarchy/", style=filled]
+    "Integer" [URL="/protocol/Integer/hierarchy/"]
+    "RandomAccessIndex" [URL="/protocol/RandomAccessIndex/hierarchy/"]
+    "ReverseRandomAccessIndex" [URL="/type/ReverseRandomAccessIndex/hierarchy/", style=filled]
+    "SignedInteger" [URL="/protocol/SignedInteger/hierarchy/"]
+    "UInt" [URL="/type/UInt/hierarchy/", style=filled]
+    "UInt16" [URL="/type/UInt16/hierarchy/", style=filled]
+    "UInt32" [URL="/type/UInt32/hierarchy/", style=filled]
+    "UInt64" [URL="/type/UInt64/hierarchy/", style=filled]
+    "UInt8" [URL="/type/UInt8/hierarchy/", style=filled]
+    "UnsafeMutablePointer" [URL="/type/UnsafeMutablePointer/hierarchy/", style=filled]
+    "UnsafePointer" [URL="/type/UnsafePointer/hierarchy/", style=filled]
+    "UnsignedInteger" [URL="/protocol/UnsignedInteger/hierarchy/"]
+    "_RandomAccessAmbiguity" [URL="/protocol/_RandomAccessAmbiguity/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]    "_RandomAccessAmbiguity" -> "RandomAccessIndex"
+    "RandomAccessIndex" -> "AnyRandomAccessIndex"
+    "RandomAccessIndex" -> "Integer"
+    "RandomAccessIndex" -> "ReverseRandomAccessIndex"
+    "RandomAccessIndex" -> "UnsafeMutablePointer"
+    "RandomAccessIndex" -> "UnsafePointer"
+    "Integer" -> "SignedInteger"
+    "Integer" -> "UnsignedInteger"
+    "SignedInteger" -> "Int"
+    "SignedInteger" -> "Int16"
+    "SignedInteger" -> "Int32"
+    "SignedInteger" -> "Int64"
+    "SignedInteger" -> "Int8"
+    "UnsignedInteger" -> "UInt"
+    "UnsignedInteger" -> "UInt16"
+    "UnsignedInteger" -> "UInt32"
+    "UnsignedInteger" -> "UInt64"
+    "UnsignedInteger" -> "UInt8"
+    subgraph Types {
+        rank = max; "AnyRandomAccessIndex"; "ReverseRandomAccessIndex"; "UnsafeMutablePointer"; "UnsafePointer"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8";
+    }
+}

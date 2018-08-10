@@ -1,0 +1,29 @@
+strict digraph "RandomAccessSlice<Base : RandomAccessIndexable> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BidirectionalCollection" [URL="/protocol/BidirectionalCollection/hierarchy/"]
+    "BidirectionalIndexable" [URL="/protocol/BidirectionalIndexable/hierarchy/"]
+    "Collection" [URL="/protocol/Collection/hierarchy/"]
+    "Indexable" [URL="/protocol/Indexable/hierarchy/"]
+    "IndexableBase" [URL="/protocol/IndexableBase/hierarchy/"]
+    "RandomAccessCollection" [URL="/protocol/RandomAccessCollection/hierarchy/"]
+    "RandomAccessIndexable" [URL="/protocol/RandomAccessIndexable/hierarchy/"]
+    "RandomAccessSlice<Base : RandomAccessIndexable>" [URL="/type/RandomAccessSlice/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "Sequence" [URL="/protocol/Sequence/hierarchy/"]    "RandomAccessCollection" -> "RandomAccessSlice<Base : RandomAccessIndexable>"
+    "RandomAccessIndexable" -> "RandomAccessCollection"
+    "BidirectionalCollection" -> "RandomAccessCollection"
+    "BidirectionalIndexable" -> "RandomAccessIndexable"
+    "Indexable" -> "BidirectionalIndexable"
+    "IndexableBase" -> "Indexable"
+    "BidirectionalIndexable" -> "BidirectionalCollection"
+    "Collection" -> "BidirectionalCollection"
+    "Indexable" -> "BidirectionalIndexable"
+    "IndexableBase" -> "Indexable"
+    "Indexable" -> "Collection"
+    "Sequence" -> "Collection"
+    "IndexableBase" -> "Indexable"
+    subgraph Types {
+        rank = max; "RandomAccessSlice<Base : RandomAccessIndexable>";
+    }
+}

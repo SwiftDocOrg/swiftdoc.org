@@ -1,0 +1,99 @@
+---
+layout: "default"
+title: "OutputStream"
+description: "Swift documentation for 'OutputStream': A type that can be the target of text-streaming operations."
+keywords: "OutputStream,protocol,swift,documentation,write"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol OutputStream</code></div>
+
+<div class="discussion comment">
+    <p>A type that can be the target of text-streaming operations.</p>
+
+<p>You can send the output of the standard library&#39;s <code>print(_:to:)</code> and
+<code>dump(_:to:)</code> functions to an instance of a type that conforms to the
+<code>OutputStream</code> protocol instead of to standard output. Swift&#39;s <code>String</code>
+type conforms to <code>OutputStream</code> already, so you can capture the output
+from <code>print(_:to:)</code> and <code>dump(_:to:)</code> in a string instead of logging it to
+standard output.</p>
+
+<pre><code class="language-swift">var s = &quot;&quot;
+for n in 1 ... 5 {
+    print(n, terminator: &quot;&quot;, to: &amp;s)
+}
+// s == &quot;12345&quot;</code></pre>
+
+<h1>Conforming to the OutputStream Protocol</h1>
+
+<p>To make your custom type conform to the <code>OutputStream</code> protocol, implement
+the required <code>write(_:)</code> method. Functions that use an <code>OutputStream</code>
+target may call <code>write(_:)</code> multiple times per writing operation.</p>
+
+<p>As an example, here&#39;s an implementation of an output stream that converts
+any input to its plain ASCII representation before sending it to standard
+output.</p>
+
+<pre><code class="language-swift">struct ASCIILogger: OutputStream {
+    mutating func write(_ string: String) {
+        let ascii = string.unicodeScalars.lazy.map { scalar in
+            scalar == &quot;\n&quot;
+              ? &quot;\n&quot;
+              : scalar.escaped(asASCII: true)
+        }
+        print(ascii.joined(separator: &quot;&quot;), terminator: &quot;&quot;)
+    }
+}</code></pre>
+
+<p>The <code>ASCIILogger</code> type&#39;s <code>write(_:)</code> method processes its string input by
+escaping each Unicode scalar, with the exception of <code>&quot;\n&quot;</code> line returns.
+By sending the output of the <code>print(_:to:)</code> function to an instance of
+<code>ASCIILogger</code>, you invoke its <code>write(_:)</code> method.</p>
+
+<pre><code class="language-swift">let s = &quot;Hearts ♡ and Diamonds ♢&quot;
+print(s)
+// Prints &quot;Hearts ♡ and Diamonds ♢&quot;
+
+var asciiLogger = ASCIILogger()
+print(s, to: &amp;asciiLogger)
+// Prints &quot;Hearts \u{2661} and Diamonds \u{2662}&quot;</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-write_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-write_">mutating func write(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-write_"><div class="p">
+    <p>Appends the given string to the stream.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func write(_ string: String)</code>
+    
+    
+</div></div>
+</div>
+
+

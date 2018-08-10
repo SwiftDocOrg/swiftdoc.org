@@ -1,0 +1,40 @@
+strict digraph "SignedNumber - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AbsoluteValuable" [URL="/protocol/AbsoluteValuable/hierarchy/"]
+    "BinaryFloatingPoint" [URL="/protocol/BinaryFloatingPoint/hierarchy/"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "Double" [URL="/type/Double/hierarchy/", style=filled]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByIntegerLiteral" [URL="/protocol/ExpressibleByIntegerLiteral/hierarchy/"]
+    "Float" [URL="/type/Float/hierarchy/", style=filled]
+    "Float80" [URL="/type/Float80/hierarchy/", style=filled]
+    "FloatingPoint" [URL="/protocol/FloatingPoint/hierarchy/"]
+    "Int" [URL="/type/Int/hierarchy/", style=filled]
+    "Int16" [URL="/type/Int16/hierarchy/", style=filled]
+    "Int32" [URL="/type/Int32/hierarchy/", style=filled]
+    "Int64" [URL="/type/Int64/hierarchy/", style=filled]
+    "Int8" [URL="/type/Int8/hierarchy/", style=filled]
+    "SignedInteger" [URL="/protocol/SignedInteger/hierarchy/"]
+    "SignedNumber" [URL="/protocol/SignedNumber/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "_SignedInteger" [URL="/protocol/_SignedInteger/hierarchy/"]    "SignedNumber" -> "AbsoluteValuable"
+    "SignedNumber" -> "_SignedInteger"
+    "AbsoluteValuable" -> "FloatingPoint"
+    "FloatingPoint" -> "BinaryFloatingPoint"
+    "BinaryFloatingPoint" -> "Double"
+    "BinaryFloatingPoint" -> "Float"
+    "BinaryFloatingPoint" -> "Float80"
+    "_SignedInteger" -> "SignedInteger"
+    "SignedInteger" -> "Int"
+    "SignedInteger" -> "Int16"
+    "SignedInteger" -> "Int32"
+    "SignedInteger" -> "Int64"
+    "SignedInteger" -> "Int8"
+    "Comparable" -> "SignedNumber"
+    "ExpressibleByIntegerLiteral" -> "SignedNumber"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "Double"; "Float"; "Float80"; "Int"; "Int16"; "Int32"; "Int64"; "Int8";
+    }
+}

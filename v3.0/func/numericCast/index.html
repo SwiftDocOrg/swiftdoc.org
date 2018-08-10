@@ -1,0 +1,84 @@
+---
+layout: "default"
+title: "numericCast"
+description: "Swift documentation for 'numericCast': Convert x to type U, trapping on overflow in -Onone and -O."
+keywords: "numericCast,func,swift,documentation"
+root: "/v3.0"
+---
+
+<div class="declaration" id="func-numericcast-t_-signedinteger-u_-signedinteger_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-numericcast-t_-signedinteger-u_-signedinteger_-t">func <wbr>numericCast&lt;T :<wbr> _SignedInteger, U : _SignedInteger&gt;(<wbr>_: T)</a>
+        
+<div class="comment collapse" id="comment-func-numericcast-t_-signedinteger-u_-signedinteger_-t"><div class="p">
+    <p>Convert <code>x</code> to type <code>U</code>, trapping on overflow in -Onone and -O
+builds.</p>
+
+<p>Typically used to do conversion to any contextually-deduced
+integer type:</p>
+
+<pre><code class="language-swift">func f(_ x: Int32) {}
+func g(_ x: Int64) { f(numericCast(x)) }</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func numericCast&lt;T : _SignedInteger, U : _SignedInteger&gt;(_ x: T) -&gt; U</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-numericcast-t_-signedinteger-u_-unsignedinteger_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-numericcast-t_-signedinteger-u_-unsignedinteger_-t">func <wbr>numericCast&lt;T :<wbr> _SignedInteger, U : UnsignedInteger&gt;(<wbr>_: T)</a>
+        
+<div class="comment collapse" id="comment-func-numericcast-t_-signedinteger-u_-unsignedinteger_-t"><div class="p">
+    <p>Convert <code>x</code> to type <code>U</code>, trapping on overflow in -Onone and -O
+builds.</p>
+
+<p>Typically used to do conversion to any contextually-deduced
+integer type:</p>
+
+<pre><code class="language-swift">func f(_ x: UInt32) {}
+func g(_ x: Int64) { f(numericCast(x)) }</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func numericCast&lt;T : _SignedInteger, U : UnsignedInteger&gt;(_ x: T) -&gt; U</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-numericcast-t_-unsignedinteger-u_-signedinteger_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-numericcast-t_-unsignedinteger-u_-signedinteger_-t">func <wbr>numericCast&lt;T :<wbr> UnsignedInteger, U : _SignedInteger&gt;(<wbr>_: T)</a>
+        
+<div class="comment collapse" id="comment-func-numericcast-t_-unsignedinteger-u_-signedinteger_-t"><div class="p">
+    <p>Convert <code>x</code> to type <code>U</code>, trapping on overflow in -Onone and -O
+builds.</p>
+
+<p>Typically used to do conversion to any contextually-deduced
+integer type:</p>
+
+<pre><code class="language-swift">func f(_ x: Int32) {}
+func g(_ x: UInt64) { f(numericCast(x)) }</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func numericCast&lt;T : UnsignedInteger, U : _SignedInteger&gt;(_ x: T) -&gt; U</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-numericcast-t_-unsignedinteger-u_-unsignedinteger_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-numericcast-t_-unsignedinteger-u_-unsignedinteger_-t">func <wbr>numericCast&lt;T :<wbr> UnsignedInteger, U : UnsignedInteger&gt;(<wbr>_: T)</a>
+        
+<div class="comment collapse" id="comment-func-numericcast-t_-unsignedinteger-u_-unsignedinteger_-t"><div class="p">
+    <p>Convert <code>x</code> to type <code>U</code>, trapping on overflow in -Onone and -O
+builds.</p>
+
+<p>Typically used to do conversion to any contextually-deduced
+integer type:</p>
+
+<pre><code class="language-swift">func f(_ x: UInt32) {}
+func g(_ x: UInt64) { f(numericCast(x)) }</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func numericCast&lt;T : UnsignedInteger, U : UnsignedInteger&gt;(_ x: T) -&gt; U</code>
+    
+    
+</div></div>
+</div>

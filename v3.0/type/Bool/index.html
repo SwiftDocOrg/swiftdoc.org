@@ -1,0 +1,324 @@
+---
+layout: "default"
+title: "Bool"
+description: "Swift documentation for 'Bool': A value type whose instances are either true or false."
+keywords: "Bool,struct,swift,documentation,!,&&,==,||,customMirror,customPlaygroundQuickLook,description,hashValue"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Bool</code></div>
+
+<div class="discussion comment">
+    <p>A value type whose instances are either <code>true</code> or <code>false</code>.</p>
+
+<p><code>Bool</code> represents Boolean values in Swift. Create instances of
+<code>Bool</code> by using one of the Boolean literals <code>true</code> and <code>false</code> or by
+assigning the result of a Boolean method or operation to a variable or
+constant.</p>
+
+<pre><code class="language-swift">var godotHasArrived = false
+
+let numbers = 1...5
+let containsTen = numbers.contains(10)
+print(containsTen)
+// Prints &quot;false&quot;
+
+let (a, b) == (100, 101)
+let aFirst = a &lt; b
+print(aFirst)
+// Prints &quot;true&quot;</code></pre>
+
+<p>Swift uses only simple Boolean values in conditional contexts to help avoid
+accidental programming errors and to help maintain the clarity of each
+control statement. Unlike other programming languages, in Swift integers
+and strings cannot be used where a Boolean value is expected.</p>
+
+<p>For example, the following code sample does not compile, because it
+attempts to use the integer <code>i</code> in a logical context:</p>
+
+<pre><code class="language-swift">var i = 5
+while i {
+    print(i)
+    i -= 1
+}</code></pre>
+
+<p>The correct approach in Swift is to compare the <code>i</code> value with zero in the
+<code>while</code> statement.</p>
+
+<pre><code class="language-swift">while i != 0 {
+    print(i)
+    i -= 1
+}</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CustomPlaygroundQuickLookable, CustomReflectable, CustomStringConvertible, Equatable, ExpressibleByBooleanLiteral, Hashable, LosslessStringConvertible</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Creates an instance initialized to <code>false</code>.</p>
+
+<p>Don&#39;t call this initializer directly. Instead, use the Boolean literal
+<code>false</code> to create a new <code>Bool</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-bool">init(<wbr>_: Bool)</a><div class="comment collapse" id="comment-init_-bool"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ value: Bool)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-nsnumber">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-nsnumber">init(<wbr>_: NSNumber)</a><div class="comment collapse" id="comment-init_-nsnumber"><div class="p">
+    <p><em>[Foundation]</em></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ number: NSNumber)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-booleanliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-booleanliteral_">init(<wbr>booleanLiteral:)</a><div class="comment collapse" id="comment-init-booleanliteral_"><div class="p">
+    <p>Creates an instance initialized to the specified Boolean literal.</p>
+
+<p>Do not call this initializer directly. It is used by the compiler when
+you use a Boolean literal. Instead, create a new <code>Bool</code> instance by
+using one of the Boolean literals <code>true</code> and <code>false</code>.</p>
+
+<pre><code class="language-swift">var printedMessage = false
+
+if !printedMessage {
+    print(&quot;You look nice today!&quot;)
+    printedMessage = true
+}
+// Prints &quot;You look nice today!&quot;</code></pre>
+
+<p>In this example, both assignments to the <code>printedMessage</code> variable call
+this Boolean literal initializer behind the scenes.</p>
+
+<p><strong><code>value</code>:</strong>  The value of the new instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(booleanLiteral value: Bool)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init?(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Instantiates an instance of the conforming type from a string
+representation.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ description: String)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>A mirror that reflects the <code>Bool</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-customplaygroundquicklook_-playgroundquicklook">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-customplaygroundquicklook_-playgroundquicklook">var customPlaygroundQuickLook: PlaygroundQuickLook</a><div class="comment collapse" id="comment-var-customplaygroundquicklook_-playgroundquicklook"><div class="p">
+    <p>A custom playground Quick Look for this instance.</p>
+
+<p>If this type has value semantics, the <code>PlaygroundQuickLook</code> instance
+should be unaffected by subsequent mutations.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customPlaygroundQuickLook: PlaygroundQuickLook { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of the Boolean value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The hash value for the Boolean value.</p>
+
+<p>Two values that are equal always have equal hash values.</p>
+
+<p><strong>Note:</strong> The hash value is not guaranteed to be stable across different
+  invocations of the same program. Do not persist the hash value across
+  program runs.
+<strong>See Also:</strong> <code>Hashable</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-excl_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-excl_">prefix func !(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-excl_"><div class="p">
+    <p>Performs a logical NOT operation on a Boolean value.</p>
+
+<p>The logical NOT operator (<code>!</code>) inverts a Boolean value. If the value is
+<code>true</code>, the result of the operation is <code>false</code>; if the value is <code>false</code>,
+the result is <code>true</code>.</p>
+
+<pre><code class="language-swift">var printedMessage = false
+
+if !printedMessage {
+    print(&quot;You look nice today!&quot;)
+    printedMessage = true
+}
+// Prints &quot;You look nice today!&quot;</code></pre>
+
+<p><strong><code>a</code>:</strong>  The Boolean value to negate.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">prefix func !(a: Bool) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-ampamp_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-ampamp_rhs_">func &amp;&amp;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-ampamp_rhs_"><div class="p">
+    <p>Performs a logical AND operation on two Bool values.</p>
+
+<p>The logical AND operator (<code>&amp;&amp;</code>) combines two Bool values and returns
+<code>true</code> if both of the values are <code>true</code>. If either of the values is
+<code>false</code>, the operator returns <code>false</code>.</p>
+
+<p>This operator uses short-circuit evaluation: The left-hand side (<code>lhs</code>) is
+evaluated first, and the right-hand side (<code>rhs</code>) is evaluated only if
+<code>lhs</code> evaluates to <code>true</code>. For example:</p>
+
+<pre><code class="language-swift">let measurements = [7.44, 6.51, 4.74, 5.88, 6.27, 6.12, 7.76]
+let sum = measurements.reduce(0, combine: +)
+
+if measurements.count &gt; 0 &amp;&amp; sum / Double(measurements.count) &lt; 6.5 {
+    print(&quot;Average measurement is less than 6.5&quot;)
+}
+// Prints &quot;Average measurement is less than 6.5&quot;</code></pre>
+
+<p>In this example, <code>lhs</code> tests whether <code>measurements.count</code> is greater than
+zero. Evaluation of the <code>&amp;&amp;</code> operator is one of the following:</p>
+
+<ul><li>When <code>measurements.count</code> is equal to zero, <code>lhs</code> evaluates to <code>false</code>
+and <code>rhs</code> is not evaluated, preventing a divide-by-zero error in the
+expression <code>sum / Double(measurements.count)</code>. The result of the
+operation is <code>false</code>.</li><li>When <code>measurements.count</code> is greater than zero, <code>lhs</code> evaluates to
+<code>true</code> and <code>rhs</code> is evaluated. The result of evaluating <code>rhs</code> is the
+result of the <code>&amp;&amp;</code> operation.</li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The left-hand side of the operation.
+  <strong>rhs:</strong> The right-hand side of the operation.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;&amp;(lhs: Bool, rhs: @autoclosure () throws -&gt; Bool) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Bool, rhs: Bool) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-barbar_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-barbar_rhs_">func ||(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-barbar_rhs_"><div class="p">
+    <p>Performs a logical OR operation on two Bool values.</p>
+
+<p>The logical OR operator (<code>||</code>) combines two Bool values and returns
+<code>true</code> if at least one of the values is <code>true</code>. If both values are
+<code>false</code>, the operator returns <code>false</code>.</p>
+
+<p>This operator uses short-circuit evaluation: The left-hand side (<code>lhs</code>) is
+evaluated first, and the right-hand side (<code>rhs</code>) is evaluated only if
+<code>lhs</code> evaluates to <code>false</code>. For example:</p>
+
+<pre><code class="language-swift">let majorErrors: Set = [&quot;No first name&quot;, &quot;No last name&quot;, ...]
+let error = &quot;&quot;
+
+if error.isEmpty || !majorErrors.contains(error) {
+    print(&quot;No major errors detected&quot;)
+} else {
+    print(&quot;Major error: \(error)&quot;)
+}
+// Prints &quot;No major errors detected&quot;)</code></pre>
+
+<p>In this example, <code>lhs</code> tests whether <code>error</code> is an empty string.
+Evaluation of the <code>||</code> operator is one of the following:</p>
+
+<ul><li>When <code>error</code> is an empty string, <code>lhs</code> evaluates to <code>true</code> and <code>rhs</code> is
+not evaluated, skipping the call to <code>majorErrors.contains(_:)</code>. The
+result of the operation is <code>true</code>.</li><li>When <code>error</code> is not an empty string, <code>lhs</code> evaluates to <code>false</code> and
+<code>rhs</code> is evaluated. The result of evaluating <code>rhs</code> is the result of the
+<code>||</code> operation.</li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> The left-hand side of the operation.
+  <strong>rhs:</strong> The right-hand side of the operation.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ||(lhs: Bool, rhs: @autoclosure () throws -&gt; Bool) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+
+

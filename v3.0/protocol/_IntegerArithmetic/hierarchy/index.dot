@@ -1,0 +1,54 @@
+strict digraph "_IntegerArithmetic - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Int" [URL="/type/Int/hierarchy/", style=filled]
+    "Int16" [URL="/type/Int16/hierarchy/", style=filled]
+    "Int32" [URL="/type/Int32/hierarchy/", style=filled]
+    "Int64" [URL="/type/Int64/hierarchy/", style=filled]
+    "Int8" [URL="/type/Int8/hierarchy/", style=filled]
+    "Integer" [URL="/protocol/Integer/hierarchy/"]
+    "IntegerArithmetic" [URL="/protocol/IntegerArithmetic/hierarchy/"]
+    "SignedInteger" [URL="/protocol/SignedInteger/hierarchy/"]
+    "UInt" [URL="/type/UInt/hierarchy/", style=filled]
+    "UInt16" [URL="/type/UInt16/hierarchy/", style=filled]
+    "UInt32" [URL="/type/UInt32/hierarchy/", style=filled]
+    "UInt64" [URL="/type/UInt64/hierarchy/", style=filled]
+    "UInt8" [URL="/type/UInt8/hierarchy/", style=filled]
+    "UnsignedInteger" [URL="/protocol/UnsignedInteger/hierarchy/"]
+    "_DisallowMixedSignArithmetic" [URL="/protocol/_DisallowMixedSignArithmetic/hierarchy/"]
+    "_Integer" [URL="/protocol/_Integer/hierarchy/"]
+    "_IntegerArithmetic" [URL="/protocol/_IntegerArithmetic/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "_SignedInteger" [URL="/protocol/_SignedInteger/hierarchy/"]    "_IntegerArithmetic" -> "IntegerArithmetic"
+    "IntegerArithmetic" -> "_Integer"
+    "_Integer" -> "Integer"
+    "_Integer" -> "_DisallowMixedSignArithmetic"
+    "_Integer" -> "_SignedInteger"
+    "Integer" -> "SignedInteger"
+    "Integer" -> "UnsignedInteger"
+    "SignedInteger" -> "Int"
+    "SignedInteger" -> "Int16"
+    "SignedInteger" -> "Int32"
+    "SignedInteger" -> "Int64"
+    "SignedInteger" -> "Int8"
+    "UnsignedInteger" -> "UInt"
+    "UnsignedInteger" -> "UInt16"
+    "UnsignedInteger" -> "UInt32"
+    "UnsignedInteger" -> "UInt64"
+    "UnsignedInteger" -> "UInt8"
+    "_DisallowMixedSignArithmetic" -> "UnsignedInteger"
+    "UnsignedInteger" -> "UInt"
+    "UnsignedInteger" -> "UInt16"
+    "UnsignedInteger" -> "UInt32"
+    "UnsignedInteger" -> "UInt64"
+    "UnsignedInteger" -> "UInt8"
+    "_SignedInteger" -> "SignedInteger"
+    "SignedInteger" -> "Int"
+    "SignedInteger" -> "Int16"
+    "SignedInteger" -> "Int32"
+    "SignedInteger" -> "Int64"
+    "SignedInteger" -> "Int8"
+    subgraph Types {
+        rank = max; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8";
+    }
+}

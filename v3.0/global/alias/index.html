@@ -1,0 +1,281 @@
+---
+layout: "default"
+title: "Type Aliases"
+description: "Documentation for global type aliases in the Swift language."
+root: "/v3.0"
+---
+
+<div class="declaration">
+<code class="language-swift">typealias AnyClass = AnyObject.Type</code>
+<div class="comment">
+    <p>The protocol to which all class types implicitly conform.</p>
+
+<p>You can use the <code>AnyClass</code> protocol as the concrete type for an instance of
+any class. When you do, all known <code>@objc</code> class methods and properties are
+available as implicitly unwrapped optional methods and properties,
+respectively. For example:</p>
+
+<pre><code class="language-swift">class IntegerRef {
+    @objc class func getDefaultValue() -&gt; Int {
+        return 42
+    }
+}
+
+func getDefaultValue(_ c: AnyClass) -&gt; Int? {
+    return c.getDefaultValue?()
+}</code></pre>
+
+<p>The <code>getDefaultValue(_:)</code> function uses optional chaining to safely call
+the implicitly unwrapped class method on <code>c</code>. Calling the function with
+different class types shows how the <code>getDefaultValue()</code> class method is
+only conditionally available.</p>
+
+<pre><code class="language-swift">print(getDefaultValue(IntegerRef.self))
+// Prints &quot;Optional(42)&quot;
+
+print(getDefaultValue(NSString.self))
+// Prints &quot;nil&quot;</code></pre>
+
+<p><strong>See Also:</strong> <code>AnyObject</code></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias ArrayLiteralConvertible = ExpressibleByArrayLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias BooleanLiteralConvertible = ExpressibleByBooleanLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias BooleanLiteralType = Bool</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained Boolean literal.</p>
+
+<p>When you create a constant or variable using one of the Boolean literals
+<code>true</code> or <code>false</code>, the resulting type is determined by the
+<code>BooleanLiteralType</code> alias. For example:</p>
+
+<pre><code class="language-swift">let isBool = true
+print(&quot;isBool is a &#39;\(type(of: isBool))&#39;&quot;)
+// Prints &quot;isBool is a &#39;Bool&#39;&quot;</code></pre>
+
+<p>The type aliased by <code>BooleanLiteralType</code> must conform to the
+<code>ExpressibleByBooleanLiteral</code> protocol.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CBool = Bool</code>
+<div class="comment">
+    <p>The C &#39;_Bool&#39; and C++ &#39;bool&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CChar = Int8</code>
+<div class="comment">
+    <p>The C &#39;char&#39; type.</p>
+
+<p>This will be the same as either <code>CSignedChar</code> (in the common
+case) or <code>CUnsignedChar</code>, depending on the platform.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CChar16 = UInt16</code>
+<div class="comment">
+    <p>The C++11 &#39;char16_t&#39; type, which has UTF-16 encoding.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CChar32 = UnicodeScalar</code>
+<div class="comment">
+    <p>The C++11 &#39;char32_t&#39; type, which has UTF-32 encoding.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CDouble = Double</code>
+<div class="comment">
+    <p>The C &#39;double&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CFloat = Float</code>
+<div class="comment">
+    <p>The C &#39;float&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CInt = Int32</code>
+<div class="comment">
+    <p>The C &#39;int&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CLong = Int</code>
+<div class="comment">
+    <p>The C &#39;long&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CLongLong = Int64</code>
+<div class="comment">
+    <p>The C &#39;long long&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CShort = Int16</code>
+<div class="comment">
+    <p>The C &#39;short&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CSignedChar = Int8</code>
+<div class="comment">
+    <p>The C &#39;signed char&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedChar = UInt8</code>
+<div class="comment">
+    <p>The C &#39;unsigned char&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedInt = UInt32</code>
+<div class="comment">
+    <p>The C &#39;unsigned int&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedLong = UInt</code>
+<div class="comment">
+    <p>The C &#39;unsigned long&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedLongLong = UInt64</code>
+<div class="comment">
+    <p>The C &#39;unsigned long long&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CUnsignedShort = UInt16</code>
+<div class="comment">
+    <p>The C &#39;unsigned short&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias CWideChar = UnicodeScalar</code>
+<div class="comment">
+    <p>The C++ &#39;wchar_t&#39; type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias DictionaryLiteralConvertible = ExpressibleByDictionaryLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias ExtendedGraphemeClusterLiteralConvertible = ExpressibleByExtendedGraphemeClusterLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias ExtendedGraphemeClusterType = String</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained Unicode extended
+grapheme cluster literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Float32 = Float</code>
+<div class="comment">
+    <p>A 32-bit floating point type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Float64 = Double</code>
+<div class="comment">
+    <p>A 64-bit floating point type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias FloatLiteralConvertible = ExpressibleByFloatLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias FloatLiteralType = Double</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained floating point literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias IntMax = Int64</code>
+<div class="comment">
+    <p>The largest native signed integer type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias IntegerLiteralConvertible = ExpressibleByIntegerLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias IntegerLiteralType = Int</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained integer literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias NilLiteralConvertible = ExpressibleByNilLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias StringInterpolationConvertible = ExpressibleByStringInterpolation</code>
+<div class="comment">
+    <p><em>Deprecated:</em> it will be replaced or redesigned in Swift 4.0.  Instead of conforming to &#39;StringInterpolationConvertible&#39;, consider adding an &#39;init(_:String)&#39;.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias StringLiteralConvertible = ExpressibleByStringLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias StringLiteralType = String</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained string literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UIntMax = UInt64</code>
+<div class="comment">
+    <p>The largest native unsigned integer type.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnfoldFirstSequence&lt;T&gt; = UnfoldSequence&lt;T, (T?, Bool)&gt;</code>
+<div class="comment">
+    <p>The return type of <code>sequence(first:next:)</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnicodeScalarLiteralConvertible = ExpressibleByUnicodeScalarLiteral</code>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias UnicodeScalarType = String</code>
+<div class="comment">
+    <p>The default type for an otherwise-unconstrained unicode scalar literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">typealias Void = ()</code>
+<div class="comment">
+    <p>The return type of functions that don&#39;t explicitly specify a return type;
+an empty tuple (i.e., <code>()</code>).</p>
+
+<p>When declaring a function or method, you don&#39;t need to specify a return
+type if no value will be returned. However, the type of a function,
+method, or closure always includes a return type, which is <code>Void</code> if
+otherwise unspecified.</p>
+
+<p>Use <code>Void</code> or an empty tuple as the return type when declaring a
+closure, function, or method that doesn&#39;t return a value.</p>
+
+<pre><code class="language-swift">// No return type declared:
+func logMessage(_ s: String) {
+    print(&quot;Message: \(s)&quot;)
+}
+
+let logger: (String) -&gt; Void = logMessage
+logger(&quot;This is a void function&quot;)
+// Prints &quot;Message: This is a void function&quot;</code></pre>
+</div>
+</div>

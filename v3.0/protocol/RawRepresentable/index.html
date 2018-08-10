@@ -1,0 +1,190 @@
+---
+layout: "default"
+title: "RawRepresentable"
+description: "Swift documentation for 'RawRepresentable': A type that can be converted to and from an associated raw value."
+keywords: "RawRepresentable,protocol,swift,documentation,rawValue,RawValue"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol RawRepresentable</code></div>
+
+<div class="discussion comment">
+    <p>A type that can be converted to and from an associated raw value.</p>
+
+<p>With a <code>RawRepresentable</code> type, you can switch back and forth between a
+custom type and an associated <code>RawValue</code> type without losing the value of
+the original <code>RawRepresentable</code> type. Using the raw value of a conforming
+type streamlines interoperation with Objective-C and legacy APIs and
+simplifies conformance to other protocols, such as <code>Equatable</code>,
+<code>Comparable</code>, and <code>Hashable</code>.</p>
+
+<p>The <code>RawRepresentable</code> protocol is seen mainly in two categories of types:
+enumerations with raw value types and option sets.</p>
+
+<h1>Enumerations with Raw Values</h1>
+
+<p>For any enumeration with a string, integer, or floating-point raw type, the
+Swift compiler automatically adds <code>RawRepresentable</code> conformance. When
+defining your own custom enumeration, you give it a raw type by specifying
+the raw type as the first item in the enumeration&#39;s type inheritance list.
+You can also use literals to specify values for one or more cases.</p>
+
+<p>For example, the <code>Counter</code> enumeration defined here has an <code>Int</code> raw value
+type and gives the first case a raw value of <code>1</code>:</p>
+
+<pre><code class="language-swift">enum Counter: Int {
+    case one = 1, two, three, four, five
+}</code></pre>
+
+<p>You can create a <code>Counter</code> instance from an integer value between 1 and 5
+by using the <code>init?(rawValue:)</code> initializer declared in the
+<code>RawRepresentable</code> protocol. This initializer is failable because although
+every case of the <code>Counter</code> type has a corresponding <code>Int</code> value, there
+are many <code>Int</code> values that <em>don&#39;t</em> correspond to a case of <code>Counter</code>.</p>
+
+<pre><code class="language-swift">for i in 3...6 {
+    print(Counter(rawValue: i))
+}
+// Prints &quot;Optional(Counter.three)&quot;
+// Prints &quot;Optional(Counter.four)&quot;
+// Prints &quot;Optional(Counter.five)&quot;
+// Prints &quot;nil&quot;</code></pre>
+
+<h1>Option Sets</h1>
+
+<p>Option sets all conform to <code>RawRepresentable</code> by inheritance using the
+<code>OptionSet</code> protocol. Whether using an option set or creating your own,
+you use the raw value of an option set instance to store the instance&#39;s
+bitfield. The raw value must therefore be of a type that conforms to the
+<code>BitwiseOperations</code> protocol, such as <code>UInt8</code> or <code>Int</code>. For example, the
+<code>Direction</code> type defines an option set for the four directions you can
+move in a game.</p>
+
+<pre><code class="language-swift">struct Directions: OptionSet {
+    let rawValue: UInt8
+
+    static let up    = Directions(rawValue: 1 &lt;&lt; 0)
+    static let down  = Directions(rawValue: 1 &lt;&lt; 1)
+    static let left  = Directions(rawValue: 1 &lt;&lt; 2)
+    static let right = Directions(rawValue: 1 &lt;&lt; 3)
+}</code></pre>
+
+<p>Unlike enumerations, option sets provide a nonfailable <code>init(rawValue:)</code>
+initializer to convert from a raw value, because option sets don&#39;t have an
+enumerated list of all possible cases. Option set values have
+a one-to-one correspondence with their associated raw values.</p>
+
+<p>In the case of the <code>Directions</code> option set, an instance can contain zero,
+one, or more of the four defined directions. This example declares a
+constant with three currently allowed moves. The raw value of the
+<code>allowedMoves</code> instance is the result of the bitwise OR of its three
+members&#39; raw values:</p>
+
+<pre><code class="language-swift">let allowedMoves: Directions = [.up, .down, .left]
+print(allowedMoves.rawValue)
+// Prints &quot;7&quot;</code></pre>
+
+<p>Option sets use bitwise operations on their associated raw values to
+implement their mathematical set operations. For example, the <code>contains()</code>
+method on <code>allowedMoves</code> performs a bitwise AND operation to check whether
+the option set contains an element.</p>
+
+<pre><code class="language-swift">print(allowedMoves.contains(.right))
+// Prints &quot;false&quot;
+print(allowedMoves.rawValue &amp; Directions.right.rawValue)
+// Prints &quot;0&quot;</code></pre>
+
+<p><strong>See Also:</strong> <code>OptionSet</code>, <code>BitwiseOperations</code></p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">RawValue</code>
+<div class="comment">
+    <p>The raw type that can be used to represent all values of the conforming
+type.</p>
+
+<p>Every distinct value of the conforming type has a corresponding unique
+value of the <code>RawValue</code> type, but there may be values of the <code>RawValue</code>
+type that don&#39;t have a corresponding value of the conforming type.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-rawvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-rawvalue_">init?(<wbr>rawValue:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-rawvalue_"><div class="p">
+    <p>Creates a new instance with the specified raw value.</p>
+
+<p>If there is no value of the type that corresponds with the specified raw
+value, this initializer returns <code>nil</code>. For example:</p>
+
+<pre><code class="language-swift">enum PaperSize: String {
+    case A4, A5, Letter, Legal
+}
+
+print(PaperSize(rawValue: &quot;Legal&quot;))
+// Prints &quot;Optional(&quot;PaperSize.Legal&quot;)&quot;
+
+print(PaperSize(rawValue: &quot;Tabloid&quot;))
+// Prints &quot;nil&quot;</code></pre>
+
+<p><strong><code>rawValue</code>:</strong>  The raw value to use for the new instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(rawValue: Self.RawValue)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-rawvalue_-self-rawvalue">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-rawvalue_-self-rawvalue">var rawValue: Self.RawValue</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-rawvalue_-self-rawvalue"><div class="p">
+    <p>The corresponding value of the raw type.</p>
+
+<p>A new instance initialized with <code>rawValue</code> will be equivalent to this
+instance. For example:</p>
+
+<pre><code class="language-swift">enum PaperSize: String {
+    case A4, A5, Letter, Legal
+}
+
+let selectedSize = PaperSize.Letter
+print(selectedSize.rawValue)
+// Prints &quot;Letter&quot;
+
+print(selectedSize == PaperSize(rawValue: selectedSize.rawValue)!)
+// Prints &quot;true&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var rawValue: Self.RawValue { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+

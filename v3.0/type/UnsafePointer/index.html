@@ -1,0 +1,295 @@
+---
+layout: "default"
+title: "UnsafePointer"
+description: "Swift documentation for 'UnsafePointer': A raw pointer for accessing data of type Pointee.  This type."
+keywords: "UnsafePointer,struct,swift,documentation,advanced,distance,predecessor,successor,withMemoryRebound,customMirror,customPlaygroundQuickLook,debugDescription,hashValue,pointee,Distance"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct UnsafePointer&lt;Pointee&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A raw pointer for accessing data of type <code>Pointee</code>.  This type
+provides no automated memory management, and therefore must
+be handled with great care to ensure safety.</p>
+
+<p>Instances must be aligned to <code>MemoryLayout&lt;Pointee&gt;.alignment</code>, i.e.
+<code>(UnsafePointer&lt;Int8&gt;(self) - nil) % MemoryLayout&lt;Pointee&gt;.alignment == 0</code></p>
+
+<p>The memory referenced by an instance can be in one of the following states:</p>
+
+<ul><li><p>Memory is not allocated (for example, pointer is null, or memory has
+been deallocated previously).</p></li><li><p>Memory is allocated, but value has not been initialized.</p></li><li><p>Memory is allocated and value is initialized.</p></li></ul>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CVarArg, Comparable, CustomDebugStringConvertible, CustomPlaygroundQuickLookable, CustomReflectable, Equatable, Hashable, Strideable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Distance = Int</code>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_-opaquepointer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-opaquepointer">init(<wbr>_: OpaquePointer)</a><div class="comment collapse" id="comment-init_-opaquepointer"><div class="p">
+    <p>Converts from an opaque pointer to a typed pointer.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ from: OpaquePointer)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unsafemutablepointer-pointee">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unsafemutablepointer-pointee">init(<wbr>_: UnsafeMutablePointer&lt;Pointee&gt;)</a><div class="comment collapse" id="comment-init_-unsafemutablepointer-pointee"><div class="p">
+    <p>Converts from <code>UnsafeMutablePointer</code> to an <code>UnsafePointer</code> of the same <code>Pointee</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ other: UnsafeMutablePointer&lt;Pointee&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unsafepointer-pointee">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unsafepointer-pointee">init(<wbr>_: UnsafePointer&lt;Pointee&gt;)</a><div class="comment collapse" id="comment-init_-unsafepointer-pointee"><div class="p">
+    <p>Creates an <code>UnsafePointer</code> from another <code>UnsafePointer</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ other: UnsafePointer&lt;Pointee&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-opaquepointer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-opaquepointer">init?(<wbr>_: OpaquePointer?)</a><div class="comment collapse" id="comment-init_-opaquepointer"><div class="p">
+    <p>Converts from an opaque pointer to a typed pointer.</p>
+
+<p>Returns <code>nil</code> if <code>from</code> is <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ from: OpaquePointer?)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unsafemutablepointer-pointee">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unsafemutablepointer-pointee">init?(<wbr>_: UnsafeMutablePointer&lt;Pointee&gt;?)</a><div class="comment collapse" id="comment-init_-unsafemutablepointer-pointee"><div class="p">
+    <p>Converts from <code>UnsafeMutablePointer</code> to an <code>UnsafePointer</code> of the same <code>Pointee</code>.</p>
+
+<p>Returns nil if <code>from</code> is nil.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ other: UnsafeMutablePointer&lt;Pointee&gt;?)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unsafepointer-pointee">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unsafepointer-pointee">init?(<wbr>_: UnsafePointer&lt;Pointee&gt;?)</a><div class="comment collapse" id="comment-init_-unsafepointer-pointee"><div class="p">
+    <p>Creates an <code>UnsafePointer</code> from another <code>UnsafePointer</code>.</p>
+
+<p>Returns <code>nil</code> if <code>other</code> is <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ other: UnsafePointer&lt;Pointee&gt;?)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-bitpattern_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-bitpattern_-int">init?(<wbr>bitPattern: Int)</a><div class="comment collapse" id="comment-init-bitpattern_-int"><div class="p">
+    <p>Creates an <code>UnsafePointer</code> with a given pattern of bits.</p>
+
+<p>Returns <code>nil</code> if <code>bitPattern</code> is zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(bitPattern: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-bitpattern_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-bitpattern_-uint">init?(<wbr>bitPattern: UInt)</a><div class="comment collapse" id="comment-init-bitpattern_-uint"><div class="p">
+    <p>Creates an <code>UnsafePointer</code> with a given pattern of bits.</p>
+
+<p>Returns <code>nil</code> if <code>bitPattern</code> is zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(bitPattern: UInt)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>The custom mirror for this instance.</p>
+
+<p>If this type has value semantics, the mirror should be unaffected by
+subsequent mutations of the instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-customplaygroundquicklook_-playgroundquicklook">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-customplaygroundquicklook_-playgroundquicklook">var customPlaygroundQuickLook: PlaygroundQuickLook</a><div class="comment collapse" id="comment-var-customplaygroundquicklook_-playgroundquicklook"><div class="p">
+    <p>A custom playground Quick Look for this instance.</p>
+
+<p>If this type has value semantics, the <code>PlaygroundQuickLook</code> instance
+should be unaffected by subsequent mutations.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customPlaygroundQuickLook: PlaygroundQuickLook { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of the pointer, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The pointer&#39;s hash value.</p>
+
+<p>The hash value is not guaranteed to be stable across different
+invocations of the same program.  Do not persist the hash value across
+program runs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-pointee_-pointee">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-pointee_-pointee">var pointee: Pointee</a><div class="comment collapse" id="comment-var-pointee_-pointee"><div class="p">
+    <p>Accesses the <code>Pointee</code> instance referenced by <code>self</code>.</p>
+
+<p><strong>Precondition:</strong> the pointee has been initialized with an instance of
+  type <code>Pointee</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var pointee: Pointee { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-int">subscript(_: Int)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-int"><div class="p">
+    <p>Accesses the pointee at <code>self + i</code>.</p>
+
+<p><strong>Precondition:</strong> the pointee at <code>self + i</code> is initialized.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(i: Int) -&gt; Pointee { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-advanced-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advanced-by_">func advanced(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-advanced-by_"><div class="p">
+    <p>Returns <code>self + n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advanced(by n: Int) -&gt; UnsafePointer&lt;Pointee&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-distance-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distance-to_">func distance(<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-distance-to_"><div class="p">
+    <p>Returns <code>end - self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(to x: UnsafePointer&lt;Pointee&gt;) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-predecessor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-predecessor">func predecessor()</a>
+        
+<div class="comment collapse" id="comment-func-predecessor"><div class="p">
+    <p>Returns the previous consecutive position.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func predecessor() -&gt; UnsafePointer&lt;Pointee&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-successor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-successor">func successor()</a>
+        
+<div class="comment collapse" id="comment-func-successor"><div class="p">
+    <p>Returns the next consecutive position.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func successor() -&gt; UnsafePointer&lt;Pointee&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-withmemoryrebound_capacity__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withmemoryrebound_capacity__">func withMemoryRebound(<wbr>_:<wbr>capacity:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withmemoryrebound_capacity__"><div class="p">
+    <p>Rebinds memory at <code>self</code> to type <code>T</code> with capacity to hold <code>count</code>
+adjacent <code>T</code> values while executing the <code>body</code> closure.</p>
+
+<p>After executing the closure, rebinds memory back to <code>Pointee</code>.</p>
+
+<p><strong>Precondition:</strong> Type &#39;T&#39; is layout compatible with type &#39;Pointee&#39;.
+<strong>Precondition:</strong> The memory <code>self..&lt;self + count * MemoryLayout&lt;T&gt;.stride</code>
+  is bound to <code>Pointee</code>.</p>
+
+<p>Accessing <code>UnsafePointer&lt;T&gt;.pointee</code> requires that the memory be &quot;bound&quot; to
+type <code>T</code>.  A memory location may only be bound to one type at a time, so
+accessing the same memory as an unrelated type without first rebinding the
+memory is undefined. <code>self</code> may not be accessed within the <code>body</code> closure
+because memory is no longer bound to <code>Pointee</code> while it executes. The
+closure&#39;s <code>UnsafePointer&lt;T&gt;</code> argument must not escape the closure because memory
+is only temporarily bound to <code>T</code>.</p>
+
+<p>To persistently bind this memory to a different type, first obtain a
+raw pointer to the memory, then invoke the <code>bindMemory</code> API:
+<code>UnsafeRawPointer(typedPointer).bindMemory(to:capacity:)</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withMemoryRebound&lt;T, Result&gt;(to: T.Type, capacity count: Int, _ body: (UnsafePointer&lt;T&gt;) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+    
+</div></div>
+</div>
+
+

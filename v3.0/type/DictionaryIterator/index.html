@@ -1,0 +1,66 @@
+---
+layout: "default"
+title: "DictionaryIterator"
+description: "Swift documentation for 'DictionaryIterator': An iterator over the members of a Dictionary&lt;Key, Value&gt;."
+keywords: "DictionaryIterator,struct,swift,documentation,next,customMirror"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct DictionaryIterator&lt;Key : Hashable, Value&gt;</code></div>
+
+<div class="discussion comment">
+    <p>An iterator over the members of a <code>Dictionary&lt;Key, Value&gt;</code>.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CustomReflectable, IteratorProtocol</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>A mirror that reflects the iterator.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-next">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-next">mutating func next()</a>
+        
+<div class="comment collapse" id="comment-func-next"><div class="p">
+    <p>Advances to the next element and returns it, or <code>nil</code> if no next element
+exists.</p>
+
+<p>Once <code>nil</code> has been returned, all subsequent calls return <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next() -&gt; (key: Key, value: Value)?</code>
+    
+    
+</div></div>
+</div>
+
+

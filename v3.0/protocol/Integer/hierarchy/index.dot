@@ -1,0 +1,58 @@
+strict digraph "Integer - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BitwiseOperations" [URL="/protocol/BitwiseOperations/hierarchy/"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByIntegerLiteral" [URL="/protocol/ExpressibleByIntegerLiteral/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "Int" [URL="/type/Int/hierarchy/", style=filled]
+    "Int16" [URL="/type/Int16/hierarchy/", style=filled]
+    "Int32" [URL="/type/Int32/hierarchy/", style=filled]
+    "Int64" [URL="/type/Int64/hierarchy/", style=filled]
+    "Int8" [URL="/type/Int8/hierarchy/", style=filled]
+    "Integer" [URL="/protocol/Integer/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "IntegerArithmetic" [URL="/protocol/IntegerArithmetic/hierarchy/"]
+    "SignedInteger" [URL="/protocol/SignedInteger/hierarchy/"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]
+    "UInt" [URL="/type/UInt/hierarchy/", style=filled]
+    "UInt16" [URL="/type/UInt16/hierarchy/", style=filled]
+    "UInt32" [URL="/type/UInt32/hierarchy/", style=filled]
+    "UInt64" [URL="/type/UInt64/hierarchy/", style=filled]
+    "UInt8" [URL="/type/UInt8/hierarchy/", style=filled]
+    "UnsignedInteger" [URL="/protocol/UnsignedInteger/hierarchy/"]
+    "_Incrementable" [URL="/protocol/_Incrementable/hierarchy/"]
+    "_Integer" [URL="/protocol/_Integer/hierarchy/"]
+    "_IntegerArithmetic" [URL="/protocol/_IntegerArithmetic/hierarchy/"]    "Integer" -> "SignedInteger"
+    "Integer" -> "UnsignedInteger"
+    "SignedInteger" -> "Int"
+    "SignedInteger" -> "Int16"
+    "SignedInteger" -> "Int32"
+    "SignedInteger" -> "Int64"
+    "SignedInteger" -> "Int8"
+    "UnsignedInteger" -> "UInt"
+    "UnsignedInteger" -> "UInt16"
+    "UnsignedInteger" -> "UInt32"
+    "UnsignedInteger" -> "UInt64"
+    "UnsignedInteger" -> "UInt8"
+    "_Integer" -> "Integer"
+    "Strideable" -> "Integer"
+    "ExpressibleByIntegerLiteral" -> "_Integer"
+    "CustomStringConvertible" -> "_Integer"
+    "Hashable" -> "_Integer"
+    "IntegerArithmetic" -> "_Integer"
+    "BitwiseOperations" -> "_Integer"
+    "_Incrementable" -> "_Integer"
+    "Equatable" -> "Hashable"
+    "_IntegerArithmetic" -> "IntegerArithmetic"
+    "Comparable" -> "IntegerArithmetic"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "_Incrementable"
+    "Comparable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8";
+    }
+}

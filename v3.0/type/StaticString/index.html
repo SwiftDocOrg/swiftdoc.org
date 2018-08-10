@@ -1,0 +1,212 @@
+---
+layout: "default"
+title: "StaticString"
+description: "Swift documentation for 'StaticString': A string type designed to represent text that is known at compile time."
+keywords: "StaticString,struct,swift,documentation,withUTF8Buffer,customMirror,debugDescription,description,hasPointerRepresentation,isASCII,unicodeScalar,utf8CodeUnitCount,utf8Start"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct StaticString</code></div>
+
+<div class="discussion comment">
+    <p>A string type designed to represent text that is known at compile time.</p>
+
+<p>Instances of the <code>StaticString</code> type are immutable. <code>StaticString</code> provides
+limited, pointer-based access to its contents, unlike Swift&#39;s more
+commonly used <code>String</code> type. A static string can store its value as a
+pointer to an ASCII code unit sequence, as a pointer to a UTF-8 code unit
+sequence, or as a single Unicode scalar value.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CustomDebugStringConvertible, CustomReflectable, CustomStringConvertible, ExpressibleByExtendedGraphemeClusterLiteral, ExpressibleByStringLiteral, ExpressibleByUnicodeScalarLiteral</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Creates an empty static string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-extendedgraphemeclusterliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-extendedgraphemeclusterliteral_">init(<wbr>extendedGraphemeClusterLiteral:)</a><div class="comment collapse" id="comment-init-extendedgraphemeclusterliteral_"><div class="p">
+    <p>Creates an instance initialized to a single character that is made up of
+one or more Unicode code points.</p>
+
+<p>Do not call this initializer directly. It may be used by the compiler
+when you initialize a static string using an extended grapheme cluster.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(extendedGraphemeClusterLiteral value: StaticString)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-stringliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-stringliteral_">init(<wbr>stringLiteral:)</a><div class="comment collapse" id="comment-init-stringliteral_"><div class="p">
+    <p>Creates an instance initialized to the value of a string literal.</p>
+
+<p>Do not call this initializer directly. It may be used by the compiler
+when you initialize a static string using a string literal.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(stringLiteral value: StaticString)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-unicodescalarliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-unicodescalarliteral_">init(<wbr>unicodeScalarLiteral:)</a><div class="comment collapse" id="comment-init-unicodescalarliteral_"><div class="p">
+    <p>Creates an instance initialized to a single Unicode scalar.</p>
+
+<p>Do not call this initializer directly. It may be used by the compiler
+when you initialize a static string with a Unicode scalar.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(unicodeScalarLiteral value: StaticString)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>The custom mirror for this instance.</p>
+
+<p>If this type has value semantics, the mirror should be unaffected by
+subsequent mutations of the instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of the static string, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A string representation of the static string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-haspointerrepresentation_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-haspointerrepresentation_-bool">var hasPointerRepresentation: Bool</a><div class="comment collapse" id="comment-var-haspointerrepresentation_-bool"><div class="p">
+    <p>A Boolean value indicating whether the static string stores a pointer to
+ASCII or UTF-8 code units.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hasPointerRepresentation: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-isascii_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isascii_-bool">var isASCII: Bool</a><div class="comment collapse" id="comment-var-isascii_-bool"><div class="p">
+    <p>A Boolean value that is <code>true</code> if the static string stores a pointer to
+ASCII code units.</p>
+
+<p>Use this property in conjunction with <code>hasPointerRepresentation</code> to
+determine whether a static string with pointer representation stores an
+ASCII or UTF-8 code unit sequence.</p>
+
+<p><strong>Warning:</strong> If the static string stores a single Unicode scalar value, the
+  value of <code>isASCII</code> is unspecified.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isASCII: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-unicodescalar_-unicodescalar">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-unicodescalar_-unicodescalar">var unicodeScalar: UnicodeScalar</a><div class="comment collapse" id="comment-var-unicodescalar_-unicodescalar"><div class="p">
+    <p>The stored Unicode scalar value.</p>
+
+<p>The static string must store a single Unicode scalar value. Accessing
+this property when <code>hasPointerRepresentation</code> is <code>true</code> triggers a
+runtime error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var unicodeScalar: UnicodeScalar { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-utf8codeunitcount_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-utf8codeunitcount_-int">var utf8CodeUnitCount: Int</a><div class="comment collapse" id="comment-var-utf8codeunitcount_-int"><div class="p">
+    <p>The length in bytes of the static string&#39;s ASCII or UTF-8 representation.</p>
+
+<p><strong>Warning:</strong> If the static string stores a single Unicode scalar value, the
+  value of <code>utf8CodeUnitCount</code> is unspecified.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var utf8CodeUnitCount: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-utf8start_-unsafepointer-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-utf8start_-unsafepointer-uint8">var utf8Start: UnsafePointer&lt;UInt8&gt;</a><div class="comment collapse" id="comment-var-utf8start_-unsafepointer-uint8"><div class="p">
+    <p>A pointer to the beginning of the string&#39;s UTF-8 encoded representation.</p>
+
+<p>The static string must store a pointer to either ASCII or UTF-8 code
+units. Accessing this property when <code>hasPointerRepresentation</code> is
+<code>false</code> triggers a runtime error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var utf8Start: UnsafePointer&lt;UInt8&gt; { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-withutf8buffer_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withutf8buffer_">func withUTF8Buffer(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withutf8buffer_"><div class="p">
+    <p>Invokes the given closure with a buffer containing the static string&#39;s
+UTF-8 code unit sequence.</p>
+
+<p>This method works regardless of whether the static string stores a
+pointer or a single Unicode scalar value.</p>
+
+<p><strong><code>body</code>:</strong>  A closure that takes a buffer pointer to the static
+  string&#39;s UTF-8 code unit sequence as its sole argument. If the closure
+  has a return value, it is used as the return value of the
+  <code>withUTF8Buffer(invoke:)</code> method.
+<strong>Returns:</strong> The return value of the <code>body</code> closure, if any.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withUTF8Buffer&lt;R&gt;(_ body: (UnsafeBufferPointer&lt;UInt8&gt;) -&gt; R) -&gt; R</code>
+    
+    
+</div></div>
+</div>
+
+

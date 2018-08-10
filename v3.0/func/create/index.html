@@ -1,0 +1,33 @@
+---
+layout: "default"
+title: "create"
+description: "Swift documentation for 'create': A class whose instances contain a property of type Header and raw."
+keywords: "create,func,swift,documentation"
+root: "/v3.0"
+---
+
+<div class="declaration" id="func-create_-int-makingheaderwith_-managedbuffer-header-element-throws-header">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-create_-int-makingheaderwith_-managedbuffer-header-element-throws-header">final class func create(<wbr>_:<wbr> Int, makingHeaderWith: (ManagedBuffer&lt;Header, Element&gt;) throws -&gt; Header)</a>
+        
+<div class="comment collapse" id="comment-func-create_-int-makingheaderwith_-managedbuffer-header-element-throws-header"><div class="p">
+    <p>A class whose instances contain a property of type <code>Header</code> and raw
+storage for an array of <code>Element</code>, whose size is determined at
+instance creation.</p>
+
+<p>Note that the <code>Element</code> array is suitably-aligned <strong>raw memory</strong>.
+You are expected to construct and---if necessary---destroy objects
+there yourself, using the APIs on <code>UnsafeMutablePointer&lt;Element&gt;</code>.
+Typical usage stores a count and capacity in <code>Header</code> and destroys
+any live elements in the <code>deinit</code> of a subclass.
+<strong>Note:</strong> Subclasses must not have any stored properties; any storage
+  needed should be included in <code>Header</code>.
+Create a new instance of the most-derived class, calling
+<code>factory</code> on the partially-constructed object to generate
+an initial <code>Header</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">final class func create(minimumCapacity: Int, makingHeaderWith factory: (ManagedBuffer&lt;Header, Element&gt;) throws -&gt; Header) rethrows -&gt; ManagedBuffer&lt;Header, Element&gt;</code>
+    
+    
+</div></div>
+</div>

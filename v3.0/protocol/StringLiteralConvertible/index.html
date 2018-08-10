@@ -1,0 +1,115 @@
+---
+layout: "default"
+title: "StringLiteralConvertible"
+description: "Swift documentation for 'StringLiteralConvertible': A type that can be initialized with a string literal."
+keywords: "StringLiteralConvertible,protocol,swift,documentation,StringLiteralType,ExtendedGraphemeClusterLiteralType,UnicodeScalarLiteralType"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol StringLiteralConvertible</code></div>
+
+<div class="discussion comment">
+    <p>A type that can be initialized with a string literal.</p>
+
+<p>The <code>String</code> and <code>StaticString</code> types conform to the
+<code>StringLiteralConvertible</code> protocol. You can initialize a variable or
+constant of either of these types using a string literal of any length.</p>
+
+<pre><code class="language-swift">let picnicGuest = &quot;Deserving porcupine&quot;</code></pre>
+
+<h1>Conforming to StringLiteralConvertible</h1>
+
+<p>To add <code>StringLiteralConvertible</code> conformance to your custom type,
+implement the required initializer.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">ExtendedGraphemeClusterLiteralConvertible, UnicodeScalarLiteralConvertible</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">StringLiteralType</code>
+<div class="comment">
+    <p>A type that can represent a string literal.</p>
+
+<p>Valid types for <code>StringLiteralType</code> are <code>String</code> and <code>StaticString</code>.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">ExtendedGraphemeClusterLiteralType</code>
+<div class="comment">
+    <p>A type that can represent an extended grapheme cluster literal.</p>
+
+<p>Valid types for <code>ExtendedGraphemeClusterLiteralType</code> are <code>Character</code>,
+<code>String</code>, and <code>StaticString</code>.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">UnicodeScalarLiteralType</code>
+<div class="comment">
+    <p>A type that can represent a Unicode scalar literal.</p>
+
+<p>Valid types for <code>UnicodeScalarLiteralType</code> are <code>UnicodeScalar</code>,
+<code>String</code>, and <code>StaticString</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-stringliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-stringliteral_">init(<wbr>stringLiteral:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-stringliteral_"><div class="p">
+    <p>Creates an instance initialized to the given string value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(stringLiteral value: Self.StringLiteralType)</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="init-extendedgraphemeclusterliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-extendedgraphemeclusterliteral_">init(<wbr>extendedGraphemeClusterLiteral:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-extendedgraphemeclusterliteral_"><div class="p">
+    <p>Creates an instance initialized to the given value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(extendedGraphemeClusterLiteral value: Self.ExtendedGraphemeClusterLiteralType)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/ExtendedGraphemeClusterLiteralConvertible/"><code>ExtendedGraphemeClusterLiteralConvertible</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-unicodescalarliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-unicodescalarliteral_">init(<wbr>unicodeScalarLiteral:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-unicodescalarliteral_"><div class="p">
+    <p>Creates an instance initialized to the given value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(unicodeScalarLiteral value: Self.UnicodeScalarLiteralType)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/UnicodeScalarLiteralConvertible/"><code>UnicodeScalarLiteralConvertible</code></a>
+        </div></div>
+</div>
+
+
+
+
+
+
+

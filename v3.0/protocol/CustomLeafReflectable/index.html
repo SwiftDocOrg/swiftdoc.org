@@ -1,0 +1,57 @@
+---
+layout: "default"
+title: "CustomLeafReflectable"
+description: "Swift documentation for 'CustomLeafReflectable': A type that explicitly supplies its own mirror, but whose."
+keywords: "CustomLeafReflectable,protocol,swift,documentation,customMirror"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CustomLeafReflectable</code></div>
+
+<div class="discussion comment">
+    <p>A type that explicitly supplies its own mirror, but whose
+descendant classes are not represented in the mirror unless they
+also override <code>customMirror</code>.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CustomReflectable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration inherited" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>The custom mirror for this instance.</p>
+
+<p>If this type has value semantics, the mirror should be unaffected by
+subsequent mutations of the instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CustomReflectable/"><code>CustomReflectable</code></a>
+        </div></div>
+</div>
+
+
+
+
+

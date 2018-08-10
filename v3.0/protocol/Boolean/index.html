@@ -1,0 +1,87 @@
+---
+layout: "default"
+title: "Boolean"
+description: "Swift documentation for 'Boolean': A type that represents a Boolean value."
+keywords: "Boolean,protocol,swift,documentation,boolValue"
+root: "/v3.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Boolean</code></div>
+
+<div class="discussion comment">
+    <p>A type that represents a Boolean value.</p>
+
+<p>Types that conform to the <code>Boolean</code> protocol can be used as the condition
+in control statements, such as <code>if</code> and <code>while</code>, and in other contexts
+that require a logical value, such as the <code>where</code> clause of a <code>case</code>
+statement.</p>
+
+<p>Swift uses only simple Boolean values in conditional contexts to help avoid
+accidental programming errors and to help maintain the clarity of each
+control statement. Unlike other programming languages, integers or strings
+cannot be used where a Boolean value is expected.</p>
+
+<p>For example, the following code sample will not compile, because it
+attempts to use the integer <code>i</code> in a logical context:</p>
+
+<pre><code class="language-swift">var i = 5
+while i {
+    print(i)
+    i -= 1
+}</code></pre>
+
+<p>The correct approach in Swift is to compare the <code>i</code> value with zero in the
+<code>while</code> statement.</p>
+
+<pre><code class="language-swift">while i != 0 {
+    print(i)
+    i -= 1
+}</code></pre>
+
+<h1>Conforming to the Boolean Protocol</h1>
+
+<p>Only three types provided by Swift---<code>Bool</code>, <code>DarwinBoolean</code>, and
+<code>ObjCBool</code>---conform to the <code>Boolean</code> protocol. Expanding this set to
+include types that represent more than simple Boolean values is
+discouraged.</p>
+
+<p>To add <code>Boolean</code> conformance to your custom type, implement a <code>boolValue</code>
+property that represents your type as an instance of <code>Bool</code>, the default
+concrete type for the <code>Boolean</code> protocol.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-boolvalue_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-boolvalue_-bool">var boolValue: Bool</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-boolvalue_-bool"><div class="p">
+    <p>This value expressed as a <code>Bool</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var boolValue: Bool { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+
