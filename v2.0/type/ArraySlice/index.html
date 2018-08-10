@@ -1,0 +1,1468 @@
+---
+layout: "default"
+title: "ArraySlice"
+description: "Swift documentation for 'ArraySlice': The Array-like type that represents a sub-sequence of any
+Array, ContiguousArray, or other ArraySlice."
+keywords: "ArraySlice,struct,swift,documentation,append,appendContentsOf,appendContentsOf,appendContentsOf,contains,dropFirst,dropFirst,dropLast,dropLast,elementsEqual,enumerate,filter,flatMap,flatMap,forEach,generate,indexOf,insert,insertContentsOf,lexicographicalCompare,map,maxElement,minElement,partition,popFirst,popLast,prefix,prefixThrough,prefixUpTo,reduce,removeAll,removeAtIndex,removeFirst,removeFirst,removeLast,removeRange,replaceRange,reserveCapacity,reverse,sort,sortInPlace,split,startsWith,suffix,suffixFrom,underestimateCount,withUnsafeBufferPointer,withUnsafeMutableBufferPointer,capacity,count,debugDescription,description,endIndex,first,indices,isEmpty,last,lazy,startIndex,Generator,Element,Index,SubSequence"
+root: "/v2.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct ArraySlice&lt;Element&gt;</code></div>
+
+<div class="discussion comment">
+    <p>The <code>Array</code>-like type that represents a sub-sequence of any
+<code>Array</code>, <code>ContiguousArray</code>, or other <code>ArraySlice</code>.</p>
+
+<p><code>ArraySlice</code> always uses contiguous storage and does not bridge to
+Objective-C.</p>
+
+<p><strong>Warning:</strong> Long-term storage of <code>ArraySlice</code> instances is discouraged.</p>
+
+<p>Because a <code>ArraySlice</code> presents a <em>view</em> onto the storage of some
+larger array even after the original array&#39;s lifetime ends,
+storing the slice may prolong the lifetime of elements that are
+no longer accessible, which can manifest as apparent memory and
+object leakage.  To prevent this effect, use <code>ArraySlice</code> only for
+transient computation.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">ArrayLiteralConvertible, CollectionType, CustomDebugStringConvertible, CustomStringConvertible, Indexable, MutableCollectionType, MutableIndexable, MutableSliceable, RangeReplaceableCollectionType, SequenceType, _ArrayType, _DestructorSafeContainer, _Reflectable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Generator = IndexingGenerator&lt;ArraySlice&lt;Element&gt;&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Element = Element</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Index = Int</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence = ArraySlice&lt;Element&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Construct an empty ArraySlice.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Construct from an arbitrary sequence with elements of type <code>Element</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;S : SequenceType where S.Generator.Element == _Buffer.Element&gt;(_ s: S)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-arrayliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-arrayliteral_">init(<wbr>arrayLiteral:)</a><div class="comment collapse" id="comment-init-arrayliteral_"><div class="p">
+    <p>Create an instance containing <code>elements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(arrayLiteral elements: Element...)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-count_repeatedvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-count_repeatedvalue_">init(<wbr>count:<wbr>repeatedValue:)</a><div class="comment collapse" id="comment-init-count_repeatedvalue_"><div class="p">
+    <p>Construct a ArraySlice of <code>count</code> elements, each initialized to
+<code>repeatedValue</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(count: Int, repeatedValue: Element)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-capacity_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-capacity_-int">var capacity: Int</a><div class="comment collapse" id="comment-var-capacity_-int"><div class="p">
+    <p>The number of elements the <code>ArraySlice</code> can store without reallocation.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var capacity: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int</a><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    <p>The number of elements the ArraySlice stores.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-endindex_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-int">var endIndex: Int</a><div class="comment collapse" id="comment-var-endindex_-int"><div class="p">
+    <p>A &quot;past-the-end&quot; element index; the successor of the last valid
+subscript argument.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="var-first_-self-generator-element">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-first_-self-generator-element">var first: Element?</a><div class="comment collapse" id="comment-var-first_-self-generator-element"><div class="p">
+    <p>Returns the first element of <code>self</code>, or <code>nil</code> if <code>self</code> is empty.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var first: Element? { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-indices_-range-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-indices_-range-self-index">var indices: Range&lt;Int&gt;</a><div class="comment collapse" id="comment-var-indices_-range-self-index"><div class="p">
+    <p>Return the range of valid index values.</p>
+
+<p>The result&#39;s <code>endIndex</code> is the same as that of <code>self</code>.  Because
+<code>Range</code> is half-open, iterating the values of the result produces
+all valid subscript arguments for <code>self</code>, omitting its <code>endIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var indices: Range&lt;Int&gt; { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p>Returns <code>true</code> iff <code>self</code> is empty.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-last_-self-generator-element">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-last_-self-generator-element">var last: Element?</a><div class="comment collapse" id="comment-var-last_-self-generator-element"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var last: Element? { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-lazy_-lazycollection-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-lazy_-lazycollection-self">var lazy: LazyCollection&lt;ArraySlice&lt;Element&gt;&gt;</a><div class="comment collapse" id="comment-var-lazy_-lazycollection-self"><div class="p">
+    <p>A collection with contents identical to <code>self</code>, but on which
+normally-eager operations such as <code>map</code> and <code>filter</code> are
+implemented lazily.</p>
+
+<p><strong>See Also:</strong> <code>LazySequenceType</code>, <code>LazyCollectionType</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var lazy: LazyCollection&lt;ArraySlice&lt;Element&gt;&gt; { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="var-startindex_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-int">var startIndex: Int</a><div class="comment collapse" id="comment-var-startindex_-int"><div class="p">
+    <p>Always zero, which is the index of the first element when non-empty.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: Int { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-int">subscript(_: Int)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(index: Int) -&gt; Element</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="subscript-subscript_-range-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-range-int">subscript(_: Range&lt;Int&gt;)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-range-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(subRange: Range&lt;Int&gt;) -&gt; ArraySlice&lt;Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ArraySlice/"><code>ArraySlice</code></a>,    <a href="../../protocol/MutableCollectionType/"><code>MutableCollectionType</code></a>    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-append_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-append_">mutating func append(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-append_"><div class="p">
+    <p>Append <code>newElement</code> to the ArraySlice.</p>
+
+<p><strong>Complexity:</strong> Amortized O(1) unless <code>self</code>&#39;s storage is shared with another live array; O(<code>count</code>) otherwise..</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func append(newElement: Element)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ArraySlice/"><code>ArraySlice</code></a>,    <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-appendcontentsof-s_-sequencetype-where-s-generator-element-element_-s">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-appendcontentsof-s_-sequencetype-where-s-generator-element-element_-s">mutating func <wbr>appendContentsOf&lt;S : SequenceType where S.Generator.Element == Element&gt;(<wbr>_: S)</a>
+        
+<div class="comment collapse" id="comment-func-appendcontentsof-s_-sequencetype-where-s-generator-element-element_-s"><div class="p">
+    <p>Append the elements of <code>newElements</code> to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>length of result</em>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func appendContentsOf&lt;S : SequenceType where S.Generator.Element == Element&gt;(newElements: S)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-appendcontentsof-c_-collectiontype-where-c-generator-element-element_-c">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-appendcontentsof-c_-collectiontype-where-c-generator-element-element_-c">mutating func <wbr>appendContentsOf&lt;C : CollectionType where C.Generator.Element == Element&gt;(<wbr>_: C)</a>
+        
+<div class="comment collapse" id="comment-func-appendcontentsof-c_-collectiontype-where-c-generator-element-element_-c"><div class="p">
+    <p>Append the elements of <code>newElements</code> to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>length of result</em>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func appendContentsOf&lt;C : CollectionType where C.Generator.Element == Element&gt;(newElements: C)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-appendcontentsof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-appendcontentsof_">mutating func appendContentsOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-appendcontentsof_"><div class="p">
+    <p>Append the elements of <code>newElements</code> to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>length of result</em>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func appendContentsOf&lt;S : SequenceType where S.Generator.Element == Generator.Element&gt;(newElements: S)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-contains_"><div class="p">
+    <p>Return <code>true</code> iff an element in <code>self</code> satisfies <code>predicate</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(@noescape predicate: (Element) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-dropfirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dropfirst">func dropFirst()</a>
+        
+<div class="comment collapse" id="comment-func-dropfirst"><div class="p">
+    <p>Returns a subsequence containing all but the first element.</p>
+
+<p><strong>Requires:</strong> <code>n &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>n</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst() -&gt; ArraySlice&lt;Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-dropfirst_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dropfirst_">func dropFirst(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-dropfirst_"><div class="p">
+    <p>Returns a subsequence containing all but the first <code>n</code> elements.</p>
+
+<p><strong>Requires:</strong> <code>n &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>n</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst(n: Int) -&gt; ArraySlice&lt;Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-droplast">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-droplast">func dropLast()</a>
+        
+<div class="comment collapse" id="comment-func-droplast"><div class="p">
+    <p>Returns a subsequence containing all but the last element.</p>
+
+<p><strong>Requires:</strong> <code>self</code> is a finite sequence.
+<strong>Requires:</strong> <code>n &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast() -&gt; ArraySlice&lt;Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-droplast_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-droplast_">func dropLast(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-droplast_"><div class="p">
+    <p>Returns a subsequence containing all but the last <code>n</code> elements.</p>
+
+<p><strong>Requires:</strong> <code>n &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast(n: Int) -&gt; ArraySlice&lt;Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-elementsequal_isequivalent_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-elementsequal_isequivalent_">func elementsEqual(<wbr>_:<wbr>isEquivalent:)</a>
+        
+<div class="comment collapse" id="comment-func-elementsequal_isequivalent_"><div class="p">
+    <p>Return true iff <code>self</code> and <code>other</code> contain equivalent elements, using
+<code>isEquivalent</code> as the equivalence test.</p>
+
+<p><strong>Requires:</strong> <code>isEquivalent</code> is an
+  <a href="http://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func elementsEqual&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence, @noescape isEquivalent: (Element, Element) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-enumerate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-enumerate">func enumerate()</a>
+        
+<div class="comment collapse" id="comment-func-enumerate"><div class="p">
+    <p>Return a lazy <code>SequenceType</code> containing pairs (<em>n</em>, <em>x</em>), where
+<em>n</em>s are consecutive <code>Int</code>s starting at zero, and <em>x</em>s are
+the elements of <code>base</code>:</p>
+
+<pre><code class="language-swift">&gt; for (n, c) in &quot;Swift&quot;.characters.enumerate() {
+    print(&quot;\(n): &#39;\(c)&#39;&quot;)
+  }
+0: &#39;S&#39;
+1: &#39;w&#39;
+2: &#39;i&#39;
+3: &#39;f&#39;
+4: &#39;t&#39;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func enumerate() -&gt; EnumerateSequence&lt;ArraySlice&lt;Element&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-filter_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-filter_">func filter(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-filter_"><div class="p">
+    <p>Return an <code>Array</code> containing the elements of <code>self</code>,
+in order, that satisfy the predicate <code>includeElement</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func filter(@noescape includeElement: (Element) throws -&gt; Bool) rethrows -&gt; [Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-t_-self-generator-element-throws-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-t_-self-generator-element-throws-t">func flatMap&lt;T&gt;(<wbr>_: (Element) throws -&gt; T?)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-t_-self-generator-element-throws-t"><div class="p">
+    <p>Return an <code>Array</code> containing the non-nil results of mapping
+<code>transform</code> over <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>M</em> + <em>N</em>), where <em>M</em> is the length of <code>self</code>
+  and <em>N</em> is the length of the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;T&gt;(@noescape transform: (Element) throws -&gt; T?) rethrows -&gt; [T]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-s_-sequencetype_-self-generator-element-throws-s">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-s_-sequencetype_-self-generator-element-throws-s">func <wbr>flatMap&lt;S : SequenceType&gt;(<wbr>_: (Element) throws -&gt; S)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-s_-sequencetype_-self-generator-element-throws-s"><div class="p">
+    <p>Return an <code>Array</code> containing the concatenated results of mapping
+<code>transform</code> over <code>self</code>.</p>
+
+<pre><code class="language-swift">s.flatMap(transform)</code></pre>
+
+<p>is equivalent to</p>
+
+<pre><code class="language-swift">Array(s.map(transform).flatten())</code></pre>
+
+<p><strong>Complexity:</strong> O(<em>M</em> + <em>N</em>), where <em>M</em> is the length of <code>self</code>
+  and <em>N</em> is the length of the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;S : SequenceType&gt;(transform: (Element) throws -&gt; S) rethrows -&gt; [S.Generator.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-foreach_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-foreach_">func forEach(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-foreach_"><div class="p">
+    <p>Call <code>body</code> on each element in <code>self</code> in the same order as a
+<em>for-in loop.</em></p>
+
+<pre><code class="language-swift">sequence.forEach {
+  // body code
+}</code></pre>
+
+<p>is similar to:</p>
+
+<pre><code class="language-swift">for element in sequence {
+  // body code
+}</code></pre>
+
+<p><strong>Note:</strong> You cannot use the <code>break</code> or <code>continue</code> statement to exit the
+  current call of the <code>body</code> closure or skip subsequent calls.
+<strong>Note:</strong> Using the <code>return</code> statement in the <code>body</code> closure will only
+  exit from the current call to <code>body</code>, not any outer scope, and won&#39;t
+  skip subsequent calls.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func forEach(@noescape body: (Element) throws -&gt; ()) rethrows</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; IndexingGenerator&lt;ArraySlice&lt;Element&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-indexof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-indexof_">func indexOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-indexof_"><div class="p">
+    <p>Returns the first index where <code>predicate</code> returns <code>true</code> for the
+corresponding value, or <code>nil</code> if such value is not found.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func indexOf(@noescape predicate: (Element) throws -&gt; Bool) rethrows -&gt; Int?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-insert_atindex_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-insert_atindex_">mutating func insert(<wbr>_:<wbr>atIndex:)</a>
+        
+<div class="comment collapse" id="comment-func-insert_atindex_"><div class="p">
+    <p>Insert <code>newElement</code> at index <code>i</code>.</p>
+
+<p><strong>Requires:</strong> <code>i &lt;= count</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insert(newElement: Element, atIndex i: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ArraySlice/"><code>ArraySlice</code></a>,    <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-insertcontentsof_at_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-insertcontentsof_at_">mutating func insertContentsOf(<wbr>_:<wbr>at:)</a>
+        
+<div class="comment collapse" id="comment-func-insertcontentsof_at_"><div class="p">
+    <p>Insert <code>newElements</code> at index <code>i</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count + newElements.count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insertContentsOf&lt;C : CollectionType where C.Generator.Element == Generator.Element&gt;(newElements: C, at i: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lexicographicalcompare_isorderedbefore_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lexicographicalcompare_isorderedbefore_">func lexicographicalCompare(<wbr>_:<wbr>isOrderedBefore:)</a>
+        
+<div class="comment collapse" id="comment-func-lexicographicalcompare_isorderedbefore_"><div class="p">
+    <p>Return true iff <code>self</code> precedes <code>other</code> in a lexicographical (&quot;dictionary&quot;)
+ordering, using <code>isOrderedBefore</code> as the comparison between elements.</p>
+
+<p><strong>Note:</strong> This method implements the mathematical notion of lexicographical
+  ordering, which has no connection to Unicode.  If you are sorting strings
+  to present to the end-user, you should use <code>String</code> APIs that perform
+localized comparison.</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements of <code>self</code> and <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lexicographicalCompare&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence, @noescape isOrderedBefore: (Element, Element) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-map_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-map_">func map(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-map_"><div class="p">
+    <p>Return an <code>Array</code> containing the results of mapping <code>transform</code>
+over <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(N).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func map&lt;T&gt;(@noescape transform: (Element) throws -&gt; T) rethrows -&gt; [T]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-maxelement_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-maxelement_">func maxElement(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-maxelement_"><div class="p">
+    <p>Returns the maximum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
+
+<p><strong>Complexity:</strong> O(<code>elements.count</code>).</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>.
+  over <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func maxElement(@noescape isOrderedBefore: (Element, Element) throws -&gt; Bool) rethrows -&gt; Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-minelement_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-minelement_">func minElement(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-minelement_"><div class="p">
+    <p>Returns the minimum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
+
+<p><strong>Complexity:</strong> O(<code>elements.count</code>).</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>.
+  over <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func minElement(@noescape isOrderedBefore: (Element, Element) throws -&gt; Bool) rethrows -&gt; Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-partition_isorderedbefore_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-partition_isorderedbefore_">mutating func partition(<wbr>_:<wbr>isOrderedBefore:)</a>
+        
+<div class="comment collapse" id="comment-func-partition_isorderedbefore_"><div class="p">
+    <p>Re-order the given <code>range</code> of elements in <code>self</code> and return
+a pivot index <em>p</em>.</p>
+
+<p><strong>Postcondition:</strong> for all <em>i</em> in <code>range.startIndex..&lt;</code><em>p</em>, and <em>j</em>
+  in <em>p</em><code>..&lt;range.endIndex</code>, <code>less(self[</code><em>i</em><code>],
+  self[</code><em>j</em><code>]) &amp;&amp; !less(self[</code><em>j</em><code>], self[</code><em>p</em><code>])</code>.
+  Only returns <code>range.endIndex</code> when <code>self</code> is empty.</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func partition(range: Range&lt;Int&gt;, isOrderedBefore: (Element, Element) -&gt; Bool) -&gt; Int</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/MutableCollectionType/"><code>MutableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-popfirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-popfirst">mutating func popFirst()</a>
+        
+<div class="comment collapse" id="comment-func-popfirst"><div class="p">
+    <p>If <code>!self.isEmpty</code>, remove the first element and return it, otherwise
+return <code>nil</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func popFirst() -&gt; Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-poplast">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-poplast">mutating func popLast()</a>
+        
+<div class="comment collapse" id="comment-func-poplast"><div class="p">
+    <p>If <code>!self.isEmpty</code>, remove the last element and return it, otherwise
+return <code>nil</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func popLast() -&gt; Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix_">func prefix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-prefix_"><div class="p">
+    <p>Returns a subsequence, up to <code>maxLength</code> in length, containing the
+initial elements.</p>
+
+<p>If <code>maxLength</code> exceeds <code>self.count</code>, the result contains all
+the elements of <code>self</code>.</p>
+
+<p><strong>Requires:</strong> <code>maxLength &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>maxLength</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(maxLength: Int) -&gt; ArraySlice&lt;Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefixthrough_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefixthrough_">func prefixThrough(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-prefixthrough_"><div class="p">
+    <p>Returns <code>prefixUpTo(position.successor())</code></p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefixThrough(position: Int) -&gt; ArraySlice&lt;Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefixupto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefixupto_">func prefixUpTo(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-prefixupto_"><div class="p">
+    <p>Returns <code>self[startIndex..&lt;end]</code></p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefixUpTo(end: Int) -&gt; ArraySlice&lt;Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reduce_combine_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reduce_combine_">func reduce(<wbr>_:<wbr>combine:)</a>
+        
+<div class="comment collapse" id="comment-func-reduce_combine_"><div class="p">
+    <p>Return the result of repeatedly calling <code>combine</code> with an
+accumulated value initialized to <code>initial</code> and each element of
+<code>self</code>, in turn, i.e. return
+<code>combine(combine(...combine(combine(initial, self[0]),
+self[1]),...self[count-2]), self[count-1])</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reduce&lt;T&gt;(initial: T, @noescape combine: (T, Element) throws -&gt; T) rethrows -&gt; T</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-removeall-keepcapacity_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removeall-keepcapacity_">mutating func removeAll(<wbr>keepCapacity:)</a>
+        
+<div class="comment collapse" id="comment-func-removeall-keepcapacity_"><div class="p">
+    <p>Remove all elements.</p>
+
+<p><strong>Postcondition:</strong> <code>capacity == 0</code> iff <code>keepCapacity</code> is <code>false</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeAll(keepCapacity keepCapacity: Bool = default)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ArraySlice/"><code>ArraySlice</code></a>,    <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-removeatindex_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removeatindex_">mutating func removeAtIndex(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-removeatindex_"><div class="p">
+    <p>Remove and return the element at index <code>i</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeAtIndex(index: Int) -&gt; Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ArraySlice/"><code>ArraySlice</code></a>,    <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-removefirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removefirst">mutating func removeFirst()</a>
+        
+<div class="comment collapse" id="comment-func-removefirst"><div class="p">
+    <p>Remove the element at <code>startIndex</code> and return it.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>)
+<strong>Requires:</strong> <code>!self.isEmpty</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeFirst() -&gt; Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>,    <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-removefirst_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removefirst_">mutating func removeFirst(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-removefirst_"><div class="p">
+    <p>Remove the first <code>n</code> elements.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>)
+<strong>Requires:</strong> <code>self.count &gt;= n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeFirst(n: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-removelast">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removelast">mutating func removeLast()</a>
+        
+<div class="comment collapse" id="comment-func-removelast"><div class="p">
+    <p>Remove an element from the end of the ArraySlice in O(1).</p>
+
+<p><strong>Requires:</strong> <code>count &gt; 0</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeLast() -&gt; Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ArraySlice/"><code>ArraySlice</code></a>,    <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-removerange_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removerange_">mutating func removeRange(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-removerange_"><div class="p">
+    <p>Remove the indicated <code>subRange</code> of elements.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeRange(subRange: Range&lt;Int&gt;)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-replacerange_with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-replacerange_with_">mutating func replaceRange(<wbr>_:<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-replacerange_with_"><div class="p">
+    <p>Replace the given <code>subRange</code> of elements with <code>newElements</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>subRange.count</code>) if <code>subRange.endIndex
+  == self.endIndex</code> and <code>newElements.isEmpty</code>, O(N) otherwise.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func replaceRange&lt;C : CollectionType where C.Generator.Element == _Buffer.Element&gt;(subRange: Range&lt;Int&gt;, with newElements: C)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-reservecapacity_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reservecapacity_">mutating func reserveCapacity(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-reservecapacity_"><div class="p">
+    <p>Reserve enough space to store <code>minimumCapacity</code> elements.</p>
+
+<p><strong>Postcondition:</strong> <code>capacity &gt;= minimumCapacity</code> and the array has
+  mutable contiguous storage.</p>
+
+<p><strong>Complexity:</strong> O(<code>count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func reserveCapacity(minimumCapacity: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/ArraySlice/"><code>ArraySlice</code></a>,    <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reverse">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reverse">func reverse()</a>
+        
+<div class="comment collapse" id="comment-func-reverse"><div class="p">
+    <p>Return the elements of <code>self</code> in reverse order.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reverse() -&gt; ReverseCollection&lt;ArraySlice&lt;Element&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-sort_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sort_">func sort(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-sort_"><div class="p">
+    <p>Return an <code>Array</code> containing the sorted elements of <code>source</code>
+according to <code>isOrderedBefore</code>.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements for which <code>isOrderedBefore</code> does not establish an order).</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sort(@noescape isOrderedBefore: (Element, Element) -&gt; Bool) -&gt; [Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/MutableCollectionType/"><code>MutableCollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-sortinplace_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sortinplace_">mutating func sortInPlace(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-sortinplace_"><div class="p">
+    <p>Sort <code>self</code> in-place according to <code>isOrderedBefore</code>.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements for which <code>isOrderedBefore</code> does not establish an order).</p>
+
+<p><strong>Requires:</strong> <code>isOrderedBefore</code> is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func sortInPlace(@noescape isOrderedBefore: (Element, Element) -&gt; Bool)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/MutableCollectionType/"><code>MutableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-split_allowemptyslices_isseparator_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-split_allowemptyslices_isseparator_">func split(<wbr>_:<wbr>allowEmptySlices:<wbr>isSeparator:)</a>
+        
+<div class="comment collapse" id="comment-func-split_allowemptyslices_isseparator_"><div class="p">
+    <p>Returns the maximal <code>SubSequence</code>s of <code>self</code>, in order, that
+don&#39;t contain elements satisfying the predicate <code>isSeparator</code>.</p>
+
+<p><strong><code>maxSplit</code>:</strong>  The maximum number of <code>SubSequence</code>s to
+  return, minus 1.
+  If <code>maxSplit + 1</code> <code>SubSequence</code>s are returned, the last one is
+  a suffix of <code>self</code> containing the remaining elements.
+  The default value is <code>Int.max</code>.</p>
+
+<p><strong><code>allowEmptySubsequences</code>:</strong>  If <code>true</code>, an empty <code>SubSequence</code>
+  is produced in the result for each pair of consecutive elements
+  satisfying <code>isSeparator</code>.
+  The default value is <code>false</code>.</p>
+
+<p><strong>Requires:</strong> <code>maxSplit &gt;= 0</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split(maxSplit: Int = default, allowEmptySlices: Bool = default, @noescape isSeparator: (Element) throws -&gt; Bool) rethrows -&gt; [ArraySlice&lt;Element&gt;]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-startswith_isequivalent_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-startswith_isequivalent_">func startsWith(<wbr>_:<wbr>isEquivalent:)</a>
+        
+<div class="comment collapse" id="comment-func-startswith_isequivalent_"><div class="p">
+    <p>Return true iff <code>self</code> begins with elements equivalent to those of
+<code>other</code>, using <code>isEquivalent</code> as the equivalence test.  Return true if
+<code>other</code> is empty.</p>
+
+<p><strong>Requires:</strong> <code>isEquivalent</code> is an
+  <a href="http://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func startsWith&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence, @noescape isEquivalent: (Element, Element) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-suffix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-suffix_">func suffix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-suffix_"><div class="p">
+    <p>Returns a slice, up to <code>maxLength</code> in length, containing the
+final elements of <code>s</code>.</p>
+
+<p>If <code>maxLength</code> exceeds <code>s.count</code>, the result contains all
+the elements of <code>s</code>.</p>
+
+<p><strong>Requires:</strong> <code>maxLength &gt;= 0</code>
+<strong>Complexity:</strong> O(<code>self.count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func suffix(maxLength: Int) -&gt; ArraySlice&lt;Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-suffixfrom_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-suffixfrom_">func suffixFrom(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-suffixfrom_"><div class="p">
+    <p>Returns <code>self[start..&lt;endIndex]</code></p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func suffixFrom(start: Int) -&gt; ArraySlice&lt;Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-underestimatecount">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-underestimatecount">func underestimateCount()</a>
+        
+<div class="comment collapse" id="comment-func-underestimatecount"><div class="p">
+    <p>Returns a value less than or equal to the number of elements in
+<code>self</code>, <em>nondestructively</em>.</p>
+
+<p><strong>Complexity:</strong> O(N).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func underestimateCount() -&gt; Int</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-withunsafebufferpointer_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafebufferpointer_">func withUnsafeBufferPointer(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafebufferpointer_"><div class="p">
+    <p>Call <code>body(p)</code>, where <code>p</code> is a pointer to the <code>ArraySlice</code>&#39;s
+contiguous storage.</p>
+
+<p>Often, the optimizer can eliminate bounds checks within an
+array algorithm, but when that fails, invoking the
+same algorithm on <code>body</code>&#39;s argument lets you trade safety for
+speed.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withUnsafeBufferPointer&lt;R&gt;(@noescape body: (UnsafeBufferPointer&lt;Element&gt;) throws -&gt; R) rethrows -&gt; R</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-withunsafemutablebufferpointer_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafemutablebufferpointer_">mutating func withUnsafeMutableBufferPointer(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafemutablebufferpointer_"><div class="p">
+    <p>Call <code>body(p)</code>, where <code>p</code> is a pointer to the <code>ArraySlice</code>&#39;s
+mutable contiguous storage.</p>
+
+<p>Often, the optimizer can eliminate bounds- and uniqueness-checks
+within an array algorithm, but when that fails, invoking the
+same algorithm on <code>body</code>&#39;s argument lets you trade safety for
+speed.</p>
+
+<p><strong>Warning:</strong> Do not rely on anything about <code>self</code> (the <code>ArraySlice</code>
+  that is the target of this method) during the execution of
+  <code>body</code>: it may not appear to have its correct value.  Instead,
+  use only the <code>UnsafeMutableBufferPointer</code> argument to <code>body</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func withUnsafeMutableBufferPointer&lt;R&gt;(@noescape body: (inout UnsafeMutableBufferPointer&lt;Element&gt;) throws -&gt; R) rethrows -&gt; R</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Conditionally Inherited Items</h3>
+
+<p class="comment">The initializers, methods, and properties listed below may be available on this type under certain conditions (such as methods that are available on <code>Array</code> when its elements are <code>Equatable</code>) or may not ever be available if that determination is beyond SwiftDoc.org's capabilities. Please <a href="https://github.com/SwiftDocOrg/swiftdoc.org/issues">open an issue on GitHub</a> if you see something out of place!</p>
+
+
+
+
+
+<h4>Where Generator.Element : CollectionType</h4>
+
+
+
+
+<div class="declaration inherited" id="func-generator-element_-collectiontype-flatten">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-collectiontype-flatten">func flatten()</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-collectiontype-flatten"><div class="p">
+    <p>A concatenation of the elements of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatten() -&gt; FlattenCollection&lt;ArraySlice&lt;Element&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Generator.Element : CollectionType, Index : BidirectionalIndexType, Generator.Element.Index : BidirectionalIndexType</h4>
+
+
+
+
+<div class="declaration inherited" id="func-generator-element_-collectiontype-index_-bidirectionalindextype-generator-element-index_-bidirectionalindextype-flatten">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-collectiontype-index_-bidirectionalindextype-generator-element-index_-bidirectionalindextype-flatten">func flatten()</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-collectiontype-index_-bidirectionalindextype-generator-element-index_-bidirectionalindextype-flatten"><div class="p">
+    <p>A concatenation of the elements of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatten() -&gt; FlattenBidirectionalCollection&lt;ArraySlice&lt;Element&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Generator.Element : Comparable</h4>
+
+
+
+
+<div class="declaration inherited" id="func-generator-element_-comparable-lexicographicalcompare_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-comparable-lexicographicalcompare_">func lexicographicalCompare(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-comparable-lexicographicalcompare_"><div class="p">
+    <p>Return true iff <code>self</code> precedes <code>other</code> in a lexicographical (&quot;dictionary&quot;)
+ordering, using &quot;&lt;&quot; as the comparison between elements.</p>
+
+<p><strong>Note:</strong> This method implements the mathematical notion of lexicographical
+  ordering, which has no connection to Unicode.  If you are sorting strings
+  to present to the end-user, you should use <code>String</code> APIs that perform
+localized comparison.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lexicographicalCompare&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-generator-element_-comparable-maxelement">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-comparable-maxelement">func maxElement()</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-comparable-maxelement"><div class="p">
+    <p>Returns the maximum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
+
+<p><strong>Complexity:</strong> O(<code>elements.count</code>).
+  </p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func maxElement() -&gt; Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-generator-element_-comparable-minelement">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-comparable-minelement">func minElement()</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-comparable-minelement"><div class="p">
+    <p>Returns the minimum element in <code>self</code> or <code>nil</code> if the sequence is empty.</p>
+
+<p><strong>Complexity:</strong> O(<code>elements.count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func minElement() -&gt; Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-generator-element_-comparable-sort">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-comparable-sort">func sort()</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-comparable-sort"><div class="p">
+    <p>Return an <code>Array</code> containing the sorted elements of <code>source</code>.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements that compare equal).</p>
+
+<p><strong>Requires:</strong> The less-than operator (<code>func &lt;</code>) defined in
+  the <code>Comparable</code> conformance is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sort() -&gt; [Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/MutableCollectionType/"><code>MutableCollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Generator.Element : Equatable</h4>
+
+
+
+
+<div class="declaration inherited" id="func-generator-element_-equatable-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-equatable-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-equatable-contains_"><div class="p">
+    <p>Return <code>true</code> iff <code>element</code> is in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(element: Element) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-generator-element_-equatable-elementsequal_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-equatable-elementsequal_">func elementsEqual(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-equatable-elementsequal_"><div class="p">
+    <p>Return <code>true</code> iff <code>self</code> and <code>other</code> contain the same elements in the
+same order.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func elementsEqual&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-generator-element_-equatable-indexof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-equatable-indexof_">func indexOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-equatable-indexof_"><div class="p">
+    <p>Returns the first index where <code>value</code> appears in <code>self</code> or <code>nil</code> if
+<code>value</code> is not found.</p>
+
+<p><strong>Complexity:</strong> O(<code>self.count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func indexOf(element: Element) -&gt; Int?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-generator-element_-equatable-split_maxsplit_allowemptyslices_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-equatable-split_maxsplit_allowemptyslices_">func split(<wbr>_:<wbr>maxSplit:<wbr>allowEmptySlices:)</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-equatable-split_maxsplit_allowemptyslices_"><div class="p">
+    <p>Returns the maximal <code>SubSequence</code>s of <code>self</code>, in order, around a
+<code>separator</code> element.</p>
+
+<p><strong><code>maxSplit</code>:</strong>  The maximum number of <code>SubSequence</code>s to
+  return, minus 1.
+  If <code>maxSplit + 1</code> <code>SubSequence</code>s are returned, the last one is
+  a suffix of <code>self</code> containing the remaining elements.
+  The default value is <code>Int.max</code>.</p>
+
+<p><strong><code>allowEmptySubsequences</code>:</strong>  If <code>true</code>, an empty <code>SubSequence</code>
+  is produced in the result for each pair of consecutive elements
+  satisfying <code>isSeparator</code>.
+  The default value is <code>false</code>.</p>
+
+<p><strong>Requires:</strong> <code>maxSplit &gt;= 0</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split(separator: Element, maxSplit: Int = default, allowEmptySlices: Bool = default) -&gt; [ArraySlice&lt;Element&gt;]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-generator-element_-equatable-startswith_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-equatable-startswith_">func startsWith(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-equatable-startswith_"><div class="p">
+    <p>Return true iff the the initial elements of <code>self</code> are equal to <code>prefix</code>.
+Return true if <code>other</code> is empty.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func startsWith&lt;OtherSequence : SequenceType where OtherSequence.Generator.Element == Generator.Element&gt;(other: OtherSequence) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Generator.Element : SequenceType</h4>
+
+
+
+
+<div class="declaration inherited" id="func-generator-element_-sequencetype-flatten">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-sequencetype-flatten">func flatten()</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-sequencetype-flatten"><div class="p">
+    <p>A concatenation of the elements of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatten() -&gt; FlattenSequence&lt;ArraySlice&lt;Element&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-generator-element_-sequencetype-joinwithseparator_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element_-sequencetype-joinwithseparator_">func joinWithSeparator(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-generator-element_-sequencetype-joinwithseparator_"><div class="p">
+    <p>Returns a view, whose elements are the result of interposing a given
+<code>separator</code> between the elements of the sequence <code>self</code>.</p>
+
+<p>For example,
+<code>[[1, 2, 3], [4, 5, 6], [7, 8, 9]].joinWithSeparator([-1, -2])</code>
+yields <code>[1, 2, 3, -1, -2, 4, 5, 6, -1, -2, 7, 8, 9]</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joinWithSeparator&lt;Separator : SequenceType where Separator.Generator.Element == Generator.Element.Generator.Element&gt;(separator: Separator) -&gt; JoinSequence&lt;ArraySlice&lt;Element&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Generator.Element == String</h4>
+
+
+
+
+<div class="declaration inherited" id="func-generator-element-string-joinwithseparator_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generator-element-string-joinwithseparator_">func joinWithSeparator(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-generator-element-string-joinwithseparator_"><div class="p">
+    <p>Interpose the <code>separator</code> between elements of <code>self</code>, then concatenate
+the result.  For example:</p>
+
+<pre><code class="language-swift">[&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;].joinWithSeparator(&quot;-|-&quot;) // &quot;foo-|-bar-|-baz&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joinWithSeparator(separator: String) -&gt; String</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Index : RandomAccessIndexType, Generator.Element : Comparable</h4>
+
+
+
+
+<div class="declaration inherited" id="func-index_-randomaccessindextype-generator-element_-comparable-partition_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_-randomaccessindextype-generator-element_-comparable-partition_">mutating func partition(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-index_-randomaccessindextype-generator-element_-comparable-partition_"><div class="p">
+    <p>Re-order the given <code>range</code> of elements in <code>self</code> and return
+a pivot index <em>p</em>.</p>
+
+<p><strong>Postcondition:</strong> for all <em>i</em> in <code>range.startIndex..&lt;</code><em>p</em>, and <em>j</em>
+  in <em>p</em><code>..&lt;range.endIndex</code>, <code>less(self[</code><em>i</em><code>],
+  self[</code><em>j</em><code>]) &amp;&amp; !less(self[</code><em>j</em><code>], self[</code><em>p</em><code>])</code>.
+  Only returns <code>range.endIndex</code> when <code>self</code> is empty.</p>
+
+<p><strong>Requires:</strong> The less-than operator (<code>func &lt;</code>) defined in
+  the <code>Comparable</code> conformance is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func partition(range: Range&lt;Int&gt;) -&gt; Int</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/MutableCollectionType/"><code>MutableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index_-randomaccessindextype-generator-element_-comparable-sortinplace">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_-randomaccessindextype-generator-element_-comparable-sortinplace">mutating func sortInPlace()</a>
+        
+<div class="comment collapse" id="comment-func-index_-randomaccessindextype-generator-element_-comparable-sortinplace"><div class="p">
+    <p>Sort <code>self</code> in-place.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements that compare equal).</p>
+
+<p><strong>Requires:</strong> The less-than operator (<code>func &lt;</code>) defined in
+  the <code>Comparable</code> conformance is a
+  <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+  over the elements in <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func sortInPlace()</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/MutableCollectionType/"><code>MutableCollectionType</code></a>    
+</div></div>
+</div>
+
+
+

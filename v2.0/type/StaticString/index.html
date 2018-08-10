@@ -1,0 +1,216 @@
+---
+layout: "default"
+title: "StaticString"
+description: "Swift documentation for 'StaticString': An simple string designed to represent text that is &quot;knowable at
+compile-time&quot;."
+keywords: "StaticString,struct,swift,documentation,withUTF8Buffer,byteSize,debugDescription,description,hasPointerRepresentation,isASCII,stringValue,unicodeScalar,utf8Start"
+root: "/v2.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct StaticString</code></div>
+
+<div class="discussion comment">
+    <p>An simple string designed to represent text that is &quot;knowable at
+compile-time&quot;.</p>
+
+<p>Logically speaking, each instance looks something like this:</p>
+
+<pre><code class="language-swift"> enum StaticString {
+    case ASCII(start: UnsafePointer&lt;UInt8&gt;, length: Int)
+    case UTF8(start: UnsafePointer&lt;UInt8&gt;, length: Int)
+    case Scalar(UnicodeScalar)
+ }</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CustomDebugStringConvertible, CustomStringConvertible, ExtendedGraphemeClusterLiteralConvertible, StringLiteralConvertible, UnicodeScalarLiteralConvertible, _Reflectable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Create an empty instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-builtinextendedgraphemeclusterliteral_bytesize_isascii_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-builtinextendedgraphemeclusterliteral_bytesize_isascii_">init(<wbr>_builtinExtendedGraphemeClusterLiteral:<wbr>byteSize:<wbr>isASCII:)</a><div class="comment collapse" id="comment-init-builtinextendedgraphemeclusterliteral_bytesize_isascii_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_builtinExtendedGraphemeClusterLiteral start: Builtin.RawPointer, byteSize: Builtin.Word, isASCII: Builtin.Int1)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-builtinstringliteral_bytesize_isascii_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-builtinstringliteral_bytesize_isascii_">init(<wbr>_builtinStringLiteral:<wbr>byteSize:<wbr>isASCII:)</a><div class="comment collapse" id="comment-init-builtinstringliteral_bytesize_isascii_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_builtinStringLiteral start: Builtin.RawPointer, byteSize: Builtin.Word, isASCII: Builtin.Int1)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-builtinunicodescalarliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-builtinunicodescalarliteral_">init(<wbr>_builtinUnicodeScalarLiteral:)</a><div class="comment collapse" id="comment-init-builtinunicodescalarliteral_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_builtinUnicodeScalarLiteral value: Builtin.Int32)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-extendedgraphemeclusterliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-extendedgraphemeclusterliteral_">init(<wbr>extendedGraphemeClusterLiteral:)</a><div class="comment collapse" id="comment-init-extendedgraphemeclusterliteral_"><div class="p">
+    <p>Create an instance initialized to <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(extendedGraphemeClusterLiteral value: StaticString)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-stringliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-stringliteral_">init(<wbr>stringLiteral:)</a><div class="comment collapse" id="comment-init-stringliteral_"><div class="p">
+    <p>Create an instance initialized to <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(stringLiteral value: StaticString)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-unicodescalarliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-unicodescalarliteral_">init(<wbr>unicodeScalarLiteral:)</a><div class="comment collapse" id="comment-init-unicodescalarliteral_"><div class="p">
+    <p>Create an instance initialized to <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(unicodeScalarLiteral value: StaticString)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-bytesize_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-bytesize_-int">var byteSize: Int</a><div class="comment collapse" id="comment-var-bytesize_-int"><div class="p">
+    <p>If <code>self</code> stores a pointer to ASCII or UTF-8 code units, the
+length in bytes of that data.</p>
+
+<p>If <code>self</code> stores a single Unicode scalar value, the value of
+<code>byteSize</code> is unspecified.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var byteSize: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-haspointerrepresentation_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-haspointerrepresentation_-bool">var hasPointerRepresentation: Bool</a><div class="comment collapse" id="comment-var-haspointerrepresentation_-bool"><div class="p">
+    <p><code>true</code> iff <code>self</code> stores a pointer to ASCII or UTF-8 code units.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hasPointerRepresentation: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-isascii_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isascii_-bool">var isASCII: Bool</a><div class="comment collapse" id="comment-var-isascii_-bool"><div class="p">
+    <p><code>true</code> if <code>self</code> stores a pointer to ASCII code units.</p>
+
+<p>If <code>self</code> stores a single Unicode scalar value, the value of
+<code>isASCII</code> is unspecified.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isASCII: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-stringvalue_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-stringvalue_-string">var stringValue: String</a><div class="comment collapse" id="comment-var-stringvalue_-string"><div class="p">
+    <p>Return a <code>String</code> representing the same sequence of Unicode
+scalar values as <code>self</code> does.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var stringValue: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-unicodescalar_-unicodescalar">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-unicodescalar_-unicodescalar">var unicodeScalar: UnicodeScalar</a><div class="comment collapse" id="comment-var-unicodescalar_-unicodescalar"><div class="p">
+    <p>The stored Unicode scalar value.</p>
+
+<p><strong>Requires:</strong> <code>self</code> stores a single Unicode scalar value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var unicodeScalar: UnicodeScalar { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-utf8start_-unsafepointer-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-utf8start_-unsafepointer-uint8">var utf8Start: UnsafePointer&lt;UInt8&gt;</a><div class="comment collapse" id="comment-var-utf8start_-unsafepointer-uint8"><div class="p">
+    <p>A pointer to the beginning of UTF-8 code units.</p>
+
+<p><strong>Requires:</strong> <code>self</code> stores a pointer to either ASCII or UTF-8 code
+  units.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var utf8Start: UnsafePointer&lt;UInt8&gt; { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-withutf8buffer_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withutf8buffer_">func withUTF8Buffer(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withutf8buffer_"><div class="p">
+    <p>Invoke <code>body</code> with a buffer containing the UTF-8 code units of
+<code>self</code>.</p>
+
+<p>This method works regardless of what <code>self</code> stores.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withUTF8Buffer&lt;R&gt;(@noescape body: (UnsafeBufferPointer&lt;UInt8&gt;) -&gt; R) -&gt; R</code>
+    
+    
+</div></div>
+</div>
+
+

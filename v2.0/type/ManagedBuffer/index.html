@@ -1,0 +1,77 @@
+---
+layout: "default"
+title: "ManagedBuffer"
+description: "Swift documentation for 'ManagedBuffer': A class whose instances contain a property of type Value and raw
+storage for an array of Element, whose size is determined at
+instance creation."
+keywords: "ManagedBuffer,class,swift,documentation,create,value"
+root: "/v2.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">class ManagedBuffer&lt;Value, Element&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A class whose instances contain a property of type <code>Value</code> and raw
+storage for an array of <code>Element</code>, whose size is determined at
+instance creation.</p>
+
+<p>Note that the <code>Element</code> array is suitably-aligned <strong>raw memory</strong>.
+You are expected to construct and---if necessary---destroy objects
+there yourself, using the APIs on <code>UnsafeMutablePointer&lt;Element&gt;</code>.
+Typical usage stores a count and capacity in <code>Value</code> and destroys
+any live elements in the <code>deinit</code> of a subclass.
+<strong>Note:</strong> Subclasses must not have any stored properties; any storage
+  needed should be included in <code>Value</code>.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">ManagedProtoBuffer, NonObjectiveCBase</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-value_-value">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-value_-value">var value: Value</a><div class="comment collapse" id="comment-var-value_-value"><div class="p">
+    <p>The stored <code>Value</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var value: Value { get set }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-create_initialvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-create_initialvalue_">final class func create(<wbr>_:<wbr>initialValue:)</a>
+        
+<div class="comment collapse" id="comment-func-create_initialvalue_"><div class="p">
+    <p>Create a new instance of the most-derived class, calling
+<code>initializeValue</code> on the partially-constructed object to
+generate an initial <code>Value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">final class func create(minimumCapacity: Int, initialValue: (ManagedProtoBuffer&lt;Value, Element&gt;) -&gt; Value) -&gt; ManagedBuffer&lt;Value, Element&gt;</code>
+    
+    
+</div></div>
+</div>
+
+

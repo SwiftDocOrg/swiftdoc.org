@@ -1,0 +1,111 @@
+---
+layout: "default"
+title: "ManagedProtoBuffer"
+description: "Swift documentation for 'ManagedProtoBuffer': A base class of ManagedBuffer&lt;Value,Element&gt;, used during
+instance creation."
+keywords: "ManagedProtoBuffer,class,swift,documentation,withUnsafeMutablePointerToElements,withUnsafeMutablePointerToValue,withUnsafeMutablePointers,allocatedElementCount"
+root: "/v2.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">class ManagedProtoBuffer&lt;Value, Element&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A base class of <code>ManagedBuffer&lt;Value,Element&gt;</code>, used during
+instance creation.</p>
+
+<p>During instance creation, in particular during
+<code>ManagedBuffer.create</code>&#39;s call to initialize, <code>ManagedBuffer</code>&#39;s
+<code>value</code> property is as-yet uninitialized, and therefore
+<code>ManagedProtoBuffer</code> does not offer access to the as-yet
+uninitialized <code>value</code> property of <code>ManagedBuffer</code>.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">NonObjectiveCBase</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-allocatedelementcount_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-allocatedelementcount_-int">var allocatedElementCount: Int</a><div class="comment collapse" id="comment-var-allocatedelementcount_-int"><div class="p">
+    <p>The actual number of elements that can be stored in this object.</p>
+
+<p>This value may be nontrivial to compute; it is usually a good
+idea to store this information in the &quot;value&quot; area when
+an instance is created.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var allocatedElementCount: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-withunsafemutablepointertoelements_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafemutablepointertoelements_">final func withUnsafeMutablePointerToElements(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafemutablepointertoelements_"><div class="p">
+    <p>Call <code>body</code> with an <code>UnsafeMutablePointer</code> to the <code>Element</code>
+storage.</p>
+
+<p><strong>Note:</strong> This pointer is only valid for the duration of the
+  call to <code>body</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">final func withUnsafeMutablePointerToElements&lt;R&gt;(body: (UnsafeMutablePointer&lt;Element&gt;) -&gt; R) -&gt; R</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-withunsafemutablepointertovalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafemutablepointertovalue_">final func withUnsafeMutablePointerToValue(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafemutablepointertovalue_"><div class="p">
+    <p>Call <code>body</code> with an <code>UnsafeMutablePointer</code> to the stored
+<code>Value</code>.</p>
+
+<p><strong>Note:</strong> This pointer is only valid for the duration of the
+  call to <code>body</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">final func withUnsafeMutablePointerToValue&lt;R&gt;(body: (UnsafeMutablePointer&lt;Value&gt;) -&gt; R) -&gt; R</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-withunsafemutablepointers_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafemutablepointers_">final func withUnsafeMutablePointers(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafemutablepointers_"><div class="p">
+    <p>Call <code>body</code> with <code>UnsafeMutablePointer</code>s to the stored <code>Value</code>
+and raw <code>Element</code> storage.</p>
+
+<p><strong>Note:</strong> These pointers are only valid for the duration of the
+  call to <code>body</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">final func withUnsafeMutablePointers&lt;R&gt;(body: (UnsafeMutablePointer&lt;Value&gt;, UnsafeMutablePointer&lt;Element&gt;) -&gt; R) -&gt; R</code>
+    
+    
+</div></div>
+</div>
+
+

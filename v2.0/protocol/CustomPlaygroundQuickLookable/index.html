@@ -1,0 +1,55 @@
+---
+layout: "default"
+title: "CustomPlaygroundQuickLookable"
+description: "Swift documentation for 'CustomPlaygroundQuickLookable': A type that explicitly supplies its own PlaygroundQuickLook."
+keywords: "CustomPlaygroundQuickLookable,protocol,swift,documentation,customPlaygroundQuickLook"
+root: "/v2.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CustomPlaygroundQuickLookable</code></div>
+
+<div class="discussion comment">
+    <p>A type that explicitly supplies its own PlaygroundQuickLook.</p>
+
+<p>Instances of any type can be <code>PlaygroundQuickLook(reflect:)</code>&#39;ed
+upon, but if you are not satisfied with the <code>PlaygroundQuickLook</code>
+supplied for your type by default, you can make it conform to
+<code>CustomPlaygroundQuickLookable</code> and return a custom
+<code>PlaygroundQuickLook</code>.</p>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-customplaygroundquicklook">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-customplaygroundquicklook">func customPlaygroundQuickLook()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-customplaygroundquicklook"><div class="p">
+    <p>Return the <code>Mirror</code> for <code>self</code>.</p>
+
+<p><strong>Note:</strong> If <code>Self</code> has value semantics, the <code>Mirror</code> should be
+  unaffected by subsequent mutations of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func customPlaygroundQuickLook() -&gt; PlaygroundQuickLook</code>
+    
+    
+</div></div>
+</div>
+
+

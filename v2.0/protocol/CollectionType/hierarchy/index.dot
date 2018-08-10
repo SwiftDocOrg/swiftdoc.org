@@ -1,0 +1,90 @@
+strict digraph "CollectionType - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AnyBidirectionalCollection" [URL="/type/AnyBidirectionalCollection/hierarchy/", style=filled]
+    "AnyCollectionType" [URL="/protocol/AnyCollectionType/hierarchy/"]
+    "AnyForwardCollection" [URL="/type/AnyForwardCollection/hierarchy/", style=filled]
+    "AnyRandomAccessCollection" [URL="/type/AnyRandomAccessCollection/hierarchy/", style=filled]
+    "Array" [URL="/type/Array/hierarchy/", style=filled]
+    "ArraySlice" [URL="/type/ArraySlice/hierarchy/", style=filled]
+    "CollectionOfOne" [URL="/type/CollectionOfOne/hierarchy/", style=filled]
+    "CollectionType" [URL="/protocol/CollectionType/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "ContiguousArray" [URL="/type/ContiguousArray/hierarchy/", style=filled]
+    "Dictionary" [URL="/type/Dictionary/hierarchy/", style=filled]
+    "DictionaryLiteral" [URL="/type/DictionaryLiteral/hierarchy/", style=filled]
+    "EmptyCollection" [URL="/type/EmptyCollection/hierarchy/", style=filled]
+    "FlattenBidirectionalCollection" [URL="/type/FlattenBidirectionalCollection/hierarchy/", style=filled]
+    "FlattenCollection" [URL="/type/FlattenCollection/hierarchy/", style=filled]
+    "Indexable" [URL="/protocol/Indexable/hierarchy/"]
+    "LazyCollection" [URL="/type/LazyCollection/hierarchy/", style=filled]
+    "LazyCollectionType" [URL="/protocol/LazyCollectionType/hierarchy/"]
+    "LazyFilterCollection" [URL="/type/LazyFilterCollection/hierarchy/", style=filled]
+    "LazyMapCollection" [URL="/type/LazyMapCollection/hierarchy/", style=filled]
+    "MutableCollectionType" [URL="/protocol/MutableCollectionType/hierarchy/"]
+    "MutableSlice" [URL="/type/MutableSlice/hierarchy/", style=filled]
+    "MutableSliceable" [URL="/protocol/MutableSliceable/hierarchy/"]
+    "Range" [URL="/type/Range/hierarchy/", style=filled]
+    "RangeReplaceableCollectionType" [URL="/protocol/RangeReplaceableCollectionType/hierarchy/"]
+    "Repeat" [URL="/type/Repeat/hierarchy/", style=filled]
+    "ReverseCollection" [URL="/type/ReverseCollection/hierarchy/", style=filled]
+    "ReverseRandomAccessCollection" [URL="/type/ReverseRandomAccessCollection/hierarchy/", style=filled]
+    "SequenceType" [URL="/protocol/SequenceType/hierarchy/"]
+    "Set" [URL="/type/Set/hierarchy/", style=filled]
+    "Slice" [URL="/type/Slice/hierarchy/", style=filled]
+    "String.CharacterView" [URL="/type/String.CharacterView/hierarchy/", style=filled]
+    "String.UTF16View" [URL="/type/String.UTF16View/hierarchy/", style=filled]
+    "String.UTF8View" [URL="/type/String.UTF8View/hierarchy/", style=filled]
+    "String.UnicodeScalarView" [URL="/type/String.UnicodeScalarView/hierarchy/", style=filled]
+    "UnicodeScalar.UTF16View" [URL="/type/UnicodeScalar.UTF16View/hierarchy/", style=filled]
+    "UnsafeBufferPointer" [URL="/type/UnsafeBufferPointer/hierarchy/", style=filled]
+    "UnsafeMutableBufferPointer" [URL="/type/UnsafeMutableBufferPointer/hierarchy/", style=filled]
+    "_ArrayBufferType" [URL="/protocol/_ArrayBufferType/hierarchy/"]
+    "_ArrayType" [URL="/protocol/_ArrayType/hierarchy/"]
+    "_ReverseCollectionType" [URL="/protocol/_ReverseCollectionType/hierarchy/"]    "CollectionType" -> "AnyCollectionType"
+    "CollectionType" -> "CollectionOfOne"
+    "CollectionType" -> "Dictionary"
+    "CollectionType" -> "DictionaryLiteral"
+    "CollectionType" -> "EmptyCollection"
+    "CollectionType" -> "FlattenBidirectionalCollection"
+    "CollectionType" -> "FlattenCollection"
+    "CollectionType" -> "LazyCollectionType"
+    "CollectionType" -> "MutableCollectionType"
+    "CollectionType" -> "Range"
+    "CollectionType" -> "RangeReplaceableCollectionType"
+    "CollectionType" -> "Repeat"
+    "CollectionType" -> "Set"
+    "CollectionType" -> "Slice"
+    "CollectionType" -> "UnicodeScalar.UTF16View"
+    "CollectionType" -> "UnsafeBufferPointer"
+    "CollectionType" -> "_ReverseCollectionType"
+    "CollectionType" -> "String.UTF16View"
+    "CollectionType" -> "String.UTF8View"
+    "AnyCollectionType" -> "AnyBidirectionalCollection"
+    "AnyCollectionType" -> "AnyForwardCollection"
+    "AnyCollectionType" -> "AnyRandomAccessCollection"
+    "LazyCollectionType" -> "LazyCollection"
+    "LazyCollectionType" -> "LazyFilterCollection"
+    "LazyCollectionType" -> "LazyMapCollection"
+    "MutableCollectionType" -> "MutableSlice"
+    "MutableCollectionType" -> "MutableSliceable"
+    "MutableCollectionType" -> "UnsafeMutableBufferPointer"
+    "MutableCollectionType" -> "_ArrayBufferType"
+    "MutableSliceable" -> "_ArrayType"
+    "_ArrayType" -> "Array"
+    "_ArrayType" -> "ArraySlice"
+    "_ArrayType" -> "ContiguousArray"
+    "RangeReplaceableCollectionType" -> "_ArrayType"
+    "RangeReplaceableCollectionType" -> "String.CharacterView"
+    "RangeReplaceableCollectionType" -> "String.UnicodeScalarView"
+    "_ArrayType" -> "Array"
+    "_ArrayType" -> "ArraySlice"
+    "_ArrayType" -> "ContiguousArray"
+    "_ReverseCollectionType" -> "ReverseCollection"
+    "_ReverseCollectionType" -> "ReverseRandomAccessCollection"
+    "Indexable" -> "CollectionType"
+    "SequenceType" -> "CollectionType"
+    subgraph Types {
+        rank = max; "CollectionOfOne"; "Dictionary"; "DictionaryLiteral"; "EmptyCollection"; "FlattenBidirectionalCollection"; "FlattenCollection"; "Range"; "Repeat"; "Set"; "Slice"; "UnicodeScalar.UTF16View"; "UnsafeBufferPointer"; "String.UTF16View"; "String.UTF8View"; "AnyBidirectionalCollection"; "AnyForwardCollection"; "AnyRandomAccessCollection"; "LazyCollection"; "LazyFilterCollection"; "LazyMapCollection"; "MutableSlice"; "UnsafeMutableBufferPointer"; "Array"; "ArraySlice"; "ContiguousArray"; "String.CharacterView"; "String.UnicodeScalarView"; "ReverseCollection"; "ReverseRandomAccessCollection";
+    }
+}

@@ -1,0 +1,20 @@
+strict digraph "FloatingPointType - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "Double" [URL="/type/Double/hierarchy/", style=filled]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "Float" [URL="/type/Float/hierarchy/", style=filled]
+    "FloatingPointType" [URL="/protocol/FloatingPointType/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]
+    "_Strideable" [URL="/protocol/_Strideable/hierarchy/"]    "FloatingPointType" -> "Double"
+    "FloatingPointType" -> "Float"
+    "Strideable" -> "FloatingPointType"
+    "Comparable" -> "Strideable"
+    "_Strideable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "Double"; "Float";
+    }
+}

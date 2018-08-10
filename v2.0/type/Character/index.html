@@ -1,0 +1,139 @@
+---
+layout: "default"
+title: "Character"
+description: "Swift documentation for 'Character': Character represents some Unicode grapheme cluster as
+defined by a canonical, localized, or otherwise tailored
+segmentation algorithm."
+keywords: "Character,struct,swift,documentation,writeTo,debugDescription,hashValue"
+root: "/v2.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Character</code></div>
+
+<div class="discussion comment">
+    <p><code>Character</code> represents some Unicode grapheme cluster as
+defined by a canonical, localized, or otherwise tailored
+segmentation algorithm.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Comparable, CustomDebugStringConvertible, Equatable, ExtendedGraphemeClusterLiteralConvertible, Hashable, Streamable, UnicodeScalarLiteralConvertible, _Reflectable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-string">init(<wbr>_: String)</a><div class="comment collapse" id="comment-init_-string"><div class="p">
+    <p>Create an instance from a single-character <code>String</code>.</p>
+
+<p><strong>Requires:</strong> <code>s</code> contains exactly one extended grapheme cluster.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ s: String)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unicodescalar">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unicodescalar">init(<wbr>_: UnicodeScalar)</a><div class="comment collapse" id="comment-init_-unicodescalar"><div class="p">
+    <p>Construct a <code>Character</code> containing just the given <code>scalar</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ scalar: UnicodeScalar)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-builtinextendedgraphemeclusterliteral_bytesize_isascii_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-builtinextendedgraphemeclusterliteral_bytesize_isascii_">init(<wbr>_builtinExtendedGraphemeClusterLiteral:<wbr>byteSize:<wbr>isASCII:)</a><div class="comment collapse" id="comment-init-builtinextendedgraphemeclusterliteral_bytesize_isascii_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_builtinExtendedGraphemeClusterLiteral start: Builtin.RawPointer, byteSize: Builtin.Word, isASCII: Builtin.Int1)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-builtinunicodescalarliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-builtinunicodescalarliteral_">init(<wbr>_builtinUnicodeScalarLiteral:)</a><div class="comment collapse" id="comment-init-builtinunicodescalarliteral_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_builtinUnicodeScalarLiteral value: Builtin.Int32)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-extendedgraphemeclusterliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-extendedgraphemeclusterliteral_">init(<wbr>extendedGraphemeClusterLiteral:)</a><div class="comment collapse" id="comment-init-extendedgraphemeclusterliteral_"><div class="p">
+    <p>Create an instance initialized to <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(extendedGraphemeClusterLiteral value: Character)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-unicodescalarliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-unicodescalarliteral_">init(<wbr>unicodeScalarLiteral:)</a><div class="comment collapse" id="comment-init-unicodescalarliteral_"><div class="p">
+    <p>Create an instance initialized to <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(unicodeScalarLiteral value: Character)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code>.</p>
+
+<p><strong>Note:</strong> The hash value is not guaranteed to be stable across
+  different invocations of the same program.  Do not persist the
+  hash value across program runs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-writeto-inout_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-writeto-inout_">func writeTo(<wbr>inout:)</a>
+        
+<div class="comment collapse" id="comment-func-writeto-inout_"><div class="p">
+    <p>Write a textual representation of <code>self</code> into <code>target</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func writeTo&lt;Target : OutputStreamType&gt;(inout target: Target)</code>
+    
+    
+</div></div>
+</div>
+
+

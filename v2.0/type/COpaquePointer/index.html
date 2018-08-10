@@ -1,0 +1,127 @@
+---
+layout: "default"
+title: "COpaquePointer"
+description: "Swift documentation for 'COpaquePointer': A wrapper around an opaque C pointer."
+keywords: "COpaquePointer,struct,swift,documentation,debugDescription,hashValue"
+root: "/v2.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct COpaquePointer</code></div>
+
+<div class="discussion comment">
+    <p>A wrapper around an opaque C pointer.</p>
+
+<p>Opaque pointers are used to represent C pointers to types that
+cannot be represented in Swift, such as incomplete struct types.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CVarArgType, CustomDebugStringConvertible, Equatable, Hashable, NilLiteralConvertible</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Construct a <code>nil</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-t_-unsafemutablepointer-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-t_-unsafemutablepointer-t">init&lt;T&gt;(<wbr>_: UnsafeMutablePointer&lt;T&gt;)</a><div class="comment collapse" id="comment-init-t_-unsafemutablepointer-t"><div class="p">
+    <p>Convert a typed <code>UnsafeMutablePointer</code> to an opaque C pointer.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(_ source: UnsafeMutablePointer&lt;T&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-t_-unsafepointer-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-t_-unsafepointer-t">init&lt;T&gt;(<wbr>_: UnsafePointer&lt;T&gt;)</a><div class="comment collapse" id="comment-init-t_-unsafepointer-t"><div class="p">
+    <p>Convert a typed <code>UnsafePointer</code> to an opaque C pointer.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T&gt;(_ source: UnsafePointer&lt;T&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-bitpattern_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-bitpattern_-int">init(<wbr>bitPattern: Int)</a><div class="comment collapse" id="comment-init-bitpattern_-int"><div class="p">
+    <p>Construct a <code>COpaquePointer</code> from a given address in memory.</p>
+
+<p>This is a fundamentally unsafe conversion.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(bitPattern: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-bitpattern_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-bitpattern_-uint">init(<wbr>bitPattern: UInt)</a><div class="comment collapse" id="comment-init-bitpattern_-uint"><div class="p">
+    <p>Construct a <code>COpaquePointer</code> from a given address in memory.</p>
+
+<p>This is a fundamentally unsafe conversion.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(bitPattern: UInt)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-nilliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-nilliteral_">init(<wbr>nilLiteral:)</a><div class="comment collapse" id="comment-init-nilliteral_"><div class="p">
+    <p>Create an instance initialized with <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(nilLiteral: ())</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code>.</p>
+
+<p><strong>Note:</strong> The hash value is not guaranteed to be stable across
+  different invocations of the same program.  Do not persist the
+  hash value across program runs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+

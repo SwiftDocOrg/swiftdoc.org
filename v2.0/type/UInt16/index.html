@@ -1,0 +1,619 @@
+---
+layout: "default"
+title: "UInt16"
+description: "Swift documentation for 'UInt16': A 16-bit unsigned integer value
+type."
+keywords: "UInt16,struct,swift,documentation,addWithOverflow,advancedBy,advancedBy,distanceTo,divideWithOverflow,multiplyWithOverflow,predecessor,remainderWithOverflow,stride,stride,subtractWithOverflow,successor,toIntMax,toUIntMax,allZeros,max,min,bigEndian,byteSwapped,description,hashValue,littleEndian,value,Distance"
+root: "/v2.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct UInt16</code></div>
+
+<div class="discussion comment">
+    <p>A 16-bit unsigned integer value
+type.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">BidirectionalIndexType, BitwiseOperationsType, CVarArgType, Comparable, CustomStringConvertible, Equatable, ForwardIndexType, Hashable, IntegerArithmeticType, IntegerLiteralConvertible, IntegerType, RandomAccessIndexType, Strideable, UnsignedIntegerType, _DisallowMixedSignArithmetic, _Incrementable, _IntegerArithmeticType, _IntegerType, _RandomAccessAmbiguity, _Reflectable, _Strideable, _StringElementType</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Distance = Int</code>
+<div class="comment">
+    <p>A type that can represent the number of steps between pairs of
+values.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Create an instance initialized to zero.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-double">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-double">init(<wbr>_: Double)</a><div class="comment collapse" id="comment-init_-double"><div class="p">
+    <p>Construct an instance that approximates <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ other: Double)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-float">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-float">init(<wbr>_: Float)</a><div class="comment collapse" id="comment-init_-float"><div class="p">
+    <p>Construct an instance that approximates <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ other: Float)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-float80">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-float80">init(<wbr>_: Float80)</a><div class="comment collapse" id="comment-init_-float80"><div class="p">
+    <p>Construct an instance that approximates <code>other</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ other: Float80)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-int">init(<wbr>_: Int)</a><div class="comment collapse" id="comment-init_-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-int8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-int8">init(<wbr>_: Int8)</a><div class="comment collapse" id="comment-init_-int8"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: Int8)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-int16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-int16">init(<wbr>_: Int16)</a><div class="comment collapse" id="comment-init_-int16"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: Int16)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-int32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-int32">init(<wbr>_: Int32)</a><div class="comment collapse" id="comment-init_-int32"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: Int32)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-int64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-int64">init(<wbr>_: Int64)</a><div class="comment collapse" id="comment-init_-int64"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: Int64)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-uint">init(<wbr>_: UInt)</a><div class="comment collapse" id="comment-init_-uint"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: UInt)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-uint8">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-uint8">init(<wbr>_: UInt8)</a><div class="comment collapse" id="comment-init_-uint8"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: UInt8)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-uint16">init(<wbr>_: UInt16)</a><div class="comment collapse" id="comment-init_-uint16"><div class="p">
+    <p>Create an instance initialized to <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ value: UInt16)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-uint32">init(<wbr>_: UInt32)</a><div class="comment collapse" id="comment-init_-uint32"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: UInt32)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-uint64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-uint64">init(<wbr>_: UInt64)</a><div class="comment collapse" id="comment-init_-uint64"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: UInt64)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-builtinintegerliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-builtinintegerliteral_">init(<wbr>_builtinIntegerLiteral:)</a><div class="comment collapse" id="comment-init-builtinintegerliteral_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_builtinIntegerLiteral value: Builtin.Int2048)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-bigendian_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-bigendian_">init(<wbr>bigEndian:)</a><div class="comment collapse" id="comment-init-bigendian_"><div class="p">
+    <p>Creates an integer from its big-endian representation, changing the
+byte order if necessary.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(bigEndian value: UInt16)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-bitpattern_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-bitpattern_">init(<wbr>bitPattern:)</a><div class="comment collapse" id="comment-init-bitpattern_"><div class="p">
+    <p>Construct a <code>UInt16</code> having the same memory representation as
+the <code>Int16</code> <code>bitPattern</code>.  No range or overflow checking
+occurs, and the resulting <code>UInt16</code> may not have the same numeric
+value as <code>bitPattern</code>--it is only guaranteed to use the same
+pattern of bits.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(bitPattern: Int16)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-integerliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-integerliteral_">init(<wbr>integerLiteral:)</a><div class="comment collapse" id="comment-init-integerliteral_"><div class="p">
+    <p>Create an instance initialized to <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(integerLiteral value: UInt16)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-littleendian_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-littleendian_">init(<wbr>littleEndian:)</a><div class="comment collapse" id="comment-init-littleendian_"><div class="p">
+    <p>Creates an integer from its little-endian representation, changing the
+byte order if necessary.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(littleEndian value: UInt16)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-truncatingbitpattern_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-truncatingbitpattern_-int">init(<wbr>truncatingBitPattern: Int)</a><div class="comment collapse" id="comment-init-truncatingbitpattern_-int"><div class="p">
+    <p>Construct a <code>UInt16</code> having the same bitwise representation as
+the least significant bits of the provided bit pattern.</p>
+
+<p>No range or overflow checking occurs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(truncatingBitPattern: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-truncatingbitpattern_-int32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-truncatingbitpattern_-int32">init(<wbr>truncatingBitPattern: Int32)</a><div class="comment collapse" id="comment-init-truncatingbitpattern_-int32"><div class="p">
+    <p>Construct a <code>UInt16</code> having the same bitwise representation as
+the least significant bits of the provided bit pattern.</p>
+
+<p>No range or overflow checking occurs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(truncatingBitPattern: Int32)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-truncatingbitpattern_-int64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-truncatingbitpattern_-int64">init(<wbr>truncatingBitPattern: Int64)</a><div class="comment collapse" id="comment-init-truncatingbitpattern_-int64"><div class="p">
+    <p>Construct a <code>UInt16</code> having the same bitwise representation as
+the least significant bits of the provided bit pattern.</p>
+
+<p>No range or overflow checking occurs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(truncatingBitPattern: Int64)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-truncatingbitpattern_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-truncatingbitpattern_-uint">init(<wbr>truncatingBitPattern: UInt)</a><div class="comment collapse" id="comment-init-truncatingbitpattern_-uint"><div class="p">
+    <p>Construct a <code>UInt16</code> having the same bitwise representation as
+the least significant bits of the provided bit pattern.</p>
+
+<p>No range or overflow checking occurs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(truncatingBitPattern: UInt)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-truncatingbitpattern_-uint32">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-truncatingbitpattern_-uint32">init(<wbr>truncatingBitPattern: UInt32)</a><div class="comment collapse" id="comment-init-truncatingbitpattern_-uint32"><div class="p">
+    <p>Construct a <code>UInt16</code> having the same bitwise representation as
+the least significant bits of the provided bit pattern.</p>
+
+<p>No range or overflow checking occurs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(truncatingBitPattern: UInt32)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-truncatingbitpattern_-uint64">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-truncatingbitpattern_-uint64">init(<wbr>truncatingBitPattern: UInt64)</a><div class="comment collapse" id="comment-init-truncatingbitpattern_-uint64"><div class="p">
+    <p>Construct a <code>UInt16</code> having the same bitwise representation as
+the least significant bits of the provided bit pattern.</p>
+
+<p>No range or overflow checking occurs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(truncatingBitPattern: UInt64)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_radix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_radix_">init?(<wbr>_:<wbr>radix:)</a><div class="comment collapse" id="comment-init_radix_"><div class="p">
+    <p>Construct from an ASCII representation in the given <code>radix</code>.</p>
+
+<p>If <code>text</code> does not match the regular expression
+&quot;[+-][0-9a-zA-Z]+&quot;, or the value it denotes in the given <code>radix</code>
+is not representable, the result is <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ text: String, radix: Int = default)</code>
+
+    </div></div>
+</div>
+
+<h3>Static Variables</h3>
+<div class="declaration" id="static-var-allzeros_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-allzeros_-uint16">static var allZeros: UInt16</a><div class="comment collapse" id="comment-static-var-allzeros_-uint16"><div class="p">
+    <p>The empty bitset of type UInt16.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var allZeros: UInt16 { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="static-var-max_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-max_-uint16">static var max: UInt16</a><div class="comment collapse" id="comment-static-var-max_-uint16"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var max: UInt16 { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="static-var-min_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-min_-uint16">static var min: UInt16</a><div class="comment collapse" id="comment-static-var-min_-uint16"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var min: UInt16 { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-bigendian_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-bigendian_-uint16">var bigEndian: UInt16</a><div class="comment collapse" id="comment-var-bigendian_-uint16"><div class="p">
+    <p>Returns the big-endian representation of the integer, changing the
+byte order if necessary.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var bigEndian: UInt16 { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-byteswapped_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-byteswapped_-uint16">var byteSwapped: UInt16</a><div class="comment collapse" id="comment-var-byteswapped_-uint16"><div class="p">
+    <p>Returns the current integer with the byte order swapped.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var byteSwapped: UInt16 { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code>.</p>
+
+<p><strong>Note:</strong> The hash value is not guaranteed to be stable across
+  different invocations of the same program.  Do not persist the
+  hash value across program runs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-littleendian_-uint16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-littleendian_-uint16">var littleEndian: UInt16</a><div class="comment collapse" id="comment-var-littleendian_-uint16"><div class="p">
+    <p>Returns the little-endian representation of the integer, changing the
+byte order if necessary.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var littleEndian: UInt16 { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-value_-builtin-int16">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-value_-builtin-int16">var value: Builtin.Int16</a><div class="comment collapse" id="comment-var-value_-builtin-int16"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var value: Builtin.Int16 { get set }</code>
+
+    </div></div>
+</div>
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-addwithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-addwithoverflow__">static func addWithOverflow(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-addwithoverflow__"><div class="p">
+    <p>Add <code>lhs</code> and <code>rhs</code>, returning a result and a
+<code>Bool</code> that is true iff the operation caused an arithmetic
+overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func addWithOverflow(lhs: UInt16, _ rhs: UInt16) -&gt; (UInt16, overflow: Bool)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-dividewithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dividewithoverflow__">static func divideWithOverflow(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-dividewithoverflow__"><div class="p">
+    <p>Divide <code>lhs</code> and <code>rhs</code>, returning
+a result and a <code>Bool</code>
+that is true iff the operation caused an arithmetic overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func divideWithOverflow(lhs: UInt16, _ rhs: UInt16) -&gt; (UInt16, overflow: Bool)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-multiplywithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-multiplywithoverflow__">static func multiplyWithOverflow(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-multiplywithoverflow__"><div class="p">
+    <p>Multiply <code>lhs</code> and <code>rhs</code>, returning a result and a
+<code>Bool</code> that is true iff the operation caused an arithmetic
+overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func multiplyWithOverflow(lhs: UInt16, _ rhs: UInt16) -&gt; (UInt16, overflow: Bool)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-remainderwithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-remainderwithoverflow__">static func remainderWithOverflow(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-remainderwithoverflow__"><div class="p">
+    <p>Divide <code>lhs</code> and <code>rhs</code>, returning
+the remainder and a <code>Bool</code>
+that is true iff the operation caused an arithmetic overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func remainderWithOverflow(lhs: UInt16, _ rhs: UInt16) -&gt; (UInt16, overflow: Bool)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-subtractwithoverflow__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subtractwithoverflow__">static func subtractWithOverflow(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subtractwithoverflow__"><div class="p">
+    <p>Subtract <code>lhs</code> and <code>rhs</code>, returning a result and a
+<code>Bool</code> that is true iff the operation caused an arithmetic
+overflow.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func subtractWithOverflow(lhs: UInt16, _ rhs: UInt16) -&gt; (UInt16, overflow: Bool)</code>
+    
+    
+</div></div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-advancedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_">func advancedBy(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-advancedby_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: Distance) -&gt; UInt16</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt16/"><code>UInt16</code></a>,    <a href="../../protocol/IntegerType/"><code>IntegerType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>,    <a href="../../protocol/_RandomAccessAmbiguity/"><code>_RandomAccessAmbiguity</code></a>,    <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-advancedby_limit_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_limit_">func advancedBy(<wbr>_:<wbr>limit:)</a>
+        
+<div class="comment collapse" id="comment-func-advancedby_limit_"><div class="p">
+    <p>Return the result of advancing <code>self</code> by <code>n</code> positions, or until it
+equals <code>limit</code>.</p>
+
+<p><strong>Returns:</strong>
+  - If <code>n &gt; 0</code>, the result of applying <code>successor</code> to <code>self</code> <code>n</code> times
+    but not past <code>limit</code>.
+  - If <code>n &lt; 0</code>, the result of applying <code>predecessor</code> to <code>self</code> <code>-n</code> times
+    but not past <code>limit</code>.
+  - Otherwise, <code>self</code>.</p>
+
+<p><strong>Requires:</strong> <code>n &gt;= 0</code> if only conforming to <code>ForwardIndexType</code>.</p>
+
+<p><strong>Complexity:</strong>
+  - O(1) if conforming to <code>RandomAccessIndexType</code>
+  - O(<code>abs(n)</code>) otherwise</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: UInt16.Distance, limit: UInt16) -&gt; UInt16</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerType/"><code>IntegerType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>,    <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-distanceto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distanceto_">func distanceTo(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-distanceto_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distanceTo(other: UInt16) -&gt; Distance</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/UInt16/"><code>UInt16</code></a>,    <a href="../../protocol/IntegerType/"><code>IntegerType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/BidirectionalIndexType/"><code>BidirectionalIndexType</code></a>,    <a href="../../protocol/ForwardIndexType/"><code>ForwardIndexType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-predecessor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-predecessor">func predecessor()</a>
+        
+<div class="comment collapse" id="comment-func-predecessor"><div class="p">
+    <p>Returns the previous consecutive value before <code>self</code>.</p>
+
+<p><strong>Requires:</strong> The previous value is representable.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func predecessor() -&gt; UInt16</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-stride-through_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride-through_by_">func stride(<wbr>through:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-stride-through_by_"><div class="p">
+    <p>Return the sequence of values (<code>start</code>, <code>start + stride</code>, <code>start +
+stride + stride</code>, ... <em>last</em>) where <em>last</em> is the last value in
+the progression less than or equal to <code>end</code>.</p>
+
+<p><strong>Note:</strong> There is no guarantee that <code>end</code> is an element of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func stride(through end: UInt16, by stride: UInt16.Stride) -&gt; StrideThrough&lt;UInt16&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerType/"><code>IntegerType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-stride-to_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride-to_by_">func stride(<wbr>to:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-stride-to_by_"><div class="p">
+    <p>Return the sequence of values (<code>self</code>, <code>self + stride</code>, <code>self +
+stride + stride</code>, ... <em>last</em>) where <em>last</em> is the last value in
+the progression that is less than <code>end</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func stride(to end: UInt16, by stride: UInt16.Stride) -&gt; StrideTo&lt;UInt16&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/IntegerType/"><code>IntegerType</code></a>,    <a href="../../protocol/RandomAccessIndexType/"><code>RandomAccessIndexType</code></a>,    <a href="../../protocol/Strideable/"><code>Strideable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-successor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-successor">func successor()</a>
+        
+<div class="comment collapse" id="comment-func-successor"><div class="p">
+    <p>Returns the next consecutive value after <code>self</code>.</p>
+
+<p><strong>Requires:</strong> The next value is representable.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func successor() -&gt; UInt16</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-tointmax">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-tointmax">func toIntMax()</a>
+        
+<div class="comment collapse" id="comment-func-tointmax"><div class="p">
+    <p>Explicitly convert to <code>IntMax</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func toIntMax() -&gt; IntMax</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-touintmax">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-touintmax">func toUIntMax()</a>
+        
+<div class="comment collapse" id="comment-func-touintmax"><div class="p">
+    <p>Represent this number using Swift&#39;s widest native unsigned
+integer type.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func toUIntMax() -&gt; UIntMax</code>
+    
+    
+</div></div>
+</div>
+
+

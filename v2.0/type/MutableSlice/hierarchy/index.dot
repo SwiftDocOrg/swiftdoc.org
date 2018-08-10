@@ -1,0 +1,18 @@
+strict digraph "MutableSlice<Base : MutableIndexable> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "CollectionType" [URL="/protocol/CollectionType/hierarchy/"]
+    "Indexable" [URL="/protocol/Indexable/hierarchy/"]
+    "MutableCollectionType" [URL="/protocol/MutableCollectionType/hierarchy/"]
+    "MutableIndexable" [URL="/protocol/MutableIndexable/hierarchy/"]
+    "MutableSlice<Base : MutableIndexable>" [URL="/type/MutableSlice/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "SequenceType" [URL="/protocol/SequenceType/hierarchy/"]    "MutableCollectionType" -> "MutableSlice<Base : MutableIndexable>"
+    "MutableIndexable" -> "MutableCollectionType"
+    "CollectionType" -> "MutableCollectionType"
+    "Indexable" -> "CollectionType"
+    "SequenceType" -> "CollectionType"
+    subgraph Types {
+        rank = max; "MutableSlice<Base : MutableIndexable>";
+    }
+}

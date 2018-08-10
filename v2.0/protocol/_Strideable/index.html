@@ -1,0 +1,90 @@
+---
+layout: "default"
+title: "_Strideable"
+description: "Swift documentation for '_Strideable': This protocol is an implementation detail of Strideable; do
+not use it directly."
+keywords: "_Strideable,protocol,swift,documentation,advancedBy,distanceTo,Stride"
+root: "/v2.0"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol _Strideable</code></div>
+
+<div class="discussion comment">
+    <p>This protocol is an implementation detail of <code>Strideable</code>; do
+not use it directly.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Stride : SignedNumberType</code>
+<div class="comment">
+    <p>A type that can represent the distance between two values of <code>Self</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-advancedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_">func advancedBy(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-advancedby_"><div class="p">
+    <p>Returns a <code>Self</code> <code>x</code> such that <code>self.distanceTo(x)</code> approximates
+<code>n</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+<p><strong>See Also:</strong> <code>RandomAccessIndexType</code>&#39;s <code>advancedBy</code>, which
+  provides a stronger semantic guarantee.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(n: Self.Stride) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-distanceto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distanceto_">func distanceTo(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-distanceto_"><div class="p">
+    <p>Returns a stride <code>x</code> such that <code>self.advancedBy(x)</code> approximates
+<code>other</code>.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+<p><strong>See Also:</strong> <code>RandomAccessIndexType</code>&#39;s <code>distanceTo</code>, which provides a
+  stronger semantic guarantee.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distanceTo(other: Self) -&gt; Self.Stride</code>
+    
+    
+</div></div>
+</div>
+
+
