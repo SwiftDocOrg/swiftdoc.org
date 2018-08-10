@@ -1,0 +1,157 @@
+---
+layout: "default"
+title: "FilterCollectionView"
+description: "Swift documentation for 'FilterCollectionView': A lazy CollectionType wrapper that includes the elements of an."
+keywords: "FilterCollectionView,struct,swift,documentation,generate,endIndex,startIndex,Index,Generator,Element,Index,SubSequence"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct FilterCollectionView&lt;Base : CollectionType&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A lazy <code>CollectionType</code> wrapper that includes the elements of an
+underlying collection that satisfy a predicate.  Not
+automatically returned by <code>filter(x)</code> for two reasons:</p>
+
+<ul><li><p>The O(1) guarantee of our <code>Index</code> would be iffy at best, since
+it advances an underlying <code>Index</code> until the predicate is
+satisfied.  Be aware that a <code>FilterCollectionView</code> may not offer
+the expected efficiency for this reason.</p></li><li><p>Constructing an <code>Array</code> from a <code>CollectionType</code> measures the length
+of the collection before traversing it to read the elements.
+This causes the filter predicate to be called twice for each
+element of the underlying collection, which is surprising.</p></li></ul>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CollectionType, SequenceType, _CollectionType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Index = FilterCollectionViewIndex&lt;Base&gt;</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Generator = FilterGenerator&lt;Base.Generator&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Element = Base.Generator.Element</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Index = FilterCollectionViewIndex&lt;Base&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence = Slice&lt;FilterCollectionView&lt;Base&gt;&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_includeelement_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_includeelement_">init(<wbr>_:<wbr>includeElement:)</a><div class="comment collapse" id="comment-init_includeelement_"><div class="p">
+    <p>Construct an instance containing the elements of <code>base</code> that
+satisfy <code>predicate</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ base: Base, includeElement predicate: (Base.Generator.Element) -&gt; Bool)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-endindex_-filtercollectionviewindex-base">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-filtercollectionviewindex-base">var endIndex: FilterCollectionViewIndex&lt;Base&gt;</a><div class="comment collapse" id="comment-var-endindex_-filtercollectionviewindex-base"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: FilterCollectionViewIndex&lt;Base&gt; { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-startindex_-filtercollectionviewindex-base">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-filtercollectionviewindex-base">var startIndex: FilterCollectionViewIndex&lt;Base&gt;</a><div class="comment collapse" id="comment-var-startindex_-filtercollectionviewindex-base"><div class="p">
+    <p>The position of the first element in a non-empty collection.</p>
+
+<p>Identical to <code>endIndex</code> in an empty collection.</p>
+
+<p>Complexity: O(N), where N is the ratio between unfiltered and
+filtered collection counts.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: FilterCollectionViewIndex&lt;Base&gt; { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-filtercollectionviewindex-base">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-filtercollectionviewindex-base">subscript(_: FilterCollectionViewIndex&lt;Base&gt;)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-filtercollectionviewindex-base"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: FilterCollectionViewIndex&lt;Base&gt;) -&gt; Base.Generator.Element { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; FilterGenerator&lt;Base.Generator&gt;</code>
+    
+    
+</div></div>
+</div>
+
+

@@ -1,0 +1,136 @@
+---
+layout: "default"
+title: "_BidirectionalIndexType"
+description: "Swift documentation for '_BidirectionalIndexType': This protocol is an implementation detail of BidirectionalIndexType; do."
+keywords: "_BidirectionalIndexType,protocol,swift,documentation,==,predecessor,successor,Distance,_DisabledRangeIndex"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol _BidirectionalIndexType</code></div>
+
+<div class="discussion comment">
+    <p>This protocol is an implementation detail of <code>BidirectionalIndexType</code>; do
+not use it directly.</p>
+
+<p>Its requirements are inherited by <code>BidirectionalIndexType</code> and thus must
+be satisfied by types conforming to that protocol.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Equatable, _ForwardIndexType, _Incrementable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration inherited">
+<code class="language-swift">Distance : _SignedIntegerType = Int</code>
+<div class="comment">
+    <p>A type that can represent the number of steps between pairs of
+<code>Self</code> values where one value is reachable from the other.</p>
+
+<p>Reachability is defined by the ability to produce one value from
+the other via zero or more applications of <code>successor</code>.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">_DisabledRangeIndex = _DisabledRangeIndex_</code>
+<div class="comment">
+    <p>A type that can represent the number of steps between pairs of
+<code>Self</code> values where one value is reachable from the other.</p>
+
+<p>Reachability is defined by the ability to produce one value from
+the other via zero or more applications of <code>successor</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Return true if <code>lhs</code> is equal to <code>rhs</code>.</p>
+
+<p><strong>Equality implies substitutability</strong>.  When <code>x == y</code>, <code>x</code> and
+<code>y</code> are interchangeable in any code that only depends on their
+values.</p>
+
+<p>Class instance identity as distinguished by triple-equals <code>===</code>
+is notably not part of an instance&#39;s value.  Exposing other
+non-value aspects of <code>Equatable</code> types is discouraged, and any
+that <em>are</em> exposed should be explicitly pointed out in
+documentation.</p>
+
+<p><strong>Equality is an equivalence relation</strong></p>
+
+<ul><li><code>x == x</code> is <code>true</code></li><li><code>x == y</code> implies <code>y == x</code></li><li><code>x == y</code> and <code>y == z</code> implies <code>x == z</code></li></ul>
+
+<p><strong>Inequality is the inverse of equality</strong>, i.e. <code>!(x == y)</code> iff
+<code>x != y</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-predecessor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-predecessor">func predecessor()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-predecessor"><div class="p">
+    <p>Return the previous consecutive value in a discrete sequence.</p>
+
+<p>If <code>self</code> has a well-defined successor,
+<code>self.successor().predecessor() == self</code>.  If <code>self</code> has a
+well-defined predecessor, <code>self.predecessor().successor() ==
+self</code>.</p>
+
+<p>Requires: <code>self</code> has a well-defined predecessor.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func predecessor() -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-successor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-successor">func successor()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-successor"><div class="p">
+    <p>Return the next consecutive value in a discrete sequence of
+<code>Self</code> values</p>
+
+<p>Requires: <code>self</code> has a well-defined successor.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func successor() -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_Incrementable/"><code>_Incrementable</code></a>    
+</div></div>
+</div>
+
+

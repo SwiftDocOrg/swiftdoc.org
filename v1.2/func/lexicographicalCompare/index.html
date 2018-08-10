@@ -1,0 +1,38 @@
+---
+layout: "default"
+title: "lexicographicalCompare"
+description: "Swift documentation for 'lexicographicalCompare': Return true iff a1 precedes a2 in a lexicographical (&quot;dictionary&quot;)."
+keywords: "lexicographicalCompare,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-lexicographicalcompare-s1_-sequencetype-s2_-sequencetype-where-s1-generator-element-s1-generator-element-s1-generator-element_-comparable_-s1-a2_-s2">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lexicographicalcompare-s1_-sequencetype-s2_-sequencetype-where-s1-generator-element-s1-generator-element-s1-generator-element_-comparable_-s1-a2_-s2">func <wbr>lexicographicalCompare&lt;S1 :<wbr> SequenceType, S2 :<wbr> SequenceType where S1.Generator.Element == S1.Generator.Element, S1.Generator.Element : Comparable&gt;(<wbr>_:<wbr> S1, a2: S2)</a>
+        
+<div class="comment collapse" id="comment-func-lexicographicalcompare-s1_-sequencetype-s2_-sequencetype-where-s1-generator-element-s1-generator-element-s1-generator-element_-comparable_-s1-a2_-s2"><div class="p">
+    <p>Return true iff a1 precedes a2 in a lexicographical (&quot;dictionary&quot;)
+ordering, using &quot;&lt;&quot; as the comparison between elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lexicographicalCompare&lt;S1 : SequenceType, S2 : SequenceType where S1.Generator.Element == S1.Generator.Element, S1.Generator.Element : Comparable&gt;(a1: S1, a2: S2) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-lexicographicalcompare-s1_-sequencetype-s2_-sequencetype-where-s1-generator-element-s1-generator-element_-s1-a2_-s2-isorderedbefore_-noescape-s1-generator-element-s1-generator-element-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lexicographicalcompare-s1_-sequencetype-s2_-sequencetype-where-s1-generator-element-s1-generator-element_-s1-a2_-s2-isorderedbefore_-noescape-s1-generator-element-s1-generator-element-bool">func <wbr>lexicographicalCompare&lt;S1 :<wbr> SequenceType, S2 : SequenceType where S1.Generator.Element == S1.Generator.Element&gt;(<wbr>_:<wbr> S1, a2:<wbr> S2, isOrderedBefore: @noescape (S1.Generator.Element, S1.Generator.Element) -&gt; Bool)</a>
+        
+<div class="comment collapse" id="comment-func-lexicographicalcompare-s1_-sequencetype-s2_-sequencetype-where-s1-generator-element-s1-generator-element_-s1-a2_-s2-isorderedbefore_-noescape-s1-generator-element-s1-generator-element-bool"><div class="p">
+    <p>Return true iff <code>a1</code> precedes <code>a2</code> in a lexicographical (&quot;dictionary&quot;)
+ordering, using <code>isOrderedBefore</code> as the comparison between elements.</p>
+
+<p>Requires: isOrderedBefore<code> is a [strict weak ordering
+](http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings)
+over the elements of </code>a1<code> and </code>a2`.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lexicographicalCompare&lt;S1 : SequenceType, S2 : SequenceType where S1.Generator.Element == S1.Generator.Element&gt;(a1: S1, a2: S2, isOrderedBefore less: @noescape (S1.Generator.Element, S1.Generator.Element) -&gt; Bool) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>

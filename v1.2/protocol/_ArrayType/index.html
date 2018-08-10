@@ -1,0 +1,507 @@
+---
+layout: "default"
+title: "_ArrayType"
+description: "Swift documentation for protocol '_ArrayType'."
+keywords: "_ArrayType,protocol,swift,documentation,+=,_doCopyToNativeArrayBuffer,append,extend,generate,insert,join,reduce,removeAll,removeAtIndex,removeLast,removeRange,replaceRange,reserveCapacity,sort,splice,_baseAddressIfContiguous,_owner,capacity,count,isEmpty,endIndex,startIndex,_buffer,_Buffer,Element,Generator,SubSlice,Index,_Element"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol _ArrayType</code></div>
+
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">ArrayLiteralConvertible, CollectionType, ExtensibleCollectionType, MutableCollectionType, MutableSliceable, RangeReplaceableCollectionType, SequenceType, Sliceable, _CollectionType, _ExtensibleCollectionType, _SequenceType, _Sequence_Type, _Sliceable, __ArrayType</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">_Buffer : _ArrayBufferType</code>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">Element</code>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">Generator : GeneratorType</code>
+<div class="comment">
+    <p>A type that provides the <em>sequence</em>&#39;s iteration interface and
+encapsulates its iteration state.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">SubSlice : _Sliceable</code>
+<div class="comment">
+    <p>The <em>collection</em> type that represents a sub-range of elements.</p>
+
+<p>Though it can&#39;t currently be enforced by the type system, the
+<code>SubSlice</code> type in a concrete implementation of <code>Sliceable</code>
+should also be <code>Sliceable</code>.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">Index : ForwardIndexType</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">_Element</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a> <span class="required">Required</span><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Construct an empty Array</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/_ArrayType/"><code>_ArrayType</code></a>
+        ,    <a href="../../protocol/_ExtensibleCollectionType/"><code>_ExtensibleCollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ buffer: _Buffer)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-count_repeatedvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-count_repeatedvalue_">init(<wbr>count:<wbr>repeatedValue:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-count_repeatedvalue_"><div class="p">
+    <p>Construct an array of count elements, each initialized to repeatedValue</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(count: Int, repeatedValue: Self.Generator.Element)</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="init-arrayliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-arrayliteral_">init(<wbr>arrayLiteral:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-arrayliteral_"><div class="p">
+    <p>Create an instance initialized with <code>elements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(arrayLiteral elements: Element...)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/ArrayLiteralConvertible/"><code>ArrayLiteralConvertible</code></a>
+        </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-baseaddressifcontiguous_-unsafemutablepointer-self-element">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-baseaddressifcontiguous_-unsafemutablepointer-self-element">var _baseAddressIfContiguous: UnsafeMutablePointer&lt;Self.Element&gt;</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-baseaddressifcontiguous_-unsafemutablepointer-self-element"><div class="p">
+    <p>If the elements are stored contiguously, a pointer to the first
+element. Otherwise, nil.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var _baseAddressIfContiguous: UnsafeMutablePointer&lt;Self.Element&gt; { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-owner_-anyobject">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-owner_-anyobject">var _owner: AnyObject?</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-owner_-anyobject"><div class="p">
+    <p>An object that guarantees the lifetime of this array&#39;s elements</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var _owner: AnyObject? { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-capacity_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-capacity_-int">var capacity: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-capacity_-int"><div class="p">
+    <p>How many elements the Array can store without reallocation</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var capacity: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    <p>How many elements the Array stores</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/_ArrayType/"><code>_ArrayType</code></a>
+        ,    <a href="../../protocol/__ArrayType/"><code>__ArrayType</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p>true if and only if the Array is empty</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="var-endindex_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-index">var endIndex: Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-endindex_-index"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: Index { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/_CollectionType/"><code>_CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-startindex_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-index">var startIndex: Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-startindex_-index"><div class="p">
+    <p>The position of the first element in a non-empty collection.</p>
+
+<p>Identical to <code>endIndex</code> in an empty collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: Index { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/_CollectionType/"><code>_CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-buffer_-buffer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-buffer_-buffer">var _buffer: _Buffer</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-buffer_-buffer"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var _buffer: _Buffer { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/__ArrayType/"><code>__ArrayType</code></a>
+        </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-int">subscript(_: Int)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(index: Int) -&gt; Self.Generator.Element { get set }</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="subscript-subscript_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-self-index">subscript(_: Self.Index)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-self-index"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: Self.Index) -&gt; Self.Generator.Element { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>,    <a href="../../protocol/MutableCollectionType/"><code>MutableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="subscript-subscript_-range-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-range-self-index">subscript(_: Range&lt;Self.Index&gt;)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-range-self-index"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(_: Range&lt;Self.Index&gt;) -&gt; Self.SubSlice { get set }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/MutableSliceable/"><code>MutableSliceable</code></a>,    <a href="../../protocol/Sliceable/"><code>Sliceable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="subscript-subscript_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-index">subscript(_: Index)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-index"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(_i: Index) -&gt; _Element { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_CollectionType/"><code>_CollectionType</code></a>    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-plseq-inout_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-plseq-inout_rhs_">func +=(<wbr>inout:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-plseq-inout_rhs_"><div class="p">
+    <p>Operator form of extend</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func +=&lt;S : SequenceType where Self.Generator.Element == Self.Generator.Element&gt;(inout lhs: Self, rhs: S)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--docopytonativearraybuffer">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--docopytonativearraybuffer">func _doCopyToNativeArrayBuffer()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func--docopytonativearraybuffer"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func _doCopyToNativeArrayBuffer() -&gt; _ContiguousArrayBuffer&lt;Self._Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/__ArrayType/"><code>__ArrayType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-append_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-append_">mutating func append(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-append_"><div class="p">
+    <p>Append newElement to the Array in O(1) (amortized)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func append(newElement: Self.Generator.Element)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_ArrayType/"><code>_ArrayType</code></a>,    <a href="../../protocol/_ExtensibleCollectionType/"><code>_ExtensibleCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-extend_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-extend_">mutating func extend(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-extend_"><div class="p">
+    <p>Append elements from <code>sequence</code> to the Array</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func extend&lt;S : SequenceType where Self.Generator.Element == Self.Generator.Element&gt;(sequence: S)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_ArrayType/"><code>_ArrayType</code></a>,    <a href="../../protocol/_ExtensibleCollectionType/"><code>_ExtensibleCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; Generator</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>,    <a href="../../protocol/_Sequence_Type/"><code>_Sequence_Type</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-insert_atindex_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-insert_atindex_">mutating func insert(<wbr>_:<wbr>atIndex:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-insert_atindex_"><div class="p">
+    <p>Insert <code>newElement</code> at index <code>i</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p>Complexity: O(<code>count(self)</code>).</p>
+
+<p>Requires: <code>atIndex</code> &lt;= <code>count</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insert(newElement: Self.Generator.Element, atIndex i: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_ArrayType/"><code>_ArrayType</code></a>,    <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-join_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-join_">func join(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-join_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func join&lt;S : SequenceType where Self == Self&gt;(elements: S) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-reduce_combine_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reduce_combine_">func reduce(<wbr>_:<wbr>combine:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-reduce_combine_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reduce&lt;U&gt;(initial: U, combine: @noescape (U, Self.Generator.Element) -&gt; U) -&gt; U</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-removeall_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removeall_">mutating func removeAll(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-removeall_"><div class="p">
+    <p>Erase all the elements.  If <code>keepCapacity</code> is <code>true</code>, <code>capacity</code>
+will not change</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeAll(#keepCapacity: Bool)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_ArrayType/"><code>_ArrayType</code></a>,    <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-removeatindex_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removeatindex_">mutating func removeAtIndex(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-removeatindex_"><div class="p">
+    <p>Remove and return the element at the given index.  Returns: the removed
+element.  Worst case complexity: O(N).  Requires: count &gt; index</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeAtIndex(index: Int) -&gt; Self.Generator.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_ArrayType/"><code>_ArrayType</code></a>,    <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-removelast">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removelast">mutating func removeLast()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-removelast"><div class="p">
+    <p>Remove an element from the end of the Array in O(1).  Returns:
+the removed element. Requires: count &gt; 0</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeLast() -&gt; Self.Generator.Element</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-removerange_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removerange_">mutating func removeRange(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-removerange_"><div class="p">
+    <p>Remove the indicated <code>subRange</code> of elements</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p>Complexity: O(<code>count(self)</code>).</p>
+
+<p>Can be implemented as:</p>
+
+<pre><code class="language-swift">Swift.removeRange(&amp;self, subRange)</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeRange(subRange: Range&lt;Self.Index&gt;)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-replacerange_with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-replacerange_with_">mutating func replaceRange(<wbr>_:<wbr>with:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-replacerange_with_"><div class="p">
+    <p>Replace the given <code>subRange</code> of elements with <code>newElements</code>.</p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p>Complexity: O(<code>count(subRange)</code>) if
+<code>subRange.endIndex == self.endIndex</code> and <code>isEmpty(newElements)</code>,
+O(<code>count(self)</code> + <code>count(newElements)</code>) otherwise.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func replaceRange&lt;C : CollectionType where Self.Generator.Element == Self.Generator.Element&gt;(subRange: Range&lt;Self.Index&gt;, with newElements: C)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-reservecapacity_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reservecapacity_">mutating func reserveCapacity(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-reservecapacity_"><div class="p">
+    <p>Reserve enough space to store minimumCapacity elements.</p>
+
+<p>PostCondition: <code>capacity &gt;= minimumCapacity</code> and the array has
+mutable contiguous storage.</p>
+
+<p>Complexity: O(<code>count</code>)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func reserveCapacity(minimumCapacity: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_ArrayType/"><code>_ArrayType</code></a>,    <a href="../../protocol/_ExtensibleCollectionType/"><code>_ExtensibleCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-sort_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sort_">mutating func sort(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-sort_"><div class="p">
+    <p>Sort <code>self</code> in-place according to <code>isOrderedBefore</code>.  Requires:
+<code>isOrderedBefore</code> induces a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over the elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func sort(isOrderedBefore: (Self.Generator.Element, Self.Generator.Element) -&gt; Bool)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-splice_atindex_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-splice_atindex_">mutating func splice(<wbr>_:<wbr>atIndex:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-splice_atindex_"><div class="p">
+    <p>Insert <code>newElements</code> at index <code>i</code></p>
+
+<p>Invalidates all indices with respect to <code>self</code>.</p>
+
+<p>Complexity: O(<code>count(self) + count(newElements)</code>).</p>
+
+<p>Can be implemented as:</p>
+
+<pre><code class="language-swift">Swift.splice(&amp;self, newElements, atIndex: i)</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func splice&lt;S : CollectionType where Self.Generator.Element == Self.Generator.Element&gt;(newElements: S, atIndex i: Self.Index)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollectionType/"><code>RangeReplaceableCollectionType</code></a>    
+</div></div>
+</div>
+
+

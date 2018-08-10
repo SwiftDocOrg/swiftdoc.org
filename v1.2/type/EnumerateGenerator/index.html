@@ -1,0 +1,109 @@
+---
+layout: "default"
+title: "EnumerateGenerator"
+description: "Swift documentation for 'EnumerateGenerator': The GeneratorType for EnumerateSequence.  EnumerateGenerator."
+keywords: "EnumerateGenerator,struct,swift,documentation,generate,next,Element,Generator"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct EnumerateGenerator&lt;Base : GeneratorType&gt;</code></div>
+
+<div class="discussion comment">
+    <p>The <code>GeneratorType</code> for <code>EnumerateSequence</code>.  <code>EnumerateGenerator</code>
+wraps a <code>Base</code> <code>GeneratorType</code> and yields successive <code>Int</code> values,
+starting at zero, along with the elements of the underlying
+<code>Base</code>:</p>
+
+<pre><code class="language-swift">var g = EnumerateGenerator([&quot;foo&quot;, &quot;bar&quot;].generate())
+g.next() // (0, &quot;foo&quot;)
+g.next() // (1, &quot;bar&quot;)
+g.next() // nil</code></pre>
+
+<p>Note:: idiomatic usage is to call <code>enumerate</code> instead of
+constructing an <code>EnumerateGenerator</code> directly.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">GeneratorType, SequenceType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Element = (index: Int, element: Base.Element)</code>
+<div class="comment">
+    <p>The type of element returned by <code>next()</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Generator = EnumerateGenerator&lt;Base&gt;</code>
+<div class="comment">
+    <p>A type whose instances can produce the elements of this
+sequence, in order.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Construct from a <code>Base</code> generator</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ base: Base)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p><code>EnumerateGenerator</code> is also a <code>SequenceType</code>, so it
+<code>generate</code>s a copy of itself</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; EnumerateGenerator&lt;Base&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-next">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-next">mutating func next()</a>
+        
+<div class="comment collapse" id="comment-func-next"><div class="p">
+    <p>Advance to the next element and return it, or <code>nil</code> if no next
+element exists.</p>
+
+<p>Requires: no preceding call to <code>self.next()</code> has returned <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next() -&gt; Element?</code>
+    
+    
+</div></div>
+</div>
+
+

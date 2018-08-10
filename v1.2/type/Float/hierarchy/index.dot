@@ -1,0 +1,44 @@
+strict digraph "Float - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AbsoluteValuable" [URL="/protocol/AbsoluteValuable/hierarchy/"]
+    "CVarArgType" [URL="/protocol/CVarArgType/hierarchy/"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "Float" [URL="/type/Float/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "FloatLiteralConvertible" [URL="/protocol/FloatLiteralConvertible/hierarchy/"]
+    "FloatingPointType" [URL="/protocol/FloatingPointType/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "IntegerLiteralConvertible" [URL="/protocol/IntegerLiteralConvertible/hierarchy/"]
+    "Printable" [URL="/protocol/Printable/hierarchy/"]
+    "Reflectable" [URL="/protocol/Reflectable/hierarchy/"]
+    "SignedNumberType" [URL="/protocol/SignedNumberType/hierarchy/"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]
+    "_CVarArgPassedAsDouble" [URL="/protocol/_CVarArgPassedAsDouble/hierarchy/"]
+    "_Comparable" [URL="/protocol/_Comparable/hierarchy/"]
+    "_SignedNumberType" [URL="/protocol/_SignedNumberType/hierarchy/"]
+    "_Strideable" [URL="/protocol/_Strideable/hierarchy/"]    "Printable" -> "Float"
+    "FloatingPointType" -> "Float"
+    "FloatLiteralConvertible" -> "Float"
+    "Hashable" -> "Float"
+    "AbsoluteValuable" -> "Float"
+    "Reflectable" -> "Float"
+    "_CVarArgPassedAsDouble" -> "Float"
+    "Strideable" -> "FloatingPointType"
+    "Comparable" -> "Strideable"
+    "_Strideable" -> "Strideable"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "Hashable"
+    "SignedNumberType" -> "AbsoluteValuable"
+    "_SignedNumberType" -> "SignedNumberType"
+    "Comparable" -> "_SignedNumberType"
+    "IntegerLiteralConvertible" -> "_SignedNumberType"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    "CVarArgType" -> "_CVarArgPassedAsDouble"
+    subgraph Types {
+        rank = max; "Float";
+    }
+}

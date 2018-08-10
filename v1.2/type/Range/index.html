@@ -1,0 +1,245 @@
+---
+layout: "default"
+title: "Range"
+description: "Swift documentation for 'Range': A collection of consecutive discrete index values."
+keywords: "Range,struct,swift,documentation,generate,getMirror,map,debugDescription,description,endIndex,isEmpty,startIndex,Index,ArraySlice,Generator,Element,Index,SubSequence"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Range&lt;T : ForwardIndexType&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A collection of consecutive discrete index values.</p>
+
+<p><strong><code>T</code></strong> is both the element type and the index type of the
+  collection.</p>
+
+<p>Like other collections, a range containing one element has an
+<code>endIndex</code> that is the successor of its <code>startIndex</code>; and an empty
+range has <code>startIndex == endIndex</code>.</p>
+
+<p>Axiom: for any <code>Range</code> <code>r</code>, <code>r[i] == i</code>.</p>
+
+<p>Therefore, if <code>T</code> has a maximal value, it can serve as an
+<code>endIndex</code>, but can never be contained in a <code>Range&lt;T&gt;</code>.</p>
+
+<p>It also follows from the axiom above that <code>(-99..&lt;100)[0] == 0</code>.
+To prevent confusion (because some expect the result to be <code>-99</code>),
+in a context where <code>T</code> is known to be an integer type,
+subscripting with <code>T</code> is a compile-time error:</p>
+
+<pre><code class="language-swift">// error: could not find an overload for &#39;subscript&#39;...
+println( Range&lt;Int&gt;(start:-99, end:100)[0] )</code></pre>
+
+<p>However, subscripting that range still works in a generic context:</p>
+
+<pre><code class="language-swift">func brackets&lt;T:ForwardIndexType&gt;(x: Range&lt;T&gt;, i: T) -&gt; T {
+  return x[i] // Just forward to subscript
+}
+println(brackets(Range&lt;Int&gt;(start:-99, end:100), 0)) // prints 0</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CollectionType, DebugPrintable, Equatable, Printable, Reflectable, SequenceType, _CollectionType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Index = T</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">ArraySlice = Range&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">Generator = RangeGenerator&lt;T&gt;</code>
+<div class="comment">
+    <p>A type whose instances can produce the elements of this
+sequence, in order.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Element = T</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Index = T</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence = Slice&lt;Range&lt;T&gt;&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Construct a copy of <code>x</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ x: Range&lt;T&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-start_end_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-start_end_">init(<wbr>start:<wbr>end:)</a><div class="comment collapse" id="comment-init-start_end_"><div class="p">
+    <p>Construct a range with <code>startIndex == start</code> and <code>endIndex ==
+end</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(start: T, end: T)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-endindex_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-t">var endIndex: T</a><div class="comment collapse" id="comment-var-endindex_-t"><div class="p">
+    <p>The range&#39;s upper bound</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: T { get set }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p><code>true</code> iff the range is empty, i.e. <code>startIndex == endIndex</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-startindex_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-t">var startIndex: T</a><div class="comment collapse" id="comment-var-startindex_-t"><div class="p">
+    <p>The range&#39;s lower bound</p>
+
+<p>Identical to <code>endIndex</code> in an empty range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: T { get set }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-t">subscript(_: T)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: T) -&gt; T { get }</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="subscript-subscript_-t-disabledrangeindex">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-t-disabledrangeindex">subscript(_: T._DisabledRangeIndex)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-t-disabledrangeindex"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(_: T._DisabledRangeIndex) -&gt; T { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; RangeGenerator&lt;T&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-getmirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-getmirror">func getMirror()</a>
+        
+<div class="comment collapse" id="comment-func-getmirror"><div class="p">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func getMirror() -&gt; MirrorType</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-map_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-map_">func map(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-map_"><div class="p">
+    <p>Return an array containing the results of calling
+<code>transform(x)</code> on each element <code>x</code> of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func map&lt;U&gt;(transform: (T) -&gt; U) -&gt; [U]</code>
+    
+    
+</div></div>
+</div>
+
+

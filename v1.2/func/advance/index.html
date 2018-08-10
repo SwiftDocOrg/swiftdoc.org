@@ -1,0 +1,38 @@
+---
+layout: "default"
+title: "advance"
+description: "Swift documentation for 'advance': Return the result of advancing start by n positions.  If T."
+keywords: "advance,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-advance-t_-forwardindextype_-t-n_-t-distance">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advance-t_-forwardindextype_-t-n_-t-distance">func <wbr>advance&lt;T : ForwardIndexType&gt;(<wbr>_:<wbr> T, n: T.Distance)</a>
+        
+<div class="comment collapse" id="comment-func-advance-t_-forwardindextype_-t-n_-t-distance"><div class="p">
+    <p>Return the result of advancing <code>start</code> by <code>n</code> positions.  If <code>T</code>
+models <code>RandomAccessIndexType</code>, executes in O(1).  Otherwise,
+executes in O(<code>abs(n)</code>).  If <code>T</code> does not model
+<code>BidirectionalIndexType</code>, requires that <code>n</code> is non-negative.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advance&lt;T : ForwardIndexType&gt;(start: T, n: T.Distance) -&gt; T</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-advance-t_-forwardindextype_-t-n_-t-distance-end_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advance-t_-forwardindextype_-t-n_-t-distance-end_-t">func <wbr>advance&lt;T : ForwardIndexType&gt;(<wbr>_:<wbr> T, n:<wbr> T.Distance, end: T)</a>
+        
+<div class="comment collapse" id="comment-func-advance-t_-forwardindextype_-t-n_-t-distance-end_-t"><div class="p">
+    <p>Return the result of advancing start by <code>n</code> positions, or until it
+equals <code>end</code>.  If <code>T</code> models <code>RandomAccessIndexType</code>, executes in
+O(1).  Otherwise, executes in O(<code>abs(n)</code>).  If <code>T</code> does not model
+<code>BidirectionalIndexType</code>, requires that <code>n</code> is non-negative.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advance&lt;T : ForwardIndexType&gt;(start: T, n: T.Distance, end: T) -&gt; T</code>
+    
+    
+</div></div>
+</div>

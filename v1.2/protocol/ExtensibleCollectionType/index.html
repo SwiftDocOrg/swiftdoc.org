@@ -1,0 +1,211 @@
+---
+layout: "default"
+title: "ExtensibleCollectionType"
+description: "Swift documentation for 'ExtensibleCollectionType': A collection type that can be efficiently appended-to."
+keywords: "ExtensibleCollectionType,protocol,swift,documentation,append,extend,generate,reserveCapacity,endIndex,startIndex,Generator,Index,_Element"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol ExtensibleCollectionType</code></div>
+
+<div class="discussion comment">
+    <p>A collection type that can be efficiently appended-to.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CollectionType, SequenceType, _CollectionType, _ExtensibleCollectionType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration inherited">
+<code class="language-swift">Generator : GeneratorType</code>
+<div class="comment">
+    <p>A type that provides the <em>sequence</em>&#39;s iteration interface and
+encapsulates its iteration state.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">Index : ForwardIndexType</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">_Element</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration inherited" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a> <span class="required">Required</span><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Create an empty instance</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/_ExtensibleCollectionType/"><code>_ExtensibleCollectionType</code></a>
+        </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration inherited" id="var-endindex_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-index">var endIndex: Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-endindex_-index"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: Index { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/_CollectionType/"><code>_CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-startindex_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-index">var startIndex: Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-startindex_-index"><div class="p">
+    <p>The position of the first element in a non-empty collection.</p>
+
+<p>Identical to <code>endIndex</code> in an empty collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: Index { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/_CollectionType/"><code>_CollectionType</code></a>
+        </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration inherited" id="subscript-subscript_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-self-index">subscript(_: Self.Index)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-self-index"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: Self.Index) -&gt; Self.Generator.Element { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/CollectionType/"><code>CollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="subscript-subscript_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-index">subscript(_: Index)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-index"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(_i: Index) -&gt; _Element { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_CollectionType/"><code>_CollectionType</code></a>    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-append_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-append_">mutating func append(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-append_"><div class="p">
+    <p>Append <code>x</code> to <code>self</code>.</p>
+
+<p>Applying <code>successor()</code> to the index of the new element yields
+<code>self.endIndex</code>.</p>
+
+<p>Complexity: amortized O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func append(x: Self.Generator.Element)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_ExtensibleCollectionType/"><code>_ExtensibleCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-extend_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-extend_">mutating func extend(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-extend_"><div class="p">
+    <p>Append the elements of <code>newElements</code> to <code>self</code>.</p>
+
+<p>Complexity: O(<em>length of result</em>) </p>
+
+<p>A possible implementation:</p>
+
+<pre><code class="language-swift">reserveCapacity(count(self) + underestimateCount(newElements))
+for x in newElements {
+  self.append(x)
+}</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func extend&lt;S : SequenceType where Self.Generator.Element == Self.Generator.Element&gt;(newElements: S)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_ExtensibleCollectionType/"><code>_ExtensibleCollectionType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; Generator</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>,    <a href="../../protocol/_Sequence_Type/"><code>_Sequence_Type</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reservecapacity_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reservecapacity_">mutating func reserveCapacity(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-reservecapacity_"><div class="p">
+    <p>A non-binding request to ensure <code>n</code> elements of available storage.</p>
+
+<p>This works as an optimization to avoid multiple reallocations of
+linear data structures like <code>Array</code>.  Conforming types may
+reserve more than <code>n</code>, exactly <code>n</code>, less than <code>n</code> elements of
+storage, or even ignore the request completely.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func reserveCapacity(n: Self.Index.Distance)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_ExtensibleCollectionType/"><code>_ExtensibleCollectionType</code></a>    
+</div></div>
+</div>
+
+

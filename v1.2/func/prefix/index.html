@@ -1,0 +1,28 @@
+---
+layout: "default"
+title: "prefix"
+description: "Swift documentation for 'prefix': Return a slice, up to maxLength in length, containing the."
+keywords: "prefix,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-prefix-s_-sliceable_-s-maxlength_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix-s_-sliceable_-s-maxlength_-int">func <wbr>prefix&lt;S : Sliceable&gt;(<wbr>_:<wbr> S, maxLength: Int)</a>
+        
+<div class="comment collapse" id="comment-func-prefix-s_-sliceable_-s-maxlength_-int"><div class="p">
+    <p>Return a slice, up to <code>maxLength</code> in length, containing the
+initial elements of <code>s</code>.</p>
+
+<p>If <code>maxLength</code> exceeds <code>count(s)</code>, the result contains all
+the elements of <code>s</code>.</p>
+
+<p>Complexity: O(1)+K when <code>S.Index</code> conforms to
+<code>RandomAccessIndexType</code> and O(N)+K otherwise, where K is the cost
+of slicing <code>s</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix&lt;S : Sliceable&gt;(s: S, maxLength: Int) -&gt; S.SubSlice</code>
+    
+    
+</div></div>
+</div>

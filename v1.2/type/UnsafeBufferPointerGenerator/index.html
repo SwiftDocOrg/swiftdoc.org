@@ -1,0 +1,86 @@
+---
+layout: "default"
+title: "UnsafeBufferPointerGenerator"
+description: "Swift documentation for 'UnsafeBufferPointerGenerator': A generator for the elements in the buffer referenced by."
+keywords: "UnsafeBufferPointerGenerator,struct,swift,documentation,generate,next,Generator,Element"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct UnsafeBufferPointerGenerator&lt;T&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A generator for the elements in the buffer referenced by
+<code>UnsafeBufferPointer</code> or <code>UnsafeMutableBufferPointer</code></p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">GeneratorType, SequenceType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Generator = UnsafeBufferPointerGenerator&lt;T&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Element = Generator.Element</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p><code>UnsafeBufferPointerGenerator</code> is also a <code>SequenceType</code>, so it
+<code>generate</code>&#39;s a copy of itself</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; UnsafeBufferPointerGenerator&lt;T&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-next">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-next">mutating func next()</a>
+        
+<div class="comment collapse" id="comment-func-next"><div class="p">
+    <p>Advance to the next element and return it, or <code>nil</code> if no next
+element exists.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next() -&gt; T?</code>
+    
+    
+</div></div>
+</div>
+
+

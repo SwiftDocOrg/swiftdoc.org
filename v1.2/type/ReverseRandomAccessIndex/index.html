@@ -1,0 +1,103 @@
+---
+layout: "default"
+title: "ReverseRandomAccessIndex"
+description: "Swift documentation for 'ReverseRandomAccessIndex': A wrapper for a RandomAccessIndexType that reverses its."
+keywords: "ReverseRandomAccessIndex,struct,swift,documentation,advancedBy,distanceTo,predecessor,successor"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct ReverseRandomAccessIndex&lt;I : RandomAccessIndexType&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A wrapper for a <code>RandomAccessIndexType</code> that reverses its
+direction of traversal</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">BidirectionalIndexType, Comparable, Equatable, ForwardIndexType, RandomAccessIndexType, Strideable, _BidirectionalIndexType, _Comparable, _ForwardIndexType, _Incrementable, _RandomAccessIndexType, _Strideable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-advancedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_">func advancedBy(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-advancedby_"><div class="p">
+    <p>Return <code>self</code> offset by <code>n</code> steps.</p>
+
+<p><strong>Returns:</strong> If <code>n &gt; 0</code>, the result of applying <code>successor</code> to
+<code>self</code> <code>n</code> times.  If <code>n &lt; 0</code>, the result of applying
+<code>predecessor</code> to <code>self</code> <code>-n</code> times. Otherwise, <code>self</code>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(amount: I.Distance) -&gt; ReverseRandomAccessIndex&lt;I&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-distanceto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distanceto_">func distanceTo(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-distanceto_"><div class="p">
+    <p>Return the minimum number of applications of <code>successor</code> or
+<code>predecessor</code> required to reach <code>other</code> from <code>self</code>.</p>
+
+<p>Complexity: O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distanceTo(other: ReverseRandomAccessIndex&lt;I&gt;) -&gt; I.Distance</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-predecessor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-predecessor">func predecessor()</a>
+        
+<div class="comment collapse" id="comment-func-predecessor"><div class="p">
+    <p>Returns the previous consecutive value before <code>self</code>.</p>
+
+<p>Requires: the previous value is representable.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func predecessor() -&gt; ReverseRandomAccessIndex&lt;I&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-successor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-successor">func successor()</a>
+        
+<div class="comment collapse" id="comment-func-successor"><div class="p">
+    <p>Returns the next consecutive value after <code>self</code>.</p>
+
+<p>Requires: the next value is representable.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func successor() -&gt; ReverseRandomAccessIndex&lt;I&gt;</code>
+    
+    
+</div></div>
+</div>
+
+

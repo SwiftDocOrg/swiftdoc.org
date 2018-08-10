@@ -1,0 +1,75 @@
+---
+layout: "default"
+title: "SinkOf"
+description: "Swift documentation for 'SinkOf': A type-erased sink."
+keywords: "SinkOf,struct,swift,documentation,put"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct SinkOf&lt;T&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A type-erased sink.</p>
+
+<p>Forwards operations to an arbitrary underlying sink with the same
+<code>Element</code> type, hiding the specifics of the underlying sink type.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">SinkType</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-t">init(<wbr>_: (T) -&gt; ())</a><div class="comment collapse" id="comment-init_-t"><div class="p">
+    <p>Construct an instance whose <code>put(x)</code> calls <code>putElement(x)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ putElement: (T) -&gt; ())</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-s_-sinktype-where-t-t_-s">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-s_-sinktype-where-t-t_-s"><wbr>init&lt;S : SinkType where T == T&gt;(<wbr>_: S)</a><div class="comment collapse" id="comment-init-s_-sinktype-where-t-t_-s"><div class="p">
+    <p>Construct an instance whose <code>put(x)</code> calls <code>base.put(x)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;S : SinkType where T == T&gt;(_ base: S)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-put_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-put_">func put(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-put_"><div class="p">
+    <p>Write <code>x</code> to this sink.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func put(x: T)</code>
+    
+    
+</div></div>
+</div>
+
+

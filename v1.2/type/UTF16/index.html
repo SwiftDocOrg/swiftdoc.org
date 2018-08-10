@@ -1,0 +1,185 @@
+---
+layout: "default"
+title: "UTF16"
+description: "Swift documentation for 'UTF16': A codec for UTF-16."
+keywords: "UTF16,struct,swift,documentation,decode,encode,isLeadSurrogate,isTrailSurrogate,leadSurrogate,measure,trailSurrogate,width,CodeUnit"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct UTF16</code></div>
+
+<div class="discussion comment">
+    <p>A codec for <a href="http://www.unicode.org/glossary/#UTF_16">UTF-16</a>.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">UnicodeCodecType</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">CodeUnit = UInt16</code>
+<div class="comment">
+    <p>A type that can hold <a href="http://www.unicode.org/glossary/#code_unit">code unit</a> values for this
+encoding.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-encode_inout_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_inout_">static func encode(<wbr>_:<wbr>inout:)</a>
+        
+<div class="comment collapse" id="comment-func-encode_inout_"><div class="p">
+    <p>Encode a <code>UnicodeScalar</code> as a series of <code>CodeUnit</code>s by
+<code>put</code>&#39;ing each <code>CodeUnit</code> to <code>output</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func encode&lt;S : SinkType where CodeUnit == CodeUnit&gt;(input: UnicodeScalar, inout output: S)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-isleadsurrogate_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isleadsurrogate_">static func isLeadSurrogate(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-isleadsurrogate_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func isLeadSurrogate(x: CodeUnit) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-istrailsurrogate_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-istrailsurrogate_">static func isTrailSurrogate(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-istrailsurrogate_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func isTrailSurrogate(x: CodeUnit) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-leadsurrogate_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-leadsurrogate_">static func leadSurrogate(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-leadsurrogate_"><div class="p">
+    <p>Return the high surrogate code unit of a <a href="http://www.unicode.org/glossary/#surrogate_pair">surrogate pair</a> representing
+<code>x</code>.</p>
+
+<p>Requires: <code>width(x) == 2</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func leadSurrogate(x: UnicodeScalar) -&gt; CodeUnit</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-measure_input_repairillformedsequences_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-measure_input_repairillformedsequences_">static func measure(<wbr>_:<wbr>input:<wbr>repairIllFormedSequences:)</a>
+        
+<div class="comment collapse" id="comment-func-measure_input_repairillformedsequences_"><div class="p">
+    <p>Returns the number of UTF-16 code units required for the given code unit
+sequence when transcoded to UTF-16, and a bit describing if the sequence
+was found to contain only ASCII characters.</p>
+
+<p>If <code>repairIllFormedSequences</code> is <code>true</code>, the function always succeeds.
+If it is <code>false</code>, <code>nil</code> is returned if an ill-formed code unit sequence is
+found in <code>input</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func measure&lt;Encoding : UnicodeCodecType, Input : GeneratorType where Encoding.CodeUnit == Encoding.CodeUnit&gt;(_: Encoding.Type, input: Input, repairIllFormedSequences: Bool) -&gt; (Int, Bool)?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-trailsurrogate_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-trailsurrogate_">static func trailSurrogate(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-trailsurrogate_"><div class="p">
+    <p>Return the low surrogate code unit of a <a href="http://www.unicode.org/glossary/#surrogate_pair">surrogate pair</a> representing
+<code>x</code>.</p>
+
+<p>Requires: <code>width(x) == 2</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func trailSurrogate(x: UnicodeScalar) -&gt; CodeUnit</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-width_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-width_">static func width(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-width_"><div class="p">
+    <p>Return the number of code units required to encode <code>x</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func width(x: UnicodeScalar) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-decode-inout_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode-inout_">mutating func decode(<wbr>inout:)</a>
+        
+<div class="comment collapse" id="comment-func-decode-inout_"><div class="p">
+    <p>Start or continue decoding a UTF sequence.</p>
+
+<p>In order to decode a code unit sequence completely, this function should
+be called repeatedly until it returns <code>UnicodeDecodingResult.EmptyInput</code>.
+Checking that the generator was exhausted is not sufficient.  The decoder
+can have an internal buffer that is pre-filled with data from the input
+generator.</p>
+
+<p>Because of buffering, it is impossible to find the corresponing position
+in the generator for a given returned <code>UnicodeScalar</code> or an error.</p>
+
+<p><strong><code>next</code>:</strong> a <em>generator</em> of code units to be decoded.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode&lt;G : GeneratorType where CodeUnit == CodeUnit&gt;(inout input: G) -&gt; UnicodeDecodingResult</code>
+    
+    
+</div></div>
+</div>
+
+

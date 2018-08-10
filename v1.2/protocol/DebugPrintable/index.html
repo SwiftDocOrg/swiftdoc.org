@@ -1,0 +1,59 @@
+---
+layout: "default"
+title: "DebugPrintable"
+description: "Swift documentation for 'DebugPrintable': A type with a customized textual representation for debugging."
+keywords: "DebugPrintable,protocol,swift,documentation,debugDescription"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol DebugPrintable</code></div>
+
+<div class="discussion comment">
+    <p>A type with a customized textual representation for debugging
+purposes.</p>
+
+<p>This textual representation is used when values are written to an
+<em>output stream</em> by <code>debugPrint</code> and <code>debugPrintln</code>, and is
+typically more verbose than the text provided by a <code>Printable</code>&#39;s
+<code>description</code> property.</p>
+
+<p>In order to generate a textual representation for an instance of any
+type (which might or might not conform to <code>DebugPrintable</code>), use
+<code>toDebugString</code>.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+

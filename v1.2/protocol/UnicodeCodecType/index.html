@@ -1,0 +1,104 @@
+---
+layout: "default"
+title: "UnicodeCodecType"
+description: "Swift documentation for 'UnicodeCodecType': A Unicode `encoding scheme."
+keywords: "UnicodeCodecType,protocol,swift,documentation,decode,encode,CodeUnit"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol UnicodeCodecType</code></div>
+
+<div class="discussion comment">
+    <p>A Unicode <a href="http://www.unicode.org/glossary/#character_encoding_scheme">encoding scheme</a></p>
+
+<p>Consists of an underlying <a href="http://www.unicode.org/glossary/#code_unit">code unit</a> and functions to
+translate between sequences of these code units and <a href="http://www.unicode.org/glossary/#unicode_scalar_value">unicode
+scalar values</a>.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">CodeUnit</code>
+<div class="comment">
+    <p>A type that can hold <a href="http://www.unicode.org/glossary/#code_unit">code unit</a> values for this
+encoding.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a> <span class="required">Required</span><div class="comment collapse" id="comment-init"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-encode_inout_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode_inout_">static func encode(<wbr>_:<wbr>inout:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-encode_inout_"><div class="p">
+    <p>Encode a <code>UnicodeScalar</code> as a series of <code>CodeUnit</code>s by
+<code>put</code>&#39;ing each <code>CodeUnit</code> to <code>output</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func encode&lt;S : SinkType where Self.CodeUnit == CodeUnit&gt;(input: UnicodeScalar, inout output: S)</code>
+    
+    
+</div></div>
+</div>
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-decode-inout_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-decode-inout_">mutating func decode(<wbr>inout:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-decode-inout_"><div class="p">
+    <p>Start or continue decoding a UTF sequence.</p>
+
+<p>In order to decode a code unit sequence completely, this function should
+be called repeatedly until it returns <code>UnicodeDecodingResult.EmptyInput</code>.
+Checking that the generator was exhausted is not sufficient.  The decoder
+can have an internal buffer that is pre-filled with data from the input
+generator.</p>
+
+<p>Because of buffering, it is impossible to find the corresponing position
+in the generator for a given returned <code>UnicodeScalar</code> or an error.</p>
+
+<p><strong><code>next</code>:</strong> a <em>generator</em> of code units to be decoded.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func decode&lt;G : GeneratorType where Self.CodeUnit == CodeUnit&gt;(inout next: G) -&gt; UnicodeDecodingResult</code>
+    
+    
+</div></div>
+</div>
+
+

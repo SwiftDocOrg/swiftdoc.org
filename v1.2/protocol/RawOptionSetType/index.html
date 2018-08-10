@@ -1,0 +1,212 @@
+---
+layout: "default"
+title: "RawOptionSetType"
+description: "Swift documentation for 'RawOptionSetType': Protocol for NS_OPTIONS imported from Objective-C."
+keywords: "RawOptionSetType,protocol,swift,documentation,&,==,^,|,~,allZeros,rawValue,RawValue"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol RawOptionSetType</code></div>
+
+<div class="discussion comment">
+    <p>Protocol for <code>NS_OPTIONS</code> imported from Objective-C</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">BitwiseOperationsType, Equatable, NilLiteralConvertible, RawRepresentable, _RawOptionSetType</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration inherited">
+<code class="language-swift">RawValue</code>
+<div class="comment">
+    <p>The &quot;raw&quot; type that can be used to represent all values of <code>Self</code>.</p>
+
+<p>Every distinct value of <code>self</code> has a corresponding unique
+value of <code>RawValue</code>, but <code>RawValue</code> may have representations
+that do not correspond to an value of <code>Self</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration inherited" id="init-nilliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-nilliteral_">init(<wbr>nilLiteral:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-nilliteral_"><div class="p">
+    <p>Create an instance initialized with <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(nilLiteral: ())</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/NilLiteralConvertible/"><code>NilLiteralConvertible</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-rawvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-rawvalue_">init?(<wbr>rawValue:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-rawvalue_"><div class="p">
+    <p>Convert from a value of <code>RawValue</code>, yielding <code>nil</code> iff
+<code>rawValue</code> does not correspond to a value of <code>Self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(rawValue: RawValue)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-rawvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-rawvalue_">init(<wbr>rawValue:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-rawvalue_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(rawValue: RawValue)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/_RawOptionSetType/"><code>_RawOptionSetType</code></a>
+        </div></div>
+</div>
+
+<h3>Static Variables</h3>
+<div class="declaration inherited" id="static-var-allzeros_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-allzeros_-self">static var allZeros: Self</a> <span class="required">Required</span><div class="comment collapse" id="comment-static-var-allzeros_-self"><div class="p">
+    <p>The empty bitset.</p>
+
+<p>Also the <a href="http://en.wikipedia.org/wiki/Identity_element">identity element</a> for <code>|</code> and
+<code>^</code>, and the <a href="http://en.wikipedia.org/wiki/Fixed_point_(mathematics)">fixed point</a> for
+<code>&amp;</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var allZeros: Self { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BitwiseOperationsType/"><code>BitwiseOperationsType</code></a>
+        </div></div>
+</div>
+
+<h3>Instance Variables</h3>
+<div class="declaration inherited" id="var-rawvalue_-rawvalue">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-rawvalue_-rawvalue">var rawValue: RawValue</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-rawvalue_-rawvalue"><div class="p">
+    <p>The corresponding value of the &quot;raw&quot; type.</p>
+
+<p><code>Self(rawValue: self.rawValue)!</code> is equivalent to <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var rawValue: RawValue { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RawRepresentable/"><code>RawRepresentable</code></a>
+        </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-amp_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-amp_rhs_">func &amp;(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-amp_rhs_"><div class="p">
+    <p>Returns the intersection of bits set in <code>lhs</code> and <code>rhs</code>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BitwiseOperationsType/"><code>BitwiseOperationsType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Return true if <code>lhs</code> is equal to <code>rhs</code>.</p>
+
+<p><strong>Equality implies substitutability</strong>.  When <code>x == y</code>, <code>x</code> and
+<code>y</code> are interchangeable in any code that only depends on their
+values.</p>
+
+<p>Class instance identity as distinguished by triple-equals <code>===</code>
+is notably not part of an instance&#39;s value.  Exposing other
+non-value aspects of <code>Equatable</code> types is discouraged, and any
+that <em>are</em> exposed should be explicitly pointed out in
+documentation.</p>
+
+<p><strong>Equality is an equivalence relation</strong></p>
+
+<ul><li><code>x == x</code> is <code>true</code></li><li><code>x == y</code> implies <code>y == x</code></li><li><code>x == y</code> and <code>y == z</code> implies <code>x == z</code></li></ul>
+
+<p><strong>Inequality is the inverse of equality</strong>, i.e. <code>!(x == y)</code> iff
+<code>x != y</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-crt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-crt_rhs_">func ^(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-crt_rhs_"><div class="p">
+    <p>Returns the bits that are set in exactly one of <code>lhs</code> and <code>rhs</code></p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ^(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BitwiseOperationsType/"><code>BitwiseOperationsType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-bar_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-bar_rhs_">func |(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-bar_rhs_"><div class="p">
+    <p>Returns the union of bits set in <code>lhs</code> and <code>rhs</code></p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func |(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BitwiseOperationsType/"><code>BitwiseOperationsType</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-tilde_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-tilde_">prefix func ~(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-tilde_"><div class="p">
+    <p>Returns <code>x ^ ~Self.allZeros</code></p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">prefix func ~(x: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BitwiseOperationsType/"><code>BitwiseOperationsType</code></a>    
+</div></div>
+</div>
+
+

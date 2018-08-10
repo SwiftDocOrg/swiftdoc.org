@@ -1,0 +1,123 @@
+---
+layout: "default"
+title: "LazySequence"
+description: "Swift documentation for 'LazySequence': A sequence that forwards its implementation to an underlying."
+keywords: "LazySequence,struct,swift,documentation,filter,generate,map,array,Generator,Element"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct LazySequence&lt;S : SequenceType&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A sequence that forwards its implementation to an underlying
+sequence instance while exposing lazy computations as methods.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">SequenceType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Generator = S.Generator</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Element = Generator.Element</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Construct an instance with <code>base</code> as its underlying sequence
+instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ base: S)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-array_-s-generator-element">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-array_-s-generator-element">var array: [S.Generator.Element]</a><div class="comment collapse" id="comment-var-array_-s-generator-element"><div class="p">
+    <p>an Array, created on-demand, containing the elements of this
+lazy SequenceType.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var array: [S.Generator.Element] { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-filter_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-filter_">func filter(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-filter_"><div class="p">
+    <p>Return a lazy SequenceType containing the elements <code>x</code> of <code>source</code> for
+which <code>includeElement(x)</code> is <code>true</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func filter(includeElement: (S.Generator.Element) -&gt; Bool) -&gt; LazySequence&lt;FilterSequenceView&lt;S&gt;&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; S.Generator</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-map_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-map_">func map(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-map_"><div class="p">
+    <p>Return a <code>MapSequenceView</code> over this <code>LazySequence</code>.  The elements of
+the result are computed lazily, each time they are read, by
+calling <code>transform</code> function on a base element.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func map&lt;U&gt;(transform: (S.Generator.Element) -&gt; U) -&gt; LazySequence&lt;MapSequenceView&lt;S, U&gt;&gt;</code>
+    
+    
+</div></div>
+</div>
+
+

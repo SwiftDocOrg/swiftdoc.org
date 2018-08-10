@@ -1,0 +1,25 @@
+---
+layout: "default"
+title: "transcode"
+description: "Swift documentation for 'transcode': Translate input, in the given InputEncoding, into output, in."
+keywords: "transcode,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-transcode-input_-generatortype-output_-sinktype-inputencoding_-unicodecodectype-outputencoding_-unicodecodectype-where-input-element-input-element-output-element-output-element_-inputencoding-type-outputencoding_-outputencoding-type-input_-input-inout_-output-stoponerror_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-transcode-input_-generatortype-output_-sinktype-inputencoding_-unicodecodectype-outputencoding_-unicodecodectype-where-input-element-input-element-output-element-output-element_-inputencoding-type-outputencoding_-outputencoding-type-input_-input-inout_-output-stoponerror_-bool">func <wbr>transcode&lt;Input :<wbr> GeneratorType, Output :<wbr> SinkType, InputEncoding :<wbr> UnicodeCodecType, OutputEncoding : UnicodeCodecType where Input.Element == Input.Element, Output.Element == Output.Element&gt;(<wbr>_:<wbr> InputEncoding.Type, outputEncoding:<wbr> OutputEncoding.Type, input:<wbr> Input, inout:<wbr> Output, #stopOnError: Bool)</a>
+        
+<div class="comment collapse" id="comment-func-transcode-input_-generatortype-output_-sinktype-inputencoding_-unicodecodectype-outputencoding_-unicodecodectype-where-input-element-input-element-output-element-output-element_-inputencoding-type-outputencoding_-outputencoding-type-input_-input-inout_-output-stoponerror_-bool"><div class="p">
+    <p>Translate <code>input</code>, in the given <code>InputEncoding</code>, into <code>output</code>, in
+the given <code>OutputEncoding</code>.</p>
+
+<p><strong><code>stopOnError</code></strong> causes encoding to stop when an encoding
+  error is detected in <code>input</code>, if <code>true</code>.  Otherwise, U+FFFD
+  replacement characters are inserted for each detected error.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func transcode&lt;Input : GeneratorType, Output : SinkType, InputEncoding : UnicodeCodecType, OutputEncoding : UnicodeCodecType where Input.Element == Input.Element, Output.Element == Output.Element&gt;(inputEncoding: InputEncoding.Type, outputEncoding: OutputEncoding.Type, input: Input, inout output: Output, #stopOnError: Bool) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>

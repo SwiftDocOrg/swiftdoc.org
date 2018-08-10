@@ -1,0 +1,42 @@
+---
+layout: "default"
+title: "debugPrintln"
+description: "Swift documentation for 'debugPrintln': Write to the console the textual representation of x most suitable."
+keywords: "debugPrintln,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-debugprintln-t_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-debugprintln-t_-t">@inline(never)  func debugPrintln&lt;T&gt;(<wbr>_: T)</a>
+        
+<div class="comment collapse" id="comment-func-debugprintln-t_-t"><div class="p">
+    <p>Write to the console the textual representation of <code>x</code> most suitable
+for debugging, followed by a newline.</p>
+
+<ul><li>If <code>T</code> conforms to <code>DebugPrintable</code>, write <code>x.debugDescription</code></li><li>Otherwise, if <code>T</code> conforms to <code>Printable</code>, write <code>x.description</code></li><li>Otherwise, if <code>T</code> conforms to <code>Streamable</code>, write <code>x</code></li><li>Otherwise, fall back to a default textual representation.</li></ul>
+
+<p>See also: <code>debugPrint(x)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@inline(never)  func debugPrintln&lt;T&gt;(x: T)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-debugprintln-t-targetstream_-outputstreamtype_-t-inout_-targetstream">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-debugprintln-t-targetstream_-outputstreamtype_-t-inout_-targetstream">@inline(never)  func <wbr>debugPrintln&lt;T, TargetStream : OutputStreamType&gt;(<wbr>_:<wbr> T, inout: TargetStream)</a>
+        
+<div class="comment collapse" id="comment-func-debugprintln-t-targetstream_-outputstreamtype_-t-inout_-targetstream"><div class="p">
+    <p>Write to <code>target</code> the textual representation of <code>x</code> most suitable
+for debugging, followed by a newline.</p>
+
+<ul><li>If <code>T</code> conforms to <code>DebugPrintable</code>, write <code>x.debugDescription</code></li><li>Otherwise, if <code>T</code> conforms to <code>Printable</code>, write <code>x.description</code></li><li>Otherwise, if <code>T</code> conforms to <code>Streamable</code>, write <code>x</code></li><li>Otherwise, fall back to a default textual representation.</li></ul>
+
+<p>See also: <code>debugPrint(x, &amp;target)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@inline(never)  func debugPrintln&lt;T, TargetStream : OutputStreamType&gt;(x: T, inout target: TargetStream)</code>
+    
+    
+</div></div>
+</div>

@@ -1,0 +1,481 @@
+---
+layout: "default"
+title: "Set"
+description: "Swift documentation for 'Set': A collection of unique T instances with no defined ordering."
+keywords: "Set,struct,swift,documentation,contains,exclusiveOr,exclusiveOrInPlace,generate,getMirror,indexOf,insert,intersect,intersectInPlace,isDisjointWith,isStrictSubsetOf,isStrictSupersetOf,isSubsetOf,isSupersetOf,remove,removeAll,removeAtIndex,removeFirst,subtract,subtractInPlace,union,unionInPlace,count,debugDescription,description,endIndex,first,hashValue,isEmpty,startIndex,Element,Index,GeneratorType,Generator,SubSequence"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Set&lt;T : Hashable&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A collection of unique <code>T</code> instances with no defined ordering.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">ArrayLiteralConvertible, CollectionType, DebugPrintable, Equatable, Hashable, Printable, Reflectable, SequenceType, _CollectionType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Element = T</code>
+</div>
+<div class="declaration">
+<code class="language-swift">Index = SetIndex&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">GeneratorType = SetGenerator&lt;T&gt;</code>
+</div>
+<div class="declaration">
+<code class="language-swift">Generator = SetGenerator&lt;T&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence = Slice&lt;Set&lt;T&gt;&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Create an empty <code>Set</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Create a <code>Set</code> from a finite sequence of items.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;S : SequenceType where T == T&gt;(_ sequence: S)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-arrayliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-arrayliteral_">init(<wbr>arrayLiteral:)</a><div class="comment collapse" id="comment-init-arrayliteral_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(arrayLiteral elements: T...)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-minimumcapacity_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-minimumcapacity_">init(<wbr>minimumCapacity:)</a><div class="comment collapse" id="comment-init-minimumcapacity_"><div class="p">
+    <p>Create an empty set with at least the given number of
+elements worth of storage.  The actual capacity will be the
+smallest power of 2 that&#39;s &gt;= <code>minimumCapacity</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(minimumCapacity: Int)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int</a><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    <p>The number of members in the set.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-endindex_-setindex-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-setindex-t">var endIndex: SetIndex&lt;T&gt;</a><div class="comment collapse" id="comment-var-endindex_-setindex-t"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+<p>Complexity: amortized O(1) if <code>self</code> does not wrap a bridged
+<code>NSSet</code>, O(N) otherwise.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: SetIndex&lt;T&gt; { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-first_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-first_-t">var first: T?</a><div class="comment collapse" id="comment-var-first_-t"><div class="p">
+    <p>The first element obtained when iterating, or <code>nil</code> if <code>self</code> is
+empty.  Equivalent to <code>self.generate().next()</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var first: T? { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p><code>true</code> if the set is empty.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-startindex_-setindex-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-setindex-t">var startIndex: SetIndex&lt;T&gt;</a><div class="comment collapse" id="comment-var-startindex_-setindex-t"><div class="p">
+    <p>The position of the first element in a non-empty set.</p>
+
+<p>This is identical to <code>endIndex</code> in an empty set.</p>
+
+<p>Complexity: amortized O(1) if <code>self</code> does not wrap a bridged
+<code>NSSet</code>, O(N) otherwise.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: SetIndex&lt;T&gt; { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-setindex-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-setindex-t">subscript(_: SetIndex&lt;T&gt;)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-setindex-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: SetIndex&lt;T&gt;) -&gt; T { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-contains_"><div class="p">
+    <p>Returns <code>true</code> if the set contains a member.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(member: T) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-exclusiveor_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-exclusiveor_">func exclusiveOr(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-exclusiveor_"><div class="p">
+    <p>Return a new set with elements that are either in the set or a finite
+sequence but do not occur in both.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func exclusiveOr&lt;S : SequenceType where T == T&gt;(sequence: S) -&gt; Set&lt;T&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-exclusiveorinplace_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-exclusiveorinplace_">mutating func exclusiveOrInPlace(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-exclusiveorinplace_"><div class="p">
+    <p>For each element of a finite sequence, remove it from the set if it is a
+common element, otherwise add it to the set. Repeated elements of the
+sequence will be ignored.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func exclusiveOrInPlace&lt;S : SequenceType where T == T&gt;(sequence: S)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the members.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; SetGenerator&lt;T&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-getmirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-getmirror">func getMirror()</a>
+        
+<div class="comment collapse" id="comment-func-getmirror"><div class="p">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func getMirror() -&gt; MirrorType</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-indexof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-indexof_">func indexOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-indexof_"><div class="p">
+    <p>Returns the <code>Index</code> of a given member, or <code>nil</code> if the member is not
+present in the set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func indexOf(member: T) -&gt; SetIndex&lt;T&gt;?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-insert_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-insert_">mutating func insert(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-insert_"><div class="p">
+    <p>Insert a member into the set.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insert(member: T)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-intersect_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-intersect_">func intersect(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-intersect_"><div class="p">
+    <p>Return a new set with elements common to this set and a finite sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func intersect&lt;S : SequenceType where T == T&gt;(sequence: S) -&gt; Set&lt;T&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-intersectinplace_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-intersectinplace_">mutating func intersectInPlace(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-intersectinplace_"><div class="p">
+    <p>Remove any members of this set that aren&#39;t also in a finite sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func intersectInPlace&lt;S : SequenceType where T == T&gt;(sequence: S)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-isdisjointwith_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isdisjointwith_">func isDisjointWith(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-isdisjointwith_"><div class="p">
+    <p>Returns true if no members in the set are in a finite sequence as a <code>Set</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isDisjointWith&lt;S : SequenceType where T == T&gt;(sequence: S) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-isstrictsubsetof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isstrictsubsetof_">func isStrictSubsetOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-isstrictsubsetof_"><div class="p">
+    <p>Returns true if the set is a subset of a finite sequence as a <code>Set</code>
+but not equal.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isStrictSubsetOf&lt;S : SequenceType where T == T&gt;(sequence: S) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-isstrictsupersetof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isstrictsupersetof_">func isStrictSupersetOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-isstrictsupersetof_"><div class="p">
+    <p>Returns true if the set is a superset of a finite sequence as a <code>Set</code>
+but not equal.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isStrictSupersetOf&lt;S : SequenceType where T == T&gt;(sequence: S) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-issubsetof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-issubsetof_">func isSubsetOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-issubsetof_"><div class="p">
+    <p>Returns true if the set is a subset of a finite sequence as a <code>Set</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isSubsetOf&lt;S : SequenceType where T == T&gt;(sequence: S) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-issupersetof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-issupersetof_">func isSupersetOf(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-issupersetof_"><div class="p">
+    <p>Returns true if the set is a superset of a finite sequence as a <code>Set</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isSupersetOf&lt;S : SequenceType where T == T&gt;(sequence: S) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-remove_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-remove_">mutating func remove(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-remove_"><div class="p">
+    <p>Remove the member from the set and return it if it was present.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func remove(member: T) -&gt; T?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-removeall_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removeall_">mutating func removeAll(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-removeall_"><div class="p">
+    <p>Erase all the elements.  If <code>keepCapacity</code> is <code>true</code>, <code>capacity</code>
+will not decrease.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeAll(keepCapacity: Bool = default)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-removeatindex_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removeatindex_">mutating func removeAtIndex(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-removeatindex_"><div class="p">
+    <p>Remove the member referenced by the given index.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeAtIndex(index: SetIndex&lt;T&gt;)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-removefirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removefirst">mutating func removeFirst()</a>
+        
+<div class="comment collapse" id="comment-func-removefirst"><div class="p">
+    <p>Remove a member from the set and return it. Requires: <code>count &gt; 0</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeFirst() -&gt; T</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-subtract_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subtract_">func subtract(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subtract_"><div class="p">
+    <p>Return a new set with elements in this set that do not occur
+in a finite sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func subtract&lt;S : SequenceType where T == T&gt;(sequence: S) -&gt; Set&lt;T&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-subtractinplace_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subtractinplace_">mutating func subtractInPlace(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subtractinplace_"><div class="p">
+    <p>Remove all members in the set that occur in a finite sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func subtractInPlace&lt;S : SequenceType where T == T&gt;(sequence: S)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-union_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-union_">func union(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-union_"><div class="p">
+    <p>Return a new <code>Set</code> with items in both this set and a finite sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func union&lt;S : SequenceType where T == T&gt;(sequence: S) -&gt; Set&lt;T&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-unioninplace_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-unioninplace_">mutating func unionInPlace(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-unioninplace_"><div class="p">
+    <p>Insert elements of a finite sequence into this <code>Set</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func unionInPlace&lt;S : SequenceType where T == T&gt;(sequence: S)</code>
+    
+    
+</div></div>
+</div>
+
+

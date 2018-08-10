@@ -1,0 +1,35 @@
+strict digraph "_ExtensibleCollectionType - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Array" [URL="/type/Array/hierarchy/", style=filled]
+    "ArraySlice" [URL="/type/ArraySlice/hierarchy/", style=filled]
+    "CollectionType" [URL="/protocol/CollectionType/hierarchy/"]
+    "ContiguousArray" [URL="/type/ContiguousArray/hierarchy/", style=filled]
+    "ExtensibleCollectionType" [URL="/protocol/ExtensibleCollectionType/hierarchy/"]
+    "RangeReplaceableCollectionType" [URL="/protocol/RangeReplaceableCollectionType/hierarchy/"]
+    "SequenceType" [URL="/protocol/SequenceType/hierarchy/"]
+    "String" [URL="/type/String/hierarchy/", style=filled]
+    "String.UnicodeScalarView" [URL="/type/String.UnicodeScalarView/hierarchy/", style=filled]
+    "_ArrayType" [URL="/protocol/_ArrayType/hierarchy/"]
+    "_CollectionType" [URL="/protocol/_CollectionType/hierarchy/"]
+    "_ExtensibleCollectionType" [URL="/protocol/_ExtensibleCollectionType/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "_SequenceType" [URL="/protocol/_SequenceType/hierarchy/"]
+    "_Sequence_Type" [URL="/protocol/_Sequence_Type/hierarchy/"]    "_ExtensibleCollectionType" -> "ExtensibleCollectionType"
+    "ExtensibleCollectionType" -> "RangeReplaceableCollectionType"
+    "RangeReplaceableCollectionType" -> "String"
+    "RangeReplaceableCollectionType" -> "_ArrayType"
+    "RangeReplaceableCollectionType" -> "String.UnicodeScalarView"
+    "_ArrayType" -> "Array"
+    "_ArrayType" -> "ArraySlice"
+    "_ArrayType" -> "ContiguousArray"
+    "CollectionType" -> "_ExtensibleCollectionType"
+    "_CollectionType" -> "CollectionType"
+    "SequenceType" -> "CollectionType"
+    "_SequenceType" -> "_CollectionType"
+    "_Sequence_Type" -> "SequenceType"
+    "_SequenceType" -> "_Sequence_Type"
+    subgraph Types {
+        rank = max; "String"; "String.UnicodeScalarView"; "Array"; "ArraySlice"; "ContiguousArray";
+    }
+}

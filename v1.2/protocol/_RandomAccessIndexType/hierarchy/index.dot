@@ -1,0 +1,63 @@
+strict digraph "_RandomAccessIndexType - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Bit" [URL="/type/Bit/hierarchy/", style=filled]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "Int" [URL="/type/Int/hierarchy/", style=filled]
+    "Int16" [URL="/type/Int16/hierarchy/", style=filled]
+    "Int32" [URL="/type/Int32/hierarchy/", style=filled]
+    "Int64" [URL="/type/Int64/hierarchy/", style=filled]
+    "Int8" [URL="/type/Int8/hierarchy/", style=filled]
+    "IntegerType" [URL="/protocol/IntegerType/hierarchy/"]
+    "RandomAccessIndexType" [URL="/protocol/RandomAccessIndexType/hierarchy/"]
+    "ReverseRandomAccessIndex" [URL="/type/ReverseRandomAccessIndex/hierarchy/", style=filled]
+    "SignedIntegerType" [URL="/protocol/SignedIntegerType/hierarchy/"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]
+    "String.UTF16View.Index" [URL="/type/String.UTF16View.Index/hierarchy/", style=filled]
+    "UInt" [URL="/type/UInt/hierarchy/", style=filled]
+    "UInt16" [URL="/type/UInt16/hierarchy/", style=filled]
+    "UInt32" [URL="/type/UInt32/hierarchy/", style=filled]
+    "UInt64" [URL="/type/UInt64/hierarchy/", style=filled]
+    "UInt8" [URL="/type/UInt8/hierarchy/", style=filled]
+    "UnsafeMutablePointer" [URL="/type/UnsafeMutablePointer/hierarchy/", style=filled]
+    "UnsafePointer" [URL="/type/UnsafePointer/hierarchy/", style=filled]
+    "UnsignedIntegerType" [URL="/protocol/UnsignedIntegerType/hierarchy/"]
+    "_BidirectionalIndexType" [URL="/protocol/_BidirectionalIndexType/hierarchy/"]
+    "_Comparable" [URL="/protocol/_Comparable/hierarchy/"]
+    "_ForwardIndexType" [URL="/protocol/_ForwardIndexType/hierarchy/"]
+    "_Incrementable" [URL="/protocol/_Incrementable/hierarchy/"]
+    "_RandomAccessIndexType" [URL="/protocol/_RandomAccessIndexType/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "_Strideable" [URL="/protocol/_Strideable/hierarchy/"]    "_RandomAccessIndexType" -> "RandomAccessIndexType"
+    "RandomAccessIndexType" -> "Bit"
+    "RandomAccessIndexType" -> "IntegerType"
+    "RandomAccessIndexType" -> "ReverseRandomAccessIndex"
+    "RandomAccessIndexType" -> "UnsafeMutablePointer"
+    "RandomAccessIndexType" -> "UnsafePointer"
+    "RandomAccessIndexType" -> "String.UTF16View.Index"
+    "IntegerType" -> "SignedIntegerType"
+    "IntegerType" -> "UnsignedIntegerType"
+    "SignedIntegerType" -> "Int"
+    "SignedIntegerType" -> "Int16"
+    "SignedIntegerType" -> "Int32"
+    "SignedIntegerType" -> "Int64"
+    "SignedIntegerType" -> "Int8"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
+    "_BidirectionalIndexType" -> "_RandomAccessIndexType"
+    "Strideable" -> "_RandomAccessIndexType"
+    "_ForwardIndexType" -> "_BidirectionalIndexType"
+    "_Incrementable" -> "_ForwardIndexType"
+    "Equatable" -> "_Incrementable"
+    "Comparable" -> "Strideable"
+    "_Strideable" -> "Strideable"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "Bit"; "ReverseRandomAccessIndex"; "UnsafeMutablePointer"; "UnsafePointer"; "String.UTF16View.Index"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8";
+    }
+}

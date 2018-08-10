@@ -1,0 +1,29 @@
+---
+layout: "default"
+title: "enumerate"
+description: "Swift documentation for 'enumerate': Return a lazy SequenceType containing pairs (n, x), where."
+keywords: "enumerate,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-enumerate-seq_-sequencetype_-seq">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-enumerate-seq_-sequencetype_-seq">func <wbr>enumerate&lt;Seq : SequenceType&gt;(<wbr>_: Seq)</a>
+        
+<div class="comment collapse" id="comment-func-enumerate-seq_-sequencetype_-seq"><div class="p">
+    <p>Return a lazy <code>SequenceType</code> containing pairs (<em>n</em>, <em>x</em>), where
+<em>n</em>s are consecutive <code>Int</code>s starting at zero, and <em>x</em>s are
+the elements of <code>base</code>:</p>
+
+<pre><code class="language-swift">&gt; for (n, c) in enumerate(&quot;Swift&quot;) { println(&quot;\(n): &#39;\(c)&#39;&quot; )}
+0: &#39;S&#39;
+1: &#39;w&#39;
+2: &#39;i&#39;
+3: &#39;f&#39;
+4: &#39;t&#39;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func enumerate&lt;Seq : SequenceType&gt;(base: Seq) -&gt; EnumerateSequence&lt;Seq&gt;</code>
+    
+    
+</div></div>
+</div>

@@ -1,0 +1,46 @@
+---
+layout: "default"
+title: "print"
+description: "Swift documentation for 'print': Writes the textual representation of value into the standard output."
+keywords: "print,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-print-t_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-print-t_-t">@inline(never)  func print&lt;T&gt;(<wbr>_: T)</a>
+        
+<div class="comment collapse" id="comment-func-print-t_-t"><div class="p">
+    <p>Writes the textual representation of <code>value</code> into the standard output.</p>
+
+<p>The textual representation is obtained from the <code>value</code> using its protocol
+conformances, in the following order of preference: <code>Streamable</code>,
+<code>Printable</code>, <code>DebugPrintable</code>.</p>
+
+<p>Do not overload this function for your type.  Instead, adopt one of the
+protocols mentioned above.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@inline(never)  func print&lt;T&gt;(value: T)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-print-t-targetstream_-outputstreamtype_-t-inout_-targetstream">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-print-t-targetstream_-outputstreamtype_-t-inout_-targetstream">@inline(never)  func <wbr>print&lt;T, TargetStream : OutputStreamType&gt;(<wbr>_:<wbr> T, inout: TargetStream)</a>
+        
+<div class="comment collapse" id="comment-func-print-t-targetstream_-outputstreamtype_-t-inout_-targetstream"><div class="p">
+    <p>Writes the textual representation of <code>value</code> into the stream <code>target</code>.</p>
+
+<p>The textual representation is obtained from the <code>value</code> using its protocol
+conformances, in the following order of preference: <code>Streamable</code>,
+<code>Printable</code>, <code>DebugPrintable</code>.</p>
+
+<p>Do not overload this function for your type.  Instead, adopt one of the
+protocols mentioned above.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@inline(never)  func print&lt;T, TargetStream : OutputStreamType&gt;(value: T, inout target: TargetStream)</code>
+    
+    
+</div></div>
+</div>

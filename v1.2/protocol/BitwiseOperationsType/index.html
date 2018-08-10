@@ -1,0 +1,120 @@
+---
+layout: "default"
+title: "BitwiseOperationsType"
+description: "Swift documentation for 'BitwiseOperationsType': A set type with O(1) standard bitwise operators."
+keywords: "BitwiseOperationsType,protocol,swift,documentation,&,^,|,~,allZeros"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol BitwiseOperationsType</code></div>
+
+<div class="discussion comment">
+    <p>A set type with O(1) standard bitwise operators.</p>
+
+<p>Each instance is a subset of <code>~Self.allZeros</code></p>
+
+<p>Axioms, where <code>x</code> is an instance of <code>Self</code>:</p>
+
+<pre><code class="language-swift">x | Self.allZeros == x
+x ^ Self.allZeros == x
+x &amp; Self.allZeros == .allZeros
+x &amp; ~Self.allZeros == x
+~x == x ^ ~Self.allZeros</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+<h3>Static Variables</h3>
+<div class="declaration" id="static-var-allzeros_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-allzeros_-self">static var allZeros: Self</a> <span class="required">Required</span><div class="comment collapse" id="comment-static-var-allzeros_-self"><div class="p">
+    <p>The empty bitset.</p>
+
+<p>Also the <a href="http://en.wikipedia.org/wiki/Identity_element">identity element</a> for <code>|</code> and
+<code>^</code>, and the <a href="http://en.wikipedia.org/wiki/Fixed_point_(mathematics)">fixed point</a> for
+<code>&amp;</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var allZeros: Self { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-amp_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-amp_rhs_">func &amp;(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-amp_rhs_"><div class="p">
+    <p>Returns the intersection of bits set in <code>lhs</code> and <code>rhs</code>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-crt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-crt_rhs_">func ^(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-crt_rhs_"><div class="p">
+    <p>Returns the bits that are set in exactly one of <code>lhs</code> and <code>rhs</code></p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ^(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-bar_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-bar_rhs_">func |(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-bar_rhs_"><div class="p">
+    <p>Returns the union of bits set in <code>lhs</code> and <code>rhs</code></p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func |(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-tilde_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-tilde_">prefix func ~(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-tilde_"><div class="p">
+    <p>Returns <code>x ^ ~Self.allZeros</code></p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">prefix func ~(x: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+
+

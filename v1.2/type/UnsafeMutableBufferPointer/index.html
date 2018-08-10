@@ -1,0 +1,161 @@
+---
+layout: "default"
+title: "UnsafeMutableBufferPointer"
+description: "Swift documentation for 'UnsafeMutableBufferPointer': A non-owning pointer to buffer of mutable Ts stored."
+keywords: "UnsafeMutableBufferPointer,struct,swift,documentation,generate,baseAddress,count,debugDescription,endIndex,startIndex,Generator,Element,Index,SubSequence"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct UnsafeMutableBufferPointer&lt;T&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A non-owning pointer to buffer of mutable <code>T</code>s stored
+contiguously in memory, presenting a <code>Collection</code> interface to the
+underlying elements.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CollectionType, DebugPrintable, MutableCollectionType, SequenceType, _CollectionType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Generator = UnsafeBufferPointerGenerator&lt;T&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Element = T</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Index = Int</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence = Slice&lt;UnsafeMutableBufferPointer&lt;T&gt;&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-start_count_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-start_count_">init(<wbr>start:<wbr>count:)</a><div class="comment collapse" id="comment-init-start_count_"><div class="p">
+    <p>Construct an UnsafeMutablePointer over the <code>count</code> contiguous
+<code>T</code> instances beginning at <code>start</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(start: UnsafeMutablePointer&lt;T&gt;, count: Int)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-baseaddress_-unsafemutablepointer-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-baseaddress_-unsafemutablepointer-t">var baseAddress: UnsafeMutablePointer&lt;T&gt;</a><div class="comment collapse" id="comment-var-baseaddress_-unsafemutablepointer-t"><div class="p">
+    <p>A pointer to the first element of the buffer</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var baseAddress: UnsafeMutablePointer&lt;T&gt; { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int</a><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    <p>The number of elements in the buffer</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-endindex_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-int">var endIndex: Int</a><div class="comment collapse" id="comment-var-endindex_-int"><div class="p">
+    <p>The &quot;past the end&quot; position; always identical to <code>count</code>.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-startindex_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-int">var startIndex: Int</a><div class="comment collapse" id="comment-var-startindex_-int"><div class="p">
+    <p>Always zero, which is the index of the first element in a
+non-empty buffer.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: Int { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-int">subscript(_: Int)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(i: Int) -&gt; T { get nonmutating set }</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; UnsafeBufferPointerGenerator&lt;T&gt;</code>
+    
+    
+</div></div>
+</div>
+
+

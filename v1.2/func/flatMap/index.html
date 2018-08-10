@@ -1,0 +1,46 @@
+---
+layout: "default"
+title: "flatMap"
+description: "Swift documentation for 'flatMap': Returns f(self)! iff self and f(self) are not nil."
+keywords: "flatMap,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-flatmap-t-u_-t-f_-noescape-t-u">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-t-u_-t-f_-noescape-t-u">func flatMap&lt;T, U&gt;(<wbr>_:<wbr> T?, f: @noescape (T) -&gt; U?)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-t-u_-t-f_-noescape-t-u"><div class="p">
+    <p>Returns <code>f(self)!</code> iff <code>self</code> and <code>f(self)</code> are not nil.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;T, U&gt;(x: T?, f: @noescape (T) -&gt; U?) -&gt; U?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-flatmap-c_-collectiontype-t_-c-transform_-c-generator-element-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-c_-collectiontype-t_-c-transform_-c-generator-element-t">func <wbr>flatMap&lt;C : CollectionType, T&gt;(<wbr>_:<wbr> C, transform: (C.Generator.Element) -&gt; [T])</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-c_-collectiontype-t_-c-transform_-c-generator-element-t"><div class="p">
+    <p>Return an <code>Array</code> containing the results of mapping <code>transform</code>
+over <code>source</code> and flattening the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;C : CollectionType, T&gt;(source: C, transform: (C.Generator.Element) -&gt; [T]) -&gt; [T]</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-flatmap-s_-sequencetype-t_-s-transform_-noescape-s-generator-element-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-s_-sequencetype-t_-s-transform_-noescape-s-generator-element-t">func <wbr>flatMap&lt;S : SequenceType, T&gt;(<wbr>_:<wbr> S, transform: @noescape (S.Generator.Element) -&gt; [T])</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-s_-sequencetype-t_-s-transform_-noescape-s-generator-element-t"><div class="p">
+    <p>Return an <code>Array</code> containing the results of mapping <code>transform</code>
+over <code>source</code> and flattening the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;S : SequenceType, T&gt;(source: S, transform: @noescape (S.Generator.Element) -&gt; [T]) -&gt; [T]</code>
+    
+    
+</div></div>
+</div>

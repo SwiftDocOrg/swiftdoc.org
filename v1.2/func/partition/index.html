@@ -1,0 +1,51 @@
+---
+layout: "default"
+title: "partition"
+description: "Swift documentation for 'partition': Re-order the given range of elements and return a pivot index."
+keywords: "partition,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-partition-c_-mutablecollectiontype-where-c-index_-randomaccessindextype-c-generator-element_-comparable-inout_-c-range_-range-c-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-partition-c_-mutablecollectiontype-where-c-index_-randomaccessindextype-c-generator-element_-comparable-inout_-c-range_-range-c-index">func <wbr>partition&lt;C :<wbr> MutableCollectionType where C.Index :<wbr> RandomAccessIndexType, C.Generator.Element : Comparable&gt;(<wbr>inout:<wbr> C, range: Range&lt;C.Index&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-partition-c_-mutablecollectiontype-where-c-index_-randomaccessindextype-c-generator-element_-comparable-inout_-c-range_-range-c-index"><div class="p">
+    <p>Re-order the given <code>range</code> of <code>elements</code> and return a pivot index
+<em>p</em>.  </p>
+
+<p>Postcondition: for all <em>i</em> in <code>range.startIndex..&lt;</code><em>p</em>, and <em>j</em>
+in <em>p</em><code>..&lt;range.endIndex</code>, <code>less(elements[</code><em>i</em><code>],
+elements[</code><em>j</em><code>]) &amp;&amp; !less(elements[</code><em>j</em><code>], 
+elements[</code><em>p</em><code>])</code>.  Only returns <code>range.endIndex</code> when 
+<code>elements</code> is empty.
+Requires: The less-than operator (<code>func &lt;</code>) defined in the <code>Comparable</code>
+conformance is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over <code>elements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func partition&lt;C : MutableCollectionType where C.Index : RandomAccessIndexType, C.Generator.Element : Comparable&gt;(inout elements: C, range: Range&lt;C.Index&gt;) -&gt; C.Index</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-partition-c_-mutablecollectiontype-where-c-index_-randomaccessindextype-inout_-c-range_-range-c-index-isorderedbefore_-c-generator-element-c-generator-element-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-partition-c_-mutablecollectiontype-where-c-index_-randomaccessindextype-inout_-c-range_-range-c-index-isorderedbefore_-c-generator-element-c-generator-element-bool">func <wbr>partition&lt;C :<wbr> MutableCollectionType where C.Index : RandomAccessIndexType&gt;(<wbr>inout:<wbr> C, range:<wbr> Range&lt;C.Index&gt;, isOrderedBefore: (C.Generator.Element, C.Generator.Element) -&gt; Bool)</a>
+        
+<div class="comment collapse" id="comment-func-partition-c_-mutablecollectiontype-where-c-index_-randomaccessindextype-inout_-c-range_-range-c-index-isorderedbefore_-c-generator-element-c-generator-element-bool"><div class="p">
+    <p>Re-order the given <code>range</code> of <code>elements</code> and return a pivot index
+<em>p</em>.  </p>
+
+<p>Postcondition: for all <em>i</em> in <code>range.startIndex..&lt;</code><em>p</em>, and <em>j</em>
+in <em>p</em><code>..&lt;range.endIndex</code>, <code>less(elements[</code><em>i</em><code>],
+elements[</code><em>j</em><code>]) &amp;&amp; !less(elements[</code><em>j</em><code>], 
+elements[</code><em>p</em><code>])</code>.  Only returns <code>range.endIndex</code> when 
+<code>elements</code> is empty.
+Requires: <code>isOrderedBefore</code> is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over <code>elements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func partition&lt;C : MutableCollectionType where C.Index : RandomAccessIndexType&gt;(inout elements: C, range: Range&lt;C.Index&gt;, isOrderedBefore: (C.Generator.Element, C.Generator.Element) -&gt; Bool) -&gt; C.Index</code>
+    
+    
+</div></div>
+</div>

@@ -1,0 +1,93 @@
+---
+layout: "default"
+title: "sort"
+description: "Swift documentation for func 'sort'."
+keywords: "sort,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-sort-t_-comparable-inout_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sort-t_-comparable-inout_-t">func <wbr>sort&lt;T : Comparable&gt;(<wbr>inout: [T])</a>
+        
+<div class="comment collapse" id="comment-func-sort-t_-comparable-inout_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sort&lt;T : Comparable&gt;(inout array: [T])</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-sort-t_-comparable-inout_-contiguousarray-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sort-t_-comparable-inout_-contiguousarray-t">func <wbr>sort&lt;T : Comparable&gt;(<wbr>inout: ContiguousArray&lt;T&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-sort-t_-comparable-inout_-contiguousarray-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sort&lt;T : Comparable&gt;(inout array: ContiguousArray&lt;T&gt;)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-sort-t-inout_-t-isorderedbefore_-t-t-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sort-t-inout_-t-isorderedbefore_-t-t-bool">func sort&lt;T&gt;(<wbr>inout:<wbr> [T], isOrderedBefore: (T, T) -&gt; Bool)</a>
+        
+<div class="comment collapse" id="comment-func-sort-t-inout_-t-isorderedbefore_-t-t-bool"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sort&lt;T&gt;(inout array: [T], isOrderedBefore: (T, T) -&gt; Bool)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-sort-t-inout_-contiguousarray-t-isorderedbefore_-t-t-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sort-t-inout_-contiguousarray-t-isorderedbefore_-t-t-bool">func sort&lt;T&gt;(<wbr>inout:<wbr> ContiguousArray&lt;T&gt;, isOrderedBefore: (T, T) -&gt; Bool)</a>
+        
+<div class="comment collapse" id="comment-func-sort-t-inout_-contiguousarray-t-isorderedbefore_-t-t-bool"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sort&lt;T&gt;(inout array: ContiguousArray&lt;T&gt;, isOrderedBefore: (T, T) -&gt; Bool)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-sort-c_-mutablecollectiontype-where-c-index_-randomaccessindextype-c-generator-element_-comparable-inout_-c">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sort-c_-mutablecollectiontype-where-c-index_-randomaccessindextype-c-generator-element_-comparable-inout_-c">func <wbr>sort&lt;C :<wbr> MutableCollectionType where C.Index :<wbr> RandomAccessIndexType, C.Generator.Element : Comparable&gt;(<wbr>inout: C)</a>
+        
+<div class="comment collapse" id="comment-func-sort-c_-mutablecollectiontype-where-c-index_-randomaccessindextype-c-generator-element_-comparable-inout_-c"><div class="p">
+    <p>Sort <code>collection</code> in-place.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements that compare equal).</p>
+
+<p>Requires: The less-than operator (<code>func &lt;</code>) defined in the <code>Comparable</code>
+conformance is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over <code>elements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sort&lt;C : MutableCollectionType where C.Index : RandomAccessIndexType, C.Generator.Element : Comparable&gt;(inout collection: C)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-sort-c_-mutablecollectiontype-where-c-index_-randomaccessindextype-inout_-c-isorderedbefore_-c-generator-element-c-generator-element-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sort-c_-mutablecollectiontype-where-c-index_-randomaccessindextype-inout_-c-isorderedbefore_-c-generator-element-c-generator-element-bool">func <wbr>sort&lt;C :<wbr> MutableCollectionType where C.Index : RandomAccessIndexType&gt;(<wbr>inout:<wbr> C, isOrderedBefore: (C.Generator.Element, C.Generator.Element) -&gt; Bool)</a>
+        
+<div class="comment collapse" id="comment-func-sort-c_-mutablecollectiontype-where-c-index_-randomaccessindextype-inout_-c-isorderedbefore_-c-generator-element-c-generator-element-bool"><div class="p">
+    <p>Sort <code>collection</code> in-place according to <code>isOrderedBefore</code>.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements for which <code>isOrderedBefore</code> does not establish an order).</p>
+
+<p>Requires: <code>isOrderedBefore</code> is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over <code>elements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sort&lt;C : MutableCollectionType where C.Index : RandomAccessIndexType&gt;(inout collection: C, isOrderedBefore: (C.Generator.Element, C.Generator.Element) -&gt; Bool)</code>
+    
+    
+</div></div>
+</div>

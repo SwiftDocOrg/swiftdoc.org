@@ -1,0 +1,104 @@
+---
+layout: "default"
+title: "PermutationGenerator"
+description: "Swift documentation for 'PermutationGenerator': A generator that adapts a collection C and any sequence of."
+keywords: "PermutationGenerator,struct,swift,documentation,generate,next,Element,Generator"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct PermutationGenerator&lt;C : CollectionType, Indices : SequenceType where C.Index == C.Index&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A <em>generator</em> that adapts a <em>collection</em> <code>C</code> and any <em>sequence</em> of
+its <code>Index</code> type to present the collection&#39;s elements in a
+permuted order.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">GeneratorType, SequenceType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Element = C.Generator.Element</code>
+<div class="comment">
+    <p>The type of element returned by <code>next()</code>.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Generator = PermutationGenerator&lt;C, Indices&gt;</code>
+<div class="comment">
+    <p>A type whose instances can produce the elements of this
+sequence, in order.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-elements_indices_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-elements_indices_">init(<wbr>elements:<wbr>indices:)</a><div class="comment collapse" id="comment-init-elements_indices_"><div class="p">
+    <p>Construct a <em>generator</em> over a permutation of <code>elements</code> given
+by <code>indices</code>.</p>
+
+<p>Requires: <code>elements[i]</code> is valid for every <code>i</code> in <code>indices</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(elements: C, indices: Indices)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; PermutationGenerator&lt;C, Indices&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-next">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-next">mutating func next()</a>
+        
+<div class="comment collapse" id="comment-func-next"><div class="p">
+    <p>Advance to the next element and return it, or <code>nil</code> if no next
+element exists.</p>
+
+<p>Requires: no preceding call to <code>self.next()</code> has returned <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next() -&gt; Element?</code>
+    
+    
+</div></div>
+</div>
+
+

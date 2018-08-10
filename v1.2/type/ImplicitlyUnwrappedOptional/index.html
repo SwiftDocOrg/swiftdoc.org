@@ -1,0 +1,137 @@
+---
+layout: "default"
+title: "ImplicitlyUnwrappedOptional"
+description: "Swift documentation for 'ImplicitlyUnwrappedOptional': An optional type that allows implicit member access (via compiler."
+keywords: "ImplicitlyUnwrappedOptional,enum,swift,documentation,flatMap,getMirror,map,description"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum ImplicitlyUnwrappedOptional&lt;T&gt;</code></div>
+
+<div class="discussion comment">
+    <p>An optional type that allows implicit member access (via compiler
+magic).</p>
+
+<p>The compiler has special knowledge of the existence of
+ImplicitlyUnwrappedOptional&lt;T&gt;, but always interacts with it using the
+library intrinsics below.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">NilLiteralConvertible, Printable, Reflectable, _ObjectiveCBridgeable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+<h3 id="cases">Cases</h3>
+<div class="declaration" id="case-None">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-None">case None</a>
+</div>
+<div class="declaration" id="case-Some">
+<a class="toggle-link" data-toggle="collapse" href="#comment-case-Some">case Some(T)</a>
+</div>
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Construct a <code>nil</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-t">init(<wbr>_: T)</a><div class="comment collapse" id="comment-init_-t"><div class="p">
+    <p>Construct a non-<code>nil</code> instance that stores <code>some</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ some: T)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-t">init(<wbr>_: T?)</a><div class="comment collapse" id="comment-init_-t"><div class="p">
+    <p>Construct an instance from an explicitly unwrapped optional
+(<code>T?</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ v: T?)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-nilliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-nilliteral_">init(<wbr>nilLiteral:)</a><div class="comment collapse" id="comment-init-nilliteral_"><div class="p">
+    <p>Create an instance initialized with <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(nilLiteral: ())</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-flatmap_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap_">func flatMap(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap_"><div class="p">
+    <p>Returns <code>f(self)!</code> iff <code>self</code> and <code>f(self)</code> are not nil.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;U&gt;(f: @noescape (T) -&gt; U!) -&gt; U!</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-getmirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-getmirror">func getMirror()</a>
+        
+<div class="comment collapse" id="comment-func-getmirror"><div class="p">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func getMirror() -&gt; MirrorType</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-map_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-map_">func map(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-map_"><div class="p">
+    <p>If <code>self == nil</code>, returns <code>nil</code>.  Otherwise, returns <code>f(self!)</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func map&lt;U&gt;(f: @noescape (T) -&gt; U) -&gt; U!</code>
+    
+    
+</div></div>
+</div>
+
+

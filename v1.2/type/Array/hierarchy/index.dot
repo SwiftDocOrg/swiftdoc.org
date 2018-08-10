@@ -1,0 +1,61 @@
+strict digraph "Array<T> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Array<T>" [URL="/type/Array/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "ArrayLiteralConvertible" [URL="/protocol/ArrayLiteralConvertible/hierarchy/"]
+    "CollectionType" [URL="/protocol/CollectionType/hierarchy/"]
+    "DebugPrintable" [URL="/protocol/DebugPrintable/hierarchy/"]
+    "ExtensibleCollectionType" [URL="/protocol/ExtensibleCollectionType/hierarchy/"]
+    "MutableCollectionType" [URL="/protocol/MutableCollectionType/hierarchy/"]
+    "MutableSliceable" [URL="/protocol/MutableSliceable/hierarchy/"]
+    "Printable" [URL="/protocol/Printable/hierarchy/"]
+    "RangeReplaceableCollectionType" [URL="/protocol/RangeReplaceableCollectionType/hierarchy/"]
+    "Reflectable" [URL="/protocol/Reflectable/hierarchy/"]
+    "SequenceType" [URL="/protocol/SequenceType/hierarchy/"]
+    "Sliceable" [URL="/protocol/Sliceable/hierarchy/"]
+    "_ArrayType" [URL="/protocol/_ArrayType/hierarchy/"]
+    "_CollectionType" [URL="/protocol/_CollectionType/hierarchy/"]
+    "_DestructorSafeContainer" [URL="/protocol/_DestructorSafeContainer/hierarchy/"]
+    "_ExtensibleCollectionType" [URL="/protocol/_ExtensibleCollectionType/hierarchy/"]
+    "_SequenceType" [URL="/protocol/_SequenceType/hierarchy/"]
+    "_Sequence_Type" [URL="/protocol/_Sequence_Type/hierarchy/"]
+    "_Sliceable" [URL="/protocol/_Sliceable/hierarchy/"]
+    "__ArrayType" [URL="/protocol/__ArrayType/hierarchy/"]    "_DestructorSafeContainer" -> "Array<T>"
+    "_ArrayType" -> "Array<T>"
+    "Reflectable" -> "Array<T>"
+    "Printable" -> "Array<T>"
+    "DebugPrintable" -> "Array<T>"
+    "__ArrayType" -> "_ArrayType"
+    "RangeReplaceableCollectionType" -> "_ArrayType"
+    "MutableSliceable" -> "_ArrayType"
+    "ArrayLiteralConvertible" -> "_ArrayType"
+    "_CollectionType" -> "__ArrayType"
+    "_SequenceType" -> "_CollectionType"
+    "ExtensibleCollectionType" -> "RangeReplaceableCollectionType"
+    "_ExtensibleCollectionType" -> "ExtensibleCollectionType"
+    "CollectionType" -> "_ExtensibleCollectionType"
+    "_CollectionType" -> "CollectionType"
+    "SequenceType" -> "CollectionType"
+    "_SequenceType" -> "_CollectionType"
+    "_Sequence_Type" -> "SequenceType"
+    "_SequenceType" -> "_Sequence_Type"
+    "Sliceable" -> "MutableSliceable"
+    "MutableCollectionType" -> "MutableSliceable"
+    "_Sliceable" -> "Sliceable"
+    "CollectionType" -> "_Sliceable"
+    "_CollectionType" -> "CollectionType"
+    "SequenceType" -> "CollectionType"
+    "_SequenceType" -> "_CollectionType"
+    "_Sequence_Type" -> "SequenceType"
+    "_SequenceType" -> "_Sequence_Type"
+    "CollectionType" -> "MutableCollectionType"
+    "_CollectionType" -> "CollectionType"
+    "SequenceType" -> "CollectionType"
+    "_SequenceType" -> "_CollectionType"
+    "_Sequence_Type" -> "SequenceType"
+    "_SequenceType" -> "_Sequence_Type"
+    subgraph Types {
+        rank = max; "Array<T>";
+    }
+}

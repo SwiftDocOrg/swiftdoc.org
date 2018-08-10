@@ -1,0 +1,109 @@
+---
+layout: "default"
+title: "IndexingGenerator"
+description: "Swift documentation for 'IndexingGenerator': A generator for an arbitrary collection.  Provided C."
+keywords: "IndexingGenerator,struct,swift,documentation,generate,next,Generator,Element"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct IndexingGenerator&lt;C : _CollectionType&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A <em>generator</em> for an arbitrary <em>collection</em>.  Provided <code>C</code>
+conforms to the other requirements of <em>CollectionType</em>,
+<code>IndexingGenerator&lt;C&gt;</code> can be used as the result of <code>C</code>&#39;s
+<code>generate()</code> method.  For example:</p>
+
+<pre><code class="language-swift"> struct MyCollection : CollectionType {
+   struct Index : ForwardIndexType { *implementation hidden* }
+   subscript(i: Index) -&gt; MyElement { *implementation hidden* }
+   func generate() -&gt; **IndexingGenerator&lt;MyCollection&gt;** {
+     return IndexingGenerator(self)
+   }
+ }</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">GeneratorType, SequenceType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Generator = IndexingGenerator&lt;C&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Element = Generator.Element</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Create a <em>generator</em> over the given collection</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ seq: C)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; IndexingGenerator&lt;C&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-next">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-next">mutating func next()</a>
+        
+<div class="comment collapse" id="comment-func-next"><div class="p">
+    <p>Advance to the next element and return it, or <code>nil</code> if no next
+element exists.</p>
+
+<p>Requires: no preceding call to <code>self.next()</code> has returned <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next() -&gt; C._Element?</code>
+    
+    
+</div></div>
+</div>
+
+

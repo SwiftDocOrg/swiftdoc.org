@@ -1,0 +1,128 @@
+strict digraph "Comparable - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AbsoluteValuable" [URL="/protocol/AbsoluteValuable/hierarchy/"]
+    "Bit" [URL="/type/Bit/hierarchy/", style=filled]
+    "Character" [URL="/type/Character/hierarchy/", style=filled]
+    "Comparable" [URL="/protocol/Comparable/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "DictionaryIndex" [URL="/type/DictionaryIndex/hierarchy/", style=filled]
+    "Double" [URL="/type/Double/hierarchy/", style=filled]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "Float" [URL="/type/Float/hierarchy/", style=filled]
+    "Float80" [URL="/type/Float80/hierarchy/", style=filled]
+    "FloatingPointType" [URL="/protocol/FloatingPointType/hierarchy/"]
+    "Int" [URL="/type/Int/hierarchy/", style=filled]
+    "Int16" [URL="/type/Int16/hierarchy/", style=filled]
+    "Int32" [URL="/type/Int32/hierarchy/", style=filled]
+    "Int64" [URL="/type/Int64/hierarchy/", style=filled]
+    "Int8" [URL="/type/Int8/hierarchy/", style=filled]
+    "IntegerArithmeticType" [URL="/protocol/IntegerArithmeticType/hierarchy/"]
+    "IntegerType" [URL="/protocol/IntegerType/hierarchy/"]
+    "ObjectIdentifier" [URL="/type/ObjectIdentifier/hierarchy/", style=filled]
+    "RandomAccessIndexType" [URL="/protocol/RandomAccessIndexType/hierarchy/"]
+    "ReverseRandomAccessIndex" [URL="/type/ReverseRandomAccessIndex/hierarchy/", style=filled]
+    "SetIndex" [URL="/type/SetIndex/hierarchy/", style=filled]
+    "SignedIntegerType" [URL="/protocol/SignedIntegerType/hierarchy/"]
+    "SignedNumberType" [URL="/protocol/SignedNumberType/hierarchy/"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]
+    "String" [URL="/type/String/hierarchy/", style=filled]
+    "String.Index" [URL="/type/String.Index/hierarchy/", style=filled]
+    "String.UTF16View.Index" [URL="/type/String.UTF16View.Index/hierarchy/", style=filled]
+    "String.UnicodeScalarView.Index" [URL="/type/String.UnicodeScalarView.Index/hierarchy/", style=filled]
+    "UInt" [URL="/type/UInt/hierarchy/", style=filled]
+    "UInt16" [URL="/type/UInt16/hierarchy/", style=filled]
+    "UInt32" [URL="/type/UInt32/hierarchy/", style=filled]
+    "UInt64" [URL="/type/UInt64/hierarchy/", style=filled]
+    "UInt8" [URL="/type/UInt8/hierarchy/", style=filled]
+    "UnicodeScalar" [URL="/type/UnicodeScalar/hierarchy/", style=filled]
+    "UnsafeMutablePointer" [URL="/type/UnsafeMutablePointer/hierarchy/", style=filled]
+    "UnsafePointer" [URL="/type/UnsafePointer/hierarchy/", style=filled]
+    "UnsignedIntegerType" [URL="/protocol/UnsignedIntegerType/hierarchy/"]
+    "_Comparable" [URL="/protocol/_Comparable/hierarchy/"]
+    "_IntegerType" [URL="/protocol/_IntegerType/hierarchy/"]
+    "_RandomAccessIndexType" [URL="/protocol/_RandomAccessIndexType/hierarchy/"]
+    "_SignedIntegerType" [URL="/protocol/_SignedIntegerType/hierarchy/"]
+    "_SignedNumberType" [URL="/protocol/_SignedNumberType/hierarchy/"]
+    "_UnsignedIntegerType" [URL="/protocol/_UnsignedIntegerType/hierarchy/"]    "Comparable" -> "Character"
+    "Comparable" -> "DictionaryIndex"
+    "Comparable" -> "IntegerArithmeticType"
+    "Comparable" -> "ObjectIdentifier"
+    "Comparable" -> "SetIndex"
+    "Comparable" -> "Strideable"
+    "Comparable" -> "String"
+    "Comparable" -> "UnicodeScalar"
+    "Comparable" -> "_SignedNumberType"
+    "Comparable" -> "String.Index"
+    "Comparable" -> "String.UnicodeScalarView.Index"
+    "IntegerArithmeticType" -> "Bit"
+    "IntegerArithmeticType" -> "_IntegerType"
+    "_IntegerType" -> "IntegerType"
+    "_IntegerType" -> "_SignedIntegerType"
+    "_IntegerType" -> "_UnsignedIntegerType"
+    "IntegerType" -> "SignedIntegerType"
+    "IntegerType" -> "UnsignedIntegerType"
+    "SignedIntegerType" -> "Int"
+    "SignedIntegerType" -> "Int16"
+    "SignedIntegerType" -> "Int32"
+    "SignedIntegerType" -> "Int64"
+    "SignedIntegerType" -> "Int8"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
+    "_SignedIntegerType" -> "SignedIntegerType"
+    "SignedIntegerType" -> "Int"
+    "SignedIntegerType" -> "Int16"
+    "SignedIntegerType" -> "Int32"
+    "SignedIntegerType" -> "Int64"
+    "SignedIntegerType" -> "Int8"
+    "_UnsignedIntegerType" -> "UnsignedIntegerType"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
+    "Strideable" -> "Float80"
+    "Strideable" -> "FloatingPointType"
+    "Strideable" -> "_RandomAccessIndexType"
+    "FloatingPointType" -> "Double"
+    "FloatingPointType" -> "Float"
+    "_RandomAccessIndexType" -> "RandomAccessIndexType"
+    "RandomAccessIndexType" -> "Bit"
+    "RandomAccessIndexType" -> "IntegerType"
+    "RandomAccessIndexType" -> "ReverseRandomAccessIndex"
+    "RandomAccessIndexType" -> "UnsafeMutablePointer"
+    "RandomAccessIndexType" -> "UnsafePointer"
+    "RandomAccessIndexType" -> "String.UTF16View.Index"
+    "IntegerType" -> "SignedIntegerType"
+    "IntegerType" -> "UnsignedIntegerType"
+    "SignedIntegerType" -> "Int"
+    "SignedIntegerType" -> "Int16"
+    "SignedIntegerType" -> "Int32"
+    "SignedIntegerType" -> "Int64"
+    "SignedIntegerType" -> "Int8"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
+    "_SignedNumberType" -> "SignedNumberType"
+    "SignedNumberType" -> "AbsoluteValuable"
+    "SignedNumberType" -> "_SignedIntegerType"
+    "AbsoluteValuable" -> "Double"
+    "AbsoluteValuable" -> "Float"
+    "AbsoluteValuable" -> "Float80"
+    "_SignedIntegerType" -> "SignedIntegerType"
+    "SignedIntegerType" -> "Int"
+    "SignedIntegerType" -> "Int16"
+    "SignedIntegerType" -> "Int32"
+    "SignedIntegerType" -> "Int64"
+    "SignedIntegerType" -> "Int8"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "Character"; "DictionaryIndex"; "ObjectIdentifier"; "SetIndex"; "String"; "UnicodeScalar"; "String.Index"; "String.UnicodeScalarView.Index"; "Bit"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8"; "Float80"; "Double"; "Float"; "ReverseRandomAccessIndex"; "UnsafeMutablePointer"; "UnsafePointer"; "String.UTF16View.Index";
+    }
+}

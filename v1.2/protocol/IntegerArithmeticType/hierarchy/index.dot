@@ -1,0 +1,62 @@
+strict digraph "IntegerArithmeticType - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Bit" [URL="/type/Bit/hierarchy/", style=filled]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "Int" [URL="/type/Int/hierarchy/", style=filled]
+    "Int16" [URL="/type/Int16/hierarchy/", style=filled]
+    "Int32" [URL="/type/Int32/hierarchy/", style=filled]
+    "Int64" [URL="/type/Int64/hierarchy/", style=filled]
+    "Int8" [URL="/type/Int8/hierarchy/", style=filled]
+    "IntegerArithmeticType" [URL="/protocol/IntegerArithmeticType/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "IntegerType" [URL="/protocol/IntegerType/hierarchy/"]
+    "SignedIntegerType" [URL="/protocol/SignedIntegerType/hierarchy/"]
+    "UInt" [URL="/type/UInt/hierarchy/", style=filled]
+    "UInt16" [URL="/type/UInt16/hierarchy/", style=filled]
+    "UInt32" [URL="/type/UInt32/hierarchy/", style=filled]
+    "UInt64" [URL="/type/UInt64/hierarchy/", style=filled]
+    "UInt8" [URL="/type/UInt8/hierarchy/", style=filled]
+    "UnsignedIntegerType" [URL="/protocol/UnsignedIntegerType/hierarchy/"]
+    "_Comparable" [URL="/protocol/_Comparable/hierarchy/"]
+    "_IntegerArithmeticType" [URL="/protocol/_IntegerArithmeticType/hierarchy/"]
+    "_IntegerType" [URL="/protocol/_IntegerType/hierarchy/"]
+    "_SignedIntegerType" [URL="/protocol/_SignedIntegerType/hierarchy/"]
+    "_UnsignedIntegerType" [URL="/protocol/_UnsignedIntegerType/hierarchy/"]    "IntegerArithmeticType" -> "Bit"
+    "IntegerArithmeticType" -> "_IntegerType"
+    "_IntegerType" -> "IntegerType"
+    "_IntegerType" -> "_SignedIntegerType"
+    "_IntegerType" -> "_UnsignedIntegerType"
+    "IntegerType" -> "SignedIntegerType"
+    "IntegerType" -> "UnsignedIntegerType"
+    "SignedIntegerType" -> "Int"
+    "SignedIntegerType" -> "Int16"
+    "SignedIntegerType" -> "Int32"
+    "SignedIntegerType" -> "Int64"
+    "SignedIntegerType" -> "Int8"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
+    "_SignedIntegerType" -> "SignedIntegerType"
+    "SignedIntegerType" -> "Int"
+    "SignedIntegerType" -> "Int16"
+    "SignedIntegerType" -> "Int32"
+    "SignedIntegerType" -> "Int64"
+    "SignedIntegerType" -> "Int8"
+    "_UnsignedIntegerType" -> "UnsignedIntegerType"
+    "UnsignedIntegerType" -> "UInt"
+    "UnsignedIntegerType" -> "UInt16"
+    "UnsignedIntegerType" -> "UInt32"
+    "UnsignedIntegerType" -> "UInt64"
+    "UnsignedIntegerType" -> "UInt8"
+    "_IntegerArithmeticType" -> "IntegerArithmeticType"
+    "Comparable" -> "IntegerArithmeticType"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "Bit"; "Int"; "Int16"; "Int32"; "Int64"; "Int8"; "UInt"; "UInt16"; "UInt32"; "UInt64"; "UInt8";
+    }
+}

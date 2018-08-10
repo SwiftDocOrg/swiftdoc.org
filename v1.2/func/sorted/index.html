@@ -1,0 +1,45 @@
+---
+layout: "default"
+title: "sorted"
+description: "Swift documentation for 'sorted': Return an Array containing the sorted elements of source{according}."
+keywords: "sorted,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-sorted-c_-sequencetype-where-c-generator-element_-comparable_-c">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sorted-c_-sequencetype-where-c-generator-element_-comparable_-c">func <wbr>sorted&lt;C :<wbr> SequenceType where C.Generator.Element : Comparable&gt;(<wbr>_: C)</a>
+        
+<div class="comment collapse" id="comment-func-sorted-c_-sequencetype-where-c-generator-element_-comparable_-c"><div class="p">
+    <p>Return an <code>Array</code> containing the sorted elements of <code>source</code>{according}.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements that compare equal).</p>
+
+<p>Requires: The less-than operator (<code>func &lt;</code>) defined in the <code>Comparable</code>
+conformance is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over <code>elements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sorted&lt;C : SequenceType where C.Generator.Element : Comparable&gt;(source: C) -&gt; [C.Generator.Element]</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-sorted-c_-sequencetype_-c-isorderedbefore_-c-generator-element-c-generator-element-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sorted-c_-sequencetype_-c-isorderedbefore_-c-generator-element-c-generator-element-bool">func <wbr>sorted&lt;C : SequenceType&gt;(<wbr>_:<wbr> C, isOrderedBefore: (C.Generator.Element, C.Generator.Element) -&gt; Bool)</a>
+        
+<div class="comment collapse" id="comment-func-sorted-c_-sequencetype_-c-isorderedbefore_-c-generator-element-c-generator-element-bool"><div class="p">
+    <p>Return an <code>Array</code> containing the sorted elements of <code>source</code>{according}.</p>
+
+<p>The sorting algorithm is not stable (can change the relative order of
+elements for which <code>isOrderedBefore</code> does not establish an order).</p>
+
+<p>Requires: <code>isOrderedBefore</code> is a <a href="http://en.wikipedia.org/wiki/Strict_weak_order#Strict_weak_orderings">strict weak ordering</a>
+over <code>elements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sorted&lt;C : SequenceType&gt;(source: C, isOrderedBefore: (C.Generator.Element, C.Generator.Element) -&gt; Bool) -&gt; [C.Generator.Element]</code>
+    
+    
+</div></div>
+</div>

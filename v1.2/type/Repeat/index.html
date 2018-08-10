@@ -1,0 +1,156 @@
+---
+layout: "default"
+title: "Repeat"
+description: "Swift documentation for 'Repeat': A collection whose elements are all identical Ts."
+keywords: "Repeat,struct,swift,documentation,generate,count,endIndex,repeatedValue,startIndex,Index,Generator,Element,Index,SubSequence"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Repeat&lt;T&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A collection whose elements are all identical <code>T</code>s.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CollectionType, SequenceType, _CollectionType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Index = Int</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Generator = IndexingGenerator&lt;Repeat&lt;T&gt;&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Element = T</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Index = Int</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence = Slice&lt;Repeat&lt;T&gt;&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-count_repeatedvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-count_repeatedvalue_">init(<wbr>count:<wbr>repeatedValue:)</a><div class="comment collapse" id="comment-init-count_repeatedvalue_"><div class="p">
+    <p>Construct an instance that contains <code>count</code> elements having the
+value <code>repeatedValue</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(count: Int, repeatedValue: T)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-count_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-int">var count: Int</a><div class="comment collapse" id="comment-var-count_-int"><div class="p">
+    <p>The number of elements in this collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: Int { get set }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-endindex_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-index">var endIndex: Index</a><div class="comment collapse" id="comment-var-endindex_-index"><div class="p">
+    <p>Always equal to <code>count</code>, which is one greater than the index of
+the last element in a non-empty instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: Index { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-repeatedvalue_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-repeatedvalue_-t">var repeatedValue: T</a><div class="comment collapse" id="comment-var-repeatedvalue_-t"><div class="p">
+    <p>The value of every element in this collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var repeatedValue: T { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-startindex_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-index">var startIndex: Index</a><div class="comment collapse" id="comment-var-startindex_-index"><div class="p">
+    <p>Always zero, which is the index of the first element in a
+non-empty instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: Index { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-int">subscript(_: Int)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: Int) -&gt; T { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; IndexingGenerator&lt;Repeat&lt;T&gt;&gt;</code>
+    
+    
+</div></div>
+</div>
+
+

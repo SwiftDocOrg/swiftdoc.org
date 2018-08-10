@@ -1,0 +1,200 @@
+---
+layout: "default"
+title: "String.UTF16View.Index"
+description: "Swift documentation for struct 'String.UTF16View.Index'."
+keywords: "String.UTF16View.Index,struct,swift,documentation,advancedBy,distanceTo,predecessor,samePositionIn,samePositionIn,samePositionIn,successor,Distance"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct String.UTF16View.Index</code></div>
+
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">BidirectionalIndexType, Comparable, Equatable, ForwardIndexType, RandomAccessIndexType, Strideable, _BidirectionalIndexType, _Comparable, _ForwardIndexType, _Incrementable, _RandomAccessIndexType, _Strideable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Distance = Int</code>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p><em>[Foundation]</em> Construct from an integer offset.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ offset: Int)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-string-index-within_-string-utf16view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-string-index-within_-string-utf16view">init(<wbr>_:<wbr> String.Index, within: String.UTF16View)</a><div class="comment collapse" id="comment-init_-string-index-within_-string-utf16view"><div class="p">
+    <p>Construct the position in <code>utf16</code> that corresponds exactly to
+<code>characterIndex</code>.</p>
+
+<p>Requires: <code>characterIndex</code> is an element of
+<code>indices(String(utf16)!)</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ characterIndex: String.Index, within utf16: String.UTF16View)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_-unicodescalarindex-within_-string-utf16view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_-unicodescalarindex-within_-string-utf16view">init(<wbr>_:<wbr> UnicodeScalarIndex, within: String.UTF16View)</a><div class="comment collapse" id="comment-init_-unicodescalarindex-within_-string-utf16view"><div class="p">
+    <p>Construct the position in <code>utf16</code> that corresponds exactly to
+<code>unicodeScalarIndex</code>.</p>
+
+<p>Requires: <code>unicodeScalarIndex</code> is an element of
+<code>indices(String(utf16)!.unicodeScalars)</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ unicodeScalarIndex: UnicodeScalarIndex, within utf16: String.UTF16View)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_within_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_within_">init?(<wbr>_:<wbr>within:)</a><div class="comment collapse" id="comment-init_within_"><div class="p">
+    <p>Construct the position in <code>utf16</code> that corresponds exactly to
+<code>utf8Index</code>. If no such position exists, the result is <code>nil</code>.</p>
+
+<p>Requires: <code>utf8Index</code> is an element of
+<code>indices(String(utf16)!.utf8)</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?(_ utf8Index: UTF8Index, within utf16: String.UTF16View)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-advancedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-advancedby_">func advancedBy(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-advancedby_"><div class="p">
+    <p><em>[Foundation]</em> Return <code>self</code> offset by <code>n</code> steps.</p>
+
+<p><strong>Returns:</strong> If <code>n &gt; 0</code>, the result of applying <code>successor</code> to
+<code>self</code> <code>n</code> times.  If <code>n &lt; 0</code>, the result of applying
+<code>predecessor</code> to <code>self</code> <code>-n</code> times. Otherwise, <code>self</code>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func advancedBy(x: Int) -&gt; String.UTF16View.Index</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-distanceto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distanceto_">func distanceTo(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-distanceto_"><div class="p">
+    <p><em>[Foundation]</em> Return the minimum number of applications of <code>successor</code> or
+<code>predecessor</code> required to reach <code>other</code> from <code>self</code>.</p>
+
+<p>Complexity: O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distanceTo(x: String.UTF16View.Index) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-predecessor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-predecessor">func predecessor()</a>
+        
+<div class="comment collapse" id="comment-func-predecessor"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func predecessor() -&gt; String.UTF16View.Index</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-samepositionin_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-samepositionin_-string">func samePositionIn(<wbr>_: String)</a>
+        
+<div class="comment collapse" id="comment-func-samepositionin_-string"><div class="p">
+    <p>Return the position in <code>characters</code> that corresponds exactly
+to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
+
+<p>Requires: <code>self</code> is an element of <code>indices(characters.utf16)</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func samePositionIn(characters: String) -&gt; String.Index?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-samepositionin_-string-utf8view">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-samepositionin_-string-utf8view">func samePositionIn(<wbr>_: String.UTF8View)</a>
+        
+<div class="comment collapse" id="comment-func-samepositionin_-string-utf8view"><div class="p">
+    <p>Return the position in <code>utf8</code> that corresponds exactly
+to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
+
+<p>Requires: <code>self</code> is an element of
+<code>indices(String(utf8)!.utf16)</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func samePositionIn(utf8: String.UTF8View) -&gt; String.UTF8View.Index?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-samepositionin_-string-unicodescalarview">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-samepositionin_-string-unicodescalarview">func samePositionIn(<wbr>_: String.UnicodeScalarView)</a>
+        
+<div class="comment collapse" id="comment-func-samepositionin_-string-unicodescalarview"><div class="p">
+    <p>Return the position in <code>unicodeScalars</code> that corresponds exactly
+to <code>self</code>, or if no such position exists, <code>nil</code>.</p>
+
+<p>Requires: <code>self</code> is an element of
+<code>indices(String(unicodeScalars).utf16)</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func samePositionIn(unicodeScalars: String.UnicodeScalarView) -&gt; UnicodeScalarIndex?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-successor">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-successor">func successor()</a>
+        
+<div class="comment collapse" id="comment-func-successor"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func successor() -&gt; String.UTF16View.Index</code>
+    
+    
+</div></div>
+</div>
+
+

@@ -1,0 +1,153 @@
+---
+layout: "default"
+title: "CollectionType"
+description: "Swift documentation for 'CollectionType': A multi-pass sequence with addressable positions."
+keywords: "CollectionType,protocol,swift,documentation,generate,endIndex,startIndex,Generator,Index,_Element"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CollectionType</code></div>
+
+<div class="discussion comment">
+    <p>A multi-pass <em>sequence</em> with addressable positions.</p>
+
+<p>Positions are represented by an associated <code>Index</code> type.  Whereas
+an arbitrary <em>sequence</em> may be consumed as it is traversed, a
+<em>collection</em> is multi-pass: any element may be revisited merely by
+saving its index.</p>
+
+<p>The sequence view of the elements is identical to the collection
+view.  In other words, the following code binds the same series of
+values to <code>x</code> as does <code>for x in self {}</code>:</p>
+
+<pre><code class="language-swift">for i in startIndex..&lt;endIndex {
+  let x = self[i]
+}</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">SequenceType, _CollectionType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration inherited">
+<code class="language-swift">Generator : GeneratorType</code>
+<div class="comment">
+    <p>A type that provides the <em>sequence</em>&#39;s iteration interface and
+encapsulates its iteration state.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">Index : ForwardIndexType</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">_Element</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration inherited" id="var-endindex_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-index">var endIndex: Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-endindex_-index"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: Index { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/_CollectionType/"><code>_CollectionType</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-startindex_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-index">var startIndex: Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-startindex_-index"><div class="p">
+    <p>The position of the first element in a non-empty collection.</p>
+
+<p>Identical to <code>endIndex</code> in an empty collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: Index { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/_CollectionType/"><code>_CollectionType</code></a>
+        </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-self-index">subscript(_: Self.Index)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-self-index"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: Self.Index) -&gt; Self.Generator.Element { get }</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="subscript-subscript_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-index">subscript(_: Index)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-index"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(_i: Index) -&gt; _Element { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/_CollectionType/"><code>_CollectionType</code></a>    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; Generator</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/SequenceType/"><code>SequenceType</code></a>,    <a href="../../protocol/_Sequence_Type/"><code>_Sequence_Type</code></a>    
+</div></div>
+</div>
+
+

@@ -1,0 +1,117 @@
+---
+layout: "default"
+title: "CFunctionPointer"
+description: "Swift documentation for 'CFunctionPointer': The family of C function pointer types."
+keywords: "CFunctionPointer,struct,swift,documentation,encode,debugDescription,hashValue"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct CFunctionPointer&lt;T&gt;</code></div>
+
+<div class="discussion comment">
+    <p>The family of C function pointer types.</p>
+
+<p>In imported APIs, <code>T</code> is a Swift function type such as
+<code>(Int)-&gt;String</code>.</p>
+
+<p>Though not directly useful in Swift, <code>CFunctionPointer&lt;T&gt;</code> can be
+used to safely pass a C function pointer, received from one C or
+Objective-C API, to another C or Objective-C API.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CVarArgType, DebugPrintable, Equatable, Hashable, NilLiteralConvertible</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Create a <code>nil</code> instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Reinterpret the bits of <code>value</code> as <code>CFunctionPointer&lt;T&gt;</code>.</p>
+
+<p><strong>Warning:</strong> This is a fundamentally unsafe operation, equivalent to
+     <code>unsafeBitCast(value, CFunctionPointer&lt;T&gt;.self)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ value: COpaquePointer)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-nilliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-nilliteral_">init(<wbr>nilLiteral:)</a><div class="comment collapse" id="comment-init-nilliteral_"><div class="p">
+    <p>Create an instance initialized with <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(nilLiteral: ())</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of <code>self</code>, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The hash value.</p>
+
+<p><strong>Axiom:</strong> <code>x == y</code> implies <code>x.hashValue == y.hashValue</code></p>
+
+<p><strong>Note:</strong> the hash value is not guaranteed to be stable across
+different invocations of the same program.  Do not persist the
+hash value across program runs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-encode">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-encode">func encode()</a>
+        
+<div class="comment collapse" id="comment-func-encode"><div class="p">
+    <p>Transform <code>self</code> into a series of machine words that can be
+appropriately interpreted by C varargs</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func encode() -&gt; [Word]</code>
+    
+    
+</div></div>
+</div>
+
+

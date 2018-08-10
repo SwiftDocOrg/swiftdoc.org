@@ -1,0 +1,52 @@
+---
+layout: "default"
+title: "Operator: ..<"
+description: "Swift documentation for the '..<' operator."
+root: "/v1.2"
+---
+
+<code class="language-swift">infix operator ..&lt; {
+    associativity none
+    precedence 135
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-dotdotlt-pos_-forwardindextype-where-pos_-comparable_-pos-end_-pos">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dotdotlt-pos_-forwardindextype-where-pos_-comparable_-pos-end_-pos">func <wbr>..&lt; &lt;Pos :<wbr> ForwardIndexType where Pos : Comparable&gt;(<wbr>_:<wbr> Pos, end: Pos)</a>
+        
+<div class="comment collapse" id="comment-func-dotdotlt-pos_-forwardindextype-where-pos_-comparable_-pos-end_-pos"><div class="p">
+    <p>Forms a half-open range that contains <code>start</code>, but not
+<code>end</code>.  Requires: <code>start &lt;= end</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ..&lt;&lt;Pos : ForwardIndexType where Pos : Comparable&gt;(start: Pos, end: Pos) -&gt; Range&lt;Pos&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-dotdotlt-pos_-forwardindextype_-pos-maximum_-pos">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dotdotlt-pos_-forwardindextype_-pos-maximum_-pos">func <wbr>..&lt; &lt;Pos : ForwardIndexType&gt;(<wbr>_:<wbr> Pos, maximum: Pos)</a>
+        
+<div class="comment collapse" id="comment-func-dotdotlt-pos_-forwardindextype_-pos-maximum_-pos"><div class="p">
+    <p>Forms a half-open range that contains <code>minimum</code>, but not
+<code>maximum</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ..&lt;&lt;Pos : ForwardIndexType&gt;(minimum: Pos, maximum: Pos) -&gt; Range&lt;Pos&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-dotdotlt-t_-comparable_-t-end_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dotdotlt-t_-comparable_-t-end_-t">func <wbr>..&lt; &lt;T : Comparable&gt;(<wbr>_:<wbr> T, end: T)</a>
+        
+<div class="comment collapse" id="comment-func-dotdotlt-t_-comparable_-t-end_-t"><div class="p">
+    <p>Returns a half-open interval from <code>start</code> to <code>end</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ..&lt;&lt;T : Comparable&gt;(start: T, end: T) -&gt; HalfOpenInterval&lt;T&gt;</code>
+    
+    
+</div></div>
+</div>

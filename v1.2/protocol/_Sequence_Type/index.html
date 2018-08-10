@@ -1,0 +1,74 @@
+---
+layout: "default"
+title: "_Sequence_Type"
+description: "Swift documentation for '_Sequence_Type': This protocol is an implementation detail of SequenceType; do."
+keywords: "_Sequence_Type,protocol,swift,documentation,generate,Generator"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol _Sequence_Type</code></div>
+
+<div class="discussion comment">
+    <p>This protocol is an implementation detail of <code>SequenceType</code>; do
+not use it directly.</p>
+
+<p>Its requirements are inherited by <code>SequenceType</code> and thus must
+be satisfied by types conforming to that protocol.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">_SequenceType</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Generator : GeneratorType</code>
+<div class="comment">
+    <p>A type whose instances can produce the elements of this
+sequence, in order.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.  The
+<em>generator</em>&#39;s next element is the first element of the
+sequence.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; Generator</code>
+    
+    
+</div></div>
+</div>
+
+

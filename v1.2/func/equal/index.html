@@ -1,0 +1,35 @@
+---
+layout: "default"
+title: "equal"
+description: "Swift documentation for 'equal': Return true iff a1 and a2 contain the same elements in the."
+keywords: "equal,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-equal-s1_-sequencetype-s2_-sequencetype-where-s1-generator-element-s1-generator-element-s1-generator-element_-equatable_-s1-a2_-s2">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-equal-s1_-sequencetype-s2_-sequencetype-where-s1-generator-element-s1-generator-element-s1-generator-element_-equatable_-s1-a2_-s2">func <wbr>equal&lt;S1 :<wbr> SequenceType, S2 :<wbr> SequenceType where S1.Generator.Element == S1.Generator.Element, S1.Generator.Element : Equatable&gt;(<wbr>_:<wbr> S1, a2: S2)</a>
+        
+<div class="comment collapse" id="comment-func-equal-s1_-sequencetype-s2_-sequencetype-where-s1-generator-element-s1-generator-element-s1-generator-element_-equatable_-s1-a2_-s2"><div class="p">
+    <p>Return <code>true</code> iff <code>a1</code> and <code>a2</code> contain the same elements in the
+same order.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func equal&lt;S1 : SequenceType, S2 : SequenceType where S1.Generator.Element == S1.Generator.Element, S1.Generator.Element : Equatable&gt;(a1: S1, a2: S2) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-equal-s1_-sequencetype-s2_-sequencetype-where-s1-generator-element-s1-generator-element_-s1-a2_-s2-isequivalent_-noescape-s1-generator-element-s1-generator-element-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-equal-s1_-sequencetype-s2_-sequencetype-where-s1-generator-element-s1-generator-element_-s1-a2_-s2-isequivalent_-noescape-s1-generator-element-s1-generator-element-bool">func <wbr>equal&lt;S1 :<wbr> SequenceType, S2 : SequenceType where S1.Generator.Element == S1.Generator.Element&gt;(<wbr>_:<wbr> S1, a2:<wbr> S2, isEquivalent: @noescape (S1.Generator.Element, S1.Generator.Element) -&gt; Bool)</a>
+        
+<div class="comment collapse" id="comment-func-equal-s1_-sequencetype-s2_-sequencetype-where-s1-generator-element-s1-generator-element_-s1-a2_-s2-isequivalent_-noescape-s1-generator-element-s1-generator-element-bool"><div class="p">
+    <p>Return true iff <code>a1</code> and <code>a2</code> contain equivalent elements, using
+<code>isEquivalent</code> as the equivalence test.  Requires: <code>isEquivalent</code>
+is an <a href="http://en.wikipedia.org/wiki/Equivalence_relation">equivalence relation</a></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func equal&lt;S1 : SequenceType, S2 : SequenceType where S1.Generator.Element == S1.Generator.Element&gt;(a1: S1, a2: S2, isEquivalent: @noescape (S1.Generator.Element, S1.Generator.Element) -&gt; Bool) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>

@@ -1,0 +1,91 @@
+strict digraph "Int16 - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BidirectionalIndexType" [URL="/protocol/BidirectionalIndexType/hierarchy/"]
+    "BitwiseOperationsType" [URL="/protocol/BitwiseOperationsType/hierarchy/"]
+    "CVarArgType" [URL="/protocol/CVarArgType/hierarchy/"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ForwardIndexType" [URL="/protocol/ForwardIndexType/hierarchy/"]
+    "Hashable" [URL="/protocol/Hashable/hierarchy/"]
+    "Int16" [URL="/type/Int16/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "IntegerArithmeticType" [URL="/protocol/IntegerArithmeticType/hierarchy/"]
+    "IntegerLiteralConvertible" [URL="/protocol/IntegerLiteralConvertible/hierarchy/"]
+    "IntegerType" [URL="/protocol/IntegerType/hierarchy/"]
+    "Printable" [URL="/protocol/Printable/hierarchy/"]
+    "RandomAccessIndexType" [URL="/protocol/RandomAccessIndexType/hierarchy/"]
+    "Reflectable" [URL="/protocol/Reflectable/hierarchy/"]
+    "SignedIntegerType" [URL="/protocol/SignedIntegerType/hierarchy/"]
+    "SignedNumberType" [URL="/protocol/SignedNumberType/hierarchy/"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]
+    "_BidirectionalIndexType" [URL="/protocol/_BidirectionalIndexType/hierarchy/"]
+    "_Comparable" [URL="/protocol/_Comparable/hierarchy/"]
+    "_ForwardIndexType" [URL="/protocol/_ForwardIndexType/hierarchy/"]
+    "_Incrementable" [URL="/protocol/_Incrementable/hierarchy/"]
+    "_IntegerArithmeticType" [URL="/protocol/_IntegerArithmeticType/hierarchy/"]
+    "_IntegerType" [URL="/protocol/_IntegerType/hierarchy/"]
+    "_RandomAccessIndexType" [URL="/protocol/_RandomAccessIndexType/hierarchy/"]
+    "_SignedIntegerType" [URL="/protocol/_SignedIntegerType/hierarchy/"]
+    "_SignedNumberType" [URL="/protocol/_SignedNumberType/hierarchy/"]
+    "_Strideable" [URL="/protocol/_Strideable/hierarchy/"]    "SignedIntegerType" -> "Int16"
+    "Reflectable" -> "Int16"
+    "CVarArgType" -> "Int16"
+    "_SignedIntegerType" -> "SignedIntegerType"
+    "IntegerType" -> "SignedIntegerType"
+    "_IntegerType" -> "_SignedIntegerType"
+    "SignedNumberType" -> "_SignedIntegerType"
+    "IntegerLiteralConvertible" -> "_IntegerType"
+    "Printable" -> "_IntegerType"
+    "Hashable" -> "_IntegerType"
+    "IntegerArithmeticType" -> "_IntegerType"
+    "BitwiseOperationsType" -> "_IntegerType"
+    "_Incrementable" -> "_IntegerType"
+    "Equatable" -> "Hashable"
+    "_IntegerArithmeticType" -> "IntegerArithmeticType"
+    "Comparable" -> "IntegerArithmeticType"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "_Incrementable"
+    "_SignedNumberType" -> "SignedNumberType"
+    "Comparable" -> "_SignedNumberType"
+    "IntegerLiteralConvertible" -> "_SignedNumberType"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    "_IntegerType" -> "IntegerType"
+    "RandomAccessIndexType" -> "IntegerType"
+    "IntegerLiteralConvertible" -> "_IntegerType"
+    "Printable" -> "_IntegerType"
+    "Hashable" -> "_IntegerType"
+    "IntegerArithmeticType" -> "_IntegerType"
+    "BitwiseOperationsType" -> "_IntegerType"
+    "_Incrementable" -> "_IntegerType"
+    "Equatable" -> "Hashable"
+    "_IntegerArithmeticType" -> "IntegerArithmeticType"
+    "Comparable" -> "IntegerArithmeticType"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "_Incrementable"
+    "BidirectionalIndexType" -> "RandomAccessIndexType"
+    "_RandomAccessIndexType" -> "RandomAccessIndexType"
+    "ForwardIndexType" -> "BidirectionalIndexType"
+    "_BidirectionalIndexType" -> "BidirectionalIndexType"
+    "_ForwardIndexType" -> "ForwardIndexType"
+    "_Incrementable" -> "_ForwardIndexType"
+    "Equatable" -> "_Incrementable"
+    "_ForwardIndexType" -> "_BidirectionalIndexType"
+    "_Incrementable" -> "_ForwardIndexType"
+    "Equatable" -> "_Incrementable"
+    "_BidirectionalIndexType" -> "_RandomAccessIndexType"
+    "Strideable" -> "_RandomAccessIndexType"
+    "_ForwardIndexType" -> "_BidirectionalIndexType"
+    "_Incrementable" -> "_ForwardIndexType"
+    "Equatable" -> "_Incrementable"
+    "Comparable" -> "Strideable"
+    "_Strideable" -> "Strideable"
+    "_Comparable" -> "Comparable"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "Int16";
+    }
+}

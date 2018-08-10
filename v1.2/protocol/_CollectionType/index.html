@@ -1,0 +1,99 @@
+---
+layout: "default"
+title: "_CollectionType"
+description: "Swift documentation for '_CollectionType': This protocol is an implementation detail of CollectionType; do."
+keywords: "_CollectionType,protocol,swift,documentation,endIndex,startIndex,Index,_Element"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol _CollectionType</code></div>
+
+<div class="discussion comment">
+    <p>This protocol is an implementation detail of <code>CollectionType</code>; do
+not use it directly.</p>
+
+<p>Its requirements are inherited by <code>CollectionType</code> and thus must
+be satisfied by types conforming to that protocol.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">_SequenceType</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Index : ForwardIndexType</code>
+<div class="comment">
+    <p>A type that represents a valid position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">_Element</code>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-endindex_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-index">var endIndex: Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-endindex_-index"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: Index { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-startindex_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-index">var startIndex: Index</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-startindex_-index"><div class="p">
+    <p>The position of the first element in a non-empty collection.</p>
+
+<p>Identical to <code>endIndex</code> in an empty collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: Index { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-index">subscript(_: Index)</a> <span class="required">Required</span>
+<div class="comment collapse" id="comment-subscript-subscript_-index"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(_i: Index) -&gt; _Element { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+
+

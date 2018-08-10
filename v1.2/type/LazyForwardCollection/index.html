@@ -1,0 +1,189 @@
+---
+layout: "default"
+title: "LazyForwardCollection"
+description: "Swift documentation for 'LazyForwardCollection': A collection that forwards its implementation to an underlying."
+keywords: "LazyForwardCollection,struct,swift,documentation,filter,generate,map,array,endIndex,first,isEmpty,startIndex,Generator,Element,Index,SubSequence"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct LazyForwardCollection&lt;S : CollectionType where S.Index : ForwardIndexType&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A collection that forwards its implementation to an underlying
+collection instance while exposing lazy computations as methods.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CollectionType, SequenceType, _CollectionType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Generator = S.Generator</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Element = S.Generator.Element</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Index = S.Index</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence = Slice&lt;LazyForwardCollection&lt;S&gt;&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Construct an instance with <code>base</code> as its underlying collection
+instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(_ base: S)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-array_-s-generator-element">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-array_-s-generator-element">var array: [S.Generator.Element]</a><div class="comment collapse" id="comment-var-array_-s-generator-element"><div class="p">
+    <p>an Array, created on-demand, containing the elements of this
+lazy CollectionType.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var array: [S.Generator.Element] { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-endindex_-s-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-s-index">var endIndex: S.Index</a><div class="comment collapse" id="comment-var-endindex_-s-index"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: S.Index { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-first_-s-generator-element">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-first_-s-generator-element">var first: S.Generator.Element?</a><div class="comment collapse" id="comment-var-first_-s-generator-element"><div class="p">
+    <p>The first element, or <code>nil</code> if <code>self</code> is empty</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var first: S.Generator.Element? { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p>True if and only if the collection is empty</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-startindex_-s-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-s-index">var startIndex: S.Index</a><div class="comment collapse" id="comment-var-startindex_-s-index"><div class="p">
+    <p>The position of the first element in a non-empty collection.</p>
+
+<p>Identical to <code>endIndex</code> in an empty collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: S.Index { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-s-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-s-index">subscript(_: S.Index)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-s-index"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: S.Index) -&gt; S.Generator.Element { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-filter_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-filter_">func filter(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-filter_"><div class="p">
+    <p>Return a lazy SequenceType containing the elements <code>x</code> of <code>source</code> for
+which <code>includeElement(x)</code> is <code>true</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func filter(includeElement: (S.Generator.Element) -&gt; Bool) -&gt; LazySequence&lt;FilterSequenceView&lt;S&gt;&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the elements of this <em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; S.Generator</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-map_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-map_">func map(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-map_"><div class="p">
+    <p>Return a <code>MapCollectionView</code> over this <code>LazyForwardCollection</code>.  The elements of
+the result are computed lazily, each time they are read, by
+calling <code>transform</code> function on a base element.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func map&lt;U&gt;(transform: (S.Generator.Element) -&gt; U) -&gt; LazyForwardCollection&lt;MapCollectionView&lt;S, U&gt;&gt;</code>
+    
+    
+</div></div>
+</div>
+
+

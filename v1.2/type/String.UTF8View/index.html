@@ -1,0 +1,167 @@
+---
+layout: "default"
+title: "String.UTF8View"
+description: "Swift documentation for 'String.UTF8View': A collection of UTF-8 code units that encodes a String value."
+keywords: "String.UTF8View,struct,swift,documentation,generate,getMirror,debugDescription,description,endIndex,startIndex,Generator,Element,Index,SubSequence"
+root: "/v1.2"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct String.UTF8View</code></div>
+
+<div class="discussion comment">
+    <p>A collection of UTF-8 code units that encodes a <code>String</code> value.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CollectionType, DebugPrintable, Printable, Reflectable, SequenceType, _CollectionType, _SequenceType, _Sequence_Type</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Generator = IndexingGenerator&lt;String.UTF8View&gt;</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Element = CodeUnit</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Index = String.UTF8View.Index</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence = String.UTF8View</code>
+<div class="comment">
+    <p><em>Type alias inferred.</em></p>
+</div>
+</div>
+</td>
+</tr>
+
+<tr>
+<th>Nested Types</th>
+<td><code class="nested">String.UTF8View.Index</code></td>
+</tr>
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-endindex_-string-utf8view-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-string-utf8view-index">var endIndex: String.UTF8View.Index</a><div class="comment collapse" id="comment-var-endindex_-string-utf8view-index"><div class="p">
+    <p>The &quot;past the end&quot; position.</p>
+
+<p><code>endIndex</code> is not a valid argument to <code>subscript</code>, and is always
+reachable from <code>startIndex</code> by zero or more applications of
+<code>successor()</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: String.UTF8View.Index { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-startindex_-string-utf8view-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-string-utf8view-index">var startIndex: String.UTF8View.Index</a><div class="comment collapse" id="comment-var-startindex_-string-utf8view-index"><div class="p">
+    <p>The position of the first code unit if the <code>String</code> is
+non-empty; identical to <code>endIndex</code> otherwise.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: String.UTF8View.Index { get }</code>
+
+    </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-string-utf8view-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-string-utf8view-index">subscript(_: String.UTF8View.Index)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-string-utf8view-index"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(position: String.UTF8View.Index) -&gt; CodeUnit { get }</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="subscript-subscript_-range-string-utf8view-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-range-string-utf8view-index">subscript(_: Range&lt;String.UTF8View.Index&gt;)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-range-string-utf8view-index"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(subRange: Range&lt;String.UTF8View.Index&gt;) -&gt; String.UTF8View { get }</code>
+    
+    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-generate">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-generate">func generate()</a>
+        
+<div class="comment collapse" id="comment-func-generate"><div class="p">
+    <p>Return a <em>generator</em> over the code points that comprise this
+<em>sequence</em>.</p>
+
+<p>Complexity: O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func generate() -&gt; IndexingGenerator&lt;String.UTF8View&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-getmirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-getmirror">func getMirror()</a>
+        
+<div class="comment collapse" id="comment-func-getmirror"><div class="p">
+    <p>Returns a mirror that reflects <code>self</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func getMirror() -&gt; MirrorType</code>
+    
+    
+</div></div>
+</div>
+
+

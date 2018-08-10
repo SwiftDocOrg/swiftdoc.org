@@ -1,0 +1,28 @@
+---
+layout: "default"
+title: "split"
+description: "Swift documentation for 'split': Return the result of slicing elements into sub-sequences that."
+keywords: "split,func,swift,documentation"
+root: "/v1.2"
+---
+
+<div class="declaration" id="func-split-s_-sliceable-r_-booleantype_-s-maxsplit_-int-allowemptyslices_-bool-isseparator_-noescape-s-generator-element-r">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-split-s_-sliceable-r_-booleantype_-s-maxsplit_-int-allowemptyslices_-bool-isseparator_-noescape-s-generator-element-r">func <wbr>split&lt;S :<wbr> Sliceable, R : BooleanType&gt;(<wbr>_:<wbr> S, maxSplit:<wbr> Int, allowEmptySlices:<wbr> Bool, #isSeparator: @noescape (S.Generator.Element) -&gt; R)</a>
+        
+<div class="comment collapse" id="comment-func-split-s_-sliceable-r_-booleantype_-s-maxsplit_-int-allowemptyslices_-bool-isseparator_-noescape-s-generator-element-r"><div class="p">
+    <p>Return the result of slicing <code>elements</code> into sub-sequences that
+don&#39;t contain elements satisfying the predicate <code>isSeparator</code>.</p>
+
+<p><strong>maxSplit</strong> the maximum number of slices to return, minus 1.
+If <code>maxSplit + 1</code> slices would otherwise be returned, the
+algorithm stops splitting and returns a suffix of <code>elements</code></p>
+
+<p><strong>allowEmptySlices</strong> if true, an empty slice is produced in
+the result for each pair of consecutive </p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split&lt;S : Sliceable, R : BooleanType&gt;(elements: S, maxSplit: Int = default, allowEmptySlices: Bool = default, #isSeparator: @noescape (S.Generator.Element) -&gt; R) -&gt; [S.SubSlice]</code>
+    
+    
+</div></div>
+</div>
