@@ -1,18 +1,21 @@
 # SwiftDoc.org
 
-Documentation and resources for the Swift community  
-_[https://swiftdoc.org/](https://swiftdoc.org/)_
+Auto-generated documentation for Swift. Command-click no more.
 
 ## Installation
 
-SwiftDoc.org is created via a two-step process.
+[SwiftDoc.org](https://swiftdoc.org/) is created via a two-step process:
 
-1. The `swiftdoc-parser` utilities parse a set of Swift header files and output a set of HTML files with YAML preambles.
-2. Jekyll converts that set of files, plus the remaining files in this repository, into the SwiftDoc.org site.
+1. The `swiftdoc-parser` utilities parse a set of Swift header files
+   and output a set of HTML files with YAML front-matter.
+2. Jekyll converts those files,
+   along with the remaining files in this repository,
+   to create the SwiftDoc.org site.
 
-If you have Jekyll installed, you can run SwiftDoc.org locally by using these commands:
+If you have Jekyll installed,
+you can run SwiftDoc.org locally with the following commands:
 
-```
+```terminal
 $ git clone https://github.com/SwiftDocOrg/swiftdoc.org.git
 $ cd swiftdoc.org
 $ bundle install
@@ -26,11 +29,14 @@ Issues and pull requests should be filed in this repository relating to:
 - errors or bugs in SwiftDoc.org
 - feature requests
 
-For errors in the actual documentation on SwiftDoc.org, see [the swiftdoc-parser repository](https://github.com/SwiftDocOrg/swiftdoc-parser) instead.
+For errors in the actual documentation on SwiftDoc.org,
+please refer to the
+[swiftdoc-parser](https://github.com/SwiftDocOrg/swiftdoc-parser)
+project instead.
 
 ## Contact
 
-Follow [@SwiftDocOrg](https://twitter.com/SwiftDocOrg) on Twitter.
+[@SwiftDocOrg](https://twitter.com/SwiftDocOrg) on Twitter.
 
 ## License
 
