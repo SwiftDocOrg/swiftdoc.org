@@ -1,27 +1,33 @@
 # Site settings
-title:              "SwiftDoc.org"
-email:              info@swiftdoc.org
-description:        "Auto-generated documentation for Swift. Command-click no more."
-keywords:           "swift,documentation,swiftdoc,apple,swiftdoc.org"
-baseurl:            ""
-url:                "https://swiftdoc.org"
-twitter_username:   SwiftDocOrg
-github_username:    SwiftDocOrg
-swift_version:      "Swift version 4.2 & previous"
+title: "SwiftDoc.org"
+email: info@swiftdoc.org
+description: "Auto-generated documentation for Swift. Command-click no more."
+keywords: "swift,documentation,swiftdoc,apple,swiftdoc.org"
+baseurl: ""
+url: "https://swiftdoc.org"
+twitter_username: SwiftDocOrg
+github_username: SwiftDocOrg
+swift_version: "Swift version 4.2 & previous"
 
-include:            [ "_[A-Z]*", "__[A-Z]*", "_redirects", ".well-known" ]
-exclude:            [ "README.md", "LICENSE", "CC-BY-NC-LICENSE.md", "Gemfile", "Gemfile.lock", "Procfile" ]
-keep_files:         [ ".nojekyll", ".git", "CNAME", "README.md" ]
+include: ["_[A-Z]*", "__[A-Z]*", "_redirects", ".well-known"]
+exclude:
+  [
+    "README.md",
+    "LICENSE",
+    "CC-BY-NC-LICENSE.md",
+    "Gemfile",
+    "Gemfile.lock",
+    "Procfile",
+  ]
+keep_files: [".nojekyll", ".git", "CNAME", "README.md"]
 
-# Build settings
-markdown:           kramdown
-paginate:           10
-permalink:          /news/:year/:month/:title
-paginate_path:      /news/page:num
-tag_dir:            /news/tags
+markdown: kramdown
+paginate: 10
+permalink: /news/:year/:month/:title
+paginate_path: /news/page:num
+tag_dir: /news/tags
 monthly_archive:
-  path:             /news
-
+  path: /news
 
 plugins:
   - jekyll-assets
@@ -29,13 +35,11 @@ plugins:
   - jekyll-tidy
 
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
     values:
       isdoc: true
-  -
-    scope:
+  - scope:
       path: ""
       type: "posts"
     values:
