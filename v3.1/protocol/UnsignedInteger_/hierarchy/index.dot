@@ -1,0 +1,21 @@
+strict digraph "UnsignedInteger_ - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "Arithmetic" [URL="/protocol/Arithmetic/hierarchy/"]
+    "BinaryInteger" [URL="/protocol/BinaryInteger/hierarchy/"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByIntegerLiteral" [URL="/protocol/ExpressibleByIntegerLiteral/hierarchy/"]
+    "UnsignedInteger_" [URL="/protocol/UnsignedInteger_/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]    "BinaryInteger" -> "UnsignedInteger_"
+    "Comparable" -> "BinaryInteger"
+    "Arithmetic" -> "BinaryInteger"
+    "CustomStringConvertible" -> "BinaryInteger"
+    "Equatable" -> "Comparable"
+    "Equatable" -> "Arithmetic"
+    "ExpressibleByIntegerLiteral" -> "Arithmetic"
+    subgraph Types {
+        rank = max; 
+    }
+}

@@ -1,0 +1,82 @@
+---
+layout: "default"
+title: "withoutActuallyEscaping"
+description: "Swift documentation for 'withoutActuallyEscaping': Allows a nonescaping closure to temporarily be used as if it were."
+keywords: "withoutActuallyEscaping,func,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="declaration" id="func-withoutactuallyescaping-closuretype-resulttype_-closuretype-do_-closuretype-throws-resulttype">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withoutactuallyescaping-closuretype-resulttype_-closuretype-do_-closuretype-throws-resulttype">func withoutActuallyEscaping&lt;ClosureType, ResultType&gt;(<wbr>_:<wbr> ClosureType, do: (ClosureType) throws -&gt; ResultType)</a>
+        
+<div class="comment collapse" id="comment-func-withoutactuallyescaping-closuretype-resulttype_-closuretype-do_-closuretype-throws-resulttype"><div class="p">
+    <p>Allows a nonescaping closure to temporarily be used as if it were
+allowed to escape.</p>
+
+<p>This is useful when you need to pass a closure to an API that can&#39;t
+statically guarantee the closure won&#39;t escape when used in a way that
+won&#39;t allow it to escape in practice, such as in a lazy collection
+view:</p>
+
+<p><code>
+func allValues(in array: [Int], matchPredicate: (Int) -&gt; Bool) -&gt; Bool {
+  // Error because `lazy.filter` may escape the closure if the `lazy`
+  // collection is persisted; however, in this case, we discard the
+  // lazy collection immediately before returning.
+  return array.lazy.filter { !matchPredicate($0) }.isEmpty
+}
+</code></p>
+
+<p>or with <code>async</code>:</p>
+
+<p><code>
+func perform(_ f: () -&gt; Void, simultaneouslyWith g: () -&gt; Void,
+             on queue: DispatchQueue) {
+  // Error: `async` normally escapes the closure, but in this case
+  // we explicitly barrier before the closure would escape
+  queue.async(f)
+  queue.async(g)
+  queue.sync(flags: .barrier) {}
+}
+</code></p>
+
+<p><code>withoutActuallyEscaping</code> provides a temporarily-escapable copy of the
+closure that can be used in these situations:</p>
+
+<p><code></code>`
+func allValues(in array: [Int], matchPredicate: (Int) -&gt; Bool) -&gt; Bool {
+  return withoutActuallyEscaping(matchPredicate) { escapablePredicate in
+    array.lazy.filter { !escapableMatchPredicate($0) }.isEmpty
+  }
+}</p>
+
+<p>func perform(_ f: () -&gt; Void, simultaneouslyWith g: () -&gt; Void,
+             on queue: DispatchQueue) {
+  withoutActuallyEscaping(f) { escapableF in
+    withoutActuallyEscaping(g) { escapableG in
+      queue.async(escapableF)
+      queue.async(escapableG)
+      queue.sync(flags: .barrier) {}
+    }
+  }
+}
+<code></code>`</p>
+
+<p><strong><code>closure</code>:</strong>  A non-escaping closure value that will be made
+  escapable for the duration of the execution of the <code>do</code> block.</p>
+
+<p><strong><code>do</code>:</strong>  A code block that will be immediately executed, receiving
+  an escapable copy of <code>closure</code> as an argument.
+<strong>Returns:</strong> the forwarded return value from the <code>do</code> block.
+<strong>Remark:</strong> It is undefined behavior for the escapable closure to be stored,
+  referenced, or executed after <code>withoutActuallyEscaping</code> returns. A
+  future version of Swift will introduce a dynamic check to trap if
+  the escapable closure is still referenced at the point
+  <code>withoutActuallyEscaping</code> returns.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withoutActuallyEscaping&lt;ClosureType, ResultType&gt;(_ closure: ClosureType, do: (ClosureType) throws -&gt; ResultType) rethrows -&gt; ResultType</code>
+    
+    
+</div></div>
+</div>

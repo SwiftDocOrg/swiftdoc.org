@@ -1,0 +1,81 @@
+---
+layout: "default"
+title: "ExpressibleByUnicodeScalarLiteral"
+description: "Swift documentation for 'ExpressibleByUnicodeScalarLiteral': A type that can be initialized with a string literal containing a single."
+keywords: "ExpressibleByUnicodeScalarLiteral,protocol,swift,documentation,UnicodeScalarLiteralType"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol ExpressibleByUnicodeScalarLiteral</code></div>
+
+<div class="discussion comment">
+    <p>A type that can be initialized with a string literal containing a single
+Unicode scalar value.</p>
+
+<p>The <code>String</code>, <code>StaticString</code>, <code>Character</code>, and <code>UnicodeScalar</code> types all
+conform to the <code>ExpressibleByUnicodeScalarLiteral</code> protocol. You can
+initialize a variable of any of these types using a string literal that
+holds a single Unicode scalar.</p>
+
+<pre><code class="language-swift">let ñ: UnicodeScalar = &quot;ñ&quot;
+print(ñ)
+// Prints &quot;ñ&quot;</code></pre>
+
+<h1>Conforming to ExpressibleByUnicodeScalarLiteral</h1>
+
+<p>To add <code>ExpressibleByUnicodeScalarLiteral</code> conformance to your custom type,
+implement the required initializer.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">UnicodeScalarLiteralType</code>
+<div class="comment">
+    <p>A type that represents a Unicode scalar literal.</p>
+
+<p>Valid types for <code>UnicodeScalarLiteralType</code> are <code>UnicodeScalar</code>,
+<code>String</code>, and <code>StaticString</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-unicodescalarliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-unicodescalarliteral_">init(<wbr>unicodeScalarLiteral:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-unicodescalarliteral_"><div class="p">
+    <p>Creates an instance initialized to the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value of the new instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(unicodeScalarLiteral value: Self.UnicodeScalarLiteralType)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+
+

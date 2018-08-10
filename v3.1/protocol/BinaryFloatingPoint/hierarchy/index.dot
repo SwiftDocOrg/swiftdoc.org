@@ -1,0 +1,36 @@
+strict digraph "BinaryFloatingPoint - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "AbsoluteValuable" [URL="/protocol/AbsoluteValuable/hierarchy/"]
+    "Arithmetic" [URL="/protocol/Arithmetic/hierarchy/"]
+    "BinaryFloatingPoint" [URL="/protocol/BinaryFloatingPoint/", style="filled,rounded", fillcolor="#ee543d", color="#ee543d"]
+    "Comparable" [URL="/protocol/Comparable/hierarchy/"]
+    "Double" [URL="/type/Double/hierarchy/", style=filled]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "ExpressibleByFloatLiteral" [URL="/protocol/ExpressibleByFloatLiteral/hierarchy/"]
+    "ExpressibleByIntegerLiteral" [URL="/protocol/ExpressibleByIntegerLiteral/hierarchy/"]
+    "Float" [URL="/type/Float/hierarchy/", style=filled]
+    "Float80" [URL="/type/Float80/hierarchy/", style=filled]
+    "FloatingPoint" [URL="/protocol/FloatingPoint/hierarchy/"]
+    "SignedNumber" [URL="/protocol/SignedNumber/hierarchy/"]
+    "Strideable" [URL="/protocol/Strideable/hierarchy/"]    "BinaryFloatingPoint" -> "Double"
+    "BinaryFloatingPoint" -> "Float"
+    "BinaryFloatingPoint" -> "Float80"
+    "FloatingPoint" -> "BinaryFloatingPoint"
+    "ExpressibleByFloatLiteral" -> "BinaryFloatingPoint"
+    "Arithmetic" -> "FloatingPoint"
+    "AbsoluteValuable" -> "FloatingPoint"
+    "Strideable" -> "FloatingPoint"
+    "Equatable" -> "Arithmetic"
+    "ExpressibleByIntegerLiteral" -> "Arithmetic"
+    "SignedNumber" -> "AbsoluteValuable"
+    "Comparable" -> "SignedNumber"
+    "ExpressibleByIntegerLiteral" -> "SignedNumber"
+    "Equatable" -> "Comparable"
+    "Comparable" -> "Strideable"
+    "Equatable" -> "Comparable"
+    subgraph Types {
+        rank = max; "Double"; "Float"; "Float80";
+    }
+}

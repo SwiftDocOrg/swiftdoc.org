@@ -1,0 +1,3330 @@
+---
+layout: "default"
+title: "RangeReplaceableSlice"
+description: "Swift documentation for 'RangeReplaceableSlice': A view into a subsequence of elements of another collection."
+keywords: "RangeReplaceableSlice,struct,swift,documentation,append,append,contains,distance,drop,dropFirst,dropFirst,dropLast,dropLast,elementsEqual,enumerated,filter,first,flatMap,flatMap,forEach,formIndex,index,index,index,index,insert,insert,lexicographicallyPrecedes,map,max,min,prefix,prefix,prefix,prefix,reduce,remove,removeAll,removeFirst,removeFirst,removeLast,removeLast,removeSubrange,removeSubrange,removeSubrange,replaceSubrange,reserveCapacity,reversed,sorted,split,starts,suffix,suffix,base,count,endIndex,first,isEmpty,lazy,startIndex,underestimatedCount,Index,IndexDistance,SubSequence"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct RangeReplaceableSlice&lt;Base where Base : _RangeReplaceableIndexable&gt;</code></div>
+
+<div class="discussion comment">
+    <p>A view into a subsequence of elements of another collection.</p>
+
+<p>A slice stores a base collection and the start and end indices of the view.
+It does not copy the elements from the collection into separate storage.
+Thus, creating a slice has O(1) complexity.</p>
+
+<h2>Slices Share Indices</h2>
+
+<p>Indices of a slice can be used interchangeably with indices of the base
+collection. An element of a slice is located under the same index in the
+slice and in the base collection, as long as neither the collection nor
+the slice has been mutated since the slice was created.</p>
+
+<p>For example, suppose you have an array holding the number of absences from
+each class during a session.</p>
+
+<pre><code class="language-swift">var absences = [0, 2, 0, 4, 0, 3, 1, 0]</code></pre>
+
+<p>You&#39;re tasked with finding the day with the most absences in the second
+half of the session. To find the index of the day in question, follow
+these setps:</p>
+
+<p>1) Create a slice of the <code>absences</code> array that holds the second half of the
+   days.
+2) Use the <code>max(by:)</code> method to determine the index of the day
+   with the most absences.
+3) Print the result using the index found in step 2 on the original
+   <code>absences</code> array.</p>
+
+<p>Here&#39;s an implementation of those steps:</p>
+
+<pre><code class="language-swift">let secondHalf = absences.suffix(absences.count / 2)
+if let i = secondHalf.indices.max(by: { secondHalf[$0] &lt; secondHalf[$1] }) {
+    print(&quot;Highest second-half absences: \(absences[i])&quot;)
+}
+// Prints &quot;Highest second-half absences: 3&quot;</code></pre>
+
+<h2>Slices Inherit Semantics</h2>
+
+<p>A slice inherits the value or reference semantics of its base collection.
+That is, if a <code>RangeReplaceableSlice</code> instance is wrapped around a mutable
+collection that has value semantics, such as an array, mutating the
+original collection would trigger a copy of that collection, and not
+affect the base collection stored inside of the slice.</p>
+
+<p>For example, if you update the last element of the <code>absences</code> array from
+<code>0</code> to <code>2</code>, the <code>secondHalf</code> slice is unchanged.</p>
+
+<pre><code class="language-swift">absences[7] = 2
+print(absences)
+// Prints &quot;[0, 2, 0, 4, 0, 3, 1, 2]&quot;
+print(secondHalf)
+// Prints &quot;[0, 3, 1, 0]&quot;</code></pre>
+
+<p><strong>Important:</strong> Use slices only for transient computation.
+  A slice may hold a reference to the entire storage of a larger
+  collection, not just to the portion it presents, even after the base
+  collection&#39;s lifetime ends. Long-term storage of a slice may therefore
+  prolong the lifetime of elements that are no longer otherwise
+  accessible, which can erroneously appear to be memory leakage.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Collection, RangeReplaceableCollection, Sequence</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Index = Base.Index</code>
+<div class="comment">
+    <p>A type that represents a position in the collection.</p>
+
+<p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that&#39;s not valid for use as a subscript
+argument.</p>
+
+<p><strong>See Also:</strong> endIndex</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">IndexDistance = Base.IndexDistance</code>
+<div class="comment">
+    <p>A type that represents the number of steps between a pair of
+indices.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">SubSequence = RangeReplaceableSlice&lt;Base&gt;</code>
+<div class="comment">
+    <p>A sequence that represents a contiguous subrange of the collection&#39;s
+elements.</p>
+
+<p>This associated type appears as a requirement in the <code>Sequence</code>
+protocol, but it is restated here with stricter constraints. In a
+collection, the subsequence should also conform to <code>Collection</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init">init()</a><div class="comment collapse" id="comment-init"><div class="p">
+    <p>Creates a new, empty collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Creates a new instance of a collection containing the elements of a
+sequence.</p>
+
+<p><strong><code>elements</code>:</strong>  The sequence of elements for the new collection.
+  <code>elements</code> must be finite.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;S where S : Sequence, S.Iterator.Element == Base._Element&gt;(_ elements: S)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RangeReplaceableSlice/"><code>RangeReplaceableSlice</code></a>
+        ,    <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="init-base_bounds_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-base_bounds_">init(<wbr>base:<wbr>bounds:)</a><div class="comment collapse" id="comment-init-base_bounds_"><div class="p">
+    <p>Creates a view into the given collection that allows access to elements
+within the specified range.</p>
+
+<p>It is unusual to need to call this method directly. Instead, create a
+slice of a collection by using the collection&#39;s range-based subscript or
+by using methods that return a subsequence.</p>
+
+<pre><code class="language-swift">let singleDigits = 0...9
+let subSequence = singleDigits.dropFirst(5)
+print(Array(subSequence))
+// Prints &quot;[5, 6, 7, 8, 9]&quot;</code></pre>
+
+<p>In this example, the expression <code>singleDigits.dropFirst(5))</code> is
+equivalent to calling this initializer with <code>singleDigits</code> and a
+range covering the last five items of <code>singleDigits.indices</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>base:</strong> The collection to create a view into.
+  <strong>bounds:</strong> The range of indices to allow access to in the new slice.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(base: Base, bounds: Range&lt;RangeReplaceableSlice.Index&gt;)</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="init-repeating_count_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-repeating_count_">init(<wbr>repeating:<wbr>count:)</a><div class="comment collapse" id="comment-init-repeating_count_"><div class="p">
+    <p>Creates a new collection containing the specified number of a single,
+repeated value.</p>
+
+<p>The following example creates an array initialized with five strings
+containing the letter <em>Z</em>.</p>
+
+<pre><code class="language-swift">let fiveZs = Array(repeating: &quot;Z&quot;, count: 5)
+print(fiveZs)
+// Prints &quot;[&quot;Z&quot;, &quot;Z&quot;, &quot;Z&quot;, &quot;Z&quot;, &quot;Z&quot;]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>repeatedValue:</strong> The element to repeat.
+  <strong>count:</strong> The number of times to repeat the value passed in the
+    <code>repeating</code> parameter. <code>count</code> must be zero or greater.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(repeating repeatedValue: Base._Element, count: Int)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RangeReplaceableSlice/"><code>RangeReplaceableSlice</code></a>
+        ,    <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>
+        </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-base_-base">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-base_-base">var base: Base</a><div class="comment collapse" id="comment-var-base_-base"><div class="p">
+    <p>The underlying collection of the slice.</p>
+
+<p>You can use a slice&#39;s <code>base</code> property to access its base collection. The
+following example declares <code>singleDigits</code>, a range of single digit
+integers, and then drops the first element to create a slice of that
+range, <code>singleNonZeroDigits</code>. The <code>base</code> property of the slice is equal
+to <code>singleDigits</code>.</p>
+
+<pre><code class="language-swift">let singleDigits = 0..&lt;10
+let singleNonZeroDigits = singleDigits.dropFirst()
+// singleNonZeroDigits is a RandomAccessSlice&lt;CountableRange&lt;Int&gt;&gt;
+
+print(singleNonZeroDigits.count)
+// Prints &quot;9&quot;
+prints(singleNonZeroDigits.base.count)
+// Prints &quot;10&quot;
+print(singleDigits == singleNonZeroDigits.base)
+// Prints &quot;true&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var base: Base { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="var-count_-self-indexdistance">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-count_-self-indexdistance">var count: RangeReplaceableSlice&lt;Base&gt;.IndexDistance</a><div class="comment collapse" id="comment-var-count_-self-indexdistance"><div class="p">
+    <p>The number of elements in the collection.</p>
+
+<p>To check whether a collection is empty, use its <code>isEmpty</code> property
+instead of comparing <code>count</code> to zero. Unless the collection guarantees
+random-access performance, calculating <code>count</code> can be an O(<em>n</em>)
+operation.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length
+  of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var count: RangeReplaceableSlice&lt;Base&gt;.IndexDistance { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>
+        ,    <a href="../../protocol/Collection/"><code>Collection</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="var-endindex_-base-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-endindex_-base-index">var endIndex: Base.Index</a><div class="comment collapse" id="comment-var-endindex_-base-index"><div class="p">
+    <p>The collection&#39;s &quot;past the end&quot; position---that is, the position one
+greater than the last valid subscript argument.</p>
+
+<p>When you need a range that includes the last element of a collection, use
+the half-open range operator (<code>..&lt;</code>) with <code>endIndex</code>. The <code>..&lt;</code> operator
+creates a range that doesn&#39;t include the upper bound, so it&#39;s always
+safe to use with <code>endIndex</code>. For example:</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let index = numbers.index(of: 30) {
+    print(numbers[index ..&lt; numbers.endIndex])
+}
+// Prints &quot;[30, 40, 50]&quot;</code></pre>
+
+<p>If the collection is empty, <code>endIndex</code> is equal to <code>startIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var endIndex: Base.Index { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="var-first_-self-iterator-element">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-first_-self-iterator-element">var first: RangeReplaceableSlice&lt;Base&gt;.Iterator.Element?</a><div class="comment collapse" id="comment-var-first_-self-iterator-element"><div class="p">
+    <p>The first element of the collection.</p>
+
+<p>If the collection is empty, the value of this property is <code>nil</code>.</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let firstNumber = numbers.first {
+    print(firstNumber)
+}
+// Prints &quot;10&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var first: RangeReplaceableSlice&lt;Base&gt;.Iterator.Element? { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>
+        ,    <a href="../../protocol/Collection/"><code>Collection</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-isempty_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-isempty_-bool">var isEmpty: Bool</a><div class="comment collapse" id="comment-var-isempty_-bool"><div class="p">
+    <p>A Boolean value indicating whether the collection is empty.</p>
+
+<p>When you need to check whether your collection is empty, use the
+<code>isEmpty</code> property instead of checking that the <code>count</code> property is
+equal to zero. For collections that don&#39;t conform to
+<code>RandomAccessCollection</code>, accessing the <code>count</code> property iterates
+through the elements of the collection.</p>
+
+<pre><code class="language-swift">let horseName = &quot;Silver&quot;
+if horseName.characters.isEmpty {
+    print(&quot;I&#39;ve been through the desert on a horse with no name.&quot;)
+} else {
+    print(&quot;Hi ho, \(horseName)!&quot;)
+}
+// Prints &quot;Hi ho, Silver!&quot;)</code></pre>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var isEmpty: Bool { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>
+        ,    <a href="../../protocol/Collection/"><code>Collection</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-lazy_-lazycollection-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-lazy_-lazycollection-self">var lazy: LazyCollection&lt;RangeReplaceableSlice&lt;Base&gt;&gt;</a><div class="comment collapse" id="comment-var-lazy_-lazycollection-self"><div class="p">
+    <p>A view onto this collection that provides lazy implementations of
+normally eager operations, such as <code>map</code> and <code>filter</code>.</p>
+
+<p>Use the <code>lazy</code> property when chaining operations to prevent
+intermediate operations from allocating storage, or when you only
+need a part of the final collection to avoid unnecessary computation.</p>
+
+<p><strong>See Also:</strong> <code>LazySequenceProtocol</code>, <code>LazyCollectionProtocol</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var lazy: LazyCollection&lt;RangeReplaceableSlice&lt;Base&gt;&gt; { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>
+        ,    <a href="../../protocol/Collection/"><code>Collection</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="var-startindex_-base-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-startindex_-base-index">var startIndex: Base.Index</a><div class="comment collapse" id="comment-var-startindex_-base-index"><div class="p">
+    <p>The position of the first element in a nonempty collection.</p>
+
+<p>If the collection is empty, <code>startIndex</code> is equal to <code>endIndex</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var startIndex: Base.Index { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="var-underestimatedcount_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-underestimatedcount_-int">var underestimatedCount: Int</a><div class="comment collapse" id="comment-var-underestimatedcount_-int"><div class="p">
+    <p>A value less than or equal to the number of elements in the collection.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length
+  of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var underestimatedCount: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>
+        ,    <a href="../../protocol/Collection/"><code>Collection</code></a>
+        ,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>
+        </div></div>
+</div>
+
+<h3>Subscripts</h3>
+<div class="declaration" id="subscript-subscript_-base-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-base-index">subscript(_: Base.Index)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-base-index"><div class="p">
+    <p>Accesses the element at the specified position.</p>
+
+<p>The following example accesses an element of an array through its
+subscript to print its value:</p>
+
+<pre><code class="language-swift">var streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+print(streets[1])
+// Prints &quot;Bryant&quot;</code></pre>
+
+<p>You can subscript a collection with any valid index other than the
+collection&#39;s end index. The end index refers to the position one past
+the last element of a collection, so it doesn&#39;t correspond with an
+element.</p>
+
+<p><strong><code>position</code>:</strong>  The position of the element to access. <code>position</code>
+  must be a valid index of the collection that is not equal to the
+  <code>endIndex</code> property.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(index: Base.Index) -&gt; Base._Element { get }</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="subscript-subscript_-range-base-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-range-base-index">subscript(_: Range&lt;Base.Index&gt;)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-range-base-index"><div class="p">
+    <p>Accesses a contiguous subrange of the collection&#39;s elements.</p>
+
+<p>The accessed slice uses the same indices for the same elements as the
+original collection uses. Always use the slice&#39;s <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.index(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// Prints &quot;Evarts&quot;</code></pre>
+
+<p><strong><code>bounds</code>:</strong>  A range of the collection&#39;s indices. The bounds of
+  the range must be valid indices of the collection.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(bounds: Range&lt;Base.Index&gt;) -&gt; RangeReplaceableSlice&lt;Base&gt; { get }</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="subscript-subscript_-range-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subscript_-range-self-index">subscript(_: Range&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;)</a>
+<div class="comment collapse" id="comment-subscript-subscript_-range-self-index"><div class="p">
+    <p>Accesses a contiguous subrange of the collection&#39;s elements.</p>
+
+<p>The accessed slice uses the same indices for the same elements as the
+original collection uses. Always use the slice&#39;s <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.index(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// Prints &quot;Evarts&quot;</code></pre>
+
+<p><strong><code>bounds</code>:</strong>  A range of the collection&#39;s indices. The bounds of
+  the range must be valid indices of the collection.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(bounds: Range&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;) -&gt; RangeReplaceableSlice&lt;RangeReplaceableSlice&lt;Base&gt;&gt; { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-append_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-append_">mutating func append(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-append_"><div class="p">
+    <p>Adds an element to the end of the collection.</p>
+
+<p>If the collection does not have sufficient capacity for another element,
+additional storage is allocated before appending <code>newElement</code>. The
+following example adds a new number to an array of integers:</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers.append(100)
+
+print(numbers)
+// Prints &quot;[1, 2, 3, 4, 5, 100]&quot;</code></pre>
+
+<p><strong><code>newElement</code>:</strong>  The element to append to the collection.</p>
+
+<p><strong>Complexity:</strong> O(1) on average, over many additions to the same
+  collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func append(_ newElement: RangeReplaceableSlice&lt;Base&gt;.Iterator.Element)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-append-contentsof_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-append-contentsof_">mutating func append(<wbr>contentsOf:)</a>
+        
+<div class="comment collapse" id="comment-func-append-contentsof_"><div class="p">
+    <p>Adds the elements of a sequence or collection to the end of this
+collection.</p>
+
+<p>The collection being appended to allocates any additional necessary
+storage to hold the new elements.</p>
+
+<p>The following example appends the elements of a <code>Range&lt;Int&gt;</code> instance to
+an array of integers:</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers.append(contentsOf: 10...15)
+print(numbers)
+// Prints &quot;[1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15]&quot;</code></pre>
+
+<p><strong><code>newElements</code>:</strong>  The elements to append to the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the resulting
+  collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func append&lt;S where S : Sequence, S.Iterator.Element == RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;(contentsOf newElements: S)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-contains-where_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-contains-where_">func contains(<wbr>where:)</a>
+        
+<div class="comment collapse" id="comment-func-contains-where_"><div class="p">
+    <p>Returns a Boolean value indicating whether the sequence contains an
+element that satisfies the given predicate.</p>
+
+<p>You can use the predicate to check for an element of a type that
+doesn&#39;t conform to the <code>Equatable</code> protocol, such as the
+<code>HTTPResponse</code> enumeration in this example.</p>
+
+<pre><code class="language-swift">enum HTTPResponse {
+    case ok
+    case error(Int)
+}
+
+let lastThreeResponses: [HTTPResponse] = [.ok, .ok, .error(404)]
+let hadError = lastThreeResponses.contains { element in
+    if case .error = element {
+        return true
+    } else {
+        return false
+    }
+}
+// &#39;hadError&#39; == true</code></pre>
+
+<p>Alternatively, a predicate can be satisfied by a range of <code>Equatable</code>
+elements or a general condition. This example shows how you can check an
+array for an expense greater than $100.</p>
+
+<pre><code class="language-swift">let expenses = [21.37, 55.21, 9.32, 10.18, 388.77, 11.41]
+let hasBigPurchase = expenses.contains { $0 &gt; 100 }
+// &#39;hasBigPurchase&#39; == true</code></pre>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence
+  as its argument and returns a Boolean value that indicates whether
+  the passed element represents a match.
+<strong>Returns:</strong> <code>true</code> if the sequence contains an element that satisfies
+  <code>predicate</code>; otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(where predicate: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-distance-from_to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-distance-from_to_">func distance(<wbr>from:<wbr>to:)</a>
+        
+<div class="comment collapse" id="comment-func-distance-from_to_"><div class="p">
+    <p>Returns the distance between two indices.</p>
+
+<p>Unless the collection conforms to the <code>BidirectionalCollection</code> protocol,
+<code>start</code> must be less than or equal to <code>end</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>start:</strong> A valid index of the collection.
+  <strong>end:</strong> Another valid index of the collection. If <code>end</code> is equal to
+    <code>start</code>, the result is zero.
+<strong>Returns:</strong> The distance between <code>start</code> and <code>end</code>. The result can be
+  negative only if the collection conforms to the
+  <code>BidirectionalCollection</code> protocol.</p>
+
+<p><strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the
+  resulting distance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func distance(from start: RangeReplaceableSlice.Index, to end: RangeReplaceableSlice.Index) -&gt; RangeReplaceableSlice.IndexDistance</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-drop-while_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-drop-while_">func drop(<wbr>while:)</a>
+        
+<div class="comment collapse" id="comment-func-drop-while_"><div class="p">
+    <p>Returns a subsequence by skipping elements while <code>predicate</code> returns
+<code>true</code> and returning the remaining elements.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the
+  sequence as its argument and returns <code>true</code> if the element should
+  be skipped or <code>false</code> if it should be included. Once the predicate
+  returns <code>false</code> it will not be called again.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func drop(while predicate: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; RangeReplaceableSlice&lt;Base&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-dropfirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dropfirst">func dropFirst()</a>
+        
+<div class="comment collapse" id="comment-func-dropfirst"><div class="p">
+    <p>Returns a subsequence containing all but the first element of the
+sequence.</p>
+
+<p>The following example drops the first element from an array of integers.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropFirst())
+// Prints &quot;[2, 3, 4, 5]&quot;</code></pre>
+
+<p>If the sequence has no elements, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let empty: [Int] = []
+print(empty.dropFirst())
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong>Returns:</strong> A subsequence starting after the first element of the
+  sequence.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst() -&gt; RangeReplaceableSlice&lt;Base&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-dropfirst_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dropfirst_">func dropFirst(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-dropfirst_"><div class="p">
+    <p>Returns a subsequence containing all but the given number of initial
+elements.</p>
+
+<p>If the number of elements to drop exceeds the number of elements in
+the collection, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropFirst(2))
+// Prints &quot;[3, 4, 5]&quot;
+print(numbers.dropFirst(10))
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong><code>n</code>:</strong>  The number of elements to drop from the beginning of
+  the collection. <code>n</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence starting after the specified number of
+  elements.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the number of elements to drop from
+  the beginning of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst(_ n: Int) -&gt; RangeReplaceableSlice&lt;Base&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-droplast">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-droplast">func dropLast()</a>
+        
+<div class="comment collapse" id="comment-func-droplast"><div class="p">
+    <p>Returns a subsequence containing all but the last element of the
+sequence.</p>
+
+<p>The sequence must be finite. </p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast())
+// Prints &quot;[1, 2, 3, 4]&quot;</code></pre>
+
+<p>If the sequence has no elements, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let empty: [Int] = []
+print(empty.dropLast())
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong>Returns:</strong> A subsequence leaving off the last element of the sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast() -&gt; RangeReplaceableSlice&lt;Base&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-droplast_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-droplast_">func dropLast(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-droplast_"><div class="p">
+    <p>Returns a subsequence containing all but the specified number of final
+elements.</p>
+
+<p>If the number of elements to drop exceeds the number of elements in the
+collection, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast(2))
+// Prints &quot;[1, 2, 3]&quot;
+print(numbers.dropLast(10))
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong><code>n</code>:</strong>  The number of elements to drop off the end of the
+  collection. <code>n</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence that leaves off the specified number of elements
+  at the end.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast(_ n: Int) -&gt; RangeReplaceableSlice&lt;Base&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-elementsequal_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-elementsequal_by_">func elementsEqual(<wbr>_:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-elementsequal_by_"><div class="p">
+    <p>Returns a Boolean value indicating whether this sequence and another
+sequence contain equivalent elements, using the given predicate as the
+equivalence test.</p>
+
+<p>At least one of the sequences must be finite.</p>
+
+<p>The predicate must be a <em>equivalence relation</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areEquivalent(a, a)</code> is always <code>true</code>. (Reflexivity)</li><li><code>areEquivalent(a, b)</code> implies <code>areEquivalent(b, a)</code>. (Symmetry)</li><li>If <code>areEquivalent(a, b)</code> and <code>areEquivalent(b, c)</code> are both <code>true</code>, then
+<code>areEquivalent(a, c)</code> is also <code>true</code>. (Transitivity)</li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>other:</strong> A sequence to compare to this sequence.
+  <strong>areEquivalent:</strong> A predicate that returns <code>true</code> if its two arguments
+    are equivalent; otherwise, <code>false</code>.
+<strong>Returns:</strong> <code>true</code> if this sequence and <code>other</code> contain equivalent items,
+  using <code>areEquivalent</code> as the equivalence test; otherwise, <code>false.</code></p>
+
+<p><strong>See Also:</strong> <code>elementsEqual(_:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func elementsEqual&lt;OtherSequence where OtherSequence : Sequence, OtherSequence.Iterator.Element == RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;(_ other: OtherSequence, by areEquivalent: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element, RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-enumerated">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-enumerated">func enumerated()</a>
+        
+<div class="comment collapse" id="comment-func-enumerated"><div class="p">
+    <p>Returns a sequence of pairs (<em>n</em>, <em>x</em>), where <em>n</em> represents a
+consecutive integer starting at zero, and <em>x</em> represents an element of
+the sequence.</p>
+
+<p>This example enumerates the characters of the string &quot;Swift&quot; and prints
+each character along with its place in the string.</p>
+
+<pre><code class="language-swift">for (n, c) in &quot;Swift&quot;.characters.enumerated() {
+    print(&quot;\(n): &#39;\(c)&#39;&quot;)
+}
+// Prints &quot;0: &#39;S&#39;&quot;
+// Prints &quot;1: &#39;w&#39;&quot;
+// Prints &quot;2: &#39;i&#39;&quot;
+// Prints &quot;3: &#39;f&#39;&quot;
+// Prints &quot;4: &#39;t&#39;&quot;</code></pre>
+
+<p>When enumerating a collection, the integer part of each pair is a counter
+for the enumeration, not necessarily the index of the paired value.
+These counters can only be used as indices in instances of zero-based,
+integer-indexed collections, such as <code>Array</code> and <code>ContiguousArray</code>. For
+other collections the counters may be out of range or of the wrong type
+to use as an index. To iterate over the elements of a collection with its
+indices, use the <code>zip(_:_:)</code> function.</p>
+
+<p>This example iterates over the indices and elements of a set, building a
+list of indices of names with five or fewer letters.</p>
+
+<pre><code class="language-swift">let names: Set = [&quot;Sofia&quot;, &quot;Camilla&quot;, &quot;Martina&quot;, &quot;Mateo&quot;, &quot;Nicolás&quot;]
+var shorterIndices: [SetIndex&lt;String&gt;] = []
+for (i, name) in zip(names.indices, names) {
+    if name.characters.count &lt;= 5 {
+        shorterIndices.append(i)
+    }
+}</code></pre>
+
+<p>Now that the <code>shorterIndices</code> array holds the indices of the shorter
+names in the <code>names</code> set, you can use those indices to access elements in
+the set.</p>
+
+<pre><code class="language-swift">for i in shorterIndices {
+    print(names[i])
+}
+// Prints &quot;Sofia&quot;
+// Prints &quot;Mateo&quot;</code></pre>
+
+<p><strong>Returns:</strong> A sequence of pairs enumerating the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func enumerated() -&gt; EnumeratedSequence&lt;RangeReplaceableSlice&lt;Base&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-filter_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-filter_">func filter(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-filter_"><div class="p">
+    <p>Returns an array containing, in order, the elements of the sequence
+that satisfy the given predicate.</p>
+
+<p>In this example, <code>filter</code> is used to include only names shorter than
+five characters.</p>
+
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let shortNames = cast.filter { $0.characters.count &lt; 5 }
+print(shortNames)
+// Prints &quot;[&quot;Kim&quot;, &quot;Karl&quot;]&quot;</code></pre>
+
+<p><strong><code>isIncluded</code>:</strong>  A closure that takes an element of the
+  sequence as its argument and returns a Boolean value indicating
+  whether the element should be included in the returned array.
+<strong>Returns:</strong> An array of the elements that <code>includeElement</code> allowed.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func filter(_ isIncluded: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; [RangeReplaceableSlice&lt;Base&gt;.Iterator.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-first-where_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-first-where_">func first(<wbr>where:)</a>
+        
+<div class="comment collapse" id="comment-func-first-where_"><div class="p">
+    <p>Returns the first element of the sequence that satisfies the given
+predicate.</p>
+
+<p>The following example uses the <code>first(where:)</code> method to find the first
+negative number in an array of integers:</p>
+
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+if let firstNegative = numbers.first(where: { $0 &lt; 0 }) {
+    print(&quot;The first negative number is \(firstNegative).&quot;)
+}
+// Prints &quot;The first negative number is -2.&quot;</code></pre>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence as
+  its argument and returns a Boolean value indicating whether the
+  element is a match.
+<strong>Returns:</strong> The first element of the sequence that satisfies <code>predicate</code>,
+  or <code>nil</code> if there is no element that satisfies <code>predicate</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func first(where predicate: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; RangeReplaceableSlice&lt;Base&gt;.Iterator.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-elementofresult_-self-iterator-element-throws-elementofresult">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-elementofresult_-self-iterator-element-throws-elementofresult">func flatMap&lt;ElementOfResult&gt;(<wbr>_: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; ElementOfResult?)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-elementofresult_-self-iterator-element-throws-elementofresult"><div class="p">
+    <p>Returns an array containing the non-<code>nil</code> results of calling the given
+transformation with each element of this sequence.</p>
+
+<p>Use this method to receive an array of nonoptional values when your
+transformation produces an optional value.</p>
+
+<p>In this example, note the difference in the result of using <code>map</code> and
+<code>flatMap</code> with a transformation that returns an optional <code>Int</code> value.</p>
+
+<pre><code class="language-swift">let possibleNumbers = [&quot;1&quot;, &quot;2&quot;, &quot;three&quot;, &quot;///4///&quot;, &quot;5&quot;]
+
+let mapped: [Int?] = possibleNumbers.map { str in Int(str) }
+// [1, 2, nil, nil, 5]
+
+let flatMapped: [Int] = possibleNumbers.flatMap { str in Int(str) }
+// [1, 2, 5]</code></pre>
+
+<p><strong><code>transform</code>:</strong>  A closure that accepts an element of this
+  sequence as its argument and returns an optional value.
+<strong>Returns:</strong> An array of the non-<code>nil</code> results of calling <code>transform</code>
+  with each element of the sequence.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em> + <em>n</em>), where <em>m</em> is the length of this sequence
+  and <em>n</em> is the length of the result.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;ElementOfResult&gt;(_ transform: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; ElementOfResult?) rethrows -&gt; [ElementOfResult]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-flatmap-segmentofresult-where-segmentofresult_-sequence_-self-iterator-element-throws-segmentofresult">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-flatmap-segmentofresult-where-segmentofresult_-sequence_-self-iterator-element-throws-segmentofresult">func <wbr>flatMap&lt;SegmentOfResult where SegmentOfResult : Sequence&gt;(<wbr>_: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; SegmentOfResult)</a>
+        
+<div class="comment collapse" id="comment-func-flatmap-segmentofresult-where-segmentofresult_-sequence_-self-iterator-element-throws-segmentofresult"><div class="p">
+    <p>Returns an array containing the concatenated results of calling the
+given transformation with each element of this sequence.</p>
+
+<p>Use this method to receive a single-level collection when your
+transformation produces a sequence or collection for each element.</p>
+
+<p>In this example, note the difference in the result of using <code>map</code> and
+<code>flatMap</code> with a transformation that returns an array.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4]
+
+let mapped = numbers.map { Array(count: $0, repeatedValue: $0) }
+// [[1], [2, 2], [3, 3, 3], [4, 4, 4, 4]]
+
+let flatMapped = numbers.flatMap { Array(count: $0, repeatedValue: $0) }
+// [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]</code></pre>
+
+<p>In fact, <code>s.flatMap(transform)</code>  is equivalent to
+<code>Array(s.map(transform).joined())</code>.</p>
+
+<p><strong><code>transform</code>:</strong>  A closure that accepts an element of this
+  sequence as its argument and returns a sequence or collection.
+<strong>Returns:</strong> The resulting flattened array.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em> + <em>n</em>), where <em>m</em> is the length of this sequence
+  and <em>n</em> is the length of the result.
+<strong>See Also:</strong> <code>joined()</code>, <code>map(_:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func flatMap&lt;SegmentOfResult where SegmentOfResult : Sequence&gt;(_ transform: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; SegmentOfResult) rethrows -&gt; [SegmentOfResult.Iterator.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-foreach_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-foreach_">func forEach(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-foreach_"><div class="p">
+    <p>Calls the given closure on each element in the sequence in the same order
+as a <code>for</code>-<code>in</code> loop.</p>
+
+<p>The two loops in the following example produce the same output:</p>
+
+<pre><code class="language-swift">let numberWords = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;]
+for word in numberWords {
+    print(word)
+}
+// Prints &quot;one&quot;
+// Prints &quot;two&quot;
+// Prints &quot;three&quot;
+
+numberWords.forEach { word in
+    print(word)
+}
+// Same as above</code></pre>
+
+<p>Using the <code>forEach</code> method is distinct from a <code>for</code>-<code>in</code> loop in two
+important ways:</p>
+
+<ol><li>You cannot use a <code>break</code> or <code>continue</code> statement to exit the current
+call of the <code>body</code> closure or skip subsequent calls.</li><li>Using the <code>return</code> statement in the <code>body</code> closure will exit only from
+the current call to <code>body</code>, not from any outer scope, and won&#39;t skip
+subsequent calls.</li></ol>
+
+<p><strong><code>body</code>:</strong>  A closure that takes an element of the sequence as a
+  parameter.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func forEach(_ body: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Swift.Void) rethrows</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-formindex-after_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formindex-after_">func formIndex(<wbr>after:)</a>
+        
+<div class="comment collapse" id="comment-func-formindex-after_"><div class="p">
+    <p>Replaces the given index with its successor.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be less than
+  <code>endIndex</code>.</p>
+
+<p><strong>See Also:</strong> <code>index(after:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func formIndex(after i: inout RangeReplaceableSlice.Index)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-index_offsetby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_offsetby_">func index(<wbr>_:<wbr>offsetBy:)</a>
+        
+<div class="comment collapse" id="comment-func-index_offsetby_"><div class="p">
+    <p>Returns an index that is the specified distance from the given index.</p>
+
+<p>The following example obtains an index advanced four positions from a
+string&#39;s starting index and then prints the character at that position.</p>
+
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+let i = s.index(s.startIndex, offsetBy: 4)
+print(s[i])
+// Prints &quot;t&quot;</code></pre>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the bounds of the
+collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+<strong>Returns:</strong> An index offset by <code>n</code> from the index <code>i</code>. If <code>n</code> is positive,
+  this is the same value as the result of <code>n</code> calls to <code>index(after:)</code>.
+  If <code>n</code> is negative, this is the same value as the result of <code>-n</code> calls
+  to <code>index(before:)</code>.</p>
+
+<p><strong>See Also:</strong> <code>index(_:offsetBy:limitedBy:)</code>, <code>formIndex(_:offsetBy:)</code>
+<strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(_ i: RangeReplaceableSlice.Index, offsetBy n: RangeReplaceableSlice.IndexDistance) -&gt; RangeReplaceableSlice.Index</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-index_offsetby_limitedby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_offsetby_limitedby_">func index(<wbr>_:<wbr>offsetBy:<wbr>limitedBy:)</a>
+        
+<div class="comment collapse" id="comment-func-index_offsetby_limitedby_"><div class="p">
+    <p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+
+<p>The following example obtains an index advanced four positions from a
+string&#39;s starting index and then prints the character at that position.
+The operation doesn&#39;t require going beyond the limiting <code>s.endIndex</code>
+value, so it succeeds.</p>
+
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+if let i = s.index(s.startIndex, offsetBy: 4, limitedBy: s.endIndex) {
+    print(s[i])
+}
+// Prints &quot;t&quot;</code></pre>
+
+<p>The next example attempts to retrieve an index six positions from
+<code>s.startIndex</code> but fails, because that distance is beyond the index
+passed as <code>limit</code>.</p>
+
+<pre><code class="language-swift">let j = s.index(s.startIndex, offsetBy: 6, limitedBy: s.endIndex)
+print(j)
+// Prints &quot;nil&quot;</code></pre>
+
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the bounds of the
+collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>i:</strong> A valid index of the collection.
+  <strong>n:</strong> The distance to offset <code>i</code>. <code>n</code> must not be negative unless the
+    collection conforms to the <code>BidirectionalCollection</code> protocol.
+  <strong>limit:</strong> A valid index of the collection to use as a limit. If <code>n &gt; 0</code>,
+    a limit that is less than <code>i</code> has no effect. Likewise, if <code>n &lt; 0</code>, a
+    limit that is greater than <code>i</code> has no effect.
+<strong>Returns:</strong> An index offset by <code>n</code> from the index <code>i</code>, unless that index
+  would be beyond <code>limit</code> in the direction of movement. In that case,
+  the method returns <code>nil</code>.</p>
+
+<p><strong>See Also:</strong> <code>index(_:offsetBy:)</code>, <code>formIndex(_:offsetBy:limitedBy:)</code>
+<strong>Complexity:</strong> O(1) if the collection conforms to
+  <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the absolute
+  value of <code>n</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(_ i: RangeReplaceableSlice.Index, offsetBy n: RangeReplaceableSlice.IndexDistance, limitedBy limit: RangeReplaceableSlice.Index) -&gt; RangeReplaceableSlice.Index?</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-index-after_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index-after_">func index(<wbr>after:)</a>
+        
+<div class="comment collapse" id="comment-func-index-after_"><div class="p">
+    <p>Returns the position immediately after the given index.</p>
+
+<p>The successor of an index must be well defined. For an index <code>i</code> into a
+collection <code>c</code>, calling <code>c.index(after: i)</code> returns the same index every
+time.</p>
+
+<p><strong><code>i</code>:</strong>  A valid index of the collection. <code>i</code> must be less than
+  <code>endIndex</code>.
+<strong>Returns:</strong> The index value immediately after <code>i</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(after i: RangeReplaceableSlice.Index) -&gt; RangeReplaceableSlice.Index</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index-where_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index-where_">func index(<wbr>where:)</a>
+        
+<div class="comment collapse" id="comment-func-index-where_"><div class="p">
+    <p>Returns the first index in which an element of the collection satisfies
+the given predicate.</p>
+
+<p>You can use the predicate to find an element of a type that doesn&#39;t
+conform to the <code>Equatable</code> protocol or to find an element that matches
+particular criteria. Here&#39;s an example that finds a student name that
+begins with the letter &quot;A&quot;:</p>
+
+<pre><code class="language-swift">let students = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+if let i = students.index(where: { $0.hasPrefix(&quot;A&quot;) }) {
+    print(&quot;\(students[i]) starts with &#39;A&#39;!&quot;)
+}
+// Prints &quot;Abena starts with &#39;A&#39;!&quot;</code></pre>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element as its argument
+  and returns a Boolean value that indicates whether the passed element
+  represents a match.
+<strong>Returns:</strong> The index of the first element for which <code>predicate</code> returns
+  <code>true</code>. If no elements in the collection satisfy the given predicate,
+  returns <code>nil</code>.</p>
+
+<p><strong>See Also:</strong> <code>index(of:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(where predicate: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; RangeReplaceableSlice&lt;Base&gt;.Index?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-insert_at_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-insert_at_">mutating func insert(<wbr>_:<wbr>at:)</a>
+        
+<div class="comment collapse" id="comment-func-insert_at_"><div class="p">
+    <p>Inserts a new element into the collection at the specified position.</p>
+
+<p>The new element is inserted before the element currently at the
+specified index. If you pass the collection&#39;s <code>endIndex</code> property as
+the <code>index</code> parameter, the new element is appended to the
+collection.</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers.insert(100, at: 3)
+numbers.insert(200, at: numbers.endIndex)
+
+print(numbers)
+// Prints &quot;[1, 2, 3, 100, 4, 5, 200]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong><code>newElement</code>:</strong>  The new element to insert into the collection.</p>
+
+<p><strong><code>i</code>:</strong>  The position at which to insert the new element.
+  <code>index</code> must be a valid index into the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insert(_ newElement: Base._Element, at i: RangeReplaceableSlice.Index)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableSlice/"><code>RangeReplaceableSlice</code></a>,    <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-insert-contentsof_at_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-insert-contentsof_at_">mutating func insert(<wbr>contentsOf:<wbr>at:)</a>
+        
+<div class="comment collapse" id="comment-func-insert-contentsof_at_"><div class="p">
+    <p>Inserts the elements of a sequence into the collection at the specified
+position.</p>
+
+<p>The new elements are inserted before the element currently at the
+specified index. If you pass the collection&#39;s <code>endIndex</code> property as the
+<code>index</code> parameter, the new elements are appended to the collection.</p>
+
+<p>Here&#39;s an example of inserting a range of integers into an array of the
+same type:</p>
+
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers.insert(contentsOf: 100...103, at: 3)
+print(numbers)
+// Prints &quot;[1, 2, 3, 100, 101, 102, 103, 4, 5]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong><code>newElements</code>:</strong>  The new elements to insert into the collection.</p>
+
+<p><strong><code>i</code>:</strong>  The position at which to insert the new elements. <code>index</code>
+  must be a valid index of the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em>), where <em>m</em> is the combined length of the collection
+  and <code>newElements</code>. If <code>i</code> is equal to the collection&#39;s <code>endIndex</code>
+  property, the complexity is O(<em>n</em>), where <em>n</em> is the length of
+  <code>newElements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func insert&lt;S where S : Collection, S.Iterator.Element == Base._Element&gt;(contentsOf newElements: S, at i: RangeReplaceableSlice.Index)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableSlice/"><code>RangeReplaceableSlice</code></a>,    <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lexicographicallyprecedes_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lexicographicallyprecedes_by_">func lexicographicallyPrecedes(<wbr>_:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-lexicographicallyprecedes_by_"><div class="p">
+    <p>Returns a Boolean value indicating whether the sequence precedes another
+sequence in a lexicographical (dictionary) ordering, using the given
+predicate to compare elements.</p>
+
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areInIncreasingOrder(a, a)</code> is always <code>false</code>. (Irreflexivity)</li><li>If <code>areInIncreasingOrder(a, b)</code> and <code>areInIncreasingOrder(b, c)</code> are
+both <code>true</code>, then <code>areInIncreasingOrder(a, c)</code> is also
+<code>true</code>. (Transitive comparability)</li><li>Two elements are <em>incomparable</em> if neither is ordered before the other
+according to the predicate. If <code>a</code> and <code>b</code> are incomparable, and <code>b</code>
+and <code>c</code> are incomparable, then <code>a</code> and <code>c</code> are also incomparable.
+(Transitive incomparability)</li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>other:</strong> A sequence to compare to this sequence.
+  <strong>areInIncreasingOrder:</strong>  A predicate that returns <code>true</code> if its first
+    argument should be ordered before its second argument; otherwise,
+    <code>false</code>.
+<strong>Returns:</strong> <code>true</code> if this sequence precedes <code>other</code> in a dictionary
+  ordering as ordered by <code>areInIncreasingOrder</code>; otherwise, <code>false</code>.</p>
+
+<p><strong>Note:</strong> This method implements the mathematical notion of lexicographical
+  ordering, which has no connection to Unicode.  If you are sorting
+  strings to present to the end user, use <code>String</code> APIs that perform
+  localized comparison instead.
+<strong>See Also:</strong> <code>lexicographicallyPrecedes(_:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lexicographicallyPrecedes&lt;OtherSequence where OtherSequence : Sequence, OtherSequence.Iterator.Element == RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;(_ other: OtherSequence, by areInIncreasingOrder: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element, RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-map_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-map_">func map(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-map_"><div class="p">
+    <p>Returns an array containing the results of mapping the given closure
+over the sequence&#39;s elements.</p>
+
+<p>In this example, <code>map</code> is used first to convert the names in the array
+to lowercase strings and then to count their characters.</p>
+
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let lowercaseNames = cast.map { $0.lowercaseString }
+// &#39;lowercaseNames&#39; == [&quot;vivien&quot;, &quot;marlon&quot;, &quot;kim&quot;, &quot;karl&quot;]
+let letterCounts = cast.map { $0.characters.count }
+// &#39;letterCounts&#39; == [6, 6, 3, 4]</code></pre>
+
+<p><strong><code>transform</code>:</strong>  A mapping closure. <code>transform</code> accepts an
+  element of this sequence as its parameter and returns a transformed
+  value of the same or of a different type.
+<strong>Returns:</strong> An array containing the transformed elements of this
+  sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func map&lt;T&gt;(_ transform: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; T) rethrows -&gt; [T]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-max-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-max-by_">@warn_unqualified_access
+     func max(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-max-by_"><div class="p">
+    <p>Returns the maximum element in the sequence, using the given predicate
+as the comparison between elements.</p>
+
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areInIncreasingOrder(a, a)</code> is always <code>false</code>. (Irreflexivity)</li><li>If <code>areInIncreasingOrder(a, b)</code> and <code>areInIncreasingOrder(b, c)</code> are
+both <code>true</code>, then <code>areInIncreasingOrder(a, c)</code> is also
+<code>true</code>. (Transitive comparability)</li><li>Two elements are <em>incomparable</em> if neither is ordered before the other
+according to the predicate. If <code>a</code> and <code>b</code> are incomparable, and <code>b</code>
+and <code>c</code> are incomparable, then <code>a</code> and <code>c</code> are also incomparable.
+(Transitive incomparability)</li></ul>
+
+<p>This example shows how to use the <code>max(by:)</code> method on a
+dictionary to find the key-value pair with the highest value.</p>
+
+<pre><code class="language-swift">let hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+let greatestHue = hues.max { a, b in a.value &lt; b.value }
+print(greatestHue)
+// Prints &quot;Optional((&quot;Heliotrope&quot;, 296))&quot;</code></pre>
+
+<p><strong><code>areInIncreasingOrder</code>:</strong>   A predicate that returns <code>true</code> if its
+  first argument should be ordered before its second argument;
+  otherwise, <code>false</code>.
+<strong>Returns:</strong> The sequence&#39;s maximum element if the sequence is not empty;
+  otherwise, <code>nil</code>.</p>
+
+<p><strong>See Also:</strong> <code>max()</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@warn_unqualified_access
+     func max(by areInIncreasingOrder: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element, RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; RangeReplaceableSlice&lt;Base&gt;.Iterator.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-min-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-min-by_">func min(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-min-by_"><div class="p">
+    <p>Returns the minimum element in the sequence, using the given predicate as
+the comparison between elements.</p>
+
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areInIncreasingOrder(a, a)</code> is always <code>false</code>. (Irreflexivity)</li><li>If <code>areInIncreasingOrder(a, b)</code> and <code>areInIncreasingOrder(b, c)</code> are
+both <code>true</code>, then <code>areInIncreasingOrder(a, c)</code> is also
+<code>true</code>. (Transitive comparability)</li><li>Two elements are <em>incomparable</em> if neither is ordered before the other
+according to the predicate. If <code>a</code> and <code>b</code> are incomparable, and <code>b</code>
+and <code>c</code> are incomparable, then <code>a</code> and <code>c</code> are also incomparable.
+(Transitive incomparability)</li></ul>
+
+<p>This example shows how to use the <code>min(by:)</code> method on a
+dictionary to find the key-value pair with the lowest value.</p>
+
+<pre><code class="language-swift">let hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+let leastHue = hues.min { a, b in a.value &lt; b.value }
+print(leastHue)
+// Prints &quot;Optional((&quot;Coral&quot;, 16))&quot;</code></pre>
+
+<p><strong><code>areInIncreasingOrder</code>:</strong>  A predicate that returns <code>true</code>
+  if its first argument should be ordered before its second
+  argument; otherwise, <code>false</code>.
+<strong>Returns:</strong> The sequence&#39;s minimum element, according to
+  <code>areInIncreasingOrder</code>. If the sequence has no elements, returns
+  <code>nil</code>.</p>
+
+<p><strong>See Also:</strong> <code>min()</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func min(by areInIncreasingOrder: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element, RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; RangeReplaceableSlice&lt;Base&gt;.Iterator.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix_">func prefix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-prefix_"><div class="p">
+    <p>Returns a subsequence, up to the specified maximum length, containing
+the initial elements of the collection.</p>
+
+<p>If the maximum length exceeds the number of elements in the collection,
+the result contains all the elements in the collection.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.prefix(2))
+// Prints &quot;[1, 2]&quot;
+print(numbers.prefix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;</code></pre>
+
+<p><strong><code>maxLength</code>:</strong>  The maximum number of elements to return.
+  <code>maxLength</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence starting at the beginning of this collection
+  with at most <code>maxLength</code> elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(_ maxLength: Int) -&gt; RangeReplaceableSlice&lt;Base&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefix-through_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix-through_">func prefix(<wbr>through:)</a>
+        
+<div class="comment collapse" id="comment-func-prefix-through_"><div class="p">
+    <p>Returns a subsequence from the start of the collection through the
+specified position.</p>
+
+<p>The resulting subsequence <em>includes</em> the element at the position <code>end</code>. 
+The following example searches for the index of the number <code>40</code> in an
+array of integers, and then prints the prefix of the array up to, and
+including, that index:</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60]
+if let i = numbers.index(of: 40) {
+    print(numbers.prefix(through: i))
+}
+// Prints &quot;[10, 20, 30, 40]&quot;</code></pre>
+
+<p><strong><code>end</code>:</strong>  The index of the last element to include in the
+  resulting subsequence. <code>end</code> must be a valid index of the collection
+  that is not equal to the <code>endIndex</code> property.
+<strong>Returns:</strong> A subsequence up to, and including, the <code>end</code> position.</p>
+
+<p><strong>Complexity:</strong> O(1)
+<strong>See Also:</strong> <code>prefix(upTo:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(through position: RangeReplaceableSlice&lt;Base&gt;.Index) -&gt; RangeReplaceableSlice&lt;Base&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefix-upto_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix-upto_">func prefix(<wbr>upTo:)</a>
+        
+<div class="comment collapse" id="comment-func-prefix-upto_"><div class="p">
+    <p>Returns a subsequence from the start of the collection up to, but not
+including, the specified position.</p>
+
+<p>The resulting subsequence <em>does not include</em> the element at the position
+<code>end</code>. The following example searches for the index of the number <code>40</code>
+in an array of integers, and then prints the prefix of the array up to,
+but not including, that index:</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60]
+if let i = numbers.index(of: 40) {
+    print(numbers.prefix(upTo: i))
+}
+// Prints &quot;[10, 20, 30]&quot;</code></pre>
+
+<p>Passing the collection&#39;s starting index as the <code>end</code> parameter results in
+an empty subsequence.</p>
+
+<pre><code class="language-swift">print(numbers.prefix(upTo: numbers.startIndex))
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong><code>end</code>:</strong>  The &quot;past the end&quot; index of the resulting subsequence.
+  <code>end</code> must be a valid index of the collection.
+<strong>Returns:</strong> A subsequence up to, but not including, the <code>end</code> position.</p>
+
+<p><strong>Complexity:</strong> O(1)
+<strong>See Also:</strong> <code>prefix(through:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(upTo end: RangeReplaceableSlice&lt;Base&gt;.Index) -&gt; RangeReplaceableSlice&lt;Base&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-prefix-while_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-prefix-while_">func prefix(<wbr>while:)</a>
+        
+<div class="comment collapse" id="comment-func-prefix-while_"><div class="p">
+    <p>Returns a subsequence containing the initial elements until <code>predicate</code>
+returns <code>false</code> and skipping the remaining elements.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the
+  sequence as its argument and returns <code>true</code> if the element should
+  be included or <code>false</code> if it should be excluded. Once the predicate
+  returns <code>false</code> it will not be called again.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(while predicate: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; RangeReplaceableSlice&lt;Base&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reduce__">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reduce__">func reduce(<wbr>_:<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-reduce__"><div class="p">
+    <p>Returns the result of combining the elements of the sequence using the
+given closure.</p>
+
+<p>Use the <code>reduce(_:_:)</code> method to produce a single value from the elements
+of an entire sequence. For example, you can use this method on an array
+of numbers to find their sum or product.</p>
+
+<p>The <code>nextPartialResult</code> closure is called sequentially with an
+accumulating value initialized to <code>initialResult</code> and each element of
+the sequence. This example shows how to find the sum of an array of
+numbers.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4]
+let numberSum = numbers.reduce(0, { x, y in
+    x + y
+})
+// numberSum == 10</code></pre>
+
+<p>When <code>numbers.reduce(_:_:)</code> is called, the following steps occur:</p>
+
+<ol><li>The <code>nextPartialResult</code> closure is called with <code>initialResult</code>---<code>0</code>
+in this case---and the first element of <code>numbers</code>, returning the sum:
+<code>1</code>.</li><li>The closure is called again repeatedly with the previous call&#39;s return
+value and each element of the sequence.</li><li>When the sequence is exhausted, the last value returned from the
+closure is returned to the caller.</li></ol>
+
+<p>If the sequence has no elements, <code>nextPartialResult</code> is never executed
+and <code>initialResult</code> is the result of the call to <code>reduce(_:_:)</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>initialResult:</strong> The value to use as the initial accumulating value.
+    <code>initialResult</code> is passed to <code>nextPartialResult</code> the first time the
+    closure is executed.
+  <strong>nextPartialResult:</strong> A closure that combines an accumulating value and
+    an element of the sequence into a new accumulating value, to be used
+    in the next call of the <code>nextPartialResult</code> closure or returned to
+    the caller.
+<strong>Returns:</strong> The final accumulated value. If the sequence has no elements,
+  the result is <code>initialResult</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reduce&lt;Result&gt;(_ initialResult: Result, _ nextPartialResult: (Result, RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-remove-at_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-remove-at_">mutating func remove(<wbr>at:)</a>
+        
+<div class="comment collapse" id="comment-func-remove-at_"><div class="p">
+    <p>Removes and returns the element at the specified position.</p>
+
+<p>All the elements following the specified position are moved to close the
+gap. This example removes the middle element from an array of
+measurements.</p>
+
+<pre><code class="language-swift">var measurements = [1.2, 1.5, 2.9, 1.2, 1.6]
+let removed = measurements.remove(at: 2)
+print(measurements)
+// Prints &quot;[1.2, 1.5, 1.2, 1.6]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong><code>i</code>:</strong>  The position of the element to remove. <code>index</code> must be
+  a valid index of the collection that is not equal to the collection&#39;s
+  end index.
+<strong>Returns:</strong> The removed element.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func remove(at i: RangeReplaceableSlice.Index) -&gt; Base._Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableSlice/"><code>RangeReplaceableSlice</code></a>,    <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-removeall-keepingcapacity_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removeall-keepingcapacity_">mutating func removeAll(<wbr>keepingCapacity:)</a>
+        
+<div class="comment collapse" id="comment-func-removeall-keepingcapacity_"><div class="p">
+    <p>Removes all elements from the collection.</p>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong><code>keepCapacity</code>:</strong>  Pass <code>true</code> to request that the collection
+  avoid releasing its storage. Retaining the collection&#39;s storage can
+  be a useful optimization when you&#39;re planning to grow the collection
+  again. The default value is <code>false</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeAll(keepingCapacity keepCapacity: Bool = default)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-removefirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removefirst">mutating func removeFirst()</a>
+        
+<div class="comment collapse" id="comment-func-removefirst"><div class="p">
+    <p>Removes and returns the first element of the collection.</p>
+
+<p>The collection must not be empty.</p>
+
+<pre><code class="language-swift">var bugs = [&quot;Aphid&quot;, &quot;Bumblebee&quot;, &quot;Cicada&quot;, &quot;Damselfly&quot;, &quot;Earwig&quot;]
+bugs.removeFirst()
+print(bugs)
+// Prints &quot;[&quot;Bumblebee&quot;, &quot;Cicada&quot;, &quot;Damselfly&quot;, &quot;Earwig&quot;]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong>Returns:</strong> The removed element.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeFirst() -&gt; RangeReplaceableSlice&lt;Base&gt;.Iterator.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-removefirst_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removefirst_">mutating func removeFirst(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-removefirst_"><div class="p">
+    <p>Removes the specified number of elements from the beginning of the
+collection.</p>
+
+<pre><code class="language-swift">var bugs = [&quot;Aphid&quot;, &quot;Bumblebee&quot;, &quot;Cicada&quot;, &quot;Damselfly&quot;, &quot;Earwig&quot;]
+bugs.removeFirst(3)
+print(bugs)
+// Prints &quot;[&quot;Damselfly&quot;, &quot;Earwig&quot;]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong><code>n</code>:</strong>  The number of elements to remove from the collection.
+  <code>n</code> must be greater than or equal to zero and must not exceed the
+  number of elements in the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeFirst(_ n: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-removelast">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removelast">mutating func removeLast()</a>
+        
+<div class="comment collapse" id="comment-func-removelast"><div class="p">
+    <p>Removes and returns the last element of the collection.</p>
+
+<p>The collection must not be empty.</p>
+
+<p>Calling this method may invalidate all saved indices of this
+collection. Do not rely on a previously stored index value after
+altering a collection with any operation that can change its length.</p>
+
+<p><strong>Returns:</strong> The last element of the collection.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeLast() -&gt; RangeReplaceableSlice&lt;Base&gt;.Iterator.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-removelast_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removelast_">mutating func removeLast(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-removelast_"><div class="p">
+    <p>Removes the specified number of elements from the end of the
+collection.</p>
+
+<p>Attempting to remove more elements than exist in the collection
+triggers a runtime error.</p>
+
+<p>Calling this method may invalidate all saved indices of this
+collection. Do not rely on a previously stored index value after
+altering a collection with any operation that can change its length.</p>
+
+<p><strong><code>n</code>:</strong>  The number of elements to remove from the collection.
+  <code>n</code> must be greater than or equal to zero and must not exceed the
+  number of elements in the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the specified number of elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeLast(_ n: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-removesubrange_-closedrange-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removesubrange_-closedrange-self-index">mutating func removeSubrange(<wbr>_: ClosedRange&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-removesubrange_-closedrange-self-index"><div class="p">
+    <p>Removes the elements in the specified subrange from the collection.</p>
+
+<p>All the elements following the specified position are moved to close the
+gap. This example removes two elements from the middle of an array of
+measurements.</p>
+
+<pre><code class="language-swift">var measurements = [1.2, 1.5, 2.9, 1.2, 1.5]
+measurements.removeSubrange(1..&lt;4)
+print(measurements)
+// Prints &quot;[1.2, 1.5]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong><code>bounds</code>:</strong>  The range of the collection to be removed. The
+  bounds of the range must be valid indices of the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeSubrange(_ bounds: ClosedRange&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-removesubrange_-range-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removesubrange_-range-self-index">mutating func removeSubrange(<wbr>_: Range&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-removesubrange_-range-self-index"><div class="p">
+    <p>Removes the elements in the specified subrange from the collection.</p>
+
+<p>All the elements following the specified position are moved to close the
+gap. This example removes two elements from the middle of an array of
+measurements.</p>
+
+<pre><code class="language-swift">var measurements = [1.2, 1.5, 2.9, 1.2, 1.5]
+measurements.removeSubrange(1..&lt;4)
+print(measurements)
+// Prints &quot;[1.2, 1.5]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong><code>bounds</code>:</strong>  The range of the collection to be removed. The
+  bounds of the range must be valid indices of the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeSubrange(_ bounds: Range&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration" id="func-removesubrange_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-removesubrange_">mutating func removeSubrange(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-removesubrange_"><div class="p">
+    <p>Removes the specified subrange of elements from the collection.</p>
+
+<pre><code class="language-swift">var bugs = [&quot;Aphid&quot;, &quot;Bumblebee&quot;, &quot;Cicada&quot;, &quot;Damselfly&quot;, &quot;Earwig&quot;]
+bugs.removeSubrange(1...3)
+print(bugs)
+// Prints &quot;[&quot;Aphid&quot;, &quot;Earwig&quot;]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong><code>bounds</code>:</strong>  The subrange of the collection to remove. The bounds
+  of the range must be valid indices of the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeSubrange(_ bounds: Range&lt;RangeReplaceableSlice.Index&gt;)</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-replacesubrange_with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-replacesubrange_with_">mutating func replaceSubrange(<wbr>_:<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-replacesubrange_with_"><div class="p">
+    <p>Replaces the specified subrange of elements with the given collection.</p>
+
+<p>This method has the effect of removing the specified range of elements
+from the collection and inserting the new elements at the same location.
+The number of new elements need not match the number of elements being
+removed.</p>
+
+<p>In this example, three elements in the middle of an array of integers are
+replaced by the five elements of a <code>Repeated&lt;Int&gt;</code> instance.</p>
+
+<pre><code class="language-swift"> var nums = [10, 20, 30, 40, 50]
+ nums.replaceSubrange(1...3, with: repeatElement(1, count: 5))
+ print(nums)
+ // Prints &quot;[10, 1, 1, 1, 1, 1, 50]&quot;</code></pre>
+
+<p>If you pass a zero-length range as the <code>subrange</code> parameter, this method
+inserts the elements of <code>newElements</code> at <code>subrange.startIndex</code>. Calling
+the <code>insert(contentsOf:at:)</code> method instead is preferred.</p>
+
+<p>Likewise, if you pass a zero-length collection as the <code>newElements</code>
+parameter, this method removes the elements in the given subrange
+without replacement. Calling the <code>removeSubrange(_:)</code> method instead is
+preferred.</p>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>subrange:</strong> The subrange of the collection to replace. The bounds of
+    the range must be valid indices of the collection.
+  <strong>newElements:</strong> The new elements to add to the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em>), where <em>m</em> is the combined length of the collection
+  and <code>newElements</code>. If the call to <code>replaceSubrange</code> simply appends the
+  contents of <code>newElements</code> to the collection, the complexity is O(<em>n</em>),
+  where <em>n</em> is the length of <code>newElements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func replaceSubrange&lt;C where C : Collection, C.Iterator.Element == Base._Element&gt;(_ subRange: Range&lt;RangeReplaceableSlice.Index&gt;, with newElements: C)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableSlice/"><code>RangeReplaceableSlice</code></a>,    <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reservecapacity_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reservecapacity_">mutating func reserveCapacity(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-reservecapacity_"><div class="p">
+    <p>Prepares the collection to store the specified number of elements, when
+doing so is appropriate for the underlying type.</p>
+
+<p>If you will be adding a known number of elements to a collection, use
+this method to avoid multiple reallocations. A type that conforms to
+<code>RangeReplaceableCollection</code> can choose how to respond when this method
+is called. Depending on the type, it may make sense to allocate more or
+less storage than requested or to take no action at all.</p>
+
+<p><strong><code>n</code>:</strong>  The requested number of elements to store.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func reserveCapacity(_ n: RangeReplaceableSlice&lt;Base&gt;.IndexDistance)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-reversed">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-reversed">func reversed()</a>
+        
+<div class="comment collapse" id="comment-func-reversed"><div class="p">
+    <p>Returns an array containing the elements of this sequence in reverse
+order.</p>
+
+<p>The sequence must be finite.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+
+<p><strong>Returns:</strong> An array containing the elements of this sequence in
+  reverse order.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func reversed() -&gt; [RangeReplaceableSlice&lt;Base&gt;.Iterator.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-sorted-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-sorted-by_">func sorted(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-sorted-by_"><div class="p">
+    <p>Returns the elements of the sequence, sorted using the given
+predicate as the comparison between elements.</p>
+
+<p>When you want to sort a sequence of elements that don&#39;t conform to
+the <code>Comparable</code> protocol, pass a predicate to this method that returns
+<code>true</code> when the first element passed should be ordered before the
+second. The elements of the resulting array are ordered according to the
+given predicate.</p>
+
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areInIncreasingOrder(a, a)</code> is always <code>false</code>. (Irreflexivity)</li><li>If <code>areInIncreasingOrder(a, b)</code> and <code>areInIncreasingOrder(b, c)</code> are
+both <code>true</code>, then <code>areInIncreasingOrder(a, c)</code> is also <code>true</code>.
+(Transitive comparability)</li><li>Two elements are <em>incomparable</em> if neither is ordered before the other
+according to the predicate. If <code>a</code> and <code>b</code> are incomparable, and <code>b</code>
+and <code>c</code> are incomparable, then <code>a</code> and <code>c</code> are also incomparable.
+(Transitive incomparability)</li></ul>
+
+<p>The sorting algorithm is not stable. A nonstable sort may change the
+relative order of elements for which <code>areInIncreasingOrder</code> does not
+establish an order.</p>
+
+<p>In the following example, the predicate provides an ordering for an array
+of a custom <code>HTTPResponse</code> type. The predicate orders errors before
+successes and sorts the error responses by their error code.</p>
+
+<pre><code class="language-swift">enum HTTPResponse {
+    case ok
+    case error(Int)
+}
+
+let responses: [HTTPResponse] = [.error(500), .ok, .ok, .error(404), .error(403)]
+let sortedResponses = responses.sorted {
+    switch ($0, $1) {
+    // Order errors by code
+    case let (.error(aCode), .error(bCode)):
+        return aCode &lt; bCode
+
+    // All successes are equivalent, so none is before any other
+    case (.ok, .ok): return false
+
+    // Order errors before successes
+    case (.error, .ok): return true
+    case (.ok, .error): return false
+    }
+}
+print(sortedResponses)
+// Prints &quot;[.error(403), .error(404), .error(500), .ok, .ok]&quot;</code></pre>
+
+<p>You also use this method to sort elements that conform to the
+<code>Comparable</code> protocol in descending order. To sort your sequence
+in descending order, pass the greater-than operator (<code>&gt;</code>) as the
+<code>areInIncreasingOrder</code> parameter.</p>
+
+<pre><code class="language-swift">let students: Set = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+let descendingStudents = students.sorted(by: &gt;)
+print(descendingStudents)
+// Prints &quot;[&quot;Peter&quot;, &quot;Kweku&quot;, &quot;Kofi&quot;, &quot;Akosua&quot;, &quot;Abena&quot;]&quot;</code></pre>
+
+<p>Calling the related <code>sorted()</code> method is equivalent to calling this
+method and passing the less-than operator (<code>&lt;</code>) as the predicate.</p>
+
+<pre><code class="language-swift">print(students.sorted())
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;
+print(students.sorted(by: &lt;))
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;</code></pre>
+
+<p><strong><code>areInIncreasingOrder</code>:</strong>  A predicate that returns <code>true</code> if its first
+  argument should be ordered before its second argument; otherwise,
+  <code>false</code>.
+<strong>Returns:</strong> A sorted array of the sequence&#39;s elements.</p>
+
+<p><strong>See Also:</strong> <code>sorted()</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sorted(by areInIncreasingOrder: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element, RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) -&gt; Bool) -&gt; [RangeReplaceableSlice&lt;Base&gt;.Iterator.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-split_omittingemptysubsequences_whereseparator_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-split_omittingemptysubsequences_whereseparator_">func split(<wbr>_:<wbr>omittingEmptySubsequences:<wbr>whereSeparator:)</a>
+        
+<div class="comment collapse" id="comment-func-split_omittingemptysubsequences_whereseparator_"><div class="p">
+    <p>Returns the longest possible subsequences of the collection, in order,
+that don&#39;t contain elements satisfying the given predicate.</p>
+
+<p>The resulting array consists of at most <code>maxSplits + 1</code> subsequences.
+Elements that are used to split the sequence are not returned as part of
+any subsequence.</p>
+
+<p>The following examples show the effects of the <code>maxSplits</code> and
+<code>omittingEmptySubsequences</code> parameters when splitting a string using a
+closure that matches spaces. The first use of <code>split</code> returns each word
+that was originally separated by one or more spaces.</p>
+
+<pre><code class="language-swift">let line = &quot;BLANCHE:   I don&#39;t want realism. I want magic!&quot;
+print(line.characters.split(whereSeparator: { $0 == &quot; &quot; })
+                     .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p>The second example passes <code>1</code> for the <code>maxSplits</code> parameter, so the
+original string is split just once, into two new strings.</p>
+
+<pre><code class="language-swift">print(
+    line.characters.split(
+        maxSplits: 1, whereSeparator: { $0 == &quot; &quot; }
+        ).map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;  I don\&#39;t want realism. I want magic!&quot;]&quot;</code></pre>
+
+<p>The final example passes <code>false</code> for the <code>omittingEmptySubsequences</code>
+parameter, so the returned array contains empty strings where spaces
+were repeated.</p>
+
+<pre><code class="language-swift">print(line.characters.split(omittingEmptySubsequences: false, whereSeparator: { $0 == &quot; &quot; })
+                      .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;&quot;, &quot;&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>maxSplits:</strong> The maximum number of times to split the collection, or
+    one less than the number of subsequences to return. If
+    <code>maxSplits + 1</code> subsequences are returned, the last one is a suffix
+    of the original collection containing the remaining elements.
+    <code>maxSplits</code> must be greater than or equal to zero. The default value
+    is <code>Int.max</code>.
+  <strong>omittingEmptySubsequences:</strong> If <code>false</code>, an empty subsequence is
+    returned in the result for each pair of consecutive elements
+    satisfying the <code>isSeparator</code> predicate and for each element at the
+    start or end of the collection satisfying the <code>isSeparator</code>
+    predicate. The default value is <code>true</code>.
+  <strong>isSeparator:</strong> A closure that takes an element as an argument and
+    returns a Boolean value indicating whether the collection should be
+    split at that element.
+<strong>Returns:</strong> An array of subsequences, split from this collection&#39;s
+  elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split(maxSplits: Int = default, omittingEmptySubsequences: Bool = default, whereSeparator isSeparator: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; [RangeReplaceableSlice&lt;Base&gt;.SubSequence]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-starts-with_by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-starts-with_by_">func starts(<wbr>with:<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-starts-with_by_"><div class="p">
+    <p>Returns a Boolean value indicating whether the initial elements of the
+sequence are equivalent to the elements in another sequence, using
+the given predicate as the equivalence test.</p>
+
+<p>The predicate must be a <em>equivalence relation</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+
+<ul><li><code>areEquivalent(a, a)</code> is always <code>true</code>. (Reflexivity)</li><li><code>areEquivalent(a, b)</code> implies <code>areEquivalent(b, a)</code>. (Symmetry)</li><li>If <code>areEquivalent(a, b)</code> and <code>areEquivalent(b, c)</code> are both <code>true</code>, then
+<code>areEquivalent(a, c)</code> is also <code>true</code>. (Transitivity)</li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>possiblePrefix:</strong> A sequence to compare to this sequence.
+  <strong>areEquivalent:</strong> A predicate that returns <code>true</code> if its two arguments
+    are equivalent; otherwise, <code>false</code>.
+<strong>Returns:</strong> <code>true</code> if the initial elements of the sequence are equivalent
+  to the elements of <code>possiblePrefix</code>; otherwise, <code>false</code>. If
+  <code>possiblePrefix</code> has no elements, the return value is <code>true</code>.</p>
+
+<p><strong>See Also:</strong> <code>starts(with:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func starts&lt;PossiblePrefix where PossiblePrefix : Sequence, PossiblePrefix.Iterator.Element == RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;(with possiblePrefix: PossiblePrefix, by areEquivalent: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element, RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-suffix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-suffix_">func suffix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-suffix_"><div class="p">
+    <p>Returns a subsequence, up to the given maximum length, containing the
+final elements of the collection.</p>
+
+<p>If the maximum length exceeds the number of elements in the collection,
+the result contains all the elements in the collection.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.suffix(2))
+// Prints &quot;[4, 5]&quot;
+print(numbers.suffix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;</code></pre>
+
+<p><strong><code>maxLength</code>:</strong>  The maximum number of elements to return. The
+  value of <code>maxLength</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence terminating at the end of the collection with at
+  most <code>maxLength</code> elements.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func suffix(_ maxLength: Int) -&gt; RangeReplaceableSlice&lt;Base&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-suffix-from_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-suffix-from_">func suffix(<wbr>from:)</a>
+        
+<div class="comment collapse" id="comment-func-suffix-from_"><div class="p">
+    <p>Returns a subsequence from the specified position to the end of the
+collection.</p>
+
+<p>The following example searches for the index of the number <code>40</code> in an
+array of integers, and then prints the suffix of the array starting at
+that index:</p>
+
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60]
+if let i = numbers.index(of: 40) {
+    print(numbers.suffix(from: i))
+}
+// Prints &quot;[40, 50, 60]&quot;</code></pre>
+
+<p>Passing the collection&#39;s <code>endIndex</code> as the <code>start</code> parameter results in
+an empty subsequence.</p>
+
+<pre><code class="language-swift">print(numbers.suffix(from: numbers.endIndex))
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong><code>start</code>:</strong>  The index at which to start the resulting subsequence.
+  <code>start</code> must be a valid index of the collection.
+<strong>Returns:</strong> A subsequence starting at the <code>start</code> position.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func suffix(from start: RangeReplaceableSlice&lt;Base&gt;.Index) -&gt; RangeReplaceableSlice&lt;Base&gt;.SubSequence</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+
+
+<h3>Conditionally Inherited Items</h3>
+
+<p class="comment">The initializers, methods, and properties listed below may be available on this type under certain conditions (such as methods that are available on <code>Array</code> when its elements are <code>Equatable</code>) or may not ever be available if that determination is beyond SwiftDoc.org's capabilities. Please <a href="https://github.com/SwiftDocOrg/swiftdoc.org/issues">open an issue on GitHub</a> if you see something out of place!</p>
+
+
+
+
+
+<h4>Where Base.Iterator == Iterator</h4>
+
+
+
+
+<div class="declaration inherited" id="func-base-iterator-iterator-filter_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-base-iterator-iterator-filter_">func filter(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-base-iterator-iterator-filter_"><div class="p">
+    <p>Returns an array containing, in order, the elements of the sequence
+that satisfy the given predicate.</p>
+
+<p>In this example, <code>filter</code> is used to include only names shorter than five
+characters.</p>
+
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let shortNames = cast.filter { $0.characters.count &lt; 5 }
+print(shortNames)
+// Prints &quot;[&quot;Kim&quot;, &quot;Karl&quot;]&quot;</code></pre>
+
+<p><strong><code>includeElement</code>:</strong>  A closure that takes an element of the
+  sequence as its argument and returns a Boolean value indicating
+  whether the element should be included in the returned array.
+<strong>Returns:</strong> An array of the elements that <code>includeElement</code> allowed.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func filter(_ isIncluded: (RangeReplaceableSlice&lt;Base&gt;.Base.Iterator.Element) throws -&gt; Bool) rethrows -&gt; [RangeReplaceableSlice&lt;Base&gt;.Base.Iterator.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-base-iterator-iterator-makeiterator">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-base-iterator-iterator-makeiterator">func makeIterator()</a>
+        
+<div class="comment collapse" id="comment-func-base-iterator-iterator-makeiterator"><div class="p">
+    <p>Returns an iterator over the elements of this sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func makeIterator() -&gt; RangeReplaceableSlice&lt;Base&gt;.Base.Iterator</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-base-iterator-iterator-map_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-base-iterator-iterator-map_">func map(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-base-iterator-iterator-map_"><div class="p">
+    <p>Returns an array containing the results of mapping the given closure
+over the sequence&#39;s elements.</p>
+
+<p>In this example, <code>map</code> is used first to convert the names in the array to
+lowercase strings and then to count their characters.</p>
+
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let lowercaseNames = cast.map { $0.lowercaseString }
+// &#39;lowercaseNames&#39; == [&quot;vivien&quot;, &quot;marlon&quot;, &quot;kim&quot;, &quot;karl&quot;]
+let letterCounts = cast.map { $0.characters.count }
+// &#39;letterCounts&#39; == [6, 6, 3, 4]</code></pre>
+
+<p><strong><code>transform</code>:</strong>  A mapping closure. <code>transform</code> accepts an
+  element of this sequence as its parameter and returns a transformed
+  value of the same or of a different type.
+<strong>Returns:</strong> An array containing the transformed elements of this
+  sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func map&lt;T&gt;(_ transform: (RangeReplaceableSlice&lt;Base&gt;.Base.Iterator.Element) throws -&gt; T) rethrows -&gt; [T]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Index : Strideable, Index.Stride : SignedInteger</h4>
+
+
+
+
+<div class="declaration inherited" id="func-index_-strideable-index-stride_-signedinteger-removesubrange_-countableclosedrange-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_-strideable-index-stride_-signedinteger-removesubrange_-countableclosedrange-self-index">mutating func removeSubrange(<wbr>_: CountableClosedRange&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-index_-strideable-index-stride_-signedinteger-removesubrange_-countableclosedrange-self-index"><div class="p">
+    <p>Removes the elements in the specified subrange from the collection.</p>
+
+<p>All the elements following the specified position are moved to close the
+gap. This example removes two elements from the middle of an array of
+measurements.</p>
+
+<pre><code class="language-swift">var measurements = [1.2, 1.5, 2.9, 1.2, 1.5]
+measurements.removeSubrange(1..&lt;4)
+print(measurements)
+// Prints &quot;[1.2, 1.5]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong><code>bounds</code>:</strong>  The range of the collection to be removed. The
+  bounds of the range must be valid indices of the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeSubrange(_ bounds: CountableClosedRange&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index_-strideable-index-stride_-signedinteger-removesubrange_-countablerange-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_-strideable-index-stride_-signedinteger-removesubrange_-countablerange-self-index">mutating func removeSubrange(<wbr>_: CountableRange&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;)</a>
+        
+<div class="comment collapse" id="comment-func-index_-strideable-index-stride_-signedinteger-removesubrange_-countablerange-self-index"><div class="p">
+    <p>Removes the elements in the specified subrange from the collection.</p>
+
+<p>All the elements following the specified position are moved to close the
+gap. This example removes two elements from the middle of an array of
+measurements.</p>
+
+<pre><code class="language-swift">var measurements = [1.2, 1.5, 2.9, 1.2, 1.5]
+measurements.removeSubrange(1..&lt;4)
+print(measurements)
+// Prints &quot;[1.2, 1.5]&quot;</code></pre>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong><code>bounds</code>:</strong>  The range of the collection to be removed. The
+  bounds of the range must be valid indices of the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeSubrange(_ bounds: CountableRange&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index_-strideable-index-stride_-signedinteger-replacesubrange-c-where-c_-collection-c-iterator-element-self-iterator-element_-countableclosedrange-self-index-with_-c">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_-strideable-index-stride_-signedinteger-replacesubrange-c-where-c_-collection-c-iterator-element-self-iterator-element_-countableclosedrange-self-index-with_-c">mutating func <wbr>replaceSubrange&lt;C where C : Collection, C.Iterator.Element == RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;(<wbr>_:<wbr> CountableClosedRange&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;, with: C)</a>
+        
+<div class="comment collapse" id="comment-func-index_-strideable-index-stride_-signedinteger-replacesubrange-c-where-c_-collection-c-iterator-element-self-iterator-element_-countableclosedrange-self-index-with_-c"><div class="p">
+    <p>Replaces the specified subrange of elements with the given collection.</p>
+
+<p>This method has the effect of removing the specified range of elements
+from the collection and inserting the new elements at the same location.
+The number of new elements need not match the number of elements being
+removed.</p>
+
+<p>In this example, three elements in the middle of an array of integers are
+replaced by the five elements of a <code>Repeated&lt;Int&gt;</code> instance.</p>
+
+<pre><code class="language-swift"> var nums = [10, 20, 30, 40, 50]
+ nums.replaceSubrange(1...3, with: repeatElement(1, count: 5))
+ print(nums)
+ // Prints &quot;[10, 1, 1, 1, 1, 1, 50]&quot;</code></pre>
+
+<p>If you pass a zero-length range as the <code>subrange</code> parameter, this method
+inserts the elements of <code>newElements</code> at <code>subrange.startIndex</code>. Calling
+the <code>insert(contentsOf:at:)</code> method instead is preferred.</p>
+
+<p>Likewise, if you pass a zero-length collection as the <code>newElements</code>
+parameter, this method removes the elements in the given subrange
+without replacement. Calling the <code>removeSubrange(_:)</code> method instead is
+preferred.</p>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>subrange:</strong> The subrange of the collection to replace. The bounds of
+    the range must be valid indices of the collection.
+  <strong>newElements:</strong> The new elements to add to the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em>), where <em>m</em> is the combined length of the collection
+  and <code>newElements</code>. If the call to <code>replaceSubrange</code> simply appends the
+  contents of <code>newElements</code> to the collection, the complexity is O(<em>n</em>),
+  where <em>n</em> is the length of <code>newElements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func replaceSubrange&lt;C where C : Collection, C.Iterator.Element == RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;(_ subrange: CountableClosedRange&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;, with newElements: C)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-index_-strideable-index-stride_-signedinteger-replacesubrange-c-where-c_-collection-c-iterator-element-self-iterator-element_-countablerange-self-index-with_-c">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-index_-strideable-index-stride_-signedinteger-replacesubrange-c-where-c_-collection-c-iterator-element-self-iterator-element_-countablerange-self-index-with_-c">mutating func <wbr>replaceSubrange&lt;C where C : Collection, C.Iterator.Element == RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;(<wbr>_:<wbr> CountableRange&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;, with: C)</a>
+        
+<div class="comment collapse" id="comment-func-index_-strideable-index-stride_-signedinteger-replacesubrange-c-where-c_-collection-c-iterator-element-self-iterator-element_-countablerange-self-index-with_-c"><div class="p">
+    <p>Replaces the specified subrange of elements with the given collection.</p>
+
+<p>This method has the effect of removing the specified range of elements
+from the collection and inserting the new elements at the same location.
+The number of new elements need not match the number of elements being
+removed.</p>
+
+<p>In this example, three elements in the middle of an array of integers are
+replaced by the five elements of a <code>Repeated&lt;Int&gt;</code> instance.</p>
+
+<pre><code class="language-swift"> var nums = [10, 20, 30, 40, 50]
+ nums.replaceSubrange(1...3, with: repeatElement(1, count: 5))
+ print(nums)
+ // Prints &quot;[10, 1, 1, 1, 1, 1, 50]&quot;</code></pre>
+
+<p>If you pass a zero-length range as the <code>subrange</code> parameter, this method
+inserts the elements of <code>newElements</code> at <code>subrange.startIndex</code>. Calling
+the <code>insert(contentsOf:at:)</code> method instead is preferred.</p>
+
+<p>Likewise, if you pass a zero-length collection as the <code>newElements</code>
+parameter, this method removes the elements in the given subrange
+without replacement. Calling the <code>removeSubrange(_:)</code> method instead is
+preferred.</p>
+
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>subrange:</strong> The subrange of the collection to replace. The bounds of
+    the range must be valid indices of the collection.
+  <strong>newElements:</strong> The new elements to add to the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>m</em>), where <em>m</em> is the combined length of the collection
+  and <code>newElements</code>. If the call to <code>replaceSubrange</code> simply appends the
+  contents of <code>newElements</code> to the collection, the complexity is O(<em>n</em>),
+  where <em>n</em> is the length of <code>newElements</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func replaceSubrange&lt;C where C : Collection, C.Iterator.Element == RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;(_ subrange: CountableRange&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;, with newElements: C)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Indices == DefaultIndices<Self>, Indices.Index == Index, Indices.IndexDistance == Int, Indices.Iterator == IndexingIterator<DefaultIndices<Self>>, Indices.SubSequence == DefaultIndices<Self>, Indices._Element == Index, Indices.IndexDistance.IntegerLiteralType == Int, Indices.IndexDistance.Stride == Int, Indices.IndexDistance._DisabledRangeIndex == Int._DisabledRangeIndex, Indices.Iterator.Element == Index, Indices.IndexDistance.Stride.IntegerLiteralType == Int</h4>
+
+
+<div class="declaration inherited" id="indices-defaultindices-self-indices-index-index-indices-indexdistance-int-indices-iterator-indexingiterator-defaultindices-self-indices-subsequence-defaultindices-self-indices-element-index-indices-indexdistance-integerliteraltype-int-indices-indexdistance-stride-int-indices-indexdistance-disabledrangeindex-int-disabledrangeindex-indices-iterator-element-index-indices-indexdistance-stride-integerliteraltype-int-var-indices_-defaultindices-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-indices-defaultindices-self-indices-index-index-indices-indexdistance-int-indices-iterator-indexingiterator-defaultindices-self-indices-subsequence-defaultindices-self-indices-element-index-indices-indexdistance-integerliteraltype-int-indices-indexdistance-stride-int-indices-indexdistance-disabledrangeindex-int-disabledrangeindex-indices-iterator-element-index-indices-indexdistance-stride-integerliteraltype-int-var-indices_-defaultindices-self">var indices: DefaultIndices&lt;RangeReplaceableSlice&lt;Base&gt;&gt;</a><div class="comment collapse" id="comment-indices-defaultindices-self-indices-index-index-indices-indexdistance-int-indices-iterator-indexingiterator-defaultindices-self-indices-subsequence-defaultindices-self-indices-element-index-indices-indexdistance-integerliteraltype-int-indices-indexdistance-stride-int-indices-indexdistance-disabledrangeindex-int-disabledrangeindex-indices-iterator-element-index-indices-indexdistance-stride-integerliteraltype-int-var-indices_-defaultindices-self"><div class="p">
+    <p>The indices that are valid for subscripting the collection, in ascending
+order.</p>
+
+<p>A collection&#39;s <code>indices</code> property can hold a strong reference to the
+collection itself, causing the collection to be non-uniquely referenced.
+If you mutate the collection while iterating over its indices, a strong
+reference can cause an unexpected copy of the collection. To avoid the
+unexpected copy, use the <code>index(after:)</code> method starting with
+<code>startIndex</code> to produce indices instead.</p>
+
+<pre><code class="language-swift">var c = MyFancyCollection([10, 20, 30, 40, 50])
+var i = c.startIndex
+while i != c.endIndex {
+    c[i] /= 5
+    i = c.index(after: i)
+}
+// c == MyFancyCollection([2, 4, 6, 8, 10])</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var indices: DefaultIndices&lt;RangeReplaceableSlice&lt;Base&gt;&gt; { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>
+        ,    <a href="../../protocol/Collection/"><code>Collection</code></a>
+        </div></div>
+</div>
+
+
+
+
+
+
+
+<h4>Where Iterator == IndexingIterator<Self>, Iterator.Element == _Element</h4>
+
+
+
+
+<div class="declaration inherited" id="func-iterator-indexingiterator-self-iterator-element-element-makeiterator">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-indexingiterator-self-iterator-element-element-makeiterator">func makeIterator()</a>
+        
+<div class="comment collapse" id="comment-func-iterator-indexingiterator-self-iterator-element-element-makeiterator"><div class="p">
+    <p>Returns an iterator over the elements of the collection.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func makeIterator() -&gt; IndexingIterator&lt;RangeReplaceableSlice&lt;Base&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Iterator == Self</h4>
+
+
+
+
+<div class="declaration inherited" id="func-iterator-self-makeiterator">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-self-makeiterator">func makeIterator()</a>
+        
+<div class="comment collapse" id="comment-func-iterator-self-makeiterator"><div class="p">
+    <p>Returns an iterator over the elements of this sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func makeIterator() -&gt; RangeReplaceableSlice&lt;Base&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Iterator.Element : Collection</h4>
+
+
+
+
+<div class="declaration inherited" id="func-iterator-element_-collection-joined">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element_-collection-joined">func joined()</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element_-collection-joined"><div class="p">
+    <p>Returns the elements of this collection of collections, concatenated.</p>
+
+<p>In this example, an array of three ranges is flattened so that the
+elements of each range can be iterated in turn.</p>
+
+<pre><code class="language-swift">let ranges = [0..&lt;3, 8..&lt;10, 15..&lt;17]
+
+// A for-in loop over &#39;ranges&#39; accesses each range:
+for range in ranges {
+  print(range)
+}
+// Prints &quot;0..&lt;3&quot;
+// Prints &quot;8..&lt;10&quot;
+// Prints &quot;15..&lt;17&quot;
+
+// Use &#39;joined()&#39; to access each element of each range:
+for index in ranges.joined() {
+    print(index, terminator: &quot; &quot;)
+}
+// Prints: &quot;0 1 2 8 9 15 16&quot;</code></pre>
+
+<p><strong>Returns:</strong> A flattened view of the elements of this
+  collection of collections.</p>
+
+<p><strong>See Also:</strong> <code>flatMap(_:)</code>, <code>joined(separator:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joined() -&gt; FlattenCollection&lt;RangeReplaceableSlice&lt;Base&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Iterator.Element : Comparable</h4>
+
+
+
+
+<div class="declaration inherited" id="func-iterator-element_-comparable-lexicographicallyprecedes_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element_-comparable-lexicographicallyprecedes_">func lexicographicallyPrecedes(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element_-comparable-lexicographicallyprecedes_"><div class="p">
+    <p>Returns a Boolean value indicating whether the sequence precedes another
+sequence in a lexicographical (dictionary) ordering, using the
+less-than operator (<code>&lt;</code>) to compare elements.</p>
+
+<p>This example uses the <code>lexicographicallyPrecedes</code> method to test which
+array of integers comes first in a lexicographical ordering.</p>
+
+<pre><code class="language-swift">let a = [1, 2, 2, 2]
+let b = [1, 2, 3, 4]
+
+print(a.lexicographicallyPrecedes(b))
+// Prints &quot;true&quot;
+print(b.lexicographicallyPrecedes(b))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A sequence to compare to this sequence.
+<strong>Returns:</strong> <code>true</code> if this sequence precedes <code>other</code> in a dictionary
+  ordering; otherwise, <code>false</code>.</p>
+
+<p><strong>Note:</strong> This method implements the mathematical notion of lexicographical
+  ordering, which has no connection to Unicode.  If you are sorting
+  strings to present to the end user, use <code>String</code> APIs that
+  perform localized comparison.
+<strong>See Also:</strong> <code>lexicographicallyPrecedes(_:by:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func lexicographicallyPrecedes&lt;OtherSequence where OtherSequence : Sequence, OtherSequence.Iterator.Element == RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;(_ other: OtherSequence) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-iterator-element_-comparable-max">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element_-comparable-max">@warn_unqualified_access
+     func max()</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element_-comparable-max"><div class="p">
+    <p>Returns the maximum element in the sequence.</p>
+
+<p>This example finds the smallest value in an array of height measurements.</p>
+
+<pre><code class="language-swift">let heights = [67.5, 65.7, 64.3, 61.1, 58.5, 60.3, 64.9]
+let greatestHeight = heights.max()
+print(greatestHeight)
+// Prints &quot;Optional(67.5)&quot;</code></pre>
+
+<p><strong>Returns:</strong> The sequence&#39;s maximum element. If the sequence has no
+  elements, returns <code>nil</code>.</p>
+
+<p><strong>See Also:</strong> <code>max(by:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@warn_unqualified_access
+     func max() -&gt; RangeReplaceableSlice&lt;Base&gt;.Iterator.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-iterator-element_-comparable-min">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element_-comparable-min">@warn_unqualified_access
+     func min()</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element_-comparable-min"><div class="p">
+    <p>Returns the minimum element in the sequence.</p>
+
+<p>This example finds the smallest value in an array of height measurements.</p>
+
+<pre><code class="language-swift">let heights = [67.5, 65.7, 64.3, 61.1, 58.5, 60.3, 64.9]
+let lowestHeight = heights.min()
+print(lowestHeight)
+// Prints &quot;Optional(58.5)&quot;</code></pre>
+
+<p><strong>Returns:</strong> The sequence&#39;s minimum element. If the sequence has no
+  elements, returns <code>nil</code>.</p>
+
+<p><strong>See Also:</strong> <code>min(by:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">@warn_unqualified_access
+     func min() -&gt; RangeReplaceableSlice&lt;Base&gt;.Iterator.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-iterator-element_-comparable-sorted">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element_-comparable-sorted">func sorted()</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element_-comparable-sorted"><div class="p">
+    <p>Returns the elements of the sequence, sorted.</p>
+
+<p>You can sort any sequence of elements that conform to the
+<code>Comparable</code> protocol by calling this method. Elements are sorted in
+ascending order.</p>
+
+<p>The sorting algorithm is not stable. A nonstable sort may change the
+relative order of elements that compare equal.</p>
+
+<p>Here&#39;s an example of sorting a list of students&#39; names. Strings in Swift
+conform to the <code>Comparable</code> protocol, so the names are sorted in
+ascending order according to the less-than operator (<code>&lt;</code>).</p>
+
+<pre><code class="language-swift">let students: Set = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+let sortedStudents = students.sorted()
+print(sortedStudents)
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;</code></pre>
+
+<p>To sort the elements of your sequence in descending order, pass the
+greater-than operator (<code>&gt;</code>) to the <code>sorted(by:)</code> method.</p>
+
+<pre><code class="language-swift">let descendingStudents = students.sorted(by: &gt;)
+print(descendingStudents)
+// Prints &quot;[&quot;Peter&quot;, &quot;Kweku&quot;, &quot;Kofi&quot;, &quot;Akosua&quot;, &quot;Abena&quot;]&quot;</code></pre>
+
+<p><strong>Returns:</strong> A sorted array of the sequence&#39;s elements.</p>
+
+<p><strong>See Also:</strong> <code>sorted(by:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func sorted() -&gt; [RangeReplaceableSlice&lt;Base&gt;.Iterator.Element]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Iterator.Element : Equatable</h4>
+
+
+
+
+<div class="declaration inherited" id="func-iterator-element_-equatable-contains_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element_-equatable-contains_">func contains(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element_-equatable-contains_"><div class="p">
+    <p>Returns a Boolean value indicating whether the sequence contains the
+given element.</p>
+
+<p>This example checks to see whether a favorite actor is in an array
+storing a movie&#39;s cast.</p>
+
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+print(cast.contains(&quot;Marlon&quot;))
+// Prints &quot;true&quot;
+print(cast.contains(&quot;James&quot;))
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong><code>element</code>:</strong>  The element to find in the sequence.
+<strong>Returns:</strong> <code>true</code> if the element was found in the sequence; otherwise,
+  <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func contains(_ element: RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-iterator-element_-equatable-elementsequal_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element_-equatable-elementsequal_">func elementsEqual(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element_-equatable-elementsequal_"><div class="p">
+    <p>Returns a Boolean value indicating whether this sequence and another
+sequence contain the same elements in the same order.</p>
+
+<p>At least one of the sequences must be finite.</p>
+
+<p>This example tests whether one countable range shares the same elements
+as another countable range and an array.</p>
+
+<pre><code class="language-swift">let a = 1...3
+let b = 1...10
+
+print(a.elementsEqual(b))
+// Prints &quot;false&quot;
+print(a.elementsEqual([1, 2, 3]))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>other</code>:</strong>  A sequence to compare to this sequence.
+<strong>Returns:</strong> <code>true</code> if this sequence and <code>other</code> contain the same elements
+  in the same order.</p>
+
+<p><strong>See Also:</strong> <code>elementsEqual(_:by:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func elementsEqual&lt;OtherSequence where OtherSequence : Sequence, OtherSequence.Iterator.Element == RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;(_ other: OtherSequence) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-iterator-element_-equatable-index-of_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element_-equatable-index-of_">func index(<wbr>of:)</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element_-equatable-index-of_"><div class="p">
+    <p>Returns the first index where the specified value appears in the
+collection.</p>
+
+<p>After using <code>index(of:)</code> to find the position of a particular element in
+a collection, you can use it to access the element by subscripting. This
+example shows how you can modify one of the names in an array of
+students.</p>
+
+<pre><code class="language-swift">var students = [&quot;Ben&quot;, &quot;Ivy&quot;, &quot;Jordell&quot;, &quot;Maxime&quot;]
+if let i = students.index(of: &quot;Maxime&quot;) {
+    students[i] = &quot;Max&quot;
+}
+print(students)
+// Prints &quot;[&quot;Ben&quot;, &quot;Ivy&quot;, &quot;Jordell&quot;, &quot;Max&quot;]&quot;</code></pre>
+
+<p><strong><code>element</code>:</strong>  An element to search for in the collection.
+<strong>Returns:</strong> The first index where <code>element</code> is found. If <code>element</code> is not
+  found in the collection, returns <code>nil</code>.</p>
+
+<p><strong>See Also:</strong> <code>index(where:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func index(of element: RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) -&gt; RangeReplaceableSlice&lt;Base&gt;.Index?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-iterator-element_-equatable-split_maxsplits_omittingemptysubsequences_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element_-equatable-split_maxsplits_omittingemptysubsequences_">func split(<wbr>_:<wbr>maxSplits:<wbr>omittingEmptySubsequences:)</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element_-equatable-split_maxsplits_omittingemptysubsequences_"><div class="p">
+    <p>Returns the longest possible subsequences of the collection, in order,
+around elements equal to the given element.</p>
+
+<p>The resulting array consists of at most <code>maxSplits + 1</code> subsequences.
+Elements that are used to split the collection are not returned as part
+of any subsequence.</p>
+
+<p>The following examples show the effects of the <code>maxSplits</code> and
+<code>omittingEmptySubsequences</code> parameters when splitting a string at each
+space character (&quot; &quot;). The first use of <code>split</code> returns each word that
+was originally separated by one or more spaces.</p>
+
+<pre><code class="language-swift">let line = &quot;BLANCHE:   I don&#39;t want realism. I want magic!&quot;
+print(line.characters.split(separator: &quot; &quot;)
+                     .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p>The second example passes <code>1</code> for the <code>maxSplits</code> parameter, so the
+original string is split just once, into two new strings.</p>
+
+<pre><code class="language-swift">print(line.characters.split(separator: &quot; &quot;, maxSplits: 1)
+                      .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;  I don\&#39;t want realism. I want magic!&quot;]&quot;</code></pre>
+
+<p>The final example passes <code>false</code> for the <code>omittingEmptySubsequences</code>
+parameter, so the returned array contains empty strings where spaces
+were repeated.</p>
+
+<pre><code class="language-swift">print(line.characters.split(separator: &quot; &quot;, omittingEmptySubsequences: false)
+                      .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;&quot;, &quot;&quot;, &quot;I&quot;, &quot;don\&#39;t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>separator:</strong> The element that should be split upon.
+  <strong>maxSplits:</strong> The maximum number of times to split the collection, or
+    one less than the number of subsequences to return. If
+    <code>maxSplits + 1</code> subsequences are returned, the last one is a suffix
+    of the original collection containing the remaining elements.
+    <code>maxSplits</code> must be greater than or equal to zero. The default value
+    is <code>Int.max</code>.
+  <strong>omittingEmptySubsequences:</strong> If <code>false</code>, an empty subsequence is
+    returned in the result for each consecutive pair of <code>separator</code>
+    elements in the collection and for each instance of <code>separator</code> at
+    the start or end of the collection. If <code>true</code>, only nonempty
+    subsequences are returned. The default value is <code>true</code>.
+<strong>Returns:</strong> An array of subsequences, split from this collection&#39;s
+  elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func split(separator: RangeReplaceableSlice&lt;Base&gt;.Iterator.Element, maxSplits: Int = default, omittingEmptySubsequences: Bool = default) -&gt; [RangeReplaceableSlice&lt;Base&gt;.SubSequence]</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-iterator-element_-equatable-starts-with_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element_-equatable-starts-with_">func starts(<wbr>with:)</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element_-equatable-starts-with_"><div class="p">
+    <p>Returns a Boolean value indicating whether the initial elements of the
+sequence are the same as the elements in another sequence.</p>
+
+<p>This example tests whether one countable range begins with the elements
+of another countable range.</p>
+
+<pre><code class="language-swift">let a = 1...3
+let b = 1...10
+
+print(b.starts(with: a))
+// Prints &quot;true&quot;</code></pre>
+
+<p>Passing a sequence with no elements or an empty collection as
+<code>possiblePrefix</code> always results in <code>true</code>.</p>
+
+<pre><code class="language-swift">print(b.starts(with: []))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>possiblePrefix</code>:</strong>  A sequence to compare to this sequence.
+<strong>Returns:</strong> <code>true</code> if the initial elements of the sequence are the same as
+  the elements of <code>possiblePrefix</code>; otherwise, <code>false</code>. If
+  <code>possiblePrefix</code> has no elements, the return value is <code>true</code>.</p>
+
+<p><strong>See Also:</strong> <code>starts(with:by:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func starts&lt;PossiblePrefix where PossiblePrefix : Sequence, PossiblePrefix.Iterator.Element == RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;(with possiblePrefix: PossiblePrefix) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Iterator.Element : Sequence</h4>
+
+
+
+
+<div class="declaration inherited" id="func-iterator-element_-sequence-joined">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element_-sequence-joined">func joined()</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element_-sequence-joined"><div class="p">
+    <p>Returns the elements of this sequence of sequences, concatenated.</p>
+
+<p>In this example, an array of three ranges is flattened so that the
+elements of each range can be iterated in turn.</p>
+
+<pre><code class="language-swift">let ranges = [0..&lt;3, 8..&lt;10, 15..&lt;17]
+
+// A for-in loop over &#39;ranges&#39; accesses each range:
+for range in ranges {
+  print(range)
+}
+// Prints &quot;0..&lt;3&quot;
+// Prints &quot;8..&lt;10&quot;
+// Prints &quot;15..&lt;17&quot;
+
+// Use &#39;joined()&#39; to access each element of each range:
+for index in ranges.joined() {
+    print(index, terminator: &quot; &quot;)
+}
+// Prints: &quot;0 1 2 8 9 15 16&quot;</code></pre>
+
+<p><strong>Returns:</strong> A flattened view of the elements of this
+  sequence of sequences.</p>
+
+<p><strong>See Also:</strong> <code>flatMap(_:)</code>, <code>joined(separator:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joined() -&gt; FlattenSequence&lt;RangeReplaceableSlice&lt;Base&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-iterator-element_-sequence-joined_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element_-sequence-joined_">func joined(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element_-sequence-joined_"><div class="p">
+    <p>Returns the concatenated elements of this sequence of sequences,
+inserting the given separator between each element.</p>
+
+<p>This example shows how an array of <code>[Int]</code> instances can be joined, using
+another <code>[Int]</code> instance as the separator:</p>
+
+<pre><code class="language-swift">let nestedNumbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+let joined = nestedNumbers.joined(separator: [-1, -2])
+print(Array(joined))
+// Prints &quot;[1, 2, 3, -1, -2, 4, 5, 6, -1, -2, 7, 8, 9]&quot;</code></pre>
+
+<p><strong><code>separator</code>:</strong>  A sequence to insert between each of this
+  sequence&#39;s elements.
+<strong>Returns:</strong> The joined sequence of elements.</p>
+
+<p><strong>See Also:</strong> <code>joined()</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joined&lt;Separator where Separator : Sequence, Separator.Iterator.Element == RangeReplaceableSlice&lt;Base&gt;.Iterator.Element.Iterator.Element&gt;(separator: Separator) -&gt; JoinedSequence&lt;RangeReplaceableSlice&lt;Base&gt;&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where Iterator.Element == String</h4>
+
+
+
+
+<div class="declaration inherited" id="func-iterator-element-string-joined_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-iterator-element-string-joined_">func joined(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-iterator-element-string-joined_"><div class="p">
+    <p>Returns a new string by concatenating the elements of the sequence,
+adding the given separator between each element.</p>
+
+<p>The following example shows how an array of strings can be joined to a
+single, comma-separated string:</p>
+
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let list = cast.joined(separator: &quot;, &quot;)
+print(list)
+// Prints &quot;Vivien, Marlon, Kim, Karl&quot;</code></pre>
+
+<p><strong><code>separator</code>:</strong>  A string to insert between each of the elements
+  in this sequence. The default separator is an empty string.
+<strong>Returns:</strong> A single, concatenated string.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func joined(separator: String = default) -&gt; String</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where SubSequence : Sequence, SubSequence.SubSequence == SubSequence, SubSequence.Iterator.Element == Iterator.Element</h4>
+
+
+
+
+<div class="declaration inherited" id="func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-drop-while_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-drop-while_">func drop(<wbr>while:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-drop-while_"><div class="p">
+    <p>Returns a subsequence by skipping the initial, consecutive elements that
+satisfy the given predicate.</p>
+
+<p>The following example uses the <code>drop(while:)</code> method to skip over the
+positive numbers at the beginning of the <code>numbers</code> array. The result
+begins with the first element of <code>numbers</code> that does not satisfy
+<code>predicate</code>.</p>
+
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+let startingWithNegative = numbers.drop(while: { $0 &gt; 0 })
+// startingWithNegative == [-2, 9, -6, 10, 1]</code></pre>
+
+<p>If <code>predicate</code> matches every element in the sequence, the result is an
+empty sequence.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence as
+  its argument and returns a Boolean value indicating whether the
+  element should be included in the result.
+<strong>Returns:</strong> A subsequence starting after the initial, consecutive elements
+  that satisfy <code>predicate</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.
+<strong>See Also:</strong> <code>prefix(while:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func drop(while predicate: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; AnySequence&lt;RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-dropfirst_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-dropfirst_">func dropFirst(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-dropfirst_"><div class="p">
+    <p>Returns a subsequence containing all but the given number of initial
+elements.</p>
+
+<p>If the number of elements to drop exceeds the number of elements in
+the sequence, the result is an empty subsequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropFirst(2))
+// Prints &quot;[3, 4, 5]&quot;
+print(numbers.dropFirst(10))
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong><code>n</code>:</strong>  The number of elements to drop from the beginning of
+  the sequence. <code>n</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence starting after the specified number of
+  elements.</p>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropFirst(_ n: Int) -&gt; AnySequence&lt;RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-droplast_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-droplast_">func dropLast(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-droplast_"><div class="p">
+    <p>Returns a subsequence containing all but the given number of final
+elements.</p>
+
+<p>The sequence must be finite. If the number of elements to drop exceeds
+the number of elements in the sequence, the result is an empty
+subsequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast(2))
+// Prints &quot;[1, 2, 3]&quot;
+print(numbers.dropLast(10))
+// Prints &quot;[]&quot;</code></pre>
+
+<p><strong><code>n</code>:</strong>  The number of elements to drop off the end of the
+  sequence. <code>n</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence leaving off the specified number of elements.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func dropLast(_ n: Int) -&gt; AnySequence&lt;RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-prefix_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-prefix_">func prefix(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-prefix_"><div class="p">
+    <p>Returns a subsequence, up to the specified maximum length, containing the
+initial elements of the sequence.</p>
+
+<p>If the maximum length exceeds the number of elements in the sequence,
+the result contains all the elements in the sequence.</p>
+
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.prefix(2))
+// Prints &quot;[1, 2]&quot;
+print(numbers.prefix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;</code></pre>
+
+<p><strong><code>maxLength</code>:</strong>  The maximum number of elements to return. The
+  value of <code>maxLength</code> must be greater than or equal to zero.
+<strong>Returns:</strong> A subsequence starting at the beginning of this sequence
+  with at most <code>maxLength</code> elements.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(_ maxLength: Int) -&gt; AnySequence&lt;RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-prefix-while_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-prefix-while_">func prefix(<wbr>while:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence_-sequence-subsequence-subsequence-subsequence-subsequence-iterator-element-iterator-element-prefix-while_"><div class="p">
+    <p>Returns a subsequence containing the initial, consecutive elements that
+satisfy the given predicate.</p>
+
+<p>The following example uses the <code>prefix(while:)</code> method to find the
+positive numbers at the beginning of the <code>numbers</code> array. Every element
+of <code>numbers</code> up to, but not including, the first negative value is
+included in the result.</p>
+
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+let positivePrefix = numbers.prefix(while: { $0 &gt; 0 })
+// positivePrefix == [3, 7, 4]</code></pre>
+
+<p>If <code>predicate</code> matches every element in the sequence, the resulting
+sequence contains every element of the sequence.</p>
+
+<p><strong><code>predicate</code>:</strong>  A closure that takes an element of the sequence as
+  its argument and returns a Boolean value indicating whether the
+  element should be included in the result.
+<strong>Returns:</strong> A subsequence of the initial, consecutive elements that
+  satisfy <code>predicate</code>.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the collection.
+<strong>See Also:</strong> <code>drop(while:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func prefix(while predicate: (RangeReplaceableSlice&lt;Base&gt;.Iterator.Element) throws -&gt; Bool) rethrows -&gt; AnySequence&lt;RangeReplaceableSlice&lt;Base&gt;.Iterator.Element&gt;</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>,    <a href="../../protocol/Sequence/"><code>Sequence</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where SubSequence == Self</h4>
+
+
+
+
+<div class="declaration inherited" id="func-subsequence-self-popfirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-self-popfirst">mutating func popFirst()</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-self-popfirst"><div class="p">
+    <p>Removes and returns the first element of the collection.</p>
+
+<p><strong>Returns:</strong> The first element of the collection if the collection is
+  not empty; otherwise, <code>nil</code>.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func popFirst() -&gt; RangeReplaceableSlice&lt;Base&gt;.Iterator.Element?</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-self-removefirst">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-self-removefirst">mutating func removeFirst()</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-self-removefirst"><div class="p">
+    <p>Removes and returns the first element of the collection.</p>
+
+<p>The collection must not be empty.</p>
+
+<p>Calling this method may invalidate all saved indices of this
+collection. Do not rely on a previously stored index value after
+altering a collection with any operation that can change its length.</p>
+
+<p><strong>Returns:</strong> The first element of the collection.</p>
+
+<p><strong>Complexity:</strong> O(1)
+<strong>Precondition:</strong> <code>!self.isEmpty</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeFirst() -&gt; RangeReplaceableSlice&lt;Base&gt;.Iterator.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-self-removefirst_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-self-removefirst_">mutating func removeFirst(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-self-removefirst_"><div class="p">
+    <p>Removes the specified number of elements from the beginning of the
+collection.</p>
+
+<p>Attempting to remove more elements than exist in the collection
+triggers a runtime error.</p>
+
+<p>Calling this method may invalidate all saved indices of this
+collection. Do not rely on a previously stored index value after
+altering a collection with any operation that can change its length.</p>
+
+<p><strong><code>n</code>:</strong>  The number of elements to remove from the collection.
+  <code>n</code> must be greater than or equal to zero and must not exceed the
+  number of elements in the collection.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeFirst(_ n: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-self-removelast">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-self-removelast">mutating func removeLast()</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-self-removelast"><div class="p">
+    <p>Removes and returns the last element of the collection.</p>
+
+<p>The collection must not be empty.</p>
+
+<p>Calling this method may invalidate all saved indices of this
+collection. Do not rely on a previously stored index value after
+altering a collection with any operation that can change its length.</p>
+
+<p><strong>Returns:</strong> The last element of the collection.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeLast() -&gt; RangeReplaceableSlice&lt;Base&gt;.Iterator.Element</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subsequence-self-removelast_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subsequence-self-removelast_">mutating func removeLast(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subsequence-self-removelast_"><div class="p">
+    <p>Removes the specified number of elements from the end of the
+collection.</p>
+
+<p>Attempting to remove more elements than exist in the collection
+triggers a runtime error.</p>
+
+<p>Calling this method may invalidate all saved indices of this
+collection. Do not rely on a previously stored index value after
+altering a collection with any operation that can change its length.</p>
+
+<p><strong><code>n</code>:</strong>  The number of elements to remove from the collection.
+  <code>n</code> must be greater than or equal to zero and must not exceed the
+  number of elements in the collection.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the specified number of elements.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func removeLast(_ n: Int)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>    
+</div></div>
+</div>
+
+
+
+
+
+<h4>Where SubSequence == Slice<Self>, SubSequence.Index == Index, SubSequence.Iterator == IndexingIterator<Slice<Self>>, SubSequence.SubSequence == Slice<Self>, SubSequence._Element == _Element, SubSequence.Iterator.Element == _Element</h4>
+
+
+
+<div class="declaration inherited" id="subscript-subsequence-slice-self-subsequence-index-index-subsequence-iterator-indexingiterator-slice-self-subsequence-subsequence-slice-self-subsequence-element-element-subsequence-iterator-element-element-subscript_-range-self-index">
+<a class="toggle-link" data-toggle="collapse" href="#comment-subscript-subsequence-slice-self-subsequence-index-index-subsequence-iterator-indexingiterator-slice-self-subsequence-subsequence-slice-self-subsequence-element-element-subsequence-iterator-element-element-subscript_-range-self-index">subscript(_: Range&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;)</a>
+<div class="comment collapse" id="comment-subscript-subsequence-slice-self-subsequence-index-index-subsequence-iterator-indexingiterator-slice-self-subsequence-subsequence-slice-self-subsequence-element-element-subsequence-iterator-element-element-subscript_-range-self-index"><div class="p">
+    <p>Accesses a contiguous subrange of the collection&#39;s elements.</p>
+
+<p>The accessed slice uses the same indices for the same elements as the
+original collection uses. Always use the slice&#39;s <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.index(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// Prints &quot;Evarts&quot;</code></pre>
+
+<p><strong><code>bounds</code>:</strong>  A range of the collection&#39;s indices. The bounds of
+  the range must be valid indices of the collection.</p>
+
+<p><strong>Complexity:</strong> O(1)</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">subscript(bounds: Range&lt;RangeReplaceableSlice&lt;Base&gt;.Index&gt;) -&gt; Slice&lt;RangeReplaceableSlice&lt;Base&gt;&gt; { get }</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/RangeReplaceableCollection/"><code>RangeReplaceableCollection</code></a>,    <a href="../../protocol/Collection/"><code>Collection</code></a>    
+</div></div>
+</div>
+
+
+
+

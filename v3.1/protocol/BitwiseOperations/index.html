@@ -1,0 +1,231 @@
+---
+layout: "default"
+title: "BitwiseOperations"
+description: "Swift documentation for 'BitwiseOperations': A type that supports standard bitwise arithmetic operators."
+keywords: "BitwiseOperations,protocol,swift,documentation,&,^,|,~,allZeros"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol BitwiseOperations</code></div>
+
+<div class="discussion comment">
+    <p>A type that supports standard bitwise arithmetic operators.</p>
+
+<p>Types that conform to the <code>BitwiseOperations</code> protocol implement operators
+for bitwise arithmetic. The integer types in the standard library all
+conform to <code>BitwiseOperations</code> by default. When you use bitwise operators
+with an integer, you perform operations on the raw data bits that store
+the integer&#39;s value.</p>
+
+<p>In the following examples, the binary representation of any values are
+shown in a comment to the right, like this:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5        // 0b00000101</code></pre>
+
+<p>Here are the required operators for the <code>BitwiseOperations</code> protocol:</p>
+
+<ul><li><p>The bitwise OR operator (<code>|</code>) returns a value that has each bit set to
+<code>1</code> where <em>one or both</em> of its arguments had that bit set to <code>1</code>. This
+is equivalent to the union of two sets. For example:</p><pre><code class="language-swift">let x: UInt8 = 5        // 0b00000101
+let y: UInt8 = 14       // 0b00001110
+let z = x | y           // 0b00001111</code></pre><p>Performing a bitwise OR operation with a value and <code>allZeros</code> always
+returns the same value.</p><pre><code class="language-swift">print(x | .allZeros)    // 0b00000101
+// Prints &quot;5&quot;</code></pre></li><li><p>The bitwise AND operator (<code>&amp;</code>) returns a value that has each bit set to
+<code>1</code> where <em>both</em> of its arguments had that bit set to <code>1</code>. This is
+equivalent to the intersection of two sets. For example:</p><pre><code class="language-swift">let x: UInt8 = 5        // 0b00000101
+let y: UInt8 = 14       // 0b00001110
+let z = x &amp; y           // 0b00000100</code></pre><p>Performing a bitwise AND operation with a value and <code>allZeros</code> always
+returns <code>allZeros</code>.</p><pre><code class="language-swift">print(x &amp; .allZeros)    // 0b00000000
+// Prints &quot;0&quot;</code></pre></li><li><p>The bitwise XOR operator (<code>^</code>), or exclusive OR operator, returns a value
+that has each bit set to <code>1</code> where <em>one or the other but not both</em> of
+its operators has that bit set to <code>1</code>. This is equivalent to the
+symmetric difference of two sets. For example:</p><pre><code class="language-swift">let x: UInt8 = 5        // 0b00000101
+let y: UInt8 = 14       // 0b00001110
+let z = x ^ y           // 0b00001011</code></pre><p>Performing a bitwise XOR operation with a value and <code>allZeros</code> always
+returns the same value.</p><pre><code class="language-swift">print(x ^ .allZeros)    // 0b00000101
+// Prints &quot;5&quot;</code></pre></li><li><p>The bitwise NOT operator (<code>~</code>) is a prefix operator that returns a value
+where all the bits of its argument are flipped: Bits that are <code>1</code> in the
+argument are <code>0</code> in the result, and bits that are <code>0</code> in the argument
+are <code>1</code> in the result. This is equivalent to the inverse of a set. For
+example:</p><pre><code class="language-swift">let x: UInt8 = 5        // 0b00000101
+let notX = ~x           // 0b11111010</code></pre><p>Performing a bitwise NOT operation on <code>allZeros</code> returns a value with
+every bit set to <code>1</code>.</p><pre><code class="language-swift">let allOnes = ~UInt8.allZeros   // 0b11111111</code></pre></li></ul>
+
+<p>The <code>OptionSet</code> protocol uses a raw value that conforms to
+<code>BitwiseOperations</code> to provide mathematical set operations like
+<code>union(_:)</code>, <code>intersection(_:)</code> and <code>contains(_:)</code> with O(1) performance.</p>
+
+<h1>Conforming to the BitwiseOperations Protocol</h1>
+
+<p>To make your custom type conform to <code>BitwiseOperations</code>, add a static
+<code>allZeros</code> property and declare the four required operator functions. Any
+type that conforms to <code>BitwiseOperations</code>, where <code>x</code> is an instance of the
+conforming type, must satisfy the following conditions:</p>
+
+<ul><li><code>x | Self.allZeros == x</code></li><li><code>x ^ Self.allZeros == x</code></li><li><code>x &amp; Self.allZeros == .allZeros</code></li><li><code>x &amp; ~Self.allZeros == x</code></li><li><code>~x == x ^ ~Self.allZeros</code></li></ul>
+
+<p><strong>See Also:</strong> <code>OptionSet</code></p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+<h3>Static Variables</h3>
+<div class="declaration" id="static-var-allzeros_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-allzeros_-self">static var allZeros: Self</a> <span class="required">Required</span><div class="comment collapse" id="comment-static-var-allzeros_-self"><div class="p">
+    <p>The empty bitset.</p>
+
+<p>The <code>allZeros</code> static property is the <a href="http://en.wikipedia.org/wiki/Identity_element">identity element</a> for bitwise OR
+and XOR operations and the <a href="http://en.wikipedia.org/wiki/Fixed_point_(mathematics)">fixed point</a> for bitwise AND operations.
+For example:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5        // 0b00000101
+
+// Identity
+x | .allZeros           // 0b00000101
+x ^ .allZeros           // 0b00000101
+
+// Fixed point
+x &amp; .allZeros           // 0b00000000</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var allZeros: Self { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-amp_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-amp_rhs_">func &amp;(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-amp_rhs_"><div class="p">
+    <p>Returns the intersection of bits set in the two arguments.</p>
+
+<p>The bitwise AND operator (<code>&amp;</code>) returns a value that has each bit set to
+<code>1</code> where <em>both</em> of its arguments had that bit set to <code>1</code>. This is
+equivalent to the intersection of two sets. For example:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5        // 0b00000101
+let y: UInt8 = 14       // 0b00001110
+let z = x &amp; y           // 0b00000100</code></pre>
+
+<p>Performing a bitwise AND operation with a value and <code>allZeros</code> always
+returns <code>allZeros</code>.</p>
+
+<pre><code class="language-swift">print(x &amp; .allZeros)    // 0b00000000
+// Prints &quot;0&quot;</code></pre>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &amp;(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-crt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-crt_rhs_">func ^(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-crt_rhs_"><div class="p">
+    <p>Returns the bits that are set in exactly one of the two arguments.</p>
+
+<p>The bitwise XOR operator (<code>^</code>), or exclusive OR operator, returns a value
+that has each bit set to <code>1</code> where <em>one or the other but not both</em> of
+its operators has that bit set to <code>1</code>. This is equivalent to the
+symmetric difference of two sets. For example:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5        // 0b00000101
+let y: UInt8 = 14       // 0b00001110
+let z = x ^ y           // 0b00001011</code></pre>
+
+<p>Performing a bitwise XOR with a value and <code>allZeros</code> always returns the
+same value:</p>
+
+<pre><code class="language-swift">print(x ^ .allZeros)    // 0b00000101
+// Prints &quot;5&quot;</code></pre>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ^(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-bar_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-bar_rhs_">func |(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-bar_rhs_"><div class="p">
+    <p>Returns the union of bits set in the two arguments.</p>
+
+<p>The bitwise OR operator (<code>|</code>) returns a value that has each bit set to
+<code>1</code> where <em>one or both</em> of its arguments had that bit set to <code>1</code>. For
+example:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5        // 0b00000101
+let y: UInt8 = 14       // 0b00001110
+let z = x | y           // 0b00001111</code></pre>
+
+<p>Performing a bitwise OR operation with a value and <code>allZeros</code> always
+returns the same value.</p>
+
+<pre><code class="language-swift">print(x | .allZeros)    // 0b00000101
+// Prints &quot;5&quot;</code></pre>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func |(lhs: Self, rhs: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-tilde_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-tilde_">prefix func ~(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-tilde_"><div class="p">
+    <p>Returns the inverse of the bits set in the argument.</p>
+
+<p>The bitwise NOT operator (<code>~</code>) is a prefix operator that returns a value
+in which all the bits of its argument are flipped: Bits that are <code>1</code> in the
+argument are <code>0</code> in the result, and bits that are <code>0</code> in the argument
+are <code>1</code> in the result. This is equivalent to the inverse of a set. For
+example:</p>
+
+<pre><code class="language-swift">let x: UInt8 = 5        // 0b00000101
+let notX = ~x           // 0b11111010</code></pre>
+
+<p>Performing a bitwise NOT operation on <code>allZeros</code> returns a value with
+every bit set to <code>1</code>.</p>
+
+<pre><code class="language-swift">let allOnes = ~UInt8.allZeros   // 0b11111111</code></pre>
+
+<p><strong>Complexity:</strong> O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">prefix func ~(x: Self) -&gt; Self</code>
+    
+    
+</div></div>
+</div>
+
+

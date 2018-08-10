@@ -1,0 +1,70 @@
+---
+layout: "default"
+title: "JoinedIterator"
+description: "Swift documentation for 'JoinedIterator': An iterator that presents the elements of the sequences traversed."
+keywords: "JoinedIterator,struct,swift,documentation,next"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct JoinedIterator&lt;Base where Base : IteratorProtocol, Base.Element : Sequence&gt;</code></div>
+
+<div class="discussion comment">
+    <p>An iterator that presents the elements of the sequences traversed
+by a base iterator, concatenated using a given separator.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">IteratorProtocol</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-base_separator_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-base_separator_">init(<wbr>base:<wbr>separator:)</a><div class="comment collapse" id="comment-init-base_separator_"><div class="p">
+    <p>Creates an iterator that presents the elements of the sequences
+traversed by <code>base</code>, concatenated using <code>separator</code>.</p>
+
+<p><strong>Complexity:</strong> O(<code>separator.count</code>).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;Separator where Separator : Sequence, Separator.Iterator.Element == Base.Element.Iterator.Element&gt;(base: Base, separator: Separator)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-next">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-next">mutating func next()</a>
+        
+<div class="comment collapse" id="comment-func-next"><div class="p">
+    <p>Advances to the next element and returns it, or <code>nil</code> if no next element
+exists.</p>
+
+<p>Once <code>nil</code> has been returned, all subsequent calls return <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func next() -&gt; Base.Element.Iterator.Element?</code>
+    
+    
+</div></div>
+</div>
+
+

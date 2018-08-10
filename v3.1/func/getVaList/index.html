@@ -1,0 +1,31 @@
+---
+layout: "default"
+title: "getVaList"
+description: "Swift documentation for 'getVaList': Returns a CVaListPointer that is backed by autoreleased storage, built."
+keywords: "getVaList,func,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="declaration" id="func-getvalist_-cvararg">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-getvalist_-cvararg">func getVaList(<wbr>_: [CVarArg])</a>
+        
+<div class="comment collapse" id="comment-func-getvalist_-cvararg"><div class="p">
+    <p>Returns a <code>CVaListPointer</code> that is backed by autoreleased storage, built
+from the given array of arguments.</p>
+
+<p>You should prefer <code>withVaList(_:_:)</code> instead of this function. In some
+uses, such as in a <code>class</code> initializer, you may find that the
+language rules do not allow you to use <code>withVaList(_:_:)</code> as intended.</p>
+
+<ul><li>Parameters args: An array of arguments to convert to a C <code>va_list</code>
+pointer.
+<strong>Returns:</strong> The return value of the <code>body</code> closure parameter, if any.</li></ul>
+
+<p><strong>See Also:</strong> <code>withVaList(_:_:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func getVaList(_ args: [CVarArg]) -&gt; CVaListPointer</code>
+    
+    
+</div></div>
+</div>

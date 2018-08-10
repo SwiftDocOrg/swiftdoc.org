@@ -1,0 +1,48 @@
+---
+layout: "default"
+title: "type"
+description: "Swift documentation for 'type': Returns the dynamic type of a value."
+keywords: "type,func,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="declaration" id="func-type-type-metatype_-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-type-type-metatype_-type">func type&lt;Type, Metatype&gt;(<wbr>_: Type)</a>
+        
+<div class="comment collapse" id="comment-func-type-type-metatype_-type"><div class="p">
+    <p>Returns the dynamic type of a value.</p>
+
+<p><strong><code>of</code>:</strong>  The value to take the dynamic type of.
+<strong>Returns:</strong> The dynamic type, which will be a value of metatype type.</p>
+
+<p><strong>Remark:</strong> If the parameter is statically of a protocol or protocol
+  composition type, the result will be an <em>existential metatype</em>
+  (<code>P.Type</code> for a protocol <code>P</code>), and will represent the type of the value
+  inside the existential container with the same protocol conformances
+  as the value. Otherwise, the result will be a <em>concrete metatype</em>
+  (<code>T.Type</code> for a non-protocol type <code>T</code>, or <code>P.Protocol</code> for a protocol
+  <code>P</code>). Normally, this will do what you mean, but one wart to be aware
+  of is when you use <code>type(of:)</code> in a generic context with a type
+  parameter bound to a protocol type:</p>
+
+<p>  <code>
+  func foo&lt;T&gt;(x: T) -&gt; T.Type {
+    return type(of: x)
+  }
+  protocol P {}
+  func bar(x: P) {
+    foo(x: x) // Call foo with T == P
+  }
+  </code></p>
+
+<p>  since the call to <code>type(of:)</code> inside <code>foo</code> only sees <code>T</code> as a concrete
+  type, foo will end up returning <code>P.self</code> instead of the dynamic type
+  inside <code>x</code>. This can be worked around by writing <code>type(of: x as Any)</code>
+  to get the dynamic type inside <code>x</code> as an <code>Any.Type</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func type&lt;Type, Metatype&gt;(of: Type) -&gt; Metatype</code>
+    
+    
+</div></div>
+</div>

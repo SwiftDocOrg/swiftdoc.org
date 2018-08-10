@@ -1,0 +1,203 @@
+---
+layout: "default"
+title: "AnyHashable"
+description: "Swift documentation for 'AnyHashable': A type-erased hashable value."
+keywords: "AnyHashable,struct,swift,documentation,==,base,customMirror,debugDescription,description,hashValue"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct AnyHashable</code></div>
+
+<div class="discussion comment">
+    <p>A type-erased hashable value.</p>
+
+<p>The <code>AnyHashable</code> type forwards equality comparisons and hashing operations
+to an underlying hashable value, hiding its specific underlying type.</p>
+
+<p>You can store mixed-type keys in dictionaries and other collections that
+require <code>Hashable</code> conformance by wrapping mixed-type keys in
+<code>AnyHashable</code> instances:</p>
+
+<pre><code class="language-swift">let descriptions: [AnyHashable: Any] = [
+    AnyHashable(&quot;😄&quot;): &quot;emoji&quot;,
+    AnyHashable(42): &quot;an Int&quot;,
+    AnyHashable(Int8(43)): &quot;an Int8&quot;,
+    AnyHashable(Set([&quot;a&quot;, &quot;b&quot;])): &quot;a set of strings&quot;
+]
+print(descriptions[AnyHashable(42)]!)      // prints &quot;an Int&quot;
+print(descriptions[AnyHashable(43)])       // prints &quot;nil&quot;
+print(descriptions[AnyHashable(Int8(43))]!) // prints &quot;an Int8&quot;
+print(descriptions[AnyHashable(Set([&quot;a&quot;, &quot;b&quot;]))]!) // prints &quot;a set of strings&quot;</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">CustomDebugStringConvertible, CustomReflectable, CustomStringConvertible, Equatable, Hashable</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init_">init(<wbr>_:)</a><div class="comment collapse" id="comment-init_"><div class="p">
+    <p>Creates a type-erased hashable value that wraps the given instance.</p>
+
+<p>The following example creates two type-erased hashable values: <code>x</code> wraps
+an <code>Int</code> with the value 42, while <code>y</code> wraps a <code>UInt8</code> with the same
+numeric value. Because the underlying types of <code>x</code> and <code>y</code> are
+different, the two variables do not compare as equal despite having
+equal underlying values.</p>
+
+<pre><code class="language-swift">let x = AnyHashable(Int(42))
+let y = AnyHashable(UInt8(42))
+
+print(x == y)
+// Prints &quot;false&quot; because `Int` and `UInt8` are different types
+
+print(x == AnyHashable(Int(42)))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong><code>base</code>:</strong>  A hashable value to wrap.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;H where H : Hashable&gt;(_ base: H)</code>
+
+    </div></div>
+</div>
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-base_-any">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-base_-any">var base: Any</a><div class="comment collapse" id="comment-var-base_-any"><div class="p">
+    <p>The value wrapped by this instance.</p>
+
+<p>The <code>base</code> property can be cast back to its original type using one of
+the casting operators (<code>as?</code>, <code>as!</code>, or <code>as</code>).</p>
+
+<pre><code class="language-swift">let anyMessage = AnyHashable(&quot;Hello world!&quot;)
+if let unwrappedMessage = anyMessage.base as? String {
+    print(unwrappedMessage)
+}
+// Prints &quot;Hello world!&quot;</code></pre>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var base: Any { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-custommirror_-mirror">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-custommirror_-mirror">var customMirror: Mirror</a><div class="comment collapse" id="comment-var-custommirror_-mirror"><div class="p">
+    <p>The custom mirror for this instance.</p>
+
+<p>If this type has value semantics, the mirror should be unaffected by
+subsequent mutations of the instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customMirror: Mirror { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-debugdescription_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-debugdescription_-string">var debugDescription: String</a><div class="comment collapse" id="comment-var-debugdescription_-string"><div class="p">
+    <p>A textual representation of this instance, suitable for debugging.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var debugDescription: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of this instance.</p>
+
+<p>Instead of accessing this property directly, convert an instance of any
+type to a string by using the <code>String(describing:)</code> initializer. For
+example:</p>
+
+<pre><code class="language-swift">struct Point: CustomStringConvertible {
+    let x: Int, y: Int
+
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(describing: p)
+print(s)
+// Prints &quot;(21, 30)&quot;</code></pre>
+
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type&#39;s <code>description</code> property.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="var-hashvalue_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-hashvalue_-int">var hashValue: Int</a><div class="comment collapse" id="comment-var-hashvalue_-int"><div class="p">
+    <p>The hash value.</p>
+
+<p>Hash values are not guaranteed to be equal across different executions of
+your program. Do not save hash values to use during a future execution.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var hashValue: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether two type-erased hashable
+instances wrap the same type and value.</p>
+
+<p>Two instances of <code>AnyHashable</code> compare as equal if and only if the
+underlying types have the same conformance to the <code>Equatable</code> protocol
+and the underlying values compare as equal.</p>
+
+<p>The following example creates two type-erased hashable values: <code>x</code> wraps
+an <code>Int</code> with the value 42, while <code>y</code> wraps a <code>UInt8</code> with the same
+numeric value. Because the underlying types of <code>x</code> and <code>y</code> are
+different, the two variables do not compare as equal despite having
+equal underlying values.</p>
+
+<pre><code class="language-swift">let x = AnyHashable(Int(42))
+let y = AnyHashable(UInt8(42))
+
+print(x == y)
+// Prints &quot;false&quot; because `Int` and `UInt8` are different types
+
+print(x == AnyHashable(Int(42)))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A type-erased hashable value.
+  <strong>rhs:</strong> Another type-erased hashable value.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: AnyHashable, rhs: AnyHashable) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+
+

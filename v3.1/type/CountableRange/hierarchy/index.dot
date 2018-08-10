@@ -1,0 +1,24 @@
+strict digraph "CountableRange<Bound where Bound : Comparable, Bound : _Strideable, Bound.Stride : SignedInteger> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BidirectionalCollection" [URL="/protocol/BidirectionalCollection/hierarchy/"]
+    "Collection" [URL="/protocol/Collection/hierarchy/"]
+    "CountableRange<Bound where Bound : Comparable, Bound : _Strideable, Bound.Stride : SignedInteger>" [URL="/type/CountableRange/", style="filled", fillcolor="#ee543d", color="#ee543d"]
+    "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/hierarchy/"]
+    "CustomReflectable" [URL="/protocol/CustomReflectable/hierarchy/"]
+    "CustomStringConvertible" [URL="/protocol/CustomStringConvertible/hierarchy/"]
+    "Equatable" [URL="/protocol/Equatable/hierarchy/"]
+    "RandomAccessCollection" [URL="/protocol/RandomAccessCollection/hierarchy/"]
+    "Sequence" [URL="/protocol/Sequence/hierarchy/"]    "RandomAccessCollection" -> "CountableRange<Bound where Bound : Comparable, Bound : _Strideable, Bound.Stride : SignedInteger>"
+    "CustomStringConvertible" -> "CountableRange<Bound where Bound : Comparable, Bound : _Strideable, Bound.Stride : SignedInteger>"
+    "CustomDebugStringConvertible" -> "CountableRange<Bound where Bound : Comparable, Bound : _Strideable, Bound.Stride : SignedInteger>"
+    "CustomReflectable" -> "CountableRange<Bound where Bound : Comparable, Bound : _Strideable, Bound.Stride : SignedInteger>"
+    "Equatable" -> "CountableRange<Bound where Bound : Comparable, Bound : _Strideable, Bound.Stride : SignedInteger>"
+    "BidirectionalCollection" -> "RandomAccessCollection"
+    "Collection" -> "BidirectionalCollection"
+    "Sequence" -> "Collection"
+    subgraph Types {
+        rank = max; "CountableRange<Bound where Bound : Comparable, Bound : _Strideable, Bound.Stride : SignedInteger>";
+    }
+}

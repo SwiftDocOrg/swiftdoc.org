@@ -1,0 +1,78 @@
+---
+layout: "default"
+title: "_SequenceWrapper"
+description: "Swift documentation for '_SequenceWrapper': A type that is just a wrapper over some base Sequence."
+keywords: "_SequenceWrapper,protocol,swift,documentation,Base,Iterator"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol _SequenceWrapper</code></div>
+
+<div class="discussion comment">
+    <p>A type that is just a wrapper over some base Sequence</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Base : Sequence</code>
+</div>
+<div class="declaration">
+<code class="language-swift">Iterator : IteratorProtocol = Self.Base.Iterator</code>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+
+<h4>Where Base.Iterator == Iterator</h4>
+
+
+<div class="declaration" id="base-iterator-iterator-var-underestimatedcount_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-base-iterator-iterator-var-underestimatedcount_-int">var underestimatedCount: Int</a><div class="comment collapse" id="comment-base-iterator-iterator-var-underestimatedcount_-int"><div class="p">
+    <p>Returns a value less than or equal to the number of elements in
+the sequence, nondestructively.</p>
+
+<p><strong>Complexity:</strong> O(<em>n</em>), where <em>n</em> is the length of the sequence if the
+  sequence is a collection or wraps a collection; otherwise, O(1).</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var underestimatedCount: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+

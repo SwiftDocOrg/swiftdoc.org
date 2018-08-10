@@ -1,0 +1,93 @@
+---
+layout: "default"
+title: "Operator: ~="
+description: "Swift documentation for the '~=' operator."
+root: "/v3.1"
+---
+
+<code class="language-swift"> operator ~= {
+    associativity 
+    precedence 
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-tildeeq-t-where-t_-equatable_-t-b_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-tildeeq-t-where-t_-equatable_-t-b_-t">func <wbr>~= &lt;T where T : Equatable&gt;(<wbr>_:<wbr> T, b: T)</a>
+        
+<div class="comment collapse" id="comment-func-tildeeq-t-where-t_-equatable_-t-b_-t"><div class="p">
+    <p>Returns a Boolean value indicating whether two arguments match by value
+equality.</p>
+
+<p>The pattern-matching operator (<code>~=</code>) is used internally in <code>case</code>
+statements for pattern matching. When you match against an <code>Equatable</code>
+value in a <code>case</code> statement, this operator is called behind the scenes.</p>
+
+<pre><code class="language-swift">let weekday = 3
+let lunch: String
+switch weekday {
+case 3:
+    lunch = &quot;Taco Tuesday!&quot;
+default:
+    lunch = &quot;Pizza again.&quot;
+}
+// lunch == &quot;Taco Tuesday!&quot;</code></pre>
+
+<p>In this example, the <code>case 3</code> expression uses this pattern-matching
+operator to test whether <code>weekday</code> is equal to the value <code>3</code>.</p>
+
+<p><strong>Note:</strong> In most cases, you should use the equal-to operator (<code>==</code>) to test
+  whether two instances are equal. The pattern-matching operator is
+  primarily intended to enable <code>case</code> statement pattern matching.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ~=&lt;T where T : Equatable&gt;(a: T, b: T) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-tildeeq-t_-optionalnilcomparisontype-rhs_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-tildeeq-t_-optionalnilcomparisontype-rhs_-t">func ~= &lt;T&gt;(<wbr>_:<wbr> _OptionalNilComparisonType, rhs: T?)</a>
+        
+<div class="comment collapse" id="comment-func-tildeeq-t_-optionalnilcomparisontype-rhs_-t"><div class="p">
+    <p>Returns a Boolean value indicating whether an argument matches <code>nil</code>.</p>
+
+<p>You can use the pattern-matching operator (<code>~=</code>) to test whether an
+optional instance is <code>nil</code> even when the wrapped value&#39;s type does not
+conform to the <code>Equatable</code> protocol. The pattern-matching operator is used
+internally in <code>case</code> statements for pattern matching.</p>
+
+<p>The following example declares the <code>stream</code> variable as an optional
+instance of a hypothetical <code>DataStream</code> type, and then uses a <code>switch</code>
+statement to determine whether the stream is <code>nil</code> or has a configured
+value. When evaluating the <code>nil</code> case of the <code>switch</code> statement, this
+operator is called behind the scenes.</p>
+
+<pre><code class="language-swift">var stream: DataStream? = nil
+switch stream {
+case nil:
+    print(&quot;No data stream is configured.&quot;)
+case let x?:
+    print(&quot;The data stream has \(x.availableBytes) bytes available.&quot;)
+}
+// Prints &quot;No data stream is configured.&quot;</code></pre>
+
+<p><strong>Note:</strong> To test whether an instance is <code>nil</code> in an <code>if</code> statement, use the
+  equal-to operator (<code>==</code>) instead of the pattern-matching operator. The
+  pattern-matching operator is primarily intended to enable <code>case</code>
+  statement pattern matching.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A <code>nil</code> literal.
+  <strong>rhs:</strong> A value to match against <code>nil</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ~=&lt;T&gt;(lhs: _OptionalNilComparisonType, rhs: T?) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>

@@ -1,0 +1,22 @@
+strict digraph "UnsafeMutableBufferPointer<Element> - Type Hierarchy - SwiftDoc.org" {
+    pad="0.1,0.8"
+    node [shape=box, style="filled,rounded", color="#999999", fillcolor="#999999", fontcolor=white, fontname=Helvetica, fontnames="Helvetica,sansserif", fontsize=12, margin="0.07,0.05", height="0.3"]
+    edge [color="#cccccc"]
+    "BidirectionalCollection" [URL="/protocol/BidirectionalCollection/hierarchy/"]
+    "Collection" [URL="/protocol/Collection/hierarchy/"]
+    "CustomDebugStringConvertible" [URL="/protocol/CustomDebugStringConvertible/hierarchy/"]
+    "MutableCollection" [URL="/protocol/MutableCollection/hierarchy/"]
+    "RandomAccessCollection" [URL="/protocol/RandomAccessCollection/hierarchy/"]
+    "Sequence" [URL="/protocol/Sequence/hierarchy/"]
+    "UnsafeMutableBufferPointer<Element>" [URL="/type/UnsafeMutableBufferPointer/", style="filled", fillcolor="#ee543d", color="#ee543d"]    "MutableCollection" -> "UnsafeMutableBufferPointer<Element>"
+    "RandomAccessCollection" -> "UnsafeMutableBufferPointer<Element>"
+    "CustomDebugStringConvertible" -> "UnsafeMutableBufferPointer<Element>"
+    "Collection" -> "MutableCollection"
+    "Sequence" -> "Collection"
+    "BidirectionalCollection" -> "RandomAccessCollection"
+    "Collection" -> "BidirectionalCollection"
+    "Sequence" -> "Collection"
+    subgraph Types {
+        rank = max; "UnsafeMutableBufferPointer<Element>";
+    }
+}

@@ -1,0 +1,712 @@
+---
+layout: "default"
+title: "UnsignedInteger_"
+description: "Swift documentation for protocol 'UnsignedInteger_'."
+keywords: "UnsignedInteger_,protocol,swift,documentation,<,<=,==,>,>=,add,adding,divide,divided,formRemainder,isEqual,isLess,multiplied,multiply,quotientAndRemainder,remainder,signum,subtract,subtracting,word,magnitude,bitWidth,isSigned,minimumSignedRepresentationBitWidth,description,Magnitude,IntegerLiteralType"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol UnsignedInteger_</code></div>
+
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">Arithmetic, BinaryInteger, Comparable, CustomStringConvertible, Equatable, ExpressibleByIntegerLiteral</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Magnitude : BinaryInteger</code>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">IntegerLiteralType</code>
+<div class="comment">
+    <p>A type that represents an integer literal.</p>
+
+<p>The standard library integer and floating-point types are all valid types
+for <code>IntegerLiteralType</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration inherited" id="init-t-where-t_-binaryinteger_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-t-where-t_-binaryinteger_-t"><wbr>init&lt;T where T : BinaryInteger&gt;(<wbr>_: T)</a><div class="comment collapse" id="comment-init-t-where-t_-binaryinteger_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T where T : BinaryInteger&gt;(_ source: T)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-t-where-t_-floatingpoint_-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-t-where-t_-floatingpoint_-t"><wbr>init&lt;T where T : FloatingPoint&gt;(<wbr>_: T)</a><div class="comment collapse" id="comment-init-t-where-t_-floatingpoint_-t"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T where T : FloatingPoint&gt;(_ source: T)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-clamping_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-clamping_">init(<wbr>clamping:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-clamping_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T where T : BinaryInteger&gt;(clamping source: T)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-extendingortruncating_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-extendingortruncating_">init(<wbr>extendingOrTruncating:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-extendingortruncating_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T where T : BinaryInteger&gt;(extendingOrTruncating source: T)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-exactly_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-exactly_">init?(<wbr>exactly:)</a><div class="comment collapse" id="comment-init-exactly_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?&lt;T where T : FloatingPoint&gt;(exactly source: T)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="init-integerliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-integerliteral_">init(<wbr>integerLiteral:)</a><div class="comment collapse" id="comment-init-integerliteral_"><div class="p">
+    <p>Creates an instance initialized to the specified integer value.</p>
+
+<p>Do not call this initializer directly. Instead, initialize a variable or
+constant using an integer literal. For example:</p>
+
+<pre><code class="language-swift">let x = 23</code></pre>
+
+<p>In this example, the assignment to the <code>x</code> constant calls this integer
+literal initializer behind the scenes.</p>
+
+<p><strong><code>value</code>:</strong>  The value to create.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(integerLiteral value: Self.IntegerLiteralType)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/ExpressibleByIntegerLiteral/"><code>ExpressibleByIntegerLiteral</code></a>
+        </div></div>
+</div>
+
+<h3>Static Variables</h3>
+<div class="declaration inherited" id="static-var-issigned_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-issigned_-bool">static var isSigned: Bool</a><div class="comment collapse" id="comment-static-var-issigned_-bool"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var isSigned: Bool { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+
+<h3>Instance Variables</h3>
+<div class="declaration inherited" id="var-magnitude_-self-magnitude">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-magnitude_-self-magnitude">var magnitude: Self.Magnitude</a><div class="comment collapse" id="comment-var-magnitude_-self-magnitude"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var magnitude: Self.Magnitude { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-bitwidth_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-bitwidth_-int">var bitWidth: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-bitwidth_-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var bitWidth: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-minimumsignedrepresentationbitwidth_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-minimumsignedrepresentationbitwidth_-int">var minimumSignedRepresentationBitWidth: Int</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-minimumsignedrepresentationbitwidth_-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var minimumSignedRepresentationBitWidth: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-description_-string">var description: String</a><div class="comment collapse" id="comment-var-description_-string"><div class="p">
+    <p>A textual representation of this instance.</p>
+
+<p>Instead of accessing this property directly, convert an instance of any
+type to a string by using the <code>String(describing:)</code> initializer. For
+example:</p>
+
+<pre><code class="language-swift">struct Point: CustomStringConvertible {
+    let x: Int, y: Int
+
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(describing: p)
+print(s)
+// Prints &quot;(21, 30)&quot;</code></pre>
+
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type&#39;s <code>description</code> property.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/CustomStringConvertible/"><code>CustomStringConvertible</code></a>
+        </div></div>
+</div>
+
+
+
+<h3>Instance Methods</h3>
+<div class="declaration inherited" id="func-lt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lt_rhs_">func &lt;(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-lt_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-lteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-lteq_rhs_">func &lt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-lteq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is less than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &lt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-eqeq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeq_rhs_">func ==(<wbr>_:<wbr>rhs:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-eqeq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ==(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Equatable/"><code>Equatable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gt_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gt_rhs_">func &gt;(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gt_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-gteq_rhs_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-gteq_rhs_">func &gt;=(<wbr>_:<wbr>rhs:)</a>
+        
+<div class="comment collapse" id="comment-func-gteq_rhs_"><div class="p">
+    <p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A value to compare.
+  <strong>rhs:</strong> Another value to compare.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func &gt;=(lhs: Self, rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Comparable/"><code>Comparable</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-add_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-add_">mutating func add(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-add_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func add(_ rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-adding_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-adding_">func adding(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-adding_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func adding(_ rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-divide-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-divide-by_">mutating func divide(<wbr>by:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-divide-by_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func divide(by rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-divided-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-divided-by_">func divided(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-divided-by_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func divided(by rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-formremainder-dividingby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-formremainder-dividingby_">mutating func formRemainder(<wbr>dividingBy:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-formremainder-dividingby_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func formRemainder(dividingBy rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-isequal-to_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isequal-to_">func isEqual(<wbr>to:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-isequal-to_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isEqual(to rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-isless-than_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isless-than_">func isLess(<wbr>than:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-isless-than_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isLess(than rhs: Self) -&gt; Bool</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-multiplied-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-multiplied-by_">func multiplied(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func-multiplied-by_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func multiplied(by rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-multiply-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-multiply-by_">mutating func multiply(<wbr>by:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-multiply-by_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func multiply(by rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-quotientandremainder-dividingby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-quotientandremainder-dividingby_">func quotientAndRemainder(<wbr>dividingBy:)</a>
+        
+<div class="comment collapse" id="comment-func-quotientandremainder-dividingby_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func quotientAndRemainder(dividingBy rhs: Self) -&gt; (Self, Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-remainder-dividingby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-remainder-dividingby_">func remainder(<wbr>dividingBy:)</a>
+        
+<div class="comment collapse" id="comment-func-remainder-dividingby_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func remainder(dividingBy rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-signum">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-signum">func signum()</a>
+        
+<div class="comment collapse" id="comment-func-signum"><div class="p">
+    <p>Returns <code>-1</code> if the value of <code>self</code> is negative, <code>1</code> if it&#39;s positive,
+<code>0</code> otherwise.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func signum() -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subtract_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subtract_">mutating func subtract(<wbr>_:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-subtract_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">mutating func subtract(_ rhs: Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-subtracting_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-subtracting_">func subtracting(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func-subtracting_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func subtracting(_ rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func-word-at_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-word-at_">func word(<wbr>at:)</a>
+     <span class="required">Required</span>    
+<div class="comment collapse" id="comment-func-word-at_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func word(at n: Int) -&gt; UInt</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+
+
+<h3>Default Implementations</h3>
+
+
+
+
+<div class="declaration inherited" id="-init">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init">init()</a><div class="comment collapse" id="comment--init"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init()</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        ,    <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="-init_">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init_">init(<wbr>_:)</a><div class="comment collapse" id="comment--init_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init&lt;T where T : BinaryInteger&gt;(_ source: T)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/UnsignedInteger_/"><code>UnsignedInteger_</code></a>
+        ,    <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration inherited" id="-init-integerliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init-integerliteral_">init(<wbr>integerLiteral:)</a><div class="comment collapse" id="comment--init-integerliteral_"><div class="p">
+    <p>Create an instance initialized to <code>value</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(integerLiteral value: Self)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        ,    <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>
+        ,    <a href="../../protocol/ExpressibleByIntegerLiteral/"><code>ExpressibleByIntegerLiteral</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="-init-exactly_">
+<a class="toggle-link" data-toggle="collapse" href="#comment--init-exactly_">init?(<wbr>exactly:)</a><div class="comment collapse" id="comment--init-exactly_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init?&lt;T where T : BinaryInteger&gt;(exactly source: T)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/UnsignedInteger_/"><code>UnsignedInteger_</code></a>
+        ,    <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+
+<div class="declaration" id="-static-var-issigned_-bool">
+<a class="toggle-link" data-toggle="collapse" href="#comment--static-var-issigned_-bool">static var isSigned: Bool</a><div class="comment collapse" id="comment--static-var-issigned_-bool"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var isSigned: Bool { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="-static-var-max_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment--static-var-max_-self">static var max: Self</a><div class="comment collapse" id="comment--static-var-max_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var max: Self { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="-static-var-min_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment--static-var-min_-self">static var min: Self</a><div class="comment collapse" id="comment--static-var-min_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var min: Self { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="-var-countrepresentedwords_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment--var-countrepresentedwords_-int">var countRepresentedWords: Int</a><div class="comment collapse" id="comment--var-countrepresentedwords_-int"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var countRepresentedWords: Int { get }</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>
+        </div></div>
+</div>
+<div class="declaration" id="-var-description_-string">
+<a class="toggle-link" data-toggle="collapse" href="#comment--var-description_-string">var description: String</a><div class="comment collapse" id="comment--var-description_-string"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var description: String { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="-var-magnitude_-self">
+<a class="toggle-link" data-toggle="collapse" href="#comment--var-magnitude_-self">var magnitude: Self</a><div class="comment collapse" id="comment--var-magnitude_-self"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var magnitude: Self { get }</code>
+
+    </div></div>
+</div>
+
+
+<div class="declaration inherited" id="func--adding_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--adding_">func adding(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--adding_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func adding(_ rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--divided-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--divided-by_">func divided(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func--divided-by_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func divided(by rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--multiplied-by_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--multiplied-by_">func multiplied(<wbr>by:)</a>
+        
+<div class="comment collapse" id="comment-func--multiplied-by_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func multiplied(by rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--quotientandremainder-dividingby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--quotientandremainder-dividingby_">func quotientAndRemainder(<wbr>dividingBy:)</a>
+        
+<div class="comment collapse" id="comment-func--quotientandremainder-dividingby_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func quotientAndRemainder(dividingBy rhs: Self) -&gt; (Self, Self)</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--remainder-dividingby_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--remainder-dividingby_">func remainder(<wbr>dividingBy:)</a>
+        
+<div class="comment collapse" id="comment-func--remainder-dividingby_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func remainder(dividingBy rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--signum">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--signum">func signum()</a>
+        
+<div class="comment collapse" id="comment-func--signum"><div class="p">
+    <p>Returns <code>-1</code> if the value of <code>self</code> is negative, <code>1</code> if it&#39;s positive,
+<code>0</code> otherwise.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func signum() -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>    
+</div></div>
+</div>
+<div class="declaration inherited" id="func--subtracting_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func--subtracting_">func subtracting(<wbr>_:)</a>
+        
+<div class="comment collapse" id="comment-func--subtracting_"><div class="p">
+    
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func subtracting(_ rhs: Self) -&gt; Self</code>
+    
+        <h4>Declared In</h4>
+        <a href="../../protocol/BinaryInteger/"><code>BinaryInteger</code></a>,    <a href="../../protocol/Arithmetic/"><code>Arithmetic</code></a>    
+</div></div>
+</div>
+
+
+
+
+

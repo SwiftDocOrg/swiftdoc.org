@@ -1,0 +1,60 @@
+---
+layout: "default"
+title: "CVarArg"
+description: "Swift documentation for 'CVarArg': Instances of conforming types can be encoded, and appropriately."
+keywords: "CVarArg,protocol,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CVarArg</code></div>
+
+<div class="discussion comment">
+    <p>Instances of conforming types can be encoded, and appropriately
+passed, as elements of a C <code>va_list</code>.</p>
+
+<p>This protocol is useful in presenting C &quot;varargs&quot; APIs natively in
+Swift.  It only works for APIs that have a <code>va_list</code> variant, so
+for example, it isn&#39;t much use if all you have is:</p>
+
+<p>~~~ c
+int c_api(int n, ...)
+~~~</p>
+
+<p>Given a version like this, though,</p>
+
+<p>~~~ c
+int c<em>api(int, va</em>list arguments)
+~~~</p>
+
+<p>you can write:</p>
+
+<pre><code class="language-swift">func swiftAPI(_ x: Int, arguments: CVarArg...) -&gt; Int {
+  return withVaList(arguments) { c_api(x, $0) }
+}</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+
+

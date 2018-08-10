@@ -1,0 +1,37 @@
+---
+layout: "default"
+title: "withUnsafeMutablePointer"
+description: "Swift documentation for 'withUnsafeMutablePointer': Invokes the given closure with a mutable pointer to the given argument."
+keywords: "withUnsafeMutablePointer,func,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="declaration" id="func-withunsafemutablepointer-t-result-to_-inout-t_-unsafemutablepointer-t-throws-result">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafemutablepointer-t-result-to_-inout-t_-unsafemutablepointer-t-throws-result">func withUnsafeMutablePointer&lt;T, Result&gt;(<wbr>to:<wbr> inout T, _: (UnsafeMutablePointer&lt;T&gt;) throws -&gt; Result)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafemutablepointer-t-result-to_-inout-t_-unsafemutablepointer-t-throws-result"><div class="p">
+    <p>Invokes the given closure with a mutable pointer to the given argument.</p>
+
+<p>The <code>withUnsafeMutablePointer(to:_:)</code> function is useful for calling
+Objective-C APIs that take in/out parameters (and default-constructible
+out parameters) by pointer.</p>
+
+<p>The pointer argument to <code>body</code> is valid only for the lifetime of the
+closure. Do not escape it from the closure for later use.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>arg:</strong> An instance to temporarily use via pointer.
+  <strong>body:</strong> A closure that takes a mutable pointer to <code>arg</code> as its sole
+    argument. If the closure has a return value, it is used as the return
+    value of the <code>withUnsafeMutablePointer(to:_:)</code> function. The pointer
+    argument is valid only for the duration of the closure&#39;s execution.
+<strong>Returns:</strong> The return value of the <code>body</code> closure, if any.</p>
+
+<p><strong>See Also:</strong> <code>withUnsafePointer(to:_:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withUnsafeMutablePointer&lt;T, Result&gt;(to arg: inout T, _ body: (UnsafeMutablePointer&lt;T&gt;) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+    
+</div></div>
+</div>

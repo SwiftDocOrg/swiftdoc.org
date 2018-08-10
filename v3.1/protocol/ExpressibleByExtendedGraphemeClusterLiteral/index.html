@@ -1,0 +1,110 @@
+---
+layout: "default"
+title: "ExpressibleByExtendedGraphemeClusterLiteral"
+description: "Swift documentation for 'ExpressibleByExtendedGraphemeClusterLiteral': A type that can be initialized with a string literal containing a single."
+keywords: "ExpressibleByExtendedGraphemeClusterLiteral,protocol,swift,documentation,ExtendedGraphemeClusterLiteralType,UnicodeScalarLiteralType"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol ExpressibleByExtendedGraphemeClusterLiteral</code></div>
+
+<div class="discussion comment">
+    <p>A type that can be initialized with a string literal containing a single
+extended grapheme cluster.</p>
+
+<p>An <em>extended grapheme cluster</em> is a group of one or more Unicode code
+points that approximates a single user-perceived character.  Many
+individual characters, such as &quot;é&quot;, &quot;김&quot;, and &quot;🇮🇳&quot;, can be made up of
+multiple Unicode code points. These code points are combined by Unicode&#39;s
+boundary algorithms into extended grapheme clusters.</p>
+
+<p>The <code>String</code>, <code>StaticString</code>, and <code>Character</code> types conform to the
+<code>ExpressibleByExtendedGraphemeClusterLiteral</code> protocol. You can initialize a
+variable or constant of any of these types using a string literal that
+holds a single character.</p>
+
+<pre><code class="language-swift">let snowflake: Character = &quot;❄︎&quot;
+print(snowflake)
+// Prints &quot;❄︎&quot;</code></pre>
+
+<h1>Conforming to ExpressibleByExtendedGraphemeClusterLiteral</h1>
+
+<p>To add <code>ExpressibleByExtendedGraphemeClusterLiteral</code> conformance to your
+custom type, implement the required initializer.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<code class="inherits">ExpressibleByUnicodeScalarLiteral</code>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">ExtendedGraphemeClusterLiteralType</code>
+<div class="comment">
+    <p>A type that represents an extended grapheme cluster literal.</p>
+
+<p>Valid types for <code>ExtendedGraphemeClusterLiteralType</code> are <code>Character</code>,
+<code>String</code>, and <code>StaticString</code>.</p>
+</div>
+</div>
+<div class="declaration inherited">
+<code class="language-swift">UnicodeScalarLiteralType</code>
+<div class="comment">
+    <p>A type that represents a Unicode scalar literal.</p>
+
+<p>Valid types for <code>UnicodeScalarLiteralType</code> are <code>UnicodeScalar</code>,
+<code>String</code>, and <code>StaticString</code>.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-extendedgraphemeclusterliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-extendedgraphemeclusterliteral_">init(<wbr>extendedGraphemeClusterLiteral:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-extendedgraphemeclusterliteral_"><div class="p">
+    <p>Creates an instance initialized to the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value of the new instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(extendedGraphemeClusterLiteral value: Self.ExtendedGraphemeClusterLiteralType)</code>
+
+    </div></div>
+</div>
+<div class="declaration inherited" id="init-unicodescalarliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-unicodescalarliteral_">init(<wbr>unicodeScalarLiteral:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-unicodescalarliteral_"><div class="p">
+    <p>Creates an instance initialized to the given value.</p>
+
+<p><strong><code>value</code>:</strong>  The value of the new instance.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(unicodeScalarLiteral value: Self.UnicodeScalarLiteralType)</code>
+
+        <h4>Declared In</h4>
+            <a href="../../protocol/ExpressibleByUnicodeScalarLiteral/"><code>ExpressibleByUnicodeScalarLiteral</code></a>
+        </div></div>
+</div>
+
+
+
+
+
+
+

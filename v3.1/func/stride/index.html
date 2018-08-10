@@ -1,0 +1,38 @@
+---
+layout: "default"
+title: "stride"
+description: "Swift documentation for 'stride': Returns the sequence of values (self, self + stride, `self +."
+keywords: "stride,func,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="declaration" id="func-stride-t-where-t_-strideable-from_-t-to_-t-by_-t-stride">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride-t-where-t_-strideable-from_-t-to_-t-by_-t-stride">func <wbr>stride&lt;T where T : Strideable&gt;(<wbr>from:<wbr> T, to:<wbr> T, by: T.Stride)</a>
+        
+<div class="comment collapse" id="comment-func-stride-t-where-t_-strideable-from_-t-to_-t-by_-t-stride"><div class="p">
+    <p>Returns the sequence of values (<code>self</code>, <code>self + stride</code>, <code>self +
+2 * stride</code>, ... <em>last</em>) where <em>last</em> is the last value in the
+progression that is less than <code>end</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func stride&lt;T where T : Strideable&gt;(from start: T, to end: T, by stride: T.Stride) -&gt; StrideTo&lt;T&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-stride-t-where-t_-strideable-from_-t-through_-t-by_-t-stride">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride-t-where-t_-strideable-from_-t-through_-t-by_-t-stride">func <wbr>stride&lt;T where T : Strideable&gt;(<wbr>from:<wbr> T, through:<wbr> T, by: T.Stride)</a>
+        
+<div class="comment collapse" id="comment-func-stride-t-where-t_-strideable-from_-t-through_-t-by_-t-stride"><div class="p">
+    <p>Returns the sequence of values (<code>self</code>, <code>self + stride</code>, <code>self +
+2 * stride</code>, ... <em>last</em>) where <em>last</em> is the last value in the
+progression less than or equal to <code>end</code>.</p>
+
+<p><strong>Note:</strong> There is no guarantee that <code>end</code> is an element of the sequence.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func stride&lt;T where T : Strideable&gt;(from start: T, through end: T, by stride: T.Stride) -&gt; StrideThrough&lt;T&gt;</code>
+    
+    
+</div></div>
+</div>

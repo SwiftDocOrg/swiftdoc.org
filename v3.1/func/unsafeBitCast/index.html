@@ -1,0 +1,44 @@
+---
+layout: "default"
+title: "unsafeBitCast"
+description: "Swift documentation for 'unsafeBitCast': Returns the bits of the given instance, interpreted as having the specified."
+keywords: "unsafeBitCast,func,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="declaration" id="func-unsafebitcast-t-u_-t-to_-u-type">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-unsafebitcast-t-u_-t-to_-u-type">func unsafeBitCast&lt;T, U&gt;(<wbr>_:<wbr> T, to: U.Type)</a>
+        
+<div class="comment collapse" id="comment-func-unsafebitcast-t-u_-t-to_-u-type"><div class="p">
+    <p>Returns the bits of the given instance, interpreted as having the specified
+type.</p>
+
+<p>Only use this function to convert the instance passed as <code>x</code> to a
+layout-compatible type when the conversion is not possible through other
+means. Common conversions that are supported by the standard library
+include the following:</p>
+
+<ul><li>To convert an integer value from one type to another, use an initializer
+or the <code>numericCast(_:)</code> function.</li><li>To perform a bitwise conversion of an integer value to a different type,
+use an <code>init(bitPattern:)</code> or <code>init(truncatingBitPattern:)</code> initializer.</li><li>To convert between a pointer and an integer value with that bit pattern,
+or vice versa, use the <code>init(bitPattern:)</code> initializer for the
+destination type.</li><li>To perform a reference cast, use the casting operators (<code>as</code>, <code>as!</code>, or
+<code>as?</code>) or the <code>unsafeDowncast(_:to:)</code> function. Do not use
+<code>unsafeBitCast(_:to:)</code> with class or pointer types; doing so may
+introduce undefined behavior.</li></ul>
+
+<p><strong>Warning:</strong> Calling this function breaks the guarantees of Swift&#39;s type
+  system; use with extreme care.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>x:</strong> The instance to cast to <code>type</code>.
+  <strong>type:</strong> The type to cast <code>x</code> to. <code>type</code> and the type of <code>x</code> must have the
+    same size of memory representation and compatible memory layout.
+<strong>Returns:</strong> A new instance of type <code>U</code>, cast from <code>x</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func unsafeBitCast&lt;T, U&gt;(_ x: T, to type: U.Type) -&gt; U</code>
+    
+    
+</div></div>
+</div>

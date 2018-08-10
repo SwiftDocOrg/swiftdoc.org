@@ -1,0 +1,36 @@
+---
+layout: "default"
+title: "withUnsafeBytes"
+description: "Swift documentation for 'withUnsafeBytes': Invokes the given closure with a buffer pointer covering the raw bytes of."
+keywords: "withUnsafeBytes,func,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="declaration" id="func-withunsafebytes-t-result-of_-inout-t_-unsaferawbufferpointer-throws-result">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafebytes-t-result-of_-inout-t_-unsaferawbufferpointer-throws-result">func withUnsafeBytes&lt;T, Result&gt;(<wbr>of:<wbr> inout T, _: (UnsafeRawBufferPointer) throws -&gt; Result)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafebytes-t-result-of_-inout-t_-unsaferawbufferpointer-throws-result"><div class="p">
+    <p>Invokes the given closure with a buffer pointer covering the raw bytes of
+the given argument.</p>
+
+<p>The buffer pointer argument to the <code>body</code> closure provides a collection
+interface to the raw bytes of <code>arg</code>. The buffer is the size of the
+instance passed as <code>arg</code> and does not include any remote storage.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>arg:</strong> An instance to temporarily access through a raw buffer pointer.
+  <strong>body:</strong> A closure that takes a raw buffer pointer to the bytes of <code>arg</code>
+    as its sole argument. If the closure has a return value, it is used as
+    the return value of the <code>withUnsafeBytes(of:_:)</code> function. The buffer
+    pointer argument is valid only for the duration of the closure&#39;s
+    execution.
+<strong>Returns:</strong> The return value of the <code>body</code> closure, if any.</p>
+
+<p><strong>See Also:</strong> <code>withUnsafePointer(to:_:)</code>, <code>withUnsafeMutableBytes(of:_:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withUnsafeBytes&lt;T, Result&gt;(of arg: inout T, _ body: (UnsafeRawBufferPointer) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+    
+</div></div>
+</div>

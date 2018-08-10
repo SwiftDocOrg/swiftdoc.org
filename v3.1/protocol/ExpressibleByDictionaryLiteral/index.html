@@ -1,0 +1,127 @@
+---
+layout: "default"
+title: "ExpressibleByDictionaryLiteral"
+description: "Swift documentation for 'ExpressibleByDictionaryLiteral': A type that can be initialized using a dictionary literal."
+keywords: "ExpressibleByDictionaryLiteral,protocol,swift,documentation,Key,Value"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol ExpressibleByDictionaryLiteral</code></div>
+
+<div class="discussion comment">
+    <p>A type that can be initialized using a dictionary literal.</p>
+
+<p>A dictionary literal is a simple way of writing a list of key-value pairs.
+You write each key-value pair with a colon (<code>:</code>) separating the key and
+the value. The dictionary literal is made up of one or more key-value
+pairs, separated by commas and surrounded with square brackets.</p>
+
+<p>To declare a dictionary, assign a dictionary literal to a variable or
+constant:</p>
+
+<pre><code class="language-swift">let countryCodes = [&quot;BR&quot;: &quot;Brazil&quot;, &quot;GH&quot;: &quot;Ghana&quot;,
+                    &quot;JP&quot;: &quot;Japan&quot;, &quot;US&quot;: &quot;United States&quot;]
+// &#39;countryCodes&#39; has type [String: String]
+
+print(countryCodes[&quot;BR&quot;]!)
+// Prints &quot;Brazil&quot;</code></pre>
+
+<p>When the context provides enough type information, you can use a special
+form of the dictionary literal, square brackets surrounding a single
+colon, to initialize an empty dictionary.</p>
+
+<pre><code class="language-swift">var frequencies: [String: Int] = [:]
+print(frequencies.count)
+// Prints &quot;0&quot;</code></pre>
+
+<p><strong>Note:</strong> A dictionary literal is <em>not</em> the same as an instance of
+  <code>Dictionary</code> or the similarly named <code>DictionaryLiteral</code> type. You can&#39;t
+  initialize a type that conforms to <code>ExpressibleByDictionaryLiteral</code> simply
+  by assigning an instance of one of these types.</p>
+
+<h1>Conforming to the ExpressibleByDictionaryLiteral Protocol</h1>
+
+<p>To add the capability to be initialized with a dictionary literal to your
+own custom types, declare an <code>init(dictionaryLiteral:)</code> initializer. The
+following example shows the dictionary literal initializer for a
+hypothetical <code>CountedSet</code> type, which uses setlike semantics while keeping
+track of the count for duplicate elements:</p>
+
+<pre><code class="language-swift">struct CountedSet&lt;Element: Hashable&gt;: Collection, SetAlgebra {
+    // implementation details
+
+    /// Updates the count stored in the set for the given element,
+    /// adding the element if necessary.
+    ///
+    /// </code></pre>
+
+<p><strong><code>n</code>:</strong>  The new count for <code>element</code>. <code>n</code> must be greater
+        ///   than or equal to zero.
+        /// 
+<strong><code>element</code>:</strong>  The element to set the new count on.
+        mutating func updateCount(_ n: Int, for element: Element)
+    }</p>
+
+<pre><code class="language-swift">extension CountedSet: ExpressibleByDictionaryLiteral {
+    init(dictionaryLiteral elements: (Element, Int)...) {
+        self.init()
+        for (element, count) in elements {
+            self.updateCount(count, for: element)
+        }
+    }
+}</code></pre>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">Key</code>
+<div class="comment">
+    <p>The key type of a dictionary literal.</p>
+</div>
+</div>
+<div class="declaration">
+<code class="language-swift">Value</code>
+<div class="comment">
+    <p>The value type of a dictionary literal.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-dictionaryliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-dictionaryliteral_">init(<wbr>dictionaryLiteral:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-dictionaryliteral_"><div class="p">
+    <p>Creates an instance initialized with the given key-value pairs.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(dictionaryLiteral elements: (Self.Key, Self.Value)...)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+
+

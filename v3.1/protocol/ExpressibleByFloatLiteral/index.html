@@ -1,0 +1,90 @@
+---
+layout: "default"
+title: "ExpressibleByFloatLiteral"
+description: "Swift documentation for 'ExpressibleByFloatLiteral': A type that can be initialized with a floating-point literal."
+keywords: "ExpressibleByFloatLiteral,protocol,swift,documentation,FloatLiteralType"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol ExpressibleByFloatLiteral</code></div>
+
+<div class="discussion comment">
+    <p>A type that can be initialized with a floating-point literal.</p>
+
+<p>The standard library floating-point types---<code>Float</code>, <code>Double</code>, and
+<code>Float80</code> where available---all conform to the <code>ExpressibleByFloatLiteral</code>
+protocol. You can initialize a variable or constant of any of these types
+by assigning a floating-point literal.</p>
+
+<pre><code class="language-swift">// Type inferred as &#39;Double&#39;
+let threshold = 6.0
+
+// An array of &#39;Double&#39;
+let measurements = [2.2, 4.1, 3.65, 4.2, 9.1]</code></pre>
+
+<h1>Conforming to ExpressibleByFloatLiteral</h1>
+
+<p>To add <code>ExpressibleByFloatLiteral</code> conformance to your custom type,
+implement the required initializer.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+<tr>
+<th id="aliases">Associated Types</th>
+<td>
+<span id="aliasesmark"></span>
+<div class="declaration">
+<code class="language-swift">FloatLiteralType</code>
+<div class="comment">
+    <p>A type that represents a floating-point literal.</p>
+
+<p>Valid types for <code>FloatLiteralType</code> are <code>Float</code>, <code>Double</code>, and <code>Float80</code>
+where available.</p>
+</div>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+<h3>Initializers</h3>
+<div class="declaration" id="init-floatliteral_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-init-floatliteral_">init(<wbr>floatLiteral:)</a> <span class="required">Required</span><div class="comment collapse" id="comment-init-floatliteral_"><div class="p">
+    <p>Creates an instance initialized to the specified floating-point value.</p>
+
+<p>Do not call this initializer directly. Instead, initialize a variable or
+constant using a floating-point literal. For example:</p>
+
+<pre><code class="language-swift">let x = 21.5</code></pre>
+
+<p>In this example, the assignment to the <code>x</code> constant calls this
+floating-point literal initializer behind the scenes.</p>
+
+<p><strong><code>value</code>:</strong>  The value to create.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">init(floatLiteral value: Self.FloatLiteralType)</code>
+
+    </div></div>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+---
+layout: "default"
+title: "preconditionFailure"
+description: "Swift documentation for 'preconditionFailure': Indicates that a precondition was violated."
+keywords: "preconditionFailure,func,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="declaration" id="func-preconditionfailure_-autoclosure-string-file_-staticstring-line_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-preconditionfailure_-autoclosure-string-file_-staticstring-line_-uint">func preconditionFailure(<wbr>_: @autoclosure (<wbr>) -&gt; String, file:<wbr> StaticString, line: UInt)</a>
+        
+<div class="comment collapse" id="comment-func-preconditionfailure_-autoclosure-string-file_-staticstring-line_-uint"><div class="p">
+    <p>Indicates that a precondition was violated.</p>
+
+<p>Use this function to stop the program when control flow can only reach the
+call if your API was improperly used. This function&#39;s effects vary
+depending on the build flag used:</p>
+
+<ul><li><p>In playgrounds and <code>-Onone</code> builds (the default for Xcode&#39;s Debug
+configuration), stops program execution in a debuggable state after
+printing <code>message</code>.</p></li><li><p>In <code>-O</code> builds (the default for Xcode&#39;s Release configuration), stops
+program execution.</p></li><li><p>In <code>-Ounchecked</code> builds, the optimizer may assume that this function is
+never called. Failure to satisfy that assumption is a serious
+programming error.</p></li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>message:</strong> A string to print in a playground or <code>-Onone</code> build. The
+    default is an empty string.
+  <strong>file:</strong> The file name to print with <code>message</code>. The default is the file
+    where <code>preconditionFailure(_:file:line:)</code> is called.
+  <strong>line:</strong> The line number to print along with <code>message</code>. The default is the
+    line number where <code>preconditionFailure(_:file:line:)</code> is called.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func preconditionFailure(_ message: @autoclosure () -&gt; String = default, file: StaticString = #file, line: UInt = #line) -&gt; Never</code>
+    
+    
+</div></div>
+</div>

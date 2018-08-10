@@ -1,0 +1,58 @@
+---
+layout: "default"
+title: "CustomPlaygroundQuickLookable"
+description: "Swift documentation for 'CustomPlaygroundQuickLookable': A type that explicitly supplies its own playground Quick Look."
+keywords: "CustomPlaygroundQuickLookable,protocol,swift,documentation,customPlaygroundQuickLook"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CustomPlaygroundQuickLookable</code></div>
+
+<div class="discussion comment">
+    <p>A type that explicitly supplies its own playground Quick Look.</p>
+
+<p>A Quick Look can be created for an instance of any type by using the
+<code>PlaygroundQuickLook(reflecting:)</code> initializer. If you are not satisfied
+with the representation supplied for your type by default, you can make it
+conform to the <code>CustomPlaygroundQuickLookable</code> protocol and provide a
+custom <code>PlaygroundQuickLook</code> instance.</p>
+</div>
+
+<table class="standard">
+<tr>
+<th id="inheritance">Inheritance</th>
+<td>
+<span class="viz"><a href="hierarchy/">View Protocol Hierarchy &rarr;</a></span>
+</td>
+</tr>
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+
+<h3>Instance Variables</h3>
+<div class="declaration" id="var-customplaygroundquicklook_-playgroundquicklook">
+<a class="toggle-link" data-toggle="collapse" href="#comment-var-customplaygroundquicklook_-playgroundquicklook">var customPlaygroundQuickLook: PlaygroundQuickLook</a> <span class="required">Required</span><div class="comment collapse" id="comment-var-customplaygroundquicklook_-playgroundquicklook"><div class="p">
+    <p>A custom playground Quick Look for this instance.</p>
+
+<p>If this type has value semantics, the <code>PlaygroundQuickLook</code> instance
+should be unaffected by subsequent mutations.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">var customPlaygroundQuickLook: PlaygroundQuickLook { get }</code>
+
+    </div></div>
+</div>
+
+
+
+
+

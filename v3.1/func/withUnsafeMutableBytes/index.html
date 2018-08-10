@@ -1,0 +1,37 @@
+---
+layout: "default"
+title: "withUnsafeMutableBytes"
+description: "Swift documentation for 'withUnsafeMutableBytes': Invokes the given closure with a mutable buffer pointer covering the raw."
+keywords: "withUnsafeMutableBytes,func,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="declaration" id="func-withunsafemutablebytes-t-result-of_-inout-t_-unsafemutablerawbufferpointer-throws-result">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafemutablebytes-t-result-of_-inout-t_-unsafemutablerawbufferpointer-throws-result">func withUnsafeMutableBytes&lt;T, Result&gt;(<wbr>of:<wbr> inout T, _: (UnsafeMutableRawBufferPointer) throws -&gt; Result)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafemutablebytes-t-result-of_-inout-t_-unsafemutablerawbufferpointer-throws-result"><div class="p">
+    <p>Invokes the given closure with a mutable buffer pointer covering the raw
+bytes of the given argument.</p>
+
+<p>The buffer pointer argument to the <code>body</code> closure provides a collection
+interface to the raw bytes of <code>arg</code>. The buffer is the size of the
+instance passed as <code>arg</code> and does not include any remote storage.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>arg:</strong> An instance to temporarily access through a mutable raw buffer
+    pointer.
+  <strong>body:</strong> A closure that takes a raw buffer pointer to the bytes of <code>arg</code>
+    as its sole argument. If the closure has a return value, it is used as
+    the return value of the <code>withUnsafeMutableBytes(of:_:)</code> function. The
+    buffer pointer argument is valid only for the duration of the
+    closure&#39;s execution.
+<strong>Returns:</strong> The return value of the <code>body</code> closure, if any.</p>
+
+<p><strong>See Also:</strong> <code>withUnsafeMutablePointer(to:_:)</code>, <code>withUnsafeBytes(of:_:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withUnsafeMutableBytes&lt;T, Result&gt;(of arg: inout T, _ body: (UnsafeMutableRawBufferPointer) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+    
+</div></div>
+</div>

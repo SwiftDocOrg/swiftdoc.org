@@ -1,0 +1,71 @@
+---
+layout: "default"
+title: "Operator: ..."
+description: "Swift documentation for the '...' operator."
+root: "/v3.1"
+---
+
+<code class="language-swift"> operator ... {
+    associativity 
+    precedence 
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-dotdotdot-bound-where-bound_-comparable-bound_-strideable-bound-stride_-signedinteger_-bound-maximum_-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dotdotdot-bound-where-bound_-comparable-bound_-strideable-bound-stride_-signedinteger_-bound-maximum_-bound">func <wbr>... &lt;Bound where Bound :<wbr> Comparable, Bound :<wbr> _Strideable, Bound.Stride : SignedInteger&gt;(<wbr>_:<wbr> Bound, maximum: Bound)</a>
+        
+<div class="comment collapse" id="comment-func-dotdotdot-bound-where-bound_-comparable-bound_-strideable-bound-stride_-signedinteger_-bound-maximum_-bound"><div class="p">
+    <p>Returns a countable closed range that contains both of its bounds.</p>
+
+<p>Use the closed range operator (<code>...</code>) to create a closed range of any type
+that conforms to the <code>Strideable</code> protocol with an associated signed
+integer <code>Stride</code> type, such as any of the standard library&#39;s integer
+types. This example creates a <code>CountableClosedRange&lt;Int&gt;</code> from zero up to,
+and including, nine.</p>
+
+<pre><code class="language-swift">let singleDigits = 0...9
+print(singleDigits.contains(9))
+// Prints &quot;true&quot;</code></pre>
+
+<p>You can use sequence or collection methods on the <code>singleDigits</code> range.</p>
+
+<pre><code class="language-swift">print(singleDigits.count)
+// Prints &quot;10&quot;
+print(singleDigits.last)
+// Prints &quot;9&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>minimum:</strong> The lower bound for the range.
+  <strong>maximum:</strong> The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ...&lt;Bound where Bound : Comparable, Bound : _Strideable, Bound.Stride : SignedInteger&gt;(minimum: Bound, maximum: Bound) -&gt; CountableClosedRange&lt;Bound&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-dotdotdot-bound-where-bound_-comparable_-bound-maximum_-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dotdotdot-bound-where-bound_-comparable_-bound-maximum_-bound">func <wbr>... &lt;Bound where Bound : Comparable&gt;(<wbr>_:<wbr> Bound, maximum: Bound)</a>
+        
+<div class="comment collapse" id="comment-func-dotdotdot-bound-where-bound_-comparable_-bound-maximum_-bound"><div class="p">
+    <p>Returns a closed range that contains both of its bounds.</p>
+
+<p>Use the closed range operator (<code>...</code>) to create a closed range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>ClosedRange&lt;Character&gt;</code> from &quot;a&quot; up to, and including, &quot;z&quot;.</p>
+
+<pre><code class="language-swift">let lowercase = &quot;a&quot;...&quot;z&quot;
+print(lowercase.contains(&quot;z&quot;))
+// Prints &quot;true&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>minimum:</strong> The lower bound for the range.
+  <strong>maximum:</strong> The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ...&lt;Bound where Bound : Comparable&gt;(minimum: Bound, maximum: Bound) -&gt; ClosedRange&lt;Bound&gt;</code>
+    
+    
+</div></div>
+</div>

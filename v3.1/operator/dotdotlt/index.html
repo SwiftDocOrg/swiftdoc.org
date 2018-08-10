@@ -1,0 +1,71 @@
+---
+layout: "default"
+title: "Operator: ..<"
+description: "Swift documentation for the '..<' operator."
+root: "/v3.1"
+---
+
+<code class="language-swift"> operator ..&lt; {
+    associativity 
+    precedence 
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-dotdotlt-bound-where-bound_-comparable-bound_-strideable-bound-stride_-signedinteger_-bound-maximum_-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dotdotlt-bound-where-bound_-comparable-bound_-strideable-bound-stride_-signedinteger_-bound-maximum_-bound">func <wbr>..&lt; &lt;Bound where Bound :<wbr> Comparable, Bound :<wbr> _Strideable, Bound.Stride : SignedInteger&gt;(<wbr>_:<wbr> Bound, maximum: Bound)</a>
+        
+<div class="comment collapse" id="comment-func-dotdotlt-bound-where-bound_-comparable-bound_-strideable-bound-stride_-signedinteger_-bound-maximum_-bound"><div class="p">
+    <p>Returns a countable half-open range that contains its lower bound but not
+its upper bound.</p>
+
+<p>Use the half-open range operator (<code>..&lt;</code>) to create a range of any type that
+conforms to the <code>Strideable</code> protocol with an associated integer <code>Stride</code>
+type, such as any of the standard library&#39;s integer types. This example
+creates a <code>CountableRange&lt;Int&gt;</code> from zero up to, but not including, 5.</p>
+
+<pre><code class="language-swift">let upToFive = 0..&lt;5
+print(upToFive.contains(3))         // Prints &quot;true&quot;
+print(upToFive.contains(5))         // Prints &quot;false&quot;</code></pre>
+
+<p>You can use sequence or collection methods on the <code>upToFive</code> countable
+range.</p>
+
+<pre><code class="language-swift">print(upToFive.count)               // Prints &quot;5&quot;
+print(upToFive.last)                // Prints &quot;4&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>minimum:</strong> The lower bound for the range.
+  <strong>maximum:</strong> The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ..&lt;&lt;Bound where Bound : Comparable, Bound : _Strideable, Bound.Stride : SignedInteger&gt;(minimum: Bound, maximum: Bound) -&gt; CountableRange&lt;Bound&gt;</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-dotdotlt-bound-where-bound_-comparable_-bound-maximum_-bound">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-dotdotlt-bound-where-bound_-comparable_-bound-maximum_-bound">func <wbr>..&lt; &lt;Bound where Bound : Comparable&gt;(<wbr>_:<wbr> Bound, maximum: Bound)</a>
+        
+<div class="comment collapse" id="comment-func-dotdotlt-bound-where-bound_-comparable_-bound-maximum_-bound"><div class="p">
+    <p>Returns a half-open range that contains its lower bound but not its upper
+bound.</p>
+
+<p>Use the half-open range operator (<code>..&lt;</code>) to create a range of any type that
+conforms to the <code>Comparable</code> protocol. This example creates a
+<code>Range&lt;Double&gt;</code> from zero up to, but not including, 5.0.</p>
+
+<pre><code class="language-swift">let lessThanFive = 0.0..&lt;5.0
+print(lessThanFive.contains(3.14))  // Prints &quot;true&quot;
+print(lessThanFive.contains(5.0))   // Prints &quot;false&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>minimum:</strong> The lower bound for the range.
+  <strong>maximum:</strong> The upper bound for the range.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ..&lt;&lt;Bound where Bound : Comparable&gt;(minimum: Bound, maximum: Bound) -&gt; Range&lt;Bound&gt;</code>
+    
+    
+</div></div>
+</div>

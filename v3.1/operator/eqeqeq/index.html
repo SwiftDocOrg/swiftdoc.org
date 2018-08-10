@@ -1,0 +1,73 @@
+---
+layout: "default"
+title: "Operator: ==="
+description: "Swift documentation for the '===' operator."
+root: "/v3.1"
+---
+
+<code class="language-swift"> operator === {
+    associativity 
+    precedence 
+}</code>
+
+<h3>Declarations</h3>
+
+<div class="declaration" id="func-eqeqeq_-anyobject-rhs_-anyobject">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-eqeqeq_-anyobject-rhs_-anyobject">func ===(<wbr>_:<wbr> AnyObject?, rhs: AnyObject?)</a>
+        
+<div class="comment collapse" id="comment-func-eqeqeq_-anyobject-rhs_-anyobject"><div class="p">
+    <p>Returns a Boolean value indicating whether two references point to the same
+object instance.</p>
+
+<p>This operator tests whether two instances have the same identity, not the
+same value. For value equality, see the equal-to operator (<code>==</code>) and the
+<code>Equatable</code> protocol.</p>
+
+<p>The following example defines an <code>IntegerRef</code> type, an integer type with
+reference semantics.</p>
+
+<pre><code class="language-swift">class IntegerRef: Equatable {
+    let value: Int
+    init(_ value: Int) {
+        self.value = value
+    }
+}
+
+func ==(lhs: IntegerRef, rhs: IntegerRef) -&gt; Bool {
+    return lhs.value == rhs.value
+}</code></pre>
+
+<p>Because <code>IntegerRef</code> is a class, its instances can be compared using the
+identical-to operator (<code>===</code>). In addition, because <code>IntegerRef</code> conforms
+to the <code>Equatable</code> protocol, instances can also be compared using the
+equal-to operator (<code>==</code>).</p>
+
+<pre><code class="language-swift">let a = IntegerRef(10)
+let b = a
+print(a == b)
+// Prints &quot;true&quot;
+print(a === b)
+// Prints &quot;true&quot;</code></pre>
+
+<p>The identical-to operator (<code>===</code>) returns <code>false</code> when comparing two
+references to different object instances, even if the two instances have
+the same value.</p>
+
+<pre><code class="language-swift">let c = IntegerRef(10)
+print(a == c)
+// Prints &quot;true&quot;
+print(a === c)
+// Prints &quot;false&quot;</code></pre>
+
+<p><strong>Parameters:</strong>
+  <strong>lhs:</strong> A reference to compare.
+  <strong>rhs:</strong> Another reference to compare.</p>
+
+<p><strong>See Also:</strong> <code>Equatable</code>, <code>==</code>, <code>!==</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func ===(lhs: AnyObject?, rhs: AnyObject?) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>

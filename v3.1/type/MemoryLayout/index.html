@@ -1,0 +1,212 @@
+---
+layout: "default"
+title: "MemoryLayout"
+description: "Swift documentation for 'MemoryLayout': The memory layout of a type, describing its size, stride, and alignment."
+keywords: "MemoryLayout,enum,swift,documentation,alignment,size,stride,alignment,size,stride"
+root: "/v3.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum MemoryLayout&lt;T&gt;</code></div>
+
+<div class="discussion comment">
+    <p>The memory layout of a type, describing its size, stride, and alignment.</p>
+
+<p>You can use <code>MemoryLayout</code> as a source of information about a type when
+allocating or binding memory using unsafe pointers. The following example
+declares a <code>Point</code> type with <code>x</code> and <code>y</code> coordinates and a Boolean
+<code>isFilled</code> property.</p>
+
+<pre><code class="language-swift">struct Point {
+    let x: Double
+    let y: Double
+    let isFilled: Bool
+}</code></pre>
+
+<p>The size, stride, and alignment of the <code>Point</code> type are accessible as
+static properties of <code>MemoryLayout&lt;Point&gt;</code>.</p>
+
+<pre><code class="language-swift">// MemoryLayout&lt;Point&gt;.size == 17
+// MemoryLayout&lt;Point&gt;.stride == 24
+// MemoryLayout&lt;Point&gt;.alignment == 8</code></pre>
+
+<p>Always use a multiple of a type&#39;s <code>stride</code> instead of its <code>size</code> when
+allocating memory or accounting for the distance between instances in
+memory. This example allocates untyped, uninitialized memory with space
+for four instances of <code>Point</code>.</p>
+
+<pre><code class="language-swift">let count = 4
+let pointPointer = UnsafeMutableRawPointer.allocate(
+        bytes: count * MemoryLayout&lt;Point&gt;.stride,
+        alignedTo: MemoryLayout&lt;Point&gt;.alignment)</code></pre>
+</div>
+
+<table class="standard">
+
+
+
+<tr>
+<th>Import</th>
+<td><code class="language-swift">import Swift</code></td>
+</tr>
+
+</table>
+
+
+
+<h3>Static Variables</h3>
+<div class="declaration" id="static-var-alignment_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-alignment_-int">static var alignment: Int</a><div class="comment collapse" id="comment-static-var-alignment_-int"><div class="p">
+    <p>The default memory alignment of <code>T</code>, in bytes.</p>
+
+<p>Use the <code>alignment</code> property for a type when allocating memory using an
+unsafe pointer. This value is always positive.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var alignment: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="static-var-size_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-size_-int">static var size: Int</a><div class="comment collapse" id="comment-static-var-size_-int"><div class="p">
+    <p>The contiguous memory footprint of <code>T</code>, in bytes.</p>
+
+<p>A type&#39;s size does not include any dynamically allocated or out of line
+storage. In particular, <code>MemoryLayout&lt;T&gt;.size</code>, when <code>T</code> is a class
+type, is the same regardless of how many stored properties <code>T</code> has.</p>
+
+<p>When allocating memory for multiple instances of <code>T</code> using an unsafe
+pointer, use a multiple of the type&#39;s stride instead of its size.</p>
+
+<p><strong>See Also:</strong> <code>stride</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var size: Int { get }</code>
+
+    </div></div>
+</div>
+<div class="declaration" id="static-var-stride_-int">
+<a class="toggle-link" data-toggle="collapse" href="#comment-static-var-stride_-int">static var stride: Int</a><div class="comment collapse" id="comment-static-var-stride_-int"><div class="p">
+    <p>The number of bytes from the start of one instance of <code>T</code> to the start of
+the next when stored in contiguous memory or in an <code>Array&lt;T&gt;</code>.</p>
+
+<p>This is the same as the number of bytes moved when an <code>UnsafePointer&lt;T&gt;</code>
+instance is incremented. <code>T</code> may have a lower minimal alignment that
+trades runtime performance for space efficiency. This value is always
+positive.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static var stride: Int { get }</code>
+
+    </div></div>
+</div>
+
+
+
+<h3>Static Methods</h3>
+<div class="declaration" id="func-alignment-ofvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-alignment-ofvalue_">static func alignment(<wbr>ofValue:)</a>
+        
+<div class="comment collapse" id="comment-func-alignment-ofvalue_"><div class="p">
+    <p>Returns the default memory alignment of <code>T</code>.</p>
+
+<p>Use a type&#39;s alignment when allocating memory using an unsafe pointer.</p>
+
+<p>When you have a type instead of an instance, use the
+<code>MemoryLayout&lt;T&gt;.stride</code> static property instead.</p>
+
+<pre><code class="language-swift">let x: Int = 100
+
+// Finding the alignment of a value&#39;s type
+let s = MemoryLayout.alignment(ofValue: x)
+// s == 8
+
+// Finding the alignment of a type directly
+let t = MemoryLayout&lt;Int&gt;.alignment
+// t == 8</code></pre>
+
+<p><strong><code>value</code>:</strong>  A value representative of the type to describe.
+<strong>Returns:</strong> The default memory alignment, in bytes, of the given value&#39;s
+  type. This value is always positive.</p>
+
+<p><strong>See Also:</strong> <code>MemoryLayout.alignment</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func alignment(ofValue value: T) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-size-ofvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-size-ofvalue_">static func size(<wbr>ofValue:)</a>
+        
+<div class="comment collapse" id="comment-func-size-ofvalue_"><div class="p">
+    <p>Returns the contiguous memory footprint of the given instance.</p>
+
+<p>The result does not include any dynamically allocated or out of line
+storage. In particular, pointers and class instances all have the same
+contiguous memory footprint, regardless of the size of the referenced
+data.</p>
+
+<p>When you have a type instead of an instance, use the
+<code>MemoryLayout&lt;T&gt;.size</code> static property instead.</p>
+
+<pre><code class="language-swift">let x: Int = 100
+
+// Finding the size of a value&#39;s type
+let s = MemoryLayout.size(ofValue: x)
+// s == 8
+
+// Finding the size of a type directly
+let t = MemoryLayout&lt;Int&gt;.size
+// t == 8</code></pre>
+
+<p><strong><code>value</code>:</strong>  A value representative of the type to describe.
+<strong>Returns:</strong> The size, in bytes, of the given value&#39;s type.</p>
+
+<p><strong>See Also:</strong> <code>MemoryLayout.size</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func size(ofValue value: T) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-stride-ofvalue_">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-stride-ofvalue_">static func stride(<wbr>ofValue:)</a>
+        
+<div class="comment collapse" id="comment-func-stride-ofvalue_"><div class="p">
+    <p>Returns the number of bytes from the start of one instance of <code>T</code> to the
+start of the next when stored in contiguous memory or in an <code>Array&lt;T&gt;</code>.</p>
+
+<p>This is the same as the number of bytes moved when an <code>UnsafePointer&lt;T&gt;</code>
+instance is incremented. <code>T</code> may have a lower minimal alignment that
+trades runtime performance for space efficiency. The result is always
+positive.</p>
+
+<p>When you have a type instead of an instance, use the
+<code>MemoryLayout&lt;T&gt;.stride</code> static property instead.</p>
+
+<pre><code class="language-swift">let x: Int = 100
+
+// Finding the stride of a value&#39;s type
+let s = MemoryLayout.stride(ofValue: x)
+// s == 8
+
+// Finding the stride of a type directly
+let t = MemoryLayout&lt;Int&gt;.stride
+// t == 8</code></pre>
+
+<p><strong><code>value</code>:</strong>  A value representative of the type to describe.
+<strong>Returns:</strong> The stride, in bytes, of the given value&#39;s type.</p>
+
+<p><strong>See Also:</strong> <code>MemoryLayout.stride</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">static func stride(ofValue value: T) -&gt; Int</code>
+    
+    
+</div></div>
+</div>
+
+
+

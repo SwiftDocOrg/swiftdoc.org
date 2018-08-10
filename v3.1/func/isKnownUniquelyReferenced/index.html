@@ -1,0 +1,90 @@
+---
+layout: "default"
+title: "isKnownUniquelyReferenced"
+description: "Swift documentation for 'isKnownUniquelyReferenced': Returns a Boolean value indicating whether the given object is known to."
+keywords: "isKnownUniquelyReferenced,func,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="declaration" id="func-isknownuniquelyreferenced-t-where-t_-anyobject_-inout-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isknownuniquelyreferenced-t-where-t_-anyobject_-inout-t">func <wbr>isKnownUniquelyReferenced&lt;T where T : AnyObject&gt;(<wbr>_: inout T)</a>
+        
+<div class="comment collapse" id="comment-func-isknownuniquelyreferenced-t-where-t_-anyobject_-inout-t"><div class="p">
+    <p>Returns a Boolean value indicating whether the given object is known to
+have a single strong reference.</p>
+
+<p>The <code>isKnownUniquelyReferenced(_:)</code> function is useful for implementing the
+copy-on-write optimization for the deep storage of value types:</p>
+
+<pre><code class="language-swift">mutating func update(withValue value: T) {
+    if !isKnownUniquelyReferenced(&amp;myStorage) {
+        myStorage = self.copiedStorage()
+    }
+    myStorage.update(withValue: value)
+}</code></pre>
+
+<p><code>isKnownUniquelyReferenced(_:)</code> checks only for strong references to the
+given object---if <code>object</code> has additional weak or unowned references, the
+result may still be <code>true</code>. Because weak and unowned references cannot be
+the only reference to an object, passing a weak or unowned reference as
+<code>object</code> always results in <code>false</code>.</p>
+
+<p>If the instance passed as <code>object</code> is being accessed by multiple threads
+simultaneously, this function may still return <code>true</code>. Therefore, you must
+only call this function from mutating methods with appropriate thread
+synchronization. That will ensure that <code>isKnownUniquelyReferenced(_:)</code>
+only returns <code>true</code> when there is really one accessor, or when there is a
+race condition, which is already undefined behavior.</p>
+
+<p><strong><code>object</code>:</strong>  An instance of a class. This function does <em>not</em> modify
+  <code>object</code>; the use of <code>inout</code> is an implementation artifact.
+<strong>Returns:</strong> <code>true</code> if <code>object</code> is known to have a single strong reference;
+  otherwise, <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isKnownUniquelyReferenced&lt;T where T : AnyObject&gt;(_ object: inout T) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>
+<div class="declaration" id="func-isknownuniquelyreferenced-t-where-t_-anyobject_-inout-t">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-isknownuniquelyreferenced-t-where-t_-anyobject_-inout-t">func <wbr>isKnownUniquelyReferenced&lt;T where T : AnyObject&gt;(<wbr>_: inout T?)</a>
+        
+<div class="comment collapse" id="comment-func-isknownuniquelyreferenced-t-where-t_-anyobject_-inout-t"><div class="p">
+    <p>Returns a Boolean value indicating whether the given object is known to
+have a single strong reference.</p>
+
+<p>The <code>isKnownUniquelyReferenced(_:)</code> function is useful for implementing the
+copy-on-write optimization for the deep storage of value types:</p>
+
+<pre><code class="language-swift">mutating func update(withValue value: T) {
+    if !isKnownUniquelyReferenced(&amp;myStorage) {
+        myStorage = self.copiedStorage()
+    }
+    myStorage.update(withValue: value)
+}</code></pre>
+
+<p><code>isKnownUniquelyReferenced(_:)</code> checks only for strong references to the
+given object---if <code>object</code> has additional weak or unowned references, the
+result may still be <code>true</code>. Because weak and unowned references cannot be
+the only reference to an object, passing a weak or unowned reference as
+<code>object</code> always results in <code>false</code>.</p>
+
+<p>If the instance passed as <code>object</code> is being accessed by multiple threads
+simultaneously, this function may still return <code>true</code>. Therefore, you must
+only call this function from mutating methods with appropriate thread
+synchronization. That will ensure that <code>isKnownUniquelyReferenced(_:)</code>
+only returns <code>true</code> when there is really one accessor, or when there is a
+race condition, which is already undefined behavior.</p>
+
+<p><strong><code>object</code>:</strong>  An instance of a class. This function does <em>not</em> modify
+  <code>object</code>; the use of <code>inout</code> is an implementation artifact.
+<strong>Returns:</strong> <code>true</code> if <code>object</code> is known to have a single strong reference;
+  otherwise, <code>false</code>. If <code>object</code> is <code>nil</code>, the return value is <code>false</code>.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func isKnownUniquelyReferenced&lt;T where T : AnyObject&gt;(_ object: inout T?) -&gt; Bool</code>
+    
+    
+</div></div>
+</div>

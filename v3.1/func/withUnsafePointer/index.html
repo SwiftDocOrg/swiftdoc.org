@@ -1,0 +1,37 @@
+---
+layout: "default"
+title: "withUnsafePointer"
+description: "Swift documentation for 'withUnsafePointer': Invokes the given closure with a pointer to the given argument."
+keywords: "withUnsafePointer,func,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="declaration" id="func-withunsafepointer-t-result-to_-inout-t_-unsafepointer-t-throws-result">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-withunsafepointer-t-result-to_-inout-t_-unsafepointer-t-throws-result">func withUnsafePointer&lt;T, Result&gt;(<wbr>to:<wbr> inout T, _: (UnsafePointer&lt;T&gt;) throws -&gt; Result)</a>
+        
+<div class="comment collapse" id="comment-func-withunsafepointer-t-result-to_-inout-t_-unsafepointer-t-throws-result"><div class="p">
+    <p>Invokes the given closure with a pointer to the given argument.</p>
+
+<p>The <code>withUnsafePointer(to:_:)</code> function is useful for calling Objective-C
+APIs that take in/out parameters (and default-constructible out
+parameters) by pointer.</p>
+
+<p>The pointer argument to <code>body</code> is valid only for the lifetime of the
+closure. Do not escape it from the closure for later use.</p>
+
+<p><strong>Parameters:</strong>
+  <strong>arg:</strong> An instance to temporarily use via pointer.
+  <strong>body:</strong> A closure that takes a pointer to <code>arg</code> as its sole argument. If
+    the closure has a return value, it is used as the return value of the
+    <code>withUnsafePointer(to:_:)</code> function. The pointer argument is valid
+    only for the duration of the closure&#39;s execution.
+<strong>Returns:</strong> The return value of the <code>body</code> closure, if any.</p>
+
+<p><strong>See Also:</strong> <code>withUnsafeMutablePointer(to:_:)</code></p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func withUnsafePointer&lt;T, Result&gt;(to arg: inout T, _ body: (UnsafePointer&lt;T&gt;) throws -&gt; Result) rethrows -&gt; Result</code>
+    
+    
+</div></div>
+</div>

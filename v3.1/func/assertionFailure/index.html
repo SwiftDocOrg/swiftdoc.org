@@ -1,0 +1,40 @@
+---
+layout: "default"
+title: "assertionFailure"
+description: "Swift documentation for 'assertionFailure': Indicates that an internal sanity check failed."
+keywords: "assertionFailure,func,swift,documentation"
+root: "/v3.1"
+---
+
+<div class="declaration" id="func-assertionfailure_-autoclosure-string-file_-staticstring-line_-uint">
+<a class="toggle-link" data-toggle="collapse" href="#comment-func-assertionfailure_-autoclosure-string-file_-staticstring-line_-uint">func assertionFailure(<wbr>_: @autoclosure (<wbr>) -&gt; String, file:<wbr> StaticString, line: UInt)</a>
+        
+<div class="comment collapse" id="comment-func-assertionfailure_-autoclosure-string-file_-staticstring-line_-uint"><div class="p">
+    <p>Indicates that an internal sanity check failed.</p>
+
+<p>Use this function to stop the program, without impacting the performance of
+shipping code, when control flow is not expected to reach the call---for
+example, in the <code>default</code> case of a <code>switch</code> where you have knowledge that
+one of the other cases must be satisfied. To protect code from invalid
+usage in Release builds, see <code>preconditionFailure(_:file:line:)</code>.</p>
+
+<ul><li><p>In playgrounds and -Onone builds (the default for Xcode&#39;s Debug
+configuration), stop program execution in a debuggable state after
+printing <code>message</code>.</p></li><li><p>In -O builds, has no effect.</p></li><li><p>In -Ounchecked builds, the optimizer may assume that this function is
+never called. Failure to satisfy that assumption is a serious
+programming error.</p></li></ul>
+
+<p><strong>Parameters:</strong>
+  <strong>message:</strong> A string to print in a playground or <code>-Onone</code> build. The
+    default is an empty string.
+  <strong>file:</strong> The file name to print with <code>message</code>. The default is the file
+    where <code>assertionFailure(_:file:line:)</code> is called.
+  <strong>line:</strong> The line number to print along with <code>message</code>. The default is the
+    line number where <code>assertionFailure(_:file:line:)</code> is called.</p>
+
+    <h4>Declaration</h4>    
+    <code class="language-swift">func assertionFailure(_ message: @autoclosure () -&gt; String = default, file: StaticString = #file, line: UInt = #line)</code>
+    
+    
+</div></div>
+</div>
