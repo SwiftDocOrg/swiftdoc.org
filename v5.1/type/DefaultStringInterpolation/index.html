@@ -1,0 +1,142 @@
+---
+layout: "default"
+root: "/v5.1"
+keywords: ""
+description: "Swift documentation for 'DefaultStringInterpolation'"
+title: "DefaultStringInterpolation"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct DefaultStringInterpolation</code></div><p>Represents a string literal with interpolations while it is being built up.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">StringInterpolationProtocol, CustomStringConvertible, TextOutputStream</code></td></tr></table><div class="discussion comment"><p>Do not create an instance of this type directly. It is used by the compiler
+when you create a string using string interpolation. Instead, use string
+interpolation to create a new string by including values, literals,
+variables, or expressions enclosed in parentheses, prefixed by a
+backslash (<code>\(</code>...<code>)</code>).</p>
+<pre><code class="language-swift">let price = 2
+let number = 3
+let message = &quot;&quot;&quot;
+              If one cookie costs \(price) dollars, \
+              \(number) cookies cost \(price * number) dollars.
+              &quot;&quot;&quot;
+print(message)
+// Prints &quot;If one cookie costs 2 dollars, 3 cookies cost 6 dollars.&quot;
+</code></pre>
+<p>When implementing an <code>ExpressibleByStringInterpolation</code> conformance,
+set the <code>StringInterpolation</code> associated type to
+<code>DefaultStringInterpolation</code> to get the same interpolation behavior as
+Swift's built-in <code>String</code> type and construct a <code>String</code> with the results.
+If you don't want the default behavior or don't want to construct a
+<code>String</code>, use a custom type conforming to <code>StringInterpolationProtocol</code>
+instead.</p>
+<h3>Extending default string interpolation behavior</h3>
+<p>Code outside the standard library can extend string interpolation on
+<code>String</code> and many other common types by extending
+<code>DefaultStringInterpolation</code> and adding an <code>appendInterpolation(...)</code>
+method. For example:</p>
+<pre><code class="language-swift">extension DefaultStringInterpolation {
+    fileprivate mutating func appendInterpolation(
+             escaped value: String, asASCII forceASCII: Bool = false) {
+        for char in value.unicodeScalars {
+            appendInterpolation(char.escaped(asASCII: forceASCII))
+        }
+    }
+}
+
+print(&quot;Escaped string: \(escaped: string)&quot;)
+</code></pre>
+<p>See <code>StringInterpolationProtocol</code> for details on <code>appendInterpolation</code>
+methods.</p>
+<p><code>DefaultStringInterpolation</code> extensions should add only <code>mutating</code> members
+and should not copy <code>self</code> or capture it in an escaping closure.</p>
+</div><h3>Initializers</h3><div id="init_literalCapacity_interpolationCount-9ae0a1350fef478293dc5c0ae6463964" class="declaration"><a class="toggle-link" href="#comment-init_literalCapacity_interpolationCount-9ae0a1350fef478293dc5c0ae6463964">init init(literalCapacity:interpolationCount:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_literalCapacity_interpolationCount-9ae0a1350fef478293dc5c0ae6463964"><p>Creates a string interpolation with storage pre-sized for a literal
+with the indicated attributes.</p>
+<p>Do not call this initializer directly. It is used by the compiler when
+interpreting string interpolations.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(literalCapacity: Int, interpolationCount: Int)</code></div></div><h3>Instance Variables</h3><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <span class="required">Required</span><div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>A textual representation of this instance.</p>
+<p>Calling this property directly is discouraged. Instead, convert an
+instance of any type to a string by using the <code>String(describing:)</code>
+initializer. This initializer works with any type, and uses the custom
+<code>description</code> property for types that conform to
+<code>CustomStringConvertible</code>:</p>
+<pre><code class="language-swift">struct Point: CustomStringConvertible {
+    let x: Int, y: Int
+
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(describing: p)
+print(s)
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type's <code>description</code> property.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div><h3>Instance Methods</h3><div id="appendInterpolation-66c9d271a66317d399d2ed46233bc36e" class="declaration"><a class="toggle-link" href="#comment-appendInterpolation-66c9d271a66317d399d2ed46233bc36e">func appendInterpolation(_ value: T)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-appendInterpolation-66c9d271a66317d399d2ed46233bc36e"><p>Interpolates the given value's textual representation into the
+string literal being created.</p>
+<p>Do not call this method directly. It is used by the compiler when
+interpreting string interpolations. Instead, use string
+interpolation to create a new string by including values, literals,
+variables, or expressions enclosed in parentheses, prefixed by a
+backslash (<code>\(</code>...<code>)</code>).</p>
+<pre><code class="language-swift">let price = 2
+let number = 3
+let message = &quot;&quot;&quot;
+              If one cookie costs \(price) dollars, \
+              \(number) cookies cost \(price * number) dollars.
+              &quot;&quot;&quot;
+print(message)
+// Prints &quot;If one cookie costs 2 dollars, 3 cookies cost 6 dollars.&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func appendInterpolation&lt;T>(_ value: T) where T: CustomStringConvertible, T: TextOutputStreamable</code></div></div><div id="appendInterpolation-66c9d271a66317d399d2ed46233bc36e" class="declaration"><a class="toggle-link" href="#comment-appendInterpolation-66c9d271a66317d399d2ed46233bc36e">func appendInterpolation(_ value: T)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-appendInterpolation-66c9d271a66317d399d2ed46233bc36e"><p>Interpolates the given value's textual representation into the
+string literal being created.</p>
+<p>Do not call this method directly. It is used by the compiler when
+interpreting string interpolations. Instead, use string
+interpolation to create a new string by including values, literals,
+variables, or expressions enclosed in parentheses, prefixed by a
+backslash (<code>\(</code>...<code>)</code>).</p>
+<pre><code class="language-swift">let price = 2
+let number = 3
+let message = &quot;If one cookie costs \(price) dollars, &quot; +
+              &quot;\(number) cookies cost \(price * number) dollars.&quot;
+print(message)
+// Prints &quot;If one cookie costs 2 dollars, 3 cookies cost 6 dollars.&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func appendInterpolation&lt;T>(_ value: T) where T: TextOutputStreamable</code></div></div><div id="appendInterpolation-66c9d271a66317d399d2ed46233bc36e" class="declaration"><a class="toggle-link" href="#comment-appendInterpolation-66c9d271a66317d399d2ed46233bc36e">func appendInterpolation(_ value: T)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-appendInterpolation-66c9d271a66317d399d2ed46233bc36e"><p>Interpolates the given value's textual representation into the
+string literal being created.</p>
+<p>Do not call this method directly. It is used by the compiler when
+interpreting string interpolations. Instead, use string
+interpolation to create a new string by including values, literals,
+variables, or expressions enclosed in parentheses, prefixed by a
+backslash (<code>\(</code>...<code>)</code>).</p>
+<pre><code class="language-swift">let price = 2
+let number = 3
+let message = &quot;&quot;&quot;
+              If one cookie costs \(price) dollars, \
+              \(number) cookies cost \(price * number) dollars.
+              &quot;&quot;&quot;
+print(message)
+// Prints &quot;If one cookie costs 2 dollars, 3 cookies cost 6 dollars.&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func appendInterpolation&lt;T>(_ value: T) where T: CustomStringConvertible</code></div></div><div id="appendInterpolation-66c9d271a66317d399d2ed46233bc36e" class="declaration"><a class="toggle-link" href="#comment-appendInterpolation-66c9d271a66317d399d2ed46233bc36e">func appendInterpolation(_ value: T)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-appendInterpolation-66c9d271a66317d399d2ed46233bc36e"><p>Interpolates the given value's textual representation into the
+string literal being created.</p>
+<p>Do not call this method directly. It is used by the compiler when
+interpreting string interpolations. Instead, use string
+interpolation to create a new string by including values, literals,
+variables, or expressions enclosed in parentheses, prefixed by a
+backslash (<code>\(</code>...<code>)</code>).</p>
+<pre><code class="language-swift">let price = 2
+let number = 3
+let message = &quot;&quot;&quot;
+              If one cookie costs \(price) dollars, \
+              \(number) cookies cost \(price * number) dollars.
+              &quot;&quot;&quot;
+print(message)
+// Prints &quot;If one cookie costs 2 dollars, 3 cookies cost 6 dollars.&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func appendInterpolation&lt;T>(_ value: T)</code></div></div><div id="appendLiteral-267d8ace3b8e029535e29b0c5f801bdc" class="declaration"><a class="toggle-link" href="#comment-appendLiteral-267d8ace3b8e029535e29b0c5f801bdc">func appendLiteral(_ literal: String)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-appendLiteral-267d8ace3b8e029535e29b0c5f801bdc"><p>Appends a literal segment of a string interpolation.</p>
+<p>Do not call this method directly. It is used by the compiler when
+interpreting string interpolations.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func appendLiteral(_ literal: String)</code></div></div><div id="write-8a0b06b688402ed7e1a24c09bf3ddfc1" class="declaration"><a class="toggle-link" href="#comment-write-8a0b06b688402ed7e1a24c09bf3ddfc1">func write(_ string: String)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-write-8a0b06b688402ed7e1a24c09bf3ddfc1"><p>Appends the given string to the stream.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func write(_ string: String)</code></div></div>

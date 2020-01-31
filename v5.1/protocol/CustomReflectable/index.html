@@ -1,0 +1,17 @@
+---
+keywords: ""
+layout: "default"
+root: "/v5.1"
+title: "CustomReflectable"
+description: "Swift documentation for 'CustomReflectable'"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CustomReflectable</code></div><p>A type that explicitly supplies its own mirror.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">AnyHashable, Array, ArraySlice, Bool, Character, ClosedRange, CollectionOfOne, ContiguousArray, CustomLeafReflectable, Dictionary, Dictionary.Iterator, Double, Float, Float80, Int, Int16, Int32, Int64, Int8, Mirror, Optional, Range, Set, Set.Iterator, StaticString, StrideThrough, StrideTo, String, String.UTF16View, String.UTF8View, String.UnicodeScalarView, Substring, UInt, UInt16, UInt32, UInt64, UInt8, Unicode.Scalar</code></td></tr></table><div class="discussion comment"><p>You can create a mirror for any type using the <code>Mirror(reflecting:)</code>
+initializer, but if you are not satisfied with the mirror supplied for
+your type by default, you can make it conform to <code>CustomReflectable</code> and
+return a custom <code>Mirror</code> instance.</p>
+</div><h3>Instance Variables</h3><div id="customMirror-c4bea5adb1649887b1a7e9972736e2a9" class="declaration"><a class="toggle-link" href="#comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9">var customMirror</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9"><p>The custom mirror for this instance.</p>
+<p>If this type has value semantics, the mirror should be unaffected by
+subsequent mutations of the instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customMirror: Mirror</code></div></div>

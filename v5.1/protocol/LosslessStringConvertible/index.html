@@ -1,0 +1,17 @@
+---
+layout: "default"
+title: "LosslessStringConvertible"
+description: "Swift documentation for 'LosslessStringConvertible'"
+root: "/v5.1"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol LosslessStringConvertible</code></div><p>A type that can be represented as a string in a lossless, unambiguous way.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">CustomStringConvertible</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">Bool, Double, FixedWidthInteger, Float, Float80, StringProtocol, Substring, Unicode.Scalar</code></td></tr></table><div class="discussion comment"><p>For example, the integer value 1050 can be represented in its entirety as
+the string &quot;1050&quot;.</p>
+<p>The description property of a conforming type must be a value-preserving
+representation of the original value. As such, it should be possible to
+re-create an instance from its string representation.</p>
+</div><h3>Initializers</h3><div id="init-48690522e4b66d2b1596ce439b7dd9cd" class="declaration"><a class="toggle-link" href="#comment-init-48690522e4b66d2b1596ce439b7dd9cd">init init?(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-48690522e4b66d2b1596ce439b7dd9cd"><p>Instantiates an instance of the conforming type from a string
+representation.</p>
+<h4>Declaration</h4><code class="language-swift">init?(_ description: String)</code></div></div>

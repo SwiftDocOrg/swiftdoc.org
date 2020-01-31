@@ -1,0 +1,28 @@
+---
+keywords: ""
+title: "DecodingError.Context"
+description: "Swift documentation for 'DecodingError.Context'"
+layout: "default"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Context</code></div><p>The context in which the error occurred.</p>
+<div class="discussion comment"></div><h3>Initializers</h3><div id="init_codingPath_debugDescription_underlyingError-08e724794f8d02a979ba40f8a51f40ab" class="declaration"><a class="toggle-link" href="#comment-init_codingPath_debugDescription_underlyingError-08e724794f8d02a979ba40f8a51f40ab">init init(codingPath:debugDescription:underlyingError:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_codingPath_debugDescription_underlyingError-08e724794f8d02a979ba40f8a51f40ab"><p>Creates a new context with the given path of coding keys and a
+description of what went wrong.</p>
+<ul>
+<li>parameter codingPath: The path of coding keys taken to get to the
+point of the failing decode call.</li>
+</ul>
+<ul>
+<li>parameter debugDescription: A description of what went wrong, for
+debugging purposes.</li>
+</ul>
+<ul>
+<li>parameter underlyingError: The underlying error which caused this
+error, if any.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(codingPath: [CodingKey], debugDescription: String, underlyingError: Error? = nil)</code></div></div><h3>Instance Variables</h3><div id="codingPath-038986a6e6564f0dd444735f926a6ca4" class="declaration"><a class="toggle-link" href="#comment-codingPath-038986a6e6564f0dd444735f926a6ca4">let codingPath</a> <span class="required">Required</span><div class="comment collapse in" id="comment-codingPath-038986a6e6564f0dd444735f926a6ca4"><p>The path of coding keys taken to get to the point of the failing decode
+call.</p>
+<h4>Declaration</h4><code class="language-swift">let codingPath: [CodingKey]</code></div></div><div id="debugDescription-15dc1a07010ea28e38b1f4d74663fe11" class="declaration"><a class="toggle-link" href="#comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11">let debugDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11"><p>A description of what went wrong, for debugging purposes.</p>
+<h4>Declaration</h4><code class="language-swift">let debugDescription: String</code></div></div><div id="underlyingError-d0f417c874aa92d0cc5b77e6584c1bcb" class="declaration"><a class="toggle-link" href="#comment-underlyingError-d0f417c874aa92d0cc5b77e6584c1bcb">let underlyingError</a> <span class="required">Required</span><div class="comment collapse in" id="comment-underlyingError-d0f417c874aa92d0cc5b77e6584c1bcb"><p>The underlying error which caused this error, if any.</p>
+<h4>Declaration</h4><code class="language-swift">let underlyingError: Error?</code></div></div>

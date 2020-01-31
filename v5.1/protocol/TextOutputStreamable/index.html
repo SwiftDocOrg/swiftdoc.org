@@ -1,0 +1,21 @@
+---
+keywords: ""
+title: "TextOutputStreamable"
+root: "/v5.1"
+layout: "default"
+description: "Swift documentation for 'TextOutputStreamable'"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol TextOutputStreamable</code></div><p>A source of text-streaming operations.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">Character, Double, Float, Float80, String, StringProtocol, Substring, Unicode.Scalar</code></td></tr></table><div class="discussion comment"><p>Instances of types that conform to the <code>TextOutputStreamable</code> protocol can
+write their value to instances of any type that conforms to the
+<code>TextOutputStream</code> protocol. The Swift standard library's text-related
+types, <code>String</code>, <code>Character</code>, and <code>Unicode.Scalar</code>, all conform to
+<code>TextOutputStreamable</code>.</p>
+<h3>Conforming to the TextOutputStreamable Protocol</h3>
+<p>To add <code>TextOutputStreamable</code> conformance to a custom type, implement the
+required <code>write(to:)</code> method. Call the given output stream's <code>write(_:)</code>
+method in your implementation.</p>
+</div><h3>Instance Methods</h3><div id="write_to-d457d816b415ff3bee040fb06f595e0f" class="declaration"><a class="toggle-link" href="#comment-write_to-d457d816b415ff3bee040fb06f595e0f">func write(to target: inout Target)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-write_to-d457d816b415ff3bee040fb06f595e0f"><p>Writes a textual representation of this instance into the given output
+stream.</p>
+<h4>Declaration</h4><code class="language-swift">func write&lt;Target>(to target: inout Target) where Target: TextOutputStream</code></div></div>

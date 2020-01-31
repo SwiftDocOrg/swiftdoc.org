@@ -1,0 +1,1199 @@
+---
+keywords: ""
+layout: "default"
+description: "Swift documentation for 'Int32'"
+title: "Int32"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Int32</code></div><p>A 32-bit signed integer value
+type.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">FixedWidthInteger, SignedInteger, Codable, CustomReflectable, Hashable, SIMDScalar</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias IntegerLiteralType = Int32</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias Magnitude = UInt32</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias SIMDMaskScalar = Int32</code><div class="comment"></div></div></td></tr><tr><th>Nested Types</th><td><code class="nested">Int32.Words, Int32.SIMD2Storage, Int32.SIMD4Storage, Int32.SIMD8Storage, Int32.SIMD16Storage, Int32.SIMD32Storage, Int32.SIMD64Storage</code></td></tr></table><div class="discussion comment"></div><h3>Initializers</h3><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates a vector with zero in all lanes.</p>
+<h4>Declaration</h4><code class="language-swift">public init()</code></div></div><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates a vector with zero in all lanes.</p>
+<h4>Declaration</h4><code class="language-swift">public init()</code></div></div><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates a vector with zero in all lanes.</p>
+<h4>Declaration</h4><code class="language-swift">public init()</code></div></div><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates a vector with zero in all lanes.</p>
+<h4>Declaration</h4><code class="language-swift">public init()</code></div></div><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates a vector with zero in all lanes.</p>
+<h4>Declaration</h4><code class="language-swift">public init()</code></div></div><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates a vector with zero in all lanes.</p>
+<h4>Declaration</h4><code class="language-swift">public init()</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an integer from the given floating-point value, rounding toward
+zero.</p>
+<p>Any fractional part of the value passed as <code>source</code> is removed, rounding
+the value toward zero.</p>
+<pre><code class="language-swift">let x = Int(21.5)
+// x == 21
+let y = Int(-21.5)
+// y == -21
+</code></pre>
+<p>If <code>source</code> is outside the bounds of this type after rounding toward
+zero, a runtime error may occur.</p>
+<pre><code class="language-swift">let z = UInt(-21.5)
+// Error: ...the result would be less than UInt.min
+</code></pre>
+<ul>
+<li>Parameter source: A floating-point value to convert to an integer.
+<code>source</code> must be representable in this type after rounding toward
+zero.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(_ source: Float)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an integer from the given floating-point value, rounding toward
+zero.</p>
+<p>Any fractional part of the value passed as <code>source</code> is removed, rounding
+the value toward zero.</p>
+<pre><code class="language-swift">let x = Int(21.5)
+// x == 21
+let y = Int(-21.5)
+// y == -21
+</code></pre>
+<p>If <code>source</code> is outside the bounds of this type after rounding toward
+zero, a runtime error may occur.</p>
+<pre><code class="language-swift">let z = UInt(-21.5)
+// Error: ...the result would be less than UInt.min
+</code></pre>
+<ul>
+<li>Parameter source: A floating-point value to convert to an integer.
+<code>source</code> must be representable in this type after rounding toward
+zero.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(_ source: Double)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an integer from the given floating-point value, rounding toward
+zero.</p>
+<p>Any fractional part of the value passed as <code>source</code> is removed, rounding
+the value toward zero.</p>
+<pre><code class="language-swift">let x = Int(21.5)
+// x == 21
+let y = Int(-21.5)
+// y == -21
+</code></pre>
+<p>If <code>source</code> is outside the bounds of this type after rounding toward
+zero, a runtime error may occur.</p>
+<pre><code class="language-swift">let z = UInt(-21.5)
+// Error: ...the result would be less than UInt.min
+</code></pre>
+<ul>
+<li>Parameter source: A floating-point value to convert to an integer.
+<code>source</code> must be representable in this type after rounding toward
+zero.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(_ source: Float80)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an integer from the given floating-point value, rounding toward
+zero. Any fractional part of the value passed as <code>source</code> is removed.</p>
+<pre><code class="language-swift">let x = Int(21.5)
+// x == 21
+let y = Int(-21.5)
+// y == -21
+</code></pre>
+<p>If <code>source</code> is outside the bounds of this type after rounding toward
+zero, a runtime error may occur.</p>
+<pre><code class="language-swift">let z = UInt(-21.5)
+// Error: ...outside the representable range
+</code></pre>
+<ul>
+<li>Parameter source: A floating-point value to convert to an integer.
+<code>source</code> must be representable in this type after rounding toward
+zero.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;T>(_ source: T) where T: BinaryFloatingPoint</code></div></div><div id="init_bigEndian-20aaf886759cdf680f92bf259ac97414" class="declaration"><a class="toggle-link" href="#comment-init_bigEndian-20aaf886759cdf680f92bf259ac97414">init init(bigEndian:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_bigEndian-20aaf886759cdf680f92bf259ac97414"><p>Creates an integer from its big-endian representation, changing the byte
+order if necessary.</p>
+<ul>
+<li>Parameter value: A value to use as the big-endian representation of the
+new integer.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(bigEndian value: Self)</code></div></div><div id="init_bitPattern-4bde68cf851d5f81e7bf04fa5bd275a1" class="declaration"><a class="toggle-link" href="#comment-init_bitPattern-4bde68cf851d5f81e7bf04fa5bd275a1">init init(bitPattern:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_bitPattern-4bde68cf851d5f81e7bf04fa5bd275a1"><p>Creates a new instance with the same memory representation as the given
+value.</p>
+<p>This initializer does not perform any range or overflow checking. The
+resulting instance may not have the same numeric value as
+<code>bitPattern</code>---it is only guaranteed to use the same pattern of bits in
+its binary representation.</p>
+<ul>
+<li>Parameter x: A value to use as the source of the new instance's binary
+representation.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(bitPattern x: UInt32)</code></div></div><div id="init_clamping-1348964362ee5703edcbb6ae5604d182" class="declaration"><a class="toggle-link" href="#comment-init_clamping-1348964362ee5703edcbb6ae5604d182">init init(clamping:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_clamping-1348964362ee5703edcbb6ae5604d182"><p>Creates a new instance with the representable value that's closest to the
+given integer.</p>
+<p>If the value passed as <code>source</code> is greater than the maximum representable
+value in this type, the result is the type's <code>max</code> value. If <code>source</code> is
+less than the smallest representable value in this type, the result is
+the type's <code>min</code> value.</p>
+<p>In this example, <code>x</code> is initialized as an <code>Int8</code> instance by clamping
+<code>500</code> to the range <code>-128...127</code>, and <code>y</code> is initialized as a <code>UInt</code>
+instance by clamping <code>-500</code> to the range <code>0...UInt.max</code>.</p>
+<pre><code class="language-swift">let x = Int8(clamping: 500)
+// x == 127
+// x == Int8.max
+
+let y = UInt(clamping: -500)
+// y == 0
+</code></pre>
+<ul>
+<li>Parameter source: An integer to convert to this type.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;Other>(clamping source: Other) where Other: BinaryInteger</code></div></div><div id="init_from-ac2c581668ee6074e8eee083d88ea873" class="declaration"><a class="toggle-link" href="#comment-init_from-ac2c581668ee6074e8eee083d88ea873">init init(from:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_from-ac2c581668ee6074e8eee083d88ea873"><p>Creates a new instance by decoding from the given decoder.</p>
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+<ul>
+<li>Parameter decoder: The decoder to read data from.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(from decoder: Decoder) throws</code></div></div><div id="init_littleEndian-a376d3a27e128156b820776acb66fe09" class="declaration"><a class="toggle-link" href="#comment-init_littleEndian-a376d3a27e128156b820776acb66fe09">init init(littleEndian:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_littleEndian-a376d3a27e128156b820776acb66fe09"><p>Creates an integer from its little-endian representation, changing the
+byte order if necessary.</p>
+<ul>
+<li>Parameter value: A value to use as the little-endian representation of
+the new integer.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(littleEndian value: Self)</code></div></div><div id="init_truncatingIfNeeded-1ab1507175764938e1616148677071e1" class="declaration"><a class="toggle-link" href="#comment-init_truncatingIfNeeded-1ab1507175764938e1616148677071e1">init init(truncatingIfNeeded:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_truncatingIfNeeded-1ab1507175764938e1616148677071e1"><p>Creates a new instance from the bit pattern of the given instance by
+truncating or sign-extending if needed to fit this type.</p>
+<p>When the bit width of <code>T</code> (the type of <code>source</code>) is equal to or greater
+than this type's bit width, the result is the truncated
+least-significant bits of <code>source</code>. For example, when converting a
+16-bit value to an 8-bit type, only the lower 8 bits of <code>source</code> are
+used.</p>
+<pre><code class="language-swift">let p: Int16 = -500
+// 'p' has a binary representation of 11111110_00001100
+let q = Int8(truncatingIfNeeded: p)
+// q == 12
+// 'q' has a binary representation of 00001100
+</code></pre>
+<p>When the bit width of <code>T</code> is less than this type's bit width, the result
+is <em>sign-extended</em> to fill the remaining bits. That is, if <code>source</code> is
+negative, the result is padded with ones; otherwise, the result is
+padded with zeros.</p>
+<pre><code class="language-swift">let u: Int8 = 21
+// 'u' has a binary representation of 00010101
+let v = Int16(truncatingIfNeeded: u)
+// v == 21
+// 'v' has a binary representation of 00000000_00010101
+
+let w: Int8 = -21
+// 'w' has a binary representation of 11101011
+let x = Int16(truncatingIfNeeded: w)
+// x == -21
+// 'x' has a binary representation of 11111111_11101011
+let y = UInt16(truncatingIfNeeded: w)
+// y == 65515
+// 'y' has a binary representation of 11111111_11101011
+</code></pre>
+<ul>
+<li>Parameter source: An integer to convert to this type.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;T>(truncatingIfNeeded source: T) where T: BinaryInteger</code></div></div><div id="init-48690522e4b66d2b1596ce439b7dd9cd" class="declaration"><a class="toggle-link" href="#comment-init-48690522e4b66d2b1596ce439b7dd9cd">init init?(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-48690522e4b66d2b1596ce439b7dd9cd"><p>Creates a new integer value from the given string.</p>
+<p>The string passed as <code>description</code> may begin with a plus or minus sign
+character (<code>+</code> or <code>-</code>), followed by one or more numeric digits (<code>0-9</code>).</p>
+<pre><code class="language-swift">let x = Int(&quot;123&quot;)
+// x == 123
+</code></pre>
+<p>If <code>description</code> is in an invalid format, or if the value it denotes in
+base 10 is not representable, the result is <code>nil</code>. For example, the
+following conversions result in <code>nil</code>:</p>
+<pre><code class="language-swift">Int(&quot; 100&quot;)                       // Includes whitespace
+Int(&quot;21-50&quot;)                      // Invalid format
+Int(&quot;ff6600&quot;)                     // Characters out of bounds
+Int(&quot;10000000000000000000000000&quot;) // Out of range
+</code></pre>
+<ul>
+<li>Parameter description: The ASCII representation of a number.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init?(_ description: String)</code></div></div><div id="init_radix-0336854f463e87e536915dcc295c1311" class="declaration"><a class="toggle-link" href="#comment-init_radix-0336854f463e87e536915dcc295c1311">init init?(_:radix:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_radix-0336854f463e87e536915dcc295c1311"><p>Creates a new integer value from the given string and radix.</p>
+<p>The string passed as <code>text</code> may begin with a plus or minus sign character
+(<code>+</code> or <code>-</code>), followed by one or more numeric digits (<code>0-9</code>) or letters
+(<code>a-z</code> or <code>A-Z</code>). Parsing of the string is case insensitive.</p>
+<pre><code class="language-swift">let x = Int(&quot;123&quot;)
+// x == 123
+
+let y = Int(&quot;-123&quot;, radix: 8)
+// y == -83
+let y = Int(&quot;+123&quot;, radix: 8)
+// y == +83
+
+let z = Int(&quot;07b&quot;, radix: 16)
+// z == 123
+</code></pre>
+<p>If <code>text</code> is in an invalid format or contains characters that are out of
+bounds for the given <code>radix</code>, or if the value it denotes in the given
+<code>radix</code> is not representable, the result is <code>nil</code>. For example, the
+following conversions result in <code>nil</code>:</p>
+<pre><code class="language-swift">Int(&quot; 100&quot;)                       // Includes whitespace
+Int(&quot;21-50&quot;)                      // Invalid format
+Int(&quot;ff6600&quot;)                     // Characters out of bounds
+Int(&quot;zzzzzzzzzzzzz&quot;, radix: 36)   // Out of range
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init?&lt;S>(_ text: S, radix: Int = 10) where S: StringProtocol</code></div></div><div id="init_exactly-204302d00b556e1a402a579cd2a4f8b6" class="declaration"><a class="toggle-link" href="#comment-init_exactly-204302d00b556e1a402a579cd2a4f8b6">init init?(exactly:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_exactly-204302d00b556e1a402a579cd2a4f8b6"><p>Creates an integer from the given floating-point value, if it can be
+represented exactly.</p>
+<p>If the value passed as <code>source</code> is not representable exactly, the result
+is <code>nil</code>. In the following example, the constant <code>x</code> is successfully
+created from a value of <code>21.0</code>, while the attempt to initialize the
+constant <code>y</code> from <code>21.5</code> fails:</p>
+<pre><code class="language-swift">let x = Int(exactly: 21.0)
+// x == Optional(21)
+let y = Int(exactly: 21.5)
+// y == nil
+</code></pre>
+<ul>
+<li>Parameter source: A floating-point value to convert to an integer.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init?(exactly source: Float)</code></div></div><div id="init_exactly-204302d00b556e1a402a579cd2a4f8b6" class="declaration"><a class="toggle-link" href="#comment-init_exactly-204302d00b556e1a402a579cd2a4f8b6">init init?(exactly:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_exactly-204302d00b556e1a402a579cd2a4f8b6"><p>Creates an integer from the given floating-point value, if it can be
+represented exactly.</p>
+<p>If the value passed as <code>source</code> is not representable exactly, the result
+is <code>nil</code>. In the following example, the constant <code>x</code> is successfully
+created from a value of <code>21.0</code>, while the attempt to initialize the
+constant <code>y</code> from <code>21.5</code> fails:</p>
+<pre><code class="language-swift">let x = Int(exactly: 21.0)
+// x == Optional(21)
+let y = Int(exactly: 21.5)
+// y == nil
+</code></pre>
+<ul>
+<li>Parameter source: A floating-point value to convert to an integer.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init?(exactly source: Double)</code></div></div><div id="init_exactly-204302d00b556e1a402a579cd2a4f8b6" class="declaration"><a class="toggle-link" href="#comment-init_exactly-204302d00b556e1a402a579cd2a4f8b6">init init?(exactly:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_exactly-204302d00b556e1a402a579cd2a4f8b6"><p>Creates an integer from the given floating-point value, if it can be
+represented exactly.</p>
+<p>If the value passed as <code>source</code> is not representable exactly, the result
+is <code>nil</code>. In the following example, the constant <code>x</code> is successfully
+created from a value of <code>21.0</code>, while the attempt to initialize the
+constant <code>y</code> from <code>21.5</code> fails:</p>
+<pre><code class="language-swift">let x = Int(exactly: 21.0)
+// x == Optional(21)
+let y = Int(exactly: 21.5)
+// y == nil
+</code></pre>
+<ul>
+<li>Parameter source: A floating-point value to convert to an integer.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init?(exactly source: Float80)</code></div></div><div id="init_exactly-204302d00b556e1a402a579cd2a4f8b6" class="declaration"><a class="toggle-link" href="#comment-init_exactly-204302d00b556e1a402a579cd2a4f8b6">init init?(exactly:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_exactly-204302d00b556e1a402a579cd2a4f8b6"><p>Creates an integer from the given floating-point value, if it can be
+represented exactly.</p>
+<p>If the value passed as <code>source</code> is not representable exactly, the result
+is <code>nil</code>. In the following example, the constant <code>x</code> is successfully
+created from a value of <code>21.0</code>, while the attempt to initialize the
+constant <code>y</code> from <code>21.5</code> fails:</p>
+<pre><code class="language-swift">let x = Int(exactly: 21.0)
+// x == Optional(21)
+let y = Int(exactly: 21.5)
+// y == nil
+</code></pre>
+<ul>
+<li>Parameter source: A floating-point value to convert to an integer.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init?&lt;T>(exactly source: T) where T: BinaryFloatingPoint</code></div></div><h3>Instance Variables</h3><div id="bigEndian-166ce9f503b168215d0bd9548513f29a" class="declaration"><a class="toggle-link" href="#comment-bigEndian-166ce9f503b168215d0bd9548513f29a">var bigEndian</a> <span class="required">Required</span><div class="comment collapse in" id="comment-bigEndian-166ce9f503b168215d0bd9548513f29a"><p>The big-endian representation of this integer.</p>
+<p>If necessary, the byte order of this value is reversed from the typical
+byte order of this integer type. On a big-endian platform, for any
+integer <code>x</code>, <code>x == x.bigEndian</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var bigEndian: Self</code></div></div><div id="bitWidth-7ca3c2412b2ba21ed2344f4b472f9347" class="declaration"><a class="toggle-link" href="#comment-bitWidth-7ca3c2412b2ba21ed2344f4b472f9347">var bitWidth</a> <span class="required">Required</span><div class="comment collapse in" id="comment-bitWidth-7ca3c2412b2ba21ed2344f4b472f9347"><p>The number of bits in the binary representation of this value.</p>
+<h4>Declaration</h4><code class="language-swift">var bitWidth: Int</code></div></div><div id="byteSwapped-aa4069a0861b74f6fd880779d9e239b0" class="declaration"><a class="toggle-link" href="#comment-byteSwapped-aa4069a0861b74f6fd880779d9e239b0">var byteSwapped</a> <span class="required">Required</span><div class="comment collapse in" id="comment-byteSwapped-aa4069a0861b74f6fd880779d9e239b0"><p>A representation of this integer with the byte order swapped.</p>
+<h4>Declaration</h4><code class="language-swift">var byteSwapped: Int32</code></div></div><div id="customMirror-c4bea5adb1649887b1a7e9972736e2a9" class="declaration"><a class="toggle-link" href="#comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9">var customMirror</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9"><p>A mirror that reflects the <code>Int32</code> instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customMirror: Mirror</code></div></div><div id="customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3" class="declaration"><a class="toggle-link" href="#comment-customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3">var customPlaygroundQuickLook</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3"><p>A custom playground Quick Look for the <code>Int32</code> instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customPlaygroundQuickLook: _PlaygroundQuickLook</code></div></div><div id="leadingZeroBitCount-1ba0bdbffd903c0a582a7b35faa1c561" class="declaration"><a class="toggle-link" href="#comment-leadingZeroBitCount-1ba0bdbffd903c0a582a7b35faa1c561">var leadingZeroBitCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-leadingZeroBitCount-1ba0bdbffd903c0a582a7b35faa1c561"><p>The number of leading zeros in this value's binary representation.</p>
+<p>For example, in an integer type with a <code>bitWidth</code> value of 8,
+the number <em>31</em> has three leading zeros.</p>
+<pre><code class="language-swift">let x: Int8 = 0b0001_1111
+// x == 31
+// x.leadingZeroBitCount == 3
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var leadingZeroBitCount: Int</code></div></div><div id="littleEndian-f8b66bd062e4698c1ccf076c456b6542" class="declaration"><a class="toggle-link" href="#comment-littleEndian-f8b66bd062e4698c1ccf076c456b6542">var littleEndian</a> <span class="required">Required</span><div class="comment collapse in" id="comment-littleEndian-f8b66bd062e4698c1ccf076c456b6542"><p>The little-endian representation of this integer.</p>
+<p>If necessary, the byte order of this value is reversed from the typical
+byte order of this integer type. On a little-endian platform, for any
+integer <code>x</code>, <code>x == x.littleEndian</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var littleEndian: Self</code></div></div><div id="magnitude-28c3d8f4b7e312af5e0d6b59a50efd1c" class="declaration"><a class="toggle-link" href="#comment-magnitude-28c3d8f4b7e312af5e0d6b59a50efd1c">var magnitude</a> <span class="required">Required</span><div class="comment collapse in" id="comment-magnitude-28c3d8f4b7e312af5e0d6b59a50efd1c"><p>The magnitude of this value.</p>
+<p>For any numeric value <code>x</code>, <code>x.magnitude</code> is the absolute value of <code>x</code>.
+You can use the <code>magnitude</code> property in operations that are simpler to
+implement in terms of unsigned values, such as printing the value of an
+integer, which is just printing a '-' character in front of an absolute
+value.</p>
+<pre><code class="language-swift">let x = -200
+// x.magnitude == 200
+</code></pre>
+<p>The global <code>abs(_:)</code> function provides more familiar syntax when you need
+to find an absolute value. In addition, because <code>abs(_:)</code> always returns
+a value of the same type, even in a generic context, using the function
+instead of the <code>magnitude</code> property is encouraged.</p>
+<h4>Declaration</h4><code class="language-swift">var magnitude: UInt32</code></div></div><div id="nonzeroBitCount-e8f783eb48572d74b4eb1d1764ec0e2f" class="declaration"><a class="toggle-link" href="#comment-nonzeroBitCount-e8f783eb48572d74b4eb1d1764ec0e2f">var nonzeroBitCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-nonzeroBitCount-e8f783eb48572d74b4eb1d1764ec0e2f"><p>The number of bits equal to 1 in this value's binary representation.</p>
+<p>For example, in a fixed-width integer type with a <code>bitWidth</code> value of 8,
+the number <em>31</em> has five bits equal to <em>1</em>.</p>
+<pre><code class="language-swift">let x: Int8 = 0b0001_1111
+// x == 31
+// x.nonzeroBitCount == 5
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var nonzeroBitCount: Int</code></div></div><div id="scalarCount-2c88ac4714aa7276da0950dfc969879e" class="declaration"><a class="toggle-link" href="#comment-scalarCount-2c88ac4714aa7276da0950dfc969879e">var scalarCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-scalarCount-2c88ac4714aa7276da0950dfc969879e"><p>The number of scalars, or elements, in the vector.</p>
+<h4>Declaration</h4><code class="language-swift">var scalarCount: Int</code></div></div><div id="scalarCount-2c88ac4714aa7276da0950dfc969879e" class="declaration"><a class="toggle-link" href="#comment-scalarCount-2c88ac4714aa7276da0950dfc969879e">var scalarCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-scalarCount-2c88ac4714aa7276da0950dfc969879e"><p>The number of scalars, or elements, in the vector.</p>
+<h4>Declaration</h4><code class="language-swift">var scalarCount: Int</code></div></div><div id="scalarCount-2c88ac4714aa7276da0950dfc969879e" class="declaration"><a class="toggle-link" href="#comment-scalarCount-2c88ac4714aa7276da0950dfc969879e">var scalarCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-scalarCount-2c88ac4714aa7276da0950dfc969879e"><p>The number of scalars, or elements, in the vector.</p>
+<h4>Declaration</h4><code class="language-swift">var scalarCount: Int</code></div></div><div id="scalarCount-2c88ac4714aa7276da0950dfc969879e" class="declaration"><a class="toggle-link" href="#comment-scalarCount-2c88ac4714aa7276da0950dfc969879e">var scalarCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-scalarCount-2c88ac4714aa7276da0950dfc969879e"><p>The number of scalars, or elements, in the vector.</p>
+<h4>Declaration</h4><code class="language-swift">var scalarCount: Int</code></div></div><div id="scalarCount-2c88ac4714aa7276da0950dfc969879e" class="declaration"><a class="toggle-link" href="#comment-scalarCount-2c88ac4714aa7276da0950dfc969879e">var scalarCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-scalarCount-2c88ac4714aa7276da0950dfc969879e"><p>The number of scalars, or elements, in the vector.</p>
+<h4>Declaration</h4><code class="language-swift">var scalarCount: Int</code></div></div><div id="scalarCount-2c88ac4714aa7276da0950dfc969879e" class="declaration"><a class="toggle-link" href="#comment-scalarCount-2c88ac4714aa7276da0950dfc969879e">var scalarCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-scalarCount-2c88ac4714aa7276da0950dfc969879e"><p>The number of scalars, or elements, in the vector.</p>
+<h4>Declaration</h4><code class="language-swift">var scalarCount: Int</code></div></div><div id="trailingZeroBitCount-bc12ab6e45c922f8165c878d442221c5" class="declaration"><a class="toggle-link" href="#comment-trailingZeroBitCount-bc12ab6e45c922f8165c878d442221c5">var trailingZeroBitCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-trailingZeroBitCount-bc12ab6e45c922f8165c878d442221c5"><p>The number of trailing zeros in this value's binary representation.</p>
+<p>For example, the number <em>-8</em> has three trailing zeros.</p>
+<pre><code class="language-swift">let x = Int8(bitPattern: 0b1111_1000)
+// x == -8
+// x.trailingZeroBitCount == 3
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var trailingZeroBitCount: Int</code></div></div><div id="words-89759e1284e2479b991d2669de104942" class="declaration"><a class="toggle-link" href="#comment-words-89759e1284e2479b991d2669de104942">var words</a> <span class="required">Required</span><div class="comment collapse in" id="comment-words-89759e1284e2479b991d2669de104942"><p>A collection containing the words of this value's binary
+representation, in order from the least significant to most significant.</p>
+<p>Negative values are returned in two's complement representation,
+regardless of the type's underlying implementation.</p>
+<h4>Declaration</h4><code class="language-swift">var words: Int32.Words</code></div></div><h3>Subscripts</h3><div id="subscript_index-293ad0a56dee4ecca71b95ccc73897e9" class="declaration"><a class="toggle-link" href="#comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9">subscript subscript(index:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9"><p>Accesses the element at the specified index.</p>
+<ul>
+<li>Parameter index: The index of the element to access. <code>index</code> must be in
+the range <code>0..&lt;scalarCount</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public subscript(index: Int) -> Int32</code></div></div><div id="subscript_index-293ad0a56dee4ecca71b95ccc73897e9" class="declaration"><a class="toggle-link" href="#comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9">subscript subscript(index:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9"><p>Accesses the element at the specified index.</p>
+<ul>
+<li>Parameter index: The index of the element to access. <code>index</code> must be in
+the range <code>0..&lt;scalarCount</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public subscript(index: Int) -> Int32</code></div></div><div id="subscript_index-293ad0a56dee4ecca71b95ccc73897e9" class="declaration"><a class="toggle-link" href="#comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9">subscript subscript(index:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9"><p>Accesses the element at the specified index.</p>
+<ul>
+<li>Parameter index: The index of the element to access. <code>index</code> must be in
+the range <code>0..&lt;scalarCount</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public subscript(index: Int) -> Int32</code></div></div><div id="subscript_index-293ad0a56dee4ecca71b95ccc73897e9" class="declaration"><a class="toggle-link" href="#comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9">subscript subscript(index:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9"><p>Accesses the element at the specified index.</p>
+<ul>
+<li>Parameter index: The index of the element to access. <code>index</code> must be in
+the range <code>0..&lt;scalarCount</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public subscript(index: Int) -> Int32</code></div></div><div id="subscript_index-293ad0a56dee4ecca71b95ccc73897e9" class="declaration"><a class="toggle-link" href="#comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9">subscript subscript(index:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9"><p>Accesses the element at the specified index.</p>
+<ul>
+<li>Parameter index: The index of the element to access. <code>index</code> must be in
+the range <code>0..&lt;scalarCount</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public subscript(index: Int) -> Int32</code></div></div><div id="subscript_index-293ad0a56dee4ecca71b95ccc73897e9" class="declaration"><a class="toggle-link" href="#comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9">subscript subscript(index:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9"><p>Accesses the element at the specified index.</p>
+<ul>
+<li>Parameter index: The index of the element to access. <code>index</code> must be in
+the range <code>0..&lt;scalarCount</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public subscript(index: Int) -> Int32</code></div></div><h3>Instance Methods</h3><div id="addingReportingOverflow-f0d7d825ba521a3b08987d8b2e795383" class="declaration"><a class="toggle-link" href="#comment-addingReportingOverflow-f0d7d825ba521a3b08987d8b2e795383">func addingReportingOverflow(_ other: Int32) -> (partialValue: Int32, overflow: Bool)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-addingReportingOverflow-f0d7d825ba521a3b08987d8b2e795383"><p>Returns the sum of this value and the given value, along with a Boolean
+value indicating whether overflow occurred in the operation.</p>
+<ul>
+<li>Parameter rhs: The value to add to this value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func addingReportingOverflow(_ other: Int32) -> (partialValue: Int32, overflow: Bool)</code></div></div><div id="dividedReportingOverflow_by-683dd6cad9efc00dd430203bb4888a41" class="declaration"><a class="toggle-link" href="#comment-dividedReportingOverflow_by-683dd6cad9efc00dd430203bb4888a41">func dividedReportingOverflow(by other: Int32) -> (partialValue: Int32, overflow: Bool)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dividedReportingOverflow_by-683dd6cad9efc00dd430203bb4888a41"><p>Returns the quotient obtained by dividing this value by the given value,
+along with a Boolean value indicating whether overflow occurred in the
+operation.</p>
+<p>Dividing by zero is not an error when using this method. For a value <code>x</code>,
+the result of <code>x.dividedReportingOverflow(by: 0)</code> is <code>(x, true)</code>.</p>
+<ul>
+<li>Parameter rhs: The value to divide this value by.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func dividedReportingOverflow(by other: Int32) -> (partialValue: Int32, overflow: Bool)</code></div></div><div id="dividingFullWidth-1d324e900654bc5b9efb19031e72a45e" class="declaration"><a class="toggle-link" href="#comment-dividingFullWidth-1d324e900654bc5b9efb19031e72a45e">func dividingFullWidth(_ dividend: (high: Int32, low: Int32.Magnitude)) -> (quotient: Int32, remainder: Int32)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dividingFullWidth-1d324e900654bc5b9efb19031e72a45e"><p>Returns a tuple containing the quotient and remainder of dividing the
+given value by this value.</p>
+<p>The resulting quotient must be representable within the bounds of the
+type. If the quotient of dividing <code>dividend</code> by this value is too large
+to represent in the type, a runtime error may occur.</p>
+<ul>
+<li>Parameter dividend: A tuple containing the high and low parts of a
+double-width integer. The <code>high</code> component of the value carries the
+sign, if the type is signed.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func dividingFullWidth(_ dividend: (high: Int32, low: Int32.Magnitude)) -> (quotient: Int32, remainder: Int32)</code></div></div><div id="encode_to-8c7f999a44e91e36e6d67e62075ffdbb" class="declaration"><a class="toggle-link" href="#comment-encode_to-8c7f999a44e91e36e6d67e62075ffdbb">func encode(to encoder: Encoder) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_to-8c7f999a44e91e36e6d67e62075ffdbb"><p>Encodes this value into the given encoder.</p>
+<p>This function throws an error if any values are invalid for the given
+encoder's format.</p>
+<ul>
+<li>Parameter encoder: The encoder to write data to.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func encode(to encoder: Encoder) throws</code></div></div><div id="hash_into-6d50cb3daa41162a12fb4542a687b393" class="declaration"><a class="toggle-link" href="#comment-hash_into-6d50cb3daa41162a12fb4542a687b393">func hash(into hasher: inout Hasher)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hash_into-6d50cb3daa41162a12fb4542a687b393"><p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+<ul>
+<li>Parameter hasher: The hasher to use when combining the components
+of this instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func hash(into hasher: inout Hasher)</code></div></div><div id="multipliedFullWidth_by-4d4f16f12e2598b55c55a07a7da29fe2" class="declaration"><a class="toggle-link" href="#comment-multipliedFullWidth_by-4d4f16f12e2598b55c55a07a7da29fe2">func multipliedFullWidth(by other: Int32) -> (high: Int32, low: Int32.Magnitude)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-multipliedFullWidth_by-4d4f16f12e2598b55c55a07a7da29fe2"><p>Returns a tuple containing the high and low parts of the result of
+multiplying this value by the given value.</p>
+<p>Use this method to calculate the full result of a product that would
+otherwise overflow. Unlike traditional truncating multiplication, the
+<code>multipliedFullWidth(by:)</code> method returns a tuple
+containing both the <code>high</code> and <code>low</code> parts of the product of this value and
+<code>other</code>. The following example uses this method to multiply two <code>UInt8</code>
+values that normally overflow when multiplied:</p>
+<pre><code class="language-swift">let x: UInt8 = 100
+let y: UInt8 = 20
+let result = x.multipliedFullWidth(by: y)
+// result.high == 0b00000111
+// result.low  == 0b11010000
+</code></pre>
+<p>The product of <code>x</code> and <code>y</code> is 2000, which is too large to represent in a
+<code>UInt8</code> instance. The <code>high</code> and <code>low</code> properties of the <code>result</code> value
+represent 2000 when concatenated to form a double-width integer; that
+is, using <code>result.high</code> as the high byte and <code>result.low</code> as the low byte
+of a <code>UInt16</code> instance.</p>
+<pre><code class="language-swift">let z = UInt16(result.high) &lt;&lt; 8 | UInt16(result.low)
+// z == 2000
+</code></pre>
+<ul>
+<li>Parameter other: The value to multiply this value by.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func multipliedFullWidth(by other: Int32) -> (high: Int32, low: Int32.Magnitude)</code></div></div><div id="multipliedFullWidth_by-4d4f16f12e2598b55c55a07a7da29fe2" class="declaration"><a class="toggle-link" href="#comment-multipliedFullWidth_by-4d4f16f12e2598b55c55a07a7da29fe2">func multipliedFullWidth(by other: Self) -> (high: Self, low: Self.Magnitude)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-multipliedFullWidth_by-4d4f16f12e2598b55c55a07a7da29fe2"><p>Returns a tuple containing the high and low parts of the result of
+multiplying this value by the given value.</p>
+<p>Use this method to calculate the full result of a product that would
+otherwise overflow. Unlike traditional truncating multiplication, the
+<code>multipliedFullWidth(by:)</code> method returns a tuple containing both the
+<code>high</code> and <code>low</code> parts of the product of this value and <code>other</code>. The
+following example uses this method to multiply two <code>Int8</code> values that
+normally overflow when multiplied:</p>
+<pre><code class="language-swift">let x: Int8 = 48
+let y: Int8 = -40
+let result = x.multipliedFullWidth(by: y)
+// result.high == -8
+// result.low  == 128
+</code></pre>
+<p>The product of <code>x</code> and <code>y</code> is <code>-1920</code>, which is too large to represent in
+an <code>Int8</code> instance. The <code>high</code> and <code>low</code> compnents of the <code>result</code> value
+represent <code>-1920</code> when concatenated to form a double-width integer; that
+is, using <code>result.high</code> as the high byte and <code>result.low</code> as the low byte
+of an <code>Int16</code> instance.</p>
+<pre><code class="language-swift">let z = Int16(result.high) &lt;&lt; 8 | Int16(result.low)
+// z == -1920
+</code></pre>
+<ul>
+<li>Parameter other: The value to multiply this value by.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func multipliedFullWidth(by other: Self) -> (high: Self, low: Self.Magnitude)</code></div></div><div id="multipliedReportingOverflow_by-22bc71910ac066f1bb6d73dbaa1da7f6" class="declaration"><a class="toggle-link" href="#comment-multipliedReportingOverflow_by-22bc71910ac066f1bb6d73dbaa1da7f6">func multipliedReportingOverflow(by other: Int32) -> (partialValue: Int32, overflow: Bool)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-multipliedReportingOverflow_by-22bc71910ac066f1bb6d73dbaa1da7f6"><p>Returns the product of this value and the given value, along with a
+Boolean value indicating whether overflow occurred in the operation.</p>
+<ul>
+<li>Parameter rhs: The value to multiply by this value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func multipliedReportingOverflow(by other: Int32) -> (partialValue: Int32, overflow: Bool)</code></div></div><div id="remainderReportingOverflow_dividingBy-327472ee0ff66d6f8990038fb52bd965" class="declaration"><a class="toggle-link" href="#comment-remainderReportingOverflow_dividingBy-327472ee0ff66d6f8990038fb52bd965">func remainderReportingOverflow(dividingBy other: Int32) -> (partialValue: Int32, overflow: Bool)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-remainderReportingOverflow_dividingBy-327472ee0ff66d6f8990038fb52bd965"><p>Returns the remainder after dividing this value by the given value, along
+with a Boolean value indicating whether overflow occurred during division.</p>
+<p>Dividing by zero is not an error when using this method. For a value <code>x</code>,
+the result of <code>x.remainderReportingOverflow(dividingBy: 0)</code> is
+<code>(x, true)</code>.</p>
+<ul>
+<li>Parameter rhs: The value to divide this value by.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func remainderReportingOverflow(dividingBy other: Int32) -> (partialValue: Int32, overflow: Bool)</code></div></div><div id="signum-2afcbb0e6bfa05c60dcc2163fbdbfc23" class="declaration"><a class="toggle-link" href="#comment-signum-2afcbb0e6bfa05c60dcc2163fbdbfc23">func signum() -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-signum-2afcbb0e6bfa05c60dcc2163fbdbfc23"><p>Returns <code>-1</code> if this value is negative and <code>1</code> if it's positive;
+otherwise, <code>0</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func signum() -> Int32</code></div></div><div id="subtractingReportingOverflow-65d53123a87e02980b43b2de35e216e7" class="declaration"><a class="toggle-link" href="#comment-subtractingReportingOverflow-65d53123a87e02980b43b2de35e216e7">func subtractingReportingOverflow(_ other: Int32) -> (partialValue: Int32, overflow: Bool)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subtractingReportingOverflow-65d53123a87e02980b43b2de35e216e7"><p>Returns the difference obtained by subtracting the given value from this
+value, along with a Boolean value indicating whether overflow occurred in
+the operation.</p>
+<ul>
+<li>Parameter rhs: The value to subtract from this value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func subtractingReportingOverflow(_ other: Int32) -> (partialValue: Int32, overflow: Bool)</code></div></div><h3>Type Variables</h3><div id="bitWidth-7ca3c2412b2ba21ed2344f4b472f9347" class="declaration"><a class="toggle-link" href="#comment-bitWidth-7ca3c2412b2ba21ed2344f4b472f9347">var bitWidth</a> <span class="required">Required</span><div class="comment collapse in" id="comment-bitWidth-7ca3c2412b2ba21ed2344f4b472f9347"><p>The number of bits used for the underlying binary representation of
+values of this type.</p>
+<p>The bit width of a <code>Int32</code> instance is 32.</p>
+<h4>Declaration</h4><code class="language-swift">var bitWidth: Int</code></div></div><div id="isSigned-af97641ed76c39fca9c1131075ef045c" class="declaration"><a class="toggle-link" href="#comment-isSigned-af97641ed76c39fca9c1131075ef045c">var isSigned</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isSigned-af97641ed76c39fca9c1131075ef045c"><p>A Boolean value indicating whether this type is a signed integer type.</p>
+<p>This property is always <code>true</code> for signed integer types.</p>
+<h4>Declaration</h4><code class="language-swift">var isSigned: Bool</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-a11d959272146d3130283768d9e59136" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a11d959272146d3130283768d9e59136">func %(lhs: Int32, rhs: Int32) -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a11d959272146d3130283768d9e59136"><p>Returns the remainder of dividing the first value by the second.</p>
+<p>The result of the remainder operator (<code>%</code>) has the same sign as <code>lhs</code> and
+has a magnitude less than <code>rhs.magnitude</code>.</p>
+<pre><code class="language-swift">let x = 22 % 5
+// x == 2
+let y = 22 % -5
+// y == 2
+let z = -22 % -5
+// z == -2
+</code></pre>
+<p>For any two integers <code>a</code> and <code>b</code>, their quotient <code>q</code>, and their remainder
+<code>r</code>, <code>a == b * q + r</code>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func %(lhs: Int32, rhs: Int32) -> Int32</code></div></div><div id="lhs_rhs-002bb19be21428fd850342426c7433d6" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-002bb19be21428fd850342426c7433d6">func %=(lhs: inout Int32, rhs: Int32)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-002bb19be21428fd850342426c7433d6"><p>Divides the first value by the second and stores the remainder in the
+left-hand-side variable.</p>
+<p>The result has the same sign as <code>lhs</code> and has a magnitude less than
+<code>rhs.magnitude</code>.</p>
+<pre><code class="language-swift">var x = 22
+x %= 5
+// x == 2
+
+var y = 22
+y %= -5
+// y == 2
+
+var z = -22
+z %= -5
+// z == -2
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func %=(lhs: inout Int32, rhs: Int32)</code></div></div><div id="lhs_rhs-8e394094eebf256a06c74c30008a9a9c" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-8e394094eebf256a06c74c30008a9a9c">func &amp;(lhs: Int32, rhs: Int32) -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-8e394094eebf256a06c74c30008a9a9c"><p>Returns the result of performing a bitwise AND operation on the two given
+values.</p>
+<p>A bitwise AND operation results in a value that has each bit set to <code>1</code>
+where <em>both</em> of its arguments have that bit set to <code>1</code>. For example:</p>
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x &amp; y             // 0b00000100
+// z == 4
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;(lhs: Int32, rhs: Int32) -> Int32</code></div></div><div id="lhs_rhs-c73eb5a6d4c291fd2250f2bc397b7b0d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-c73eb5a6d4c291fd2250f2bc397b7b0d">func &amp;*(lhs: Self, rhs: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-c73eb5a6d4c291fd2250f2bc397b7b0d"><p>Returns the product of the two given values, wrapping the result in case
+of any overflow.</p>
+<p>The overflow multiplication operator (<code>&amp;*</code>) discards any bits that
+overflow the fixed width of the integer type. In the following example,
+the product of <code>10</code> and <code>50</code> is greater than the maximum representable
+<code>Int8</code> value, so the result is the partial value after discarding the
+overflowing bits.</p>
+<pre><code class="language-swift">let x: Int8 = 10 &amp;* 5
+// x == 50
+let y: Int8 = 10 &amp;* 50
+// y == -12 (after overflow)
+</code></pre>
+<p>For more about arithmetic with overflow operators, see <a href="https://docs.swift.org/swift-book/LanguageGuide/AdvancedOperators.html#ID37">Overflow
+Operators</a> in <em><a href="https://docs.swift.org/swift-book/">The Swift Programming Language</a></em>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;*(lhs: Self, rhs: Self) -> Self</code></div></div><div id="lhs_rhs-ce1175eb3b66dc279086a399e0f3d430" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-ce1175eb3b66dc279086a399e0f3d430">func &amp;*=(lhs: inout Self, rhs: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-ce1175eb3b66dc279086a399e0f3d430"><p>Multiplies two values and stores the result in the left-hand-side
+variable, wrapping any overflow.</p>
+<p>The masking multiplication assignment operator (<code>&amp;*=</code>) silently wraps
+any overflow that occurs during the operation. In the following example,
+the product of <code>10</code> and <code>50</code> is greater than the maximum representable
+<code>Int8</code> value, so the result is the partial value after discarding the
+overflowing bits.</p>
+<pre><code class="language-swift">var x: Int8 = 10
+x &amp;*= 5
+// x == 50
+var y: Int8 = 10
+y &amp;*= 50
+// y == -12 (after overflow)
+</code></pre>
+<p>For more about arithmetic with overflow operators, see <a href="https://docs.swift.org/swift-book/LanguageGuide/AdvancedOperators.html#ID37">Overflow
+Operators</a> in <em><a href="https://docs.swift.org/swift-book/">The Swift Programming Language</a></em>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;*=(lhs: inout Self, rhs: Self)</code></div></div><div id="lhs_rhs-898f75e3792a6a6fc1d218720311ca70" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-898f75e3792a6a6fc1d218720311ca70">func &amp;+(lhs: Self, rhs: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-898f75e3792a6a6fc1d218720311ca70"><p>Returns the sum of the two given values, wrapping the result in case of
+any overflow.</p>
+<p>The overflow addition operator (<code>&amp;+</code>) discards any bits that overflow the
+fixed width of the integer type. In the following example, the sum of
+<code>100</code> and <code>121</code> is greater than the maximum representable <code>Int8</code> value,
+so the result is the partial value after discarding the overflowing
+bits.</p>
+<pre><code class="language-swift">let x: Int8 = 10 &amp;+ 21
+// x == 31
+let y: Int8 = 100 &amp;+ 121
+// y == -35 (after overflow)
+</code></pre>
+<p>For more about arithmetic with overflow operators, see <a href="https://docs.swift.org/swift-book/LanguageGuide/AdvancedOperators.html#ID37">Overflow
+Operators</a> in <em><a href="https://docs.swift.org/swift-book/">The Swift Programming Language</a></em>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;+(lhs: Self, rhs: Self) -> Self</code></div></div><div id="lhs_rhs-68f8b9b09581cb9ecbdc007ea12ef3d0" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-68f8b9b09581cb9ecbdc007ea12ef3d0">func &amp;+=(lhs: inout Self, rhs: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-68f8b9b09581cb9ecbdc007ea12ef3d0"><p>Adds two values and stores the result in the left-hand-side variable,
+wrapping any overflow.</p>
+<p>The masking addition assignment operator (<code>&amp;+=</code>) silently wraps any
+overflow that occurs during the operation. In the following example, the
+sum of <code>100</code> and <code>121</code> is greater than the maximum representable <code>Int8</code>
+value, so the result is the partial value after discarding the
+overflowing bits.</p>
+<pre><code class="language-swift">var x: Int8 = 10
+x &amp;+= 21
+// x == 31
+var y: Int8 = 100
+y &amp;+= 121
+// y == -35 (after overflow)
+</code></pre>
+<p>For more about arithmetic with overflow operators, see <a href="https://docs.swift.org/swift-book/LanguageGuide/AdvancedOperators.html#ID37">Overflow
+Operators</a> in <em><a href="https://docs.swift.org/swift-book/">The Swift Programming Language</a></em>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;+=(lhs: inout Self, rhs: Self)</code></div></div><div id="lhs_rhs-bcc887e8c5a7003507b9331860138dfc" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-bcc887e8c5a7003507b9331860138dfc">func &amp;-(lhs: Self, rhs: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-bcc887e8c5a7003507b9331860138dfc"><p>Returns the difference of the two given values, wrapping the result in
+case of any overflow.</p>
+<p>The overflow subtraction operator (<code>&amp;-</code>) discards any bits that overflow
+the fixed width of the integer type. In the following example, the
+difference of <code>10</code> and <code>21</code> is less than zero, the minimum representable
+<code>UInt</code> value, so the result is the partial value after discarding the
+overflowing bits.</p>
+<pre><code class="language-swift">let x: UInt8 = 21 &amp;- 10
+// x == 11
+let y: UInt8 = 10 &amp;- 21
+// y == 245 (after overflow)
+</code></pre>
+<p>For more about arithmetic with overflow operators, see <a href="https://docs.swift.org/swift-book/LanguageGuide/AdvancedOperators.html#ID37">Overflow
+Operators</a> in <em><a href="https://docs.swift.org/swift-book/">The Swift Programming Language</a></em>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;-(lhs: Self, rhs: Self) -> Self</code></div></div><div id="lhs_rhs-d28e712f0dd08fbb6336f30880e1bda2" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-d28e712f0dd08fbb6336f30880e1bda2">func &amp;-=(lhs: inout Self, rhs: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-d28e712f0dd08fbb6336f30880e1bda2"><p>Subtracts the second value from the first and stores the difference in the
+left-hand-side variable, wrapping any overflow.</p>
+<p>The masking subtraction assignment operator (<code>&amp;-=</code>) silently wraps any
+overflow that occurs during the operation. In the following example, the
+difference of <code>10</code> and <code>21</code> is less than zero, the minimum representable
+<code>UInt</code> value, so the result is the result is the partial value after
+discarding the overflowing bits.</p>
+<pre><code class="language-swift">var x: Int8 = 21
+x &amp;-= 10
+// x == 11
+var y: UInt8 = 10
+y &amp;-= 21
+// y == 245 (after overflow)
+</code></pre>
+<p>For more about arithmetic with overflow operators, see <a href="https://docs.swift.org/swift-book/LanguageGuide/AdvancedOperators.html#ID37">Overflow
+Operators</a> in <em><a href="https://docs.swift.org/swift-book/">The Swift Programming Language</a></em>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;-=(lhs: inout Self, rhs: Self)</code></div></div><div id="lhs_rhs-ab0857b5da3983a56b05a0dadb0a089e" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-ab0857b5da3983a56b05a0dadb0a089e">func &amp;&lt;&lt;(lhs: Int32, rhs: Int32) -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-ab0857b5da3983a56b05a0dadb0a089e"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the left, masking the shift amount to the
+type's bit width.</p>
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000
+</code></pre>
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110
+</code></pre>
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;&lt;&lt;(lhs: Int32, rhs: Int32) -> Int32</code></div></div><div id="lhs_rhs-ab0857b5da3983a56b05a0dadb0a089e" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-ab0857b5da3983a56b05a0dadb0a089e">func &amp;&lt;&lt;(lhs: Self, rhs: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-ab0857b5da3983a56b05a0dadb0a089e"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the left, masking the shift amount to the
+type's bit width.</p>
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000
+</code></pre>
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110
+</code></pre>
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;&lt;&lt;(lhs: Self, rhs: Self) -> Self</code></div></div><div id="lhs_rhs-ab0857b5da3983a56b05a0dadb0a089e" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-ab0857b5da3983a56b05a0dadb0a089e">func &amp;&lt;&lt;(lhs: Self, rhs: Other) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-ab0857b5da3983a56b05a0dadb0a089e"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the left, masking the shift amount to the
+type's bit width.</p>
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000
+</code></pre>
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110
+</code></pre>
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;&lt;&lt;&lt;Other>(lhs: Self, rhs: Other) -> Self where Other: BinaryInteger</code></div></div><div id="lhs_rhs-eaac6a93118a75870df4445e545b0161" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-eaac6a93118a75870df4445e545b0161">func &amp;&lt;&lt;=(lhs: inout Int32, rhs: Int32)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-eaac6a93118a75870df4445e545b0161"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the left, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.</p>
+<p>The <code>&amp;&lt;&lt;=</code> operator performs a <em>masking shift</em>, where the value used as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&lt;&lt;= 2
+// x == 120                       // 0b01111000
+</code></pre>
+<p>However, if you pass <code>19</code> as <code>rhs</code>, the method first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&lt;&lt;= 19
+// y == 240                       // 0b11110000
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;&lt;&lt;=(lhs: inout Int32, rhs: Int32)</code></div></div><div id="lhs_rhs-eaac6a93118a75870df4445e545b0161" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-eaac6a93118a75870df4445e545b0161">func &amp;&lt;&lt;=(lhs: inout Self, rhs: Other)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-eaac6a93118a75870df4445e545b0161"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the left, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.</p>
+<p>The <code>&amp;&lt;&lt;=</code> operator performs a <em>masking shift</em>, where the value used as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&lt;&lt;= 2
+// x == 120                       // 0b01111000
+</code></pre>
+<p>However, if you pass <code>19</code> as <code>rhs</code>, the method first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&lt;&lt;= 19
+// y == 240                       // 0b11110000
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;&lt;&lt;=&lt;Other>(lhs: inout Self, rhs: Other) where Other: BinaryInteger</code></div></div><div id="lhs_rhs-3ddd5f962268038b9d083e0d11e82747" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-3ddd5f962268038b9d083e0d11e82747">func &amp;=(lhs: inout Int32, rhs: Int32)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-3ddd5f962268038b9d083e0d11e82747"><p>Stores the result of performing a bitwise AND operation on the two given
+values in the left-hand-side variable.</p>
+<p>A bitwise AND operation results in a value that has each bit set to <code>1</code>
+where <em>both</em> of its arguments have that bit set to <code>1</code>. For example:</p>
+<pre><code class="language-swift">var x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+x &amp;= y                    // 0b00000100
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;=(lhs: inout Int32, rhs: Int32)</code></div></div><div id="lhs_rhs-0e7fea1a22e5e436fc50aeb0bd9eef22" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-0e7fea1a22e5e436fc50aeb0bd9eef22">func &amp;>>(lhs: Int32, rhs: Int32) -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-0e7fea1a22e5e436fc50aeb0bd9eef22"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width.</p>
+<p>Use the masking right shift operator (<code>&amp;&gt;&gt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking right shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&gt;&gt; 2
+// y == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+<pre><code class="language-swift">let z = x &amp;&gt;&gt; 8
+// z == 30                        // 0b00011110
+</code></pre>
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;>>(lhs: Int32, rhs: Int32) -> Int32</code></div></div><div id="lhs_rhs-0e7fea1a22e5e436fc50aeb0bd9eef22" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-0e7fea1a22e5e436fc50aeb0bd9eef22">func &amp;>>(lhs: Self, rhs: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-0e7fea1a22e5e436fc50aeb0bd9eef22"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width.</p>
+<p>Use the masking right shift operator (<code>&amp;&gt;&gt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking right shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&gt;&gt; 2
+// y == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+<pre><code class="language-swift">let z = x &amp;&gt;&gt; 8
+// z == 30                        // 0b00011110
+</code></pre>
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;>>(lhs: Self, rhs: Self) -> Self</code></div></div><div id="lhs_rhs-0e7fea1a22e5e436fc50aeb0bd9eef22" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-0e7fea1a22e5e436fc50aeb0bd9eef22">func &amp;>>(lhs: Self, rhs: Other) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-0e7fea1a22e5e436fc50aeb0bd9eef22"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width.</p>
+<p>Use the masking right shift operator (<code>&amp;&gt;&gt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking right shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&gt;&gt; 2
+// y == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+<pre><code class="language-swift">let z = x &amp;&gt;&gt; 8
+// z == 30                        // 0b00011110
+</code></pre>
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;>>&lt;Other>(lhs: Self, rhs: Other) -> Self where Other: BinaryInteger</code></div></div><div id="lhs_rhs-e8ca0f7542e622e29b8ee228059adba7" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-e8ca0f7542e622e29b8ee228059adba7">func &amp;>>=(lhs: inout Int32, rhs: Int32)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-e8ca0f7542e622e29b8ee228059adba7"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;>>=(lhs: inout Int32, rhs: Int32)</code></div></div><div id="lhs_rhs-e8ca0f7542e622e29b8ee228059adba7" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-e8ca0f7542e622e29b8ee228059adba7">func &amp;>>=(lhs: inout Self, rhs: Other)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-e8ca0f7542e622e29b8ee228059adba7"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;>>=&lt;Other>(lhs: inout Self, rhs: Other) where Other: BinaryInteger</code></div></div><div id="lhs_rhs-471d936295383220ce00ec7c8a571f42" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-471d936295383220ce00ec7c8a571f42">func *(lhs: Int32, rhs: Int32) -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-471d936295383220ce00ec7c8a571f42"><p>Multiplies two values and produces their product.</p>
+<p>The multiplication operator (<code>*</code>) calculates the product of its two
+arguments. For example:</p>
+<pre><code class="language-swift">2 * 3                   // 6
+100 * 21                // 2100
+-10 * 15                // -150
+3.5 * 2.25              // 7.875
+</code></pre>
+<p>You cannot use <code>*</code> with arguments of different types. To multiply values
+of different types, convert one of the values to the other value's type.</p>
+<pre><code class="language-swift">let x: Int8 = 21
+let y: Int = 1000000
+Int(x) * y              // 21000000
+</code></pre>
+<p>The product of the two arguments must be representable in the arguments'
+type. In the following example, the result of <code>21 * 21</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+<pre><code class="language-swift">x * 21                  // Overflow error
+</code></pre>
+<blockquote>
+<p>Note:
+Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+</blockquote>
+<p>If you want to opt out of overflow checking and wrap the result in case
+of any overflow, use the overflow multiplication operator (<code>&amp;*</code>).</p>
+<pre><code class="language-swift">x &amp;* 21                // -115
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func *(lhs: Int32, rhs: Int32) -> Int32</code></div></div><div id="lhs_rhs-8a5fdcc6ae3e13bcb603f4e5929012eb" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-8a5fdcc6ae3e13bcb603f4e5929012eb">func *=(lhs: inout Int32, rhs: Int32)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-8a5fdcc6ae3e13bcb603f4e5929012eb"><p>Multiplies two values and stores the result in the left-hand-side
+variable.</p>
+<p>The product of the two arguments must be representable in the arguments'
+type. In the following example, the result of <code>21 * 21</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+<pre><code class="language-swift">var x: Int8 = 21
+x * 21
+// Overflow error
+</code></pre>
+<blockquote>
+<p>Note:
+Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public static func *=(lhs: inout Int32, rhs: Int32)</code></div></div><div id="lhs_rhs-1ace6c0ccceecc18799beae40fae2402" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-1ace6c0ccceecc18799beae40fae2402">func +(lhs: Int32, rhs: Int32) -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-1ace6c0ccceecc18799beae40fae2402"><p>Adds two values and produces their sum.</p>
+<p>The addition operator (<code>+</code>) calculates the sum of its two arguments. For
+example:</p>
+<pre><code class="language-swift">1 + 2                   // 3
+-10 + 15                // 5
+-15 + -5                // -20
+21.5 + 3.25             // 24.75
+</code></pre>
+<p>You cannot use <code>+</code> with arguments of different types. To add values of
+different types, convert one of the values to the other value's type.</p>
+<pre><code class="language-swift">let x: Int8 = 21
+let y: Int = 1000000
+Int(x) + y              // 1000021
+</code></pre>
+<p>The sum of the two arguments must be representable in the arguments'
+type. In the following example, the result of <code>21 + 120</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+<pre><code class="language-swift">x + 120                 // Overflow error
+</code></pre>
+<blockquote>
+<p>Note:
+Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+</blockquote>
+<p>If you want to opt out of overflow checking and wrap the result in case
+of any overflow, use the overflow addition operator (<code>&amp;+</code>).</p>
+<pre><code class="language-swift">x &amp;+ 120                // -115
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func +(lhs: Int32, rhs: Int32) -> Int32</code></div></div><div id="lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb">func +=(lhs: inout Int32, rhs: Int32)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb"><p>Adds two values and stores the result in the left-hand-side variable.</p>
+<p>The sum of the two arguments must be representable in the arguments'
+type. In the following example, the result of <code>21 + 120</code> is greater than
+the maximum representable <code>Int8</code> value:</p>
+<pre><code class="language-swift">var x: Int8 = 21
+x += 120
+// Overflow error
+</code></pre>
+<blockquote>
+<p>Note:
+Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public static func +=(lhs: inout Int32, rhs: Int32)</code></div></div><div id="lhs_rhs-d3d9eeb5284a9f8a3101d48d6c5f5dde" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-d3d9eeb5284a9f8a3101d48d6c5f5dde">func -(lhs: Int32, rhs: Int32) -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-d3d9eeb5284a9f8a3101d48d6c5f5dde"><p>Subtracts one value from another and produces their difference.</p>
+<p>The subtraction operator (<code>-</code>) calculates the difference of its two
+arguments. For example:</p>
+<pre><code class="language-swift">8 - 3                   // 5
+-10 - 5                 // -15
+100 - -5                // 105
+10.5 - 100.0            // -89.5
+</code></pre>
+<p>You cannot use <code>-</code> with arguments of different types. To subtract values
+of different types, convert one of the values to the other value's type.</p>
+<pre><code class="language-swift">let x: UInt8 = 21
+let y: UInt = 1000000
+y - UInt(x)             // 999979
+</code></pre>
+<p>The difference of the two arguments must be representable in the
+arguments' type. In the following example, the result of <code>21 - 50</code> is
+less than zero, the minimum representable <code>UInt8</code> value:</p>
+<pre><code class="language-swift">x - 50                  // Overflow error
+</code></pre>
+<blockquote>
+<p>Note:
+Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+</blockquote>
+<p>If you want to opt out of overflow checking and wrap the result in case
+of any overflow, use the overflow subtraction operator (<code>&amp;-</code>).</p>
+<pre><code class="language-swift">x &amp;- 50                // 227
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func -(lhs: Int32, rhs: Int32) -> Int32</code></div></div><div id="lhs_rhs-265a6353740687d540f523762f8cf760" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-265a6353740687d540f523762f8cf760">func -=(lhs: inout Int32, rhs: Int32)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-265a6353740687d540f523762f8cf760"><p>Subtracts the second value from the first and stores the difference in the
+left-hand-side variable.</p>
+<p>The difference of the two arguments must be representable in the
+arguments' type. In the following example, the result of <code>21 - 50</code> is
+less than zero, the minimum representable <code>UInt8</code> value:</p>
+<pre><code class="language-swift">var x: UInt8 = 21
+x - 50
+// Overflow error
+</code></pre>
+<blockquote>
+<p>Note:
+Overflow checking is not performed in <code>-Ounchecked</code> builds.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public static func -=(lhs: inout Int32, rhs: Int32)</code></div></div><div id="lhs_rhs-8d3e01dd5aadf72b5d7233c057966993" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-8d3e01dd5aadf72b5d7233c057966993">func /(lhs: Int32, rhs: Int32) -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-8d3e01dd5aadf72b5d7233c057966993"><p>Returns the quotient of dividing the first value by the second.</p>
+<p>For integer types, any remainder of the division is discarded.</p>
+<pre><code class="language-swift">let x = 21 / 5
+// x == 4
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func /(lhs: Int32, rhs: Int32) -> Int32</code></div></div><div id="lhs_rhs-17bbf440b6b9ae5c2d374738ec64963d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-17bbf440b6b9ae5c2d374738ec64963d">func /=(lhs: inout Int32, rhs: Int32)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-17bbf440b6b9ae5c2d374738ec64963d"><p>Divides the first value by the second and stores the quotient in the
+left-hand-side variable.</p>
+<p>For integer types, any remainder of the division is discarded.</p>
+<pre><code class="language-swift">var x = 21
+x /= 5
+// x == 4
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func /=(lhs: inout Int32, rhs: Int32)</code></div></div><div id="lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f">func &lt;(lhs: Int32, rhs: Int32) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;(lhs: Int32, rhs: Int32) -> Bool</code></div></div><div id="lhs_rhs-a78dd2cd608d0fea2c2953583468409c" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a78dd2cd608d0fea2c2953583468409c">func &lt;&lt;(lhs: Self, rhs: Other) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a78dd2cd608d0fea2c2953583468409c"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the left.</p>
+<p>The <code>&lt;&lt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted left by two bits.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &lt;&lt; 2
+// y == 120                       // 0b01111000
+</code></pre>
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+<pre><code class="language-swift">let z = x &lt;&lt; 11
+// z == 0                         // 0b00000000
+</code></pre>
+<p>Using a negative value as <code>rhs</code> is the same as performing a right shift
+with <code>abs(rhs)</code>.</p>
+<pre><code class="language-swift">let a = x &lt;&lt; -3
+// a == 3                         // 0b00000011
+let b = x &gt;&gt; 3
+// b == 3                         // 0b00000011
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;&lt;&lt;Other>(lhs: Self, rhs: Other) -> Self where Other: BinaryInteger</code></div></div><div id="lhs_rhs-5ba2ccb5167dfa4e5a6e1b4fd9a4e632" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-5ba2ccb5167dfa4e5a6e1b4fd9a4e632">func &lt;&lt;=(lhs: inout Self, rhs: Other)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-5ba2ccb5167dfa4e5a6e1b4fd9a4e632"><p>Stores the result of shifting a value's binary representation the
+specified number of digits to the left in the left-hand-side variable.</p>
+<p>The <code>&lt;&lt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted left by two bits.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &lt;&lt;= 2
+// x == 120                       // 0b01111000
+</code></pre>
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &lt;&lt;= 11
+// y == 0                         // 0b00000000
+</code></pre>
+<p>Using a negative value as <code>rhs</code> is the same as performing a right shift
+with <code>abs(rhs)</code>.</p>
+<pre><code class="language-swift">var a: UInt8 = 30                 // 0b00011110
+a &lt;&lt;= -3
+// a == 3                         // 0b00000011
+
+var b: UInt8 = 30                 // 0b00011110
+b &gt;&gt;= 3
+// b == 3                         // 0b00000011
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;&lt;=&lt;Other>(lhs: inout Self, rhs: Other) where Other: BinaryInteger</code></div></div><div id="lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92">func &lt;=(lhs: Int32, rhs: Int32) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than or equal to that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;=(lhs: Int32, rhs: Int32) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: Int32, rhs: Int32) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func ==(lhs: Int32, rhs: Int32) -> Bool</code></div></div><div id="lhs_rhs-a00561663d495dd2668b929fde178932" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a00561663d495dd2668b929fde178932">func >(lhs: Int32, rhs: Int32) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a00561663d495dd2668b929fde178932"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">public static func >(lhs: Int32, rhs: Int32) -> Bool</code></div></div><div id="lhs_rhs-a0e01127094d0eee401411c4b5eb8e60" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60">func >=(lhs: Int32, rhs: Int32) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">public static func >=(lhs: Int32, rhs: Int32) -> Bool</code></div></div><div id="lhs_rhs-8f77e46ddc0964d547890243c92f559e" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-8f77e46ddc0964d547890243c92f559e">func >>(lhs: Self, rhs: Other) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-8f77e46ddc0964d547890243c92f559e"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the right.</p>
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111
+</code></pre>
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000
+</code></pre>
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000
+</code></pre>
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func >>&lt;Other>(lhs: Self, rhs: Other) -> Self where Other: BinaryInteger</code></div></div><div id="lhs_rhs-db033c4bbd2c0f733d6707ff8b6b7f9b" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-db033c4bbd2c0f733d6707ff8b6b7f9b">func >>=(lhs: inout Self, rhs: Other)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-db033c4bbd2c0f733d6707ff8b6b7f9b"><p>Stores the result of shifting a value's binary representation the
+specified number of digits to the right in the left-hand-side variable.</p>
+<p>The <code>&gt;&gt;=</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &gt;&gt;= 11
+// y == 0                         // 0b00000000
+</code></pre>
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+<pre><code class="language-swift">var a: UInt8 = 30                 // 0b00011110
+a &gt;&gt;= -3
+// a == 240                       // 0b11110000
+
+var b: UInt8 = 30                 // 0b00011110
+b &lt;&lt;= 3
+// b == 240                       // 0b11110000
+</code></pre>
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+<pre><code class="language-swift">var q: Int8 = -30                 // 0b11100010
+q &gt;&gt;= 2
+// q == -8                        // 0b11111000
+
+var r: Int8 = -30                 // 0b11100010
+r &gt;&gt;= 11
+// r == -1                        // 0b11111111
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func >>=&lt;Other>(lhs: inout Self, rhs: Other) where Other: BinaryInteger</code></div></div><div id="lhs_rhs-03f47400539569672fd3bb01c98ae9b6" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-03f47400539569672fd3bb01c98ae9b6">func ^(lhs: Int32, rhs: Int32) -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-03f47400539569672fd3bb01c98ae9b6"><p>Returns the result of performing a bitwise XOR operation on the two given
+values.</p>
+<p>A bitwise XOR operation, also known as an exclusive OR operation, results
+in a value that has each bit set to <code>1</code> where <em>one or the other but not
+both</em> of its arguments had that bit set to <code>1</code>. For example:</p>
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x ^ y             // 0b00001011
+// z == 11
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ^(lhs: Int32, rhs: Int32) -> Int32</code></div></div><div id="lhs_rhs-f23f8430c48ff564182818fef5835f90" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-f23f8430c48ff564182818fef5835f90">func ^=(lhs: inout Int32, rhs: Int32)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-f23f8430c48ff564182818fef5835f90"><p>Stores the result of performing a bitwise XOR operation on the two given
+values in the left-hand-side variable.</p>
+<p>A bitwise XOR operation, also known as an exclusive OR operation, results
+in a value that has each bit set to <code>1</code> where <em>one or the other but not
+both</em> of its arguments had that bit set to <code>1</code>. For example:</p>
+<pre><code class="language-swift">var x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+x ^= y                    // 0b00001011
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ^=(lhs: inout Int32, rhs: Int32)</code></div></div><div id="random_in-3895de4e728be5dc422e0e1372a67810" class="declaration"><a class="toggle-link" href="#comment-random_in-3895de4e728be5dc422e0e1372a67810">func random(in range: Range&lt;Self>) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-random_in-3895de4e728be5dc422e0e1372a67810"><p>Returns a random value within the specified range.</p>
+<p>Use this method to generate an integer within a specific range. This
+example creates three new values in the range <code>1..&lt;100</code>.</p>
+<pre><code class="language-swift">for _ in 1...3 {
+    print(Int.random(in: 1..&lt;100))
+}
+// Prints &quot;53&quot;
+// Prints &quot;64&quot;
+// Prints &quot;5&quot;
+</code></pre>
+<p>This method is equivalent to calling the version that takes a generator,
+passing in the system's default random generator.</p>
+<ul>
+<li>Parameter range: The range in which to create a random value.
+<code>range</code> must not be empty.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func random(in range: Range&lt;Self>) -> Self</code></div></div><div id="random_in-3895de4e728be5dc422e0e1372a67810" class="declaration"><a class="toggle-link" href="#comment-random_in-3895de4e728be5dc422e0e1372a67810">func random(in range: ClosedRange&lt;Self>) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-random_in-3895de4e728be5dc422e0e1372a67810"><p>Returns a random value within the specified range.</p>
+<p>Use this method to generate an integer within a specific range. This
+example creates three new values in the range <code>1...100</code>.</p>
+<pre><code class="language-swift">for _ in 1...3 {
+    print(Int.random(in: 1...100))
+}
+// Prints &quot;53&quot;
+// Prints &quot;64&quot;
+// Prints &quot;5&quot;
+</code></pre>
+<p>This method is equivalent to calling <code>random(in:using:)</code>, passing in the
+system's default random generator.</p>
+<ul>
+<li>Parameter range: The range in which to create a random value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func random(in range: ClosedRange&lt;Self>) -> Self</code></div></div><div id="random_in_using-646f577d5a51802347f70f731bad7983" class="declaration"><a class="toggle-link" href="#comment-random_in_using-646f577d5a51802347f70f731bad7983">func random(in range: Range&lt;Self>, using generator: inout T) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-random_in_using-646f577d5a51802347f70f731bad7983"><p>Returns a random value within the specified range, using the given
+generator as a source for randomness.</p>
+<p>Use this method to generate an integer within a specific range when you
+are using a custom random number generator. This example creates three
+new values in the range <code>1..&lt;100</code>.</p>
+<pre><code class="language-swift">for _ in 1...3 {
+    print(Int.random(in: 1..&lt;100, using: &amp;myGenerator))
+}
+// Prints &quot;7&quot;
+// Prints &quot;44&quot;
+// Prints &quot;21&quot;
+</code></pre>
+<blockquote>
+<p>Note:
+The algorithm used to create random values may change in a future version of Swift. If you're passing a generator that results in the same sequence of integer values each time you run your program, that sequence may change when your program is compiled using a different version of Swift.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func random&lt;T>(in range: Range&lt;Self>, using generator: inout T) -> Self where T: RandomNumberGenerator</code></div></div><div id="random_in_using-646f577d5a51802347f70f731bad7983" class="declaration"><a class="toggle-link" href="#comment-random_in_using-646f577d5a51802347f70f731bad7983">func random(in range: ClosedRange&lt;Self>, using generator: inout T) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-random_in_using-646f577d5a51802347f70f731bad7983"><p>Returns a random value within the specified range, using the given
+generator as a source for randomness.</p>
+<p>Use this method to generate an integer within a specific range when you
+are using a custom random number generator. This example creates three
+new values in the range <code>1...100</code>.</p>
+<pre><code class="language-swift">for _ in 1...3 {
+    print(Int.random(in: 1...100, using: &amp;myGenerator))
+}
+// Prints &quot;7&quot;
+// Prints &quot;44&quot;
+// Prints &quot;21&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func random&lt;T>(in range: ClosedRange&lt;Self>, using generator: inout T) -> Self where T: RandomNumberGenerator</code></div></div><div id="lhs_rhs-4e71b0d2abd7c5dbfd95249811ea3f9a" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-4e71b0d2abd7c5dbfd95249811ea3f9a">func |(lhs: Int32, rhs: Int32) -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-4e71b0d2abd7c5dbfd95249811ea3f9a"><p>Returns the result of performing a bitwise OR operation on the two given
+values.</p>
+<p>A bitwise OR operation results in a value that has each bit set to <code>1</code>
+where <em>one or both</em> of its arguments have that bit set to <code>1</code>. For
+example:</p>
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x | y             // 0b00001111
+// z == 15
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func |(lhs: Int32, rhs: Int32) -> Int32</code></div></div><div id="lhs_rhs-b630eb97e0c6b698578b6b1cb7ec3f92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-b630eb97e0c6b698578b6b1cb7ec3f92">func |=(lhs: inout Int32, rhs: Int32)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-b630eb97e0c6b698578b6b1cb7ec3f92"><p>Stores the result of performing a bitwise OR operation on the two given
+values in the left-hand-side variable.</p>
+<p>A bitwise OR operation results in a value that has each bit set to <code>1</code>
+where <em>one or both</em> of its arguments have that bit set to <code>1</code>. For
+example:</p>
+<pre><code class="language-swift">var x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+x |= y                    // 0b00001111
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func |=(lhs: inout Int32, rhs: Int32)</code></div></div><div id="x-e5211619b5d5b87c5fee2862f84e955f" class="declaration"><a class="toggle-link" href="#comment-x-e5211619b5d5b87c5fee2862f84e955f">func ~(x: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-x-e5211619b5d5b87c5fee2862f84e955f"><p>Returns the inverse of the bits set in the argument.</p>
+<p>The bitwise NOT operator (<code>~</code>) is a prefix operator that returns a value
+in which all the bits of its argument are flipped: Bits that are <code>1</code> in
+the argument are <code>0</code> in the result, and bits that are <code>0</code> in the argument
+are <code>1</code> in the result. This is equivalent to the inverse of a set. For
+example:</p>
+<pre><code class="language-swift">let x: UInt8 = 5        // 0b00000101
+let notX = ~x           // 0b11111010
+</code></pre>
+<p>Performing a bitwise NOT operation on 0 returns a value with every bit
+set to <code>1</code>.</p>
+<pre><code class="language-swift">let allOnes = ~UInt8.min   // 0b11111111
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(1).</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">prefix public static func ~(x: Self) -> Self</code></div></div>

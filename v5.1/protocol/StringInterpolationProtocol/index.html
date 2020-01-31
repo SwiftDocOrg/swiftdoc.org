@@ -1,0 +1,96 @@
+---
+title: "StringInterpolationProtocol"
+keywords: ""
+root: "/v5.1"
+layout: "default"
+description: "Swift documentation for 'StringInterpolationProtocol'"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol StringInterpolationProtocol</code></div><p>Represents the contents of a string literal with interpolations while it's
+being built up.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">DefaultStringInterpolation</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype StringLiteralType</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>Each <code>ExpressibleByStringInterpolation</code> type has an associated
+<code>StringInterpolation</code> type which conforms to <code>StringInterpolationProtocol</code>.
+Swift converts an expression like <code>&quot;The time is \(time).&quot; as MyString</code> into
+a series of statements similar to:</p>
+<pre><code class="language-swift">var interpolation = MyString.StringInterpolation(literalCapacity: 13, 
+                                                 interpolationCount: 1)
+
+interpolation.appendLiteral(&quot;The time is &quot;)
+interpolation.appendInterpolation(time)
+interpolation.appendLiteral(&quot;.&quot;)
+
+MyString(stringInterpolation: interpolation)
+</code></pre>
+<p>The <code>StringInterpolation</code> type is responsible for collecting the segments
+passed to its <code>appendLiteral(_:)</code> and <code>appendInterpolation</code> methods and
+assembling them into a whole, converting as necessary. Once all of the
+segments are appended, the interpolation is passed to an
+<code>init(stringInterpolation:)</code> initializer on the type being created, which
+must extract the accumulated data from the <code>StringInterpolation</code>.</p>
+<p>In simple cases, you can use <code>DefaultStringInterpolation</code> as the
+interpolation type for types that conform to the
+<code>ExpressibleByStringLiteral</code> protocol. To use the default interpolation,
+conform a type to <code>ExpressibleByStringInterpolation</code> and implement
+<code>init(stringLiteral: String)</code>. Values in interpolations are converted to
+strings, and then passed to that initializer just like any other string
+literal.</p>
+<h3>Handling String Interpolations</h3>
+<p>With a custom interpolation type, each interpolated segment is translated
+into a call to a special <code>appendInterpolation</code> method. The contents of
+the interpolation's parentheses are treated as the call's argument list.
+That argument list can include multiple arguments and argument labels.</p>
+<p>The following examples show how string interpolations are translated into
+calls to <code>appendInterpolation</code>:</p>
+<p>The <code>appendInterpolation</code> methods in your custom type must be mutating
+instance methods that return <code>Void</code>. This code shows a custom interpolation
+type's declaration of an <code>appendInterpolation</code> method that provides special
+validation for user input:</p>
+<pre><code class="language-swift">extension MyString.StringInterpolation {
+    mutating func appendInterpolation(validating input: String) {
+        // Perform validation of `input` and store for later use
+    }
+}
+</code></pre>
+<p>To use this interpolation method, create a string literal with an
+interpolation using the <code>validating</code> parameter label.</p>
+<pre><code class="language-swift">let userInput = readLine() ?? &quot;&quot;
+let myString = &quot;The user typed '\(validating: userInput)'.&quot; as MyString
+</code></pre>
+<p><code>appendInterpolation</code> methods support virtually all features of methods:
+they can have any number of parameters, can specify labels for any or all
+of their parameters, can provide default values, can have variadic
+parameters, and can have parameters with generic types. Most importantly,
+they can be overloaded, so a type that conforms to
+<code>StringInterpolationProtocol</code> can provide several different
+<code>appendInterpolation</code> methods with different behaviors. An
+<code>appendInterpolation</code> method can also throw; when a user writes a literal
+with one of these interpolations, they must mark the string literal with
+<code>try</code> or one of its variants.</p>
+</div><h3>Initializers</h3><div id="init_literalCapacity_interpolationCount-9ae0a1350fef478293dc5c0ae6463964" class="declaration"><a class="toggle-link" href="#comment-init_literalCapacity_interpolationCount-9ae0a1350fef478293dc5c0ae6463964">init init(literalCapacity:interpolationCount:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_literalCapacity_interpolationCount-9ae0a1350fef478293dc5c0ae6463964"><p>Creates an empty instance ready to be filled with string literal content.</p>
+<p>Don't call this initializer directly. Instead, initialize a variable or
+constant using a string literal with interpolated expressions.</p>
+<p>Swift passes this initializer a pair of arguments specifying the size of
+the literal segments and the number of interpolated segments. Use this
+information to estimate the amount of storage you will need.</p>
+<ul>
+<li>Parameter literalCapacity: The approximate size of all literal segments
+combined. This is meant to be passed to <code>String.reserveCapacity(_:)</code>;
+it may be slightly larger or smaller than the sum of the counts of each
+literal segment.</li>
+</ul>
+<ul>
+<li>Parameter interpolationCount: The number of interpolations which will be
+appended. Use this value to estimate how much additional capacity will
+be needed for the interpolated segments.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init(literalCapacity: Int, interpolationCount: Int)</code></div></div><h3>Instance Methods</h3><div id="appendLiteral-267d8ace3b8e029535e29b0c5f801bdc" class="declaration"><a class="toggle-link" href="#comment-appendLiteral-267d8ace3b8e029535e29b0c5f801bdc">func appendLiteral(_ literal: Self.StringLiteralType)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-appendLiteral-267d8ace3b8e029535e29b0c5f801bdc"><p>Appends a literal segment to the interpolation.</p>
+<p>Don't call this method directly. Instead, initialize a variable or
+constant using a string literal with interpolated expressions.</p>
+<p>Interpolated expressions don't pass through this method; instead, Swift
+selects an overload of <code>appendInterpolation</code>. For more information, see
+the top-level <code>StringInterpolationProtocol</code> documentation.</p>
+<ul>
+<li>Parameter literal: A string literal containing the characters
+that appear next in the string literal.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func appendLiteral(_ literal: Self.StringLiteralType)</code></div></div>

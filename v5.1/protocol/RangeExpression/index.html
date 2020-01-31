@@ -1,0 +1,53 @@
+---
+root: "/v5.1"
+keywords: ""
+layout: "default"
+description: "Swift documentation for 'RangeExpression'"
+title: "RangeExpression"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol RangeExpression</code></div><p>A type that can be used to slice a collection.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">ClosedRange, PartialRangeFrom, PartialRangeThrough, PartialRangeUpTo, Range</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype Bound</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>A type that conforms to <code>RangeExpression</code> can convert itself to a
+<code>Range&lt;Bound&gt;</code> of indices within a given collection.</p>
+</div><h3>Instance Methods</h3><div id="contains-6f3567afe6aa63234ecc71820249f524" class="declaration"><a class="toggle-link" href="#comment-contains-6f3567afe6aa63234ecc71820249f524">func contains(_ element: Self.Bound) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-contains-6f3567afe6aa63234ecc71820249f524"><p>Returns a Boolean value indicating whether the given element is contained
+within the range expression.</p>
+<ul>
+<li>Parameter element: The element to check for containment.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func contains(_ element: Self.Bound) -> Bool</code></div></div><div id="relative_to-2949b1d9b740a6772c83bb21cba0c554" class="declaration"><a class="toggle-link" href="#comment-relative_to-2949b1d9b740a6772c83bb21cba0c554">func relative(to collection: C) -> Range&lt;Self.Bound></a> <span class="required">Required</span><div class="comment collapse in" id="comment-relative_to-2949b1d9b740a6772c83bb21cba0c554"><p>Returns the range of indices described by this range expression within
+the given collection.</p>
+<p>You can use the <code>relative(to:)</code> method to convert a range expression,
+which could be missing one or both of its endpoints, into a concrete
+range that is bounded on both sides. The following example uses this
+method to convert a partial range up to <code>4</code> into a half-open range,
+using an array instance to add the range's lower bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+let upToFour = ..&lt;4
+
+let r1 = upToFour.relative(to: numbers)
+// r1 == 0..&lt;4
+</code></pre>
+<p>The <code>r1</code> range is bounded on the lower end by <code>0</code> because that is the
+starting index of the <code>numbers</code> array. When the collection passed to
+<code>relative(to:)</code> starts with a different index, that index is used as the
+lower bound instead. The next example creates a slice of <code>numbers</code>
+starting at index <code>2</code>, and then uses the slice with <code>relative(to:)</code> to
+convert <code>upToFour</code> to a concrete range.</p>
+<pre><code class="language-swift">let numbersSuffix = numbers[2...]
+// numbersSuffix == [30, 40, 50, 60, 70]
+
+let r2 = upToFour.relative(to: numbersSuffix)
+// r2 == 2..&lt;4
+</code></pre>
+<p>Use this method only if you need the concrete range it produces. To
+access a slice of a collection using a range expression, use the
+collection's generic subscript that uses a range expression as its
+parameter.</p>
+<pre><code class="language-swift">let numbersPrefix = numbers[upToFour]
+// numbersPrefix == [10, 20, 30, 40]
+</code></pre>
+<ul>
+<li>Parameter collection: The collection to evaluate this range expression
+in relation to.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func relative&lt;C>(to collection: C) -> Range&lt;Self.Bound> where C: Collection, Self.Bound == C.Index</code></div></div>

@@ -1,0 +1,23 @@
+---
+keywords: ""
+description: "Swift documentation for 'repeatElement'"
+root: "/v5.1"
+title: "repeatElement"
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">func repeatElement(_:count:)(_ element: T, count n: Int) -> Repeated&lt;T></code></div><div class="discussion comment"><p>Creates a collection containing the specified number of the given element.
+</p>
+<p>The following example creates a <code>Repeated&lt;Int&gt;</code> collection containing five
+zeroes:</p>
+<pre><code class="language-swift">let zeroes = repeatElement(0, count: 5)
+for x in zeroes {
+    print(x)
+}
+// 0
+// 0
+// 0
+// 0
+// 0
+</code></pre>
+</div>

@@ -1,0 +1,57 @@
+---
+root: "/v5.1"
+description: "Swift documentation for 'ExpressibleByStringInterpolation'"
+keywords: ""
+layout: "default"
+title: "ExpressibleByStringInterpolation"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol ExpressibleByStringInterpolation</code></div><p>A type that can be initialized by string interpolation with a string
+literal that includes expressions.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">ExpressibleByStringLiteral</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">StringProtocol</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype StringInterpolation</code><div class="comment"><p>The <code>StringLiteralType</code> of an interpolation type must match the
+<code>StringLiteralType</code> of the conforming type.</p>
+</div></div></td></tr></table><div class="discussion comment"><p>Use string interpolation to include one or more expressions in a string
+literal, wrapped in a set of parentheses and prefixed by a backslash. For
+example:</p>
+<pre><code class="language-swift">let price = 2
+let number = 3
+let message = &quot;One cookie: $\(price), \(number) cookies: $\(price * number).&quot;
+print(message)
+// Prints &quot;One cookie: $2, 3 cookies: $6.&quot;
+</code></pre>
+<h3>Extending the Default Interpolation Behavior</h3>
+<p>Add new interpolation behavior to existing types by extending
+<code>DefaultStringInterpolation</code>, the type that implements interpolation for
+types like <code>String</code> and <code>Substring</code>, to add an overload of
+<code>appendInterpolation(_:)</code> with their new behavior.</p>
+<p>For more information, see the <code>DefaultStringInterpolation</code> and
+<code>StringInterpolationProtocol</code> documentation.</p>
+<h3>Creating a Type That Supports the Default String Interpolation</h3>
+<p>To create a new type that supports string literals and interpolation, but
+that doesn't need any custom behavior, conform the type to
+<code>ExpressibleByStringInterpolation</code> and implement the
+<code>init(stringLiteral: String)</code> initializer declared by the
+<code>ExpressibleByStringLiteral</code> protocol. Swift will automatically use
+<code>DefaultStringInterpolation</code> as the interpolation type and provide an
+implementation for <code>init(stringInterpolation:)</code> that passes the
+interpolated literal's contents to <code>init(stringLiteral:)</code>, so you don't
+need to implement anything specific to this protocol.</p>
+<h3>Creating a Type That Supports Custom String Interpolation</h3>
+<p>If you want a conforming type to differentiate between literal and
+interpolated segments, restrict the types that can be interpolated,
+support different interpolators from the ones on <code>String</code>, or avoid
+constructing a <code>String</code> containing the data, the type must specify a custom
+<code>StringInterpolation</code> associated type. This type must conform to
+<code>StringInterpolationProtocol</code> and have a matching <code>StringLiteralType</code>.</p>
+<p>For more information, see the <code>StringInterpolationProtocol</code> documentation.</p>
+</div><h3>Initializers</h3><div id="init_stringInterpolation-43b771a40606e1d1ba75f6a22de5ca57" class="declaration"><a class="toggle-link" href="#comment-init_stringInterpolation-43b771a40606e1d1ba75f6a22de5ca57">init init(stringInterpolation:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_stringInterpolation-43b771a40606e1d1ba75f6a22de5ca57"><p>Creates an instance from a string interpolation.</p>
+<p>Most <code>StringInterpolation</code> types will store information about the
+literals and interpolations appended to them in one or more properties.
+<code>init(stringInterpolation:)</code> should use these properties to initialize
+the instance.</p>
+<ul>
+<li>Parameter stringInterpolation: An instance of <code>StringInterpolation</code>
+which has had each segment of the string literal appended
+to it.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init(stringInterpolation: Self.StringInterpolation)</code></div></div>

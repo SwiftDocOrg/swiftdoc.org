@@ -1,0 +1,305 @@
+---
+title: "UnsafeMutablePointer"
+keywords: ""
+description: "Swift documentation for 'UnsafeMutablePointer'"
+layout: "default"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct UnsafeMutablePointer</code></div><p>A pointer for accessing and manipulating data of a
+specific type.</p>
+<table class="standard"><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Distance = Int</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>You use instances of the <code>UnsafeMutablePointer</code> type to access data of a
+specific type in memory. The type of data that a pointer can access is the
+pointer's <code>Pointee</code> type. <code>UnsafeMutablePointer</code> provides no automated
+memory management or alignment guarantees. You are responsible for
+handling the life cycle of any memory you work with through unsafe
+pointers to avoid leaks or undefined behavior.</p>
+<p>Memory that you manually manage can be either <em>untyped</em> or <em>bound</em> to a
+specific type. You use the <code>UnsafeMutablePointer</code> type to access and
+manage memory that has been bound to a specific type.</p>
+<h3>Understanding a Pointer's Memory State</h3>
+<p>The memory referenced by an <code>UnsafeMutablePointer</code> instance can be in
+one of several states. Many pointer operations must only be applied to
+pointers with memory in a specific state---you must keep track of the
+state of the memory you are working with and understand the changes to
+that state that different operations perform. Memory can be untyped and
+uninitialized, bound to a type and uninitialized, or bound to a type and
+initialized to a value. Finally, memory that was allocated previously may
+have been deallocated, leaving existing pointers referencing unallocated
+memory.</p>
+<h4>Uninitialized Memory</h4>
+<p>Memory that has just been allocated through a typed pointer or has been
+deinitialized is in an <em>uninitialized</em> state. Uninitialized memory must be
+initialized before it can be accessed for reading.</p>
+<p>You can use methods like <code>initialize(to:count:)</code>, <code>initialize(from:count:)</code>,
+and <code>moveInitialize(from:count:)</code> to initialize the memory referenced by a
+pointer with a value or series of values.</p>
+<h4>Initialized Memory</h4>
+<p><em>Initialized</em> memory has a value that can be read using a pointer's
+<code>pointee</code> property or through subscript notation. In the following
+example, <code>ptr</code> is a pointer to memory initialized with a value of <code>23</code>:</p>
+<pre><code class="language-swift">let ptr: UnsafeMutablePointer&lt;Int&gt; = ...
+// ptr.pointee == 23
+// ptr[0] == 23
+</code></pre>
+<h3>Accessing a Pointer's Memory as a Different Type</h3>
+<p>When you access memory through an <code>UnsafeMutablePointer</code> instance, the
+<code>Pointee</code> type must be consistent with the bound type of the memory. If
+you do need to access memory that is bound to one type as a different
+type, Swift's pointer types provide type-safe ways to temporarily or
+permanently change the bound type of the memory, or to load typed
+instances directly from raw memory.</p>
+<p>An <code>UnsafeMutablePointer&lt;UInt8&gt;</code> instance allocated with eight bytes of
+memory, <code>uint8Pointer</code>, will be used for the examples below.</p>
+<pre><code class="language-swift">var bytes: [UInt8] = [39, 77, 111, 111, 102, 33, 39, 0]
+let uint8Pointer = UnsafeMutablePointer&lt;UInt8&gt;.allocate(capacity: 8)
+uint8Pointer.initialize(from: &amp;bytes, count: 8)
+</code></pre>
+<p>When you only need to temporarily access a pointer's memory as a different
+type, use the <code>withMemoryRebound(to:capacity:)</code> method. For example, you
+can use this method to call an API that expects a pointer to a different
+type that is layout compatible with your pointer's <code>Pointee</code>. The following
+code temporarily rebinds the memory that <code>uint8Pointer</code> references from
+<code>UInt8</code> to <code>Int8</code> to call the imported C <code>strlen</code> function.</p>
+<pre><code class="language-swift">// Imported from C
+func strlen(_ __s: UnsafePointer&lt;Int8&gt;!) -&gt; UInt
+
+let length = uint8Pointer.withMemoryRebound(to: Int8.self, capacity: 8) {
+    return strlen($0)
+}
+// length == 7
+</code></pre>
+<p>When you need to permanently rebind memory to a different type, first
+obtain a raw pointer to the memory and then call the
+<code>bindMemory(to:capacity:)</code> method on the raw pointer. The following
+example binds the memory referenced by <code>uint8Pointer</code> to one instance of
+the <code>UInt64</code> type:</p>
+<pre><code class="language-swift">let uint64Pointer = UnsafeMutableRawPointer(uint8Pointer)
+                          .bindMemory(to: UInt64.self, capacity: 1)
+</code></pre>
+<p>After rebinding the memory referenced by <code>uint8Pointer</code> to <code>UInt64</code>,
+accessing that pointer's referenced memory as a <code>UInt8</code> instance is
+undefined.</p>
+<pre><code class="language-swift">var fullInteger = uint64Pointer.pointee          // OK
+var firstByte = uint8Pointer.pointee             // undefined
+</code></pre>
+<p>Alternatively, you can access the same memory as a different type without
+rebinding through untyped memory access, so long as the bound type and the
+destination type are trivial types. Convert your pointer to an
+<code>UnsafeMutableRawPointer</code> instance and then use the raw pointer's
+<code>load(fromByteOffset:as:)</code> and <code>storeBytes(of:toByteOffset:as:)</code> methods
+to read and write values.</p>
+<pre><code class="language-swift">let rawPointer = UnsafeMutableRawPointer(uint64Pointer)
+fullInteger = rawPointer.load(as: UInt64.self)   // OK
+firstByte = rawPointer.load(as: UInt8.self)      // OK
+</code></pre>
+<h3>Performing Typed Pointer Arithmetic</h3>
+<p>Pointer arithmetic with a typed pointer is counted in strides of the
+pointer's <code>Pointee</code> type. When you add to or subtract from an <code>UnsafeMutablePointer</code>
+instance, the result is a new pointer of the same type, offset by that
+number of instances of the <code>Pointee</code> type.</p>
+<pre><code class="language-swift">// 'intPointer' points to memory initialized with [10, 20, 30, 40]
+let intPointer: UnsafeMutablePointer&lt;Int&gt; = ...
+
+// Load the first value in memory
+let x = intPointer.pointee
+// x == 10
+
+// Load the third value in memory
+let offsetPointer = intPointer + 2
+let y = offsetPointer.pointee
+// y == 30
+</code></pre>
+<p>You can also use subscript notation to access the value in memory at a
+specific offset.</p>
+<pre><code class="language-swift">let z = intPointer[2]
+// z == 30
+</code></pre>
+<h3>Implicit Casting and Bridging</h3>
+<p>When calling a function or method with an <code>UnsafeMutablePointer</code> parameter, you can pass
+an instance of that specific pointer type or use Swift's implicit bridging
+to pass a compatible pointer.</p>
+<p>For example, the <code>printInt(atAddress:)</code> function in the following code
+sample expects an <code>UnsafeMutablePointer&lt;Int&gt;</code> instance as its first parameter:</p>
+<pre><code class="language-swift">func printInt(atAddress p: UnsafeMutablePointer&lt;Int&gt;) {
+    print(p.pointee)
+}
+</code></pre>
+<p>As is typical in Swift, you can call the <code>printInt(atAddress:)</code> function
+with an <code>UnsafeMutablePointer</code> instance. This example passes <code>intPointer</code>, a mutable
+pointer to an <code>Int</code> value, to <code>print(address:)</code>.</p>
+<pre><code class="language-swift">printInt(atAddress: intPointer)
+// Prints &quot;42&quot;
+</code></pre>
+<p>Alternatively, you can use Swift's <em>implicit bridging</em> to pass a pointer to
+an instance or to the elements of an array. The following example passes a
+pointer to the <code>value</code> variable by using inout syntax:</p>
+<pre><code class="language-swift">var value: Int = 23
+printInt(atAddress: &amp;value)
+// Prints &quot;23&quot;
+</code></pre>
+<p>A mutable pointer to the elements of an array is implicitly created when
+you pass the array using inout syntax. This example uses implicit bridging
+to pass a pointer to the elements of <code>numbers</code> when calling
+<code>printInt(atAddress:)</code>.</p>
+<pre><code class="language-swift">var numbers = [5, 10, 15, 20]
+printInt(atAddress: &amp;numbers)
+// Prints &quot;5&quot;
+</code></pre>
+<p>No matter which way you call <code>printInt(atAddress:)</code>, Swift's type safety
+guarantees that you can only pass a pointer to the type required by the
+function---in this case, a pointer to an <code>Int</code>.</p>
+<blockquote>
+<p>Important:</p>
+<pre><code class="language-swift">var number = 5
+let numberPointer = UnsafeMutablePointer&lt;Int&gt;(&amp;number)
+// Accessing 'numberPointer' is undefined behavior.
+</code></pre>
+</blockquote>
+</div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an immutable typed pointer referencing the same memory as the
+given mutable pointer.</p>
+<ul>
+<li>Parameter other: The pointer to convert.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(_ other: UnsafeMutablePointer&lt;Pointee>)</code></div></div><div id="init_mutating-63fa61b04b126a30c24e4def4e600315" class="declaration"><a class="toggle-link" href="#comment-init_mutating-63fa61b04b126a30c24e4def4e600315">init init(mutating:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_mutating-63fa61b04b126a30c24e4def4e600315"><p>Creates a mutable typed pointer referencing the same memory as the given
+immutable pointer.</p>
+<ul>
+<li>Parameter other: The immutable pointer to convert.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(mutating other: UnsafePointer&lt;Pointee>)</code></div></div><div id="init-48690522e4b66d2b1596ce439b7dd9cd" class="declaration"><a class="toggle-link" href="#comment-init-48690522e4b66d2b1596ce439b7dd9cd">init init?(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-48690522e4b66d2b1596ce439b7dd9cd"><p>Creates an immutable typed pointer referencing the same memory as the
+given mutable pointer.</p>
+<ul>
+<li>Parameter other: The pointer to convert. If <code>other</code> is <code>nil</code>, the
+result is <code>nil</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init?(_ other: UnsafeMutablePointer&lt;Pointee>?)</code></div></div><div id="init_mutating-80c2d688ab20f1221de80756d4a16c8f" class="declaration"><a class="toggle-link" href="#comment-init_mutating-80c2d688ab20f1221de80756d4a16c8f">init init?(mutating:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_mutating-80c2d688ab20f1221de80756d4a16c8f"><p>Creates a mutable typed pointer referencing the same memory as the given
+immutable pointer.</p>
+<ul>
+<li>Parameter other: The immutable pointer to convert. If <code>other</code> is <code>nil</code>,
+the result is <code>nil</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init?(mutating other: UnsafePointer&lt;Pointee>?)</code></div></div><h3>Instance Variables</h3><div id="customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3" class="declaration"><a class="toggle-link" href="#comment-customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3">var customPlaygroundQuickLook</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3"><p>A custom playground Quick Look for this instance.</p>
+<p>If this type has value semantics, the <code>PlaygroundQuickLook</code> instance
+should be unaffected by subsequent mutations.</p>
+<h4>Declaration</h4><code class="language-swift">var customPlaygroundQuickLook: PlaygroundQuickLook</code></div></div><h3>Instance Methods</h3><div id="assign_from_count-ce33c14ece33f2795272891dd76a2080" class="declaration"><a class="toggle-link" href="#comment-assign_from_count-ce33c14ece33f2795272891dd76a2080">func assign(from source: UnsafePointer&lt;Pointee>, count: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-assign_from_count-ce33c14ece33f2795272891dd76a2080"><p>Replaces this pointer's initialized memory with the specified number of
+instances from the given pointer's memory.</p>
+<p>The region of memory starting at this pointer and covering <code>count</code>
+instances of the pointer's <code>Pointee</code> type must be initialized or
+<code>Pointee</code> must be a trivial type. After calling
+<code>assign(from:count:)</code>, the region is initialized.</p>
+<blockquote>
+<p>Note:
+Returns without performing work if <code>self</code> and <code>source</code> are equal.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func assign(from source: UnsafePointer&lt;Pointee>, count: Int)</code></div></div><div id="assign_repeating_count-27bee7b0ee28068479268f852920869b" class="declaration"><a class="toggle-link" href="#comment-assign_repeating_count-27bee7b0ee28068479268f852920869b">func assign(repeating repeatedValue: Pointee, count: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-assign_repeating_count-27bee7b0ee28068479268f852920869b"><p>Replaces this pointer's memory with the specified number of
+consecutive copies of the given value.</p>
+<p>The region of memory starting at this pointer and covering <code>count</code>
+instances of the pointer's <code>Pointee</code> type must be initialized or
+<code>Pointee</code> must be a trivial type. After calling
+<code>assign(repeating:count:)</code>, the region is initialized.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func assign(repeating repeatedValue: Pointee, count: Int)</code></div></div><div id="deallocate-b827264e335823a9a490f24d9f393b73" class="declaration"><a class="toggle-link" href="#comment-deallocate-b827264e335823a9a490f24d9f393b73">func deallocate()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-deallocate-b827264e335823a9a490f24d9f393b73"><p>Deallocates the memory block previously allocated at this pointer.</p>
+<p>This pointer must be a pointer to the start of a previously allocated memory
+block. The memory must not be initialized or <code>Pointee</code> must be a trivial type.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func deallocate()</code></div></div><div id="deinitialize_count-86e5d7baa4b3c2adb3480a4a59ab9fc2" class="declaration"><a class="toggle-link" href="#comment-deinitialize_count-86e5d7baa4b3c2adb3480a4a59ab9fc2">func deinitialize(count: Int) -> UnsafeMutableRawPointer</a> <span class="required">Required</span><div class="comment collapse in" id="comment-deinitialize_count-86e5d7baa4b3c2adb3480a4a59ab9fc2"><p>Deinitializes the specified number of values starting at this pointer.</p>
+<p>The region of memory starting at this pointer and covering <code>count</code>
+instances of the pointer's <code>Pointee</code> type must be initialized. After
+calling <code>deinitialize(count:)</code>, the memory is uninitialized, but still
+bound to the <code>Pointee</code> type.</p>
+<ul>
+<li>Parameter count: The number of instances to deinitialize. <code>count</code> must
+not be negative.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func deinitialize(count: Int) -> UnsafeMutableRawPointer</code></div></div><div id="initialize_from_count-6a0646302218b6249fdf86da9b36916d" class="declaration"><a class="toggle-link" href="#comment-initialize_from_count-6a0646302218b6249fdf86da9b36916d">func initialize(from source: UnsafePointer&lt;Pointee>, count: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-initialize_from_count-6a0646302218b6249fdf86da9b36916d"><p>Initializes the memory referenced by this pointer with the values
+starting at the given pointer.</p>
+<p>The region of memory starting at this pointer and covering <code>count</code>
+instances of the pointer's <code>Pointee</code> type must be uninitialized or
+<code>Pointee</code> must be a trivial type. After calling
+<code>initialize(from:count:)</code>, the region is initialized.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func initialize(from source: UnsafePointer&lt;Pointee>, count: Int)</code></div></div><div id="initialize_repeating_count-6fbc776737b0c1d09395343c91b6fd54" class="declaration"><a class="toggle-link" href="#comment-initialize_repeating_count-6fbc776737b0c1d09395343c91b6fd54">func initialize(repeating repeatedValue: Pointee, count: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-initialize_repeating_count-6fbc776737b0c1d09395343c91b6fd54"><p>Initializes this pointer's memory with the specified number of
+consecutive copies of the given value.</p>
+<p>The destination memory must be uninitialized or the pointer's <code>Pointee</code>
+must be a trivial type. After a call to <code>initialize(repeating:count:)</code>, the
+memory referenced by this pointer is initialized.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func initialize(repeating repeatedValue: Pointee, count: Int)</code></div></div><div id="initialize_to-c31fe4d4da206deb50f983528b553e00" class="declaration"><a class="toggle-link" href="#comment-initialize_to-c31fe4d4da206deb50f983528b553e00">func initialize(to value: Pointee)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-initialize_to-c31fe4d4da206deb50f983528b553e00"><p>Initializes this pointer's memory with a single instance of the given value.</p>
+<p>The destination memory must be uninitialized or the pointer's <code>Pointee</code>
+must be a trivial type. After a call to <code>initialize(to:)</code>, the
+memory referenced by this pointer is initialized. Calling this method is
+roughly equivalent to calling <code>initialize(repeating:count:)</code> with a
+<code>count</code> of 1.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func initialize(to value: Pointee)</code></div></div><div id="move-ed6e543bb0f9aa91689131d626b9e8a4" class="declaration"><a class="toggle-link" href="#comment-move-ed6e543bb0f9aa91689131d626b9e8a4">func move() -> Pointee</a> <span class="required">Required</span><div class="comment collapse in" id="comment-move-ed6e543bb0f9aa91689131d626b9e8a4"><p>Retrieves and returns the referenced instance, returning the pointer's
+memory to an uninitialized state.</p>
+<p>Calling the <code>move()</code> method on a pointer <code>p</code> that references memory of
+type <code>T</code> is equivalent to the following code, aside from any cost and
+incidental side effects of copying and destroying the value:</p>
+<pre><code class="language-swift">let value: T = {
+    defer { p.deinitialize(count: 1) }
+    return p.pointee
+}()
+</code></pre>
+<p>The memory referenced by this pointer must be initialized. After calling
+<code>move()</code>, the memory is uninitialized.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func move() -> Pointee</code></div></div><div id="moveAssign_from_count-dd64b07b7e0752b5541f2bd09dba2f61" class="declaration"><a class="toggle-link" href="#comment-moveAssign_from_count-dd64b07b7e0752b5541f2bd09dba2f61">func moveAssign(from source: UnsafeMutablePointer&lt;Pointee>, count: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-moveAssign_from_count-dd64b07b7e0752b5541f2bd09dba2f61"><p>Replaces the memory referenced by this pointer with the values
+starting at the given pointer, leaving the source memory uninitialized.</p>
+<p>The region of memory starting at this pointer and covering <code>count</code>
+instances of the pointer's <code>Pointee</code> type must be initialized or
+<code>Pointee</code> must be a trivial type. After calling
+<code>moveAssign(from:count:)</code>, the region is initialized and the memory
+region <code>source..&lt;(source + count)</code> is uninitialized.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func moveAssign(from source: UnsafeMutablePointer&lt;Pointee>, count: Int)</code></div></div><div id="moveInitialize_from_count-bc54de8b31d6fc87bfe888d2d3bcb79e" class="declaration"><a class="toggle-link" href="#comment-moveInitialize_from_count-bc54de8b31d6fc87bfe888d2d3bcb79e">func moveInitialize(from source: UnsafeMutablePointer&lt;Pointee>, count: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-moveInitialize_from_count-bc54de8b31d6fc87bfe888d2d3bcb79e"><p>Moves instances from initialized source memory into the uninitialized
+memory referenced by this pointer, leaving the source memory
+uninitialized and the memory referenced by this pointer initialized.</p>
+<p>The region of memory starting at this pointer and covering <code>count</code>
+instances of the pointer's <code>Pointee</code> type must be uninitialized or
+<code>Pointee</code> must be a trivial type. After calling
+<code>moveInitialize(from:count:)</code>, the region is initialized and the memory
+region <code>source..&lt;(source + count)</code> is uninitialized.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func moveInitialize(from source: UnsafeMutablePointer&lt;Pointee>, count: Int)</code></div></div><div id="withMemoryRebound_to_capacity-f1a78480b57c42e707a4db13bc563a99" class="declaration"><a class="toggle-link" href="#comment-withMemoryRebound_to_capacity-f1a78480b57c42e707a4db13bc563a99">func withMemoryRebound(to type: T.Type, capacity count: Int, _ body: (UnsafeMutablePointer&lt;T>) throws -> Result) rethrows -> Result</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withMemoryRebound_to_capacity-f1a78480b57c42e707a4db13bc563a99"><p>Executes the given closure while temporarily binding the specified number
+of instances to the given type.</p>
+<p>Use this method when you have a pointer to memory bound to one type and
+you need to access that memory as instances of another type. Accessing
+memory as a type <code>T</code> requires that the memory be bound to that type. A
+memory location may only be bound to one type at a time, so accessing
+the same memory as an unrelated type without first rebinding the memory
+is undefined.</p>
+<p>The region of memory starting at this pointer and covering <code>count</code>
+instances of the pointer's <code>Pointee</code> type must be initialized.</p>
+<p>The following example temporarily rebinds the memory of a <code>UInt64</code>
+pointer to <code>Int64</code>, then accesses a property on the signed integer.</p>
+<pre><code class="language-swift">let uint64Pointer: UnsafeMutablePointer&lt;UInt64&gt; = fetchValue()
+let isNegative = uint64Pointer.withMemoryRebound(to: Int64.self) { ptr in
+    return ptr.pointee &lt; 0
+}
+</code></pre>
+<p>Because this pointer's memory is no longer bound to its <code>Pointee</code> type
+while the <code>body</code> closure executes, do not access memory using the
+original pointer from within <code>body</code>. Instead, use the <code>body</code> closure's
+pointer argument to access the values in memory as instances of type
+<code>T</code>.</p>
+<p>After executing <code>body</code>, this method rebinds memory back to the original
+<code>Pointee</code> type.</p>
+<blockquote>
+<p>Note:
+Only use this method to rebind the pointer's memory to a type with the same size and stride as the currently bound <code>Pointee</code> type. To bind a region of memory to a type that is a different size, convert the pointer to a raw pointer and use the <code>bindMemory(to:capacity:)</code> method.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func withMemoryRebound&lt;T, Result>(to type: T.Type, capacity count: Int, _ body: (UnsafeMutablePointer&lt;T>) throws -> Result) rethrows -> Result</code></div></div><h3>Type Methods</h3><div id="allocate_capacity-e844e912ce6e413155e51384b51ba7d8" class="declaration"><a class="toggle-link" href="#comment-allocate_capacity-e844e912ce6e413155e51384b51ba7d8">func allocate(capacity count: Int) -> UnsafeMutablePointer&lt;Pointee></a> <span class="required">Required</span><div class="comment collapse in" id="comment-allocate_capacity-e844e912ce6e413155e51384b51ba7d8"><p>Allocates uninitialized memory for the specified number of instances of
+type <code>Pointee</code>.</p>
+<p>The resulting pointer references a region of memory that is bound to
+<code>Pointee</code> and is <code>count * MemoryLayout&lt;Pointee&gt;.stride</code> bytes in size.</p>
+<p>The following example allocates enough new memory to store four <code>Int</code>
+instances and then initializes that memory with the elements of a range.</p>
+<pre><code class="language-swift">let intPointer = UnsafeMutablePointer&lt;Int&gt;.allocate(capacity: 4)
+for i in 0..&lt;4 {
+    (intPointer + i).initialize(to: i)
+}
+print(intPointer.pointee)
+// Prints &quot;0&quot;
+</code></pre>
+<p>When you allocate memory, always remember to deallocate once you're
+finished.</p>
+<pre><code class="language-swift">intPointer.deallocate()
+</code></pre>
+<ul>
+<li>Parameter count: The amount of memory to allocate, counted in instances
+of <code>Pointee</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func allocate(capacity count: Int) -> UnsafeMutablePointer&lt;Pointee></code></div></div>

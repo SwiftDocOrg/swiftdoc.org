@@ -1,0 +1,194 @@
+---
+description: "Swift documentation for 'UnkeyedDecodingContainer'"
+keywords: ""
+layout: "default"
+title: "UnkeyedDecodingContainer"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol UnkeyedDecodingContainer</code></div><p>A type that provides a view into a decoder's storage and is used to hold
+the encoded properties of a decodable type sequentially, without keys.</p>
+<div class="discussion comment"><p>Decoders should provide types conforming to <code>UnkeyedDecodingContainer</code> for
+their format.</p>
+</div><h3>Instance Variables</h3><div id="codingPath-038986a6e6564f0dd444735f926a6ca4" class="declaration"><a class="toggle-link" href="#comment-codingPath-038986a6e6564f0dd444735f926a6ca4">var codingPath</a> <span class="required">Required</span><div class="comment collapse in" id="comment-codingPath-038986a6e6564f0dd444735f926a6ca4"><p>The path of coding keys taken to get to this point in decoding.</p>
+<h4>Declaration</h4><code class="language-swift">var codingPath: [CodingKey]</code></div></div><div id="count-e2942a04780e223b215eb8b663cf5353" class="declaration"><a class="toggle-link" href="#comment-count-e2942a04780e223b215eb8b663cf5353">var count</a> <span class="required">Required</span><div class="comment collapse in" id="comment-count-e2942a04780e223b215eb8b663cf5353"><p>The number of elements contained within this container.</p>
+<p>If the number of elements is unknown, the value is <code>nil</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var count: Int?</code></div></div><div id="currentIndex-4bd5a8b788f2e9e58294f9371a3cf365" class="declaration"><a class="toggle-link" href="#comment-currentIndex-4bd5a8b788f2e9e58294f9371a3cf365">var currentIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-currentIndex-4bd5a8b788f2e9e58294f9371a3cf365"><p>The current decoding index of the container (i.e. the index of the next
+element to be decoded.) Incremented after every successful decode call.</p>
+<h4>Declaration</h4><code class="language-swift">var currentIndex: Int</code></div></div><div id="isAtEnd-685285a528eceffd5b581bf6092fb944" class="declaration"><a class="toggle-link" href="#comment-isAtEnd-685285a528eceffd5b581bf6092fb944">var isAtEnd</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isAtEnd-685285a528eceffd5b581bf6092fb944"><p>A Boolean value indicating whether there are no more elements left to be
+decoded in the container.</p>
+<h4>Declaration</h4><code class="language-swift">var isAtEnd: Bool</code></div></div><h3>Instance Methods</h3><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: Bool.Type) throws -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: Bool.Type) throws -> Bool</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: String.Type) throws -> String</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: String.Type) throws -> String</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: Double.Type) throws -> Double</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: Double.Type) throws -> Double</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: Float.Type) throws -> Float</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: Float.Type) throws -> Float</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: Int.Type) throws -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: Int.Type) throws -> Int</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: Int8.Type) throws -> Int8</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: Int8.Type) throws -> Int8</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: Int16.Type) throws -> Int16</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: Int16.Type) throws -> Int16</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: Int32.Type) throws -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: Int32.Type) throws -> Int32</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: Int64.Type) throws -> Int64</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: Int64.Type) throws -> Int64</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: UInt.Type) throws -> UInt</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: UInt.Type) throws -> UInt</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: UInt8.Type) throws -> UInt8</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: UInt8.Type) throws -> UInt8</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: UInt16.Type) throws -> UInt16</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: UInt16.Type) throws -> UInt16</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: UInt32.Type) throws -> UInt32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: UInt32.Type) throws -> UInt32</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: UInt64.Type) throws -> UInt64</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode(_ type: UInt64.Type) throws -> UInt64</code></div></div><div id="decode-8025df040b7adc85d770a524cec1c450" class="declaration"><a class="toggle-link" href="#comment-decode-8025df040b7adc85d770a524cec1c450">func decode(_ type: T.Type) throws -> T</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode-8025df040b7adc85d770a524cec1c450"><p>Decodes a value of the given type.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decode&lt;T>(_ type: T.Type) throws -> T where T: Decodable</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: Bool.Type) throws -> Bool?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: Bool.Type) throws -> Bool?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: String.Type) throws -> String?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: String.Type) throws -> String?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: Double.Type) throws -> Double?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: Double.Type) throws -> Double?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: Float.Type) throws -> Float?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: Float.Type) throws -> Float?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: Int.Type) throws -> Int?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: Int.Type) throws -> Int?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: Int8.Type) throws -> Int8?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: Int8.Type) throws -> Int8?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: Int16.Type) throws -> Int16?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: Int16.Type) throws -> Int16?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: Int32.Type) throws -> Int32?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: Int32.Type) throws -> Int32?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: Int64.Type) throws -> Int64?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: Int64.Type) throws -> Int64?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: UInt.Type) throws -> UInt?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: UInt.Type) throws -> UInt?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: UInt8.Type) throws -> UInt8?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: UInt8.Type) throws -> UInt8?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: UInt16.Type) throws -> UInt16?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: UInt16.Type) throws -> UInt16?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: UInt32.Type) throws -> UInt32?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: UInt32.Type) throws -> UInt32?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: UInt64.Type) throws -> UInt64?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent(_ type: UInt64.Type) throws -> UInt64?</code></div></div><div id="decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921">func decodeIfPresent(_ type: T.Type) throws -> T?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent-adc5a0563f8be3979fd59f86dbca7921"><p>Decodes a value of the given type, if present.</p>
+<p>This method returns <code>nil</code> if the container has no elements left to
+decode, or if the value is null. The difference between these states can
+be distinguished by checking <code>isAtEnd</code>.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeIfPresent&lt;T>(_ type: T.Type) throws -> T? where T: Decodable</code></div></div><div id="decodeNil-362050c3db346d74dda0ee5db232b0e3" class="declaration"><a class="toggle-link" href="#comment-decodeNil-362050c3db346d74dda0ee5db232b0e3">func decodeNil() throws -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeNil-362050c3db346d74dda0ee5db232b0e3"><p>Decodes a null value.</p>
+<p>If the value is not null, does not increment currentIndex.</p>
+<h4>Declaration</h4><code class="language-swift">mutating func decodeNil() throws -> Bool</code></div></div><div id="nestedContainer_keyedBy-5f320e97c05f02f2857b3b6787b7916a" class="declaration"><a class="toggle-link" href="#comment-nestedContainer_keyedBy-5f320e97c05f02f2857b3b6787b7916a">func nestedContainer(keyedBy type: NestedKey.Type) throws -> KeyedDecodingContainer&lt;NestedKey></a> <span class="required">Required</span><div class="comment collapse in" id="comment-nestedContainer_keyedBy-5f320e97c05f02f2857b3b6787b7916a"><p>Decodes a nested container keyed by the given type.</p>
+<ul>
+<li>parameter type: The key type to use for the container.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func nestedContainer&lt;NestedKey>(keyedBy type: NestedKey.Type) throws -> KeyedDecodingContainer&lt;NestedKey> where NestedKey: CodingKey</code></div></div><div id="nestedUnkeyedContainer-9f186315e96cf6c554c27552062d12e7" class="declaration"><a class="toggle-link" href="#comment-nestedUnkeyedContainer-9f186315e96cf6c554c27552062d12e7">func nestedUnkeyedContainer() throws -> UnkeyedDecodingContainer</a> <span class="required">Required</span><div class="comment collapse in" id="comment-nestedUnkeyedContainer-9f186315e96cf6c554c27552062d12e7"><p>Decodes an unkeyed nested container.</p>
+<h4>Declaration</h4><code class="language-swift">mutating func nestedUnkeyedContainer() throws -> UnkeyedDecodingContainer</code></div></div><div id="superDecoder-78b50706e7b60df827edfe666615ac17" class="declaration"><a class="toggle-link" href="#comment-superDecoder-78b50706e7b60df827edfe666615ac17">func superDecoder() throws -> Decoder</a> <span class="required">Required</span><div class="comment collapse in" id="comment-superDecoder-78b50706e7b60df827edfe666615ac17"><p>Decodes a nested container and returns a <code>Decoder</code> instance for decoding
+<code>super</code> from that container.</p>
+<h4>Declaration</h4><code class="language-swift">mutating func superDecoder() throws -> Decoder</code></div></div>

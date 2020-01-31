@@ -1,0 +1,53 @@
+---
+layout: "default"
+title: "SignedNumeric"
+description: "Swift documentation for 'SignedNumeric'"
+keywords: ""
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol SignedNumeric</code></div><p>A type that can represent both positive and negative values.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Numeric</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">FloatingPoint, SignedInteger</code></td></tr></table><div class="discussion comment"><p>The <code>SignedNumeric</code> protocol extends the operations defined by the
+<code>Numeric</code> protocol to include a value's additive inverse.</p>
+<h3>Conforming to the SignedNumeric Protocol</h3>
+<p>Because the <code>SignedNumeric</code> protocol provides default implementations of
+both of its required methods, you don't need to do anything beyond
+declaring conformance to the protocol and ensuring that the values of your
+type support negation. To customize your type's implementation, provide
+your own mutating <code>negate()</code> method.</p>
+<p>When the additive inverse of a value is unrepresentable in a conforming
+type, the operation should either trap or return an exceptional value. For
+example, using the negation operator (prefix <code>-</code>) with <code>Int.min</code> results in
+a runtime error.</p>
+<pre><code class="language-swift">let x = Int.min
+let y = -x
+// Overflow error
+</code></pre>
+</div><h3>Instance Methods</h3><div id="negate-ada771fd0d039b67f84e7cb6b918b531" class="declaration"><a class="toggle-link" href="#comment-negate-ada771fd0d039b67f84e7cb6b918b531">func negate()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-negate-ada771fd0d039b67f84e7cb6b918b531"><p>Replaces this value with its additive inverse.</p>
+<p>The following example uses the <code>negate()</code> method to negate the value of
+an integer <code>x</code>:</p>
+<pre><code class="language-swift">var x = 21
+x.negate()
+// x == -21
+</code></pre>
+<p>The resulting value must be representable within the value's type. In
+particular, negating a signed, fixed-width integer type's minimum
+results in a value that cannot be represented.</p>
+<pre><code class="language-swift">var y = Int8.min
+y.negate()
+// Overflow error
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">mutating func negate()</code></div></div><h3>Type Methods</h3><div id="operand-8bde332541948a47038eb83ee7a0fde5" class="declaration"><a class="toggle-link" href="#comment-operand-8bde332541948a47038eb83ee7a0fde5">func -(operand: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-operand-8bde332541948a47038eb83ee7a0fde5"><p>Returns the additive inverse of the specified value.</p>
+<p>The negation operator (prefix <code>-</code>) returns the additive inverse of its
+argument.</p>
+<pre><code class="language-swift">let x = 21
+let y = -x
+// y == -21
+</code></pre>
+<p>The resulting value must be representable in the same type as the
+argument. In particular, negating a signed, fixed-width integer type's
+minimum results in a value that cannot be represented.</p>
+<pre><code class="language-swift">let z = -Int8.min
+// Overflow error
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">prefix static func -(operand: Self) -> Self</code></div></div>

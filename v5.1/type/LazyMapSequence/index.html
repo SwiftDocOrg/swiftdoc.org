@@ -1,0 +1,87 @@
+---
+root: "/v5.1"
+keywords: ""
+title: "LazyMapSequence"
+layout: "default"
+description: "Swift documentation for 'LazyMapSequence'"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct LazyMapSequence</code></div><p>A <code>Sequence</code> whose elements consist of those in a <code>Base</code>
+<code>Sequence</code> passed through a transform function returning <code>Element</code>.
+These elements are computed lazily, each time they're read, by
+calling the transform function on a base element.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">LazySequenceProtocol</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Elements = LazyMapSequence&lt;Base, Element></code><div class="comment"><ul>
+<li>See also: <code>elements</code></li>
+</ul>
+</div></div></td></tr><tr><th>Nested Types</th><td><code class="nested">LazyMapSequence.Iterator</code></td></tr></table><div class="discussion comment"></div><h3>Instance Variables</h3><div id="base-593616de15330c0fb2d55e55410bf994" class="declaration"><a class="toggle-link" href="#comment-base-593616de15330c0fb2d55e55410bf994">var base</a> <span class="required">Required</span><div class="comment collapse in" id="comment-base-593616de15330c0fb2d55e55410bf994"><h4>Declaration</h4><code class="language-swift">var base: Base.Iterator</code></div></div><div id="lazy-0ffe34b4e04c2b282c5a388b1ad8aa7a" class="declaration"><a class="toggle-link" href="#comment-lazy-0ffe34b4e04c2b282c5a388b1ad8aa7a">var lazy</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lazy-0ffe34b4e04c2b282c5a388b1ad8aa7a"><h4>Declaration</h4><code class="language-swift">var lazy: LazySequence&lt;Self.Elements></code></div></div><div id="underestimatedCount-cea0d409be772f5ea3e5db1bcf473531" class="declaration"><a class="toggle-link" href="#comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531">var underestimatedCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531"><p>A value less than or equal to the number of elements in the sequence,
+calculated nondestructively.</p>
+<p>The default implementation returns 0. If you provide your own
+implementation, make sure to compute the value nondestructively.</p>
+<blockquote>
+<p>Complexity:
+O(1), except if the sequence also conforms to <code>Collection</code>. In this case, see the documentation of <code>Collection.underestimatedCount</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var underestimatedCount: Int</code></div></div><h3>Instance Methods</h3><div id="compactMap-a8c62c4ad60d8835e27b59f92895e72f" class="declaration"><a class="toggle-link" href="#comment-compactMap-a8c62c4ad60d8835e27b59f92895e72f">func compactMap(_ transform: @escaping (Self.Elements.Element) -> ElementOfResult?) -> LazyMapSequence&lt;LazyFilterSequence&lt;LazyMapSequence&lt;Self.Elements, ElementOfResult?>>, ElementOfResult></a> <span class="required">Required</span><div class="comment collapse in" id="comment-compactMap-a8c62c4ad60d8835e27b59f92895e72f"><p>Returns the non-<code>nil</code> results of mapping the given transformation over
+this sequence.</p>
+<p>Use this method to receive a sequence of non-optional values when your
+transformation produces an optional value.</p>
+<ul>
+<li>Parameter transform: A closure that accepts an element of this sequence
+as its argument and returns an optional value.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func compactMap&lt;ElementOfResult>(_ transform: @escaping (Self.Elements.Element) -> ElementOfResult?) -> LazyMapSequence&lt;LazyFilterSequence&lt;LazyMapSequence&lt;Self.Elements, ElementOfResult?>>, ElementOfResult></code></div></div><div id="drop_while-ca523aea465630a53d85fd083d49a402" class="declaration"><a class="toggle-link" href="#comment-drop_while-ca523aea465630a53d85fd083d49a402">func drop(while predicate: @escaping (Self.Elements.Element) -> Bool) -> LazyDropWhileSequence&lt;Self.Elements></a> <span class="required">Required</span><div class="comment collapse in" id="comment-drop_while-ca523aea465630a53d85fd083d49a402"><p>Returns a lazy sequence that skips any initial elements that satisfy
+<code>predicate</code>.</p>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence as
+its argument and returns <code>true</code> if the element should be skipped or
+<code>false</code> otherwise. Once <code>predicate</code> returns <code>false</code> it will not be
+called again.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func drop(while predicate: @escaping (Self.Elements.Element) -> Bool) -> LazyDropWhileSequence&lt;Self.Elements></code></div></div><div id="filter-1c174b73935eda6461cafaf0555f7dfd" class="declaration"><a class="toggle-link" href="#comment-filter-1c174b73935eda6461cafaf0555f7dfd">func filter(_ isIncluded: @escaping (Self.Elements.Element) -> Bool) -> LazyFilterSequence&lt;Self.Elements></a> <span class="required">Required</span><div class="comment collapse in" id="comment-filter-1c174b73935eda6461cafaf0555f7dfd"><p>Returns the elements of <code>self</code> that satisfy <code>isIncluded</code>.</p>
+<blockquote>
+<p>Note:
+The elements of the result are computed on-demand, as the result is used. No buffering storage is allocated and each traversal step invokes <code>predicate</code> on one or more underlying elements.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func filter(_ isIncluded: @escaping (Self.Elements.Element) -> Bool) -> LazyFilterSequence&lt;Self.Elements></code></div></div><div id="flatMap-0dcf52c05bdbca30a9e61d2230812108" class="declaration"><a class="toggle-link" href="#comment-flatMap-0dcf52c05bdbca30a9e61d2230812108">func flatMap(_ transform: @escaping (Self.Elements.Element) -> SegmentOfResult) -> LazySequence&lt;FlattenSequence&lt;LazyMapSequence&lt;Self.Elements, SegmentOfResult>>></a> <span class="required">Required</span><div class="comment collapse in" id="comment-flatMap-0dcf52c05bdbca30a9e61d2230812108"><p>Returns the concatenated results of mapping the given transformation over
+this sequence.</p>
+<p>Use this method to receive a single-level sequence when your
+transformation produces a sequence or collection for each element.
+Calling <code>flatMap(_:)</code> on a sequence <code>s</code> is equivalent to calling
+<code>s.map(transform).joined()</code>.</p>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func flatMap&lt;SegmentOfResult>(_ transform: @escaping (Self.Elements.Element) -> SegmentOfResult) -> LazySequence&lt;FlattenSequence&lt;LazyMapSequence&lt;Self.Elements, SegmentOfResult>>> where SegmentOfResult: Sequence</code></div></div><div id="flatMap-0dcf52c05bdbca30a9e61d2230812108" class="declaration"><a class="toggle-link" href="#comment-flatMap-0dcf52c05bdbca30a9e61d2230812108">func flatMap(_ transform: @escaping (Self.Elements.Element) -> ElementOfResult?) -> LazyMapSequence&lt;LazyFilterSequence&lt;LazyMapSequence&lt;Self.Elements, ElementOfResult?>>, ElementOfResult></a> <span class="required">Required</span><div class="comment collapse in" id="comment-flatMap-0dcf52c05bdbca30a9e61d2230812108"><p>Returns the non-<code>nil</code> results of mapping the given transformation over
+this sequence.</p>
+<p>Use this method to receive a sequence of non-optional values when your
+transformation produces an optional value.</p>
+<ul>
+<li>Parameter transform: A closure that accepts an element of this sequence
+as its argument and returns an optional value.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@available(swift, deprecated: 4.1, renamed: "compactMap(_:)", message: "Please use compactMap(_:) for the case where closure returns an optional value") public func flatMap&lt;ElementOfResult>(_ transform: @escaping (Self.Elements.Element) -> ElementOfResult?) -> LazyMapSequence&lt;LazyFilterSequence&lt;LazyMapSequence&lt;Self.Elements, ElementOfResult?>>, ElementOfResult></code></div></div><div id="makeIterator-ad197585f06641cbd99e9aec657b11c0" class="declaration"><a class="toggle-link" href="#comment-makeIterator-ad197585f06641cbd99e9aec657b11c0">func makeIterator() -> LazyMapSequence&lt;Base, Element>.Iterator</a> <span class="required">Required</span><div class="comment collapse in" id="comment-makeIterator-ad197585f06641cbd99e9aec657b11c0"><p>Returns an iterator over the elements of this sequence.</p>
+<blockquote>
+<p>Complexity:
+O(1).</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func makeIterator() -> LazyMapSequence&lt;Base, Element>.Iterator</code></div></div><div id="map-d86ddaae0a60cc94d2ecc186aad275b0" class="declaration"><a class="toggle-link" href="#comment-map-d86ddaae0a60cc94d2ecc186aad275b0">func map(_ transform: @escaping (Element) -> ElementOfResult) -> LazyMapSequence&lt;Base, ElementOfResult></a> <span class="required">Required</span><div class="comment collapse in" id="comment-map-d86ddaae0a60cc94d2ecc186aad275b0"><h4>Declaration</h4><code class="language-swift">@available(swift 5) @inlinable public func map&lt;ElementOfResult>(_ transform: @escaping (Element) -> ElementOfResult) -> LazyMapSequence&lt;Base, ElementOfResult></code></div></div><div id="map-d86ddaae0a60cc94d2ecc186aad275b0" class="declaration"><a class="toggle-link" href="#comment-map-d86ddaae0a60cc94d2ecc186aad275b0">func map(_ transform: @escaping (Self.Element) -> U) -> LazyMapSequence&lt;Self.Elements, U></a> <span class="required">Required</span><div class="comment collapse in" id="comment-map-d86ddaae0a60cc94d2ecc186aad275b0"><p>Returns a <code>LazyMapSequence</code> over this <code>Sequence</code>.  The elements of
+the result are computed lazily, each time they are read, by
+calling <code>transform</code> function on a base element.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func map&lt;U>(_ transform: @escaping (Self.Element) -> U) -> LazyMapSequence&lt;Self.Elements, U></code></div></div><div id="prefix_while-c1b423a2138af25080fc01f86d3d8a66" class="declaration"><a class="toggle-link" href="#comment-prefix_while-c1b423a2138af25080fc01f86d3d8a66">func prefix(while predicate: @escaping (Self.Elements.Element) -> Bool) -> LazyPrefixWhileSequence&lt;Self.Elements></a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix_while-c1b423a2138af25080fc01f86d3d8a66"><p>Returns a lazy sequence of the initial consecutive elements that satisfy
+<code>predicate</code>.</p>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence as
+its argument and returns <code>true</code> if the element should be included or
+<code>false</code> otherwise. Once <code>predicate</code> returns <code>false</code> it will not be
+called again.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(while predicate: @escaping (Self.Elements.Element) -> Bool) -> LazyPrefixWhileSequence&lt;Self.Elements></code></div></div>

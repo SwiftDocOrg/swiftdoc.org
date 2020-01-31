@@ -1,0 +1,14 @@
+---
+description: "Swift documentation for 'assert'"
+title: "assert"
+keywords: ""
+root: "/v5.1"
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">func assert(_:_:file:line:)(_ condition: @autoclosure () -> Bool, _ message: @autoclosure () -> String = String(), file: StaticString = #file, line: UInt = #line)</code></div><div class="discussion comment"><p>Performs a traditional C-style assert with an optional message.
+</p>
+<p>Use this function for internal sanity checks that are active during testing
+but do not impact performance of shipping code. To check for invalid usage
+in Release builds, see <code>precondition(_:_:file:line:)</code>.</p>
+</div>

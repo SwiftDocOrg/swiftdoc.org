@@ -1,0 +1,87 @@
+---
+root: "/v5.1"
+layout: "default"
+title: "==="
+keywords: ""
+description: "Swift documentation for '==='"
+---
+
+<div class="intro-declaration"><code class="language-swift">func ===(lhs:rhs:)(lhs: AnyObject?, rhs: AnyObject?) -> Bool</code></div><div class="discussion comment"><p>Returns a Boolean value indicating whether two references point to the same
+object instance.
+</p>
+<p>This operator tests whether two instances have the same identity, not the
+same value. For value equality, see the equal-to operator (<code>==</code>) and the
+<code>Equatable</code> protocol.</p>
+<p>The following example defines an <code>IntegerRef</code> type, an integer type with
+reference semantics.</p>
+<pre><code class="language-swift">class IntegerRef: Equatable {
+    let value: Int
+    init(_ value: Int) {
+        self.value = value
+    }
+}
+
+func ==(lhs: IntegerRef, rhs: IntegerRef) -&gt; Bool {
+    return lhs.value == rhs.value
+}
+</code></pre>
+<p>Because <code>IntegerRef</code> is a class, its instances can be compared using the
+identical-to operator (<code>===</code>). In addition, because <code>IntegerRef</code> conforms
+to the <code>Equatable</code> protocol, instances can also be compared using the
+equal-to operator (<code>==</code>).</p>
+<pre><code class="language-swift">let a = IntegerRef(10)
+let b = a
+print(a == b)
+// Prints &quot;true&quot;
+print(a === b)
+// Prints &quot;true&quot;
+</code></pre>
+<p>The identical-to operator (<code>===</code>) returns <code>false</code> when comparing two
+references to different object instances, even if the two instances have
+the same value.</p>
+<pre><code class="language-swift">let c = IntegerRef(10)
+print(a == c)
+// Prints &quot;true&quot;
+print(a === c)
+// Prints &quot;false&quot;
+</code></pre>
+</div><div class="intro-declaration"><code class="language-swift">func ===(lhs:rhs:)(lhs: AnyObject?, rhs: AnyObject?) -> Bool</code></div><div class="discussion comment"><p>Returns a Boolean value indicating whether two references point to the same
+object instance.
+</p>
+<p>This operator tests whether two instances have the same identity, not the
+same value. For value equality, see the equal-to operator (<code>==</code>) and the
+<code>Equatable</code> protocol.</p>
+<p>The following example defines an <code>IntegerRef</code> type, an integer type with
+reference semantics.</p>
+<pre><code class="language-swift">class IntegerRef: Equatable {
+    let value: Int
+    init(_ value: Int) {
+        self.value = value
+    }
+}
+
+func ==(lhs: IntegerRef, rhs: IntegerRef) -&gt; Bool {
+    return lhs.value == rhs.value
+}
+</code></pre>
+<p>Because <code>IntegerRef</code> is a class, its instances can be compared using the
+identical-to operator (<code>===</code>). In addition, because <code>IntegerRef</code> conforms
+to the <code>Equatable</code> protocol, instances can also be compared using the
+equal-to operator (<code>==</code>).</p>
+<pre><code class="language-swift">let a = IntegerRef(10)
+let b = a
+print(a == b)
+// Prints &quot;true&quot;
+print(a === b)
+// Prints &quot;true&quot;
+</code></pre>
+<p>The identical-to operator (<code>===</code>) returns <code>false</code> when comparing two
+references to different object instances, even if the two instances have
+the same value.</p>
+<pre><code class="language-swift">let c = IntegerRef(10)
+print(a == c)
+// Prints &quot;true&quot;
+print(a === c)
+// Prints &quot;false&quot;
+</code></pre>
+</div>

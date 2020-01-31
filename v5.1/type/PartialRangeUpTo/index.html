@@ -1,0 +1,68 @@
+---
+keywords: ""
+title: "PartialRangeUpTo"
+root: "/v5.1"
+layout: "default"
+description: "Swift documentation for 'PartialRangeUpTo'"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct PartialRangeUpTo</code></div><p>A partial half-open interval up to, but not including, an upper bound.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">RangeExpression</code></td></tr></table><div class="discussion comment"><p>You create <code>PartialRangeUpTo</code> instances by using the prefix half-open range
+operator (prefix <code>..&lt;</code>).</p>
+<pre><code class="language-swift">let upToFive = ..&lt;5.0
+</code></pre>
+<p>You can use a <code>PartialRangeUpTo</code> instance to quickly check if a value is
+contained in a particular range of values. For example:</p>
+<pre><code class="language-swift">upToFive.contains(3.14)       // true
+upToFive.contains(6.28)       // false
+upToFive.contains(5.0)        // false
+</code></pre>
+<p>You can use a <code>PartialRangeUpTo</code> instance of a collection's indices to
+represent the range from the start of the collection up to, but not
+including, the partial range's upper bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[..&lt;3])
+// Prints &quot;[10, 20, 30]&quot;
+</code></pre>
+</div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><h4>Declaration</h4><code class="language-swift">@inlinable public init(_ upperBound: Bound)</code></div></div><h3>Instance Variables</h3><div id="upperBound-d28987cbaedb791ea498927bea6a9a90" class="declaration"><a class="toggle-link" href="#comment-upperBound-d28987cbaedb791ea498927bea6a9a90">let upperBound</a> <span class="required">Required</span><div class="comment collapse in" id="comment-upperBound-d28987cbaedb791ea498927bea6a9a90"><h4>Declaration</h4><code class="language-swift">let upperBound: Bound</code></div></div><h3>Instance Methods</h3><div id="contains-6f3567afe6aa63234ecc71820249f524" class="declaration"><a class="toggle-link" href="#comment-contains-6f3567afe6aa63234ecc71820249f524">func contains(_ element: Bound) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-contains-6f3567afe6aa63234ecc71820249f524"><p>Returns a Boolean value indicating whether the given element is contained
+within the range expression.</p>
+<ul>
+<li>Parameter element: The element to check for containment.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func contains(_ element: Bound) -> Bool</code></div></div><div id="relative_to-2949b1d9b740a6772c83bb21cba0c554" class="declaration"><a class="toggle-link" href="#comment-relative_to-2949b1d9b740a6772c83bb21cba0c554">func relative(to collection: C) -> Range&lt;Bound></a> <span class="required">Required</span><div class="comment collapse in" id="comment-relative_to-2949b1d9b740a6772c83bb21cba0c554"><p>Returns the range of indices described by this range expression within
+the given collection.</p>
+<p>You can use the <code>relative(to:)</code> method to convert a range expression,
+which could be missing one or both of its endpoints, into a concrete
+range that is bounded on both sides. The following example uses this
+method to convert a partial range up to <code>4</code> into a half-open range,
+using an array instance to add the range's lower bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+let upToFour = ..&lt;4
+
+let r1 = upToFour.relative(to: numbers)
+// r1 == 0..&lt;4
+</code></pre>
+<p>The <code>r1</code> range is bounded on the lower end by <code>0</code> because that is the
+starting index of the <code>numbers</code> array. When the collection passed to
+<code>relative(to:)</code> starts with a different index, that index is used as the
+lower bound instead. The next example creates a slice of <code>numbers</code>
+starting at index <code>2</code>, and then uses the slice with <code>relative(to:)</code> to
+convert <code>upToFour</code> to a concrete range.</p>
+<pre><code class="language-swift">let numbersSuffix = numbers[2...]
+// numbersSuffix == [30, 40, 50, 60, 70]
+
+let r2 = upToFour.relative(to: numbersSuffix)
+// r2 == 2..&lt;4
+</code></pre>
+<p>Use this method only if you need the concrete range it produces. To
+access a slice of a collection using a range expression, use the
+collection's generic subscript that uses a range expression as its
+parameter.</p>
+<pre><code class="language-swift">let numbersPrefix = numbers[upToFour]
+// numbersPrefix == [10, 20, 30, 40]
+</code></pre>
+<ul>
+<li>Parameter collection: The collection to evaluate this range expression
+in relation to.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func relative&lt;C>(to collection: C) -> Range&lt;Bound> where Bound == C.Index, C: Collection</code></div></div><h3>Type Methods</h3><div id="pattern_value-d3d1acc155fe92facb4e9662e5491d7c" class="declaration"><a class="toggle-link" href="#comment-pattern_value-d3d1acc155fe92facb4e9662e5491d7c">func ~=(pattern: Self, value: Self.Bound) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-pattern_value-d3d1acc155fe92facb4e9662e5491d7c"><h4>Declaration</h4><code class="language-swift">@inlinable public static func ~=(pattern: Self, value: Self.Bound) -> Bool</code></div></div>

@@ -1,0 +1,19 @@
+---
+description: "Swift documentation for 'withVaList'"
+title: "withVaList"
+keywords: ""
+root: "/v5.1"
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">func withVaList(_:_:)(_ args: [CVarArg], _ body: (CVaListPointer) -> R) -> R</code></div><div class="discussion comment"><p>Invokes the given closure with a C `va_list` argument derived from the
+given array of arguments.
+</p>
+<p>The pointer passed as an argument to <code>body</code> is valid only during the
+execution of <code>withVaList(_:_:)</code>. Do not store or return the pointer for
+later use.</p>
+<p>If you need to pass an optional pointer as a <code>CVarArg</code> argument, use the
+<code>Int(bitPattern:)</code> initializer to interpret the optional pointer as an
+<code>Int</code> value, which has the same C variadic calling conventions as a pointer
+on all supported platforms.</p>
+</div>

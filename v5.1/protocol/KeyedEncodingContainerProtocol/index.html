@@ -1,0 +1,258 @@
+---
+layout: "default"
+keywords: ""
+root: "/v5.1"
+title: "KeyedEncodingContainerProtocol"
+description: "Swift documentation for 'KeyedEncodingContainerProtocol'"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol KeyedEncodingContainerProtocol</code></div><p>A type that provides a view into an encoder's storage and is used to hold
+the encoded properties of an encodable type in a keyed manner.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">KeyedEncodingContainer</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype Key</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>Encoders should provide types conforming to
+<code>KeyedEncodingContainerProtocol</code> for their format.</p>
+</div><h3>Instance Variables</h3><div id="codingPath-038986a6e6564f0dd444735f926a6ca4" class="declaration"><a class="toggle-link" href="#comment-codingPath-038986a6e6564f0dd444735f926a6ca4">var codingPath</a> <span class="required">Required</span><div class="comment collapse in" id="comment-codingPath-038986a6e6564f0dd444735f926a6ca4"><p>The path of coding keys taken to get to this point in encoding.</p>
+<h4>Declaration</h4><code class="language-swift">var codingPath: [CodingKey]</code></div></div><h3>Instance Methods</h3><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: Bool, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Bool, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: String, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: String, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: Double, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Double, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: Float, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Float, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: Int, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Int, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: Int8, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Int8, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: Int16, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Int16, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: Int32, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Int32, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: Int64, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Int64, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: UInt, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: UInt, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: UInt8, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: UInt8, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: UInt16, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: UInt16, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: UInt32, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: UInt32, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: UInt64, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: UInt64, forKey key: Self.Key) throws</code></div></div><div id="encode_forKey-39d2a97be96fb79bdb78dc9234c0a103" class="declaration"><a class="toggle-link" href="#comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103">func encode(_ value: T, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_forKey-39d2a97be96fb79bdb78dc9234c0a103"><p>Encodes the given value for the given key.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(_ value: T, forKey key: Self.Key) throws where T: Encodable</code></div></div><div id="encodeConditional_forKey-6fe8ea69f0777fd0a78f4ea71838fa3c" class="declaration"><a class="toggle-link" href="#comment-encodeConditional_forKey-6fe8ea69f0777fd0a78f4ea71838fa3c">func encodeConditional(_ object: T, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeConditional_forKey-6fe8ea69f0777fd0a78f4ea71838fa3c"><p>Encodes a reference to the given object only if it is encoded
+unconditionally elsewhere in the payload (previously, or in the future).</p>
+<p>For encoders which don't support this feature, the default implementation
+encodes the given object unconditionally.</p>
+<ul>
+<li>parameter object: The object to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the object with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeConditional&lt;T>(_ object: T, forKey key: Self.Key) throws where T: AnyObject, T: Encodable</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: Bool?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: Bool?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: String?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: String?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: Double?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: Double?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: Float?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: Float?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: Int?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: Int?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: Int8?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: Int8?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: Int16?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: Int16?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: Int32?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: Int32?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: Int64?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: Int64?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: UInt?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: UInt?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: UInt8?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: UInt8?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: UInt16?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: UInt16?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: UInt32?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: UInt32?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: UInt64?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent(_ value: UInt64?, forKey key: Self.Key) throws</code></div></div><div id="encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba" class="declaration"><a class="toggle-link" href="#comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba">func encodeIfPresent(_ value: T?, forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeIfPresent_forKey-ce6511231c6af60e16167569ad14aeba"><p>Encodes the given value for the given key if it is not <code>nil</code>.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeIfPresent&lt;T>(_ value: T?, forKey key: Self.Key) throws where T: Encodable</code></div></div><div id="encodeNil_forKey-baa01e497c4623f8ec336ca7f43f064f" class="declaration"><a class="toggle-link" href="#comment-encodeNil_forKey-baa01e497c4623f8ec336ca7f43f064f">func encodeNil(forKey key: Self.Key) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeNil_forKey-baa01e497c4623f8ec336ca7f43f064f"><p>Encodes a null value for the given key.</p>
+<ul>
+<li>parameter key: The key to associate the value with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeNil(forKey key: Self.Key) throws</code></div></div><div id="nestedContainer_keyedBy_forKey-56d3e07ed4ef8fbfb041d378e4c8b100" class="declaration"><a class="toggle-link" href="#comment-nestedContainer_keyedBy_forKey-56d3e07ed4ef8fbfb041d378e4c8b100">func nestedContainer(keyedBy keyType: NestedKey.Type, forKey key: Self.Key) -> KeyedEncodingContainer&lt;NestedKey></a> <span class="required">Required</span><div class="comment collapse in" id="comment-nestedContainer_keyedBy_forKey-56d3e07ed4ef8fbfb041d378e4c8b100"><p>Stores a keyed encoding container for the given key and returns it.</p>
+<ul>
+<li>parameter keyType: The key type to use for the container.</li>
+</ul>
+<ul>
+<li>parameter key: The key to encode the container for.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func nestedContainer&lt;NestedKey>(keyedBy keyType: NestedKey.Type, forKey key: Self.Key) -> KeyedEncodingContainer&lt;NestedKey> where NestedKey: CodingKey</code></div></div><div id="nestedUnkeyedContainer_forKey-a5f82c10f5abf8cf48f3881953c4ad0b" class="declaration"><a class="toggle-link" href="#comment-nestedUnkeyedContainer_forKey-a5f82c10f5abf8cf48f3881953c4ad0b">func nestedUnkeyedContainer(forKey key: Self.Key) -> UnkeyedEncodingContainer</a> <span class="required">Required</span><div class="comment collapse in" id="comment-nestedUnkeyedContainer_forKey-a5f82c10f5abf8cf48f3881953c4ad0b"><p>Stores an unkeyed encoding container for the given key and returns it.</p>
+<ul>
+<li>parameter key: The key to encode the container for.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func nestedUnkeyedContainer(forKey key: Self.Key) -> UnkeyedEncodingContainer</code></div></div><div id="superEncoder-a433614659088b611101974daaccf53a" class="declaration"><a class="toggle-link" href="#comment-superEncoder-a433614659088b611101974daaccf53a">func superEncoder() -> Encoder</a> <span class="required">Required</span><div class="comment collapse in" id="comment-superEncoder-a433614659088b611101974daaccf53a"><p>Stores a new nested container for the default <code>super</code> key and returns A
+new encoder instance for encoding <code>super</code> into that container.</p>
+<p>Equivalent to calling <code>superEncoder(forKey:)</code> with
+<code>Key(stringValue: &quot;super&quot;, intValue: 0)</code>.</p>
+<h4>Declaration</h4><code class="language-swift">mutating func superEncoder() -> Encoder</code></div></div><div id="superEncoder_forKey-cd1a63fd1fc3edada53ad483bee23e77" class="declaration"><a class="toggle-link" href="#comment-superEncoder_forKey-cd1a63fd1fc3edada53ad483bee23e77">func superEncoder(forKey key: Self.Key) -> Encoder</a> <span class="required">Required</span><div class="comment collapse in" id="comment-superEncoder_forKey-cd1a63fd1fc3edada53ad483bee23e77"><p>Stores a new nested container for the given key and returns A new encoder
+instance for encoding <code>super</code> into that container.</p>
+<ul>
+<li>parameter key: The key to encode <code>super</code> for.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func superEncoder(forKey key: Self.Key) -> Encoder</code></div></div>

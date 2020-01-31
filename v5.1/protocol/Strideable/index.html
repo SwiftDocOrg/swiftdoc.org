@@ -1,0 +1,216 @@
+---
+root: "/v5.1"
+layout: "default"
+title: "Strideable"
+description: "Swift documentation for 'Strideable'"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Strideable</code></div><p>A type representing continuous, one-dimensional values that can be offset
+and measured.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Comparable</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">BinaryInteger, Double, Float, Float80, FloatingPoint, UnsafeMutableRawPointer, UnsafeRawPointer</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype Stride</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>You can use a type that conforms to the <code>Strideable</code> protocol with the
+<code>stride(from:to:by:)</code> and <code>stride(from:through:by:)</code> functions. For
+example, you can use <code>stride(from:to:by:)</code> to iterate over an
+interval of floating-point values:</p>
+<pre><code class="language-swift">for radians in stride(from: 0.0, to: .pi * 2, by: .pi / 2) {
+    let degrees = Int(radians * 180 / .pi)
+    print(&quot;Degrees: \(degrees), radians: \(radians)&quot;)
+}
+// Degrees: 0, radians: 0.0
+// Degrees: 90, radians: 1.5707963267949
+// Degrees: 180, radians: 3.14159265358979
+// Degrees: 270, radians: 4.71238898038469
+</code></pre>
+<p>The last parameter of these functions is of the associated <code>Stride</code>
+type---the type that represents the distance between any two instances of
+the <code>Strideable</code> type.</p>
+<p>Types that have an integer <code>Stride</code> can be used as the boundaries of a
+countable range or as the lower bound of an iterable one-sided range. For
+example, you can iterate over a range of <code>Int</code> and use sequence and
+collection methods.</p>
+<pre><code class="language-swift">var sum = 0
+for x in 1...100 {
+    sum += x
+}
+// sum == 5050
+
+let digits = (0..&lt;10).map(String.init)
+// [&quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;, &quot;6&quot;, &quot;7&quot;, &quot;8&quot;, &quot;9&quot;]
+</code></pre>
+<h3>Conforming to the Strideable Protocol</h3>
+<p>To add <code>Strideable</code> conformance to a custom type, choose a <code>Stride</code> type
+that can represent the distance between two instances and implement the
+<code>advanced(by:)</code> and <code>distance(to:)</code> methods. For example, this
+hypothetical <code>Date</code> type stores its value as the number of days before or
+after January 1, 2000:</p>
+<pre><code class="language-swift">struct Date: Equatable, CustomStringConvertible {
+    var daysAfterY2K: Int
+
+    var description: String {
+        // ...
+    }
+}
+</code></pre>
+<p>The <code>Stride</code> type for <code>Date</code> is <code>Int</code>, inferred from the parameter and
+return types of <code>advanced(by:)</code> and <code>distance(to:)</code>:</p>
+<pre><code class="language-swift">extension Date: Strideable {
+    func advanced(by n: Int) -&gt; Date {
+        var result = self
+        result.daysAfterY2K += n
+        return result
+    }
+
+    func distance(to other: Date) -&gt; Int {
+        return other.daysAfterY2K - self.daysAfterY2K
+    }
+}
+</code></pre>
+<p>The <code>Date</code> type can now be used with the <code>stride(from:to:by:)</code> and
+<code>stride(from:through:by:)</code> functions and as the bounds of an iterable
+range.</p>
+<pre><code class="language-swift">let startDate = Date(daysAfterY2K: 0)   // January 1, 2000
+let endDate = Date(daysAfterY2K: 15)    // January 16, 2000
+
+for date in stride(from: startDate, to: endDate, by: 7) {
+    print(date)
+}
+// January 1, 2000
+// January 8, 2000
+// January 15, 2000
+</code></pre>
+<blockquote>
+<p>Important:
+The <code>Strideable</code> protocol provides default implementations for the equal-to (<code>==</code>) and less-than (<code>&lt;</code>) operators that depend on the <code>Stride</code> type's implementations. If a type conforming to <code>Strideable</code> is its own <code>Stride</code> type, it must provide concrete implementations of the two operators to avoid infinite recursion.</p>
+</blockquote>
+</div><h3>Instance Methods</h3><div id="advanced_by-eca6cfea7368ad69605cb85a19cee2ca" class="declaration"><a class="toggle-link" href="#comment-advanced_by-eca6cfea7368ad69605cb85a19cee2ca">func advanced(by n: Self.Stride) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-advanced_by-eca6cfea7368ad69605cb85a19cee2ca"><p>Returns a value that is offset the specified distance from this value.</p>
+<p>Use the <code>advanced(by:)</code> method in generic code to offset a value by a
+specified distance. If you're working directly with numeric values, use
+the addition operator (<code>+</code>) instead of this method.</p>
+<pre><code class="language-swift">func addOne&lt;T: Strideable&gt;(to x: T) -&gt; T
+    where T.Stride: ExpressibleByIntegerLiteral
+{
+    return x.advanced(by: 1)
+}
+
+let x = addOne(to: 5)
+// x == 6
+let y = addOne(to: 3.5)
+// y = 4.5
+</code></pre>
+<p>If this type's <code>Stride</code> type conforms to <code>BinaryInteger</code>, then for a
+value <code>x</code>, a distance <code>n</code>, and a value <code>y = x.advanced(by: n)</code>,
+<code>x.distance(to: y) == n</code>. Using this method with types that have a
+noninteger <code>Stride</code> may result in an approximation.</p>
+<ul>
+<li>Parameter n: The distance to advance this value.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">func advanced(by n: Self.Stride) -> Self</code></div></div><div id="distance_to-55ea9db2502ccb9247fb4f931340a7ef" class="declaration"><a class="toggle-link" href="#comment-distance_to-55ea9db2502ccb9247fb4f931340a7ef">func distance(to other: Self) -> Self.Stride</a> <span class="required">Required</span><div class="comment collapse in" id="comment-distance_to-55ea9db2502ccb9247fb4f931340a7ef"><p>Returns the distance from this value to the given value, expressed as a
+stride.</p>
+<p>If this type's <code>Stride</code> type conforms to <code>BinaryInteger</code>, then for two
+values <code>x</code> and <code>y</code>, and a distance <code>n = x.distance(to: y)</code>,
+<code>x.advanced(by: n) == y</code>. Using this method with types that have a
+noninteger <code>Stride</code> may result in an approximation.</p>
+<ul>
+<li>Parameter other: The value to calculate the distance to.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">func distance(to other: Self) -> Self.Stride</code></div></div><h3>Default Implementations</h3><div id="maximum-f364ae2bc228ba8221fe0433f2c559c9" class="declaration"><a class="toggle-link" href="#comment-maximum-f364ae2bc228ba8221fe0433f2c559c9">func ...(maximum: Self) -> PartialRangeThrough&lt;Self></a> <div class="comment collapse in" id="comment-maximum-f364ae2bc228ba8221fe0433f2c559c9"><p>Returns a partial range up to, and including, its upper bound.</p>
+<p>Use the prefix closed range operator (prefix <code>...</code>) to create a partial
+range of any type that conforms to the <code>Comparable</code> protocol. This
+example creates a <code>PartialRangeThrough&lt;Double&gt;</code> instance that includes
+any value less than or equal to <code>5.0</code>.</p>
+<pre><code class="language-swift">let throughFive = ...5.0
+
+throughFive.contains(4.0)     // true
+throughFive.contains(5.0)     // true
+throughFive.contains(6.0)     // false
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the start of the collection up to, and
+including, the partial range's upper bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[...3])
+// Prints &quot;[10, 20, 30, 40]&quot;
+</code></pre>
+<ul>
+<li>Parameter maximum: The upper bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">prefix public static func ...(maximum: Self) -> PartialRangeThrough&lt;Self></code></div></div><div id="minimum-ad36ec6fc191696455d9a15f6a532bdf" class="declaration"><a class="toggle-link" href="#comment-minimum-ad36ec6fc191696455d9a15f6a532bdf">func ...(minimum: Self) -> PartialRangeFrom&lt;Self></a> <div class="comment collapse in" id="comment-minimum-ad36ec6fc191696455d9a15f6a532bdf"><p>Returns a partial range extending upward from a lower bound.</p>
+<p>Use the postfix range operator (postfix <code>...</code>) to create a partial range
+of any type that conforms to the <code>Comparable</code> protocol. This example
+creates a <code>PartialRangeFrom&lt;Double&gt;</code> instance that includes any value
+greater than or equal to <code>5.0</code>.</p>
+<pre><code class="language-swift">let atLeastFive = 5.0...
+
+atLeastFive.contains(4.0)     // false
+atLeastFive.contains(5.0)     // true
+atLeastFive.contains(6.0)     // true
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the partial range's lower bound up to the end
+of the collection.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[3...])
+// Prints &quot;[40, 50, 60, 70]&quot;
+</code></pre>
+<ul>
+<li>Parameter minimum: The lower bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">postfix public static func ...(minimum: Self) -> PartialRangeFrom&lt;Self></code></div></div><div id="minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed" class="declaration"><a class="toggle-link" href="#comment-minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed">func ...(minimum: Self, maximum: Self) -> ClosedRange&lt;Self></a> <div class="comment collapse in" id="comment-minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed"><p>Returns a closed range that contains both of its bounds.</p>
+<p>Use the closed range operator (<code>...</code>) to create a closed range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>ClosedRange&lt;Character&gt;</code> from &quot;a&quot; up to, and including, &quot;z&quot;.</p>
+<pre><code class="language-swift">let lowercase = &quot;a&quot;...&quot;z&quot;
+print(lowercase.contains(&quot;z&quot;))
+// Prints &quot;true&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ...(minimum: Self, maximum: Self) -> ClosedRange&lt;Self></code></div></div><div id="maximum-af5142abac0dee4ee61f3e1db6af3f1c" class="declaration"><a class="toggle-link" href="#comment-maximum-af5142abac0dee4ee61f3e1db6af3f1c">func ..&lt;(maximum: Self) -> PartialRangeUpTo&lt;Self></a> <div class="comment collapse in" id="comment-maximum-af5142abac0dee4ee61f3e1db6af3f1c"><p>Returns a partial range up to, but not including, its upper bound.</p>
+<p>Use the prefix half-open range operator (prefix <code>..&lt;</code>) to create a
+partial range of any type that conforms to the <code>Comparable</code> protocol.
+This example creates a <code>PartialRangeUpTo&lt;Double&gt;</code> instance that includes
+any value less than <code>5.0</code>.</p>
+<pre><code class="language-swift">let upToFive = ..&lt;5.0
+
+upToFive.contains(3.14)       // true
+upToFive.contains(6.28)       // false
+upToFive.contains(5.0)        // false
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the start of the collection up to, but not
+including, the partial range's upper bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[..&lt;3])
+// Prints &quot;[10, 20, 30]&quot;
+</code></pre>
+<ul>
+<li>Parameter maximum: The upper bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">prefix public static func ..&lt;(maximum: Self) -> PartialRangeUpTo&lt;Self></code></div></div><div id="minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39" class="declaration"><a class="toggle-link" href="#comment-minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39">func ..&lt;(minimum: Self, maximum: Self) -> Range&lt;Self></a> <div class="comment collapse in" id="comment-minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39"><p>Returns a half-open range that contains its lower bound but not its upper
+bound.</p>
+<p>Use the half-open range operator (<code>..&lt;</code>) to create a range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>Range&lt;Double&gt;</code> from zero up to, but not including, 5.0.</p>
+<pre><code class="language-swift">let lessThanFive = 0.0..&lt;5.0
+print(lessThanFive.contains(3.14))  // Prints &quot;true&quot;
+print(lessThanFive.contains(5.0))   // Prints &quot;false&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ..&lt;(minimum: Self, maximum: Self) -> Range&lt;Self></code></div></div><div id="lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92">func &lt;=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92"><p>Returns a Boolean value indicating whether the value of the first argument
+is less than or equal to that of the second argument.</p>
+<p>This is the default implementation of the less-than-or-equal-to
+operator (<code>&lt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func &lt;=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a00561663d495dd2668b929fde178932" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a00561663d495dd2668b929fde178932">func >(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a00561663d495dd2668b929fde178932"><p>Returns a Boolean value indicating whether the value of the first argument
+is greater than that of the second argument.</p>
+<p>This is the default implementation of the greater-than operator (<code>&gt;</code>) for
+any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func >(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a0e01127094d0eee401411c4b5eb8e60" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60">func >=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60"><p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func >=(lhs: Self, rhs: Self) -> Bool</code></div></div>

@@ -1,0 +1,33 @@
+---
+layout: "default"
+description: "Swift documentation for 'zip'"
+keywords: ""
+title: "zip"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">func zip(_:_:)(_ sequence1: Sequence1, _ sequence2: Sequence2) -> Zip2Sequence&lt;Sequence1, Sequence2></code></div><div class="discussion comment"><p>Creates a sequence of pairs built out of two underlying sequences.
+</p>
+<p>In the <code>Zip2Sequence</code> instance returned by this function, the elements of
+the <em>i</em>th pair are the <em>i</em>th elements of each underlying sequence. The
+following example uses the <code>zip(_:_:)</code> function to iterate over an array
+of strings and a countable range at the same time:</p>
+<pre><code class="language-swift">let words = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;]
+let numbers = 1...4
+
+for (word, number) in zip(words, numbers) {
+    print(&quot;\(word): \(number)&quot;)
+}
+// Prints &quot;one: 1&quot;
+// Prints &quot;two: 2
+// Prints &quot;three: 3&quot;
+// Prints &quot;four: 4&quot;
+</code></pre>
+<p>If the two sequences passed to <code>zip(_:_:)</code> are different lengths, the
+resulting sequence is the same length as the shorter sequence. In this
+example, the resulting array is the same length as <code>words</code>:</p>
+<pre><code class="language-swift">let naturalNumbers = 1...Int.max
+let zipped = Array(zip(words, naturalNumbers))
+// zipped == [(&quot;one&quot;, 1), (&quot;two&quot;, 2), (&quot;three&quot;, 3), (&quot;four&quot;, 4)]
+</code></pre>
+</div>

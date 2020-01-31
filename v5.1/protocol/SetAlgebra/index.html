@@ -1,0 +1,277 @@
+---
+keywords: ""
+layout: "default"
+description: "Swift documentation for 'SetAlgebra'"
+root: "/v5.1"
+title: "SetAlgebra"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol SetAlgebra</code></div><p>A type that provides mathematical set operations.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Equatable, ExpressibleByArrayLiteral</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">OptionSet, Set</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype Element</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>You use types that conform to the <code>SetAlgebra</code> protocol when you need
+efficient membership tests or mathematical set operations such as
+intersection, union, and subtraction. In the standard library, you can
+use the <code>Set</code> type with elements of any hashable type, or you can easily
+create bit masks with <code>SetAlgebra</code> conformance using the <code>OptionSet</code>
+protocol. See those types for more information.</p>
+<blockquote>
+<p>Note:
+Unlike ordinary set types, the <code>Element</code> type of an <code>OptionSet</code> is identical to the <code>OptionSet</code> type itself. The <code>SetAlgebra</code> protocol is specifically designed to accommodate both kinds of set.</p>
+</blockquote>
+<h3>Conforming to the SetAlgebra Protocol</h3>
+<p>When implementing a custom type that conforms to the <code>SetAlgebra</code> protocol,
+you must implement the required initializers and methods. For the
+inherited methods to work properly, conforming types must meet the
+following axioms. Assume that <code>S</code> is a custom type that conforms to the
+<code>SetAlgebra</code> protocol, <code>x</code> and <code>y</code> are instances of <code>S</code>, and <code>e</code> is of
+type <code>S.Element</code>---the type that the set holds.</p>
+</div><h3>Initializers</h3><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates an empty set.</p>
+<p>This initializer is equivalent to initializing with an empty array
+literal. For example, you create an empty <code>Set</code> instance with either
+this initializer or with an empty array literal.</p>
+<pre><code class="language-swift">var emptySet = Set&lt;Int&gt;()
+print(emptySet.isEmpty)
+// Prints &quot;true&quot;
+
+emptySet = []
+print(emptySet.isEmpty)
+// Prints &quot;true&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">init()</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new set from a finite sequence of items.</p>
+<p>Use this initializer to create a new set from an existing sequence, like
+an array or a range:</p>
+<pre><code class="language-swift">let validIndices = Set(0..&lt;7).subtracting([2, 4, 5])
+print(validIndices)
+// Prints &quot;[6, 0, 1, 3]&quot;
+</code></pre>
+<ul>
+<li>Parameter sequence: The elements to use as members of the new set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init&lt;S>(_ sequence: S) where S: Sequence, Self.Element == S.Element</code></div></div><h3>Instance Variables</h3><div id="isEmpty-371a91e5c91e40f6212ab50995ccb0cd" class="declaration"><a class="toggle-link" href="#comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd">var isEmpty</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd"><p>A Boolean value that indicates whether the set has no elements.</p>
+<h4>Declaration</h4><code class="language-swift">var isEmpty: Bool</code></div></div><h3>Instance Methods</h3><div id="contains-6f3567afe6aa63234ecc71820249f524" class="declaration"><a class="toggle-link" href="#comment-contains-6f3567afe6aa63234ecc71820249f524">func contains(_ member: Self.Element) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-contains-6f3567afe6aa63234ecc71820249f524"><p>Returns a Boolean value that indicates whether the given element exists
+in the set.</p>
+<p>This example uses the <code>contains(_:)</code> method to test whether an integer is
+a member of a set of prime numbers.</p>
+<pre><code class="language-swift">let primes: Set = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]
+let x = 5
+if primes.contains(x) {
+    print(&quot;\(x) is prime!&quot;)
+} else {
+    print(&quot;\(x). Not prime.&quot;)
+}
+// Prints &quot;5 is prime!&quot;
+</code></pre>
+<ul>
+<li>Parameter member: An element to look for in the set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func contains(_ member: Self.Element) -> Bool</code></div></div><div id="formIntersection-563fd99b2e30b6b17c0cc04713a1b98e" class="declaration"><a class="toggle-link" href="#comment-formIntersection-563fd99b2e30b6b17c0cc04713a1b98e">func formIntersection(_ other: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIntersection-563fd99b2e30b6b17c0cc04713a1b98e"><p>Removes the elements of this set that aren't also in the given set.</p>
+<p>In the following example, the elements of the <code>employees</code> set that are
+not also members of the <code>neighbors</code> set are removed. In particular, the
+names <code>&quot;Alicia&quot;</code>, <code>&quot;Chris&quot;</code>, and <code>&quot;Diana&quot;</code> are removed.</p>
+<pre><code class="language-swift">var employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;, &quot;Greta&quot;]
+employees.formIntersection(neighbors)
+print(employees)
+// Prints &quot;[&quot;Bethany&quot;, &quot;Eric&quot;]&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func formIntersection(_ other: Self)</code></div></div><div id="formSymmetricDifference-3075f11b00f142880bae0207f58a0db9" class="declaration"><a class="toggle-link" href="#comment-formSymmetricDifference-3075f11b00f142880bae0207f58a0db9">func formSymmetricDifference(_ other: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formSymmetricDifference-3075f11b00f142880bae0207f58a0db9"><p>Removes the elements of the set that are also in the given set and adds
+the members of the given set that are not already in the set.</p>
+<p>In the following example, the elements of the <code>employees</code> set that are
+also members of <code>neighbors</code> are removed from <code>employees</code>, while the
+elements of <code>neighbors</code> that are not members of <code>employees</code> are added to
+<code>employees</code>. In particular, the names <code>&quot;Bethany&quot;</code> and <code>&quot;Eric&quot;</code> are
+removed from <code>employees</code> while the name <code>&quot;Forlani&quot;</code> is added.</p>
+<pre><code class="language-swift">var employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;]
+employees.formSymmetricDifference(neighbors)
+print(employees)
+// Prints &quot;[&quot;Diana&quot;, &quot;Forlani&quot;, &quot;Alicia&quot;]&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func formSymmetricDifference(_ other: Self)</code></div></div><div id="formUnion-9e412b159206685203d2312146d59c60" class="declaration"><a class="toggle-link" href="#comment-formUnion-9e412b159206685203d2312146d59c60">func formUnion(_ other: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formUnion-9e412b159206685203d2312146d59c60"><p>Adds the elements of the given set to the set.</p>
+<p>In the following example, the elements of the <code>visitors</code> set are added to
+the <code>attendees</code> set:</p>
+<pre><code class="language-swift">var attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+let visitors: Set = [&quot;Diana&quot;, &quot;Marcia&quot;, &quot;Nathaniel&quot;]
+attendees.formUnion(visitors)
+print(attendees)
+// Prints &quot;[&quot;Diana&quot;, &quot;Nathaniel&quot;, &quot;Bethany&quot;, &quot;Alicia&quot;, &quot;Marcia&quot;]&quot;
+</code></pre>
+<p>If the set already contains one or more elements that are also in
+<code>other</code>, the existing members are kept.</p>
+<pre><code class="language-swift">var initialIndices = Set(0..&lt;5)
+initialIndices.formUnion([2, 3, 6, 7])
+print(initialIndices)
+// Prints &quot;[2, 4, 6, 7, 0, 1, 3]&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func formUnion(_ other: Self)</code></div></div><div id="insert-85d6bafa09e62d45b6afb5b77af4aa69" class="declaration"><a class="toggle-link" href="#comment-insert-85d6bafa09e62d45b6afb5b77af4aa69">func insert(_ newMember: Self.Element) -> (inserted: Bool, memberAfterInsert: Self.Element)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-insert-85d6bafa09e62d45b6afb5b77af4aa69"><p>Inserts the given element in the set if it is not already present.</p>
+<p>If an element equal to <code>newMember</code> is already contained in the set, this
+method has no effect. In this example, a new element is inserted into
+<code>classDays</code>, a set of days of the week. When an existing element is
+inserted, the <code>classDays</code> set does not change.</p>
+<pre><code class="language-swift">enum DayOfTheWeek: Int {
+    case sunday, monday, tuesday, wednesday, thursday,
+        friday, saturday
+}
+
+var classDays: Set&lt;DayOfTheWeek&gt; = [.wednesday, .friday]
+print(classDays.insert(.monday))
+// Prints &quot;(true, .monday)&quot;
+print(classDays)
+// Prints &quot;[.friday, .wednesday, .monday]&quot;
+
+print(classDays.insert(.friday))
+// Prints &quot;(false, .friday)&quot;
+print(classDays)
+// Prints &quot;[.friday, .wednesday, .monday]&quot;
+</code></pre>
+<ul>
+<li>Parameter newMember: An element to insert into the set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func insert(_ newMember: Self.Element) -> (inserted: Bool, memberAfterInsert: Self.Element)</code></div></div><div id="intersection-702b8e697e80086d5633489bb359352b" class="declaration"><a class="toggle-link" href="#comment-intersection-702b8e697e80086d5633489bb359352b">func intersection(_ other: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-intersection-702b8e697e80086d5633489bb359352b"><p>Returns a new set with the elements that are common to both this set and
+the given set.</p>
+<p>In the following example, the <code>bothNeighborsAndEmployees</code> set is made up
+of the elements that are in <em>both</em> the <code>employees</code> and <code>neighbors</code> sets.
+Elements that are in only one or the other are left out of the result of
+the intersection.</p>
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;, &quot;Greta&quot;]
+let bothNeighborsAndEmployees = employees.intersection(neighbors)
+print(bothNeighborsAndEmployees)
+// Prints &quot;[&quot;Bethany&quot;, &quot;Eric&quot;]&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<blockquote>
+<p>Note:
+if this set and <code>other</code> contain elements that are equal but distinguishable (e.g. via <code>===</code>), which of these elements is present in the result is unspecified.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">func intersection(_ other: Self) -> Self</code></div></div><div id="isDisjoint_with-c09367e51ee2cc98acb1e72c12a9a23b" class="declaration"><a class="toggle-link" href="#comment-isDisjoint_with-c09367e51ee2cc98acb1e72c12a9a23b">func isDisjoint(with other: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isDisjoint_with-c09367e51ee2cc98acb1e72c12a9a23b"><p>Returns a Boolean value that indicates whether the set has no members in
+common with the given set.</p>
+<p>In the following example, the <code>employees</code> set is disjoint with the
+<code>visitors</code> set because no name appears in both sets.</p>
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let visitors: Set = [&quot;Marcia&quot;, &quot;Nathaniel&quot;, &quot;Olivia&quot;]
+print(employees.isDisjoint(with: visitors))
+// Prints &quot;true&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func isDisjoint(with other: Self) -> Bool</code></div></div><div id="isSubset_of-0aaacd211eef11273664bb09ea6b1ec4" class="declaration"><a class="toggle-link" href="#comment-isSubset_of-0aaacd211eef11273664bb09ea6b1ec4">func isSubset(of other: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isSubset_of-0aaacd211eef11273664bb09ea6b1ec4"><p>Returns a Boolean value that indicates whether the set is a subset of
+another set.</p>
+<p>Set <em>A</em> is a subset of another set <em>B</em> if every member of <em>A</em> is also a
+member of <em>B</em>.</p>
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+print(attendees.isSubset(of: employees))
+// Prints &quot;true&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func isSubset(of other: Self) -> Bool</code></div></div><div id="isSuperset_of-32d37cc3a27de09ce80c27b53371b8a5" class="declaration"><a class="toggle-link" href="#comment-isSuperset_of-32d37cc3a27de09ce80c27b53371b8a5">func isSuperset(of other: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isSuperset_of-32d37cc3a27de09ce80c27b53371b8a5"><p>Returns a Boolean value that indicates whether the set is a superset of
+the given set.</p>
+<p>Set <em>A</em> is a superset of another set <em>B</em> if every member of <em>B</em> is also a
+member of <em>A</em>.</p>
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+print(employees.isSuperset(of: attendees))
+// Prints &quot;true&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func isSuperset(of other: Self) -> Bool</code></div></div><div id="remove-429b14adb5f6ce8812a622501245fa0a" class="declaration"><a class="toggle-link" href="#comment-remove-429b14adb5f6ce8812a622501245fa0a">func remove(_ member: Self.Element) -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-remove-429b14adb5f6ce8812a622501245fa0a"><p>Removes the given element and any elements subsumed by the given element.</p>
+<ul>
+<li>Parameter member: The element of the set to remove.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func remove(_ member: Self.Element) -> Self.Element?</code></div></div><div id="subtract-afc372dc386c6cd8f1a95c85a6fb3d93" class="declaration"><a class="toggle-link" href="#comment-subtract-afc372dc386c6cd8f1a95c85a6fb3d93">func subtract(_ other: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subtract-afc372dc386c6cd8f1a95c85a6fb3d93"><p>Removes the elements of the given set from this set.</p>
+<p>In the following example, the elements of the <code>employees</code> set that are
+also members of the <code>neighbors</code> set are removed. In particular, the
+names <code>&quot;Bethany&quot;</code> and <code>&quot;Eric&quot;</code> are removed from <code>employees</code>.</p>
+<pre><code class="language-swift">var employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;, &quot;Greta&quot;]
+employees.subtract(neighbors)
+print(employees)
+// Prints &quot;[&quot;Diana&quot;, &quot;Chris&quot;, &quot;Alicia&quot;]&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func subtract(_ other: Self)</code></div></div><div id="subtracting-16d7a3f11ea233166c6363411986fc5d" class="declaration"><a class="toggle-link" href="#comment-subtracting-16d7a3f11ea233166c6363411986fc5d">func subtracting(_ other: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subtracting-16d7a3f11ea233166c6363411986fc5d"><p>Returns a new set containing the elements of this set that do not occur
+in the given set.</p>
+<p>In the following example, the <code>nonNeighbors</code> set is made up of the
+elements of the <code>employees</code> set that are not elements of <code>neighbors</code>:</p>
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;, &quot;Greta&quot;]
+let nonNeighbors = employees.subtracting(neighbors)
+print(nonNeighbors)
+// Prints &quot;[&quot;Diana&quot;, &quot;Chris&quot;, &quot;Alicia&quot;]&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func subtracting(_ other: Self) -> Self</code></div></div><div id="symmetricDifference-6d93d25cdc494974245a2f9a6a777c1c" class="declaration"><a class="toggle-link" href="#comment-symmetricDifference-6d93d25cdc494974245a2f9a6a777c1c">func symmetricDifference(_ other: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-symmetricDifference-6d93d25cdc494974245a2f9a6a777c1c"><p>Returns a new set with the elements that are either in this set or in the
+given set, but not in both.</p>
+<p>In the following example, the <code>eitherNeighborsOrEmployees</code> set is made up
+of the elements of the <code>employees</code> and <code>neighbors</code> sets that are not in
+both <code>employees</code> <em>and</em> <code>neighbors</code>. In particular, the names <code>&quot;Bethany&quot;</code>
+and <code>&quot;Eric&quot;</code> do not appear in <code>eitherNeighborsOrEmployees</code>.</p>
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;]
+let eitherNeighborsOrEmployees = employees.symmetricDifference(neighbors)
+print(eitherNeighborsOrEmployees)
+// Prints &quot;[&quot;Diana&quot;, &quot;Forlani&quot;, &quot;Alicia&quot;]&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func symmetricDifference(_ other: Self) -> Self</code></div></div><div id="union-6019238c5749a92e1ba330976a8b42f4" class="declaration"><a class="toggle-link" href="#comment-union-6019238c5749a92e1ba330976a8b42f4">func union(_ other: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-union-6019238c5749a92e1ba330976a8b42f4"><p>Returns a new set with the elements of both this and the given set.</p>
+<p>In the following example, the <code>attendeesAndVisitors</code> set is made up
+of the elements of the <code>attendees</code> and <code>visitors</code> sets:</p>
+<pre><code class="language-swift">let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+let visitors = [&quot;Marcia&quot;, &quot;Nathaniel&quot;]
+let attendeesAndVisitors = attendees.union(visitors)
+print(attendeesAndVisitors)
+// Prints &quot;[&quot;Diana&quot;, &quot;Nathaniel&quot;, &quot;Bethany&quot;, &quot;Alicia&quot;, &quot;Marcia&quot;]&quot;
+</code></pre>
+<p>If the set already contains one or more elements that are also in
+<code>other</code>, the existing members are kept.</p>
+<pre><code class="language-swift">let initialIndices = Set(0..&lt;5)
+let expandedIndices = initialIndices.union([2, 3, 6, 7])
+print(expandedIndices)
+// Prints &quot;[2, 4, 6, 7, 0, 1, 3]&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<blockquote>
+<p>Note:
+if this set and <code>other</code> contain elements that are equal but distinguishable (e.g. via <code>===</code>), which of these elements is present in the result is unspecified.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">func union(_ other: Self) -> Self</code></div></div><div id="update_with-33e0c77147f944b0fee4b5d061901528" class="declaration"><a class="toggle-link" href="#comment-update_with-33e0c77147f944b0fee4b5d061901528">func update(with newMember: Self.Element) -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-update_with-33e0c77147f944b0fee4b5d061901528"><p>Inserts the given element into the set unconditionally.</p>
+<p>If an element equal to <code>newMember</code> is already contained in the set,
+<code>newMember</code> replaces the existing element. In this example, an existing
+element is inserted into <code>classDays</code>, a set of days of the week.</p>
+<pre><code class="language-swift">enum DayOfTheWeek: Int {
+    case sunday, monday, tuesday, wednesday, thursday,
+        friday, saturday
+}
+
+var classDays: Set&lt;DayOfTheWeek&gt; = [.monday, .wednesday, .friday]
+print(classDays.update(with: .monday))
+// Prints &quot;Optional(.monday)&quot;
+</code></pre>
+<ul>
+<li>Parameter newMember: An element to insert into the set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func update(with newMember: Self.Element) -> Self.Element?</code></div></div><h3>Default Implementations</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div>

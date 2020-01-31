@@ -1,0 +1,344 @@
+---
+layout: "default"
+title: "Character"
+keywords: ""
+description: "Swift documentation for 'Character'"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Character</code></div><p>A single extended grapheme cluster that approximates a user-perceived
+character.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Comparable, CustomDebugStringConvertible, CustomReflectable, CustomStringConvertible, Equatable, ExpressibleByExtendedGraphemeClusterLiteral, Hashable, TextOutputStreamable</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias UTF8View = String.UTF8View</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias UTF16View = String.UTF16View</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias UnicodeScalarView = String.UnicodeScalarView</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>The <code>Character</code> type represents a character made up of one or more Unicode
+scalar values, grouped by a Unicode boundary algorithm. Generally, a
+<code>Character</code> instance matches what the reader of a string will perceive as
+a single character. Strings are collections of <code>Character</code> instances, so
+the number of visible characters is generally the most natural way to
+count the length of a string.</p>
+<pre><code class="language-swift">let greeting = &quot;Hello! 🐥&quot;
+print(&quot;Length: \(greeting.count)&quot;)
+// Prints &quot;Length: 8&quot;
+</code></pre>
+<p>Because each character in a string can be made up of one or more Unicode
+scalar values, the number of characters in a string may not match the
+length of the Unicode scalar value representation or the length of the
+string in a particular binary representation.</p>
+<pre><code class="language-swift">print(&quot;Unicode scalar value count: \(greeting.unicodeScalars.count)&quot;)
+// Prints &quot;Unicode scalar value count: 15&quot;
+
+print(&quot;UTF-8 representation count: \(greeting.utf8.count)&quot;)
+// Prints &quot;UTF-8 representation count: 18&quot;
+</code></pre>
+<p>Every <code>Character</code> instance is composed of one or more Unicode scalar values
+that are grouped together as an <em>extended grapheme cluster</em>. The way these
+scalar values are grouped is defined by a canonical, localized, or
+otherwise tailored Unicode segmentation algorithm.</p>
+<p>For example, a country's Unicode flag character is made up of two regional
+indicator scalar values that correspond to that country's ISO 3166-1
+alpha-2 code. The alpha-2 code for The United States is &quot;US&quot;, so its flag
+character is made up of the Unicode scalar values <code>&quot;\u{1F1FA}&quot;</code> (REGIONAL
+INDICATOR SYMBOL LETTER U) and <code>&quot;\u{1F1F8}&quot;</code> (REGIONAL INDICATOR SYMBOL
+LETTER S). When placed next to each other in a string literal, these two
+scalar values are combined into a single grapheme cluster, represented by
+a <code>Character</code> instance in Swift.</p>
+<pre><code class="language-swift">let usFlag: Character = &quot;\u{1F1FA}\u{1F1F8}&quot;
+print(usFlag)
+// Prints &quot;🇺🇸&quot;
+</code></pre>
+<p>For more information about the Unicode terms used in this discussion, see
+the <a href="http://www.unicode.org/glossary/">Unicode.org glossary</a>. In particular, this discussion
+mentions <a href="http://www.unicode.org/glossary/#extended_grapheme_cluster">extended grapheme clusters</a> and <a href="http://www.unicode.org/glossary/#unicode_scalar_value">Unicode scalar
+values</a>.</p>
+</div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a character containing the given Unicode scalar value.</p>
+<ul>
+<li>Parameter content: The Unicode scalar value to convert into a character.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(_ content: Unicode.Scalar)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a character from a single-character string.</p>
+<p>The following example creates a new character from the uppercase version
+of a string that only holds one character.</p>
+<pre><code class="language-swift">let a = &quot;a&quot;
+let capitalA = Character(a.uppercased())
+</code></pre>
+<ul>
+<li>Parameter s: The single-character string to convert to a <code>Character</code>
+instance. <code>s</code> must contain exactly one extended grapheme cluster.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(_ s: String)</code></div></div><div id="init_extendedGraphemeClusterLiteral-ce80f4b8568526286f936ef1e08aa545" class="declaration"><a class="toggle-link" href="#comment-init_extendedGraphemeClusterLiteral-ce80f4b8568526286f936ef1e08aa545">init init(extendedGraphemeClusterLiteral:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_extendedGraphemeClusterLiteral-ce80f4b8568526286f936ef1e08aa545"><p>Creates a character with the specified value.</p>
+<p>Do not call this initalizer directly. It is used by the compiler when
+you use a string literal to initialize a <code>Character</code> instance. For
+example:</p>
+<pre><code class="language-swift">let oBreve: Character = &quot;o\u{306}&quot;
+print(oBreve)
+// Prints &quot;ŏ&quot;
+</code></pre>
+<p>The assignment to the <code>oBreve</code> constant calls this initializer behind the
+scenes.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(extendedGraphemeClusterLiteral value: Character)</code></div></div><h3>Instance Variables</h3><div id="asciiValue-42552a09c87689137d8acf09d9458dcf" class="declaration"><a class="toggle-link" href="#comment-asciiValue-42552a09c87689137d8acf09d9458dcf">var asciiValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-asciiValue-42552a09c87689137d8acf09d9458dcf"><p>The ASCII encoding value of this character, if it is an ASCII character.</p>
+<pre><code class="language-swift">let chars: [Character] = [&quot;a&quot;, &quot; &quot;, &quot;™&quot;]
+for ch in chars {
+    print(ch, &quot;--&gt;&quot;, ch.properties.numericValue)
+}
+// a --&gt; 97
+//   --&gt; 32
+// ™ --&gt; nil
+</code></pre>
+<p>A character with the value &quot;\r\n&quot; (CR-LF) is normalized to &quot;\n&quot; (LF) and
+has an <code>asciiValue</code> property equal to 10.</p>
+<pre><code class="language-swift">let cr = &quot;\r&quot; as Character
+// cr.asciiValue == 13
+let lf = &quot;\n&quot; as Character
+// lf.asciiValue == 10
+let crlf = &quot;\r\n&quot; as Character
+// crlf.asciiValue == 10
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var asciiValue: UInt8?</code></div></div><div id="customMirror-c4bea5adb1649887b1a7e9972736e2a9" class="declaration"><a class="toggle-link" href="#comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9">var customMirror</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9"><p>A mirror that reflects the <code>Character</code> instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customMirror: Mirror</code></div></div><div id="customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3" class="declaration"><a class="toggle-link" href="#comment-customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3">var customPlaygroundQuickLook</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3"><p>A custom playground Quick Look for the <code>Character</code> instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customPlaygroundQuickLook: _PlaygroundQuickLook</code></div></div><div id="debugDescription-15dc1a07010ea28e38b1f4d74663fe11" class="declaration"><a class="toggle-link" href="#comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11">var debugDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11"><p>A textual representation of the character, suitable for debugging.</p>
+<h4>Declaration</h4><code class="language-swift">var debugDescription: String</code></div></div><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <span class="required">Required</span><div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>A textual representation of this instance.</p>
+<p>Calling this property directly is discouraged. Instead, convert an
+instance of any type to a string by using the <code>String(describing:)</code>
+initializer. This initializer works with any type, and uses the custom
+<code>description</code> property for types that conform to
+<code>CustomStringConvertible</code>:</p>
+<pre><code class="language-swift">struct Point: CustomStringConvertible {
+    let x: Int, y: Int
+
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(describing: p)
+print(s)
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type's <code>description</code> property.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div><div id="hexDigitValue-30c03d5e368f2e6c9a48a52b3222d234" class="declaration"><a class="toggle-link" href="#comment-hexDigitValue-30c03d5e368f2e6c9a48a52b3222d234">var hexDigitValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hexDigitValue-30c03d5e368f2e6c9a48a52b3222d234"><p>The numeric value this character represents, if it is a hexadecimal digit.</p>
+<p>Hexadecimal digits include 0-9, Latin letters a-f and A-F, and their
+fullwidth compatibility forms. If the character does not represent a
+hexadecimal digit, the value of this property is <code>nil</code>.</p>
+<pre><code class="language-swift">let chars: [Character] = [&quot;1&quot;, &quot;a&quot;, &quot;Ｆ&quot;, &quot;g&quot;]
+for ch in chars {
+    print(ch, &quot;--&gt;&quot;, ch.hexDigitValue)
+}
+// 1 --&gt; 1
+// a --&gt; 10
+// Ｆ --&gt; 15
+// g --&gt; nil
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var hexDigitValue: Int?</code></div></div><div id="isASCII-c0530994d0e237ab25306a7882d9fa5c" class="declaration"><a class="toggle-link" href="#comment-isASCII-c0530994d0e237ab25306a7882d9fa5c">var isASCII</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isASCII-c0530994d0e237ab25306a7882d9fa5c"><p>A Boolean value indicating whether this is an ASCII character.</p>
+<h4>Declaration</h4><code class="language-swift">var isASCII: Bool</code></div></div><div id="isCased-bab9d839413abe98b8a2442c419f6b79" class="declaration"><a class="toggle-link" href="#comment-isCased-bab9d839413abe98b8a2442c419f6b79">var isCased</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isCased-bab9d839413abe98b8a2442c419f6b79"><p>A Boolean value indicating whether this character changes under any form
+of case conversion.</p>
+<h4>Declaration</h4><code class="language-swift">var isCased: Bool</code></div></div><div id="isCurrencySymbol-3071db5edc8191e0de64a6bda4d72087" class="declaration"><a class="toggle-link" href="#comment-isCurrencySymbol-3071db5edc8191e0de64a6bda4d72087">var isCurrencySymbol</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isCurrencySymbol-3071db5edc8191e0de64a6bda4d72087"><p>A Boolean value indicating whether this character represents a currency
+symbol.</p>
+<p>For example, the following characters all represent currency symbols:</p>
+<h4>Declaration</h4><code class="language-swift">var isCurrencySymbol: Bool</code></div></div><div id="isHexDigit-9f0aff630d1d04790f11d8a3350e43d5" class="declaration"><a class="toggle-link" href="#comment-isHexDigit-9f0aff630d1d04790f11d8a3350e43d5">var isHexDigit</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isHexDigit-9f0aff630d1d04790f11d8a3350e43d5"><p>A Boolean value indicating whether this character represents a
+hexadecimal digit.</p>
+<p>Hexadecimal digits include 0-9, Latin letters a-f and A-F, and their
+fullwidth compatibility forms. To get the character's value, use the
+<code>hexDigitValue</code> property.</p>
+<h4>Declaration</h4><code class="language-swift">var isHexDigit: Bool</code></div></div><div id="isLetter-301f6966c21ad9edb164ab434f153e24" class="declaration"><a class="toggle-link" href="#comment-isLetter-301f6966c21ad9edb164ab434f153e24">var isLetter</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isLetter-301f6966c21ad9edb164ab434f153e24"><p>A Boolean value indicating whether this character is a letter.</p>
+<p>For example, the following characters are all letters:</p>
+<h4>Declaration</h4><code class="language-swift">var isLetter: Bool</code></div></div><div id="isLowercase-5a6ebf94f49578ad8456e3aa621d8d39" class="declaration"><a class="toggle-link" href="#comment-isLowercase-5a6ebf94f49578ad8456e3aa621d8d39">var isLowercase</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isLowercase-5a6ebf94f49578ad8456e3aa621d8d39"><p>A Boolean value indicating whether this character is considered lowercase.</p>
+<p>Lowercase characters change when converted to uppercase, but not when
+converted to lowercase. The following characters are all lowercase:</p>
+<h4>Declaration</h4><code class="language-swift">var isLowercase: Bool</code></div></div><div id="isMathSymbol-6d7a92dd15ec58118c3b23f55a06505b" class="declaration"><a class="toggle-link" href="#comment-isMathSymbol-6d7a92dd15ec58118c3b23f55a06505b">var isMathSymbol</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isMathSymbol-6d7a92dd15ec58118c3b23f55a06505b"><p>A Boolean value indicating whether this character represents a symbol
+that naturally appears in mathematical contexts.</p>
+<p>For example, the following characters all represent math symbols:</p>
+<p>The set of characters that have an <code>isMathSymbol</code> value of <code>true</code> is not
+a strict subset of those for which <code>isSymbol</code> is <code>true</code>. This includes
+characters used both as letters and commonly in mathematical formulas.
+For example, &quot;ϰ&quot; (U+03F0 GREEK KAPPA SYMBOL) is considered both a
+mathematical symbol and a letter.</p>
+<p>This property corresponds to the &quot;Math&quot; property in the
+<a href="http://www.unicode.org/versions/latest/">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">var isMathSymbol: Bool</code></div></div><div id="isNewline-581e605f615e080cc931b2bfead18620" class="declaration"><a class="toggle-link" href="#comment-isNewline-581e605f615e080cc931b2bfead18620">var isNewline</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isNewline-581e605f615e080cc931b2bfead18620"><p>A Boolean value indicating whether this character represents a newline.</p>
+<p>For example, the following characters all represent newlines:</p>
+<ul>
+<li>U+000B: LINE TABULATION (VT)</li>
+</ul>
+<ul>
+<li>U+000C: FORM FEED (FF)</li>
+</ul>
+<ul>
+<li>U+0085: NEXT LINE (NEL)</li>
+</ul>
+<ul>
+<li>U+2028: LINE SEPARATOR</li>
+</ul>
+<ul>
+<li>U+2029: PARAGRAPH SEPARATOR</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">var isNewline: Bool</code></div></div><div id="isNumber-2831b0aa458ed5c79ac24f3cd5bef038" class="declaration"><a class="toggle-link" href="#comment-isNumber-2831b0aa458ed5c79ac24f3cd5bef038">var isNumber</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isNumber-2831b0aa458ed5c79ac24f3cd5bef038"><p>A Boolean value indicating whether this character represents a number.</p>
+<p>For example, the following characters all represent numbers:</p>
+<h4>Declaration</h4><code class="language-swift">var isNumber: Bool</code></div></div><div id="isPunctuation-e2f46a434f7ecd59be570f2c7dfbe08f" class="declaration"><a class="toggle-link" href="#comment-isPunctuation-e2f46a434f7ecd59be570f2c7dfbe08f">var isPunctuation</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isPunctuation-e2f46a434f7ecd59be570f2c7dfbe08f"><p>A Boolean value indicating whether this character represents punctuation.</p>
+<p>For example, the following characters all represent punctuation:</p>
+<h4>Declaration</h4><code class="language-swift">var isPunctuation: Bool</code></div></div><div id="isSymbol-a4521b9d7218aa99673096a4bb7dd398" class="declaration"><a class="toggle-link" href="#comment-isSymbol-a4521b9d7218aa99673096a4bb7dd398">var isSymbol</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isSymbol-a4521b9d7218aa99673096a4bb7dd398"><p>A Boolean value indicating whether this character represents a symbol.</p>
+<p>This property is <code>true</code> only for characters composed of scalars in the
+&quot;Math_Symbol&quot;, &quot;Currency_Symbol&quot;, &quot;Modifier_Symbol&quot;, or &quot;Other_Symbol&quot;
+categories in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<p>For example, the following characters all represent symbols:</p>
+<h4>Declaration</h4><code class="language-swift">var isSymbol: Bool</code></div></div><div id="isUppercase-fb29a71a2e603f4448e1374a47bc50f0" class="declaration"><a class="toggle-link" href="#comment-isUppercase-fb29a71a2e603f4448e1374a47bc50f0">var isUppercase</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isUppercase-fb29a71a2e603f4448e1374a47bc50f0"><p>A Boolean value indicating whether this character is considered uppercase.</p>
+<p>Uppercase characters vary under case-conversion to lowercase, but not when
+converted to uppercase. The following characters are all uppercase:</p>
+<h4>Declaration</h4><code class="language-swift">var isUppercase: Bool</code></div></div><div id="isWhitespace-fdbe2c32de81904d31506233605042c8" class="declaration"><a class="toggle-link" href="#comment-isWhitespace-fdbe2c32de81904d31506233605042c8">var isWhitespace</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isWhitespace-fdbe2c32de81904d31506233605042c8"><p>A Boolean value indicating whether this character represents whitespace,
+including newlines.</p>
+<p>For example, the following characters all represent whitespace:</p>
+<h4>Declaration</h4><code class="language-swift">var isWhitespace: Bool</code></div></div><div id="isWholeNumber-189afe0a9dd7f79a6299a28062389091" class="declaration"><a class="toggle-link" href="#comment-isWholeNumber-189afe0a9dd7f79a6299a28062389091">var isWholeNumber</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isWholeNumber-189afe0a9dd7f79a6299a28062389091"><p>A Boolean value indicating whether this character represents a whole
+number.</p>
+<p>For example, the following characters all represent whole numbers:</p>
+<h4>Declaration</h4><code class="language-swift">var isWholeNumber: Bool</code></div></div><div id="unicodeScalars-bb9adb223a5d0705cdb539e7fb533ea2" class="declaration"><a class="toggle-link" href="#comment-unicodeScalars-bb9adb223a5d0705cdb539e7fb533ea2">var unicodeScalars</a> <span class="required">Required</span><div class="comment collapse in" id="comment-unicodeScalars-bb9adb223a5d0705cdb539e7fb533ea2"><h4>Declaration</h4><code class="language-swift">var unicodeScalars: Character.UnicodeScalarView</code></div></div><div id="utf-5ab39c2bd546655547f6101ed91e395e" class="declaration"><a class="toggle-link" href="#comment-utf-5ab39c2bd546655547f6101ed91e395e">var utf16</a> <span class="required">Required</span><div class="comment collapse in" id="comment-utf-5ab39c2bd546655547f6101ed91e395e"><p>A UTF-16 encoding of <code>self</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var utf16: Character.UTF16View</code></div></div><div id="utf-30df7f629fcf6b940bcaef5faf2490bb" class="declaration"><a class="toggle-link" href="#comment-utf-30df7f629fcf6b940bcaef5faf2490bb">var utf8</a> <span class="required">Required</span><div class="comment collapse in" id="comment-utf-30df7f629fcf6b940bcaef5faf2490bb"><p>A UTF-8 encoding of <code>self</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var utf8: Character.UTF8View</code></div></div><div id="wholeNumberValue-622f476764aedb4587ec9098e67ca282" class="declaration"><a class="toggle-link" href="#comment-wholeNumberValue-622f476764aedb4587ec9098e67ca282">var wholeNumberValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-wholeNumberValue-622f476764aedb4587ec9098e67ca282"><p>The numeric value this character represents, if it represents a whole
+number.</p>
+<p>If this character does not represent a whole number, or the value is too
+large to represent as an <code>Int</code>, the value of this property is <code>nil</code>.</p>
+<pre><code class="language-swift">let chars: [Character] = [&quot;4&quot;, &quot;④&quot;, &quot;万&quot;, &quot;a&quot;]
+for ch in chars {
+    print(ch, &quot;--&gt;&quot;, ch.properties.numericValue)
+}
+// 4 --&gt; 4
+// ④ --&gt; 4
+// 万 --&gt; 10000
+// a --&gt; nil
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var wholeNumberValue: Int?</code></div></div><h3>Instance Methods</h3><div id="hash_into-6d50cb3daa41162a12fb4542a687b393" class="declaration"><a class="toggle-link" href="#comment-hash_into-6d50cb3daa41162a12fb4542a687b393">func hash(into hasher: inout Hasher)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hash_into-6d50cb3daa41162a12fb4542a687b393"><p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+<ul>
+<li>Parameter hasher: The hasher to use when combining the components
+of this instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func hash(into hasher: inout Hasher)</code></div></div><div id="lowercased-29ba18707683dbcba3cb456c027a71f1" class="declaration"><a class="toggle-link" href="#comment-lowercased-29ba18707683dbcba3cb456c027a71f1">func lowercased() -> String</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lowercased-29ba18707683dbcba3cb456c027a71f1"><p>Returns a lowercased version of this character.</p>
+<p>Because case conversion can result in multiple characters, the result
+of <code>lowercased()</code> is a string.</p>
+<pre><code class="language-swift">let chars: [Character] = [&quot;E&quot;, &quot;É&quot;, &quot;И&quot;, &quot;Π&quot;, &quot;1&quot;]
+for ch in chars {
+    print(ch, &quot;--&gt;&quot;, ch.lowercased())
+}
+// E --&gt; e
+// É --&gt; é
+// И --&gt; и
+// Π --&gt; π
+// 1 --&gt; 1
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public func lowercased() -> String</code></div></div><div id="uppercased-b2325f56718bd5f485736afc15cf40c6" class="declaration"><a class="toggle-link" href="#comment-uppercased-b2325f56718bd5f485736afc15cf40c6">func uppercased() -> String</a> <span class="required">Required</span><div class="comment collapse in" id="comment-uppercased-b2325f56718bd5f485736afc15cf40c6"><p>Returns an uppercased version of this character.</p>
+<p>Because case conversion can result in multiple characters, the result
+of <code>uppercased()</code> is a string.</p>
+<pre><code class="language-swift">let chars: [Character] = [&quot;e&quot;, &quot;é&quot;, &quot;и&quot;, &quot;π&quot;, &quot;ß&quot;, &quot;1&quot;]
+for ch in chars {
+    print(ch, &quot;--&gt;&quot;, ch.uppercased())
+}
+// e --&gt; E
+// é --&gt; É
+// и --&gt; И
+// π --&gt; Π
+// ß --&gt; SS
+// 1 --&gt; 1
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public func uppercased() -> String</code></div></div><div id="write_to-d457d816b415ff3bee040fb06f595e0f" class="declaration"><a class="toggle-link" href="#comment-write_to-d457d816b415ff3bee040fb06f595e0f">func write(to target: inout Target)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-write_to-d457d816b415ff3bee040fb06f595e0f"><p>Writes the character into the given output stream.</p>
+<ul>
+<li>Parameter target: An output stream.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func write&lt;Target>(to target: inout Target) where Target: TextOutputStream</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="maximum-f364ae2bc228ba8221fe0433f2c559c9" class="declaration"><a class="toggle-link" href="#comment-maximum-f364ae2bc228ba8221fe0433f2c559c9">func ...(maximum: Self) -> PartialRangeThrough&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-maximum-f364ae2bc228ba8221fe0433f2c559c9"><p>Returns a partial range up to, and including, its upper bound.</p>
+<p>Use the prefix closed range operator (prefix <code>...</code>) to create a partial
+range of any type that conforms to the <code>Comparable</code> protocol. This
+example creates a <code>PartialRangeThrough&lt;Double&gt;</code> instance that includes
+any value less than or equal to <code>5.0</code>.</p>
+<pre><code class="language-swift">let throughFive = ...5.0
+
+throughFive.contains(4.0)     // true
+throughFive.contains(5.0)     // true
+throughFive.contains(6.0)     // false
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the start of the collection up to, and
+including, the partial range's upper bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[...3])
+// Prints &quot;[10, 20, 30, 40]&quot;
+</code></pre>
+<ul>
+<li>Parameter maximum: The upper bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">prefix public static func ...(maximum: Self) -> PartialRangeThrough&lt;Self></code></div></div><div id="minimum-ad36ec6fc191696455d9a15f6a532bdf" class="declaration"><a class="toggle-link" href="#comment-minimum-ad36ec6fc191696455d9a15f6a532bdf">func ...(minimum: Self) -> PartialRangeFrom&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-minimum-ad36ec6fc191696455d9a15f6a532bdf"><p>Returns a partial range extending upward from a lower bound.</p>
+<p>Use the postfix range operator (postfix <code>...</code>) to create a partial range
+of any type that conforms to the <code>Comparable</code> protocol. This example
+creates a <code>PartialRangeFrom&lt;Double&gt;</code> instance that includes any value
+greater than or equal to <code>5.0</code>.</p>
+<pre><code class="language-swift">let atLeastFive = 5.0...
+
+atLeastFive.contains(4.0)     // false
+atLeastFive.contains(5.0)     // true
+atLeastFive.contains(6.0)     // true
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the partial range's lower bound up to the end
+of the collection.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[3...])
+// Prints &quot;[40, 50, 60, 70]&quot;
+</code></pre>
+<ul>
+<li>Parameter minimum: The lower bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">postfix public static func ...(minimum: Self) -> PartialRangeFrom&lt;Self></code></div></div><div id="minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed" class="declaration"><a class="toggle-link" href="#comment-minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed">func ...(minimum: Self, maximum: Self) -> ClosedRange&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed"><p>Returns a closed range that contains both of its bounds.</p>
+<p>Use the closed range operator (<code>...</code>) to create a closed range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>ClosedRange&lt;Character&gt;</code> from &quot;a&quot; up to, and including, &quot;z&quot;.</p>
+<pre><code class="language-swift">let lowercase = &quot;a&quot;...&quot;z&quot;
+print(lowercase.contains(&quot;z&quot;))
+// Prints &quot;true&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ...(minimum: Self, maximum: Self) -> ClosedRange&lt;Self></code></div></div><div id="maximum-af5142abac0dee4ee61f3e1db6af3f1c" class="declaration"><a class="toggle-link" href="#comment-maximum-af5142abac0dee4ee61f3e1db6af3f1c">func ..&lt;(maximum: Self) -> PartialRangeUpTo&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-maximum-af5142abac0dee4ee61f3e1db6af3f1c"><p>Returns a partial range up to, but not including, its upper bound.</p>
+<p>Use the prefix half-open range operator (prefix <code>..&lt;</code>) to create a
+partial range of any type that conforms to the <code>Comparable</code> protocol.
+This example creates a <code>PartialRangeUpTo&lt;Double&gt;</code> instance that includes
+any value less than <code>5.0</code>.</p>
+<pre><code class="language-swift">let upToFive = ..&lt;5.0
+
+upToFive.contains(3.14)       // true
+upToFive.contains(6.28)       // false
+upToFive.contains(5.0)        // false
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the start of the collection up to, but not
+including, the partial range's upper bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[..&lt;3])
+// Prints &quot;[10, 20, 30]&quot;
+</code></pre>
+<ul>
+<li>Parameter maximum: The upper bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">prefix public static func ..&lt;(maximum: Self) -> PartialRangeUpTo&lt;Self></code></div></div><div id="minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39" class="declaration"><a class="toggle-link" href="#comment-minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39">func ..&lt;(minimum: Self, maximum: Self) -> Range&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39"><p>Returns a half-open range that contains its lower bound but not its upper
+bound.</p>
+<p>Use the half-open range operator (<code>..&lt;</code>) to create a range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>Range&lt;Double&gt;</code> from zero up to, but not including, 5.0.</p>
+<pre><code class="language-swift">let lessThanFive = 0.0..&lt;5.0
+print(lessThanFive.contains(3.14))  // Prints &quot;true&quot;
+print(lessThanFive.contains(5.0))   // Prints &quot;false&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ..&lt;(minimum: Self, maximum: Self) -> Range&lt;Self></code></div></div><div id="lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f">func &lt;(lhs: Character, rhs: Character) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func &lt;(lhs: Character, rhs: Character) -> Bool</code></div></div><div id="lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92">func &lt;=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92"><p>Returns a Boolean value indicating whether the value of the first argument
+is less than or equal to that of the second argument.</p>
+<p>This is the default implementation of the less-than-or-equal-to
+operator (<code>&lt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func &lt;=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: Character, rhs: Character) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func ==(lhs: Character, rhs: Character) -> Bool</code></div></div><div id="lhs_rhs-a00561663d495dd2668b929fde178932" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a00561663d495dd2668b929fde178932">func >(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a00561663d495dd2668b929fde178932"><p>Returns a Boolean value indicating whether the value of the first argument
+is greater than that of the second argument.</p>
+<p>This is the default implementation of the greater-than operator (<code>&gt;</code>) for
+any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func >(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a0e01127094d0eee401411c4b5eb8e60" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60">func >=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60"><p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func >=(lhs: Self, rhs: Self) -> Bool</code></div></div>

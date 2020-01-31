@@ -1,0 +1,77 @@
+---
+root: "/v5.1"
+description: "Swift documentation for 'Result'"
+title: "Result"
+keywords: ""
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum Result</code></div><p>A value that represents either a success or a failure, including an
+associated value in each case.</p>
+<div class="discussion comment"></div><h3>Cases</h3><div id="failure-3ee28fe1a60c95b89d29317f122c7021" class="declaration"><a class="toggle-link" href="#comment-failure-3ee28fe1a60c95b89d29317f122c7021">case failure</a> <span class="required">Required</span><div class="comment collapse in" id="comment-failure-3ee28fe1a60c95b89d29317f122c7021"><p>A failure, storing a <code>Failure</code> value.</p>
+<h4>Declaration</h4><code class="language-swift">case failure(: Failure)</code></div></div><div id="success-260ca9dd8a4577fc00b7bd5810298076" class="declaration"><a class="toggle-link" href="#comment-success-260ca9dd8a4577fc00b7bd5810298076">case success</a> <span class="required">Required</span><div class="comment collapse in" id="comment-success-260ca9dd8a4577fc00b7bd5810298076"><p>A success, storing a <code>Success</code> value.</p>
+<h4>Declaration</h4><code class="language-swift">case success(: Success)</code></div></div><h3>Instance Methods</h3><div id="flatMap-0dcf52c05bdbca30a9e61d2230812108" class="declaration"><a class="toggle-link" href="#comment-flatMap-0dcf52c05bdbca30a9e61d2230812108">func flatMap(_ transform: (Success) -> Result&lt;NewSuccess, Failure>) -> Result&lt;NewSuccess, Failure></a> <span class="required">Required</span><div class="comment collapse in" id="comment-flatMap-0dcf52c05bdbca30a9e61d2230812108"><p>Returns a new result, mapping any success value using the given
+transformation and unwrapping the produced result.</p>
+<ul>
+<li>Parameter transform: A closure that takes the success value of the
+instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func flatMap&lt;NewSuccess>(_ transform: (Success) -> Result&lt;NewSuccess, Failure>) -> Result&lt;NewSuccess, Failure></code></div></div><div id="flatMapError-38af17b556bae84ced766f7f242e749e" class="declaration"><a class="toggle-link" href="#comment-flatMapError-38af17b556bae84ced766f7f242e749e">func flatMapError(_ transform: (Failure) -> Result&lt;Success, NewFailure>) -> Result&lt;Success, NewFailure></a> <span class="required">Required</span><div class="comment collapse in" id="comment-flatMapError-38af17b556bae84ced766f7f242e749e"><p>Returns a new result, mapping any failure value using the given
+transformation and unwrapping the produced result.</p>
+<ul>
+<li>Parameter transform: A closure that takes the failure value of the
+instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func flatMapError&lt;NewFailure>(_ transform: (Failure) -> Result&lt;Success, NewFailure>) -> Result&lt;Success, NewFailure> where NewFailure: Error</code></div></div><div id="get-712109514c51d8578a1a5952b71603f1" class="declaration"><a class="toggle-link" href="#comment-get-712109514c51d8578a1a5952b71603f1">func get() throws -> Success</a> <span class="required">Required</span><div class="comment collapse in" id="comment-get-712109514c51d8578a1a5952b71603f1"><p>Returns the success value as a throwing expression.</p>
+<p>Use this method to retrieve the value of this result if it represents a
+success, or to catch the value if it represents a failure.</p>
+<pre><code class="language-swift">let integerResult: Result&lt;Int, Error&gt; = .success(5)
+do {
+    let value = try integerResult.get()
+    print(&quot;The value is \(value).&quot;)
+} catch error {
+    print(&quot;Error retrieving the value: \(error)&quot;)
+}
+// Prints &quot;The value is 5.&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public func get() throws -> Success</code></div></div><div id="map-d86ddaae0a60cc94d2ecc186aad275b0" class="declaration"><a class="toggle-link" href="#comment-map-d86ddaae0a60cc94d2ecc186aad275b0">func map(_ transform: (Success) -> NewSuccess) -> Result&lt;NewSuccess, Failure></a> <span class="required">Required</span><div class="comment collapse in" id="comment-map-d86ddaae0a60cc94d2ecc186aad275b0"><p>Returns a new result, mapping any success value using the given
+transformation.</p>
+<p>Use this method when you need to transform the value of a <code>Result</code>
+instance when it represents a success. The following example transforms
+the integer success value of a result into a string:</p>
+<pre><code class="language-swift">func getNextInteger() -&gt; Result&lt;Int, Error&gt; { /* ... */ }
+
+let integerResult = getNextInteger()
+// integerResult == .success(5)
+let stringResult = integerResult.map({ String($0) })
+// stringResult == .success(&quot;5&quot;)
+</code></pre>
+<ul>
+<li>Parameter transform: A closure that takes the success value of this
+instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func map&lt;NewSuccess>(_ transform: (Success) -> NewSuccess) -> Result&lt;NewSuccess, Failure></code></div></div><div id="mapError-83c7305defa216e40eeacabddf06931d" class="declaration"><a class="toggle-link" href="#comment-mapError-83c7305defa216e40eeacabddf06931d">func mapError(_ transform: (Failure) -> NewFailure) -> Result&lt;Success, NewFailure></a> <span class="required">Required</span><div class="comment collapse in" id="comment-mapError-83c7305defa216e40eeacabddf06931d"><p>Returns a new result, mapping any failure value using the given
+transformation.</p>
+<p>Use this method when you need to transform the value of a <code>Result</code>
+instance when it represents a failure. The following example transforms
+the error value of a result by wrapping it in a custom <code>Error</code> type:</p>
+<pre><code class="language-swift">struct DatedError: Error {
+    var error: Error
+    var date: Date
+
+    init(_ error: Error) {
+        self.error = error
+        self.date = Date()
+    }
+}
+
+let result: Result&lt;Int, Error&gt; = // ...
+// result == .failure(&lt;error value&gt;)
+let resultWithDatedError = result.mapError({ e in DatedError(e) })
+// result == .failure(DatedError(error: &lt;error value&gt;, date: &lt;date&gt;))
+</code></pre>
+<ul>
+<li>Parameter transform: A closure that takes the failure value of the
+instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func mapError&lt;NewFailure>(_ transform: (Failure) -> NewFailure) -> Result&lt;Success, NewFailure> where NewFailure: Error</code></div></div>

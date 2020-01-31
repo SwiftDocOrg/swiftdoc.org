@@ -1,0 +1,1973 @@
+---
+root: "/v5.1"
+title: "Dictionary"
+description: "Swift documentation for 'Dictionary'"
+keywords: ""
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Dictionary</code></div><p>A collection whose elements are key-value pairs.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Collection, CustomDebugStringConvertible, CustomReflectable, CustomStringConvertible, ExpressibleByDictionaryLiteral, Sequence</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Element = (key: Key, value: Value)</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias Element = Key</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias SubSequence = Slice&lt;Dictionary&lt;Key, Value>.Keys></code><div class="comment"><p>This associated type appears as a requirement in the <code>Sequence</code>
+protocol, but it is restated here with stricter constraints. In a
+collection, the subsequence should also conform to <code>Collection</code>.</p>
+</div></div><div class="declaration"><code class="language-swift">public typealias Element = Value</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias SubSequence = Slice&lt;[Key : Value]></code><div class="comment"><p>This associated type appears as a requirement in the <code>Sequence</code>
+protocol, but it is restated here with stricter constraints. In a
+collection, the subsequence should also conform to <code>Collection</code>.</p>
+</div></div></td></tr><tr><th>Nested Types</th><td><code class="nested">Dictionary.Keys, Dictionary.Values, Dictionary.Index, Dictionary.Iterator</code></td></tr></table><div class="discussion comment"><p>A dictionary is a type of hash table, providing fast access to the entries
+it contains. Each entry in the table is identified using its key, which is
+a hashable type such as a string or number. You use that key to retrieve
+the corresponding value, which can be any object. In other languages,
+similar data types are known as hashes or associated arrays.</p>
+<p>Create a new dictionary by using a dictionary literal. A dictionary literal
+is a comma-separated list of key-value pairs, in which a colon separates
+each key from its associated value, surrounded by square brackets. You can
+assign a dictionary literal to a variable or constant or pass it to a
+function that expects a dictionary.</p>
+<p>Here's how you would create a dictionary of HTTP response codes and their
+related messages:</p>
+<pre><code class="language-swift">var responseMessages = [200: &quot;OK&quot;,
+                        403: &quot;Access forbidden&quot;,
+                        404: &quot;File not found&quot;,
+                        500: &quot;Internal server error&quot;]
+</code></pre>
+<p>The <code>responseMessages</code> variable is inferred to have type <code>[Int: String]</code>.
+The <code>Key</code> type of the dictionary is <code>Int</code>, and the <code>Value</code> type of the
+dictionary is <code>String</code>.</p>
+<p>To create a dictionary with no key-value pairs, use an empty dictionary
+literal (<code>[:]</code>).</p>
+<pre><code class="language-swift">var emptyDict: [String: String] = [:]
+</code></pre>
+<p>Any type that conforms to the <code>Hashable</code> protocol can be used as a
+dictionary's <code>Key</code> type, including all of Swift's basic types. You can use
+your own custom types as dictionary keys by making them conform to the
+<code>Hashable</code> protocol.</p>
+<h3>Getting and Setting Dictionary Values</h3>
+<p>The most common way to access values in a dictionary is to use a key as a
+subscript. Subscripting with a key takes the following form:</p>
+<pre><code class="language-swift">print(responseMessages[200])
+// Prints &quot;Optional(&quot;OK&quot;)&quot;
+</code></pre>
+<p>Subscripting a dictionary with a key returns an optional value, because a
+dictionary might not hold a value for the key that you use in the
+subscript.</p>
+<p>The next example uses key-based subscripting of the <code>responseMessages</code>
+dictionary with two keys that exist in the dictionary and one that does
+not.</p>
+<pre><code class="language-swift">let httpResponseCodes = [200, 403, 301]
+for code in httpResponseCodes {
+    if let message = responseMessages[code] {
+        print(&quot;Response \(code): \(message)&quot;)
+    } else {
+        print(&quot;Unknown response \(code)&quot;)
+    }
+}
+// Prints &quot;Response 200: OK&quot;
+// Prints &quot;Response 403: Access Forbidden&quot;
+// Prints &quot;Unknown response 301&quot;
+</code></pre>
+<p>You can also update, modify, or remove keys and values from a dictionary
+using the key-based subscript. To add a new key-value pair, assign a value
+to a key that isn't yet a part of the dictionary.</p>
+<pre><code class="language-swift">responseMessages[301] = &quot;Moved permanently&quot;
+print(responseMessages[301])
+// Prints &quot;Optional(&quot;Moved permanently&quot;)&quot;
+</code></pre>
+<p>Update an existing value by assigning a new value to a key that already
+exists in the dictionary. If you assign <code>nil</code> to an existing key, the key
+and its associated value are removed. The following example updates the
+value for the <code>404</code> code to be simply &quot;Not found&quot; and removes the
+key-value pair for the <code>500</code> code entirely.</p>
+<pre><code class="language-swift">responseMessages[404] = &quot;Not found&quot;
+responseMessages[500] = nil
+print(responseMessages)
+// Prints &quot;[301: &quot;Moved permanently&quot;, 200: &quot;OK&quot;, 403: &quot;Access forbidden&quot;, 404: &quot;Not found&quot;]&quot;
+</code></pre>
+<p>In a mutable <code>Dictionary</code> instance, you can modify in place a value that
+you've accessed through a keyed subscript. The code sample below declares a
+dictionary called <code>interestingNumbers</code> with string keys and values that
+are integer arrays, then sorts each array in-place in descending order.</p>
+<pre><code class="language-swift">var interestingNumbers = [&quot;primes&quot;: [2, 3, 5, 7, 11, 13, 17],
+                          &quot;triangular&quot;: [1, 3, 6, 10, 15, 21, 28],
+                          &quot;hexagonal&quot;: [1, 6, 15, 28, 45, 66, 91]]
+for key in interestingNumbers.keys {
+    interestingNumbers[key]?.sort(by: &gt;)
+}
+
+print(interestingNumbers[&quot;primes&quot;]!)
+// Prints &quot;[17, 13, 11, 7, 5, 3, 2]&quot;
+</code></pre>
+<h3>Iterating Over the Contents of a Dictionary</h3>
+<p>Every dictionary is an unordered collection of key-value pairs. You can
+iterate over a dictionary using a <code>for</code>-<code>in</code> loop, decomposing each
+key-value pair into the elements of a tuple.</p>
+<pre><code class="language-swift">let imagePaths = [&quot;star&quot;: &quot;/glyphs/star.png&quot;,
+                  &quot;portrait&quot;: &quot;/images/content/portrait.jpg&quot;,
+                  &quot;spacer&quot;: &quot;/images/shared/spacer.gif&quot;]
+
+for (name, path) in imagePaths {
+    print(&quot;The path to '\(name)' is '\(path)'.&quot;)
+}
+// Prints &quot;The path to 'star' is '/glyphs/star.png'.&quot;
+// Prints &quot;The path to 'portrait' is '/images/content/portrait.jpg'.&quot;
+// Prints &quot;The path to 'spacer' is '/images/shared/spacer.gif'.&quot;
+</code></pre>
+<p>The order of key-value pairs in a dictionary is stable between mutations
+but is otherwise unpredictable. If you need an ordered collection of
+key-value pairs and don't need the fast key lookup that <code>Dictionary</code>
+provides, see the <code>KeyValuePairs</code> type for an alternative.</p>
+<p>You can search a dictionary's contents for a particular value using the
+<code>contains(where:)</code> or <code>firstIndex(where:)</code> methods supplied by default
+implementation. The following example checks to see if <code>imagePaths</code> contains
+any paths in the <code>&quot;/glyphs&quot;</code> directory:</p>
+<pre><code class="language-swift">let glyphIndex = imagePaths.firstIndex(where: { $0.value.hasPrefix(&quot;/glyphs&quot;) })
+if let index = glyphIndex {
+    print(&quot;The '\(imagePaths[index].key)' image is a glyph.&quot;)
+} else {
+    print(&quot;No glyphs found!&quot;)
+}
+// Prints &quot;The 'star' image is a glyph.&quot;)
+</code></pre>
+<p>Note that in this example, <code>imagePaths</code> is subscripted using a dictionary
+index. Unlike the key-based subscript, the index-based subscript returns
+the corresponding key-value pair as a non-optional tuple.</p>
+<pre><code class="language-swift">print(imagePaths[glyphIndex!])
+// Prints &quot;(&quot;star&quot;, &quot;/glyphs/star.png&quot;)&quot;
+</code></pre>
+<p>A dictionary's indices stay valid across additions to the dictionary as
+long as the dictionary has enough capacity to store the added values
+without allocating more buffer. When a dictionary outgrows its buffer,
+existing indices may be invalidated without any notification.</p>
+<p>When you know how many new values you're adding to a dictionary, use the
+<code>init(minimumCapacity:)</code> initializer to allocate the correct amount of
+buffer.</p>
+<h3>Bridging Between Dictionary and NSDictionary</h3>
+<p>You can bridge between <code>Dictionary</code> and <code>NSDictionary</code> using the <code>as</code>
+operator. For bridging to be possible, the <code>Key</code> and <code>Value</code> types of a
+dictionary must be classes, <code>@objc</code> protocols, or types that bridge to
+Foundation types.</p>
+<p>Bridging from <code>Dictionary</code> to <code>NSDictionary</code> always takes O(1) time and
+space. When the dictionary's <code>Key</code> and <code>Value</code> types are neither classes
+nor <code>@objc</code> protocols, any required bridging of elements occurs at the
+first access of each element. For this reason, the first operation that
+uses the contents of the dictionary may take O(<em>n</em>).</p>
+<p>Bridging from <code>NSDictionary</code> to <code>Dictionary</code> first calls the <code>copy(with:)</code>
+method (<code>- copyWithZone:</code> in Objective-C) on the dictionary to get an
+immutable copy and then performs additional Swift bookkeeping work that
+takes O(1) time. For instances of <code>NSDictionary</code> that are already
+immutable, <code>copy(with:)</code> usually returns the same dictionary in O(1) time;
+otherwise, the copying performance is unspecified. The instances of
+<code>NSDictionary</code> and <code>Dictionary</code> share buffer using the same copy-on-write
+optimization that is used when two instances of <code>Dictionary</code> share
+buffer.</p>
+</div><h3>Initializers</h3><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates an empty dictionary.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init()</code></div></div><div id="init_uniquingKeysWith-57b6a0e91bdd23eb2e06bb6431c2779c" class="declaration"><a class="toggle-link" href="#comment-init_uniquingKeysWith-57b6a0e91bdd23eb2e06bb6431c2779c">init init(_:uniquingKeysWith:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_uniquingKeysWith-57b6a0e91bdd23eb2e06bb6431c2779c"><p>Creates a new dictionary from the key-value pairs in the given sequence,
+using a combining closure to determine the value for any duplicate keys.</p>
+<p>You use this initializer to create a dictionary when you have a sequence
+of key-value tuples that might have duplicate keys. As the dictionary is
+built, the initializer calls the <code>combine</code> closure with the current and
+new values for any duplicate keys. Pass a closure as <code>combine</code> that
+returns the value to use in the resulting dictionary: The closure can
+choose between the two values, combine them to produce a new value, or
+even throw an error.</p>
+<p>The following example shows how to choose the first and last values for
+any duplicate keys:</p>
+<pre><code class="language-swift">let pairsWithDuplicateKeys = [(&quot;a&quot;, 1), (&quot;b&quot;, 2), (&quot;a&quot;, 3), (&quot;b&quot;, 4)]
+
+let firstValues = Dictionary(pairsWithDuplicateKeys,
+                             uniquingKeysWith: { (first, _) in first })
+// [&quot;b&quot;: 2, &quot;a&quot;: 1]
+
+let lastValues = Dictionary(pairsWithDuplicateKeys,
+                            uniquingKeysWith: { (_, last) in last })
+// [&quot;b&quot;: 4, &quot;a&quot;: 3]
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;S>(_ keysAndValues: S, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows where S: Sequence, S.Element == (Key, Value)</code></div></div><div id="init_dictionaryLiteral-92195e445b3542ae7165b4529659eadb" class="declaration"><a class="toggle-link" href="#comment-init_dictionaryLiteral-92195e445b3542ae7165b4529659eadb">init init(dictionaryLiteral:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_dictionaryLiteral-92195e445b3542ae7165b4529659eadb"><p>Creates a dictionary initialized with a dictionary literal.</p>
+<p>Do not call this initializer directly. It is called by the compiler to
+handle dictionary literals. To use a dictionary literal as the initial
+value of a dictionary, enclose a comma-separated list of key-value pairs
+in square brackets.</p>
+<p>For example, the code sample below creates a dictionary with string keys
+and values.</p>
+<pre><code class="language-swift">let countryCodes = [&quot;BR&quot;: &quot;Brazil&quot;, &quot;GH&quot;: &quot;Ghana&quot;, &quot;JP&quot;: &quot;Japan&quot;]
+print(countryCodes)
+// Prints &quot;[&quot;BR&quot;: &quot;Brazil&quot;, &quot;JP&quot;: &quot;Japan&quot;, &quot;GH&quot;: &quot;Ghana&quot;]&quot;
+</code></pre>
+<ul>
+<li>Parameter elements: The key-value pairs that will make up the new
+dictionary. Each key in <code>elements</code> must be unique.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(dictionaryLiteral elements: (Key, Value))</code></div></div><div id="init_grouping_by-ae4bec6481d3acf5dd388ae6e65556b2" class="declaration"><a class="toggle-link" href="#comment-init_grouping_by-ae4bec6481d3acf5dd388ae6e65556b2">init init(grouping:by:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_grouping_by-ae4bec6481d3acf5dd388ae6e65556b2"><p>Creates a new dictionary whose keys are the groupings returned by the
+given closure and whose values are arrays of the elements that returned
+each key.</p>
+<p>The arrays in the &quot;values&quot; position of the new dictionary each contain at
+least one element, with the elements in the same order as the source
+sequence.</p>
+<p>The following example declares an array of names, and then creates a
+dictionary from that array by grouping the names by first letter:</p>
+<pre><code class="language-swift">let students = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Efua&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+let studentsByLetter = Dictionary(grouping: students, by: { $0.first! })
+// [&quot;E&quot;: [&quot;Efua&quot;], &quot;K&quot;: [&quot;Kofi&quot;, &quot;Kweku&quot;], &quot;A&quot;: [&quot;Abena&quot;, &quot;Akosua&quot;]]
+</code></pre>
+<p>The new <code>studentsByLetter</code> dictionary has three entries, with students'
+names grouped by the keys <code>&quot;E&quot;</code>, <code>&quot;K&quot;</code>, and <code>&quot;A&quot;</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;S>(grouping values: S, by keyForValue: (S.Element) throws -> Key) rethrows where Value == [S.Element], S: Sequence</code></div></div><div id="init_minimumCapacity-6bc4ec018ba965b838fd52e071ae9c8c" class="declaration"><a class="toggle-link" href="#comment-init_minimumCapacity-6bc4ec018ba965b838fd52e071ae9c8c">init init(minimumCapacity:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_minimumCapacity-6bc4ec018ba965b838fd52e071ae9c8c"><p>Creates an empty dictionary with preallocated space for at least the
+specified number of elements.</p>
+<p>Use this initializer to avoid intermediate reallocations of a dictionary's
+storage buffer when you know how many key-value pairs you are adding to a
+dictionary after creation.</p>
+<ul>
+<li>Parameter minimumCapacity: The minimum number of key-value pairs that
+the newly created dictionary should be able to store without
+reallocating its storage buffer.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(minimumCapacity: Int)</code></div></div><div id="init_uniqueKeysWithValues-c6a15814f6624fa6eca9454362f61db2" class="declaration"><a class="toggle-link" href="#comment-init_uniqueKeysWithValues-c6a15814f6624fa6eca9454362f61db2">init init(uniqueKeysWithValues:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_uniqueKeysWithValues-c6a15814f6624fa6eca9454362f61db2"><p>Creates a new dictionary from the key-value pairs in the given sequence.</p>
+<p>You use this initializer to create a dictionary when you have a sequence
+of key-value tuples with unique keys. Passing a sequence with duplicate
+keys to this initializer results in a runtime error. If your
+sequence might have duplicate keys, use the
+<code>Dictionary(_:uniquingKeysWith:)</code> initializer instead.</p>
+<p>The following example creates a new dictionary using an array of strings
+as the keys and the integers in a countable range as the values:</p>
+<pre><code class="language-swift">let digitWords = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;]
+let wordToValue = Dictionary(uniqueKeysWithValues: zip(digitWords, 1...5))
+print(wordToValue[&quot;three&quot;]!)
+// Prints &quot;3&quot;
+print(wordToValue)
+// Prints &quot;[&quot;three&quot;: 3, &quot;four&quot;: 4, &quot;five&quot;: 5, &quot;one&quot;: 1, &quot;two&quot;: 2]&quot;
+</code></pre>
+<ul>
+<li>Parameter keysAndValues: A sequence of key-value pairs to use for
+the new dictionary. Every key in <code>keysAndValues</code> must be unique.</li>
+</ul>
+<blockquote>
+<p>Precondition:
+The sequence must not have duplicate keys.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;S>(uniqueKeysWithValues keysAndValues: S) where S: Sequence, S.Element == (Key, Value)</code></div></div><h3>Instance Variables</h3><div id="capacity-7bd14a231864e618e1840c7e117e59c1" class="declaration"><a class="toggle-link" href="#comment-capacity-7bd14a231864e618e1840c7e117e59c1">var capacity</a> <span class="required">Required</span><div class="comment collapse in" id="comment-capacity-7bd14a231864e618e1840c7e117e59c1"><p>The total number of key-value pairs that the dictionary can contain without
+allocating new storage.</p>
+<h4>Declaration</h4><code class="language-swift">var capacity: Int</code></div></div><div id="count-e2942a04780e223b215eb8b663cf5353" class="declaration"><a class="toggle-link" href="#comment-count-e2942a04780e223b215eb8b663cf5353">var count</a> <span class="required">Required</span><div class="comment collapse in" id="comment-count-e2942a04780e223b215eb8b663cf5353"><p>The number of keys in the dictionary.</p>
+<blockquote>
+<p>Complexity:
+O(1).</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var count: Int</code></div></div><div id="count-e2942a04780e223b215eb8b663cf5353" class="declaration"><a class="toggle-link" href="#comment-count-e2942a04780e223b215eb8b663cf5353">var count</a> <span class="required">Required</span><div class="comment collapse in" id="comment-count-e2942a04780e223b215eb8b663cf5353"><p>The number of values in the dictionary.</p>
+<blockquote>
+<p>Complexity:
+O(1).</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var count: Int</code></div></div><div id="count-e2942a04780e223b215eb8b663cf5353" class="declaration"><a class="toggle-link" href="#comment-count-e2942a04780e223b215eb8b663cf5353">var count</a> <span class="required">Required</span><div class="comment collapse in" id="comment-count-e2942a04780e223b215eb8b663cf5353"><p>The number of elements in the collection.</p>
+<p>To check whether a collection is empty, use its <code>isEmpty</code> property
+instead of comparing <code>count</code> to zero. Unless the collection guarantees
+random-access performance, calculating <code>count</code> can be an O(<em>n</em>)
+operation.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var count: Int</code></div></div><div id="count-e2942a04780e223b215eb8b663cf5353" class="declaration"><a class="toggle-link" href="#comment-count-e2942a04780e223b215eb8b663cf5353">var count</a> <span class="required">Required</span><div class="comment collapse in" id="comment-count-e2942a04780e223b215eb8b663cf5353"><p>The number of key-value pairs in the dictionary.</p>
+<blockquote>
+<p>Complexity:
+O(1).</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var count: Int</code></div></div><div id="customMirror-c4bea5adb1649887b1a7e9972736e2a9" class="declaration"><a class="toggle-link" href="#comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9">var customMirror</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9"><p>A mirror that reflects the dictionary.</p>
+<h4>Declaration</h4><code class="language-swift">var customMirror: Mirror</code></div></div><div id="debugDescription-15dc1a07010ea28e38b1f4d74663fe11" class="declaration"><a class="toggle-link" href="#comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11">var debugDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11"><p>A textual representation of this instance, suitable for debugging.</p>
+<p>Calling this property directly is discouraged. Instead, convert an
+instance of any type to a string by using the <code>String(reflecting:)</code>
+initializer. This initializer works with any type, and uses the custom
+<code>debugDescription</code> property for types that conform to
+<code>CustomDebugStringConvertible</code>:</p>
+<pre><code class="language-swift">struct Point: CustomDebugStringConvertible {
+    let x: Int, y: Int
+
+    var debugDescription: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(reflecting: p)
+print(s)
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type's <code>debugDescription</code> property.</p>
+<h4>Declaration</h4><code class="language-swift">var debugDescription: String</code></div></div><div id="debugDescription-15dc1a07010ea28e38b1f4d74663fe11" class="declaration"><a class="toggle-link" href="#comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11">var debugDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11"><p>A textual representation of this instance, suitable for debugging.</p>
+<p>Calling this property directly is discouraged. Instead, convert an
+instance of any type to a string by using the <code>String(reflecting:)</code>
+initializer. This initializer works with any type, and uses the custom
+<code>debugDescription</code> property for types that conform to
+<code>CustomDebugStringConvertible</code>:</p>
+<pre><code class="language-swift">struct Point: CustomDebugStringConvertible {
+    let x: Int, y: Int
+
+    var debugDescription: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(reflecting: p)
+print(s)
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type's <code>debugDescription</code> property.</p>
+<h4>Declaration</h4><code class="language-swift">var debugDescription: String</code></div></div><div id="debugDescription-15dc1a07010ea28e38b1f4d74663fe11" class="declaration"><a class="toggle-link" href="#comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11">var debugDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11"><p>A string that represents the contents of the dictionary, suitable for
+debugging.</p>
+<h4>Declaration</h4><code class="language-swift">var debugDescription: String</code></div></div><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <span class="required">Required</span><div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>A textual representation of this instance.</p>
+<p>Calling this property directly is discouraged. Instead, convert an
+instance of any type to a string by using the <code>String(describing:)</code>
+initializer. This initializer works with any type, and uses the custom
+<code>description</code> property for types that conform to
+<code>CustomStringConvertible</code>:</p>
+<pre><code class="language-swift">struct Point: CustomStringConvertible {
+    let x: Int, y: Int
+
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(describing: p)
+print(s)
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type's <code>description</code> property.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <span class="required">Required</span><div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>A textual representation of this instance.</p>
+<p>Calling this property directly is discouraged. Instead, convert an
+instance of any type to a string by using the <code>String(describing:)</code>
+initializer. This initializer works with any type, and uses the custom
+<code>description</code> property for types that conform to
+<code>CustomStringConvertible</code>:</p>
+<pre><code class="language-swift">struct Point: CustomStringConvertible {
+    let x: Int, y: Int
+
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(describing: p)
+print(s)
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type's <code>description</code> property.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <span class="required">Required</span><div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>A string that represents the contents of the dictionary.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div><div id="endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e" class="declaration"><a class="toggle-link" href="#comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e">var endIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e"><p>The collection's &quot;past the end&quot; position---that is, the position one
+greater than the last valid subscript argument.</p>
+<p>When you need a range that includes the last element of a collection, use
+the half-open range operator (<code>..&lt;</code>) with <code>endIndex</code>. The <code>..&lt;</code> operator
+creates a range that doesn't include the upper bound, so it's always
+safe to use with <code>endIndex</code>. For example:</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let index = numbers.firstIndex(of: 30) {
+    print(numbers[index ..&lt; numbers.endIndex])
+}
+// Prints &quot;[30, 40, 50]&quot;
+</code></pre>
+<p>If the collection is empty, <code>endIndex</code> is equal to <code>startIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var endIndex: Dictionary&lt;Key, Value>.Index</code></div></div><div id="endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e" class="declaration"><a class="toggle-link" href="#comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e">var endIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e"><p>The collection's &quot;past the end&quot; position---that is, the position one
+greater than the last valid subscript argument.</p>
+<p>When you need a range that includes the last element of a collection, use
+the half-open range operator (<code>..&lt;</code>) with <code>endIndex</code>. The <code>..&lt;</code> operator
+creates a range that doesn't include the upper bound, so it's always
+safe to use with <code>endIndex</code>. For example:</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let index = numbers.firstIndex(of: 30) {
+    print(numbers[index ..&lt; numbers.endIndex])
+}
+// Prints &quot;[30, 40, 50]&quot;
+</code></pre>
+<p>If the collection is empty, <code>endIndex</code> is equal to <code>startIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var endIndex: Dictionary&lt;Key, Value>.Index</code></div></div><div id="endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e" class="declaration"><a class="toggle-link" href="#comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e">var endIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e"><p>The dictionary's &quot;past the end&quot; position---that is, the position one
+greater than the last valid subscript argument.</p>
+<p>If the collection is empty, <code>endIndex</code> is equal to <code>startIndex</code>.</p>
+<blockquote>
+<p>Complexity:
+Amortized O(1) if the dictionary does not wrap a bridged <code>NSDictionary</code>; otherwise, the performance is unspecified.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var endIndex: Dictionary&lt;Key, Value>.Index</code></div></div><div id="first-8b04d5e3775d298e78455efc5ca404d5" class="declaration"><a class="toggle-link" href="#comment-first-8b04d5e3775d298e78455efc5ca404d5">var first</a> <span class="required">Required</span><div class="comment collapse in" id="comment-first-8b04d5e3775d298e78455efc5ca404d5"><p>The first element of the collection.</p>
+<p>If the collection is empty, the value of this property is <code>nil</code>.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let firstNumber = numbers.first {
+    print(firstNumber)
+}
+// Prints &quot;10&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var first: Self.Element?</code></div></div><div id="isEmpty-371a91e5c91e40f6212ab50995ccb0cd" class="declaration"><a class="toggle-link" href="#comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd">var isEmpty</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd"><p>A Boolean value indicating whether the collection is empty.</p>
+<p>When you need to check whether your collection is empty, use the
+<code>isEmpty</code> property instead of checking that the <code>count</code> property is
+equal to zero. For collections that don't conform to
+<code>RandomAccessCollection</code>, accessing the <code>count</code> property iterates
+through the elements of the collection.</p>
+<pre><code class="language-swift">let horseName = &quot;Silver&quot;
+if horseName.isEmpty {
+    print(&quot;I've been through the desert on a horse with no name.&quot;)
+} else {
+    print(&quot;Hi ho, \(horseName)!&quot;)
+}
+// Prints &quot;Hi ho, Silver!&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var isEmpty: Bool</code></div></div><div id="isEmpty-371a91e5c91e40f6212ab50995ccb0cd" class="declaration"><a class="toggle-link" href="#comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd">var isEmpty</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd"><p>A Boolean value indicating whether the collection is empty.</p>
+<p>When you need to check whether your collection is empty, use the
+<code>isEmpty</code> property instead of checking that the <code>count</code> property is
+equal to zero. For collections that don't conform to
+<code>RandomAccessCollection</code>, accessing the <code>count</code> property iterates
+through the elements of the collection.</p>
+<pre><code class="language-swift">let horseName = &quot;Silver&quot;
+if horseName.isEmpty {
+    print(&quot;I've been through the desert on a horse with no name.&quot;)
+} else {
+    print(&quot;Hi ho, \(horseName)!&quot;)
+}
+// Prints &quot;Hi ho, Silver!&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var isEmpty: Bool</code></div></div><div id="isEmpty-371a91e5c91e40f6212ab50995ccb0cd" class="declaration"><a class="toggle-link" href="#comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd">var isEmpty</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd"><p>A Boolean value indicating whether the collection is empty.</p>
+<p>When you need to check whether your collection is empty, use the
+<code>isEmpty</code> property instead of checking that the <code>count</code> property is
+equal to zero. For collections that don't conform to
+<code>RandomAccessCollection</code>, accessing the <code>count</code> property iterates
+through the elements of the collection.</p>
+<pre><code class="language-swift">let horseName = &quot;Silver&quot;
+if horseName.isEmpty {
+    print(&quot;I've been through the desert on a horse with no name.&quot;)
+} else {
+    print(&quot;Hi ho, \(horseName)!&quot;)
+}
+// Prints &quot;Hi ho, Silver!&quot;)
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var isEmpty: Bool</code></div></div><div id="isEmpty-371a91e5c91e40f6212ab50995ccb0cd" class="declaration"><a class="toggle-link" href="#comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd">var isEmpty</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd"><p>A Boolean value that indicates whether the dictionary is empty.</p>
+<p>Dictionaries are empty when created with an initializer or an empty
+dictionary literal.</p>
+<pre><code class="language-swift">var frequencies: [String: Int] = [:]
+print(frequencies.isEmpty)
+// Prints &quot;true&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var isEmpty: Bool</code></div></div><div id="keys-14f802e1fba977727845e8872c1743a7" class="declaration"><a class="toggle-link" href="#comment-keys-14f802e1fba977727845e8872c1743a7">var keys</a> <span class="required">Required</span><div class="comment collapse in" id="comment-keys-14f802e1fba977727845e8872c1743a7"><p>A collection containing just the keys of the dictionary.</p>
+<p>When iterated over, keys appear in this collection in the same order as
+they occur in the dictionary's key-value pairs. Each key in the keys
+collection has a unique value.</p>
+<pre><code class="language-swift">let countryCodes = [&quot;BR&quot;: &quot;Brazil&quot;, &quot;GH&quot;: &quot;Ghana&quot;, &quot;JP&quot;: &quot;Japan&quot;]
+print(countryCodes)
+// Prints &quot;[&quot;BR&quot;: &quot;Brazil&quot;, &quot;JP&quot;: &quot;Japan&quot;, &quot;GH&quot;: &quot;Ghana&quot;]&quot;
+
+for k in countryCodes.keys {
+    print(k)
+}
+// Prints &quot;BR&quot;
+// Prints &quot;JP&quot;
+// Prints &quot;GH&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var keys: Dictionary&lt;Key, Value>.Keys</code></div></div><div id="lazy-0ffe34b4e04c2b282c5a388b1ad8aa7a" class="declaration"><a class="toggle-link" href="#comment-lazy-0ffe34b4e04c2b282c5a388b1ad8aa7a">var lazy</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lazy-0ffe34b4e04c2b282c5a388b1ad8aa7a"><p>A sequence containing the same elements as this sequence,
+but on which some operations, such as <code>map</code> and <code>filter</code>, are
+implemented lazily.</p>
+<h4>Declaration</h4><code class="language-swift">var lazy: LazySequence&lt;Self></code></div></div><div id="startIndex-04d77ddd9c9389cc56939726d3da8089" class="declaration"><a class="toggle-link" href="#comment-startIndex-04d77ddd9c9389cc56939726d3da8089">var startIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-startIndex-04d77ddd9c9389cc56939726d3da8089"><p>The position of the first element in a nonempty collection.</p>
+<p>If the collection is empty, <code>startIndex</code> is equal to <code>endIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var startIndex: Dictionary&lt;Key, Value>.Index</code></div></div><div id="startIndex-04d77ddd9c9389cc56939726d3da8089" class="declaration"><a class="toggle-link" href="#comment-startIndex-04d77ddd9c9389cc56939726d3da8089">var startIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-startIndex-04d77ddd9c9389cc56939726d3da8089"><p>The position of the first element in a nonempty collection.</p>
+<p>If the collection is empty, <code>startIndex</code> is equal to <code>endIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var startIndex: Dictionary&lt;Key, Value>.Index</code></div></div><div id="startIndex-04d77ddd9c9389cc56939726d3da8089" class="declaration"><a class="toggle-link" href="#comment-startIndex-04d77ddd9c9389cc56939726d3da8089">var startIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-startIndex-04d77ddd9c9389cc56939726d3da8089"><p>The position of the first element in a nonempty dictionary.</p>
+<p>If the collection is empty, <code>startIndex</code> is equal to <code>endIndex</code>.</p>
+<blockquote>
+<p>Complexity:
+Amortized O(1) if the dictionary does not wrap a bridged <code>NSDictionary</code>. If the dictionary wraps a bridged <code>NSDictionary</code>, the performance is unspecified.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var startIndex: Dictionary&lt;Key, Value>.Index</code></div></div><div id="underestimatedCount-cea0d409be772f5ea3e5db1bcf473531" class="declaration"><a class="toggle-link" href="#comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531">var underestimatedCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531"><p>A value less than or equal to the number of elements in the sequence,
+calculated nondestructively.</p>
+<p>The default implementation returns 0. If you provide your own
+implementation, make sure to compute the value nondestructively.</p>
+<blockquote>
+<p>Complexity:
+O(1), except if the sequence also conforms to <code>Collection</code>. In this case, see the documentation of <code>Collection.underestimatedCount</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var underestimatedCount: Int</code></div></div><div id="underestimatedCount-cea0d409be772f5ea3e5db1bcf473531" class="declaration"><a class="toggle-link" href="#comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531">var underestimatedCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531"><p>A value less than or equal to the number of elements in the collection.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var underestimatedCount: Int</code></div></div><div id="values-f09cc7ee3a9a93273f4b80601cafb00c" class="declaration"><a class="toggle-link" href="#comment-values-f09cc7ee3a9a93273f4b80601cafb00c">var values</a> <span class="required">Required</span><div class="comment collapse in" id="comment-values-f09cc7ee3a9a93273f4b80601cafb00c"><p>A collection containing just the values of the dictionary.</p>
+<p>When iterated over, values appear in this collection in the same order as
+they occur in the dictionary's key-value pairs.</p>
+<pre><code class="language-swift">let countryCodes = [&quot;BR&quot;: &quot;Brazil&quot;, &quot;GH&quot;: &quot;Ghana&quot;, &quot;JP&quot;: &quot;Japan&quot;]
+print(countryCodes)
+// Prints &quot;[&quot;BR&quot;: &quot;Brazil&quot;, &quot;JP&quot;: &quot;Japan&quot;, &quot;GH&quot;: &quot;Ghana&quot;]&quot;
+
+for v in countryCodes.values {
+    print(v)
+}
+// Prints &quot;Brazil&quot;
+// Prints &quot;Japan&quot;
+// Prints &quot;Ghana&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var values: Dictionary&lt;Key, Value>.Values</code></div></div><h3>Subscripts</h3><div id="subscript_key-ec7bf65804685ab0be04d8bea133eb87" class="declaration"><a class="toggle-link" href="#comment-subscript_key-ec7bf65804685ab0be04d8bea133eb87">subscript subscript(key:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_key-ec7bf65804685ab0be04d8bea133eb87"><p>Accesses the value associated with the given key for reading and writing.</p>
+<p>This <em>key-based</em> subscript returns the value for the given key if the key
+is found in the dictionary, or <code>nil</code> if the key is not found.</p>
+<p>The following example creates a new dictionary and prints the value of a
+key found in the dictionary (<code>&quot;Coral&quot;</code>) and a key not found in the
+dictionary (<code>&quot;Cerise&quot;</code>).</p>
+<pre><code class="language-swift">var hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+print(hues[&quot;Coral&quot;])
+// Prints &quot;Optional(16)&quot;
+print(hues[&quot;Cerise&quot;])
+// Prints &quot;nil&quot;
+</code></pre>
+<p>When you assign a value for a key and that key already exists, the
+dictionary overwrites the existing value. If the dictionary doesn't
+contain the key, the key and value are added as a new key-value pair.</p>
+<p>Here, the value for the key <code>&quot;Coral&quot;</code> is updated from <code>16</code> to <code>18</code> and a
+new key-value pair is added for the key <code>&quot;Cerise&quot;</code>.</p>
+<pre><code class="language-swift">hues[&quot;Coral&quot;] = 18
+print(hues[&quot;Coral&quot;])
+// Prints &quot;Optional(18)&quot;
+
+hues[&quot;Cerise&quot;] = 330
+print(hues[&quot;Cerise&quot;])
+// Prints &quot;Optional(330)&quot;
+</code></pre>
+<p>If you assign <code>nil</code> as the value for the given key, the dictionary
+removes that key and its associated value.</p>
+<p>In the following example, the key-value pair for the key <code>&quot;Aquamarine&quot;</code>
+is removed from the dictionary by assigning <code>nil</code> to the key-based
+subscript.</p>
+<pre><code class="language-swift">hues[&quot;Aquamarine&quot;] = nil
+print(hues)
+// Prints &quot;[&quot;Coral&quot;: 18, &quot;Heliotrope&quot;: 296, &quot;Cerise&quot;: 330]&quot;
+</code></pre>
+<ul>
+<li>Parameter key: The key to find in the dictionary.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(key: Key) -> Value?</code></div></div><div id="subscript_key_default-b729d98ddd6a7507b8e8b09b567f4e1a" class="declaration"><a class="toggle-link" href="#comment-subscript_key_default-b729d98ddd6a7507b8e8b09b567f4e1a">subscript subscript(key:default:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_key_default-b729d98ddd6a7507b8e8b09b567f4e1a"><p>Accesses the value with the given key. If the dictionary doesn't contain
+the given key, accesses the provided default value as if the key and
+default value existed in the dictionary.</p>
+<p>Use this subscript when you want either the value for a particular key
+or, when that key is not present in the dictionary, a default value. This
+example uses the subscript with a message to use in case an HTTP response
+code isn't recognized:</p>
+<pre><code class="language-swift">var responseMessages = [200: &quot;OK&quot;,
+                        403: &quot;Access forbidden&quot;,
+                        404: &quot;File not found&quot;,
+                        500: &quot;Internal server error&quot;]
+
+let httpResponseCodes = [200, 403, 301]
+for code in httpResponseCodes {
+    let message = responseMessages[code, default: &quot;Unknown response&quot;]
+    print(&quot;Response \(code): \(message)&quot;)
+}
+// Prints &quot;Response 200: OK&quot;
+// Prints &quot;Response 403: Access Forbidden&quot;
+// Prints &quot;Response 301: Unknown response&quot;
+</code></pre>
+<p>When a dictionary's <code>Value</code> type has value semantics, you can use this
+subscript to perform in-place operations on values in the dictionary.
+The following example uses this subscript while counting the occurrences
+of each letter in a string:</p>
+<pre><code class="language-swift">let message = &quot;Hello, Elle!&quot;
+var letterCounts: [Character: Int] = [:]
+for letter in message {
+    letterCounts[letter, defaultValue: 0] += 1
+}
+// letterCounts == [&quot;H&quot;: 1, &quot;e&quot;: 2, &quot;l&quot;: 4, &quot;o&quot;: 1, ...]
+</code></pre>
+<p>When <code>letterCounts[letter, defaultValue: 0] += 1</code> is executed with a
+value of <code>letter</code> that isn't already a key in <code>letterCounts</code>, the
+specified default value (<code>0</code>) is returned from the subscript,
+incremented, and then added to the dictionary under that key.</p>
+<blockquote>
+<p>Note:
+Do not use this subscript to modify dictionary values if the dictionary's <code>Value</code> type is a class. In that case, the default value and key are not written back to the dictionary after an operation.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(key: Key, default defaultValue: @autoclosure () -> Value) -> Value</code></div></div><div id="subscript_position-b5586bf26309c2c713b44ec1088f3a50" class="declaration"><a class="toggle-link" href="#comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50">subscript subscript(position:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50"><p>Accesses the element at the specified position.</p>
+<p>The following example accesses an element of an array through its
+subscript to print its value:</p>
+<pre><code class="language-swift">var streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+print(streets[1])
+// Prints &quot;Bryant&quot;
+</code></pre>
+<p>You can subscript a collection with any valid index other than the
+collection's end index. The end index refers to the position one past
+the last element of a collection, so it doesn't correspond with an
+element.</p>
+<ul>
+<li>Parameter position: The position of the element to access. <code>position</code>
+must be a valid index of the collection that is not equal to the
+<code>endIndex</code> property.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(position: Dictionary&lt;Key, Value>.Index) -> Dictionary&lt;Key, Value>.Keys.Element</code></div></div><div id="subscript_position-b5586bf26309c2c713b44ec1088f3a50" class="declaration"><a class="toggle-link" href="#comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50">subscript subscript(position:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50"><p>Accesses the element at the specified position.</p>
+<p>For example, you can replace an element of an array by using its
+subscript.</p>
+<pre><code class="language-swift">var streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+streets[1] = &quot;Butler&quot;
+print(streets[1])
+// Prints &quot;Butler&quot;
+</code></pre>
+<p>You can subscript a collection with any valid index other than the
+collection's end index. The end index refers to the position one
+past the last element of a collection, so it doesn't correspond with an
+element.</p>
+<ul>
+<li>Parameter position: The position of the element to access. <code>position</code>
+must be a valid index of the collection that is not equal to the
+<code>endIndex</code> property.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(position: Dictionary&lt;Key, Value>.Index) -> Dictionary&lt;Key, Value>.Values.Element</code></div></div><div id="subscript_position-b5586bf26309c2c713b44ec1088f3a50" class="declaration"><a class="toggle-link" href="#comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50">subscript subscript(position:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50"><p>Accesses the key-value pair at the specified position.</p>
+<p>This subscript takes an index into the dictionary, instead of a key, and
+returns the corresponding key-value pair as a tuple. When performing
+collection-based operations that return an index into a dictionary, use
+this subscript with the resulting value.</p>
+<p>For example, to find the key for a particular value in a dictionary, use
+the <code>firstIndex(where:)</code> method.</p>
+<pre><code class="language-swift">let countryCodes = [&quot;BR&quot;: &quot;Brazil&quot;, &quot;GH&quot;: &quot;Ghana&quot;, &quot;JP&quot;: &quot;Japan&quot;]
+if let index = countryCodes.firstIndex(where: { $0.value == &quot;Japan&quot; }) {
+    print(countryCodes[index])
+    print(&quot;Japan's country code is '\(countryCodes[index].key)'.&quot;)
+} else {
+    print(&quot;Didn't find 'Japan' as a value in the dictionary.&quot;)
+}
+// Prints &quot;(&quot;JP&quot;, &quot;Japan&quot;)&quot;
+// Prints &quot;Japan's country code is 'JP'.&quot;
+</code></pre>
+<ul>
+<li>Parameter position: The position of the key-value pair to access.
+<code>position</code> must be a valid index of the dictionary and not equal to
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(position: Dictionary&lt;Key, Value>.Index) -> Dictionary&lt;Key, Value>.Element</code></div></div><div id="subscript_r-466c73e996c8d896f1c6a25f9add8052" class="declaration"><a class="toggle-link" href="#comment-subscript_r-466c73e996c8d896f1c6a25f9add8052">subscript subscript(r:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_r-466c73e996c8d896f1c6a25f9add8052"><p>Accesses the contiguous subrange of the collection's elements specified
+by a range expression.</p>
+<p>The range expression is converted to a concrete subrange relative to this
+collection. For example, using a <code>PartialRangeFrom</code> range expression
+with an array accesses the subrange from the start of the range
+expression until the end of the array.</p>
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2...]
+print(streetsSlice)
+// [&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+</code></pre>
+<p>The accessed slice uses the same indices for the same elements as the
+original collection uses. This example searches <code>streetsSlice</code> for one
+of the strings in the slice, and then uses that index in the original
+array.</p>
+<pre><code class="language-swift">let index = streetsSlice.firstIndex(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// &quot;Evarts&quot;
+</code></pre>
+<p>Always use the slice's <code>startIndex</code> property instead of assuming that its
+indices start at a particular value. Attempting to access an element by
+using an index outside the bounds of the slice's indices may result in a
+runtime error, even if that index is valid for the original collection.</p>
+<pre><code class="language-swift">print(streetsSlice.startIndex)
+// 2
+print(streetsSlice[2])
+// &quot;Channing&quot;
+
+print(streetsSlice[0])
+// error: Index out of bounds
+</code></pre>
+<ul>
+<li>Parameter bounds: A range of the collection's indices. The bounds of
+the range must be valid indices of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript&lt;R>(r: R) where R: RangeExpression, Self.Index == R.Bound -> Self.SubSequence</code></div></div><div id="subscript_x-1b251887405ca8ce324c4bcc9f09a96e" class="declaration"><a class="toggle-link" href="#comment-subscript_x-1b251887405ca8ce324c4bcc9f09a96e">subscript subscript(x:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_x-1b251887405ca8ce324c4bcc9f09a96e"><h4>Declaration</h4><code class="language-swift">@inlinable public subscript(x: (UnboundedRange_) -> ()) -> Self.SubSequence</code></div></div><h3>Instance Methods</h3><div id="allSatisfy-c621553c94cc281ceea6176cdad51713" class="declaration"><a class="toggle-link" href="#comment-allSatisfy-c621553c94cc281ceea6176cdad51713">func allSatisfy(_ predicate: (Self.Element) throws -> Bool) rethrows -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-allSatisfy-c621553c94cc281ceea6176cdad51713"><p>Returns a Boolean value indicating whether every element of a sequence
+satisfies a given predicate.</p>
+<p>The following code uses this method to test whether all the names in an
+array have at least five characters:</p>
+<pre><code class="language-swift">let names = [&quot;Sofia&quot;, &quot;Camilla&quot;, &quot;Martina&quot;, &quot;Mateo&quot;, &quot;Nicolás&quot;]
+let allHaveAtLeastFive = names.allSatisfy({ $0.count &gt;= 5 })
+// allHaveAtLeastFive == true
+</code></pre>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence
+as its argument and returns a Boolean value that indicates whether
+the passed element satisfies a condition.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func allSatisfy(_ predicate: (Self.Element) throws -> Bool) rethrows -> Bool</code></div></div><div id="compactMap-a8c62c4ad60d8835e27b59f92895e72f" class="declaration"><a class="toggle-link" href="#comment-compactMap-a8c62c4ad60d8835e27b59f92895e72f">func compactMap(_ transform: (Self.Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-compactMap-a8c62c4ad60d8835e27b59f92895e72f"><p>Returns an array containing the non-<code>nil</code> results of calling the given
+transformation with each element of this sequence.</p>
+<p>Use this method to receive an array of non-optional values when your
+transformation produces an optional value.</p>
+<p>In this example, note the difference in the result of using <code>map</code> and
+<code>compactMap</code> with a transformation that returns an optional <code>Int</code> value.</p>
+<pre><code class="language-swift">let possibleNumbers = [&quot;1&quot;, &quot;2&quot;, &quot;three&quot;, &quot;///4///&quot;, &quot;5&quot;]
+
+let mapped: [Int?] = possibleNumbers.map { str in Int(str) }
+// [1, 2, nil, nil, 5]
+
+let compactMapped: [Int] = possibleNumbers.compactMap { str in Int(str) }
+// [1, 2, 5]
+</code></pre>
+<ul>
+<li>Parameter transform: A closure that accepts an element of this
+sequence as its argument and returns an optional value.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>m</em> + <em>n</em>), where <em>n</em> is the length of this sequence and <em>m</em> is the length of the result.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func compactMap&lt;ElementOfResult>(_ transform: (Self.Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult]</code></div></div><div id="compactMapValues-3d9a42169e6985a519bf95cf04e9646a" class="declaration"><a class="toggle-link" href="#comment-compactMapValues-3d9a42169e6985a519bf95cf04e9646a">func compactMapValues(_ transform: (Value) throws -> T?) rethrows -> [Key : T]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-compactMapValues-3d9a42169e6985a519bf95cf04e9646a"><p>Returns a new dictionary containing only the key-value pairs that have
+non-<code>nil</code> values as the result of transformation by the given closure.</p>
+<p>Use this method to receive a dictionary with non-optional values when
+your transformation produces optional values.</p>
+<p>In this example, note the difference in the result of using <code>mapValues</code>
+and <code>compactMapValues</code> with a transformation that returns an optional
+<code>Int</code> value.</p>
+<pre><code class="language-swift">let data = [&quot;a&quot;: &quot;1&quot;, &quot;b&quot;: &quot;three&quot;, &quot;c&quot;: &quot;///4///&quot;]
+
+let m: [String: Int?] = data.mapValues { str in Int(str) }
+// [&quot;a&quot;: 1, &quot;b&quot;: nil, &quot;c&quot;: nil]
+
+let c: [String: Int] = data.compactMapValues { str in Int(str) }
+// [&quot;a&quot;: 1]
+</code></pre>
+<ul>
+<li>Parameter transform: A closure that transforms a value. <code>transform</code>
+accepts each value of the dictionary as its parameter and returns an
+optional transformed value of the same or of a different type.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>m</em> + <em>n</em>), where <em>n</em> is the length of the original dictionary and <em>m</em> is the length of the resulting dictionary.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func compactMapValues&lt;T>(_ transform: (Value) throws -> T?) rethrows -> [Key : T]</code></div></div><div id="contains_where-646c7d1601eddd774748fba720b77ec5" class="declaration"><a class="toggle-link" href="#comment-contains_where-646c7d1601eddd774748fba720b77ec5">func contains(where predicate: (Self.Element) throws -> Bool) rethrows -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-contains_where-646c7d1601eddd774748fba720b77ec5"><p>Returns a Boolean value indicating whether the sequence contains an
+element that satisfies the given predicate.</p>
+<p>You can use the predicate to check for an element of a type that
+doesn't conform to the <code>Equatable</code> protocol, such as the
+<code>HTTPResponse</code> enumeration in this example.</p>
+<pre><code class="language-swift">enum HTTPResponse {
+    case ok
+    case error(Int)
+}
+
+let lastThreeResponses: [HTTPResponse] = [.ok, .ok, .error(404)]
+let hadError = lastThreeResponses.contains { element in
+    if case .error = element {
+        return true
+    } else {
+        return false
+    }
+}
+// 'hadError' == true
+</code></pre>
+<p>Alternatively, a predicate can be satisfied by a range of <code>Equatable</code>
+elements or a general condition. This example shows how you can check an
+array for an expense greater than $100.</p>
+<pre><code class="language-swift">let expenses = [21.37, 55.21, 9.32, 10.18, 388.77, 11.41]
+let hasBigPurchase = expenses.contains { $0 &gt; 100 }
+// 'hasBigPurchase' == true
+</code></pre>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence
+as its argument and returns a Boolean value that indicates whether
+the passed element represents a match.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func contains(where predicate: (Self.Element) throws -> Bool) rethrows -> Bool</code></div></div><div id="distance_from_to-a4fda42879a53b11f7add335ae2b09e2" class="declaration"><a class="toggle-link" href="#comment-distance_from_to-a4fda42879a53b11f7add335ae2b09e2">func distance(from start: Self.Index, to end: Self.Index) -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-distance_from_to-a4fda42879a53b11f7add335ae2b09e2"><p>Returns the distance between two indices.</p>
+<p>Unless the collection conforms to the <code>BidirectionalCollection</code> protocol,
+<code>start</code> must be less than or equal to <code>end</code>.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the resulting distance.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func distance(from start: Self.Index, to end: Self.Index) -> Int</code></div></div><div id="drop_while-ca523aea465630a53d85fd083d49a402" class="declaration"><a class="toggle-link" href="#comment-drop_while-ca523aea465630a53d85fd083d49a402">func drop(while predicate: (Self.Element) throws -> Bool) rethrows -> DropWhileSequence&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-drop_while-ca523aea465630a53d85fd083d49a402"><p>Returns a sequence by skipping the initial, consecutive elements that
+satisfy the given predicate.</p>
+<p>The following example uses the <code>drop(while:)</code> method to skip over the
+positive numbers at the beginning of the <code>numbers</code> array. The result
+begins with the first element of <code>numbers</code> that does not satisfy
+<code>predicate</code>.</p>
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+let startingWithNegative = numbers.drop(while: { $0 &gt; 0 })
+// startingWithNegative == [-2, 9, -6, 10, 1]
+</code></pre>
+<p>If <code>predicate</code> matches every element in the sequence, the result is an
+empty sequence.</p>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence as
+its argument and returns a Boolean value indicating whether the
+element should be included in the result.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>k</em>), where <em>k</em> is the number of elements to drop from the beginning of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func drop(while predicate: (Self.Element) throws -> Bool) rethrows -> DropWhileSequence&lt;Self></code></div></div><div id="drop_while-ca523aea465630a53d85fd083d49a402" class="declaration"><a class="toggle-link" href="#comment-drop_while-ca523aea465630a53d85fd083d49a402">func drop(while predicate: (Self.Element) throws -> Bool) rethrows -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-drop_while-ca523aea465630a53d85fd083d49a402"><p>Returns a subsequence by skipping elements while <code>predicate</code> returns
+<code>true</code> and returning the remaining elements.</p>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the
+sequence as its argument and returns <code>true</code> if the element should
+be skipped or <code>false</code> if it should be included. Once the predicate
+returns <code>false</code> it will not be called again.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func drop(while predicate: (Self.Element) throws -> Bool) rethrows -> Self.SubSequence</code></div></div><div id="dropFirst-cfdc97e613e61021a5c6755568f65e2d" class="declaration"><a class="toggle-link" href="#comment-dropFirst-cfdc97e613e61021a5c6755568f65e2d">func dropFirst(_ k: Int = 1) -> DropFirstSequence&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-dropFirst-cfdc97e613e61021a5c6755568f65e2d"><p>Returns a sequence containing all but the given number of initial
+elements.</p>
+<p>If the number of elements to drop exceeds the number of elements in
+the sequence, the result is an empty sequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropFirst(2))
+// Prints &quot;[3, 4, 5]&quot;
+print(numbers.dropFirst(10))
+// Prints &quot;[]&quot;
+</code></pre>
+<ul>
+<li>Parameter k: The number of elements to drop from the beginning of
+the sequence. <code>k</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1), with O(<em>k</em>) deferred to each iteration of the result, where <em>k</em> is the number of elements to drop from the beginning of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func dropFirst(_ k: Int = 1) -> DropFirstSequence&lt;Self></code></div></div><div id="dropFirst-cfdc97e613e61021a5c6755568f65e2d" class="declaration"><a class="toggle-link" href="#comment-dropFirst-cfdc97e613e61021a5c6755568f65e2d">func dropFirst(_ k: Int = 1) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dropFirst-cfdc97e613e61021a5c6755568f65e2d"><p>Returns a subsequence containing all but the given number of initial
+elements.</p>
+<p>If the number of elements to drop exceeds the number of elements in
+the collection, the result is an empty subsequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropFirst(2))
+// Prints &quot;[3, 4, 5]&quot;
+print(numbers.dropFirst(10))
+// Prints &quot;[]&quot;
+</code></pre>
+<ul>
+<li>Parameter k: The number of elements to drop from the beginning of
+the collection. <code>k</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the number of elements to drop from the beginning of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func dropFirst(_ k: Int = 1) -> Self.SubSequence</code></div></div><div id="dropLast-7c2fee97e997e1ca958d9114f37e2c7f" class="declaration"><a class="toggle-link" href="#comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f">func dropLast(_ k: Int = 1) -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f"><p>Returns a sequence containing all but the given number of final
+elements.</p>
+<p>The sequence must be finite. If the number of elements to drop exceeds
+the number of elements in the sequence, the result is an empty
+sequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast(2))
+// Prints &quot;[1, 2, 3]&quot;
+print(numbers.dropLast(10))
+// Prints &quot;[]&quot;
+</code></pre>
+<ul>
+<li>Parameter n: The number of elements to drop off the end of the
+sequence. <code>n</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func dropLast(_ k: Int = 1) -> [Self.Element]</code></div></div><div id="dropLast-7c2fee97e997e1ca958d9114f37e2c7f" class="declaration"><a class="toggle-link" href="#comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f">func dropLast(_ k: Int = 1) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f"><p>Returns a subsequence containing all but the specified number of final
+elements.</p>
+<p>If the number of elements to drop exceeds the number of elements in the
+collection, the result is an empty subsequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast(2))
+// Prints &quot;[1, 2, 3]&quot;
+print(numbers.dropLast(10))
+// Prints &quot;[]&quot;
+</code></pre>
+<ul>
+<li>Parameter k: The number of elements to drop off the end of the
+collection. <code>k</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func dropLast(_ k: Int = 1) -> Self.SubSequence</code></div></div><div id="elementsEqual_by-3170893d42fda92d5ea6b777a9763215" class="declaration"><a class="toggle-link" href="#comment-elementsEqual_by-3170893d42fda92d5ea6b777a9763215">func elementsEqual(_ other: OtherSequence, by areEquivalent: (Self.Element, OtherSequence.Element) throws -> Bool) rethrows -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-elementsEqual_by-3170893d42fda92d5ea6b777a9763215"><p>Returns a Boolean value indicating whether this sequence and another
+sequence contain equivalent elements in the same order, using the given
+predicate as the equivalence test.</p>
+<p>At least one of the sequences must be finite.</p>
+<p>The predicate must be a <em>equivalence relation</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+<blockquote>
+<p>Complexity:
+O(<em>m</em>), where <em>m</em> is the lesser of the length of the sequence and the length of <code>other</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func elementsEqual&lt;OtherSequence>(_ other: OtherSequence, by areEquivalent: (Self.Element, OtherSequence.Element) throws -> Bool) rethrows -> Bool where OtherSequence: Sequence</code></div></div><div id="enumerated-56f5502941642bb584db542ed9564502" class="declaration"><a class="toggle-link" href="#comment-enumerated-56f5502941642bb584db542ed9564502">func enumerated() -> EnumeratedSequence&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-enumerated-56f5502941642bb584db542ed9564502"><p>Returns a sequence of pairs (<em>n</em>, <em>x</em>), where <em>n</em> represents a
+consecutive integer starting at zero and <em>x</em> represents an element of
+the sequence.</p>
+<p>This example enumerates the characters of the string &quot;Swift&quot; and prints
+each character along with its place in the string.</p>
+<pre><code class="language-swift">for (n, c) in &quot;Swift&quot;.enumerated() {
+    print(&quot;\(n): '\(c)'&quot;)
+}
+// Prints &quot;0: 'S'&quot;
+// Prints &quot;1: 'w'&quot;
+// Prints &quot;2: 'i'&quot;
+// Prints &quot;3: 'f'&quot;
+// Prints &quot;4: 't'&quot;
+</code></pre>
+<p>When you enumerate a collection, the integer part of each pair is a counter
+for the enumeration, but is not necessarily the index of the paired value.
+These counters can be used as indices only in instances of zero-based,
+integer-indexed collections, such as <code>Array</code> and <code>ContiguousArray</code>. For
+other collections the counters may be out of range or of the wrong type
+to use as an index. To iterate over the elements of a collection with its
+indices, use the <code>zip(_:_:)</code> function.</p>
+<p>This example iterates over the indices and elements of a set, building a
+list consisting of indices of names with five or fewer letters.</p>
+<pre><code class="language-swift">let names: Set = [&quot;Sofia&quot;, &quot;Camilla&quot;, &quot;Martina&quot;, &quot;Mateo&quot;, &quot;Nicolás&quot;]
+var shorterIndices: [Set&lt;String&gt;.Index] = []
+for (i, name) in zip(names.indices, names) {
+    if name.count &lt;= 5 {
+        shorterIndices.append(i)
+    }
+}
+</code></pre>
+<p>Now that the <code>shorterIndices</code> array holds the indices of the shorter
+names in the <code>names</code> set, you can use those indices to access elements in
+the set.</p>
+<pre><code class="language-swift">for i in shorterIndices {
+    print(names[i])
+}
+// Prints &quot;Sofia&quot;
+// Prints &quot;Mateo&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func enumerated() -> EnumeratedSequence&lt;Self></code></div></div><div id="filter-1c174b73935eda6461cafaf0555f7dfd" class="declaration"><a class="toggle-link" href="#comment-filter-1c174b73935eda6461cafaf0555f7dfd">func filter(_ isIncluded: (Self.Element) throws -> Bool) rethrows -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-filter-1c174b73935eda6461cafaf0555f7dfd"><p>Returns an array containing, in order, the elements of the sequence
+that satisfy the given predicate.</p>
+<p>In this example, <code>filter(_:)</code> is used to include only names shorter than
+five characters.</p>
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let shortNames = cast.filter { $0.count &lt; 5 }
+print(shortNames)
+// Prints &quot;[&quot;Kim&quot;, &quot;Karl&quot;]&quot;
+</code></pre>
+<ul>
+<li>Parameter isIncluded: A closure that takes an element of the
+sequence as its argument and returns a Boolean value indicating
+whether the element should be included in the returned array.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func filter(_ isIncluded: (Self.Element) throws -> Bool) rethrows -> [Self.Element]</code></div></div><div id="filter-1c174b73935eda6461cafaf0555f7dfd" class="declaration"><a class="toggle-link" href="#comment-filter-1c174b73935eda6461cafaf0555f7dfd">func filter(_ isIncluded: (Dictionary&lt;Key, Value>.Element) throws -> Bool) rethrows -> [Key : Value]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-filter-1c174b73935eda6461cafaf0555f7dfd"><p>Returns a new dictionary containing the key-value pairs of the dictionary
+that satisfy the given predicate.</p>
+<ul>
+<li>Parameter isIncluded: A closure that takes a key-value pair as its
+argument and returns a Boolean value indicating whether the pair
+should be included in the returned dictionary.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@available(swift 4.0) @inlinable public func filter(_ isIncluded: (Dictionary&lt;Key, Value>.Element) throws -> Bool) rethrows -> [Key : Value]</code></div></div><div id="first_where-3ff63b14d77bfe6b38a0c859ea31446a" class="declaration"><a class="toggle-link" href="#comment-first_where-3ff63b14d77bfe6b38a0c859ea31446a">func first(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-first_where-3ff63b14d77bfe6b38a0c859ea31446a"><p>Returns the first element of the sequence that satisfies the given
+predicate.</p>
+<p>The following example uses the <code>first(where:)</code> method to find the first
+negative number in an array of integers:</p>
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+if let firstNegative = numbers.first(where: { $0 &lt; 0 }) {
+    print(&quot;The first negative number is \(firstNegative).&quot;)
+}
+// Prints &quot;The first negative number is -2.&quot;
+</code></pre>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence as
+its argument and returns a Boolean value indicating whether the
+element is a match.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func first(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Element?</code></div></div><div id="firstIndex_where-521d8351894345820bf85f296b29656f" class="declaration"><a class="toggle-link" href="#comment-firstIndex_where-521d8351894345820bf85f296b29656f">func firstIndex(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-firstIndex_where-521d8351894345820bf85f296b29656f"><p>Returns the first index in which an element of the collection satisfies
+the given predicate.</p>
+<p>You can use the predicate to find an element of a type that doesn't
+conform to the <code>Equatable</code> protocol or to find an element that matches
+particular criteria. Here's an example that finds a student name that
+begins with the letter &quot;A&quot;:</p>
+<pre><code class="language-swift">let students = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+if let i = students.firstIndex(where: { $0.hasPrefix(&quot;A&quot;) }) {
+    print(&quot;\(students[i]) starts with 'A'!&quot;)
+}
+// Prints &quot;Abena starts with 'A'!&quot;
+</code></pre>
+<ul>
+<li>Parameter predicate: A closure that takes an element as its argument
+and returns a Boolean value that indicates whether the passed element
+represents a match.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func firstIndex(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Index?</code></div></div><div id="flatMap-0dcf52c05bdbca30a9e61d2230812108" class="declaration"><a class="toggle-link" href="#comment-flatMap-0dcf52c05bdbca30a9e61d2230812108">func flatMap(_ transform: (Self.Element) throws -> SegmentOfResult) rethrows -> [SegmentOfResult.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-flatMap-0dcf52c05bdbca30a9e61d2230812108"><p>Returns an array containing the concatenated results of calling the
+given transformation with each element of this sequence.</p>
+<p>Use this method to receive a single-level collection when your
+transformation produces a sequence or collection for each element.</p>
+<p>In this example, note the difference in the result of using <code>map</code> and
+<code>flatMap</code> with a transformation that returns an array.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4]
+
+let mapped = numbers.map { Array(repeating: $0, count: $0) }
+// [[1], [2, 2], [3, 3, 3], [4, 4, 4, 4]]
+
+let flatMapped = numbers.flatMap { Array(repeating: $0, count: $0) }
+// [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+</code></pre>
+<p>In fact, <code>s.flatMap(transform)</code>  is equivalent to
+<code>Array(s.map(transform).joined())</code>.</p>
+<ul>
+<li>Parameter transform: A closure that accepts an element of this
+sequence as its argument and returns a sequence or collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>m</em> + <em>n</em>), where <em>n</em> is the length of this sequence and <em>m</em> is the length of the result.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func flatMap&lt;SegmentOfResult>(_ transform: (Self.Element) throws -> SegmentOfResult) rethrows -> [SegmentOfResult.Element] where SegmentOfResult: Sequence</code></div></div><div id="flatMap-0dcf52c05bdbca30a9e61d2230812108" class="declaration"><a class="toggle-link" href="#comment-flatMap-0dcf52c05bdbca30a9e61d2230812108">func flatMap(_ transform: (Self.Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-flatMap-0dcf52c05bdbca30a9e61d2230812108"><h4>Declaration</h4><code class="language-swift">@available(swift, deprecated: 4.1, renamed: "compactMap(_:)", message: "Please use compactMap(_:) for the case where closure returns an optional value") public func flatMap&lt;ElementOfResult>(_ transform: (Self.Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult]</code></div></div><div id="forEach-ffd41d8863d1befb51ab68b12f90c272" class="declaration"><a class="toggle-link" href="#comment-forEach-ffd41d8863d1befb51ab68b12f90c272">func forEach(_ body: (Self.Element) throws -> Void) rethrows</a> <span class="required">Required</span><div class="comment collapse in" id="comment-forEach-ffd41d8863d1befb51ab68b12f90c272"><p>Calls the given closure on each element in the sequence in the same order
+as a <code>for</code>-<code>in</code> loop.</p>
+<p>The two loops in the following example produce the same output:</p>
+<pre><code class="language-swift">let numberWords = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;]
+for word in numberWords {
+    print(word)
+}
+// Prints &quot;one&quot;
+// Prints &quot;two&quot;
+// Prints &quot;three&quot;
+
+numberWords.forEach { word in
+    print(word)
+}
+// Same as above
+</code></pre>
+<p>Using the <code>forEach</code> method is distinct from a <code>for</code>-<code>in</code> loop in two
+important ways:</p>
+<ol>
+<li>You cannot use a <code>break</code> or <code>continue</code> statement to exit the current
+call of the <code>body</code> closure or skip subsequent calls.</li>
+<li>Using the <code>return</code> statement in the <code>body</code> closure will exit only from
+the current call to <code>body</code>, not from any outer scope, and won't skip
+subsequent calls.</li>
+</ol>
+<!-- raw HTML omitted -->
+<ul>
+<li>Parameter body: A closure that takes an element of the sequence as a
+parameter.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func forEach(_ body: (Self.Element) throws -> Void) rethrows</code></div></div><div id="formIndex_offsetBy-2182b1026c3b63acf3f08aef9a292825" class="declaration"><a class="toggle-link" href="#comment-formIndex_offsetBy-2182b1026c3b63acf3f08aef9a292825">func formIndex(_ i: inout Self.Index, offsetBy distance: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_offsetBy-2182b1026c3b63acf3f08aef9a292825"><p>Offsets the given index by the specified distance.</p>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the absolute value of <code>distance</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(_ i: inout Self.Index, offsetBy distance: Int)</code></div></div><div id="formIndex_offsetBy_limitedBy-77cef915940f272750243f38458b9a94" class="declaration"><a class="toggle-link" href="#comment-formIndex_offsetBy_limitedBy-77cef915940f272750243f38458b9a94">func formIndex(_ i: inout Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_offsetBy_limitedBy-77cef915940f272750243f38458b9a94"><p>Offsets the given index by the specified distance, or so that it equals
+the given limiting index.</p>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the absolute value of <code>distance</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(_ i: inout Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Bool</code></div></div><div id="formIndex_after-13e63bf648e45549081b5214c49499ce" class="declaration"><a class="toggle-link" href="#comment-formIndex_after-13e63bf648e45549081b5214c49499ce">func formIndex(after i: inout Dictionary&lt;Key, Value>.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_after-13e63bf648e45549081b5214c49499ce"><p>Replaces the given index with its successor.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(after i: inout Dictionary&lt;Key, Value>.Index)</code></div></div><div id="formIndex_after-13e63bf648e45549081b5214c49499ce" class="declaration"><a class="toggle-link" href="#comment-formIndex_after-13e63bf648e45549081b5214c49499ce">func formIndex(after i: inout Dictionary&lt;Key, Value>.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_after-13e63bf648e45549081b5214c49499ce"><p>Replaces the given index with its successor.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(after i: inout Dictionary&lt;Key, Value>.Index)</code></div></div><div id="formIndex_after-13e63bf648e45549081b5214c49499ce" class="declaration"><a class="toggle-link" href="#comment-formIndex_after-13e63bf648e45549081b5214c49499ce">func formIndex(after i: inout Self.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_after-13e63bf648e45549081b5214c49499ce"><p>Replaces the given index with its successor.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(after i: inout Self.Index)</code></div></div><div id="formIndex_after-13e63bf648e45549081b5214c49499ce" class="declaration"><a class="toggle-link" href="#comment-formIndex_after-13e63bf648e45549081b5214c49499ce">func formIndex(after i: inout Dictionary&lt;Key, Value>.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_after-13e63bf648e45549081b5214c49499ce"><p>Replaces the given index with its successor.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(after i: inout Dictionary&lt;Key, Value>.Index)</code></div></div><div id="index_offsetBy-41a458d51308012c8383ec58b39fc85a" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy-41a458d51308012c8383ec58b39fc85a">func index(_ i: Self.Index, offsetBy distance: Int) -> Self.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy-41a458d51308012c8383ec58b39fc85a"><p>Returns an index that is the specified distance from the given index.</p>
+<p>The following example obtains an index advanced four positions from a
+string's starting index and then prints the character at that position.</p>
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+let i = s.index(s.startIndex, offsetBy: 4)
+print(s[i])
+// Prints &quot;t&quot;
+</code></pre>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the absolute value of <code>distance</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: Self.Index, offsetBy distance: Int) -> Self.Index</code></div></div><div id="index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130">func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130"><p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+<p>The following example obtains an index advanced four positions from a
+string's starting index and then prints the character at that position.
+The operation doesn't require going beyond the limiting <code>s.endIndex</code>
+value, so it succeeds.</p>
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+if let i = s.index(s.startIndex, offsetBy: 4, limitedBy: s.endIndex) {
+    print(s[i])
+}
+// Prints &quot;t&quot;
+</code></pre>
+<p>The next example attempts to retrieve an index six positions from
+<code>s.startIndex</code> but fails, because that distance is beyond the index
+passed as <code>limit</code>.</p>
+<pre><code class="language-swift">let j = s.index(s.startIndex, offsetBy: 6, limitedBy: s.endIndex)
+print(j)
+// Prints &quot;nil&quot;
+</code></pre>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the absolute value of <code>distance</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</code></div></div><div id="index_after-976478ce790c064a72519919a525cb29" class="declaration"><a class="toggle-link" href="#comment-index_after-976478ce790c064a72519919a525cb29">func index(after i: Dictionary&lt;Key, Value>.Index) -> Dictionary&lt;Key, Value>.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_after-976478ce790c064a72519919a525cb29"><p>Returns the position immediately after the given index.</p>
+<p>The successor of an index must be well defined. For an index <code>i</code> into a
+collection <code>c</code>, calling <code>c.index(after: i)</code> returns the same index every
+time.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(after i: Dictionary&lt;Key, Value>.Index) -> Dictionary&lt;Key, Value>.Index</code></div></div><div id="index_after-976478ce790c064a72519919a525cb29" class="declaration"><a class="toggle-link" href="#comment-index_after-976478ce790c064a72519919a525cb29">func index(after i: Dictionary&lt;Key, Value>.Index) -> Dictionary&lt;Key, Value>.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_after-976478ce790c064a72519919a525cb29"><p>Returns the position immediately after the given index.</p>
+<p>The successor of an index must be well defined. For an index <code>i</code> into a
+collection <code>c</code>, calling <code>c.index(after: i)</code> returns the same index every
+time.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(after i: Dictionary&lt;Key, Value>.Index) -> Dictionary&lt;Key, Value>.Index</code></div></div><div id="index_after-976478ce790c064a72519919a525cb29" class="declaration"><a class="toggle-link" href="#comment-index_after-976478ce790c064a72519919a525cb29">func index(after i: Dictionary&lt;Key, Value>.Index) -> Dictionary&lt;Key, Value>.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_after-976478ce790c064a72519919a525cb29"><p>Returns the position immediately after the given index.</p>
+<p>The successor of an index must be well defined. For an index <code>i</code> into a
+collection <code>c</code>, calling <code>c.index(after: i)</code> returns the same index every
+time.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(after i: Dictionary&lt;Key, Value>.Index) -> Dictionary&lt;Key, Value>.Index</code></div></div><div id="index_forKey-021b182a48ddb8972f086ead5b06779c" class="declaration"><a class="toggle-link" href="#comment-index_forKey-021b182a48ddb8972f086ead5b06779c">func index(forKey key: Key) -> Dictionary&lt;Key, Value>.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_forKey-021b182a48ddb8972f086ead5b06779c"><p>Returns the index for the given key.</p>
+<p>If the given key is found in the dictionary, this method returns an index
+into the dictionary that corresponds with the key-value pair.</p>
+<pre><code class="language-swift">let countryCodes = [&quot;BR&quot;: &quot;Brazil&quot;, &quot;GH&quot;: &quot;Ghana&quot;, &quot;JP&quot;: &quot;Japan&quot;]
+let index = countryCodes.index(forKey: &quot;JP&quot;)
+
+print(&quot;Country code for \(countryCodes[index!].value): '\(countryCodes[index!].key)'.&quot;)
+// Prints &quot;Country code for Japan: 'JP'.&quot;
+</code></pre>
+<ul>
+<li>Parameter key: The key to find in the dictionary.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(forKey key: Key) -> Dictionary&lt;Key, Value>.Index?</code></div></div><div id="lexicographicallyPrecedes_by-fd26990d822e9c0069da910c611b45d8" class="declaration"><a class="toggle-link" href="#comment-lexicographicallyPrecedes_by-fd26990d822e9c0069da910c611b45d8">func lexicographicallyPrecedes(_ other: OtherSequence, by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lexicographicallyPrecedes_by-fd26990d822e9c0069da910c611b45d8"><p>Returns a Boolean value indicating whether the sequence precedes another
+sequence in a lexicographical (dictionary) ordering, using the given
+predicate to compare elements.</p>
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+<blockquote>
+<p>Note:
+This method implements the mathematical notion of lexicographical ordering, which has no connection to Unicode.  If you are sorting strings to present to the end user, use <code>String</code> APIs that perform localized comparison instead.</p>
+</blockquote>
+<blockquote>
+<p>Complexity:
+O(<em>m</em>), where <em>m</em> is the lesser of the length of the sequence and the length of <code>other</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func lexicographicallyPrecedes&lt;OtherSequence>(_ other: OtherSequence, by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> Bool where OtherSequence: Sequence, Self.Element == OtherSequence.Element</code></div></div><div id="makeIterator-ad197585f06641cbd99e9aec657b11c0" class="declaration"><a class="toggle-link" href="#comment-makeIterator-ad197585f06641cbd99e9aec657b11c0">func makeIterator() -> Dictionary&lt;Key, Value>.Iterator</a> <span class="required">Required</span><div class="comment collapse in" id="comment-makeIterator-ad197585f06641cbd99e9aec657b11c0"><p>Returns an iterator over the dictionary's key-value pairs.</p>
+<p>Iterating over a dictionary yields the key-value pairs as two-element
+tuples. You can decompose the tuple in a <code>for</code>-<code>in</code> loop, which calls
+<code>makeIterator()</code> behind the scenes, or when calling the iterator's
+<code>next()</code> method directly.</p>
+<pre><code class="language-swift">let hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+for (name, hueValue) in hues {
+    print(&quot;The hue of \(name) is \(hueValue).&quot;)
+}
+// Prints &quot;The hue of Heliotrope is 296.&quot;
+// Prints &quot;The hue of Coral is 16.&quot;
+// Prints &quot;The hue of Aquamarine is 156.&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func makeIterator() -> Dictionary&lt;Key, Value>.Iterator</code></div></div><div id="map-d86ddaae0a60cc94d2ecc186aad275b0" class="declaration"><a class="toggle-link" href="#comment-map-d86ddaae0a60cc94d2ecc186aad275b0">func map(_ transform: (Self.Element) throws -> T) rethrows -> [T]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-map-d86ddaae0a60cc94d2ecc186aad275b0"><p>Returns an array containing the results of mapping the given closure
+over the sequence's elements.</p>
+<p>In this example, <code>map</code> is used first to convert the names in the array
+to lowercase strings and then to count their characters.</p>
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let lowercaseNames = cast.map { $0.lowercased() }
+// 'lowercaseNames' == [&quot;vivien&quot;, &quot;marlon&quot;, &quot;kim&quot;, &quot;karl&quot;]
+let letterCounts = cast.map { $0.count }
+// 'letterCounts' == [6, 6, 3, 4]
+</code></pre>
+<ul>
+<li>Parameter transform: A mapping closure. <code>transform</code> accepts an
+element of this sequence as its parameter and returns a transformed
+value of the same or of a different type.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func map&lt;T>(_ transform: (Self.Element) throws -> T) rethrows -> [T]</code></div></div><div id="map-d86ddaae0a60cc94d2ecc186aad275b0" class="declaration"><a class="toggle-link" href="#comment-map-d86ddaae0a60cc94d2ecc186aad275b0">func map(_ transform: (Self.Element) throws -> T) rethrows -> [T]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-map-d86ddaae0a60cc94d2ecc186aad275b0"><p>Returns an array containing the results of mapping the given closure
+over the sequence's elements.</p>
+<p>In this example, <code>map</code> is used first to convert the names in the array
+to lowercase strings and then to count their characters.</p>
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let lowercaseNames = cast.map { $0.lowercased() }
+// 'lowercaseNames' == [&quot;vivien&quot;, &quot;marlon&quot;, &quot;kim&quot;, &quot;karl&quot;]
+let letterCounts = cast.map { $0.count }
+// 'letterCounts' == [6, 6, 3, 4]
+</code></pre>
+<ul>
+<li>Parameter transform: A mapping closure. <code>transform</code> accepts an
+element of this sequence as its parameter and returns a transformed
+value of the same or of a different type.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func map&lt;T>(_ transform: (Self.Element) throws -> T) rethrows -> [T]</code></div></div><div id="mapValues-292a029ebcb7e8c455d8dddc339d7b84" class="declaration"><a class="toggle-link" href="#comment-mapValues-292a029ebcb7e8c455d8dddc339d7b84">func mapValues(_ transform: (Value) throws -> T) rethrows -> [Key : T]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-mapValues-292a029ebcb7e8c455d8dddc339d7b84"><p>Returns a new dictionary containing the keys of this dictionary with the
+values transformed by the given closure.</p>
+<ul>
+<li>Parameter transform: A closure that transforms a value. <code>transform</code>
+accepts each value of the dictionary as its parameter and returns a
+transformed value of the same or of a different type.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the dictionary.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func mapValues&lt;T>(_ transform: (Value) throws -> T) rethrows -> [Key : T]</code></div></div><div id="max_by-05d9c83745b703013bfec787972e043a" class="declaration"><a class="toggle-link" href="#comment-max_by-05d9c83745b703013bfec787972e043a">func max(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-max_by-05d9c83745b703013bfec787972e043a"><p>Returns the maximum element in the sequence, using the given predicate
+as the comparison between elements.</p>
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+<p>This example shows how to use the <code>max(by:)</code> method on a
+dictionary to find the key-value pair with the highest value.</p>
+<pre><code class="language-swift">let hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+let greatestHue = hues.max { a, b in a.value &lt; b.value }
+print(greatestHue)
+// Prints &quot;Optional((&quot;Heliotrope&quot;, 296))&quot;
+</code></pre>
+<ul>
+<li>Parameter areInIncreasingOrder:  A predicate that returns <code>true</code> if its
+first argument should be ordered before its second argument;
+otherwise, <code>false</code>.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@warn_unqualified_access @inlinable public func max(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> Self.Element?</code></div></div><div id="merge_uniquingKeysWith-327f4800ce27fe9ca5f5e5ed47bf40e0" class="declaration"><a class="toggle-link" href="#comment-merge_uniquingKeysWith-327f4800ce27fe9ca5f5e5ed47bf40e0">func merge(_ other: S, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows</a> <span class="required">Required</span><div class="comment collapse in" id="comment-merge_uniquingKeysWith-327f4800ce27fe9ca5f5e5ed47bf40e0"><p>Merges the key-value pairs in the given sequence into the dictionary,
+using a combining closure to determine the value for any duplicate keys.</p>
+<p>Use the <code>combine</code> closure to select a value to use in the updated
+dictionary, or to combine existing and new values. As the key-value
+pairs are merged with the dictionary, the <code>combine</code> closure is called
+with the current and new values for any duplicate keys that are
+encountered.</p>
+<p>This example shows how to choose the current or new values for any
+duplicate keys:</p>
+<pre><code class="language-swift">var dictionary = [&quot;a&quot;: 1, &quot;b&quot;: 2]
+
+// Keeping existing value for key &quot;a&quot;:
+dictionary.merge(zip([&quot;a&quot;, &quot;c&quot;], [3, 4])) { (current, _) in current }
+// [&quot;b&quot;: 2, &quot;a&quot;: 1, &quot;c&quot;: 4]
+
+// Taking the new value for key &quot;a&quot;:
+dictionary.merge(zip([&quot;a&quot;, &quot;d&quot;], [5, 6])) { (_, new) in new }
+// [&quot;b&quot;: 2, &quot;a&quot;: 5, &quot;c&quot;: 4, &quot;d&quot;: 6]
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func merge&lt;S>(_ other: S, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows where S: Sequence, S.Element == (Key, Value)</code></div></div><div id="merge_uniquingKeysWith-327f4800ce27fe9ca5f5e5ed47bf40e0" class="declaration"><a class="toggle-link" href="#comment-merge_uniquingKeysWith-327f4800ce27fe9ca5f5e5ed47bf40e0">func merge(_ other: [Key : Value], uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows</a> <span class="required">Required</span><div class="comment collapse in" id="comment-merge_uniquingKeysWith-327f4800ce27fe9ca5f5e5ed47bf40e0"><p>Merges the given dictionary into this dictionary, using a combining
+closure to determine the value for any duplicate keys.</p>
+<p>Use the <code>combine</code> closure to select a value to use in the updated
+dictionary, or to combine existing and new values. As the key-values
+pairs in <code>other</code> are merged with this dictionary, the <code>combine</code> closure
+is called with the current and new values for any duplicate keys that
+are encountered.</p>
+<p>This example shows how to choose the current or new values for any
+duplicate keys:</p>
+<pre><code class="language-swift">var dictionary = [&quot;a&quot;: 1, &quot;b&quot;: 2]
+
+// Keeping existing value for key &quot;a&quot;:
+dictionary.merge([&quot;a&quot;: 3, &quot;c&quot;: 4]) { (current, _) in current }
+// [&quot;b&quot;: 2, &quot;a&quot;: 1, &quot;c&quot;: 4]
+
+// Taking the new value for key &quot;a&quot;:
+dictionary.merge([&quot;a&quot;: 5, &quot;d&quot;: 6]) { (_, new) in new }
+// [&quot;b&quot;: 2, &quot;a&quot;: 5, &quot;c&quot;: 4, &quot;d&quot;: 6]
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func merge(_ other: [Key : Value], uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows</code></div></div><div id="merging_uniquingKeysWith-c0d72ab4d2817e04afc8e639529bc932" class="declaration"><a class="toggle-link" href="#comment-merging_uniquingKeysWith-c0d72ab4d2817e04afc8e639529bc932">func merging(_ other: S, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows -> [Key : Value]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-merging_uniquingKeysWith-c0d72ab4d2817e04afc8e639529bc932"><p>Creates a dictionary by merging key-value pairs in a sequence into the
+dictionary, using a combining closure to determine the value for
+duplicate keys.</p>
+<p>Use the <code>combine</code> closure to select a value to use in the returned
+dictionary, or to combine existing and new values. As the key-value
+pairs are merged with the dictionary, the <code>combine</code> closure is called
+with the current and new values for any duplicate keys that are
+encountered.</p>
+<p>This example shows how to choose the current or new values for any
+duplicate keys:</p>
+<pre><code class="language-swift">let dictionary = [&quot;a&quot;: 1, &quot;b&quot;: 2]
+let newKeyValues = zip([&quot;a&quot;, &quot;b&quot;], [3, 4])
+
+let keepingCurrent = dictionary.merging(newKeyValues) { (current, _) in current }
+// [&quot;b&quot;: 2, &quot;a&quot;: 1]
+let replacingCurrent = dictionary.merging(newKeyValues) { (_, new) in new }
+// [&quot;b&quot;: 4, &quot;a&quot;: 3]
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func merging&lt;S>(_ other: S, uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows -> [Key : Value] where S: Sequence, S.Element == (Key, Value)</code></div></div><div id="merging_uniquingKeysWith-c0d72ab4d2817e04afc8e639529bc932" class="declaration"><a class="toggle-link" href="#comment-merging_uniquingKeysWith-c0d72ab4d2817e04afc8e639529bc932">func merging(_ other: [Key : Value], uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows -> [Key : Value]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-merging_uniquingKeysWith-c0d72ab4d2817e04afc8e639529bc932"><p>Creates a dictionary by merging the given dictionary into this
+dictionary, using a combining closure to determine the value for
+duplicate keys.</p>
+<p>Use the <code>combine</code> closure to select a value to use in the returned
+dictionary, or to combine existing and new values. As the key-value
+pairs in <code>other</code> are merged with this dictionary, the <code>combine</code> closure
+is called with the current and new values for any duplicate keys that
+are encountered.</p>
+<p>This example shows how to choose the current or new values for any
+duplicate keys:</p>
+<pre><code class="language-swift">let dictionary = [&quot;a&quot;: 1, &quot;b&quot;: 2]
+let otherDictionary = [&quot;a&quot;: 3, &quot;b&quot;: 4]
+
+let keepingCurrent = dictionary.merging(otherDictionary)
+      { (current, _) in current }
+// [&quot;b&quot;: 2, &quot;a&quot;: 1]
+let replacingCurrent = dictionary.merging(otherDictionary)
+      { (_, new) in new }
+// [&quot;b&quot;: 4, &quot;a&quot;: 3]
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func merging(_ other: [Key : Value], uniquingKeysWith combine: (Value, Value) throws -> Value) rethrows -> [Key : Value]</code></div></div><div id="min_by-c443e0d08728771d56e780e5e1bffa4b" class="declaration"><a class="toggle-link" href="#comment-min_by-c443e0d08728771d56e780e5e1bffa4b">func min(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-min_by-c443e0d08728771d56e780e5e1bffa4b"><p>Returns the minimum element in the sequence, using the given predicate as
+the comparison between elements.</p>
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+<p>This example shows how to use the <code>min(by:)</code> method on a
+dictionary to find the key-value pair with the lowest value.</p>
+<pre><code class="language-swift">let hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+let leastHue = hues.min { a, b in a.value &lt; b.value }
+print(leastHue)
+// Prints &quot;Optional((&quot;Coral&quot;, 16))&quot;
+</code></pre>
+<ul>
+<li>Parameter areInIncreasingOrder: A predicate that returns <code>true</code>
+if its first argument should be ordered before its second
+argument; otherwise, <code>false</code>.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@warn_unqualified_access @inlinable public func min(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> Self.Element?</code></div></div><div id="popFirst-a3a615bc6edd4d2991ee379ffb02732e" class="declaration"><a class="toggle-link" href="#comment-popFirst-a3a615bc6edd4d2991ee379ffb02732e">func popFirst() -> Dictionary&lt;Key, Value>.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-popFirst-a3a615bc6edd4d2991ee379ffb02732e"><p>Removes and returns the first key-value pair of the dictionary if the
+dictionary isn't empty.</p>
+<p>The first element of the dictionary is not necessarily the first element
+added. Don't expect any particular ordering of key-value pairs.</p>
+<blockquote>
+<p>Complexity:
+Averages to O(1) over many calls to <code>popFirst()</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func popFirst() -> Dictionary&lt;Key, Value>.Element?</code></div></div><div id="prefix-0c90e3e9cf80d963bff973e2da9dc4d7" class="declaration"><a class="toggle-link" href="#comment-prefix-0c90e3e9cf80d963bff973e2da9dc4d7">func prefix(_ maxLength: Int) -> PrefixSequence&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix-0c90e3e9cf80d963bff973e2da9dc4d7"><p>Returns a sequence, up to the specified maximum length, containing the
+initial elements of the sequence.</p>
+<p>If the maximum length exceeds the number of elements in the sequence,
+the result contains all the elements in the sequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.prefix(2))
+// Prints &quot;[1, 2]&quot;
+print(numbers.prefix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;
+</code></pre>
+<ul>
+<li>Parameter maxLength: The maximum number of elements to return. The
+value of <code>maxLength</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(_ maxLength: Int) -> PrefixSequence&lt;Self></code></div></div><div id="prefix-0c90e3e9cf80d963bff973e2da9dc4d7" class="declaration"><a class="toggle-link" href="#comment-prefix-0c90e3e9cf80d963bff973e2da9dc4d7">func prefix(_ maxLength: Int) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix-0c90e3e9cf80d963bff973e2da9dc4d7"><p>Returns a subsequence, up to the specified maximum length, containing
+the initial elements of the collection.</p>
+<p>If the maximum length exceeds the number of elements in the collection,
+the result contains all the elements in the collection.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.prefix(2))
+// Prints &quot;[1, 2]&quot;
+print(numbers.prefix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;
+</code></pre>
+<ul>
+<li>Parameter maxLength: The maximum number of elements to return.
+<code>maxLength</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the number of elements to select from the beginning of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(_ maxLength: Int) -> Self.SubSequence</code></div></div><div id="prefix_through-af35e7e2415a9bfae8f02be969ebdc70" class="declaration"><a class="toggle-link" href="#comment-prefix_through-af35e7e2415a9bfae8f02be969ebdc70">func prefix(through position: Self.Index) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix_through-af35e7e2415a9bfae8f02be969ebdc70"><p>Returns a subsequence from the start of the collection through the
+specified position.</p>
+<p>The resulting subsequence <em>includes</em> the element at the position <code>end</code>.
+The following example searches for the index of the number <code>40</code> in an
+array of integers, and then prints the prefix of the array up to, and
+including, that index:</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60]
+if let i = numbers.firstIndex(of: 40) {
+    print(numbers.prefix(through: i))
+}
+// Prints &quot;[10, 20, 30, 40]&quot;
+</code></pre>
+<p>Using the <code>prefix(through:)</code> method is equivalent to using a partial
+closed range as the collection's subscript. The subscript notation is
+preferred over <code>prefix(through:)</code>.</p>
+<pre><code class="language-swift">if let i = numbers.firstIndex(of: 40) {
+    print(numbers[...i])
+}
+// Prints &quot;[10, 20, 30, 40]&quot;
+</code></pre>
+<ul>
+<li>Parameter end: The index of the last element to include in the
+resulting subsequence. <code>end</code> must be a valid index of the collection
+that is not equal to the <code>endIndex</code> property.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(through position: Self.Index) -> Self.SubSequence</code></div></div><div id="prefix_upTo-08fca4e629db666df1579b83a65e98f4" class="declaration"><a class="toggle-link" href="#comment-prefix_upTo-08fca4e629db666df1579b83a65e98f4">func prefix(upTo end: Self.Index) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix_upTo-08fca4e629db666df1579b83a65e98f4"><p>Returns a subsequence from the start of the collection up to, but not
+including, the specified position.</p>
+<p>The resulting subsequence <em>does not include</em> the element at the position
+<code>end</code>. The following example searches for the index of the number <code>40</code>
+in an array of integers, and then prints the prefix of the array up to,
+but not including, that index:</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60]
+if let i = numbers.firstIndex(of: 40) {
+    print(numbers.prefix(upTo: i))
+}
+// Prints &quot;[10, 20, 30]&quot;
+</code></pre>
+<p>Passing the collection's starting index as the <code>end</code> parameter results in
+an empty subsequence.</p>
+<pre><code class="language-swift">print(numbers.prefix(upTo: numbers.startIndex))
+// Prints &quot;[]&quot;
+</code></pre>
+<p>Using the <code>prefix(upTo:)</code> method is equivalent to using a partial
+half-open range as the collection's subscript. The subscript notation is
+preferred over <code>prefix(upTo:)</code>.</p>
+<pre><code class="language-swift">if let i = numbers.firstIndex(of: 40) {
+    print(numbers[..&lt;i])
+}
+// Prints &quot;[10, 20, 30]&quot;
+</code></pre>
+<ul>
+<li>Parameter end: The &quot;past the end&quot; index of the resulting subsequence.
+<code>end</code> must be a valid index of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(upTo end: Self.Index) -> Self.SubSequence</code></div></div><div id="prefix_while-c1b423a2138af25080fc01f86d3d8a66" class="declaration"><a class="toggle-link" href="#comment-prefix_while-c1b423a2138af25080fc01f86d3d8a66">func prefix(while predicate: (Self.Element) throws -> Bool) rethrows -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix_while-c1b423a2138af25080fc01f86d3d8a66"><p>Returns a sequence containing the initial, consecutive elements that
+satisfy the given predicate.</p>
+<p>The following example uses the <code>prefix(while:)</code> method to find the
+positive numbers at the beginning of the <code>numbers</code> array. Every element
+of <code>numbers</code> up to, but not including, the first negative value is
+included in the result.</p>
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+let positivePrefix = numbers.prefix(while: { $0 &gt; 0 })
+// positivePrefix == [3, 7, 4]
+</code></pre>
+<p>If <code>predicate</code> matches every element in the sequence, the resulting
+sequence contains every element of the sequence.</p>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence as
+its argument and returns a Boolean value indicating whether the
+element should be included in the result.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>k</em>), where <em>k</em> is the length of the result.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(while predicate: (Self.Element) throws -> Bool) rethrows -> [Self.Element]</code></div></div><div id="prefix_while-c1b423a2138af25080fc01f86d3d8a66" class="declaration"><a class="toggle-link" href="#comment-prefix_while-c1b423a2138af25080fc01f86d3d8a66">func prefix(while predicate: (Self.Element) throws -> Bool) rethrows -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix_while-c1b423a2138af25080fc01f86d3d8a66"><p>Returns a subsequence containing the initial elements until <code>predicate</code>
+returns <code>false</code> and skipping the remaining elements.</p>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the
+sequence as its argument and returns <code>true</code> if the element should
+be included or <code>false</code> if it should be excluded. Once the predicate
+returns <code>false</code> it will not be called again.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(while predicate: (Self.Element) throws -> Bool) rethrows -> Self.SubSequence</code></div></div><div id="randomElement-cb73dc7294d283d83fedcab76a23b81e" class="declaration"><a class="toggle-link" href="#comment-randomElement-cb73dc7294d283d83fedcab76a23b81e">func randomElement() -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-randomElement-cb73dc7294d283d83fedcab76a23b81e"><p>Returns a random element of the collection.</p>
+<p>Call <code>randomElement()</code> to select a random element from an array or
+another collection. This example picks a name at random from an array:</p>
+<pre><code class="language-swift">let names = [&quot;Zoey&quot;, &quot;Chloe&quot;, &quot;Amani&quot;, &quot;Amaia&quot;]
+let randomName = names.randomElement()!
+// randomName == &quot;Amani&quot;
+</code></pre>
+<p>This method is equivalent to calling <code>randomElement(using:)</code>, passing in
+the system's default random generator.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func randomElement() -> Self.Element?</code></div></div><div id="randomElement_using-dc67acb25c029fcc1df75c2ca154c119" class="declaration"><a class="toggle-link" href="#comment-randomElement_using-dc67acb25c029fcc1df75c2ca154c119">func randomElement(using generator: inout T) -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-randomElement_using-dc67acb25c029fcc1df75c2ca154c119"><p>Returns a random element of the collection, using the given generator as
+a source for randomness.</p>
+<p>Call <code>randomElement(using:)</code> to select a random element from an array or
+another collection when you are using a custom random number generator.
+This example picks a name at random from an array:</p>
+<pre><code class="language-swift">let names = [&quot;Zoey&quot;, &quot;Chloe&quot;, &quot;Amani&quot;, &quot;Amaia&quot;]
+let randomName = names.randomElement(using: &amp;myGenerator)!
+// randomName == &quot;Amani&quot;
+</code></pre>
+<ul>
+<li>Parameter generator: The random number generator to use when choosing a
+random element.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<blockquote>
+<p>Note:
+The algorithm used to select a random element may change in a future version of Swift. If you're passing a generator that results in the same sequence of elements each time you run your program, that sequence may change when your program is compiled using a different version of Swift.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func randomElement&lt;T>(using generator: inout T) -> Self.Element? where T: RandomNumberGenerator</code></div></div><div id="reduce-6df4b118cc55876e9cb07e09c5307a38" class="declaration"><a class="toggle-link" href="#comment-reduce-6df4b118cc55876e9cb07e09c5307a38">func reduce(_ initialResult: Result, _ nextPartialResult: (Result, Self.Element) throws -> Result) rethrows -> Result</a> <span class="required">Required</span><div class="comment collapse in" id="comment-reduce-6df4b118cc55876e9cb07e09c5307a38"><p>Returns the result of combining the elements of the sequence using the
+given closure.</p>
+<p>Use the <code>reduce(_:_:)</code> method to produce a single value from the elements
+of an entire sequence. For example, you can use this method on an array
+of numbers to find their sum or product.</p>
+<p>The <code>nextPartialResult</code> closure is called sequentially with an
+accumulating value initialized to <code>initialResult</code> and each element of
+the sequence. This example shows how to find the sum of an array of
+numbers.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4]
+let numberSum = numbers.reduce(0, { x, y in
+    x + y
+})
+// numberSum == 10
+</code></pre>
+<p>When <code>numbers.reduce(_:_:)</code> is called, the following steps occur:</p>
+<ol>
+<li>The <code>nextPartialResult</code> closure is called with <code>initialResult</code>---<code>0</code>
+in this case---and the first element of <code>numbers</code>, returning the sum:
+<code>1</code>.</li>
+<li>The closure is called again repeatedly with the previous call's return
+value and each element of the sequence.</li>
+<li>When the sequence is exhausted, the last value returned from the
+closure is returned to the caller.</li>
+</ol>
+<p>If the sequence has no elements, <code>nextPartialResult</code> is never executed
+and <code>initialResult</code> is the result of the call to <code>reduce(_:_:)</code>.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func reduce&lt;Result>(_ initialResult: Result, _ nextPartialResult: (Result, Self.Element) throws -> Result) rethrows -> Result</code></div></div><div id="reduce_into-10a1c7283e52d8f79e866ead2add1bdf" class="declaration"><a class="toggle-link" href="#comment-reduce_into-10a1c7283e52d8f79e866ead2add1bdf">func reduce(into initialResult: Result, _ updateAccumulatingResult: (inout Result, Self.Element) throws -> ()) rethrows -> Result</a> <span class="required">Required</span><div class="comment collapse in" id="comment-reduce_into-10a1c7283e52d8f79e866ead2add1bdf"><p>Returns the result of combining the elements of the sequence using the
+given closure.</p>
+<p>Use the <code>reduce(into:_:)</code> method to produce a single value from the
+elements of an entire sequence. For example, you can use this method on an
+array of integers to filter adjacent equal entries or count frequencies.</p>
+<p>This method is preferred over <code>reduce(_:_:)</code> for efficiency when the
+result is a copy-on-write type, for example an Array or a Dictionary.</p>
+<p>The <code>updateAccumulatingResult</code> closure is called sequentially with a
+mutable accumulating value initialized to <code>initialResult</code> and each element
+of the sequence. This example shows how to build a dictionary of letter
+frequencies of a string.</p>
+<pre><code class="language-swift">let letters = &quot;abracadabra&quot;
+let letterCount = letters.reduce(into: [:]) { counts, letter in
+    counts[letter, default: 0] += 1
+}
+// letterCount == [&quot;a&quot;: 5, &quot;b&quot;: 2, &quot;r&quot;: 2, &quot;c&quot;: 1, &quot;d&quot;: 1]
+</code></pre>
+<p>When <code>letters.reduce(into:_:)</code> is called, the following steps occur:</p>
+<ol>
+<li>The <code>updateAccumulatingResult</code> closure is called with the initial
+accumulating value---<code>[:]</code> in this case---and the first character of
+<code>letters</code>, modifying the accumulating value by setting <code>1</code> for the key
+<code>&quot;a&quot;</code>.</li>
+<li>The closure is called again repeatedly with the updated accumulating
+value and each element of the sequence.</li>
+<li>When the sequence is exhausted, the accumulating value is returned to
+the caller.</li>
+</ol>
+<p>If the sequence has no elements, <code>updateAccumulatingResult</code> is never
+executed and <code>initialResult</code> is the result of the call to
+<code>reduce(into:_:)</code>.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func reduce&lt;Result>(into initialResult: Result, _ updateAccumulatingResult: (inout Result, Self.Element) throws -> ()) rethrows -> Result</code></div></div><div id="remove_at-3e0c9900dc44c20e5d46b7cd3b677435" class="declaration"><a class="toggle-link" href="#comment-remove_at-3e0c9900dc44c20e5d46b7cd3b677435">func remove(at index: Dictionary&lt;Key, Value>.Index) -> Dictionary&lt;Key, Value>.Element</a> <span class="required">Required</span><div class="comment collapse in" id="comment-remove_at-3e0c9900dc44c20e5d46b7cd3b677435"><p>Removes and returns the key-value pair at the specified index.</p>
+<p>Calling this method invalidates any existing indices for use with this
+dictionary.</p>
+<ul>
+<li>Parameter index: The position of the key-value pair to remove. <code>index</code>
+must be a valid index of the dictionary, and must not equal the
+dictionary's end index.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the number of key-value pairs in the dictionary.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func remove(at index: Dictionary&lt;Key, Value>.Index) -> Dictionary&lt;Key, Value>.Element</code></div></div><div id="removeAll_keepingCapacity-258ecaf1c68e3810fad8df6f24bcd010" class="declaration"><a class="toggle-link" href="#comment-removeAll_keepingCapacity-258ecaf1c68e3810fad8df6f24bcd010">func removeAll(keepingCapacity keepCapacity: Bool = false)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-removeAll_keepingCapacity-258ecaf1c68e3810fad8df6f24bcd010"><p>Removes all key-value pairs from the dictionary.</p>
+<p>Calling this method invalidates all indices with respect to the
+dictionary.</p>
+<ul>
+<li>Parameter keepCapacity: Whether the dictionary should keep its
+underlying buffer. If you pass <code>true</code>, the operation preserves the
+buffer capacity that the collection has, otherwise the underlying
+buffer is released.  The default is <code>false</code>.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the number of key-value pairs in the dictionary.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func removeAll(keepingCapacity keepCapacity: Bool = false)</code></div></div><div id="removeValue_forKey-9afcbf2fcd7474eadf2eed47efa2a56c" class="declaration"><a class="toggle-link" href="#comment-removeValue_forKey-9afcbf2fcd7474eadf2eed47efa2a56c">func removeValue(forKey key: Key) -> Value?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-removeValue_forKey-9afcbf2fcd7474eadf2eed47efa2a56c"><p>Removes the given key and its associated value from the dictionary.</p>
+<p>If the key is found in the dictionary, this method returns the key's
+associated value. On removal, this method invalidates all indices with
+respect to the dictionary.</p>
+<pre><code class="language-swift">var hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+if let value = hues.removeValue(forKey: &quot;Coral&quot;) {
+    print(&quot;The value \(value) was removed.&quot;)
+}
+// Prints &quot;The value 16 was removed.&quot;
+</code></pre>
+<p>If the key isn't found in the dictionary, <code>removeValue(forKey:)</code> returns
+<code>nil</code>.</p>
+<pre><code class="language-swift">if let value = hues.removeValueForKey(&quot;Cerise&quot;) {
+    print(&quot;The value \(value) was removed.&quot;)
+} else {
+    print(&quot;No value found for that key.&quot;)
+}
+// Prints &quot;No value found for that key.&quot;&quot;
+</code></pre>
+<ul>
+<li>Parameter key: The key to remove along with its associated value.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the number of key-value pairs in the dictionary.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func removeValue(forKey key: Key) -> Value?</code></div></div><div id="reserveCapacity-f5185bdad5243d37ae23c866665e584b" class="declaration"><a class="toggle-link" href="#comment-reserveCapacity-f5185bdad5243d37ae23c866665e584b">func reserveCapacity(_ minimumCapacity: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-reserveCapacity-f5185bdad5243d37ae23c866665e584b"><p>Reserves enough space to store the specified number of key-value pairs.</p>
+<p>If you are adding a known number of key-value pairs to a dictionary, use this
+method to avoid multiple reallocations. This method ensures that the
+dictionary has unique, mutable, contiguous storage, with space allocated
+for at least the requested number of key-value pairs.</p>
+<p>Calling the <code>reserveCapacity(_:)</code> method on a dictionary with bridged
+storage triggers a copy to contiguous storage even if the existing
+storage has room to store <code>minimumCapacity</code> key-value pairs.</p>
+<ul>
+<li>Parameter minimumCapacity: The requested number of key-value pairs to
+store.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public mutating func reserveCapacity(_ minimumCapacity: Int)</code></div></div><div id="reversed-037fb3d48a3529920c6559a641d74216" class="declaration"><a class="toggle-link" href="#comment-reversed-037fb3d48a3529920c6559a641d74216">func reversed() -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-reversed-037fb3d48a3529920c6559a641d74216"><p>Returns an array containing the elements of this sequence in reverse
+order.</p>
+<p>The sequence must be finite.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func reversed() -> [Self.Element]</code></div></div><div id="shuffled-44c7a97faf679331c28548a1e178d576" class="declaration"><a class="toggle-link" href="#comment-shuffled-44c7a97faf679331c28548a1e178d576">func shuffled() -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-shuffled-44c7a97faf679331c28548a1e178d576"><p>Returns the elements of the sequence, shuffled.</p>
+<p>For example, you can shuffle the numbers between <code>0</code> and <code>9</code> by calling
+the <code>shuffled()</code> method on that range:</p>
+<pre><code class="language-swift">let numbers = 0...9
+let shuffledNumbers = numbers.shuffled()
+// shuffledNumbers == [1, 7, 6, 2, 8, 9, 4, 3, 5, 0]
+</code></pre>
+<p>This method is equivalent to calling <code>shuffled(using:)</code>, passing in the
+system's default random generator.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func shuffled() -> [Self.Element]</code></div></div><div id="shuffled_using-4090d690f2da5ce349d3536b272bf833" class="declaration"><a class="toggle-link" href="#comment-shuffled_using-4090d690f2da5ce349d3536b272bf833">func shuffled(using generator: inout T) -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-shuffled_using-4090d690f2da5ce349d3536b272bf833"><p>Returns the elements of the sequence, shuffled using the given generator
+as a source for randomness.</p>
+<p>You use this method to randomize the elements of a sequence when you are
+using a custom random number generator. For example, you can shuffle the
+numbers between <code>0</code> and <code>9</code> by calling the <code>shuffled(using:)</code> method on
+that range:</p>
+<pre><code class="language-swift">let numbers = 0...9
+let shuffledNumbers = numbers.shuffled(using: &amp;myGenerator)
+// shuffledNumbers == [8, 9, 4, 3, 2, 6, 7, 0, 5, 1]
+</code></pre>
+<ul>
+<li>Parameter generator: The random number generator to use when shuffling
+the sequence.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<blockquote>
+<p>Note:
+The algorithm used to shuffle a sequence may change in a future version of Swift. If you're passing a generator that results in the same shuffled order each time you run your program, that sequence may change when your program is compiled using a different version of Swift.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func shuffled&lt;T>(using generator: inout T) -> [Self.Element] where T: RandomNumberGenerator</code></div></div><div id="sorted_by-b6fb78e28250adcdc8ef3c70e7f3db00" class="declaration"><a class="toggle-link" href="#comment-sorted_by-b6fb78e28250adcdc8ef3c70e7f3db00">func sorted(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-sorted_by-b6fb78e28250adcdc8ef3c70e7f3db00"><p>Returns the elements of the sequence, sorted using the given predicate as
+the comparison between elements.</p>
+<p>When you want to sort a sequence of elements that don't conform to the
+<code>Comparable</code> protocol, pass a predicate to this method that returns
+<code>true</code> when the first element should be ordered before the second. The
+elements of the resulting array are ordered according to the given
+predicate.</p>
+<p>In the following example, the predicate provides an ordering for an array
+of a custom <code>HTTPResponse</code> type. The predicate orders errors before
+successes and sorts the error responses by their error code.</p>
+<pre><code class="language-swift">enum HTTPResponse {
+    case ok
+    case error(Int)
+}
+
+let responses: [HTTPResponse] = [.error(500), .ok, .ok, .error(404), .error(403)]
+let sortedResponses = responses.sorted {
+    switch ($0, $1) {
+    // Order errors by code
+    case let (.error(aCode), .error(bCode)):
+        return aCode &lt; bCode
+
+    // All successes are equivalent, so none is before any other
+    case (.ok, .ok): return false
+
+    // Order errors before successes
+    case (.error, .ok): return true
+    case (.ok, .error): return false
+    }
+}
+print(sortedResponses)
+// Prints &quot;[.error(403), .error(404), .error(500), .ok, .ok]&quot;
+</code></pre>
+<p>You also use this method to sort elements that conform to the
+<code>Comparable</code> protocol in descending order. To sort your sequence in
+descending order, pass the greater-than operator (<code>&gt;</code>) as the
+<code>areInIncreasingOrder</code> parameter.</p>
+<pre><code class="language-swift">let students: Set = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+let descendingStudents = students.sorted(by: &gt;)
+print(descendingStudents)
+// Prints &quot;[&quot;Peter&quot;, &quot;Kweku&quot;, &quot;Kofi&quot;, &quot;Akosua&quot;, &quot;Abena&quot;]&quot;
+</code></pre>
+<p>Calling the related <code>sorted()</code> method is equivalent to calling this
+method and passing the less-than operator (<code>&lt;</code>) as the predicate.</p>
+<pre><code class="language-swift">print(students.sorted())
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;
+print(students.sorted(by: &lt;))
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;
+</code></pre>
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+<p>The sorting algorithm is not guaranteed to be stable. A stable sort
+preserves the relative order of elements for which
+<code>areInIncreasingOrder</code> does not establish an order.</p>
+<ul>
+<li>Parameter areInIncreasingOrder: A predicate that returns <code>true</code> if its
+first argument should be ordered before its second argument;
+otherwise, <code>false</code>.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em> log <em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func sorted(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> [Self.Element]</code></div></div><div id="split_maxSplits_omittingEmptySubsequences_whereSeparator-c732c52f9b4aaad6daab6945dcdfba81" class="declaration"><a class="toggle-link" href="#comment-split_maxSplits_omittingEmptySubsequences_whereSeparator-c732c52f9b4aaad6daab6945dcdfba81">func split(maxSplits: Int = Int.max, omittingEmptySubsequences: Bool = true, whereSeparator isSeparator: (Self.Element) throws -> Bool) rethrows -> [ArraySlice&lt;Self.Element>]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-split_maxSplits_omittingEmptySubsequences_whereSeparator-c732c52f9b4aaad6daab6945dcdfba81"><p>Returns the longest possible subsequences of the sequence, in order, that
+don't contain elements satisfying the given predicate. Elements that are
+used to split the sequence are not returned as part of any subsequence.</p>
+<p>The following examples show the effects of the <code>maxSplits</code> and
+<code>omittingEmptySubsequences</code> parameters when splitting a string using a
+closure that matches spaces. The first use of <code>split</code> returns each word
+that was originally separated by one or more spaces.</p>
+<pre><code class="language-swift">let line = &quot;BLANCHE:   I don't want realism. I want magic!&quot;
+print(line.split(whereSeparator: { $0 == &quot; &quot; })
+          .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;I&quot;, &quot;don\'t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;
+</code></pre>
+<p>The second example passes <code>1</code> for the <code>maxSplits</code> parameter, so the
+original string is split just once, into two new strings.</p>
+<pre><code class="language-swift">print(
+   line.split(maxSplits: 1, whereSeparator: { $0 == &quot; &quot; })
+                  .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;  I don\'t want realism. I want magic!&quot;]&quot;
+</code></pre>
+<p>The final example passes <code>true</code> for the <code>allowEmptySlices</code> parameter, so
+the returned array contains empty strings where spaces were repeated.</p>
+<pre><code class="language-swift">print(
+    line.split(
+        omittingEmptySubsequences: false,
+        whereSeparator: { $0 == &quot; &quot; }
+    ).map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;&quot;, &quot;&quot;, &quot;I&quot;, &quot;don\'t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func split(maxSplits: Int = Int.max, omittingEmptySubsequences: Bool = true, whereSeparator isSeparator: (Self.Element) throws -> Bool) rethrows -> [ArraySlice&lt;Self.Element>]</code></div></div><div id="split_maxSplits_omittingEmptySubsequences_whereSeparator-c732c52f9b4aaad6daab6945dcdfba81" class="declaration"><a class="toggle-link" href="#comment-split_maxSplits_omittingEmptySubsequences_whereSeparator-c732c52f9b4aaad6daab6945dcdfba81">func split(maxSplits: Int = Int.max, omittingEmptySubsequences: Bool = true, whereSeparator isSeparator: (Self.Element) throws -> Bool) rethrows -> [Self.SubSequence]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-split_maxSplits_omittingEmptySubsequences_whereSeparator-c732c52f9b4aaad6daab6945dcdfba81"><p>Returns the longest possible subsequences of the collection, in order,
+that don't contain elements satisfying the given predicate.</p>
+<p>The resulting array consists of at most <code>maxSplits + 1</code> subsequences.
+Elements that are used to split the sequence are not returned as part of
+any subsequence.</p>
+<p>The following examples show the effects of the <code>maxSplits</code> and
+<code>omittingEmptySubsequences</code> parameters when splitting a string using a
+closure that matches spaces. The first use of <code>split</code> returns each word
+that was originally separated by one or more spaces.</p>
+<pre><code class="language-swift">let line = &quot;BLANCHE:   I don't want realism. I want magic!&quot;
+print(line.split(whereSeparator: { $0 == &quot; &quot; }))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;I&quot;, &quot;don\'t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;
+</code></pre>
+<p>The second example passes <code>1</code> for the <code>maxSplits</code> parameter, so the
+original string is split just once, into two new strings.</p>
+<pre><code class="language-swift">print(line.split(maxSplits: 1, whereSeparator: { $0 == &quot; &quot; }))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;  I don\'t want realism. I want magic!&quot;]&quot;
+</code></pre>
+<p>The final example passes <code>false</code> for the <code>omittingEmptySubsequences</code>
+parameter, so the returned array contains empty strings where spaces
+were repeated.</p>
+<pre><code class="language-swift">print(line.split(omittingEmptySubsequences: false, whereSeparator: { $0 == &quot; &quot; }))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;&quot;, &quot;&quot;, &quot;I&quot;, &quot;don\'t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func split(maxSplits: Int = Int.max, omittingEmptySubsequences: Bool = true, whereSeparator isSeparator: (Self.Element) throws -> Bool) rethrows -> [Self.SubSequence]</code></div></div><div id="starts_with_by-b931922bf9dff1a2b19b00a66517d488" class="declaration"><a class="toggle-link" href="#comment-starts_with_by-b931922bf9dff1a2b19b00a66517d488">func starts(with possiblePrefix: PossiblePrefix, by areEquivalent: (Self.Element, PossiblePrefix.Element) throws -> Bool) rethrows -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-starts_with_by-b931922bf9dff1a2b19b00a66517d488"><p>Returns a Boolean value indicating whether the initial elements of the
+sequence are equivalent to the elements in another sequence, using
+the given predicate as the equivalence test.</p>
+<p>The predicate must be a <em>equivalence relation</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+<blockquote>
+<p>Complexity:
+O(<em>m</em>), where <em>m</em> is the lesser of the length of the sequence and the length of <code>possiblePrefix</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func starts&lt;PossiblePrefix>(with possiblePrefix: PossiblePrefix, by areEquivalent: (Self.Element, PossiblePrefix.Element) throws -> Bool) rethrows -> Bool where PossiblePrefix: Sequence</code></div></div><div id="suffix-f3a8eed76ea35c11a090befc2c217d73" class="declaration"><a class="toggle-link" href="#comment-suffix-f3a8eed76ea35c11a090befc2c217d73">func suffix(_ maxLength: Int) -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-suffix-f3a8eed76ea35c11a090befc2c217d73"><p>Returns a subsequence, up to the given maximum length, containing the
+final elements of the sequence.</p>
+<p>The sequence must be finite. If the maximum length exceeds the number of
+elements in the sequence, the result contains all the elements in the
+sequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.suffix(2))
+// Prints &quot;[4, 5]&quot;
+print(numbers.suffix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;
+</code></pre>
+<ul>
+<li>Parameter maxLength: The maximum number of elements to return. The
+value of <code>maxLength</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func suffix(_ maxLength: Int) -> [Self.Element]</code></div></div><div id="suffix-f3a8eed76ea35c11a090befc2c217d73" class="declaration"><a class="toggle-link" href="#comment-suffix-f3a8eed76ea35c11a090befc2c217d73">func suffix(_ maxLength: Int) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-suffix-f3a8eed76ea35c11a090befc2c217d73"><p>Returns a subsequence, up to the given maximum length, containing the
+final elements of the collection.</p>
+<p>If the maximum length exceeds the number of elements in the collection,
+the result contains all the elements in the collection.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.suffix(2))
+// Prints &quot;[4, 5]&quot;
+print(numbers.suffix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;
+</code></pre>
+<ul>
+<li>Parameter maxLength: The maximum number of elements to return. The
+value of <code>maxLength</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func suffix(_ maxLength: Int) -> Self.SubSequence</code></div></div><div id="suffix_from-b9c1dd3926930fd47109f90d010ae677" class="declaration"><a class="toggle-link" href="#comment-suffix_from-b9c1dd3926930fd47109f90d010ae677">func suffix(from start: Self.Index) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-suffix_from-b9c1dd3926930fd47109f90d010ae677"><p>Returns a subsequence from the specified position to the end of the
+collection.</p>
+<p>The following example searches for the index of the number <code>40</code> in an
+array of integers, and then prints the suffix of the array starting at
+that index:</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60]
+if let i = numbers.firstIndex(of: 40) {
+    print(numbers.suffix(from: i))
+}
+// Prints &quot;[40, 50, 60]&quot;
+</code></pre>
+<p>Passing the collection's <code>endIndex</code> as the <code>start</code> parameter results in
+an empty subsequence.</p>
+<pre><code class="language-swift">print(numbers.suffix(from: numbers.endIndex))
+// Prints &quot;[]&quot;
+</code></pre>
+<p>Using the <code>suffix(from:)</code> method is equivalent to using a partial range
+from the index as the collection's subscript. The subscript notation is
+preferred over <code>suffix(from:)</code>.</p>
+<pre><code class="language-swift">if let i = numbers.firstIndex(of: 40) {
+    print(numbers[i...])
+}
+// Prints &quot;[40, 50, 60]&quot;
+</code></pre>
+<ul>
+<li>Parameter start: The index at which to start the resulting subsequence.
+<code>start</code> must be a valid index of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func suffix(from start: Self.Index) -> Self.SubSequence</code></div></div><div id="swapAt-4f1c6f78bf62e718b43e8eae7cd088ea" class="declaration"><a class="toggle-link" href="#comment-swapAt-4f1c6f78bf62e718b43e8eae7cd088ea">func swapAt(_ i: Dictionary&lt;Key, Value>.Index, _ j: Dictionary&lt;Key, Value>.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-swapAt-4f1c6f78bf62e718b43e8eae7cd088ea"><p>Exchanges the values at the specified indices of the collection.</p>
+<p>Both parameters must be valid indices of the collection and not
+equal to <code>endIndex</code>. Passing the same index as both <code>i</code> and <code>j</code> has no
+effect.</p>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func swapAt(_ i: Dictionary&lt;Key, Value>.Index, _ j: Dictionary&lt;Key, Value>.Index)</code></div></div><div id="updateValue_forKey-32498c53f4193038a183eebfadcbaaee" class="declaration"><a class="toggle-link" href="#comment-updateValue_forKey-32498c53f4193038a183eebfadcbaaee">func updateValue(_ value: Value, forKey key: Key) -> Value?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-updateValue_forKey-32498c53f4193038a183eebfadcbaaee"><p>Updates the value stored in the dictionary for the given key, or adds a
+new key-value pair if the key does not exist.</p>
+<p>Use this method instead of key-based subscripting when you need to know
+whether the new value supplants the value of an existing key. If the
+value of an existing key is updated, <code>updateValue(_:forKey:)</code> returns
+the original value.</p>
+<pre><code class="language-swift">var hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+
+if let oldValue = hues.updateValue(18, forKey: &quot;Coral&quot;) {
+    print(&quot;The old value of \(oldValue) was replaced with a new one.&quot;)
+}
+// Prints &quot;The old value of 16 was replaced with a new one.&quot;
+</code></pre>
+<p>If the given key is not present in the dictionary, this method adds the
+key-value pair and returns <code>nil</code>.</p>
+<pre><code class="language-swift">if let oldValue = hues.updateValue(330, forKey: &quot;Cerise&quot;) {
+    print(&quot;The old value of \(oldValue) was replaced with a new one.&quot;)
+} else {
+    print(&quot;No value was found in the dictionary for that key.&quot;)
+}
+// Prints &quot;No value was found in the dictionary for that key.&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func updateValue(_ value: Value, forKey key: Key) -> Value?</code></div></div><div id="withContiguousStorageIfAvailable-a498ae9a2038e195b24a1bcdf0aa982e" class="declaration"><a class="toggle-link" href="#comment-withContiguousStorageIfAvailable-a498ae9a2038e195b24a1bcdf0aa982e">func withContiguousStorageIfAvailable(_ body: (UnsafeBufferPointer&lt;Self.Element>) throws -> R) rethrows -> R?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withContiguousStorageIfAvailable-a498ae9a2038e195b24a1bcdf0aa982e"><p>Call <code>body(p)</code>, where <code>p</code> is a pointer to the collection's
+contiguous storage.  If no such storage exists, it is
+first created.  If the collection does not support an internal
+representation in a form of contiguous storage, <code>body</code> is not
+called and <code>nil</code> is returned.</p>
+<p>A <code>Collection</code> that provides its own implementation of this method
+must also guarantee that an equivalent buffer of its <code>SubSequence</code>
+can be generated by advancing the pointer by the distance to the
+slice's <code>startIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func withContiguousStorageIfAvailable&lt;R>(_ body: (UnsafeBufferPointer&lt;Self.Element>) throws -> R) rethrows -> R?</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: Dictionary&lt;Key, Value>.Keys, rhs: Dictionary&lt;Key, Value>.Keys) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func ==(lhs: Dictionary&lt;Key, Value>.Keys, rhs: Dictionary&lt;Key, Value>.Keys) -> Bool</code></div></div>

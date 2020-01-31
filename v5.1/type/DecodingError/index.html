@@ -1,0 +1,60 @@
+---
+description: "Swift documentation for 'DecodingError'"
+layout: "default"
+keywords: ""
+root: "/v5.1"
+title: "DecodingError"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum DecodingError</code></div><p>An error that occurs during the decoding of a value.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Error</code></td></tr><tr><th>Nested Types</th><td><code class="nested">DecodingError.Context</code></td></tr></table><div class="discussion comment"></div><h3>Cases</h3><div id="dataCorrupted-3b1d36b68b182b8330153c9ab886d6d9" class="declaration"><a class="toggle-link" href="#comment-dataCorrupted-3b1d36b68b182b8330153c9ab886d6d9">case dataCorrupted</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dataCorrupted-3b1d36b68b182b8330153c9ab886d6d9"><p>An indication that the data is corrupted or otherwise invalid.</p>
+<p>As an associated value, this case contains the context for debugging.</p>
+<h4>Declaration</h4><code class="language-swift">case dataCorrupted(: DecodingError.Context)</code></div></div><div id="keyNotFound-2b1923607938baeb49c9a1e0a36e1466" class="declaration"><a class="toggle-link" href="#comment-keyNotFound-2b1923607938baeb49c9a1e0a36e1466">case keyNotFound</a> <span class="required">Required</span><div class="comment collapse in" id="comment-keyNotFound-2b1923607938baeb49c9a1e0a36e1466"><p>An indication that a keyed decoding container was asked for an entry for
+the given key, but did not contain one.</p>
+<p>As associated values, this case contains the attempted key and context
+for debugging.</p>
+<h4>Declaration</h4><code class="language-swift">case keyNotFound(: CodingKey, : DecodingError.Context)</code></div></div><div id="typeMismatch-24b80e3aa8dce2f2ea17912cf83a9757" class="declaration"><a class="toggle-link" href="#comment-typeMismatch-24b80e3aa8dce2f2ea17912cf83a9757">case typeMismatch</a> <span class="required">Required</span><div class="comment collapse in" id="comment-typeMismatch-24b80e3aa8dce2f2ea17912cf83a9757"><p>An indication that a value of the given type could not be decoded because
+it did not match the type of what was found in the encoded payload.</p>
+<p>As associated values, this case contains the attempted type and context
+for debugging.</p>
+<h4>Declaration</h4><code class="language-swift">case typeMismatch(: Any.Type, : DecodingError.Context)</code></div></div><div id="valueNotFound-10a484ad5955ead701e77399c2c2e7bb" class="declaration"><a class="toggle-link" href="#comment-valueNotFound-10a484ad5955ead701e77399c2c2e7bb">case valueNotFound</a> <span class="required">Required</span><div class="comment collapse in" id="comment-valueNotFound-10a484ad5955ead701e77399c2c2e7bb"><p>An indication that a non-optional value of the given type was expected,
+but a null value was found.</p>
+<p>As associated values, this case contains the attempted type and context
+for debugging.</p>
+<h4>Declaration</h4><code class="language-swift">case valueNotFound(: Any.Type, : DecodingError.Context)</code></div></div><h3>Type Methods</h3><div id="dataCorruptedError_forKey_in_debugDescription-676647fb6448608f15f252349920073e" class="declaration"><a class="toggle-link" href="#comment-dataCorruptedError_forKey_in_debugDescription-676647fb6448608f15f252349920073e">func dataCorruptedError(forKey key: C.Key, in container: C, debugDescription: String) -> DecodingError</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dataCorruptedError_forKey_in_debugDescription-676647fb6448608f15f252349920073e"><p>Returns a new <code>.dataCorrupted</code> error using a constructed coding path and
+the given debug description.</p>
+<p>The coding path for the returned error is constructed by appending the
+given key to the given container's coding path.</p>
+<ul>
+<li>param key: The key which caused the failure.</li>
+</ul>
+<ul>
+<li>param container: The container in which the corrupted data was
+accessed.</li>
+</ul>
+<ul>
+<li>param debugDescription: A description of the error to aid in debugging.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public static func dataCorruptedError&lt;C>(forKey key: C.Key, in container: C, debugDescription: String) -> DecodingError where C: KeyedDecodingContainerProtocol</code></div></div><div id="dataCorruptedError_in_debugDescription-1965b324501655527a1f5d0d0a2559a8" class="declaration"><a class="toggle-link" href="#comment-dataCorruptedError_in_debugDescription-1965b324501655527a1f5d0d0a2559a8">func dataCorruptedError(in container: UnkeyedDecodingContainer, debugDescription: String) -> DecodingError</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dataCorruptedError_in_debugDescription-1965b324501655527a1f5d0d0a2559a8"><p>Returns a new <code>.dataCorrupted</code> error using a constructed coding path and
+the given debug description.</p>
+<p>The coding path for the returned error is constructed by appending the
+given container's current index to its coding path.</p>
+<ul>
+<li>param container: The container in which the corrupted data was
+accessed.</li>
+</ul>
+<ul>
+<li>param debugDescription: A description of the error to aid in debugging.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public static func dataCorruptedError(in container: UnkeyedDecodingContainer, debugDescription: String) -> DecodingError</code></div></div><div id="dataCorruptedError_in_debugDescription-1965b324501655527a1f5d0d0a2559a8" class="declaration"><a class="toggle-link" href="#comment-dataCorruptedError_in_debugDescription-1965b324501655527a1f5d0d0a2559a8">func dataCorruptedError(in container: SingleValueDecodingContainer, debugDescription: String) -> DecodingError</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dataCorruptedError_in_debugDescription-1965b324501655527a1f5d0d0a2559a8"><p>Returns a new <code>.dataCorrupted</code> error using a constructed coding path and
+the given debug description.</p>
+<p>The coding path for the returned error is the given container's coding
+path.</p>
+<ul>
+<li>param container: The container in which the corrupted data was
+accessed.</li>
+</ul>
+<ul>
+<li>param debugDescription: A description of the error to aid in debugging.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public static func dataCorruptedError(in container: SingleValueDecodingContainer, debugDescription: String) -> DecodingError</code></div></div>

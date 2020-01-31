@@ -1,0 +1,165 @@
+---
+description: "Swift documentation for 'MemoryLayout'"
+root: "/v5.1"
+layout: "default"
+title: "MemoryLayout"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">enum MemoryLayout</code></div><p>The memory layout of a type, describing its size, stride, and alignment.</p>
+<div class="discussion comment"><p>You can use <code>MemoryLayout</code> as a source of information about a type when
+allocating or binding memory using raw pointers. The following example
+declares a <code>Point</code> type with <code>x</code> and <code>y</code> coordinates and a Boolean
+<code>isFilled</code> property.</p>
+<pre><code class="language-swift">struct Point {
+    let x: Double
+    let y: Double
+    let isFilled: Bool
+}
+</code></pre>
+<p>The size, stride, and alignment of the <code>Point</code> type are accessible as
+static properties of <code>MemoryLayout&lt;Point&gt;</code>.</p>
+<pre><code class="language-swift">// MemoryLayout&lt;Point&gt;.size == 17
+// MemoryLayout&lt;Point&gt;.stride == 24
+// MemoryLayout&lt;Point&gt;.alignment == 8
+</code></pre>
+<p>Always use a multiple of a type's <code>stride</code> instead of its <code>size</code> when
+allocating memory or accounting for the distance between instances in
+memory. This example allocates uninitialized raw memory with space
+for four instances of <code>Point</code>.</p>
+<pre><code class="language-swift">let count = 4
+let pointPointer = UnsafeMutableRawPointer.allocate(
+        bytes: count * MemoryLayout&lt;Point&gt;.stride,
+        alignedTo: MemoryLayout&lt;Point&gt;.alignment)
+</code></pre>
+</div><h3>Type Variables</h3><div id="alignment-5a159214b169da90d96590d47fff379e" class="declaration"><a class="toggle-link" href="#comment-alignment-5a159214b169da90d96590d47fff379e">var alignment</a> <span class="required">Required</span><div class="comment collapse in" id="comment-alignment-5a159214b169da90d96590d47fff379e"><p>The default memory alignment of <code>T</code>, in bytes.</p>
+<p>Use the <code>alignment</code> property for a type when allocating memory using an
+unsafe pointer. This value is always positive.</p>
+<h4>Declaration</h4><code class="language-swift">var alignment: Int</code></div></div><div id="size-f7bd60b75b29d79b660a2859395c1a24" class="declaration"><a class="toggle-link" href="#comment-size-f7bd60b75b29d79b660a2859395c1a24">var size</a> <span class="required">Required</span><div class="comment collapse in" id="comment-size-f7bd60b75b29d79b660a2859395c1a24"><p>The contiguous memory footprint of <code>T</code>, in bytes.</p>
+<p>A type's size does not include any dynamically allocated or out of line
+storage. In particular, <code>MemoryLayout&lt;T&gt;.size</code>, when <code>T</code> is a class
+type, is the same regardless of how many stored properties <code>T</code> has.</p>
+<p>When allocating memory for multiple instances of <code>T</code> using an unsafe
+pointer, use a multiple of the type's stride instead of its size.</p>
+<h4>Declaration</h4><code class="language-swift">var size: Int</code></div></div><div id="stride-47101375aa96fa02cfb1d55fd00af989" class="declaration"><a class="toggle-link" href="#comment-stride-47101375aa96fa02cfb1d55fd00af989">var stride</a> <span class="required">Required</span><div class="comment collapse in" id="comment-stride-47101375aa96fa02cfb1d55fd00af989"><p>The number of bytes from the start of one instance of <code>T</code> to the start of
+the next when stored in contiguous memory or in an <code>Array&lt;T&gt;</code>.</p>
+<p>This is the same as the number of bytes moved when an <code>UnsafePointer&lt;T&gt;</code>
+instance is incremented. <code>T</code> may have a lower minimal alignment that
+trades runtime performance for space efficiency. This value is always
+positive.</p>
+<h4>Declaration</h4><code class="language-swift">var stride: Int</code></div></div><h3>Type Methods</h3><div id="alignment_ofValue-3503f2fceec2150052a4f0db87dd759f" class="declaration"><a class="toggle-link" href="#comment-alignment_ofValue-3503f2fceec2150052a4f0db87dd759f">func alignment(ofValue value: T) -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-alignment_ofValue-3503f2fceec2150052a4f0db87dd759f"><p>Returns the default memory alignment of <code>T</code>.</p>
+<p>Use a type's alignment when allocating memory using an unsafe pointer.</p>
+<p>When you have a type instead of an instance, use the
+<code>MemoryLayout&lt;T&gt;.stride</code> static property instead.</p>
+<pre><code class="language-swift">let x: Int = 100
+
+// Finding the alignment of a value's type
+let s = MemoryLayout.alignment(ofValue: x)
+// s == 8
+
+// Finding the alignment of a type directly
+let t = MemoryLayout&lt;Int&gt;.alignment
+// t == 8
+</code></pre>
+<ul>
+<li>Parameter value: A value representative of the type to describe.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public static func alignment(ofValue value: T) -> Int</code></div></div><div id="offset_of-b3956408cb3cd2fae778911266c23a10" class="declaration"><a class="toggle-link" href="#comment-offset_of-b3956408cb3cd2fae778911266c23a10">func offset(of key: PartialKeyPath&lt;T>) -> Int?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-offset_of-b3956408cb3cd2fae778911266c23a10"><p>Returns the offset of an inline stored property within a type's in-memory
+representation.</p>
+<p>You can use this method to find the distance in bytes that can be added
+to a pointer of type <code>T</code> to get a pointer to the property referenced by
+<code>key</code>. The offset is available only if the given key refers to inline,
+directly addressable storage within the in-memory representation of <code>T</code>.</p>
+<p>If the return value of this method is non-<code>nil</code>, then accessing the value
+by key path or by an offset pointer are equivalent. For example, for a
+variable <code>root</code> of type <code>T</code>, a key path <code>key</code> of type
+<code>WritableKeyPath&lt;T, U&gt;</code>, and a <code>value</code> of type <code>U</code>:</p>
+<pre><code class="language-swift">// Mutation through the key path
+root[keyPath: key] = value
+
+// Mutation through the offset pointer
+withUnsafeMutableBytes(of: &amp;root) { bytes in
+    let offset = MemoryLayout&lt;T&gt;.offset(of: key)!
+    let rawPointerToValue = bytes.baseAddress! + offset
+    let pointerToValue = rawPointerToValue.assumingMemoryBound(to: U.self)
+    pointerToValue.pointee = value
+}
+</code></pre>
+<p>A property has inline, directly addressable storage when it is a stored
+property for which no additional work is required to extract or set the
+value. Properties are not directly accessible if they trigger any
+<code>didSet</code> or <code>willSet</code> accessors, perform any representation changes such
+as bridging or closure reabstraction, or mask the value out of
+overlapping storage as for packed bitfields. In addition, because class
+instance properties are always stored out-of-line, their positions are
+not accessible using <code>offset(of:)</code>.</p>
+<p>For example, in the <code>ProductCategory</code> type defined here, only
+<code>\.updateCounter</code>, <code>\.identifier</code>, and <code>\.identifier.name</code> refer to
+properties with inline, directly addressable storage:</p>
+<pre><code class="language-swift">struct ProductCategory {
+    struct Identifier {
+        var name: String              // addressable
+    }
+
+    var identifier: Identifier        // addressable
+    var updateCounter: Int            // addressable
+    var products: [Product] {         // not addressable: didSet handler
+        didSet { updateCounter += 1 }
+    }
+    var productCount: Int {           // not addressable: computed property
+        return products.count
+    }
+}
+</code></pre>
+<p>When using <code>offset(of:)</code> with a type imported from a library, don't
+assume that future versions of the library will have the same behavior.
+If a property is converted from a stored property to a computed
+property, the result of <code>offset(of:)</code> changes to <code>nil</code>. That kind of
+conversion is nonbreaking in other contexts, but would trigger a runtime
+error if the result of <code>offset(of:)</code> is force-unwrapped.</p>
+<ul>
+<li>Parameter key: A key path referring to storage that can be accessed
+through a value of type <code>T</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public static func offset(of key: PartialKeyPath&lt;T>) -> Int?</code></div></div><div id="size_ofValue-22f76bceda7f9adfe5cf27a0ba4404df" class="declaration"><a class="toggle-link" href="#comment-size_ofValue-22f76bceda7f9adfe5cf27a0ba4404df">func size(ofValue value: T) -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-size_ofValue-22f76bceda7f9adfe5cf27a0ba4404df"><p>Returns the contiguous memory footprint of the given instance.</p>
+<p>The result does not include any dynamically allocated or out of line
+storage. In particular, pointers and class instances all have the same
+contiguous memory footprint, regardless of the size of the referenced
+data.</p>
+<p>When you have a type instead of an instance, use the
+<code>MemoryLayout&lt;T&gt;.size</code> static property instead.</p>
+<pre><code class="language-swift">let x: Int = 100
+
+// Finding the size of a value's type
+let s = MemoryLayout.size(ofValue: x)
+// s == 8
+
+// Finding the size of a type directly
+let t = MemoryLayout&lt;Int&gt;.size
+// t == 8
+</code></pre>
+<ul>
+<li>Parameter value: A value representative of the type to describe.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public static func size(ofValue value: T) -> Int</code></div></div><div id="stride_ofValue-9f0a51cddc19b44883940813e7265cde" class="declaration"><a class="toggle-link" href="#comment-stride_ofValue-9f0a51cddc19b44883940813e7265cde">func stride(ofValue value: T) -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-stride_ofValue-9f0a51cddc19b44883940813e7265cde"><p>Returns the number of bytes from the start of one instance of <code>T</code> to the
+start of the next when stored in contiguous memory or in an <code>Array&lt;T&gt;</code>.</p>
+<p>This is the same as the number of bytes moved when an <code>UnsafePointer&lt;T&gt;</code>
+instance is incremented. <code>T</code> may have a lower minimal alignment that
+trades runtime performance for space efficiency. The result is always
+positive.</p>
+<p>When you have a type instead of an instance, use the
+<code>MemoryLayout&lt;T&gt;.stride</code> static property instead.</p>
+<pre><code class="language-swift">let x: Int = 100
+
+// Finding the stride of a value's type
+let s = MemoryLayout.stride(ofValue: x)
+// s == 8
+
+// Finding the stride of a type directly
+let t = MemoryLayout&lt;Int&gt;.stride
+// t == 8
+</code></pre>
+<ul>
+<li>Parameter value: A value representative of the type to describe.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public static func stride(ofValue value: T) -> Int</code></div></div>

@@ -1,0 +1,21 @@
+---
+keywords: ""
+layout: "default"
+root: "/v5.1"
+title: "SIMDStorage"
+description: "Swift documentation for 'SIMDStorage'"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol SIMDStorage</code></div><p>A type that can function as storage for a SIMD vector type.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">SIMD</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype Scalar</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>The <code>SIMDStorage</code> protocol defines a storage layout and provides
+elementwise accesses. Computational operations are defined on the <code>SIMD</code>
+protocol, which refines this protocol, and on the concrete types that
+conform to <code>SIMD</code>.</p>
+</div><h3>Initializers</h3><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates a vector with zero in all lanes.</p>
+<h4>Declaration</h4><code class="language-swift">init()</code></div></div><h3>Instance Variables</h3><div id="scalarCount-2c88ac4714aa7276da0950dfc969879e" class="declaration"><a class="toggle-link" href="#comment-scalarCount-2c88ac4714aa7276da0950dfc969879e">var scalarCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-scalarCount-2c88ac4714aa7276da0950dfc969879e"><p>The number of scalars, or elements, in the vector.</p>
+<h4>Declaration</h4><code class="language-swift">var scalarCount: Int</code></div></div><h3>Subscripts</h3><div id="subscript_index-293ad0a56dee4ecca71b95ccc73897e9" class="declaration"><a class="toggle-link" href="#comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9">subscript subscript(index:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_index-293ad0a56dee4ecca71b95ccc73897e9"><p>Accesses the element at the specified index.</p>
+<ul>
+<li>Parameter index: The index of the element to access. <code>index</code> must be in
+the range <code>0..&lt;scalarCount</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">subscript(index: Int) -> Self.Scalar</code></div></div>

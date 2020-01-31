@@ -1,0 +1,194 @@
+---
+keywords: ""
+layout: "default"
+title: "Bool"
+root: "/v5.1"
+description: "Swift documentation for 'Bool'"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Bool</code></div><p>A value type whose instances are either <code>true</code> or <code>false</code>.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Codable, CustomReflectable, CustomStringConvertible, Equatable, ExpressibleByBooleanLiteral, Hashable, LosslessStringConvertible</code></td></tr></table><div class="discussion comment"><p><code>Bool</code> represents Boolean values in Swift. Create instances of <code>Bool</code> by
+using one of the Boolean literals <code>true</code> or <code>false</code>, or by assigning the
+result of a Boolean method or operation to a variable or constant.</p>
+<pre><code class="language-swift">var godotHasArrived = false
+
+let numbers = 1...5
+let containsTen = numbers.contains(10)
+print(containsTen)
+// Prints &quot;false&quot;
+
+let (a, b) = (100, 101)
+let aFirst = a &lt; b
+print(aFirst)
+// Prints &quot;true&quot;
+</code></pre>
+<p>Swift uses only simple Boolean values in conditional contexts to help avoid
+accidental programming errors and to help maintain the clarity of each
+control statement. Unlike in other programming languages, in Swift, integers
+and strings cannot be used where a Boolean value is required.</p>
+<p>For example, the following code sample does not compile, because it
+attempts to use the integer <code>i</code> in a logical context:</p>
+<pre><code class="language-swift">var i = 5
+while i {
+    print(i)
+    i -= 1
+}
+// error: 'Int' is not convertible to 'Bool'
+</code></pre>
+<p>The correct approach in Swift is to compare the <code>i</code> value with zero in the
+<code>while</code> statement.</p>
+<pre><code class="language-swift">while i != 0 {
+    print(i)
+    i -= 1
+}
+</code></pre>
+<h3>Using Imported Boolean values</h3>
+<p>The C <code>bool</code> and <code>Boolean</code> types and the Objective-C <code>BOOL</code> type are all
+bridged into Swift as <code>Bool</code>. The single <code>Bool</code> type in Swift guarantees
+that functions, methods, and properties imported from C and Objective-C
+have a consistent type interface.</p>
+</div><h3>Initializers</h3><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates an instance initialized to <code>false</code>.</p>
+<p>Do not call this initializer directly. Instead, use the Boolean literal
+<code>false</code> to create a new <code>Bool</code> instance.</p>
+<h4>Declaration</h4><code class="language-swift">public init()</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an instance equal to the given Boolean value.</p>
+<ul>
+<li>Parameter value: The Boolean value to copy.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(_ value: Bool)</code></div></div><div id="init_booleanLiteral-a160439c4efba0b022c58febb62fb2d3" class="declaration"><a class="toggle-link" href="#comment-init_booleanLiteral-a160439c4efba0b022c58febb62fb2d3">init init(booleanLiteral:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_booleanLiteral-a160439c4efba0b022c58febb62fb2d3"><p>Creates an instance initialized to the specified Boolean literal.</p>
+<p>Do not call this initializer directly. It is used by the compiler when
+you use a Boolean literal. Instead, create a new <code>Bool</code> instance by
+using one of the Boolean literals <code>true</code> or <code>false</code>.</p>
+<pre><code class="language-swift">var printedMessage = false
+
+if !printedMessage {
+    print(&quot;You look nice today!&quot;)
+    printedMessage = true
+}
+// Prints &quot;You look nice today!&quot;
+</code></pre>
+<p>In this example, both assignments to the <code>printedMessage</code> variable call
+this Boolean literal initializer behind the scenes.</p>
+<ul>
+<li>Parameter value: The value of the new instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(booleanLiteral value: Bool)</code></div></div><div id="init_from-ac2c581668ee6074e8eee083d88ea873" class="declaration"><a class="toggle-link" href="#comment-init_from-ac2c581668ee6074e8eee083d88ea873">init init(from:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_from-ac2c581668ee6074e8eee083d88ea873"><p>Creates a new instance by decoding from the given decoder.</p>
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+<ul>
+<li>Parameter decoder: The decoder to read data from.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(from decoder: Decoder) throws</code></div></div><div id="init-48690522e4b66d2b1596ce439b7dd9cd" class="declaration"><a class="toggle-link" href="#comment-init-48690522e4b66d2b1596ce439b7dd9cd">init init?(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-48690522e4b66d2b1596ce439b7dd9cd"><p>Creates a new Boolean value from the given string.</p>
+<p>If the <code>description</code> value is any string other than <code>&quot;true&quot;</code> or
+<code>&quot;false&quot;</code>, the result is <code>nil</code>. This initializer is case sensitive.</p>
+<ul>
+<li>Parameter description: A string representation of the Boolean value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init?(_ description: String)</code></div></div><h3>Instance Variables</h3><div id="customMirror-c4bea5adb1649887b1a7e9972736e2a9" class="declaration"><a class="toggle-link" href="#comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9">var customMirror</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9"><p>A mirror that reflects the <code>Bool</code> instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customMirror: Mirror</code></div></div><div id="customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3" class="declaration"><a class="toggle-link" href="#comment-customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3">var customPlaygroundQuickLook</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3"><p>A custom playground Quick Look for the <code>Bool</code> instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customPlaygroundQuickLook: _PlaygroundQuickLook</code></div></div><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <span class="required">Required</span><div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>A textual representation of the Boolean value.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div><h3>Instance Methods</h3><div id="encode_to-8c7f999a44e91e36e6d67e62075ffdbb" class="declaration"><a class="toggle-link" href="#comment-encode_to-8c7f999a44e91e36e6d67e62075ffdbb">func encode(to encoder: Encoder) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_to-8c7f999a44e91e36e6d67e62075ffdbb"><p>Encodes this value into the given encoder.</p>
+<p>This function throws an error if any values are invalid for the given
+encoder's format.</p>
+<ul>
+<li>Parameter encoder: The encoder to write data to.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func encode(to encoder: Encoder) throws</code></div></div><div id="hash_into-6d50cb3daa41162a12fb4542a687b393" class="declaration"><a class="toggle-link" href="#comment-hash_into-6d50cb3daa41162a12fb4542a687b393">func hash(into hasher: inout Hasher)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hash_into-6d50cb3daa41162a12fb4542a687b393"><p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+<ul>
+<li>Parameter hasher: The hasher to use when combining the components
+of this instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func hash(into hasher: inout Hasher)</code></div></div><div id="toggle-2d1d3c67643a58dcec645268059656b5" class="declaration"><a class="toggle-link" href="#comment-toggle-2d1d3c67643a58dcec645268059656b5">func toggle()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-toggle-2d1d3c67643a58dcec645268059656b5"><p>Toggles the Boolean variable's value.</p>
+<p>Use this method to toggle a Boolean value from <code>true</code> to <code>false</code> or from
+<code>false</code> to <code>true</code>.</p>
+<pre><code class="language-swift">var bools = [true, false]
+
+bools[0].toggle()
+// bools == [false, false]
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func toggle()</code></div></div><h3>Type Methods</h3><div id="a-7e351eb499a1ebf0a88397658979edc3" class="declaration"><a class="toggle-link" href="#comment-a-7e351eb499a1ebf0a88397658979edc3">func !(a: Bool) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-a-7e351eb499a1ebf0a88397658979edc3"><p>Performs a logical NOT operation on a Boolean value.</p>
+<p>The logical NOT operator (<code>!</code>) inverts a Boolean value. If the value is
+<code>true</code>, the result of the operation is <code>false</code>; if the value is <code>false</code>,
+the result is <code>true</code>.</p>
+<pre><code class="language-swift">var printedMessage = false
+
+if !printedMessage {
+    print(&quot;You look nice today!&quot;)
+    printedMessage = true
+}
+// Prints &quot;You look nice today!&quot;
+</code></pre>
+<ul>
+<li>Parameter a: The Boolean value to negate.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">prefix public static func !(a: Bool) -> Bool</code></div></div><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-feb37638c9ed0e4df0336da3353e83e2" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-feb37638c9ed0e4df0336da3353e83e2">func &amp;&amp;(lhs: Bool, rhs: @autoclosure () throws -> Bool) rethrows -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-feb37638c9ed0e4df0336da3353e83e2"><p>Performs a logical AND operation on two Boolean values.</p>
+<p>The logical AND operator (<code>&amp;&amp;</code>) combines two Boolean values and returns
+<code>true</code> if both of the values are <code>true</code>. If either of the values is
+<code>false</code>, the operator returns <code>false</code>.</p>
+<p>This operator uses short-circuit evaluation: The left-hand side (<code>lhs</code>) is
+evaluated first, and the right-hand side (<code>rhs</code>) is evaluated only if
+<code>lhs</code> evaluates to <code>true</code>. For example:</p>
+<pre><code class="language-swift">let measurements = [7.44, 6.51, 4.74, 5.88, 6.27, 6.12, 7.76]
+let sum = measurements.reduce(0, combine: +)
+
+if measurements.count &gt; 0 &amp;&amp; sum / Double(measurements.count) &lt; 6.5 {
+    print(&quot;Average measurement is less than 6.5&quot;)
+}
+// Prints &quot;Average measurement is less than 6.5&quot;
+</code></pre>
+<p>In this example, <code>lhs</code> tests whether <code>measurements.count</code> is greater than
+zero. Evaluation of the <code>&amp;&amp;</code> operator is one of the following:</p>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;&amp;(lhs: Bool, rhs: @autoclosure () throws -> Bool) rethrows -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: Bool, rhs: Bool) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func ==(lhs: Bool, rhs: Bool) -> Bool</code></div></div><div id="random-d9eeb3e59bc4b2c7351e7f70dc78e868" class="declaration"><a class="toggle-link" href="#comment-random-d9eeb3e59bc4b2c7351e7f70dc78e868">func random() -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-random-d9eeb3e59bc4b2c7351e7f70dc78e868"><p>Returns a random Boolean value.</p>
+<p>This method returns <code>true</code> and <code>false</code> with equal probability.</p>
+<pre><code class="language-swift">let flippedHeads = Bool.random()
+if flippedHeads {
+    print(&quot;Heads, you win!&quot;)
+} else {
+    print(&quot;Maybe another try?&quot;)
+}
+</code></pre>
+<p>This method is equivalent to calling <code>Bool.random(using:)</code>, passing in
+the system's default random generator.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func random() -> Bool</code></div></div><div id="random_using-ebedc35341d2c4c73061244b89a2c06b" class="declaration"><a class="toggle-link" href="#comment-random_using-ebedc35341d2c4c73061244b89a2c06b">func random(using generator: inout T) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-random_using-ebedc35341d2c4c73061244b89a2c06b"><p>Returns a random Boolean value, using the given generator as a source for
+randomness.</p>
+<p>This method returns <code>true</code> and <code>false</code> with equal probability. Use this
+method to generate a random Boolean value when you are using a custom
+random number generator.</p>
+<pre><code class="language-swift">let flippedHeads = Bool.random(using: &amp;myGenerator)
+if flippedHeads {
+    print(&quot;Heads, you win!&quot;)
+} else {
+    print(&quot;Maybe another try?&quot;)
+}
+</code></pre>
+<blockquote>
+<p>Note:
+The algorithm used to create random values may change in a future version of Swift. If you're passing a generator that results in the same sequence of Boolean values each time you run your program, that sequence may change when your program is compiled using a different version of Swift.</p>
+</blockquote>
+<ul>
+<li>Parameter generator: The random number generator to use when creating
+the new random value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func random&lt;T>(using generator: inout T) -> Bool where T: RandomNumberGenerator</code></div></div><div id="lhs_rhs-4fedc3f19d7eeceefd56ab8688971b04" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-4fedc3f19d7eeceefd56ab8688971b04">func ||(lhs: Bool, rhs: @autoclosure () throws -> Bool) rethrows -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-4fedc3f19d7eeceefd56ab8688971b04"><p>Performs a logical OR operation on two Boolean values.</p>
+<p>The logical OR operator (<code>||</code>) combines two Boolean values and returns
+<code>true</code> if at least one of the values is <code>true</code>. If both values are
+<code>false</code>, the operator returns <code>false</code>.</p>
+<p>This operator uses short-circuit evaluation: The left-hand side (<code>lhs</code>) is
+evaluated first, and the right-hand side (<code>rhs</code>) is evaluated only if
+<code>lhs</code> evaluates to <code>false</code>. For example:</p>
+<pre><code class="language-swift">let majorErrors: Set = [&quot;No first name&quot;, &quot;No last name&quot;, ...]
+let error = &quot;&quot;
+
+if error.isEmpty || !majorErrors.contains(error) {
+    print(&quot;No major errors detected&quot;)
+} else {
+    print(&quot;Major error: \(error)&quot;)
+}
+// Prints &quot;No major errors detected&quot;
+</code></pre>
+<p>In this example, <code>lhs</code> tests whether <code>error</code> is an empty string.
+Evaluation of the <code>||</code> operator is one of the following:</p>
+<h4>Declaration</h4><code class="language-swift">public static func ||(lhs: Bool, rhs: @autoclosure () throws -> Bool) rethrows -> Bool</code></div></div>

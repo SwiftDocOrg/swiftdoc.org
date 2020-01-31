@@ -1,0 +1,36 @@
+---
+root: "/v5.1"
+title: "Mirror.AncestorRepresentation"
+description: "Swift documentation for 'Mirror.AncestorRepresentation'"
+keywords: ""
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum AncestorRepresentation</code></div><p>The representation to use for ancestor classes.</p>
+<div class="discussion comment"><p>A class that conforms to the <code>CustomReflectable</code> protocol can control how
+its mirror represents ancestor classes by initializing the mirror
+with an <code>AncestorRepresentation</code>. This setting has no effect on mirrors
+reflecting value type instances.</p>
+</div><h3>Cases</h3><div id="customized-e183b47cb3af26aadf83cddda0d47453" class="declaration"><a class="toggle-link" href="#comment-customized-e183b47cb3af26aadf83cddda0d47453">case customized</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customized-e183b47cb3af26aadf83cddda0d47453"><p>Uses the nearest ancestor's implementation of <code>customMirror</code> to create
+a mirror for that ancestor.</p>
+<p>Other classes derived from such an ancestor are given a default mirror.
+The payload for this option should always be <code>{ super.customMirror }</code>:</p>
+<pre><code class="language-swift">var customMirror: Mirror {
+    return Mirror(
+        self,
+        children: [&quot;someProperty&quot;: self.someProperty],
+        ancestorRepresentation: .customized({ super.customMirror })) // &lt;==
+}
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">case customized(: () -> Mirror)</code></div></div><div id="generated-44c8575cd10d543dc1da875941b7dee3" class="declaration"><a class="toggle-link" href="#comment-generated-44c8575cd10d543dc1da875941b7dee3">case generated</a> <span class="required">Required</span><div class="comment collapse in" id="comment-generated-44c8575cd10d543dc1da875941b7dee3"><p>Generates a default mirror for all ancestor classes.</p>
+<p>This case is the default when initializing a <code>Mirror</code> instance.</p>
+<p>When you use this option, a subclass's mirror generates default mirrors
+even for ancestor classes that conform to the <code>CustomReflectable</code>
+protocol. To avoid dropping the customization provided by ancestor
+classes, an override of <code>customMirror</code> should pass
+<code>.customized({ super.customMirror })</code> as <code>ancestorRepresentation</code> when
+initializing its mirror.</p>
+<h4>Declaration</h4><code class="language-swift">case generated</code></div></div><div id="suppressed-4f431d971bc2dd6ab44c1fa7a6a17062" class="declaration"><a class="toggle-link" href="#comment-suppressed-4f431d971bc2dd6ab44c1fa7a6a17062">case suppressed</a> <span class="required">Required</span><div class="comment collapse in" id="comment-suppressed-4f431d971bc2dd6ab44c1fa7a6a17062"><p>Suppresses the representation of all ancestor classes.</p>
+<p>In a mirror created with this ancestor representation, the
+<code>superclassMirror</code> property is <code>nil</code>.</p>
+<h4>Declaration</h4><code class="language-swift">case suppressed</code></div></div>

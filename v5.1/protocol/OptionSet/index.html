@@ -1,0 +1,199 @@
+---
+root: "/v5.1"
+keywords: ""
+description: "Swift documentation for 'OptionSet'"
+layout: "default"
+title: "OptionSet"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol OptionSet</code></div><p>A type that presents a mathematical set interface to a bit set.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">RawRepresentable, SetAlgebra</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype Element</code><div class="comment"><p>To inherit all the default implementations from the <code>OptionSet</code> protocol,
+the <code>Element</code> type must be <code>Self</code>, the default.</p>
+</div></div></td></tr></table><div class="discussion comment"><p>You use the <code>OptionSet</code> protocol to represent bitset types, where
+individual bits represent members of a set. Adopting this protocol in
+your custom types lets you perform set-related operations such as
+membership tests, unions, and intersections on those types. What's more,
+when implemented using specific criteria, adoption of this protocol
+requires no extra work on your part.</p>
+<p>When creating an option set, include a <code>rawValue</code> property in your type
+declaration. For your type to automatically receive default implementations
+for set-related operations, the <code>rawValue</code> property must be of a type that
+conforms to the <code>FixedWidthInteger</code> protocol, such as <code>Int</code> or <code>UInt8</code>.
+Next, create unique options as static properties of your custom type using
+unique powers of two (1, 2, 4, 8, 16, and so forth) for each individual
+property's raw value so that each property can be represented by a single
+bit of the type's raw value.</p>
+<p>For example, consider a custom type called <code>ShippingOptions</code> that is an
+option set of the possible ways to ship a customer's purchase.
+<code>ShippingOptions</code> includes a <code>rawValue</code> property of type <code>Int</code> that stores
+the bit mask of available shipping options. The static members <code>nextDay</code>,
+<code>secondDay</code>, <code>priority</code>, and <code>standard</code> are unique, individual options.</p>
+<pre><code class="language-swift">struct ShippingOptions: OptionSet {
+    let rawValue: Int
+
+    static let nextDay    = ShippingOptions(rawValue: 1 &lt;&lt; 0)
+    static let secondDay  = ShippingOptions(rawValue: 1 &lt;&lt; 1)
+    static let priority   = ShippingOptions(rawValue: 1 &lt;&lt; 2)
+    static let standard   = ShippingOptions(rawValue: 1 &lt;&lt; 3)
+
+    static let express: ShippingOptions = [.nextDay, .secondDay]
+    static let all: ShippingOptions = [.express, .priority, .standard]
+}
+</code></pre>
+<p>Declare additional preconfigured option set values as static properties
+initialized with an array literal containing other option values. In the
+example, because the <code>express</code> static property is assigned an array
+literal with the <code>nextDay</code> and <code>secondDay</code> options, it will contain those
+two elements.</p>
+<h3>Using an Option Set Type</h3>
+<p>When you need to create an instance of an option set, assign one of the
+type's static members to your variable or constant. Alternatively, to
+create an option set instance with multiple members, assign an array
+literal with multiple static members of the option set. To create an empty
+instance, assign an empty array literal to your variable.</p>
+<pre><code class="language-swift">let singleOption: ShippingOptions = .priority
+let multipleOptions: ShippingOptions = [.nextDay, .secondDay, .priority]
+let noOptions: ShippingOptions = []
+</code></pre>
+<p>Use set-related operations to check for membership and to add or remove
+members from an instance of your custom option set type. The following
+example shows how you can determine free shipping options based on a
+customer's purchase price:</p>
+<pre><code class="language-swift">let purchasePrice = 87.55
+
+var freeOptions: ShippingOptions = []
+if purchasePrice &gt; 50 {
+    freeOptions.insert(.priority)
+}
+
+if freeOptions.contains(.priority) {
+    print(&quot;You've earned free priority shipping!&quot;)
+} else {
+    print(&quot;Add more to your cart for free priority shipping!&quot;)
+}
+// Prints &quot;You've earned free priority shipping!&quot;
+</code></pre>
+</div><h3>Initializers</h3><div id="init_rawValue-ab0cba39516734b3086ce9f9d6330d3d" class="declaration"><a class="toggle-link" href="#comment-init_rawValue-ab0cba39516734b3086ce9f9d6330d3d">init init(rawValue:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_rawValue-ab0cba39516734b3086ce9f9d6330d3d"><p>Creates a new option set from the given raw value.</p>
+<p>This initializer always succeeds, even if the value passed as <code>rawValue</code>
+exceeds the static properties declared as part of the option set. This
+example creates an instance of <code>ShippingOptions</code> with a raw value beyond
+the highest element, with a bit mask that effectively contains all the
+declared static members.</p>
+<pre><code class="language-swift">let extraOptions = ShippingOptions(rawValue: 255)
+print(extraOptions.isStrictSuperset(of: .all))
+// Prints &quot;true&quot;
+</code></pre>
+<ul>
+<li>Parameter rawValue: The raw value of the option set to create. Each bit
+of <code>rawValue</code> potentially represents an element of the option set,
+though raw values may include bits that are not defined as distinct
+values of the <code>OptionSet</code> type.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init(rawValue: Self.RawValue)</code></div></div><h3>Default Implementations</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new set from a finite sequence of items.</p>
+<p>Use this initializer to create a new set from an existing sequence, like
+an array or a range:</p>
+<pre><code class="language-swift">let validIndices = Set(0..&lt;7).subtracting([2, 4, 5])
+print(validIndices)
+// Prints &quot;[6, 0, 1, 3]&quot;
+</code></pre>
+<ul>
+<li>Parameter sequence: The elements to use as members of the new set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;S>(_ sequence: S) where S: Sequence, Self.Element == S.Element</code></div></div><div id="isDisjoint_with-c09367e51ee2cc98acb1e72c12a9a23b" class="declaration"><a class="toggle-link" href="#comment-isDisjoint_with-c09367e51ee2cc98acb1e72c12a9a23b">func isDisjoint(with other: Self) -> Bool</a> <div class="comment collapse in" id="comment-isDisjoint_with-c09367e51ee2cc98acb1e72c12a9a23b"><p>Returns a Boolean value that indicates whether the set has no members in
+common with the given set.</p>
+<p>In the following example, the <code>employees</code> set is disjoint with the
+<code>visitors</code> set because no name appears in both sets.</p>
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let visitors: Set = [&quot;Marcia&quot;, &quot;Nathaniel&quot;, &quot;Olivia&quot;]
+print(employees.isDisjoint(with: visitors))
+// Prints &quot;true&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func isDisjoint(with other: Self) -> Bool</code></div></div><div id="isEmpty-371a91e5c91e40f6212ab50995ccb0cd" class="declaration"><a class="toggle-link" href="#comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd">var isEmpty</a> <div class="comment collapse in" id="comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd"><p>A Boolean value that indicates whether the set has no elements.</p>
+<h4>Declaration</h4><code class="language-swift">var isEmpty: Bool</code></div></div><div id="isStrictSubset_of-d5ed37868f8751760ea1d4b999c739e1" class="declaration"><a class="toggle-link" href="#comment-isStrictSubset_of-d5ed37868f8751760ea1d4b999c739e1">func isStrictSubset(of other: Self) -> Bool</a> <div class="comment collapse in" id="comment-isStrictSubset_of-d5ed37868f8751760ea1d4b999c739e1"><p>Returns a Boolean value that indicates whether this set is a strict
+subset of the given set.</p>
+<p>Set <em>A</em> is a strict subset of another set <em>B</em> if every member of <em>A</em> is
+also a member of <em>B</em> and <em>B</em> contains at least one element that is not a
+member of <em>A</em>.</p>
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+print(attendees.isStrictSubset(of: employees))
+// Prints &quot;true&quot;
+
+// A set is never a strict subset of itself:
+print(attendees.isStrictSubset(of: attendees))
+// Prints &quot;false&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func isStrictSubset(of other: Self) -> Bool</code></div></div><div id="isStrictSuperset_of-17367ae81776489a9c23cf3e00c7a43e" class="declaration"><a class="toggle-link" href="#comment-isStrictSuperset_of-17367ae81776489a9c23cf3e00c7a43e">func isStrictSuperset(of other: Self) -> Bool</a> <div class="comment collapse in" id="comment-isStrictSuperset_of-17367ae81776489a9c23cf3e00c7a43e"><p>Returns a Boolean value that indicates whether this set is a strict
+superset of the given set.</p>
+<p>Set <em>A</em> is a strict superset of another set <em>B</em> if every member of <em>B</em> is
+also a member of <em>A</em> and <em>A</em> contains at least one element that is <em>not</em>
+a member of <em>B</em>.</p>
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+print(employees.isStrictSuperset(of: attendees))
+// Prints &quot;true&quot;
+
+// A set is never a strict superset of itself:
+print(employees.isStrictSuperset(of: employees))
+// Prints &quot;false&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func isStrictSuperset(of other: Self) -> Bool</code></div></div><div id="isSubset_of-0aaacd211eef11273664bb09ea6b1ec4" class="declaration"><a class="toggle-link" href="#comment-isSubset_of-0aaacd211eef11273664bb09ea6b1ec4">func isSubset(of other: Self) -> Bool</a> <div class="comment collapse in" id="comment-isSubset_of-0aaacd211eef11273664bb09ea6b1ec4"><p>Returns a Boolean value that indicates whether the set is a subset of
+another set.</p>
+<p>Set <em>A</em> is a subset of another set <em>B</em> if every member of <em>A</em> is also a
+member of <em>B</em>.</p>
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+print(attendees.isSubset(of: employees))
+// Prints &quot;true&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func isSubset(of other: Self) -> Bool</code></div></div><div id="isSuperset_of-32d37cc3a27de09ce80c27b53371b8a5" class="declaration"><a class="toggle-link" href="#comment-isSuperset_of-32d37cc3a27de09ce80c27b53371b8a5">func isSuperset(of other: Self) -> Bool</a> <div class="comment collapse in" id="comment-isSuperset_of-32d37cc3a27de09ce80c27b53371b8a5"><p>Returns a Boolean value that indicates whether the set is a superset of
+the given set.</p>
+<p>Set <em>A</em> is a superset of another set <em>B</em> if every member of <em>B</em> is also a
+member of <em>A</em>.</p>
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let attendees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Diana&quot;]
+print(employees.isSuperset(of: attendees))
+// Prints &quot;true&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func isSuperset(of other: Self) -> Bool</code></div></div><div id="subtract-afc372dc386c6cd8f1a95c85a6fb3d93" class="declaration"><a class="toggle-link" href="#comment-subtract-afc372dc386c6cd8f1a95c85a6fb3d93">func subtract(_ other: Self)</a> <div class="comment collapse in" id="comment-subtract-afc372dc386c6cd8f1a95c85a6fb3d93"><p>Removes the elements of the given set from this set.</p>
+<p>In the following example, the elements of the <code>employees</code> set that are
+also members of the <code>neighbors</code> set are removed. In particular, the
+names <code>&quot;Bethany&quot;</code> and <code>&quot;Eric&quot;</code> are removed from <code>employees</code>.</p>
+<pre><code class="language-swift">var employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;, &quot;Greta&quot;]
+employees.subtract(neighbors)
+print(employees)
+// Prints &quot;[&quot;Diana&quot;, &quot;Chris&quot;, &quot;Alicia&quot;]&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func subtract(_ other: Self)</code></div></div><div id="subtracting-16d7a3f11ea233166c6363411986fc5d" class="declaration"><a class="toggle-link" href="#comment-subtracting-16d7a3f11ea233166c6363411986fc5d">func subtracting(_ other: Self) -> Self</a> <div class="comment collapse in" id="comment-subtracting-16d7a3f11ea233166c6363411986fc5d"><p>Returns a new set containing the elements of this set that do not occur
+in the given set.</p>
+<p>In the following example, the <code>nonNeighbors</code> set is made up of the
+elements of the <code>employees</code> set that are not elements of <code>neighbors</code>:</p>
+<pre><code class="language-swift">let employees: Set = [&quot;Alicia&quot;, &quot;Bethany&quot;, &quot;Chris&quot;, &quot;Diana&quot;, &quot;Eric&quot;]
+let neighbors: Set = [&quot;Bethany&quot;, &quot;Eric&quot;, &quot;Forlani&quot;, &quot;Greta&quot;]
+let nonNeighbors = employees.subtract(neighbors)
+print(nonNeighbors)
+// Prints &quot;[&quot;Diana&quot;, &quot;Chris&quot;, &quot;Alicia&quot;]&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A set of the same type as the current set.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func subtracting(_ other: Self) -> Self</code></div></div>

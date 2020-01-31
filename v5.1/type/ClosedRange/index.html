@@ -1,0 +1,135 @@
+---
+layout: "default"
+title: "ClosedRange"
+keywords: ""
+root: "/v5.1"
+description: "Swift documentation for 'ClosedRange'"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct ClosedRange</code></div><p>An interval from a lower bound up to, and including, an upper bound.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">CustomDebugStringConvertible, CustomReflectable, CustomStringConvertible, Equatable, RangeExpression</code></td></tr></table><div class="discussion comment"><p>You create a <code>ClosedRange</code> instance by using the closed range
+operator (<code>...</code>).</p>
+<pre><code class="language-swift">let throughFive = 0...5
+</code></pre>
+<p>A <code>ClosedRange</code> instance contains both its lower bound and its
+upper bound.</p>
+<pre><code class="language-swift">throughFive.contains(3)
+// true
+throughFive.contains(10)
+// false
+throughFive.contains(5)
+// true
+</code></pre>
+<p>Because a closed range includes its upper bound, a closed range whose lower
+bound is equal to the upper bound contains that value. Therefore, a
+<code>ClosedRange</code> instance cannot represent an empty range.</p>
+<pre><code class="language-swift">let zeroInclusive = 0...0
+zeroInclusive.contains(0)
+// true
+zeroInclusive.isEmpty
+// false
+</code></pre>
+<h4>Using a Closed Range as a Collection of Consecutive Values</h4>
+<p>When a closed range uses integers as its lower and upper bounds, or any
+other type that conforms to the <code>Strideable</code> protocol with an integer
+stride, you can use that range in a <code>for</code>-<code>in</code> loop or with any sequence or
+collection method. The elements of the range are the consecutive values
+from its lower bound up to, and including, its upper bound.</p>
+<pre><code class="language-swift">for n in 3...5 {
+    print(n)
+}
+// Prints &quot;3&quot;
+// Prints &quot;4&quot;
+// Prints &quot;5&quot;
+</code></pre>
+<p>Because floating-point types such as <code>Float</code> and <code>Double</code> are their own
+<code>Stride</code> types, they cannot be used as the bounds of a countable range. If
+you need to iterate over consecutive floating-point values, see the
+<code>stride(from:through:by:)</code> function.</p>
+</div><h3>Initializers</h3><div id="init_uncheckedBounds-2f83b9366eb4f6cd4edf571509f67fb8" class="declaration"><a class="toggle-link" href="#comment-init_uncheckedBounds-2f83b9366eb4f6cd4edf571509f67fb8">init init(uncheckedBounds:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_uncheckedBounds-2f83b9366eb4f6cd4edf571509f67fb8"><p>Creates an instance with the given bounds.</p>
+<p>Because this initializer does not perform any checks, it should be used
+as an optimization only when you are absolutely certain that <code>lower</code> is
+less than or equal to <code>upper</code>. Using the closed range operator (<code>...</code>)
+to form <code>ClosedRange</code> instances is preferred.</p>
+<ul>
+<li>Parameter bounds: A tuple of the lower and upper bounds of the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(uncheckedBounds bounds: (lower: Bound, upper: Bound))</code></div></div><h3>Instance Variables</h3><div id="customMirror-c4bea5adb1649887b1a7e9972736e2a9" class="declaration"><a class="toggle-link" href="#comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9">var customMirror</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9"><p>The custom mirror for this instance.</p>
+<p>If this type has value semantics, the mirror should be unaffected by
+subsequent mutations of the instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customMirror: Mirror</code></div></div><div id="debugDescription-15dc1a07010ea28e38b1f4d74663fe11" class="declaration"><a class="toggle-link" href="#comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11">var debugDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11"><p>A textual representation of the range, suitable for debugging.</p>
+<h4>Declaration</h4><code class="language-swift">var debugDescription: String</code></div></div><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <span class="required">Required</span><div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>A textual representation of the range.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div><div id="isEmpty-371a91e5c91e40f6212ab50995ccb0cd" class="declaration"><a class="toggle-link" href="#comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd">var isEmpty</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd"><p>A Boolean value indicating whether the range contains no elements.</p>
+<p>Because a closed range cannot represent an empty range, this property is
+always <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var isEmpty: Bool</code></div></div><div id="lowerBound-88584f2bd264a57a30e5142795244349" class="declaration"><a class="toggle-link" href="#comment-lowerBound-88584f2bd264a57a30e5142795244349">let lowerBound</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lowerBound-88584f2bd264a57a30e5142795244349"><p>The range's lower bound.</p>
+<h4>Declaration</h4><code class="language-swift">let lowerBound: Bound</code></div></div><div id="upperBound-d28987cbaedb791ea498927bea6a9a90" class="declaration"><a class="toggle-link" href="#comment-upperBound-d28987cbaedb791ea498927bea6a9a90">let upperBound</a> <span class="required">Required</span><div class="comment collapse in" id="comment-upperBound-d28987cbaedb791ea498927bea6a9a90"><p>The range's upper bound.</p>
+<h4>Declaration</h4><code class="language-swift">let upperBound: Bound</code></div></div><h3>Instance Methods</h3><div id="clamped_to-7ee3ecc43b7af7866ec96cc8935ef9fb" class="declaration"><a class="toggle-link" href="#comment-clamped_to-7ee3ecc43b7af7866ec96cc8935ef9fb">func clamped(to limits: ClosedRange&lt;Bound>) -> ClosedRange&lt;Bound></a> <span class="required">Required</span><div class="comment collapse in" id="comment-clamped_to-7ee3ecc43b7af7866ec96cc8935ef9fb"><p>Returns a copy of this range clamped to the given limiting range.</p>
+<p>The bounds of the result are always limited to the bounds of <code>limits</code>.
+For example:</p>
+<pre><code class="language-swift">let x: ClosedRange = 0...20
+print(x.clamped(to: 10...1000))
+// Prints &quot;10...20&quot;
+</code></pre>
+<p>If the two ranges do not overlap, the result is a single-element range at
+the upper or lower bound of <code>limits</code>.</p>
+<pre><code class="language-swift">let y: ClosedRange = 0...5
+print(y.clamped(to: 10...1000))
+// Prints &quot;10...10&quot;
+</code></pre>
+<ul>
+<li>Parameter limits: The range to clamp the bounds of this range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func clamped(to limits: ClosedRange&lt;Bound>) -> ClosedRange&lt;Bound></code></div></div><div id="contains-6f3567afe6aa63234ecc71820249f524" class="declaration"><a class="toggle-link" href="#comment-contains-6f3567afe6aa63234ecc71820249f524">func contains(_ element: Bound) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-contains-6f3567afe6aa63234ecc71820249f524"><p>Returns a Boolean value indicating whether the given element is contained
+within the range.</p>
+<p>A <code>ClosedRange</code> instance contains both its lower and upper bound.
+<code>element</code> is contained in the range if it is between the two bounds or
+equal to either bound.</p>
+<ul>
+<li>Parameter element: The element to check for containment.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func contains(_ element: Bound) -> Bool</code></div></div><div id="overlaps-b263f1d7c780d650eeff934808b68c03" class="declaration"><a class="toggle-link" href="#comment-overlaps-b263f1d7c780d650eeff934808b68c03">func overlaps(_ other: ClosedRange&lt;Bound>) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-overlaps-b263f1d7c780d650eeff934808b68c03"><h4>Declaration</h4><code class="language-swift">@inlinable public func overlaps(_ other: ClosedRange&lt;Bound>) -> Bool</code></div></div><div id="overlaps-b263f1d7c780d650eeff934808b68c03" class="declaration"><a class="toggle-link" href="#comment-overlaps-b263f1d7c780d650eeff934808b68c03">func overlaps(_ other: Range&lt;Bound>) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-overlaps-b263f1d7c780d650eeff934808b68c03"><h4>Declaration</h4><code class="language-swift">@inlinable public func overlaps(_ other: Range&lt;Bound>) -> Bool</code></div></div><div id="relative_to-2949b1d9b740a6772c83bb21cba0c554" class="declaration"><a class="toggle-link" href="#comment-relative_to-2949b1d9b740a6772c83bb21cba0c554">func relative(to collection: C) -> Range&lt;Bound></a> <span class="required">Required</span><div class="comment collapse in" id="comment-relative_to-2949b1d9b740a6772c83bb21cba0c554"><p>Returns the range of indices described by this range expression within
+the given collection.</p>
+<p>You can use the <code>relative(to:)</code> method to convert a range expression,
+which could be missing one or both of its endpoints, into a concrete
+range that is bounded on both sides. The following example uses this
+method to convert a partial range up to <code>4</code> into a half-open range,
+using an array instance to add the range's lower bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+let upToFour = ..&lt;4
+
+let r1 = upToFour.relative(to: numbers)
+// r1 == 0..&lt;4
+</code></pre>
+<p>The <code>r1</code> range is bounded on the lower end by <code>0</code> because that is the
+starting index of the <code>numbers</code> array. When the collection passed to
+<code>relative(to:)</code> starts with a different index, that index is used as the
+lower bound instead. The next example creates a slice of <code>numbers</code>
+starting at index <code>2</code>, and then uses the slice with <code>relative(to:)</code> to
+convert <code>upToFour</code> to a concrete range.</p>
+<pre><code class="language-swift">let numbersSuffix = numbers[2...]
+// numbersSuffix == [30, 40, 50, 60, 70]
+
+let r2 = upToFour.relative(to: numbersSuffix)
+// r2 == 2..&lt;4
+</code></pre>
+<p>Use this method only if you need the concrete range it produces. To
+access a slice of a collection using a range expression, use the
+collection's generic subscript that uses a range expression as its
+parameter.</p>
+<pre><code class="language-swift">let numbersPrefix = numbers[upToFour]
+// numbersPrefix == [10, 20, 30, 40]
+</code></pre>
+<ul>
+<li>Parameter collection: The collection to evaluate this range expression
+in relation to.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func relative&lt;C>(to collection: C) -> Range&lt;Bound> where Bound == C.Index, C: Collection</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: ClosedRange&lt;Bound>, rhs: ClosedRange&lt;Bound>) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether two ranges are equal.</p>
+<p>Two ranges are equal when they have the same lower and upper bounds.</p>
+<pre><code class="language-swift">let x = 5...15
+print(x == 5...15)
+// Prints &quot;true&quot;
+print(x == 10...20)
+// Prints &quot;false&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func ==(lhs: ClosedRange&lt;Bound>, rhs: ClosedRange&lt;Bound>) -> Bool</code></div></div><div id="pattern_value-d3d1acc155fe92facb4e9662e5491d7c" class="declaration"><a class="toggle-link" href="#comment-pattern_value-d3d1acc155fe92facb4e9662e5491d7c">func ~=(pattern: Self, value: Self.Bound) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-pattern_value-d3d1acc155fe92facb4e9662e5491d7c"><h4>Declaration</h4><code class="language-swift">@inlinable public static func ~=(pattern: Self, value: Self.Bound) -> Bool</code></div></div>

@@ -1,0 +1,15 @@
+---
+description: "Swift documentation for 'withUnsafeMutableBytes'"
+layout: "default"
+root: "/v5.1"
+keywords: ""
+title: "withUnsafeMutableBytes"
+---
+
+<div class="intro-declaration"><code class="language-swift">func withUnsafeMutableBytes(of:_:)(of value: inout T, _ body: (UnsafeMutableRawBufferPointer) throws -> Result) rethrows -> Result</code></div><div class="discussion comment"><p>Invokes the given closure with a mutable buffer pointer covering the raw
+bytes of the given argument.
+</p>
+<p>The buffer pointer argument to the <code>body</code> closure provides a collection
+interface to the raw bytes of <code>value</code>. The buffer is the size of the
+instance passed as <code>value</code> and does not include any remote storage.</p>
+</div>

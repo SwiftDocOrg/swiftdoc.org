@@ -1,0 +1,105 @@
+---
+root: "/v5.1"
+title: "type"
+layout: "default"
+keywords: ""
+description: "Swift documentation for 'type'"
+---
+
+<div class="intro-declaration"><code class="language-swift">func type(of:)(of value: T) -> Metatype</code></div><div class="discussion comment"><p>Returns the dynamic type of a value.
+</p>
+<p>You can use the <code>type(of:)</code> function to find the dynamic type of a value,
+particularly when the dynamic type is different from the static type. The
+<em>static type</em> of a value is the known, compile-time type of the value. The
+<em>dynamic type</em> of a value is the value's actual type at run-time, which
+can be a subtype of its concrete type.</p>
+<p>In the following code, the <code>count</code> variable has the same static and dynamic
+type: <code>Int</code>. When <code>count</code> is passed to the <code>printInfo(_:)</code> function,
+however, the <code>value</code> parameter has a static type of <code>Any</code> (the type
+declared for the parameter) and a dynamic type of <code>Int</code>.</p>
+<pre><code class="language-swift">func printInfo(_ value: Any) {
+    let t = type(of: value)
+    print(&quot;'\(value)' of type '\(t)'&quot;)
+}
+
+let count: Int = 5
+printInfo(count)
+// '5' of type 'Int'
+</code></pre>
+<p>The dynamic type returned from <code>type(of:)</code> is a <em>concrete metatype</em>
+(<code>T.Type</code>) for a class, structure, enumeration, or other nonprotocol type
+<code>T</code>, or an <em>existential metatype</em> (<code>P.Type</code>) for a protocol or protocol
+composition <code>P</code>. When the static type of the value passed to <code>type(of:)</code>
+is constrained to a class or protocol, you can use that metatype to access
+initializers or other static members of the class or protocol.</p>
+<p>For example, the parameter passed as <code>value</code> to the <code>printSmileyInfo(_:)</code>
+function in the example below is an instance of the <code>Smiley</code> class or one
+of its subclasses. The function uses <code>type(of:)</code> to find the dynamic type
+of <code>value</code>, which itself is an instance of the <code>Smiley.Type</code> metatype.</p>
+<pre><code class="language-swift">class Smiley {
+    class var text: String {
+        return &quot;:)&quot;
+    }
+}
+
+class EmojiSmiley: Smiley {
+     override class var text: String {
+        return &quot;😀&quot;
+    }
+}
+
+func printSmileyInfo(_ value: Smiley) {
+    let smileyType = type(of: value)
+    print(&quot;Smile!&quot;, smileyType.text)
+}
+
+let emojiSmiley = EmojiSmiley()
+printSmileyInfo(emojiSmiley)
+// Smile! 😀
+</code></pre>
+<p>In this example, accessing the <code>text</code> property of the <code>smileyType</code> metatype
+retrieves the overridden value from the <code>EmojiSmiley</code> subclass, instead of
+the <code>Smiley</code> class's original definition.</p>
+<h3>Finding the Dynamic Type in a Generic Context</h3>
+<p>Normally, you don't need to be aware of the difference between concrete and
+existential metatypes, but calling <code>type(of:)</code> can yield unexpected
+results in a generic context with a type parameter bound to a protocol. In
+a case like this, where a generic parameter <code>T</code> is bound to a protocol
+<code>P</code>, the type parameter is not statically known to be a protocol type in
+the body of the generic function. As a result, <code>type(of:)</code> can only
+produce the concrete metatype <code>P.Protocol</code>.</p>
+<p>The following example defines a <code>printGenericInfo(_:)</code> function that takes
+a generic parameter and declares the <code>String</code> type's conformance to a new
+protocol <code>P</code>. When <code>printGenericInfo(_:)</code> is called with a string that has
+<code>P</code> as its static type, the call to <code>type(of:)</code> returns <code>P.self</code> instead
+of <code>String.self</code> (the dynamic type inside the parameter).</p>
+<pre><code class="language-swift">func printGenericInfo&lt;T&gt;(_ value: T) {
+    let t = type(of: value)
+    print(&quot;'\(value)' of type '\(t)'&quot;)
+}
+
+protocol P {}
+extension String: P {}
+
+let stringAsP: P = &quot;Hello!&quot;
+printGenericInfo(stringAsP)
+// 'Hello!' of type 'P'
+</code></pre>
+<p>This unexpected result occurs because the call to <code>type(of: value)</code> inside
+<code>printGenericInfo(_:)</code> must return a metatype that is an instance of
+<code>T.Type</code>, but <code>String.self</code> (the expected dynamic type) is not an instance
+of <code>P.Type</code> (the concrete metatype of <code>value</code>). To get the dynamic type
+inside <code>value</code> in this generic context, cast the parameter to <code>Any</code> when
+calling <code>type(of:)</code>.</p>
+<pre><code class="language-swift">func betterPrintGenericInfo&lt;T&gt;(_ value: T) {
+    let t = type(of: value as Any)
+    print(&quot;'\(value)' of type '\(t)'&quot;)
+}
+
+betterPrintGenericInfo(stringAsP)
+// 'Hello!' of type 'String'
+</code></pre>
+<ul>
+<li>Parameter value: The value for which to find the dynamic type.</li>
+</ul>
+</div>

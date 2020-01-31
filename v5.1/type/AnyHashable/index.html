@@ -1,0 +1,96 @@
+---
+description: "Swift documentation for 'AnyHashable'"
+layout: "default"
+title: "AnyHashable"
+keywords: ""
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct AnyHashable</code></div><p>A type-erased hashable value.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">CustomDebugStringConvertible, CustomReflectable, CustomStringConvertible, Equatable, Hashable</code></td></tr></table><div class="discussion comment"><p>The <code>AnyHashable</code> type forwards equality comparisons and hashing operations
+to an underlying hashable value, hiding its specific underlying type.</p>
+<p>You can store mixed-type keys in dictionaries and other collections that
+require <code>Hashable</code> conformance by wrapping mixed-type keys in
+<code>AnyHashable</code> instances:</p>
+<pre><code class="language-swift">let descriptions: [AnyHashable: Any] = [
+    AnyHashable(&quot;😄&quot;): &quot;emoji&quot;,
+    AnyHashable(42): &quot;an Int&quot;,
+    AnyHashable(Int8(43)): &quot;an Int8&quot;,
+    AnyHashable(Set([&quot;a&quot;, &quot;b&quot;])): &quot;a set of strings&quot;
+]
+print(descriptions[AnyHashable(42)]!)      // prints &quot;an Int&quot;
+print(descriptions[AnyHashable(45)])       // prints &quot;nil&quot;
+print(descriptions[AnyHashable(Int8(43))]!) // prints &quot;an Int8&quot;
+print(descriptions[AnyHashable(Set([&quot;a&quot;, &quot;b&quot;]))]!) // prints &quot;a set of strings&quot;
+</code></pre>
+</div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a type-erased hashable value that wraps the given instance.</p>
+<ul>
+<li>Parameter base: A hashable value to wrap.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init&lt;H>(_ base: H) where H: Hashable</code></div></div><h3>Instance Variables</h3><div id="base-593616de15330c0fb2d55e55410bf994" class="declaration"><a class="toggle-link" href="#comment-base-593616de15330c0fb2d55e55410bf994">var base</a> <span class="required">Required</span><div class="comment collapse in" id="comment-base-593616de15330c0fb2d55e55410bf994"><p>The value wrapped by this instance.</p>
+<p>The <code>base</code> property can be cast back to its original type using one of
+the casting operators (<code>as?</code>, <code>as!</code>, or <code>as</code>).</p>
+<pre><code class="language-swift">let anyMessage = AnyHashable(&quot;Hello world!&quot;)
+if let unwrappedMessage = anyMessage.base as? String {
+    print(unwrappedMessage)
+}
+// Prints &quot;Hello world!&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var base: Any</code></div></div><div id="customMirror-c4bea5adb1649887b1a7e9972736e2a9" class="declaration"><a class="toggle-link" href="#comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9">var customMirror</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9"><p>The custom mirror for this instance.</p>
+<p>If this type has value semantics, the mirror should be unaffected by
+subsequent mutations of the instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customMirror: Mirror</code></div></div><div id="debugDescription-15dc1a07010ea28e38b1f4d74663fe11" class="declaration"><a class="toggle-link" href="#comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11">var debugDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11"><p>A textual representation of this instance, suitable for debugging.</p>
+<p>Calling this property directly is discouraged. Instead, convert an
+instance of any type to a string by using the <code>String(reflecting:)</code>
+initializer. This initializer works with any type, and uses the custom
+<code>debugDescription</code> property for types that conform to
+<code>CustomDebugStringConvertible</code>:</p>
+<pre><code class="language-swift">struct Point: CustomDebugStringConvertible {
+    let x: Int, y: Int
+
+    var debugDescription: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(reflecting: p)
+print(s)
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type's <code>debugDescription</code> property.</p>
+<h4>Declaration</h4><code class="language-swift">var debugDescription: String</code></div></div><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <span class="required">Required</span><div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>A textual representation of this instance.</p>
+<p>Calling this property directly is discouraged. Instead, convert an
+instance of any type to a string by using the <code>String(describing:)</code>
+initializer. This initializer works with any type, and uses the custom
+<code>description</code> property for types that conform to
+<code>CustomStringConvertible</code>:</p>
+<pre><code class="language-swift">struct Point: CustomStringConvertible {
+    let x: Int, y: Int
+
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(describing: p)
+print(s)
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type's <code>description</code> property.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div><div id="hashValue-491de0d7adc95987fe9b96f8ce8b5ed1" class="declaration"><a class="toggle-link" href="#comment-hashValue-491de0d7adc95987fe9b96f8ce8b5ed1">var hashValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hashValue-491de0d7adc95987fe9b96f8ce8b5ed1"><p>The hash value.</p>
+<h4>Declaration</h4><code class="language-swift">var hashValue: Int</code></div></div><h3>Instance Methods</h3><div id="hash_into-6d50cb3daa41162a12fb4542a687b393" class="declaration"><a class="toggle-link" href="#comment-hash_into-6d50cb3daa41162a12fb4542a687b393">func hash(into hasher: inout Hasher)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hash_into-6d50cb3daa41162a12fb4542a687b393"><p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+<ul>
+<li>Parameter hasher: The hasher to use when combining the components
+of this instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func hash(into hasher: inout Hasher)</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: AnyHashable, rhs: AnyHashable) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether two type-erased hashable
+instances wrap the same type and value.</p>
+<p>Two instances of <code>AnyHashable</code> compare as equal if and only if the
+underlying types have the same conformance to the <code>Equatable</code> protocol
+and the underlying values compare as equal.</p>
+<h4>Declaration</h4><code class="language-swift">public static func ==(lhs: AnyHashable, rhs: AnyHashable) -> Bool</code></div></div>

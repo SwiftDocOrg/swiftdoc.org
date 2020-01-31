@@ -1,0 +1,125 @@
+---
+title: "??"
+keywords: ""
+description: "Swift documentation for '??'"
+root: "/v5.1"
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">func ??(optional:defaultValue:)(optional: T?, defaultValue: @autoclosure () throws -> T) rethrows -> T</code></div><div class="discussion comment"><p>Performs a nil-coalescing operation, returning the wrapped value of an
+`Optional` instance or a default value.
+</p>
+<p>A nil-coalescing operation unwraps the left-hand side if it has a value, or
+it returns the right-hand side as a default. The result of this operation
+will have the non-optional type of the left-hand side's <code>Wrapped</code> type.</p>
+<p>This operator uses short-circuit evaluation: <code>optional</code> is checked first,
+and <code>defaultValue</code> is evaluated only if <code>optional</code> is <code>nil</code>. For example:</p>
+<pre><code class="language-swift">func getDefault() -&gt; Int {
+    print(&quot;Calculating default...&quot;)
+    return 42
+}
+
+let goodNumber = Int(&quot;100&quot;) ?? getDefault()
+// goodNumber == 100
+
+let notSoGoodNumber = Int(&quot;invalid-input&quot;) ?? getDefault()
+// Prints &quot;Calculating default...&quot;
+// notSoGoodNumber == 42
+</code></pre>
+<p>In this example, <code>goodNumber</code> is assigned a value of <code>100</code> because
+<code>Int(&quot;100&quot;)</code> succeeded in returning a non-<code>nil</code> result. When
+<code>notSoGoodNumber</code> is initialized, <code>Int(&quot;invalid-input&quot;)</code> fails and returns
+<code>nil</code>, and so the <code>getDefault()</code> method is called to supply a default
+value.</p>
+</div><div class="intro-declaration"><code class="language-swift">func ??(optional:defaultValue:)(optional: T?, defaultValue: @autoclosure () throws -> T?) rethrows -> T?</code></div><div class="discussion comment"><p>Performs a nil-coalescing operation, returning the wrapped value of an
+`Optional` instance or a default `Optional` value.
+</p>
+<p>A nil-coalescing operation unwraps the left-hand side if it has a value, or
+returns the right-hand side as a default. The result of this operation
+will be the same type as its arguments.</p>
+<p>This operator uses short-circuit evaluation: <code>optional</code> is checked first,
+and <code>defaultValue</code> is evaluated only if <code>optional</code> is <code>nil</code>. For example:</p>
+<pre><code class="language-swift">let goodNumber = Int(&quot;100&quot;) ?? Int(&quot;42&quot;)
+print(goodNumber)
+// Prints &quot;Optional(100)&quot;
+
+let notSoGoodNumber = Int(&quot;invalid-input&quot;) ?? Int(&quot;42&quot;)
+print(notSoGoodNumber)
+// Prints &quot;Optional(42)&quot;
+</code></pre>
+<p>In this example, <code>goodNumber</code> is assigned a value of <code>100</code> because
+<code>Int(&quot;100&quot;)</code> succeeds in returning a non-<code>nil</code> result. When
+<code>notSoGoodNumber</code> is initialized, <code>Int(&quot;invalid-input&quot;)</code> fails and returns
+<code>nil</code>, and so <code>Int(&quot;42&quot;)</code> is called to supply a default value.</p>
+<p>Because the result of this nil-coalescing operation is itself an optional
+value, you can chain default values by using <code>??</code> multiple times. The
+first optional value that isn't <code>nil</code> stops the chain and becomes the
+result of the whole expression. The next example tries to find the correct
+text for a greeting in two separate dictionaries before falling back to a
+static default.</p>
+<pre><code class="language-swift">let greeting = userPrefs[greetingKey] ??
+    defaults[greetingKey] ?? &quot;Greetings!&quot;
+</code></pre>
+<p>If <code>userPrefs[greetingKey]</code> has a value, that value is assigned to
+<code>greeting</code>. If not, any value in <code>defaults[greetingKey]</code> will succeed, and
+if not that, <code>greeting</code> will be set to the non-optional default value,
+<code>&quot;Greetings!&quot;</code>.</p>
+</div><div class="intro-declaration"><code class="language-swift">func ??(optional:defaultValue:)(optional: T?, defaultValue: @autoclosure () throws -> T) rethrows -> T</code></div><div class="discussion comment"><p>Performs a nil-coalescing operation, returning the wrapped value of an
+`Optional` instance or a default value.
+</p>
+<p>A nil-coalescing operation unwraps the left-hand side if it has a value, or
+it returns the right-hand side as a default. The result of this operation
+will have the non-optional type of the left-hand side's <code>Wrapped</code> type.</p>
+<p>This operator uses short-circuit evaluation: <code>optional</code> is checked first,
+and <code>defaultValue</code> is evaluated only if <code>optional</code> is <code>nil</code>. For example:</p>
+<pre><code class="language-swift">func getDefault() -&gt; Int {
+    print(&quot;Calculating default...&quot;)
+    return 42
+}
+
+let goodNumber = Int(&quot;100&quot;) ?? getDefault()
+// goodNumber == 100
+
+let notSoGoodNumber = Int(&quot;invalid-input&quot;) ?? getDefault()
+// Prints &quot;Calculating default...&quot;
+// notSoGoodNumber == 42
+</code></pre>
+<p>In this example, <code>goodNumber</code> is assigned a value of <code>100</code> because
+<code>Int(&quot;100&quot;)</code> succeeded in returning a non-<code>nil</code> result. When
+<code>notSoGoodNumber</code> is initialized, <code>Int(&quot;invalid-input&quot;)</code> fails and returns
+<code>nil</code>, and so the <code>getDefault()</code> method is called to supply a default
+value.</p>
+</div><div class="intro-declaration"><code class="language-swift">func ??(optional:defaultValue:)(optional: T?, defaultValue: @autoclosure () throws -> T?) rethrows -> T?</code></div><div class="discussion comment"><p>Performs a nil-coalescing operation, returning the wrapped value of an
+`Optional` instance or a default `Optional` value.
+</p>
+<p>A nil-coalescing operation unwraps the left-hand side if it has a value, or
+returns the right-hand side as a default. The result of this operation
+will be the same type as its arguments.</p>
+<p>This operator uses short-circuit evaluation: <code>optional</code> is checked first,
+and <code>defaultValue</code> is evaluated only if <code>optional</code> is <code>nil</code>. For example:</p>
+<pre><code class="language-swift">let goodNumber = Int(&quot;100&quot;) ?? Int(&quot;42&quot;)
+print(goodNumber)
+// Prints &quot;Optional(100)&quot;
+
+let notSoGoodNumber = Int(&quot;invalid-input&quot;) ?? Int(&quot;42&quot;)
+print(notSoGoodNumber)
+// Prints &quot;Optional(42)&quot;
+</code></pre>
+<p>In this example, <code>goodNumber</code> is assigned a value of <code>100</code> because
+<code>Int(&quot;100&quot;)</code> succeeds in returning a non-<code>nil</code> result. When
+<code>notSoGoodNumber</code> is initialized, <code>Int(&quot;invalid-input&quot;)</code> fails and returns
+<code>nil</code>, and so <code>Int(&quot;42&quot;)</code> is called to supply a default value.</p>
+<p>Because the result of this nil-coalescing operation is itself an optional
+value, you can chain default values by using <code>??</code> multiple times. The
+first optional value that isn't <code>nil</code> stops the chain and becomes the
+result of the whole expression. The next example tries to find the correct
+text for a greeting in two separate dictionaries before falling back to a
+static default.</p>
+<pre><code class="language-swift">let greeting = userPrefs[greetingKey] ??
+    defaults[greetingKey] ?? &quot;Greetings!&quot;
+</code></pre>
+<p>If <code>userPrefs[greetingKey]</code> has a value, that value is assigned to
+<code>greeting</code>. If not, any value in <code>defaults[greetingKey]</code> will succeed, and
+if not that, <code>greeting</code> will be set to the non-optional default value,
+<code>&quot;Greetings!&quot;</code>.</p>
+</div>

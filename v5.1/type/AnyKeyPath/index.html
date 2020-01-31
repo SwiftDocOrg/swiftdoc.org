@@ -1,0 +1,118 @@
+---
+layout: "default"
+title: "AnyKeyPath"
+root: "/v5.1"
+keywords: ""
+description: "Swift documentation for 'AnyKeyPath'"
+---
+
+<div class="intro-declaration"><code class="language-swift">class AnyKeyPath</code></div><table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Hashable, _AppendKeyPath</code></td></tr></table><div class="discussion comment"></div><h3>Instance Variables</h3><div id="hashValue-491de0d7adc95987fe9b96f8ce8b5ed1" class="declaration"><a class="toggle-link" href="#comment-hashValue-491de0d7adc95987fe9b96f8ce8b5ed1">var hashValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hashValue-491de0d7adc95987fe9b96f8ce8b5ed1"><p>The hash value.</p>
+<h4>Declaration</h4><code class="language-swift">var hashValue: Int</code></div></div><h3>Instance Methods</h3><div id="appending_path-70c81305b746162e7e83c1249141cee8" class="declaration"><a class="toggle-link" href="#comment-appending_path-70c81305b746162e7e83c1249141cee8">func appending(path: AnyKeyPath) -> PartialKeyPath&lt;Root>?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-appending_path-70c81305b746162e7e83c1249141cee8"><p>Returns a new key path created by appending the given key path to this
+one.</p>
+<p>Use this method to extend this key path to the value type of another key
+path. Appending the key path passed as <code>path</code> is successful only if the
+root type for <code>path</code> matches this key path's value type. This example
+creates key paths from <code>Array&lt;Int&gt;</code> to <code>String</code> and from <code>String</code> to
+<code>Int</code>, and then tries appending each to the other:</p>
+<pre><code class="language-swift">let arrayDescription: PartialKeyPath&lt;Array&lt;Int&gt;&gt; = \.description
+let stringLength: PartialKeyPath&lt;String&gt; = \.count
+
+// Creates a key path from `Array&lt;Int&gt;` to `Int`
+let arrayDescriptionLength = arrayDescription.appending(path: stringLength)
+
+let invalidKeyPath = stringLength.appending(path: arrayDescription)
+// invalidKeyPath == nil
+</code></pre>
+<p>The second call to <code>appending(path:)</code> returns <code>nil</code>
+because the root type of <code>arrayDescription</code>, <code>Array&lt;Int&gt;</code>, does not
+match the value type of <code>stringLength</code>, <code>Int</code>.</p>
+<ul>
+<li>Parameter path: The key path to append.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func appending&lt;Root>(path: AnyKeyPath) -> PartialKeyPath&lt;Root>? where Self == PartialKeyPath&lt;Root></code></div></div><div id="appending_path-70c81305b746162e7e83c1249141cee8" class="declaration"><a class="toggle-link" href="#comment-appending_path-70c81305b746162e7e83c1249141cee8">func appending(path: KeyPath&lt;AppendedRoot, AppendedValue>) -> KeyPath&lt;Root, AppendedValue>?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-appending_path-70c81305b746162e7e83c1249141cee8"><p>Returns a new key path created by appending the given key path to this
+one.</p>
+<p>Use this method to extend this key path to the value type of another key
+path. Appending the key path passed as <code>path</code> is successful only if the
+root type for <code>path</code> matches this key path's value type. This example
+creates a key path from <code>Array&lt;Int&gt;</code> to <code>String</code>, and then tries
+appending compatible and incompatible key paths:</p>
+<pre><code class="language-swift">let arrayDescription: PartialKeyPath&lt;Array&lt;Int&gt;&gt; = \.description
+
+// Creates a key path from `Array&lt;Int&gt;` to `Int`
+let arrayDescriptionLength = arrayDescription.appending(path: \String.count)
+
+let invalidKeyPath = arrayDescription.appending(path: \Double.isZero)
+// invalidKeyPath == nil
+</code></pre>
+<p>The second call to <code>appending(path:)</code> returns <code>nil</code> because the root type
+of the <code>path</code> parameter, <code>Double</code>, does not match the value type of
+<code>arrayDescription</code>, <code>String</code>.</p>
+<ul>
+<li>Parameter path: The key path to append.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func appending&lt;Root, AppendedRoot, AppendedValue>(path: KeyPath&lt;AppendedRoot, AppendedValue>) -> KeyPath&lt;Root, AppendedValue>? where Self == PartialKeyPath&lt;Root></code></div></div><div id="appending_path-70c81305b746162e7e83c1249141cee8" class="declaration"><a class="toggle-link" href="#comment-appending_path-70c81305b746162e7e83c1249141cee8">func appending(path: ReferenceWritableKeyPath&lt;AppendedRoot, AppendedValue>) -> ReferenceWritableKeyPath&lt;Root, AppendedValue>?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-appending_path-70c81305b746162e7e83c1249141cee8"><p>Returns a new key path created by appending the given key path to this
+one.</p>
+<p>Use this method to extend this key path to the value type of another key
+path. Appending the key path passed as <code>path</code> is successful only if the
+root type for <code>path</code> matches this key path's value type.</p>
+<ul>
+<li>Parameter path: The reference writeable key path to append.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func appending&lt;Root, AppendedRoot, AppendedValue>(path: ReferenceWritableKeyPath&lt;AppendedRoot, AppendedValue>) -> ReferenceWritableKeyPath&lt;Root, AppendedValue>? where Self == PartialKeyPath&lt;Root></code></div></div><div id="appending_path-70c81305b746162e7e83c1249141cee8" class="declaration"><a class="toggle-link" href="#comment-appending_path-70c81305b746162e7e83c1249141cee8">func appending(path: KeyPath&lt;Value, AppendedValue>) -> KeyPath&lt;Root, AppendedValue></a> <span class="required">Required</span><div class="comment collapse in" id="comment-appending_path-70c81305b746162e7e83c1249141cee8"><p>Returns a new key path created by appending the given key path to this
+one.</p>
+<p>Use this method to extend this key path to the value type of another key
+path. Calling <code>appending(path:)</code> results in the same key path as if the
+given key path had been specified using dot notation. In the following
+example, <code>keyPath1</code> and <code>keyPath2</code> are equivalent:</p>
+<pre><code class="language-swift">let arrayDescription = \Array&lt;Int&gt;.description
+let keyPath1 = arrayDescription.appending(path: \String.count)
+
+let keyPath2 = \Array&lt;Int&gt;.description.count
+</code></pre>
+<ul>
+<li>Parameter path: The key path to append.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func appending&lt;Root, Value, AppendedValue>(path: KeyPath&lt;Value, AppendedValue>) -> KeyPath&lt;Root, AppendedValue> where Self: KeyPath&lt;Root, Value></code></div></div><div id="appending_path-70c81305b746162e7e83c1249141cee8" class="declaration"><a class="toggle-link" href="#comment-appending_path-70c81305b746162e7e83c1249141cee8">func appending(path: ReferenceWritableKeyPath&lt;Value, AppendedValue>) -> ReferenceWritableKeyPath&lt;Root, AppendedValue></a> <span class="required">Required</span><div class="comment collapse in" id="comment-appending_path-70c81305b746162e7e83c1249141cee8"><p>Returns a new key path created by appending the given key path to this
+one.</p>
+<p>Use this method to extend this key path to the value type of another key
+path. Calling <code>appending(path:)</code> results in the same key path as if the
+given key path had been specified using dot notation.</p>
+<ul>
+<li>Parameter path: The key path to append.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func appending&lt;Root, Value, AppendedValue>(path: ReferenceWritableKeyPath&lt;Value, AppendedValue>) -> ReferenceWritableKeyPath&lt;Root, AppendedValue> where Self == KeyPath&lt;Root, Value></code></div></div><div id="appending_path-70c81305b746162e7e83c1249141cee8" class="declaration"><a class="toggle-link" href="#comment-appending_path-70c81305b746162e7e83c1249141cee8">func appending(path: WritableKeyPath&lt;Value, AppendedValue>) -> WritableKeyPath&lt;Root, AppendedValue></a> <span class="required">Required</span><div class="comment collapse in" id="comment-appending_path-70c81305b746162e7e83c1249141cee8"><p>Returns a new key path created by appending the given key path to this
+one.</p>
+<p>Use this method to extend this key path to the value type of another key
+path. Calling <code>appending(path:)</code> results in the same key path as if the
+given key path had been specified using dot notation.</p>
+<ul>
+<li>Parameter path: The key path to append.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func appending&lt;Root, Value, AppendedValue>(path: WritableKeyPath&lt;Value, AppendedValue>) -> WritableKeyPath&lt;Root, AppendedValue> where Self == WritableKeyPath&lt;Root, Value></code></div></div><div id="appending_path-70c81305b746162e7e83c1249141cee8" class="declaration"><a class="toggle-link" href="#comment-appending_path-70c81305b746162e7e83c1249141cee8">func appending(path: ReferenceWritableKeyPath&lt;Value, AppendedValue>) -> ReferenceWritableKeyPath&lt;Root, AppendedValue></a> <span class="required">Required</span><div class="comment collapse in" id="comment-appending_path-70c81305b746162e7e83c1249141cee8"><p>Returns a new key path created by appending the given key path to this
+one.</p>
+<p>Use this method to extend this key path to the value type of another key
+path. Calling <code>appending(path:)</code> results in the same key path as if the
+given key path had been specified using dot notation.</p>
+<ul>
+<li>Parameter path: The key path to append.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func appending&lt;Root, Value, AppendedValue>(path: ReferenceWritableKeyPath&lt;Value, AppendedValue>) -> ReferenceWritableKeyPath&lt;Root, AppendedValue> where Self == WritableKeyPath&lt;Root, Value></code></div></div><div id="appending_path-70c81305b746162e7e83c1249141cee8" class="declaration"><a class="toggle-link" href="#comment-appending_path-70c81305b746162e7e83c1249141cee8">func appending(path: WritableKeyPath&lt;Value, AppendedValue>) -> ReferenceWritableKeyPath&lt;Root, AppendedValue></a> <span class="required">Required</span><div class="comment collapse in" id="comment-appending_path-70c81305b746162e7e83c1249141cee8"><p>Returns a new key path created by appending the given key path to this
+one.</p>
+<p>Use this method to extend this key path to the value type of another key
+path. Calling <code>appending(path:)</code> results in the same key path as if the
+given key path had been specified using dot notation.</p>
+<ul>
+<li>Parameter path: The key path to append.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func appending&lt;Root, Value, AppendedValue>(path: WritableKeyPath&lt;Value, AppendedValue>) -> ReferenceWritableKeyPath&lt;Root, AppendedValue> where Self == ReferenceWritableKeyPath&lt;Root, Value></code></div></div><div id="hash_into-6d50cb3daa41162a12fb4542a687b393" class="declaration"><a class="toggle-link" href="#comment-hash_into-6d50cb3daa41162a12fb4542a687b393">func hash(into hasher: inout Hasher)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hash_into-6d50cb3daa41162a12fb4542a687b393"><p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+<ul>
+<li>Parameter hasher: The hasher to use when combining the components
+of this instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">final public func hash(into hasher: inout Hasher)</code></div></div><h3>Type Variables</h3><div id="rootType-ed56087a576be1f6c65061de7973299b" class="declaration"><a class="toggle-link" href="#comment-rootType-ed56087a576be1f6c65061de7973299b">var rootType</a> <span class="required">Required</span><div class="comment collapse in" id="comment-rootType-ed56087a576be1f6c65061de7973299b"><p>The root type for this key path.</p>
+<h4>Declaration</h4><code class="language-swift">var rootType: Any.Type</code></div></div><div id="valueType-b96763b95160cc0943be0de4743a115b" class="declaration"><a class="toggle-link" href="#comment-valueType-b96763b95160cc0943be0de4743a115b">var valueType</a> <span class="required">Required</span><div class="comment collapse in" id="comment-valueType-b96763b95160cc0943be0de4743a115b"><p>The value type for this key path.</p>
+<h4>Declaration</h4><code class="language-swift">var valueType: Any.Type</code></div></div><h3>Type Methods</h3><div id="a_b-ad60eb2dc6987c96e58372c8bc490914" class="declaration"><a class="toggle-link" href="#comment-a_b-ad60eb2dc6987c96e58372c8bc490914">func ==(a: AnyKeyPath, b: AnyKeyPath) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-a_b-ad60eb2dc6987c96e58372c8bc490914"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func ==(a: AnyKeyPath, b: AnyKeyPath) -> Bool</code></div></div>

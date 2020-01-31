@@ -1,0 +1,16 @@
+---
+root: "/v5.1"
+layout: "default"
+title: "assertionFailure"
+description: "Swift documentation for 'assertionFailure'"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">func assertionFailure(_:file:line:)(_ message: @autoclosure () -> String = String(), file: StaticString = #file, line: UInt = #line)</code></div><div class="discussion comment"><p>Indicates that an internal sanity check failed.
+</p>
+<p>Use this function to stop the program, without impacting the performance of
+shipping code, when control flow is not expected to reach the call---for
+example, in the <code>default</code> case of a <code>switch</code> where you have knowledge that
+one of the other cases must be satisfied. To protect code from invalid
+usage in Release builds, see <code>preconditionFailure(_:file:line:)</code>.</p>
+</div>

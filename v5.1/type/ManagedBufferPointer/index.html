@@ -1,0 +1,93 @@
+---
+root: "/v5.1"
+layout: "default"
+title: "ManagedBufferPointer"
+keywords: ""
+description: "Swift documentation for 'ManagedBufferPointer'"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct ManagedBufferPointer</code></div><p>Contains a buffer object, and provides access to an instance of
+<code>Header</code> and contiguous storage for an arbitrary number of
+<code>Element</code> instances stored in that buffer.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Equatable</code></td></tr></table><div class="discussion comment"><p>For most purposes, the <code>ManagedBuffer</code> class works fine for this
+purpose, and can simply be used on its own.  However, in cases
+where objects of various different classes must serve as storage,
+<code>ManagedBufferPointer</code> is needed.</p>
+<p>A valid buffer class is non-<code>@objc</code>, with no declared stored
+properties.  Its <code>deinit</code> must destroy its
+stored <code>Header</code> and any constructed <code>Element</code>s.</p>
+<h4>Example Buffer Class</h4>
+<pre><code class="language-swift"> class MyBuffer&lt;Element&gt; { // non-@objc
+   typealias Manager = ManagedBufferPointer&lt;(Int, String), Element&gt;
+   deinit {
+     Manager(unsafeBufferObject: self).withUnsafeMutablePointers {
+       (pointerToHeader, pointerToElements) -&gt; Void in
+       pointerToElements.deinitialize(count: self.count)
+       pointerToHeader.deinitialize(count: 1)
+     }
+   }
+
+   // All properties are *computed* based on members of the Header
+   var count: Int {
+     return Manager(unsafeBufferObject: self).header.0
+   }
+   var name: String {
+     return Manager(unsafeBufferObject: self).header.1
+   }
+ }
+</code></pre>
+</div><h3>Initializers</h3><div id="init_bufferClass_minimumCapacity_makingHeaderWith-8d48617564edd7cd5cb7afa30528729c" class="declaration"><a class="toggle-link" href="#comment-init_bufferClass_minimumCapacity_makingHeaderWith-8d48617564edd7cd5cb7afa30528729c">init init(bufferClass:minimumCapacity:makingHeaderWith:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_bufferClass_minimumCapacity_makingHeaderWith-8d48617564edd7cd5cb7afa30528729c"><p>Create with new storage containing an initial <code>Header</code> and space
+for at least <code>minimumCapacity</code> <code>element</code>s.</p>
+<ul>
+<li>parameter bufferClass: The class of the object used for storage.</li>
+</ul>
+<ul>
+<li>parameter minimumCapacity: The minimum number of <code>Element</code>s that
+must be able to be stored in the new buffer.</li>
+</ul>
+<ul>
+<li>parameter factory: A function that produces the initial
+<code>Header</code> instance stored in the buffer, given the <code>buffer</code>
+object and a function that can be called on it to get the actual
+number of allocated elements.</li>
+</ul>
+<blockquote>
+<p>Precondition:
+<code>minimumCapacity &gt;= 0</code>, and the type indicated by <code>bufferClass</code> is a non-<code>@objc</code> class with no declared stored properties.  The <code>deinit</code> of <code>bufferClass</code> must destroy its stored <code>Header</code> and any constructed <code>Element</code>s.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(bufferClass: AnyClass, minimumCapacity: Int, makingHeaderWith factory: (AnyObject, (AnyObject) -> Int) throws -> Header) rethrows</code></div></div><div id="init_unsafeBufferObject-380bdb722b3c22d3c87989287a171a93" class="declaration"><a class="toggle-link" href="#comment-init_unsafeBufferObject-380bdb722b3c22d3c87989287a171a93">init init(unsafeBufferObject:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_unsafeBufferObject-380bdb722b3c22d3c87989287a171a93"><p>Manage the given <code>buffer</code>.</p>
+<blockquote>
+<p>Precondition:
+<code>buffer</code> is an instance of a non-<code>@objc</code> class whose <code>deinit</code> destroys its stored <code>Header</code> and any constructed <code>Element</code>s.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(unsafeBufferObject buffer: AnyObject)</code></div></div><h3>Instance Variables</h3><div id="buffer-7f2db423a49b305459147332fb01cf87" class="declaration"><a class="toggle-link" href="#comment-buffer-7f2db423a49b305459147332fb01cf87">var buffer</a> <span class="required">Required</span><div class="comment collapse in" id="comment-buffer-7f2db423a49b305459147332fb01cf87"><p>Returns the object instance being used for storage.</p>
+<h4>Declaration</h4><code class="language-swift">var buffer: AnyObject</code></div></div><div id="capacity-7bd14a231864e618e1840c7e117e59c1" class="declaration"><a class="toggle-link" href="#comment-capacity-7bd14a231864e618e1840c7e117e59c1">var capacity</a> <span class="required">Required</span><div class="comment collapse in" id="comment-capacity-7bd14a231864e618e1840c7e117e59c1"><p>The actual number of elements that can be stored in this object.</p>
+<p>This value may be nontrivial to compute; it is usually a good
+idea to store this information in the &quot;header&quot; area when
+an instance is created.</p>
+<h4>Declaration</h4><code class="language-swift">var capacity: Int</code></div></div><div id="header-099fb995346f31c749f6e40db0f395e3" class="declaration"><a class="toggle-link" href="#comment-header-099fb995346f31c749f6e40db0f395e3">var header</a> <span class="required">Required</span><div class="comment collapse in" id="comment-header-099fb995346f31c749f6e40db0f395e3"><p>The stored <code>Header</code> instance.</p>
+<h4>Declaration</h4><code class="language-swift">var header: Header</code></div></div><h3>Instance Methods</h3><div id="isUniqueReference-958f5b014311cfa3ab91209fed8713a9" class="declaration"><a class="toggle-link" href="#comment-isUniqueReference-958f5b014311cfa3ab91209fed8713a9">func isUniqueReference() -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isUniqueReference-958f5b014311cfa3ab91209fed8713a9"><p>Returns <code>true</code> if <code>self</code> holds the only strong reference to its
+buffer. Otherwise, returns <code>false</code>.</p>
+<p>See <code>isKnownUniquelyReferenced</code> for details.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func isUniqueReference() -> Bool</code></div></div><div id="withUnsafeMutablePointerToElements-2a5c4b52159d79ad229e62316819cedc" class="declaration"><a class="toggle-link" href="#comment-withUnsafeMutablePointerToElements-2a5c4b52159d79ad229e62316819cedc">func withUnsafeMutablePointerToElements(_ body: (UnsafeMutablePointer&lt;Element>) throws -> R) rethrows -> R</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withUnsafeMutablePointerToElements-2a5c4b52159d79ad229e62316819cedc"><p>Call <code>body</code> with an <code>UnsafeMutablePointer</code> to the <code>Element</code>
+storage.</p>
+<blockquote>
+<p>Note:
+This pointer is valid only for the duration of the call to <code>body</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func withUnsafeMutablePointerToElements&lt;R>(_ body: (UnsafeMutablePointer&lt;Element>) throws -> R) rethrows -> R</code></div></div><div id="withUnsafeMutablePointerToHeader-3118a8ff174de8fcbe78507dde76a5a5" class="declaration"><a class="toggle-link" href="#comment-withUnsafeMutablePointerToHeader-3118a8ff174de8fcbe78507dde76a5a5">func withUnsafeMutablePointerToHeader(_ body: (UnsafeMutablePointer&lt;Header>) throws -> R) rethrows -> R</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withUnsafeMutablePointerToHeader-3118a8ff174de8fcbe78507dde76a5a5"><p>Call <code>body</code> with an <code>UnsafeMutablePointer</code> to the stored
+<code>Header</code>.</p>
+<blockquote>
+<p>Note:
+This pointer is valid only for the duration of the call to <code>body</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func withUnsafeMutablePointerToHeader&lt;R>(_ body: (UnsafeMutablePointer&lt;Header>) throws -> R) rethrows -> R</code></div></div><div id="withUnsafeMutablePointers-2e1a2daef6dc5c79ef9a3e2c842bd19f" class="declaration"><a class="toggle-link" href="#comment-withUnsafeMutablePointers-2e1a2daef6dc5c79ef9a3e2c842bd19f">func withUnsafeMutablePointers(_ body: (UnsafeMutablePointer&lt;Header>, UnsafeMutablePointer&lt;Element>) throws -> R) rethrows -> R</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withUnsafeMutablePointers-2e1a2daef6dc5c79ef9a3e2c842bd19f"><p>Call <code>body</code> with <code>UnsafeMutablePointer</code>s to the stored <code>Header</code>
+and raw <code>Element</code> storage.</p>
+<blockquote>
+<p>Note:
+These pointers are valid only for the duration of the call to <code>body</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func withUnsafeMutablePointers&lt;R>(_ body: (UnsafeMutablePointer&lt;Header>, UnsafeMutablePointer&lt;Element>) throws -> R) rethrows -> R</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: ManagedBufferPointer&lt;Header, Element>, rhs: ManagedBufferPointer&lt;Header, Element>) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func ==(lhs: ManagedBufferPointer&lt;Header, Element>, rhs: ManagedBufferPointer&lt;Header, Element>) -> Bool</code></div></div>

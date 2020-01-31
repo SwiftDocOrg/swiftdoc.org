@@ -1,0 +1,309 @@
+---
+layout: "default"
+keywords: ""
+root: "/v5.1"
+description: "Swift documentation for 'KeyedDecodingContainer'"
+title: "KeyedDecodingContainer"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct KeyedDecodingContainer</code></div><p>A concrete container that provides a view into a decoder's storage, making
+the encoded properties of a decodable type accessible by keys.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">KeyedDecodingContainerProtocol</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Key = K</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"></div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new instance with the given container.</p>
+<ul>
+<li>parameter container: The container to hold.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init&lt;Container>(_ container: Container) where K == Container.Key, Container: KeyedDecodingContainerProtocol</code></div></div><h3>Instance Variables</h3><div id="allKeys-4dec6a6598f9fe9665786fb82c11dbcd" class="declaration"><a class="toggle-link" href="#comment-allKeys-4dec6a6598f9fe9665786fb82c11dbcd">var allKeys</a> <span class="required">Required</span><div class="comment collapse in" id="comment-allKeys-4dec6a6598f9fe9665786fb82c11dbcd"><p>All the keys the decoder has for this container.</p>
+<p>Different keyed containers from the same decoder may return different
+keys here, because it is possible to encode with multiple key types
+which are not convertible to one another. This should report all keys
+present which are convertible to the requested type.</p>
+<h4>Declaration</h4><code class="language-swift">var allKeys: [KeyedDecodingContainer&lt;K>.Key]</code></div></div><div id="codingPath-038986a6e6564f0dd444735f926a6ca4" class="declaration"><a class="toggle-link" href="#comment-codingPath-038986a6e6564f0dd444735f926a6ca4">var codingPath</a> <span class="required">Required</span><div class="comment collapse in" id="comment-codingPath-038986a6e6564f0dd444735f926a6ca4"><p>The path of coding keys taken to get to this point in decoding.</p>
+<h4>Declaration</h4><code class="language-swift">var codingPath: [CodingKey]</code></div></div><h3>Instance Methods</h3><div id="contains-6f3567afe6aa63234ecc71820249f524" class="declaration"><a class="toggle-link" href="#comment-contains-6f3567afe6aa63234ecc71820249f524">func contains(_ key: KeyedDecodingContainer&lt;K>.Key) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-contains-6f3567afe6aa63234ecc71820249f524"><p>Returns a Boolean value indicating whether the decoder contains a value
+associated with the given key.</p>
+<p>The value associated with the given key may be a null value as
+appropriate for the data format.</p>
+<ul>
+<li>parameter key: The key to search for.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func contains(_ key: KeyedDecodingContainer&lt;K>.Key) -> Bool</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: Bool.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: Bool.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Bool</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: String.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> String</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: String.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> String</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: Double.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Double</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: Double.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Double</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: Float.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Float</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: Float.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Float</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: Int.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: Int.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: Int8.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int8</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: Int8.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int8</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: Int16.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int16</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: Int16.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int16</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: Int32.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: Int32.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int32</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: Int64.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int64</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: Int64.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int64</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: UInt.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: UInt.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: UInt8.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt8</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: UInt8.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt8</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: UInt16.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt16</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: UInt16.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt16</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: UInt32.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt32</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: UInt32.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt32</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: UInt64.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt64</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode(_ type: UInt64.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt64</code></div></div><div id="decode_forKey-45f254fc94ef4552b6e4718e2dca3b49" class="declaration"><a class="toggle-link" href="#comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49">func decode(_ type: T.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> T</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decode_forKey-45f254fc94ef4552b6e4718e2dca3b49"><p>Decodes a value of the given type for the given key.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decode&lt;T>(_ type: T.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> T where T: Decodable</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Bool.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Bool?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Bool.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Bool?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: String.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> String?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: String.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> String?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Double.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Double?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Double.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Double?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Float.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Float?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Float.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Float?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Int.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Int.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Int8.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int8?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Int8.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int8?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Int16.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int16?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Int16.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int16?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Int32.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int32?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Int32.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int32?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Int64.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int64?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Int64.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Int64?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: UInt.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: UInt.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: UInt8.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt8?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: UInt8.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt8?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: UInt16.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt16?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: UInt16.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt16?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: UInt32.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt32?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: UInt32.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt32?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: UInt64.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt64?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: UInt64.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UInt64?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: T.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> T?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><p>Decodes a value of the given type for the given key, if present.</p>
+<p>This method returns <code>nil</code> if the container does not have a value
+associated with <code>key</code>, or if the value is null. The difference between
+these states can be distinguished with a <code>contains(_:)</code> call.</p>
+<ul>
+<li>parameter type: The type of value to decode.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeIfPresent&lt;T>(_ type: T.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> T? where T: Decodable</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Bool.Type, forKey key: Self.Key) throws -> Bool?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Bool.Type, forKey key: Self.Key) throws -> Bool?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: String.Type, forKey key: Self.Key) throws -> String?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: String.Type, forKey key: Self.Key) throws -> String?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Double.Type, forKey key: Self.Key) throws -> Double?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Double.Type, forKey key: Self.Key) throws -> Double?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Float.Type, forKey key: Self.Key) throws -> Float?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Float.Type, forKey key: Self.Key) throws -> Float?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Int.Type, forKey key: Self.Key) throws -> Int?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Int.Type, forKey key: Self.Key) throws -> Int?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Int8.Type, forKey key: Self.Key) throws -> Int8?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Int8.Type, forKey key: Self.Key) throws -> Int8?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Int16.Type, forKey key: Self.Key) throws -> Int16?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Int16.Type, forKey key: Self.Key) throws -> Int16?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Int32.Type, forKey key: Self.Key) throws -> Int32?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Int32.Type, forKey key: Self.Key) throws -> Int32?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: Int64.Type, forKey key: Self.Key) throws -> Int64?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: Int64.Type, forKey key: Self.Key) throws -> Int64?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: UInt.Type, forKey key: Self.Key) throws -> UInt?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: UInt.Type, forKey key: Self.Key) throws -> UInt?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: UInt8.Type, forKey key: Self.Key) throws -> UInt8?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: UInt8.Type, forKey key: Self.Key) throws -> UInt8?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: UInt16.Type, forKey key: Self.Key) throws -> UInt16?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: UInt16.Type, forKey key: Self.Key) throws -> UInt16?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: UInt32.Type, forKey key: Self.Key) throws -> UInt32?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: UInt32.Type, forKey key: Self.Key) throws -> UInt32?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: UInt64.Type, forKey key: Self.Key) throws -> UInt64?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent(_ type: UInt64.Type, forKey key: Self.Key) throws -> UInt64?</code></div></div><div id="decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4" class="declaration"><a class="toggle-link" href="#comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4">func decodeIfPresent(_ type: T.Type, forKey key: Self.Key) throws -> T?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeIfPresent_forKey-affe24f353fc4c78ef05b98521a822f4"><h4>Declaration</h4><code class="language-swift">public func decodeIfPresent&lt;T>(_ type: T.Type, forKey key: Self.Key) throws -> T? where T: Decodable</code></div></div><div id="decodeNil_forKey-484de60909aee02c9bf4d567479e3ab9" class="declaration"><a class="toggle-link" href="#comment-decodeNil_forKey-484de60909aee02c9bf4d567479e3ab9">func decodeNil(forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeNil_forKey-484de60909aee02c9bf4d567479e3ab9"><p>Decodes a null value for the given key.</p>
+<ul>
+<li>parameter key: The key that the decoded value is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func decodeNil(forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Bool</code></div></div><div id="nestedContainer_keyedBy_forKey-56d3e07ed4ef8fbfb041d378e4c8b100" class="declaration"><a class="toggle-link" href="#comment-nestedContainer_keyedBy_forKey-56d3e07ed4ef8fbfb041d378e4c8b100">func nestedContainer(keyedBy type: NestedKey.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> KeyedDecodingContainer&lt;NestedKey></a> <span class="required">Required</span><div class="comment collapse in" id="comment-nestedContainer_keyedBy_forKey-56d3e07ed4ef8fbfb041d378e4c8b100"><p>Returns the data stored for the given key as represented in a container
+keyed by the given key type.</p>
+<ul>
+<li>parameter type: The key type to use for the container.</li>
+</ul>
+<ul>
+<li>parameter key: The key that the nested container is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func nestedContainer&lt;NestedKey>(keyedBy type: NestedKey.Type, forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> KeyedDecodingContainer&lt;NestedKey> where NestedKey: CodingKey</code></div></div><div id="nestedUnkeyedContainer_forKey-a5f82c10f5abf8cf48f3881953c4ad0b" class="declaration"><a class="toggle-link" href="#comment-nestedUnkeyedContainer_forKey-a5f82c10f5abf8cf48f3881953c4ad0b">func nestedUnkeyedContainer(forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UnkeyedDecodingContainer</a> <span class="required">Required</span><div class="comment collapse in" id="comment-nestedUnkeyedContainer_forKey-a5f82c10f5abf8cf48f3881953c4ad0b"><p>Returns the data stored for the given key as represented in an unkeyed
+container.</p>
+<ul>
+<li>parameter key: The key that the nested container is associated with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func nestedUnkeyedContainer(forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> UnkeyedDecodingContainer</code></div></div><div id="superDecoder-78b50706e7b60df827edfe666615ac17" class="declaration"><a class="toggle-link" href="#comment-superDecoder-78b50706e7b60df827edfe666615ac17">func superDecoder() throws -> Decoder</a> <span class="required">Required</span><div class="comment collapse in" id="comment-superDecoder-78b50706e7b60df827edfe666615ac17"><p>Returns a <code>Decoder</code> instance for decoding <code>super</code> from the container
+associated with the default <code>super</code> key.</p>
+<p>Equivalent to calling <code>superDecoder(forKey:)</code> with
+<code>Key(stringValue: &quot;super&quot;, intValue: 0)</code>.</p>
+<h4>Declaration</h4><code class="language-swift">public func superDecoder() throws -> Decoder</code></div></div><div id="superDecoder_forKey-83594b0b8353e6cdefe252c87394c757" class="declaration"><a class="toggle-link" href="#comment-superDecoder_forKey-83594b0b8353e6cdefe252c87394c757">func superDecoder(forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Decoder</a> <span class="required">Required</span><div class="comment collapse in" id="comment-superDecoder_forKey-83594b0b8353e6cdefe252c87394c757"><p>Returns a <code>Decoder</code> instance for decoding <code>super</code> from the container
+associated with the given key.</p>
+<ul>
+<li>parameter key: The key to decode <code>super</code> for.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func superDecoder(forKey key: KeyedDecodingContainer&lt;K>.Key) throws -> Decoder</code></div></div>

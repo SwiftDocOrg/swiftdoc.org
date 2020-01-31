@@ -1,0 +1,209 @@
+---
+title: "&>>="
+layout: "default"
+description: "Swift documentation for '&>>='"
+keywords: ""
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">func &amp;>>=(lhs:rhs:)(lhs: inout Int, rhs: Int)</code></div><div class="discussion comment"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.
+</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+</div><div class="intro-declaration"><code class="language-swift">func &amp;>>=(lhs:rhs:)(lhs: inout Int16, rhs: Int16)</code></div><div class="discussion comment"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.
+</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+</div><div class="intro-declaration"><code class="language-swift">func &amp;>>=(lhs:rhs:)(lhs: inout Int32, rhs: Int32)</code></div><div class="discussion comment"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.
+</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+</div><div class="intro-declaration"><code class="language-swift">func &amp;>>=(lhs:rhs:)(lhs: inout Int64, rhs: Int64)</code></div><div class="discussion comment"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.
+</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+</div><div class="intro-declaration"><code class="language-swift">func &amp;>>=(lhs:rhs:)(lhs: inout Int8, rhs: Int8)</code></div><div class="discussion comment"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.
+</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+</div><div class="intro-declaration"><code class="language-swift">func &amp;>>=(lhs:rhs:)(lhs: inout UInt, rhs: UInt)</code></div><div class="discussion comment"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.
+</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+</div><div class="intro-declaration"><code class="language-swift">func &amp;>>=(lhs:rhs:)(lhs: inout UInt16, rhs: UInt16)</code></div><div class="discussion comment"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.
+</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+</div><div class="intro-declaration"><code class="language-swift">func &amp;>>=(lhs:rhs:)(lhs: inout UInt32, rhs: UInt32)</code></div><div class="discussion comment"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.
+</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+</div><div class="intro-declaration"><code class="language-swift">func &amp;>>=(lhs:rhs:)(lhs: inout UInt64, rhs: UInt64)</code></div><div class="discussion comment"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.
+</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+</div><div class="intro-declaration"><code class="language-swift">func &amp;>>=(lhs:rhs:)(lhs: inout UInt8, rhs: UInt8)</code></div><div class="discussion comment"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.
+</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+</div>

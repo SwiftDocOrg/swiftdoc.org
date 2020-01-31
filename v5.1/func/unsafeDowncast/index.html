@@ -1,0 +1,20 @@
+---
+root: "/v5.1"
+keywords: ""
+title: "unsafeDowncast"
+description: "Swift documentation for 'unsafeDowncast'"
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">func unsafeDowncast(_:to:)(_ x: AnyObject, to type: T.Type) -> T</code></div><div class="discussion comment"><p>Returns the given instance cast unconditionally to the specified type.
+</p>
+<p>The instance passed as <code>x</code> must be an instance of type <code>T</code>.</p>
+<p>Use this function instead of <code>unsafeBitcast(_:to:)</code> because this function
+is more restrictive and still performs a check in debug builds. In -O
+builds, no test is performed to ensure that <code>x</code> actually has the dynamic
+type <code>T</code>.</p>
+<blockquote>
+<p>Warning:
+This function trades safety for performance. Use <code>unsafeDowncast(_:to:)</code> only when you are confident that <code>x is T</code> always evaluates to <code>true</code>, and only after <code>x as! T</code> has proven to be a performance problem.</p>
+</blockquote>
+</div>

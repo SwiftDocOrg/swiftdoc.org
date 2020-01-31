@@ -1,0 +1,33 @@
+---
+layout: "default"
+title: "ExpressibleByExtendedGraphemeClusterLiteral"
+description: "Swift documentation for 'ExpressibleByExtendedGraphemeClusterLiteral'"
+root: "/v5.1"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol ExpressibleByExtendedGraphemeClusterLiteral</code></div><p>A type that can be initialized with a string literal containing a single
+extended grapheme cluster.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">ExpressibleByUnicodeScalarLiteral</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">Character, ExpressibleByStringLiteral, StaticString, Substring</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype ExtendedGraphemeClusterLiteralType</code><div class="comment"><p>Valid types for <code>ExtendedGraphemeClusterLiteralType</code> are <code>Character</code>,
+<code>String</code>, and <code>StaticString</code>.</p>
+</div></div></td></tr></table><div class="discussion comment"><p>An <em>extended grapheme cluster</em> is a group of one or more Unicode scalar
+values that approximates a single user-perceived character.  Many
+individual characters, such as &quot;é&quot;, &quot;김&quot;, and &quot;🇮🇳&quot;, can be made up of
+multiple Unicode scalar values. These code points are combined by
+Unicode's boundary algorithms into extended grapheme clusters.</p>
+<p>The <code>String</code>, <code>StaticString</code>, and <code>Character</code> types conform to the
+<code>ExpressibleByExtendedGraphemeClusterLiteral</code> protocol. You can initialize
+a variable or constant of any of these types using a string literal that
+holds a single character.</p>
+<pre><code class="language-swift">let snowflake: Character = &quot;❄︎&quot;
+print(snowflake)
+// Prints &quot;❄︎&quot;
+</code></pre>
+<h3>Conforming to ExpressibleByExtendedGraphemeClusterLiteral</h3>
+<p>To add <code>ExpressibleByExtendedGraphemeClusterLiteral</code> conformance to your
+custom type, implement the required initializer.</p>
+</div><h3>Initializers</h3><div id="init_extendedGraphemeClusterLiteral-ce80f4b8568526286f936ef1e08aa545" class="declaration"><a class="toggle-link" href="#comment-init_extendedGraphemeClusterLiteral-ce80f4b8568526286f936ef1e08aa545">init init(extendedGraphemeClusterLiteral:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_extendedGraphemeClusterLiteral-ce80f4b8568526286f936ef1e08aa545"><p>Creates an instance initialized to the given value.</p>
+<ul>
+<li>Parameter value: The value of the new instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init(extendedGraphemeClusterLiteral value: Self.ExtendedGraphemeClusterLiteralType)</code></div></div>

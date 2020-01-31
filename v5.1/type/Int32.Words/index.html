@@ -1,0 +1,113 @@
+---
+title: "Int32.Words"
+description: "Swift documentation for 'Int32.Words'"
+keywords: ""
+layout: "default"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Words</code></div><p>A type that represents the words of this integer.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">RandomAccessCollection</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Indices = Range&lt;Int></code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias SubSequence = Slice&lt;Int32.Words></code><div class="comment"><p>This associated type appears as a requirement in the <code>Sequence</code>
+protocol, but it is restated here with stricter constraints. In a
+collection, the subsequence should also conform to <code>Collection</code>.</p>
+</div></div></td></tr></table><div class="discussion comment"></div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><h4>Declaration</h4><code class="language-swift">@inlinable public init(_ value: Int32)</code></div></div><h3>Instance Variables</h3><div id="count-e2942a04780e223b215eb8b663cf5353" class="declaration"><a class="toggle-link" href="#comment-count-e2942a04780e223b215eb8b663cf5353">var count</a> <span class="required">Required</span><div class="comment collapse in" id="comment-count-e2942a04780e223b215eb8b663cf5353"><p>The number of elements in the collection.</p>
+<p>To check whether a collection is empty, use its <code>isEmpty</code> property
+instead of comparing <code>count</code> to zero. Unless the collection guarantees
+random-access performance, calculating <code>count</code> can be an O(<em>n</em>)
+operation.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var count: Int</code></div></div><div id="endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e" class="declaration"><a class="toggle-link" href="#comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e">var endIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e"><p>The collection's &quot;past the end&quot; position---that is, the position one
+greater than the last valid subscript argument.</p>
+<p>When you need a range that includes the last element of a collection, use
+the half-open range operator (<code>..&lt;</code>) with <code>endIndex</code>. The <code>..&lt;</code> operator
+creates a range that doesn't include the upper bound, so it's always
+safe to use with <code>endIndex</code>. For example:</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let index = numbers.firstIndex(of: 30) {
+    print(numbers[index ..&lt; numbers.endIndex])
+}
+// Prints &quot;[30, 40, 50]&quot;
+</code></pre>
+<p>If the collection is empty, <code>endIndex</code> is equal to <code>startIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var endIndex: Int</code></div></div><div id="indices-a51a528f35c02157e603a20c8796a684" class="declaration"><a class="toggle-link" href="#comment-indices-a51a528f35c02157e603a20c8796a684">var indices</a> <span class="required">Required</span><div class="comment collapse in" id="comment-indices-a51a528f35c02157e603a20c8796a684"><p>The indices that are valid for subscripting the collection, in ascending
+order.</p>
+<p>A collection's <code>indices</code> property can hold a strong reference to the
+collection itself, causing the collection to be nonuniquely referenced.
+If you mutate the collection while iterating over its indices, a strong
+reference can result in an unexpected copy of the collection. To avoid
+the unexpected copy, use the <code>index(after:)</code> method starting with
+<code>startIndex</code> to produce indices instead.</p>
+<pre><code class="language-swift">var c = MyFancyCollection([10, 20, 30, 40, 50])
+var i = c.startIndex
+while i != c.endIndex {
+    c[i] /= 5
+    i = c.index(after: i)
+}
+// c == MyFancyCollection([2, 4, 6, 8, 10])
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var indices: Int32.Words.Indices</code></div></div><div id="startIndex-04d77ddd9c9389cc56939726d3da8089" class="declaration"><a class="toggle-link" href="#comment-startIndex-04d77ddd9c9389cc56939726d3da8089">var startIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-startIndex-04d77ddd9c9389cc56939726d3da8089"><p>The position of the first element in a nonempty collection.</p>
+<p>If the collection is empty, <code>startIndex</code> is equal to <code>endIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var startIndex: Int</code></div></div><h3>Subscripts</h3><div id="subscript_position-b5586bf26309c2c713b44ec1088f3a50" class="declaration"><a class="toggle-link" href="#comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50">subscript subscript(position:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50"><p>Accesses the element at the specified position.</p>
+<p>The following example accesses an element of an array through its
+subscript to print its value:</p>
+<pre><code class="language-swift">var streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+print(streets[1])
+// Prints &quot;Bryant&quot;
+</code></pre>
+<p>You can subscript a collection with any valid index other than the
+collection's end index. The end index refers to the position one past
+the last element of a collection, so it doesn't correspond with an
+element.</p>
+<ul>
+<li>Parameter position: The position of the element to access. <code>position</code>
+must be a valid index of the collection that is not equal to the
+<code>endIndex</code> property.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(position: Int) -> UInt</code></div></div><h3>Instance Methods</h3><div id="index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130">func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130"><p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+<p>The following example obtains an index advanced four positions from an
+array's starting index and then prints the element at that position. The
+operation doesn't require going beyond the limiting <code>numbers.endIndex</code>
+value, so it succeeds.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+let i = numbers.index(numbers.startIndex, offsetBy: 4)
+print(numbers[i])
+// Prints &quot;50&quot;
+</code></pre>
+<p>The next example attempts to retrieve an index ten positions from
+<code>numbers.startIndex</code>, but fails, because that distance is beyond the
+index passed as <code>limit</code>.</p>
+<pre><code class="language-swift">let j = numbers.index(numbers.startIndex,
+                      offsetBy: 10,
+                      limitedBy: numbers.endIndex)
+print(j)
+// Prints &quot;nil&quot;
+</code></pre>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</code></div></div><div id="index_after-976478ce790c064a72519919a525cb29" class="declaration"><a class="toggle-link" href="#comment-index_after-976478ce790c064a72519919a525cb29">func index(after i: Int) -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_after-976478ce790c064a72519919a525cb29"><p>Returns the position immediately after the given index.</p>
+<p>The successor of an index must be well defined. For an index <code>i</code> into a
+collection <code>c</code>, calling <code>c.index(after: i)</code> returns the same index every
+time.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func index(after i: Int) -> Int</code></div></div><div id="index_before-ee7e993bbd939c71d46566c977277662" class="declaration"><a class="toggle-link" href="#comment-index_before-ee7e993bbd939c71d46566c977277662">func index(before i: Int) -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_before-ee7e993bbd939c71d46566c977277662"><p>Returns the position immediately before the given index.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be greater than
+<code>startIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func index(before i: Int) -> Int</code></div></div>

@@ -1,0 +1,51 @@
+---
+description: "Swift documentation for 'ManagedBuffer'"
+root: "/v5.1"
+title: "ManagedBuffer"
+keywords: ""
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">class ManagedBuffer</code></div><p>A class whose instances contain a property of type <code>Header</code> and raw
+storage for an array of <code>Element</code>, whose size is determined at
+instance creation.</p>
+<div class="discussion comment"><p>Note that the <code>Element</code> array is suitably-aligned <strong>raw memory</strong>.
+You are expected to construct and---if necessary---destroy objects
+there yourself, using the APIs on <code>UnsafeMutablePointer&lt;Element&gt;</code>.
+Typical usage stores a count and capacity in <code>Header</code> and destroys
+any live elements in the <code>deinit</code> of a subclass.</p>
+<blockquote>
+<p>Note:
+Subclasses must not have any stored properties; any storage needed should be included in <code>Header</code>.</p>
+</blockquote>
+</div><h3>Instance Variables</h3><div id="capacity-7bd14a231864e618e1840c7e117e59c1" class="declaration"><a class="toggle-link" href="#comment-capacity-7bd14a231864e618e1840c7e117e59c1">var capacity</a> <span class="required">Required</span><div class="comment collapse in" id="comment-capacity-7bd14a231864e618e1840c7e117e59c1"><p>The actual number of elements that can be stored in this object.</p>
+<p>This header may be nontrivial to compute; it is usually a good
+idea to store this information in the &quot;header&quot; area when
+an instance is created.</p>
+<h4>Declaration</h4><code class="language-swift">var capacity: Int</code></div></div><div id="header-099fb995346f31c749f6e40db0f395e3" class="declaration"><a class="toggle-link" href="#comment-header-099fb995346f31c749f6e40db0f395e3">var header</a> <span class="required">Required</span><div class="comment collapse in" id="comment-header-099fb995346f31c749f6e40db0f395e3"><p>The stored <code>Header</code> instance.</p>
+<p>During instance creation, in particular during
+<code>ManagedBuffer.create</code>'s call to initialize, <code>ManagedBuffer</code>'s
+<code>header</code> property is as-yet uninitialized, and therefore
+reading the <code>header</code> property during <code>ManagedBuffer.create</code> is undefined.</p>
+<h4>Declaration</h4><code class="language-swift">var header: Header</code></div></div><h3>Instance Methods</h3><div id="create_minimumCapacity_makingHeaderWith-e67442b090dc7e1e824ccf20f120fae6" class="declaration"><a class="toggle-link" href="#comment-create_minimumCapacity_makingHeaderWith-e67442b090dc7e1e824ccf20f120fae6">func create(minimumCapacity: Int, makingHeaderWith factory: (ManagedBuffer&lt;Header, Element>) throws -> Header) rethrows -> ManagedBuffer&lt;Header, Element></a> <span class="required">Required</span><div class="comment collapse in" id="comment-create_minimumCapacity_makingHeaderWith-e67442b090dc7e1e824ccf20f120fae6"><p>Create a new instance of the most-derived class, calling
+<code>factory</code> on the partially-constructed object to generate
+an initial <code>Header</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable final public class func create(minimumCapacity: Int, makingHeaderWith factory: (ManagedBuffer&lt;Header, Element>) throws -> Header) rethrows -> ManagedBuffer&lt;Header, Element></code></div></div><div id="withUnsafeMutablePointerToElements-2a5c4b52159d79ad229e62316819cedc" class="declaration"><a class="toggle-link" href="#comment-withUnsafeMutablePointerToElements-2a5c4b52159d79ad229e62316819cedc">func withUnsafeMutablePointerToElements(_ body: (UnsafeMutablePointer&lt;Element>) throws -> R) rethrows -> R</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withUnsafeMutablePointerToElements-2a5c4b52159d79ad229e62316819cedc"><p>Call <code>body</code> with an <code>UnsafeMutablePointer</code> to the <code>Element</code>
+storage.</p>
+<blockquote>
+<p>Note:
+This pointer is valid only for the duration of the call to <code>body</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable final public func withUnsafeMutablePointerToElements&lt;R>(_ body: (UnsafeMutablePointer&lt;Element>) throws -> R) rethrows -> R</code></div></div><div id="withUnsafeMutablePointerToHeader-3118a8ff174de8fcbe78507dde76a5a5" class="declaration"><a class="toggle-link" href="#comment-withUnsafeMutablePointerToHeader-3118a8ff174de8fcbe78507dde76a5a5">func withUnsafeMutablePointerToHeader(_ body: (UnsafeMutablePointer&lt;Header>) throws -> R) rethrows -> R</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withUnsafeMutablePointerToHeader-3118a8ff174de8fcbe78507dde76a5a5"><p>Call <code>body</code> with an <code>UnsafeMutablePointer</code> to the stored
+<code>Header</code>.</p>
+<blockquote>
+<p>Note:
+This pointer is valid only for the duration of the call to <code>body</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable final public func withUnsafeMutablePointerToHeader&lt;R>(_ body: (UnsafeMutablePointer&lt;Header>) throws -> R) rethrows -> R</code></div></div><div id="withUnsafeMutablePointers-2e1a2daef6dc5c79ef9a3e2c842bd19f" class="declaration"><a class="toggle-link" href="#comment-withUnsafeMutablePointers-2e1a2daef6dc5c79ef9a3e2c842bd19f">func withUnsafeMutablePointers(_ body: (UnsafeMutablePointer&lt;Header>, UnsafeMutablePointer&lt;Element>) throws -> R) rethrows -> R</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withUnsafeMutablePointers-2e1a2daef6dc5c79ef9a3e2c842bd19f"><p>Call <code>body</code> with <code>UnsafeMutablePointer</code>s to the stored <code>Header</code>
+and raw <code>Element</code> storage.</p>
+<blockquote>
+<p>Note:
+These pointers are valid only for the duration of the call to <code>body</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable final public func withUnsafeMutablePointers&lt;R>(_ body: (UnsafeMutablePointer&lt;Header>, UnsafeMutablePointer&lt;Element>) throws -> R) rethrows -> R</code></div></div>

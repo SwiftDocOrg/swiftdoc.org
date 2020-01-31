@@ -1,0 +1,53 @@
+---
+keywords: ""
+title: "AnyIterator"
+layout: "default"
+description: "Swift documentation for 'AnyIterator'"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct AnyIterator</code></div><p>A type-erased iterator of <code>Element</code>.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">IteratorProtocol</code></td></tr></table><div class="discussion comment"><p>This iterator forwards its <code>next()</code> method to an arbitrary underlying
+iterator having the same <code>Element</code> type, hiding the specifics of the
+underlying <code>IteratorProtocol</code>.</p>
+</div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an iterator that wraps a base iterator but whose type depends
+only on the base iterator's element type.</p>
+<p>You can use <code>AnyIterator</code> to hide the type signature of a more complex
+iterator. For example, the <code>digits()</code> function in the following example
+creates an iterator over a collection that lazily maps the elements of a
+<code>Range&lt;Int&gt;</code> instance to strings. Instead of returning an
+iterator with a type that encapsulates the implementation of the
+collection, the <code>digits()</code> function first wraps the iterator in an
+<code>AnyIterator</code> instance.</p>
+<pre><code class="language-swift">func digits() -&gt; AnyIterator&lt;String&gt; {
+    let lazyStrings = (0..&lt;10).lazy.map { String($0) }
+    let iterator:
+        LazyMapIterator&lt;IndexingIterator&lt;Range&lt;Int&gt;&gt;, String&gt;
+        = lazyStrings.makeIterator()
+
+    return AnyIterator(iterator)
+}
+</code></pre>
+<ul>
+<li>Parameter base: An iterator to type-erase.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;I>(_ base: I) where Element == I.Element, I: IteratorProtocol</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an iterator that wraps the given closure in its <code>next()</code> method.</p>
+<p>The following example creates an iterator that counts up from the initial
+value of an integer <code>x</code> to 15:</p>
+<pre><code class="language-swift">var x = 7
+let iterator: AnyIterator&lt;Int&gt; = AnyIterator {
+    defer { x += 1 }
+    return x &lt; 15 ? x : nil
+}
+let a = Array(iterator)
+// a == [7, 8, 9, 10, 11, 12, 13, 14]
+</code></pre>
+<ul>
+<li>Parameter body: A closure that returns an optional element. <code>body</code> is
+executed each time the <code>next()</code> method is called on the resulting
+iterator.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(_ body: @escaping () -> Element?)</code></div></div><h3>Instance Methods</h3><div id="next-664f8784e379383402f73aeb98bca97f" class="declaration"><a class="toggle-link" href="#comment-next-664f8784e379383402f73aeb98bca97f">func next() -> Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-next-664f8784e379383402f73aeb98bca97f"><p>Advances to the next element and returns it, or <code>nil</code> if no next element
+exists.</p>
+<p>Once <code>nil</code> has been returned, all subsequent calls return <code>nil</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func next() -> Element?</code></div></div>

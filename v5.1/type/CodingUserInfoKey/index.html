@@ -1,0 +1,32 @@
+---
+title: "CodingUserInfoKey"
+description: "Swift documentation for 'CodingUserInfoKey'"
+layout: "default"
+keywords: ""
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct CodingUserInfoKey</code></div><p>A user-defined key for providing context during encoding and decoding.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">RawRepresentable, Equatable, Hashable</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias RawValue = String</code><div class="comment"><p>Every distinct value of the conforming type has a corresponding unique
+value of the <code>RawValue</code> type, but there may be values of the <code>RawValue</code>
+type that don't have a corresponding value of the conforming type.</p>
+</div></div></td></tr></table><div class="discussion comment"></div><h3>Initializers</h3><div id="init_rawValue-d16a3c3e47fae7437ff5bc15a3063a32" class="declaration"><a class="toggle-link" href="#comment-init_rawValue-d16a3c3e47fae7437ff5bc15a3063a32">init init?(rawValue:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_rawValue-d16a3c3e47fae7437ff5bc15a3063a32"><p>Creates a new instance with the given raw value.</p>
+<ul>
+<li>parameter rawValue: The value of the key.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init?(rawValue: String)</code></div></div><h3>Instance Variables</h3><div id="hashValue-491de0d7adc95987fe9b96f8ce8b5ed1" class="declaration"><a class="toggle-link" href="#comment-hashValue-491de0d7adc95987fe9b96f8ce8b5ed1">var hashValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hashValue-491de0d7adc95987fe9b96f8ce8b5ed1"><p>The key's hash value.</p>
+<h4>Declaration</h4><code class="language-swift">var hashValue: Int</code></div></div><div id="rawValue-05d5e54af177d42e80ca02e20dada809" class="declaration"><a class="toggle-link" href="#comment-rawValue-05d5e54af177d42e80ca02e20dada809">let rawValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-rawValue-05d5e54af177d42e80ca02e20dada809"><p>The key's string value.</p>
+<h4>Declaration</h4><code class="language-swift">let rawValue: String</code></div></div><h3>Instance Methods</h3><div id="hash_into-6d50cb3daa41162a12fb4542a687b393" class="declaration"><a class="toggle-link" href="#comment-hash_into-6d50cb3daa41162a12fb4542a687b393">func hash(into hasher: inout Hasher)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hash_into-6d50cb3daa41162a12fb4542a687b393"><p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+<ul>
+<li>Parameter hasher: The hasher to use when combining the components
+of this instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func hash(into hasher: inout Hasher)</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: CodingUserInfoKey, rhs: CodingUserInfoKey) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether the given keys are equal.</p>
+<ul>
+<li>parameter lhs: The key to compare against.</li>
+</ul>
+<ul>
+<li>parameter rhs: The key to compare with.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public static func ==(lhs: CodingUserInfoKey, rhs: CodingUserInfoKey) -> Bool</code></div></div>

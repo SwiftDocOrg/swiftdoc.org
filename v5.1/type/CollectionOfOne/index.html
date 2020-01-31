@@ -1,0 +1,182 @@
+---
+description: "Swift documentation for 'CollectionOfOne'"
+keywords: ""
+layout: "default"
+root: "/v5.1"
+title: "CollectionOfOne"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct CollectionOfOne</code></div><p>A collection containing a single element.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">CustomDebugStringConvertible, CustomReflectable, MutableCollection, RandomAccessCollection</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Index = Int</code><div class="comment"><p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that's not valid for use as a subscript
+argument.</p>
+</div></div><div class="declaration"><code class="language-swift">public typealias Indices = Range&lt;Int></code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias SubSequence = Slice&lt;CollectionOfOne&lt;Element>></code><div class="comment"><p>This associated type appears as a requirement in the <code>Sequence</code>
+protocol, but it is restated here with stricter constraints. In a
+collection, the subsequence should also conform to <code>Collection</code>.</p>
+</div></div></td></tr><tr><th>Nested Types</th><td><code class="nested">CollectionOfOne.Iterator</code></td></tr></table><div class="discussion comment"><p>You can use a <code>CollectionOfOne</code> instance when you need to efficiently
+represent a single value as a collection. For example, you can add a
+single element to an array by using a <code>CollectionOfOne</code> instance with the
+concatenation operator (<code>+</code>):</p>
+<pre><code class="language-swift">let a = [1, 2, 3, 4]
+let toAdd = 100
+let b = a + CollectionOfOne(toAdd)
+// b == [1, 2, 3, 4, 100]
+</code></pre>
+</div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an instance containing just the given element.</p>
+<ul>
+<li>Parameter element: The element to store in the collection.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(_ element: Element)</code></div></div><h3>Instance Variables</h3><div id="count-e2942a04780e223b215eb8b663cf5353" class="declaration"><a class="toggle-link" href="#comment-count-e2942a04780e223b215eb8b663cf5353">var count</a> <span class="required">Required</span><div class="comment collapse in" id="comment-count-e2942a04780e223b215eb8b663cf5353"><p>The number of elements in the collection, which is always one.</p>
+<h4>Declaration</h4><code class="language-swift">var count: Int</code></div></div><div id="customMirror-c4bea5adb1649887b1a7e9972736e2a9" class="declaration"><a class="toggle-link" href="#comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9">var customMirror</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9"><p>The custom mirror for this instance.</p>
+<p>If this type has value semantics, the mirror should be unaffected by
+subsequent mutations of the instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customMirror: Mirror</code></div></div><div id="debugDescription-15dc1a07010ea28e38b1f4d74663fe11" class="declaration"><a class="toggle-link" href="#comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11">var debugDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11"><p>A textual representation of the collection, suitable for debugging.</p>
+<h4>Declaration</h4><code class="language-swift">var debugDescription: String</code></div></div><div id="endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e" class="declaration"><a class="toggle-link" href="#comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e">var endIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e"><p>The &quot;past the end&quot; position---that is, the position one greater than the
+last valid subscript argument.</p>
+<p>In a <code>CollectionOfOne</code> instance, <code>endIndex</code> is always <code>1</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var endIndex: CollectionOfOne&lt;Element>.Index</code></div></div><div id="startIndex-04d77ddd9c9389cc56939726d3da8089" class="declaration"><a class="toggle-link" href="#comment-startIndex-04d77ddd9c9389cc56939726d3da8089">var startIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-startIndex-04d77ddd9c9389cc56939726d3da8089"><p>The position of the first element.</p>
+<p>In a <code>CollectionOfOne</code> instance, <code>startIndex</code> is always <code>0</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var startIndex: CollectionOfOne&lt;Element>.Index</code></div></div><h3>Subscripts</h3><div id="subscript_bounds-788086fb8ff4edc0aa2bd3c41f362493" class="declaration"><a class="toggle-link" href="#comment-subscript_bounds-788086fb8ff4edc0aa2bd3c41f362493">subscript subscript(bounds:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_bounds-788086fb8ff4edc0aa2bd3c41f362493"><p>Accesses a contiguous subrange of the collection's elements.</p>
+<p>The accessed slice uses the same indices for the same elements as the
+original collection. Always use the slice's <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.firstIndex(of: &quot;Evarts&quot;)    // 4
+streets[index!] = &quot;Eustace&quot;
+print(streets[index!])
+// Prints &quot;Eustace&quot;
+</code></pre>
+<ul>
+<li>Parameter bounds: A range of the collection's indices. The bounds of
+the range must be valid indices of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(bounds: Range&lt;Self.Index>) -> Slice&lt;Self></code></div></div><div id="subscript_bounds-788086fb8ff4edc0aa2bd3c41f362493" class="declaration"><a class="toggle-link" href="#comment-subscript_bounds-788086fb8ff4edc0aa2bd3c41f362493">subscript subscript(bounds:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_bounds-788086fb8ff4edc0aa2bd3c41f362493"><p>Accesses a contiguous subrange of the collection's elements.</p>
+<p>The accessed slice uses the same indices for the same elements as the
+original collection uses. Always use the slice's <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.firstIndex(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// Prints &quot;Evarts&quot;
+</code></pre>
+<ul>
+<li>Parameter bounds: A range of the collection's indices. The bounds of
+the range must be valid indices of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(bounds: Range&lt;Int>) -> CollectionOfOne&lt;Element>.SubSequence</code></div></div><div id="subscript_position-b5586bf26309c2c713b44ec1088f3a50" class="declaration"><a class="toggle-link" href="#comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50">subscript subscript(position:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50"><p>Accesses the element at the specified position.</p>
+<ul>
+<li>Parameter position: The position of the element to access. The only
+valid position in a <code>CollectionOfOne</code> instance is <code>0</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(position: Int) -> Element</code></div></div><div id="subscript_r-466c73e996c8d896f1c6a25f9add8052" class="declaration"><a class="toggle-link" href="#comment-subscript_r-466c73e996c8d896f1c6a25f9add8052">subscript subscript(r:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_r-466c73e996c8d896f1c6a25f9add8052"><h4>Declaration</h4><code class="language-swift">@inlinable public subscript&lt;R>(r: R) where R: RangeExpression, Self.Index == R.Bound -> Self.SubSequence</code></div></div><div id="subscript_x-1b251887405ca8ce324c4bcc9f09a96e" class="declaration"><a class="toggle-link" href="#comment-subscript_x-1b251887405ca8ce324c4bcc9f09a96e">subscript subscript(x:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_x-1b251887405ca8ce324c4bcc9f09a96e"><h4>Declaration</h4><code class="language-swift">@inlinable public subscript(x: (UnboundedRange_) -> ()) -> Self.SubSequence</code></div></div><h3>Instance Methods</h3><div id="index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130">func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130"><p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+<p>The following example obtains an index advanced four positions from an
+array's starting index and then prints the element at that position. The
+operation doesn't require going beyond the limiting <code>numbers.endIndex</code>
+value, so it succeeds.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+let i = numbers.index(numbers.startIndex, offsetBy: 4)
+print(numbers[i])
+// Prints &quot;50&quot;
+</code></pre>
+<p>The next example attempts to retrieve an index ten positions from
+<code>numbers.startIndex</code>, but fails, because that distance is beyond the
+index passed as <code>limit</code>.</p>
+<pre><code class="language-swift">let j = numbers.index(numbers.startIndex,
+                      offsetBy: 10,
+                      limitedBy: numbers.endIndex)
+print(j)
+// Prints &quot;nil&quot;
+</code></pre>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</code></div></div><div id="index_after-976478ce790c064a72519919a525cb29" class="declaration"><a class="toggle-link" href="#comment-index_after-976478ce790c064a72519919a525cb29">func index(after i: CollectionOfOne&lt;Element>.Index) -> CollectionOfOne&lt;Element>.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_after-976478ce790c064a72519919a525cb29"><p>Returns the position immediately after the given index.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be <code>0</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(after i: CollectionOfOne&lt;Element>.Index) -> CollectionOfOne&lt;Element>.Index</code></div></div><div id="index_before-ee7e993bbd939c71d46566c977277662" class="declaration"><a class="toggle-link" href="#comment-index_before-ee7e993bbd939c71d46566c977277662">func index(before i: CollectionOfOne&lt;Element>.Index) -> CollectionOfOne&lt;Element>.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_before-ee7e993bbd939c71d46566c977277662"><p>Returns the position immediately before the given index.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be <code>1</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(before i: CollectionOfOne&lt;Element>.Index) -> CollectionOfOne&lt;Element>.Index</code></div></div><div id="makeIterator-ad197585f06641cbd99e9aec657b11c0" class="declaration"><a class="toggle-link" href="#comment-makeIterator-ad197585f06641cbd99e9aec657b11c0">func makeIterator() -> CollectionOfOne&lt;Element>.Iterator</a> <span class="required">Required</span><div class="comment collapse in" id="comment-makeIterator-ad197585f06641cbd99e9aec657b11c0"><p>Returns an iterator over the elements of this collection.</p>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func makeIterator() -> CollectionOfOne&lt;Element>.Iterator</code></div></div><div id="partition_by-b2383dcbf1e2c7892fd6c675a92ca9e2" class="declaration"><a class="toggle-link" href="#comment-partition_by-b2383dcbf1e2c7892fd6c675a92ca9e2">func partition(by belongsInSecondPartition: (Self.Element) throws -> Bool) rethrows -> Self.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-partition_by-b2383dcbf1e2c7892fd6c675a92ca9e2"><p>Reorders the elements of the collection such that all the elements
+that match the given predicate are after all the elements that don't
+match.</p>
+<p>After partitioning a collection, there is a pivot index <code>p</code> where
+no element before <code>p</code> satisfies the <code>belongsInSecondPartition</code>
+predicate and every element at or after <code>p</code> satisfies
+<code>belongsInSecondPartition</code>.</p>
+<p>In the following example, an array of numbers is partitioned by a
+predicate that matches elements greater than 30.</p>
+<pre><code class="language-swift">var numbers = [30, 40, 20, 30, 30, 60, 10]
+let p = numbers.partition(by: { $0 &gt; 30 })
+// p == 5
+// numbers == [30, 10, 20, 30, 30, 60, 40]
+</code></pre>
+<p>The <code>numbers</code> array is now arranged in two partitions. The first
+partition, <code>numbers[..&lt;p]</code>, is made up of the elements that
+are not greater than 30. The second partition, <code>numbers[p...]</code>,
+is made up of the elements that <em>are</em> greater than 30.</p>
+<pre><code class="language-swift">let first = numbers[..&lt;p]
+// first == [30, 10, 20, 30, 30]
+let second = numbers[p...]
+// second == [60, 40]
+</code></pre>
+<ul>
+<li>Parameter belongsInSecondPartition: A predicate used to partition
+the collection. All elements satisfying this predicate are ordered
+after all elements not satisfying it.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func partition(by belongsInSecondPartition: (Self.Element) throws -> Bool) rethrows -> Self.Index</code></div></div><div id="swapAt-4f1c6f78bf62e718b43e8eae7cd088ea" class="declaration"><a class="toggle-link" href="#comment-swapAt-4f1c6f78bf62e718b43e8eae7cd088ea">func swapAt(_ i: Self.Index, _ j: Self.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-swapAt-4f1c6f78bf62e718b43e8eae7cd088ea"><p>Exchanges the values at the specified indices of the collection.</p>
+<p>Both parameters must be valid indices of the collection that are not
+equal to <code>endIndex</code>. Calling <code>swapAt(_:_:)</code> with the same index as both
+<code>i</code> and <code>j</code> has no effect.</p>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func swapAt(_ i: Self.Index, _ j: Self.Index)</code></div></div><div id="withContiguousMutableStorageIfAvailable-d1d5932d982e6a4ccdceabb496bf78e9" class="declaration"><a class="toggle-link" href="#comment-withContiguousMutableStorageIfAvailable-d1d5932d982e6a4ccdceabb496bf78e9">func withContiguousMutableStorageIfAvailable(_ body: (inout UnsafeMutableBufferPointer&lt;Self.Element>) throws -> R) rethrows -> R?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withContiguousMutableStorageIfAvailable-d1d5932d982e6a4ccdceabb496bf78e9"><p>Call <code>body(p)</code>, where <code>p</code> is a pointer to the collection's
+mutable contiguous storage.  If no such storage exists, it is
+first created.  If the collection does not support an internal
+representation in a form of mutable contiguous storage, <code>body</code> is not
+called and <code>nil</code> is returned.</p>
+<p>Often, the optimizer can eliminate bounds- and uniqueness-checks
+within an algorithm, but when that fails, invoking the
+same algorithm on <code>body</code>\ 's argument lets you trade safety for
+speed.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func withContiguousMutableStorageIfAvailable&lt;R>(_ body: (inout UnsafeMutableBufferPointer&lt;Self.Element>) throws -> R) rethrows -> R?</code></div></div>

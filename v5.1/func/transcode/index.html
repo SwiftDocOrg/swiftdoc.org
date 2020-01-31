@@ -1,0 +1,28 @@
+---
+layout: "default"
+title: "transcode"
+keywords: ""
+root: "/v5.1"
+description: "Swift documentation for 'transcode'"
+---
+
+<div class="intro-declaration"><code class="language-swift">func transcode(_:from:to:stoppingOnError:into:)(_ input: Input, from inputEncoding: InputEncoding.Type, to outputEncoding: OutputEncoding.Type, stoppingOnError stopOnError: Bool, into processCodeUnit: (OutputEncoding.CodeUnit) -> Void) -> Bool</code></div><div class="discussion comment"><p>Translates the given input from one Unicode encoding to another by calling
+the given closure.
+</p>
+<p>The following example transcodes the UTF-8 representation of the string
+<code>&quot;Fermata 𝄐&quot;</code> into UTF-32.</p>
+<pre><code class="language-swift">let fermata = &quot;Fermata 𝄐&quot;
+let bytes = fermata.utf8
+print(Array(bytes))
+// Prints &quot;[70, 101, 114, 109, 97, 116, 97, 32, 240, 157, 132, 144]&quot;
+
+var codeUnits: [UTF32.CodeUnit] = []
+let sink = { codeUnits.append($0) }
+transcode(bytes.makeIterator(), from: UTF8.self, to: UTF32.self,
+          stoppingOnError: false, into: sink)
+print(codeUnits)
+// Prints &quot;[70, 101, 114, 109, 97, 116, 97, 32, 119056]&quot;
+</code></pre>
+<p>The <code>sink</code> closure is called with each resulting UTF-32 code unit as the
+function iterates over its input.</p>
+</div>

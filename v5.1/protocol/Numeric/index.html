@@ -1,0 +1,93 @@
+---
+keywords: ""
+title: "Numeric"
+root: "/v5.1"
+description: "Swift documentation for 'Numeric'"
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Numeric</code></div><p>A type with values that support multiplication.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">AdditiveArithmetic, ExpressibleByIntegerLiteral</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">BinaryInteger, SignedNumeric</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype Magnitude</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>The <code>Numeric</code> protocol provides a suitable basis for arithmetic on
+scalar values, such as integers and floating-point numbers. You can write
+generic methods that operate on any numeric type in the standard library
+by using the <code>Numeric</code> protocol as a generic constraint.</p>
+<p>The following example extends <code>Sequence</code> with a method that returns an
+array with the sequence's values multiplied by two.</p>
+<pre><code class="language-swift">extension Sequence where Element: Numeric {
+    func doublingAll() -&gt; [Element] {
+        return map { $0 * 2 }
+    }
+}
+</code></pre>
+<p>With this extension, any sequence with elements that conform to <code>Numeric</code>
+has the <code>doublingAll()</code> method. For example, you can double the elements of
+an array of doubles or a range of integers:</p>
+<pre><code class="language-swift">let observations = [1.5, 2.0, 3.25, 4.875, 5.5]
+let doubledObservations = observations.doublingAll()
+// doubledObservations == [3.0, 4.0, 6.5, 9.75, 11.0]
+
+let integers = 0..&lt;8
+let doubledIntegers = integers.doublingAll()
+// doubledIntegers == [0, 2, 4, 6, 8, 10, 12, 14]
+</code></pre>
+<h3>Conforming to the Numeric Protocol</h3>
+<p>To add <code>Numeric</code> protocol conformance to your own custom type, implement
+the required initializer and operators, and provide a <code>magnitude</code> property
+using a type that can represent the magnitude of any value of your custom
+type.</p>
+</div><h3>Initializers</h3><div id="init_exactly-204302d00b556e1a402a579cd2a4f8b6" class="declaration"><a class="toggle-link" href="#comment-init_exactly-204302d00b556e1a402a579cd2a4f8b6">init init?(exactly:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_exactly-204302d00b556e1a402a579cd2a4f8b6"><p>Creates a new instance from the given integer, if it can be represented
+exactly.</p>
+<p>If the value passed as <code>source</code> is not representable exactly, the result
+is <code>nil</code>. In the following example, the constant <code>x</code> is successfully
+created from a value of <code>100</code>, while the attempt to initialize the
+constant <code>y</code> from <code>1_000</code> fails because the <code>Int8</code> type can represent
+<code>127</code> at maximum:</p>
+<pre><code class="language-swift">let x = Int8(exactly: 100)
+// x == Optional(100)
+let y = Int8(exactly: 1_000)
+// y == nil
+</code></pre>
+<ul>
+<li>Parameter source: A value to convert to this type.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init?&lt;T>(exactly source: T) where T: BinaryInteger</code></div></div><h3>Instance Variables</h3><div id="magnitude-28c3d8f4b7e312af5e0d6b59a50efd1c" class="declaration"><a class="toggle-link" href="#comment-magnitude-28c3d8f4b7e312af5e0d6b59a50efd1c">var magnitude</a> <span class="required">Required</span><div class="comment collapse in" id="comment-magnitude-28c3d8f4b7e312af5e0d6b59a50efd1c"><p>The magnitude of this value.</p>
+<p>For any numeric value <code>x</code>, <code>x.magnitude</code> is the absolute value of <code>x</code>.
+You can use the <code>magnitude</code> property in operations that are simpler to
+implement in terms of unsigned values, such as printing the value of an
+integer, which is just printing a '-' character in front of an absolute
+value.</p>
+<pre><code class="language-swift">let x = -200
+// x.magnitude == 200
+</code></pre>
+<p>The global <code>abs(_:)</code> function provides more familiar syntax when you need
+to find an absolute value. In addition, because <code>abs(_:)</code> always returns
+a value of the same type, even in a generic context, using the function
+instead of the <code>magnitude</code> property is encouraged.</p>
+<h4>Declaration</h4><code class="language-swift">var magnitude: Self.Magnitude</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-471d936295383220ce00ec7c8a571f42" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-471d936295383220ce00ec7c8a571f42">func *(lhs: Self, rhs: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-471d936295383220ce00ec7c8a571f42"><p>Multiplies two values and produces their product.</p>
+<p>The multiplication operator (<code>*</code>) calculates the product of its two
+arguments. For example:</p>
+<pre><code class="language-swift">2 * 3                   // 6
+100 * 21                // 2100
+-10 * 15                // -150
+3.5 * 2.25              // 7.875
+</code></pre>
+<p>You cannot use <code>*</code> with arguments of different types. To multiply values
+of different types, convert one of the values to the other value's type.</p>
+<pre><code class="language-swift">let x: Int8 = 21
+let y: Int = 1000000
+Int(x) * y              // 21000000
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">static func *(lhs: Self, rhs: Self) -> Self</code></div></div><div id="lhs_rhs-8a5fdcc6ae3e13bcb603f4e5929012eb" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-8a5fdcc6ae3e13bcb603f4e5929012eb">func *=(lhs: inout Self, rhs: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-8a5fdcc6ae3e13bcb603f4e5929012eb"><p>Multiplies two values and stores the result in the left-hand-side
+variable.</p>
+<h4>Declaration</h4><code class="language-swift">static func *=(lhs: inout Self, rhs: Self)</code></div></div><h3>Default Implementations</h3><div id="x-febe62f23e46f45bc0283bfe782a4bf8" class="declaration"><a class="toggle-link" href="#comment-x-febe62f23e46f45bc0283bfe782a4bf8">func +(x: Self) -> Self</a> <div class="comment collapse in" id="comment-x-febe62f23e46f45bc0283bfe782a4bf8"><p>Returns the given number unchanged.</p>
+<p>You can use the unary plus operator (<code>+</code>) to provide symmetry in your
+code for positive numbers when also using the unary minus operator.</p>
+<pre><code class="language-swift">let x = -21
+let y = +21
+// x == -21
+// y == 21
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">prefix public static func +(x: Self) -> Self</code></div></div><div id="lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb">func +=(lhs: inout Self, rhs: Self)</a> <div class="comment collapse in" id="comment-lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb"><p>Adds two values and stores the result in the left-hand-side variable.</p>
+<h4>Declaration</h4><code class="language-swift">public static func +=(lhs: inout Self, rhs: Self)</code></div></div><div id="lhs_rhs-265a6353740687d540f523762f8cf760" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-265a6353740687d540f523762f8cf760">func -=(lhs: inout Self, rhs: Self)</a> <div class="comment collapse in" id="comment-lhs_rhs-265a6353740687d540f523762f8cf760"><p>Subtracts the second value from the first and stores the difference in the
+left-hand-side variable.</p>
+<h4>Declaration</h4><code class="language-swift">public static func -=(lhs: inout Self, rhs: Self)</code></div></div>

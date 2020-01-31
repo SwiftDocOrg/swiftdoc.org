@@ -1,0 +1,65 @@
+---
+title: "CustomStringConvertible"
+layout: "default"
+root: "/v5.1"
+keywords: ""
+description: "Swift documentation for 'CustomStringConvertible'"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CustomStringConvertible</code></div><p>A type with a customized textual representation.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">AnyHashable, Array, ArraySlice, BinaryInteger, Bool, Character, ClosedRange, CodingKey, ContiguousArray, DefaultStringInterpolation, Dictionary, Double, Float, Float80, KeyValuePairs, LosslessStringConvertible, Mirror, Range, SIMD, Set, StaticString, String, String.UTF16View, String.UTF8View, String.UnicodeScalarView, Substring, Unicode.Scalar</code></td></tr></table><div class="discussion comment"><p>Types that conform to the <code>CustomStringConvertible</code> protocol can provide
+their own representation to be used when converting an instance to a
+string. The <code>String(describing:)</code> initializer is the preferred way to
+convert an instance of <em>any</em> type to a string. If the passed instance
+conforms to <code>CustomStringConvertible</code>, the <code>String(describing:)</code>
+initializer and the <code>print(_:)</code> function use the instance's custom
+<code>description</code> property.</p>
+<p>Accessing a type's <code>description</code> property directly or using
+<code>CustomStringConvertible</code> as a generic constraint is discouraged.</p>
+<h3>Conforming to the CustomStringConvertible Protocol</h3>
+<p>Add <code>CustomStringConvertible</code> conformance to your custom types by defining
+a <code>description</code> property.</p>
+<p>For example, this custom <code>Point</code> struct uses the default representation
+supplied by the standard library:</p>
+<pre><code class="language-swift">struct Point {
+    let x: Int, y: Int
+}
+
+let p = Point(x: 21, y: 30)
+print(p)
+// Prints &quot;Point(x: 21, y: 30)&quot;
+</code></pre>
+<p>After implementing the <code>description</code> property and declaring
+<code>CustomStringConvertible</code> conformance, the <code>Point</code> type provides its own
+custom representation.</p>
+<pre><code class="language-swift">extension Point: CustomStringConvertible {
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+print(p)
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+</div><h3>Instance Variables</h3><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <span class="required">Required</span><div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>A textual representation of this instance.</p>
+<p>Calling this property directly is discouraged. Instead, convert an
+instance of any type to a string by using the <code>String(describing:)</code>
+initializer. This initializer works with any type, and uses the custom
+<code>description</code> property for types that conform to
+<code>CustomStringConvertible</code>:</p>
+<pre><code class="language-swift">struct Point: CustomStringConvertible {
+    let x: Int, y: Int
+
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+let p = Point(x: 21, y: 30)
+let s = String(describing: p)
+print(s)
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<p>The conversion of <code>p</code> to a string in the assignment to <code>s</code> uses the
+<code>Point</code> type's <code>description</code> property.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div>

@@ -1,0 +1,103 @@
+---
+layout: "default"
+description: "Swift documentation for 'Hashable'"
+keywords: ""
+title: "Hashable"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Hashable</code></div><p>A type that can be hashed into a <code>Hasher</code> to produce an integer hash value.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Equatable</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">AnyHashable, AnyKeyPath, BinaryInteger, Bool, Character, CodingUserInfoKey, CollectionDifference.Index, Dictionary.Index, Double, Float, Float80, FloatingPoint, Int, Int16, Int32, Int64, Int8, ObjectIdentifier, OpaquePointer, SIMD, Set, Set.Index, String, String.Index, StringProtocol, UInt, UInt16, UInt32, UInt64, UInt8, Unicode.Scalar</code></td></tr></table><div class="discussion comment"><p>You can use any type that conforms to the <code>Hashable</code> protocol in a set or as
+a dictionary key. Many types in the standard library conform to <code>Hashable</code>:
+Strings, integers, floating-point and Boolean values, and even sets are
+hashable by default. Some other types, such as optionals, arrays and ranges
+automatically become hashable when their type arguments implement the same.</p>
+<p>Your own custom types can be hashable as well. When you define an
+enumeration without associated values, it gains <code>Hashable</code> conformance
+automatically, and you can add <code>Hashable</code> conformance to your other custom
+types by implementing the <code>hash(into:)</code> method. For structs whose stored
+properties are all <code>Hashable</code>, and for enum types that have all-<code>Hashable</code>
+associated values, the compiler is able to provide an implementation of
+<code>hash(into:)</code> automatically.</p>
+<p>Hashing a value means feeding its essential components into a hash function,
+represented by the <code>Hasher</code> type. Essential components are those that
+contribute to the type's implementation of <code>Equatable</code>. Two instances that
+are equal must feed the same values to <code>Hasher</code> in <code>hash(into:)</code>, in the
+same order.</p>
+<h3>Conforming to the Hashable Protocol</h3>
+<p>To use your own custom type in a set or as the key type of a dictionary,
+add <code>Hashable</code> conformance to your type. The <code>Hashable</code> protocol inherits
+from the <code>Equatable</code> protocol, so you must also satisfy that protocol's
+requirements.</p>
+<p>The compiler automatically synthesizes your custom type's <code>Hashable</code> and
+requirements when you declare <code>Hashable</code> conformance in the type's original
+declaration and your type meets these criteria:</p>
+<p>To customize your type's <code>Hashable</code> conformance, to adopt <code>Hashable</code> in a
+type that doesn't meet the criteria listed above, or to extend an existing
+type to conform to <code>Hashable</code>, implement the <code>hash(into:)</code> method in your
+custom type.</p>
+<p>In your <code>hash(into:)</code> implementation, call <code>combine(_:)</code> on the provided
+<code>Hasher</code> instance with the essential components of your type. To ensure
+that your type meets the semantic requirements of the <code>Hashable</code> and
+<code>Equatable</code> protocols, it's a good idea to also customize your type's
+<code>Equatable</code> conformance to match.</p>
+<p>As an example, consider a <code>GridPoint</code> type that describes a location in a
+grid of buttons. Here's the initial declaration of the <code>GridPoint</code> type:</p>
+<pre><code class="language-swift">/// A point in an x-y coordinate system.
+struct GridPoint {
+    var x: Int
+    var y: Int
+}
+</code></pre>
+<p>You'd like to create a set of the grid points where a user has already
+tapped. Because the <code>GridPoint</code> type is not hashable yet, it can't be used
+in a set. To add <code>Hashable</code> conformance, provide an <code>==</code> operator function
+and implement the <code>hash(into:)</code> method.</p>
+<pre><code class="language-swift">extension GridPoint: Hashable {
+    static func == (lhs: GridPoint, rhs: GridPoint) -&gt; Bool {
+        return lhs.x == rhs.x &amp;&amp; lhs.y == rhs.y
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(x)
+        hasher.combine(y)
+    }
+}
+</code></pre>
+<p>The <code>hash(into:)</code> method in this example feeds the grid point's <code>x</code> and <code>y</code>
+properties into the provided hasher. These properties are the same ones
+used to test for equality in the <code>==</code> operator function.</p>
+<p>Now that <code>GridPoint</code> conforms to the <code>Hashable</code> protocol, you can create a
+set of previously tapped grid points.</p>
+<pre><code class="language-swift">var tappedPoints: Set = [GridPoint(x: 2, y: 3), GridPoint(x: 4, y: 1)]
+let nextTap = GridPoint(x: 0, y: 1)
+if tappedPoints.contains(nextTap) {
+    print(&quot;Already tapped at (\(nextTap.x), \(nextTap.y)).&quot;)
+} else {
+    tappedPoints.insert(nextTap)
+    print(&quot;New tap detected at (\(nextTap.x), \(nextTap.y)).&quot;)
+}
+// Prints &quot;New tap detected at (0, 1).&quot;)
+</code></pre>
+</div><h3>Instance Variables</h3><div id="hashValue-491de0d7adc95987fe9b96f8ce8b5ed1" class="declaration"><a class="toggle-link" href="#comment-hashValue-491de0d7adc95987fe9b96f8ce8b5ed1">var hashValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hashValue-491de0d7adc95987fe9b96f8ce8b5ed1"><p>The hash value.</p>
+<p>Hash values are not guaranteed to be equal across different executions of
+your program. Do not save hash values to use during a future execution.</p>
+<blockquote>
+<p>Important:
+<code>hashValue</code> is deprecated as a <code>Hashable</code> requirement. To conform to <code>Hashable</code>, implement the <code>hash(into:)</code> requirement instead.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var hashValue: Int</code></div></div><h3>Instance Methods</h3><div id="hash_into-6d50cb3daa41162a12fb4542a687b393" class="declaration"><a class="toggle-link" href="#comment-hash_into-6d50cb3daa41162a12fb4542a687b393">func hash(into hasher: inout Hasher)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hash_into-6d50cb3daa41162a12fb4542a687b393"><p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+<p>Implement this method to conform to the <code>Hashable</code> protocol. The
+components used for hashing must be the same as the components compared
+in your type's <code>==</code> operator implementation. Call <code>hasher.combine(_:)</code>
+with each of these components.</p>
+<blockquote>
+<p>Important:
+Never call <code>finalize()</code> on <code>hasher</code>. Doing so may become a compile-time error in the future.</p>
+</blockquote>
+<ul>
+<li>Parameter hasher: The hasher to use when combining the components
+of this instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func hash(into hasher: inout Hasher)</code></div></div><h3>Default Implementations</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div>

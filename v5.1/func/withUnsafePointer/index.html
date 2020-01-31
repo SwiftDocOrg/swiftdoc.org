@@ -1,0 +1,23 @@
+---
+title: "withUnsafePointer"
+description: "Swift documentation for 'withUnsafePointer'"
+layout: "default"
+keywords: ""
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">func withUnsafePointer(to:_:)(to value: T, _ body: (UnsafePointer&lt;T>) throws -> Result) rethrows -> Result</code></div><div class="discussion comment"><p>Invokes the given closure with a pointer to the given argument.
+</p>
+<p>The <code>withUnsafePointer(to:_:)</code> function is useful for calling Objective-C
+APIs that take in parameters by const pointer.</p>
+<p>The pointer argument to <code>body</code> is valid only during the execution of
+<code>withUnsafePointer(to:_:)</code>. Do not store or return the pointer for later
+use.</p>
+</div><div class="intro-declaration"><code class="language-swift">func withUnsafePointer(to:_:)(to value: inout T, _ body: (UnsafePointer&lt;T>) throws -> Result) rethrows -> Result</code></div><div class="discussion comment"><p>Invokes the given closure with a pointer to the given argument.
+</p>
+<p>The <code>withUnsafePointer(to:_:)</code> function is useful for calling Objective-C
+APIs that take in parameters by const pointer.</p>
+<p>The pointer argument to <code>body</code> is valid only during the execution of
+<code>withUnsafePointer(to:_:)</code>. Do not store or return the pointer for later
+use.</p>
+</div>

@@ -1,0 +1,115 @@
+---
+root: "/v5.1"
+keywords: ""
+title: "Never"
+description: "Swift documentation for 'Never'"
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum Never</code></div><p>The return type of functions that do not return normally, that is, a type
+with no values.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Comparable</code></td></tr></table><div class="discussion comment"><p>Use <code>Never</code> as the return type when declaring a closure, function, or
+method that unconditionally throws an error, traps, or otherwise does
+not terminate.</p>
+<pre><code class="language-swift">func crashAndBurn() -&gt; Never {
+    fatalError(&quot;Something very, very bad happened&quot;)
+}
+</code></pre>
+</div><h3>Type Methods</h3><div id="maximum-f364ae2bc228ba8221fe0433f2c559c9" class="declaration"><a class="toggle-link" href="#comment-maximum-f364ae2bc228ba8221fe0433f2c559c9">func ...(maximum: Self) -> PartialRangeThrough&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-maximum-f364ae2bc228ba8221fe0433f2c559c9"><p>Returns a partial range up to, and including, its upper bound.</p>
+<p>Use the prefix closed range operator (prefix <code>...</code>) to create a partial
+range of any type that conforms to the <code>Comparable</code> protocol. This
+example creates a <code>PartialRangeThrough&lt;Double&gt;</code> instance that includes
+any value less than or equal to <code>5.0</code>.</p>
+<pre><code class="language-swift">let throughFive = ...5.0
+
+throughFive.contains(4.0)     // true
+throughFive.contains(5.0)     // true
+throughFive.contains(6.0)     // false
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the start of the collection up to, and
+including, the partial range's upper bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[...3])
+// Prints &quot;[10, 20, 30, 40]&quot;
+</code></pre>
+<ul>
+<li>Parameter maximum: The upper bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">prefix public static func ...(maximum: Self) -> PartialRangeThrough&lt;Self></code></div></div><div id="minimum-ad36ec6fc191696455d9a15f6a532bdf" class="declaration"><a class="toggle-link" href="#comment-minimum-ad36ec6fc191696455d9a15f6a532bdf">func ...(minimum: Self) -> PartialRangeFrom&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-minimum-ad36ec6fc191696455d9a15f6a532bdf"><p>Returns a partial range extending upward from a lower bound.</p>
+<p>Use the postfix range operator (postfix <code>...</code>) to create a partial range
+of any type that conforms to the <code>Comparable</code> protocol. This example
+creates a <code>PartialRangeFrom&lt;Double&gt;</code> instance that includes any value
+greater than or equal to <code>5.0</code>.</p>
+<pre><code class="language-swift">let atLeastFive = 5.0...
+
+atLeastFive.contains(4.0)     // false
+atLeastFive.contains(5.0)     // true
+atLeastFive.contains(6.0)     // true
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the partial range's lower bound up to the end
+of the collection.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[3...])
+// Prints &quot;[40, 50, 60, 70]&quot;
+</code></pre>
+<ul>
+<li>Parameter minimum: The lower bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">postfix public static func ...(minimum: Self) -> PartialRangeFrom&lt;Self></code></div></div><div id="minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed" class="declaration"><a class="toggle-link" href="#comment-minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed">func ...(minimum: Self, maximum: Self) -> ClosedRange&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed"><p>Returns a closed range that contains both of its bounds.</p>
+<p>Use the closed range operator (<code>...</code>) to create a closed range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>ClosedRange&lt;Character&gt;</code> from &quot;a&quot; up to, and including, &quot;z&quot;.</p>
+<pre><code class="language-swift">let lowercase = &quot;a&quot;...&quot;z&quot;
+print(lowercase.contains(&quot;z&quot;))
+// Prints &quot;true&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ...(minimum: Self, maximum: Self) -> ClosedRange&lt;Self></code></div></div><div id="maximum-af5142abac0dee4ee61f3e1db6af3f1c" class="declaration"><a class="toggle-link" href="#comment-maximum-af5142abac0dee4ee61f3e1db6af3f1c">func ..&lt;(maximum: Self) -> PartialRangeUpTo&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-maximum-af5142abac0dee4ee61f3e1db6af3f1c"><p>Returns a partial range up to, but not including, its upper bound.</p>
+<p>Use the prefix half-open range operator (prefix <code>..&lt;</code>) to create a
+partial range of any type that conforms to the <code>Comparable</code> protocol.
+This example creates a <code>PartialRangeUpTo&lt;Double&gt;</code> instance that includes
+any value less than <code>5.0</code>.</p>
+<pre><code class="language-swift">let upToFive = ..&lt;5.0
+
+upToFive.contains(3.14)       // true
+upToFive.contains(6.28)       // false
+upToFive.contains(5.0)        // false
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the start of the collection up to, but not
+including, the partial range's upper bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[..&lt;3])
+// Prints &quot;[10, 20, 30]&quot;
+</code></pre>
+<ul>
+<li>Parameter maximum: The upper bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">prefix public static func ..&lt;(maximum: Self) -> PartialRangeUpTo&lt;Self></code></div></div><div id="minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39" class="declaration"><a class="toggle-link" href="#comment-minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39">func ..&lt;(minimum: Self, maximum: Self) -> Range&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39"><p>Returns a half-open range that contains its lower bound but not its upper
+bound.</p>
+<p>Use the half-open range operator (<code>..&lt;</code>) to create a range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>Range&lt;Double&gt;</code> from zero up to, but not including, 5.0.</p>
+<pre><code class="language-swift">let lessThanFive = 0.0..&lt;5.0
+print(lessThanFive.contains(3.14))  // Prints &quot;true&quot;
+print(lessThanFive.contains(5.0))   // Prints &quot;false&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ..&lt;(minimum: Self, maximum: Self) -> Range&lt;Self></code></div></div><div id="lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f">func &lt;(lhs: Never, rhs: Never) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;(lhs: Never, rhs: Never) -> Bool</code></div></div><div id="lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92">func &lt;=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92"><p>Returns a Boolean value indicating whether the value of the first argument
+is less than or equal to that of the second argument.</p>
+<p>This is the default implementation of the less-than-or-equal-to
+operator (<code>&lt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func &lt;=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a00561663d495dd2668b929fde178932" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a00561663d495dd2668b929fde178932">func >(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a00561663d495dd2668b929fde178932"><p>Returns a Boolean value indicating whether the value of the first argument
+is greater than that of the second argument.</p>
+<p>This is the default implementation of the greater-than operator (<code>&gt;</code>) for
+any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func >(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a0e01127094d0eee401411c4b5eb8e60" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60">func >=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60"><p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func >=(lhs: Self, rhs: Self) -> Bool</code></div></div>

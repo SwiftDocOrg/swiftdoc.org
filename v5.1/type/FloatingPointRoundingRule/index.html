@@ -1,0 +1,101 @@
+---
+root: "/v5.1"
+title: "FloatingPointRoundingRule"
+keywords: ""
+layout: "default"
+description: "Swift documentation for 'FloatingPointRoundingRule'"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum FloatingPointRoundingRule</code></div><p>A rule for rounding a floating-point number.</p>
+<div class="discussion comment"></div><h3>Cases</h3><div id="awayFromZero-705ec9dead012ccdd6a9a7d0dad3d196" class="declaration"><a class="toggle-link" href="#comment-awayFromZero-705ec9dead012ccdd6a9a7d0dad3d196">case awayFromZero</a> <span class="required">Required</span><div class="comment collapse in" id="comment-awayFromZero-705ec9dead012ccdd6a9a7d0dad3d196"><p>Round to the closest allowed value whose magnitude is greater than or
+equal to that of the source.</p>
+<p>The following example shows the results of rounding numbers using this
+rule:</p>
+<pre><code class="language-swift">(5.2).rounded(.awayFromZero)
+// 6.0
+(5.5).rounded(.awayFromZero)
+// 6.0
+(-5.2).rounded(.awayFromZero)
+// -6.0
+(-5.5).rounded(.awayFromZero)
+// -6.0
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">case awayFromZero</code></div></div><div id="down-74e8333ad11685ff3bdae589c8f6e34d" class="declaration"><a class="toggle-link" href="#comment-down-74e8333ad11685ff3bdae589c8f6e34d">case down</a> <span class="required">Required</span><div class="comment collapse in" id="comment-down-74e8333ad11685ff3bdae589c8f6e34d"><p>Round to the closest allowed value that is less than or equal to the
+source.</p>
+<p>The following example shows the results of rounding numbers using this
+rule:</p>
+<pre><code class="language-swift">(5.2).rounded(.down)
+// 5.0
+(5.5).rounded(.down)
+// 5.0
+(-5.2).rounded(.down)
+// -6.0
+(-5.5).rounded(.down)
+// -6.0
+</code></pre>
+<p>This rule is equivalent to the C <code>floor</code> function and implements the
+<code>roundToIntegralTowardNegative</code> operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754
+specification</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case down</code></div></div><div id="toNearestOrAwayFromZero-2973d4021464a0d127e81d6a1af6e3dd" class="declaration"><a class="toggle-link" href="#comment-toNearestOrAwayFromZero-2973d4021464a0d127e81d6a1af6e3dd">case toNearestOrAwayFromZero</a> <span class="required">Required</span><div class="comment collapse in" id="comment-toNearestOrAwayFromZero-2973d4021464a0d127e81d6a1af6e3dd"><p>Round to the closest allowed value; if two values are equally close, the
+one with greater magnitude is chosen.</p>
+<p>This rounding rule is also known as &quot;schoolbook rounding.&quot; The following
+example shows the results of rounding numbers using this rule:</p>
+<pre><code class="language-swift">(5.2).rounded(.toNearestOrAwayFromZero)
+// 5.0
+(5.5).rounded(.toNearestOrAwayFromZero)
+// 6.0
+(-5.2).rounded(.toNearestOrAwayFromZero)
+// -5.0
+(-5.5).rounded(.toNearestOrAwayFromZero)
+// -6.0
+</code></pre>
+<p>This rule is equivalent to the C <code>round</code> function and implements the
+<code>roundToIntegralTiesToAway</code> operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754
+specification</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case toNearestOrAwayFromZero</code></div></div><div id="toNearestOrEven-7f42226b5e7782128a293cc48c6c522c" class="declaration"><a class="toggle-link" href="#comment-toNearestOrEven-7f42226b5e7782128a293cc48c6c522c">case toNearestOrEven</a> <span class="required">Required</span><div class="comment collapse in" id="comment-toNearestOrEven-7f42226b5e7782128a293cc48c6c522c"><p>Round to the closest allowed value; if two values are equally close, the
+even one is chosen.</p>
+<p>This rounding rule is also known as &quot;bankers rounding,&quot; and is the
+default IEEE 754 rounding mode for arithmetic. The following example
+shows the results of rounding numbers using this rule:</p>
+<pre><code class="language-swift">(5.2).rounded(.toNearestOrEven)
+// 5.0
+(5.5).rounded(.toNearestOrEven)
+// 6.0
+(4.5).rounded(.toNearestOrEven)
+// 4.0
+</code></pre>
+<p>This rule implements the <code>roundToIntegralTiesToEven</code> operation defined by
+the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754 specification</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case toNearestOrEven</code></div></div><div id="towardZero-417a8b89cad863187f518d2e91941877" class="declaration"><a class="toggle-link" href="#comment-towardZero-417a8b89cad863187f518d2e91941877">case towardZero</a> <span class="required">Required</span><div class="comment collapse in" id="comment-towardZero-417a8b89cad863187f518d2e91941877"><p>Round to the closest allowed value whose magnitude is less than or equal
+to that of the source.</p>
+<p>The following example shows the results of rounding numbers using this
+rule:</p>
+<pre><code class="language-swift">(5.2).rounded(.towardZero)
+// 5.0
+(5.5).rounded(.towardZero)
+// 5.0
+(-5.2).rounded(.towardZero)
+// -5.0
+(-5.5).rounded(.towardZero)
+// -5.0
+</code></pre>
+<p>This rule is equivalent to the C <code>trunc</code> function and implements the
+<code>roundToIntegralTowardZero</code> operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754
+specification</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case towardZero</code></div></div><div id="up-46c48bec0d282018b9d167eef7711b2c" class="declaration"><a class="toggle-link" href="#comment-up-46c48bec0d282018b9d167eef7711b2c">case up</a> <span class="required">Required</span><div class="comment collapse in" id="comment-up-46c48bec0d282018b9d167eef7711b2c"><p>Round to the closest allowed value that is greater than or equal to the
+source.</p>
+<p>The following example shows the results of rounding numbers using this
+rule:</p>
+<pre><code class="language-swift">(5.2).rounded(.up)
+// 6.0
+(5.5).rounded(.up)
+// 6.0
+(-5.2).rounded(.up)
+// -5.0
+(-5.5).rounded(.up)
+// -5.0
+</code></pre>
+<p>This rule is equivalent to the C <code>ceil</code> function and implements the
+<code>roundToIntegralTowardPositive</code> operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754
+specification</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case up</code></div></div>

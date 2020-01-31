@@ -1,0 +1,38 @@
+---
+root: "/v5.1"
+keywords: ""
+description: "Swift documentation for 'CaseIterable'"
+title: "CaseIterable"
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CaseIterable</code></div><p>A type that provides a collection of all of its values.</p>
+<table class="standard"><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype AllCases</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>Types that conform to the <code>CaseIterable</code> protocol are typically
+enumerations without associated values. When using a <code>CaseIterable</code> type,
+you can access a collection of all of the type's cases by using the type's
+<code>allCases</code> property.</p>
+<p>For example, the <code>CompassDirection</code> enumeration declared in this example
+conforms to <code>CaseIterable</code>. You access the number of cases and the cases
+themselves through <code>CompassDirection.allCases</code>.</p>
+<pre><code class="language-swift">enum CompassDirection: CaseIterable {
+    case north, south, east, west
+}
+
+print(&quot;There are \(CompassDirection.allCases.count) directions.&quot;)
+// Prints &quot;There are 4 directions.&quot;
+let caseList = CompassDirection.allCases
+                               .map({ &quot;\($0)&quot; })
+                               .joined(separator: &quot;, &quot;)
+// caseList == &quot;north, south, east, west&quot;
+</code></pre>
+<h3>Conforming to the CaseIterable Protocol</h3>
+<p>The compiler can automatically provide an implementation of the
+<code>CaseIterable</code> requirements for any enumeration without associated values
+or <code>@available</code> attributes on its cases. The synthesized <code>allCases</code>
+collection provides the cases in order of their declaration.</p>
+<p>You can take advantage of this compiler support when defining your own
+custom enumeration by declaring conformance to <code>CaseIterable</code> in the
+enumeration's original declaration. The <code>CompassDirection</code> example above
+demonstrates this automatic implementation.</p>
+</div><h3>Type Variables</h3><div id="allCases-e62eaf4f7f040abf65e3f8c7867ef695" class="declaration"><a class="toggle-link" href="#comment-allCases-e62eaf4f7f040abf65e3f8c7867ef695">var allCases</a> <span class="required">Required</span><div class="comment collapse in" id="comment-allCases-e62eaf4f7f040abf65e3f8c7867ef695"><p>A collection of all values of this type.</p>
+<h4>Declaration</h4><code class="language-swift">var allCases: Self.AllCases</code></div></div>

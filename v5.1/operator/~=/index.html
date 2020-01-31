@@ -1,0 +1,53 @@
+---
+title: "~="
+description: "Swift documentation for '~='"
+root: "/v5.1"
+layout: "default"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">func ~=(a:b:)(a: T, b: T) -> Bool</code></div><div class="discussion comment"><p>Returns a Boolean value indicating whether two arguments match by value
+equality.
+</p>
+<p>The pattern-matching operator (<code>~=</code>) is used internally in <code>case</code>
+statements for pattern matching. When you match against an <code>Equatable</code>
+value in a <code>case</code> statement, this operator is called behind the scenes.</p>
+<pre><code class="language-swift">let weekday = 3
+let lunch: String
+switch weekday {
+case 3:
+    lunch = &quot;Taco Tuesday!&quot;
+default:
+    lunch = &quot;Pizza again.&quot;
+}
+// lunch == &quot;Taco Tuesday!&quot;
+</code></pre>
+<p>In this example, the <code>case 3</code> expression uses this pattern-matching
+operator to test whether <code>weekday</code> is equal to the value <code>3</code>.</p>
+<blockquote>
+<p>Note:
+In most cases, you should use the equal-to operator (<code>==</code>) to test whether two instances are equal. The pattern-matching operator is primarily intended to enable <code>case</code> statement pattern matching.</p>
+</blockquote>
+</div><div class="intro-declaration"><code class="language-swift">func ~=(a:b:)(a: T, b: T) -> Bool</code></div><div class="discussion comment"><p>Returns a Boolean value indicating whether two arguments match by value
+equality.
+</p>
+<p>The pattern-matching operator (<code>~=</code>) is used internally in <code>case</code>
+statements for pattern matching. When you match against an <code>Equatable</code>
+value in a <code>case</code> statement, this operator is called behind the scenes.</p>
+<pre><code class="language-swift">let weekday = 3
+let lunch: String
+switch weekday {
+case 3:
+    lunch = &quot;Taco Tuesday!&quot;
+default:
+    lunch = &quot;Pizza again.&quot;
+}
+// lunch == &quot;Taco Tuesday!&quot;
+</code></pre>
+<p>In this example, the <code>case 3</code> expression uses this pattern-matching
+operator to test whether <code>weekday</code> is equal to the value <code>3</code>.</p>
+<blockquote>
+<p>Note:
+In most cases, you should use the equal-to operator (<code>==</code>) to test whether two instances are equal. The pattern-matching operator is primarily intended to enable <code>case</code> statement pattern matching.</p>
+</blockquote>
+</div>

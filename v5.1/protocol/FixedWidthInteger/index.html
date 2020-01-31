@@ -1,0 +1,459 @@
+---
+title: "FixedWidthInteger"
+layout: "default"
+description: "Swift documentation for 'FixedWidthInteger'"
+keywords: ""
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol FixedWidthInteger</code></div><p>An integer type that uses a fixed size for every instance.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">BinaryInteger, LosslessStringConvertible</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">Int, Int16, Int32, Int64, Int8, UInt, UInt16, UInt32, UInt64, UInt8</code></td></tr></table><div class="discussion comment"><p>The <code>FixedWidthInteger</code> protocol adds binary bitwise operations, bit
+shifts, and overflow handling to the operations supported by the
+<code>BinaryInteger</code> protocol.</p>
+<p>Use the <code>FixedWidthInteger</code> protocol as a constraint or extension point
+when writing operations that depend on bit shifting, performing bitwise
+operations, catching overflows, or having access to the maximum or minimum
+representable value of a type. For example, the following code provides a
+<code>binaryString</code> property on every fixed-width integer that represents the
+number's binary representation, split into 8-bit chunks.</p>
+<pre><code class="language-swift">extension FixedWidthInteger {
+    var binaryString: String {
+        var result: [String] = []
+        for i in 0..&lt;(Self.bitWidth / 8) {
+            let byte = UInt8(truncatingIfNeeded: self &gt;&gt; (i * 8))
+            let byteString = String(byte, radix: 2)
+            let padding = String(repeating: &quot;0&quot;,
+                                 count: 8 - byteString.count)
+            result.append(padding + byteString)
+        }
+        return &quot;0b&quot; + result.reversed().joined(separator: &quot;_&quot;)
+    }
+}
+
+print(Int16.max.binaryString)
+// Prints &quot;0b01111111_11111111&quot;
+print((101 as UInt8).binaryString)
+// Prints &quot;0b11001001&quot;
+</code></pre>
+<p>The <code>binaryString</code> implementation uses the static <code>bitWidth</code> property and
+the right shift operator (<code>&gt;&gt;</code>), both of which are available to any type
+that conforms to the <code>FixedWidthInteger</code> protocol.</p>
+<p>The next example declares a generic <code>squared</code> function, which accepts an
+instance <code>x</code> of any fixed-width integer type. The function uses the
+<code>multipliedReportingOverflow(by:)</code> method to multiply <code>x</code> by itself and
+check whether the result is too large to represent in the same type.</p>
+<pre><code class="language-swift">func squared&lt;T: FixedWidthInteger&gt;(_ x: T) -&gt; T? {
+    let (result, overflow) = x.multipliedReportingOverflow(by: x)
+    if overflow {
+        return nil
+    }
+    return result
+}
+
+let (x, y): (Int8, Int8) = (9, 123)
+print(squared(x))
+// Prints &quot;Optional(81)&quot;
+print(squared(y))
+// Prints &quot;nil&quot;
+</code></pre>
+<h3>Conforming to the FixedWidthInteger Protocol</h3>
+<p>To make your own custom type conform to the <code>FixedWidthInteger</code> protocol,
+declare the required initializers, properties, and methods. The required
+methods that are suffixed with <code>ReportingOverflow</code> serve as the
+customization points for arithmetic operations. When you provide just those
+methods, the standard library provides default implementations for all
+other arithmetic methods and operators.</p>
+</div><h3>Initializers</h3><div id="init_bigEndian-20aaf886759cdf680f92bf259ac97414" class="declaration"><a class="toggle-link" href="#comment-init_bigEndian-20aaf886759cdf680f92bf259ac97414">init init(bigEndian:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_bigEndian-20aaf886759cdf680f92bf259ac97414"><p>Creates an integer from its big-endian representation, changing the byte
+order if necessary.</p>
+<ul>
+<li>Parameter value: A value to use as the big-endian representation of the
+new integer.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init(bigEndian value: Self)</code></div></div><div id="init_littleEndian-a376d3a27e128156b820776acb66fe09" class="declaration"><a class="toggle-link" href="#comment-init_littleEndian-a376d3a27e128156b820776acb66fe09">init init(littleEndian:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_littleEndian-a376d3a27e128156b820776acb66fe09"><p>Creates an integer from its little-endian representation, changing the
+byte order if necessary.</p>
+<ul>
+<li>Parameter value: A value to use as the little-endian representation of
+the new integer.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init(littleEndian value: Self)</code></div></div><h3>Instance Variables</h3><div id="bigEndian-166ce9f503b168215d0bd9548513f29a" class="declaration"><a class="toggle-link" href="#comment-bigEndian-166ce9f503b168215d0bd9548513f29a">var bigEndian</a> <span class="required">Required</span><div class="comment collapse in" id="comment-bigEndian-166ce9f503b168215d0bd9548513f29a"><p>The big-endian representation of this integer.</p>
+<p>If necessary, the byte order of this value is reversed from the typical
+byte order of this integer type. On a big-endian platform, for any
+integer <code>x</code>, <code>x == x.bigEndian</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var bigEndian: Self</code></div></div><div id="byteSwapped-aa4069a0861b74f6fd880779d9e239b0" class="declaration"><a class="toggle-link" href="#comment-byteSwapped-aa4069a0861b74f6fd880779d9e239b0">var byteSwapped</a> <span class="required">Required</span><div class="comment collapse in" id="comment-byteSwapped-aa4069a0861b74f6fd880779d9e239b0"><p>A representation of this integer with the byte order swapped.</p>
+<h4>Declaration</h4><code class="language-swift">var byteSwapped: Self</code></div></div><div id="leadingZeroBitCount-1ba0bdbffd903c0a582a7b35faa1c561" class="declaration"><a class="toggle-link" href="#comment-leadingZeroBitCount-1ba0bdbffd903c0a582a7b35faa1c561">var leadingZeroBitCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-leadingZeroBitCount-1ba0bdbffd903c0a582a7b35faa1c561"><p>The number of leading zeros in this value's binary representation.</p>
+<p>For example, in a fixed-width integer type with a <code>bitWidth</code> value of 8,
+the number <em>31</em> has three leading zeros.</p>
+<pre><code class="language-swift">let x: Int8 = 0b0001_1111
+// x == 31
+// x.leadingZeroBitCount == 3
+</code></pre>
+<p>If the value is zero, then <code>leadingZeroBitCount</code> is equal to <code>bitWidth</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var leadingZeroBitCount: Int</code></div></div><div id="littleEndian-f8b66bd062e4698c1ccf076c456b6542" class="declaration"><a class="toggle-link" href="#comment-littleEndian-f8b66bd062e4698c1ccf076c456b6542">var littleEndian</a> <span class="required">Required</span><div class="comment collapse in" id="comment-littleEndian-f8b66bd062e4698c1ccf076c456b6542"><p>The little-endian representation of this integer.</p>
+<p>If necessary, the byte order of this value is reversed from the typical
+byte order of this integer type. On a little-endian platform, for any
+integer <code>x</code>, <code>x == x.littleEndian</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var littleEndian: Self</code></div></div><div id="nonzeroBitCount-e8f783eb48572d74b4eb1d1764ec0e2f" class="declaration"><a class="toggle-link" href="#comment-nonzeroBitCount-e8f783eb48572d74b4eb1d1764ec0e2f">var nonzeroBitCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-nonzeroBitCount-e8f783eb48572d74b4eb1d1764ec0e2f"><p>The number of bits equal to 1 in this value's binary representation.</p>
+<p>For example, in a fixed-width integer type with a <code>bitWidth</code> value of 8,
+the number <em>31</em> has five bits equal to <em>1</em>.</p>
+<pre><code class="language-swift">let x: Int8 = 0b0001_1111
+// x == 31
+// x.nonzeroBitCount == 5
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var nonzeroBitCount: Int</code></div></div><h3>Instance Methods</h3><div id="addingReportingOverflow-f0d7d825ba521a3b08987d8b2e795383" class="declaration"><a class="toggle-link" href="#comment-addingReportingOverflow-f0d7d825ba521a3b08987d8b2e795383">func addingReportingOverflow(_ rhs: Self) -> (partialValue: Self, overflow: Bool)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-addingReportingOverflow-f0d7d825ba521a3b08987d8b2e795383"><p>Returns the sum of this value and the given value, along with a Boolean
+value indicating whether overflow occurred in the operation.</p>
+<ul>
+<li>Parameter rhs: The value to add to this value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func addingReportingOverflow(_ rhs: Self) -> (partialValue: Self, overflow: Bool)</code></div></div><div id="dividedReportingOverflow_by-683dd6cad9efc00dd430203bb4888a41" class="declaration"><a class="toggle-link" href="#comment-dividedReportingOverflow_by-683dd6cad9efc00dd430203bb4888a41">func dividedReportingOverflow(by rhs: Self) -> (partialValue: Self, overflow: Bool)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dividedReportingOverflow_by-683dd6cad9efc00dd430203bb4888a41"><p>Returns the quotient obtained by dividing this value by the given value,
+along with a Boolean value indicating whether overflow occurred in the
+operation.</p>
+<p>Dividing by zero is not an error when using this method. For a value <code>x</code>,
+the result of <code>x.dividedReportingOverflow(by: 0)</code> is <code>(x, true)</code>.</p>
+<ul>
+<li>Parameter rhs: The value to divide this value by.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func dividedReportingOverflow(by rhs: Self) -> (partialValue: Self, overflow: Bool)</code></div></div><div id="dividingFullWidth-1d324e900654bc5b9efb19031e72a45e" class="declaration"><a class="toggle-link" href="#comment-dividingFullWidth-1d324e900654bc5b9efb19031e72a45e">func dividingFullWidth(_ dividend: (high: Self, low: Self.Magnitude)) -> (quotient: Self, remainder: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dividingFullWidth-1d324e900654bc5b9efb19031e72a45e"><p>Returns a tuple containing the quotient and remainder obtained by dividing
+the given value by this value.</p>
+<p>The resulting quotient must be representable within the bounds of the
+type. If the quotient is too large to represent in the type, a runtime
+error may occur.</p>
+<p>The following example divides a value that is too large to be represented
+using a single <code>Int</code> instance by another <code>Int</code> value. Because the quotient
+is representable as an <code>Int</code>, the division succeeds.</p>
+<pre><code class="language-swift">// 'dividend' represents the value 0x506f70652053616e74612049494949
+let dividend = (22640526660490081, 7959093232766896457 as UInt)
+let divisor = 2241543570477705381
+
+let (quotient, remainder) = divisor.dividingFullWidth(dividend)
+// quotient == 186319822866995413
+// remainder == 0
+</code></pre>
+<ul>
+<li>Parameter dividend: A tuple containing the high and low parts of a
+double-width integer.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func dividingFullWidth(_ dividend: (high: Self, low: Self.Magnitude)) -> (quotient: Self, remainder: Self)</code></div></div><div id="multipliedFullWidth_by-4d4f16f12e2598b55c55a07a7da29fe2" class="declaration"><a class="toggle-link" href="#comment-multipliedFullWidth_by-4d4f16f12e2598b55c55a07a7da29fe2">func multipliedFullWidth(by other: Self) -> (high: Self, low: Self.Magnitude)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-multipliedFullWidth_by-4d4f16f12e2598b55c55a07a7da29fe2"><p>Returns a tuple containing the high and low parts of the result of
+multiplying this value by the given value.</p>
+<p>Use this method to calculate the full result of a product that would
+otherwise overflow. Unlike traditional truncating multiplication, the
+<code>multipliedFullWidth(by:)</code> method returns a tuple containing both the
+<code>high</code> and <code>low</code> parts of the product of this value and <code>other</code>. The
+following example uses this method to multiply two <code>Int8</code> values that
+normally overflow when multiplied:</p>
+<pre><code class="language-swift">let x: Int8 = 48
+let y: Int8 = -40
+let result = x.multipliedFullWidth(by: y)
+// result.high == -8
+// result.low  == 128
+</code></pre>
+<p>The product of <code>x</code> and <code>y</code> is <code>-1920</code>, which is too large to represent in
+an <code>Int8</code> instance. The <code>high</code> and <code>low</code> compnents of the <code>result</code> value
+represent <code>-1920</code> when concatenated to form a double-width integer; that
+is, using <code>result.high</code> as the high byte and <code>result.low</code> as the low byte
+of an <code>Int16</code> instance.</p>
+<pre><code class="language-swift">let z = Int16(result.high) &lt;&lt; 8 | Int16(result.low)
+// z == -1920
+</code></pre>
+<ul>
+<li>Parameter other: The value to multiply this value by.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func multipliedFullWidth(by other: Self) -> (high: Self, low: Self.Magnitude)</code></div></div><div id="multipliedReportingOverflow_by-22bc71910ac066f1bb6d73dbaa1da7f6" class="declaration"><a class="toggle-link" href="#comment-multipliedReportingOverflow_by-22bc71910ac066f1bb6d73dbaa1da7f6">func multipliedReportingOverflow(by rhs: Self) -> (partialValue: Self, overflow: Bool)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-multipliedReportingOverflow_by-22bc71910ac066f1bb6d73dbaa1da7f6"><p>Returns the product of this value and the given value, along with a
+Boolean value indicating whether overflow occurred in the operation.</p>
+<ul>
+<li>Parameter rhs: The value to multiply by this value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func multipliedReportingOverflow(by rhs: Self) -> (partialValue: Self, overflow: Bool)</code></div></div><div id="remainderReportingOverflow_dividingBy-327472ee0ff66d6f8990038fb52bd965" class="declaration"><a class="toggle-link" href="#comment-remainderReportingOverflow_dividingBy-327472ee0ff66d6f8990038fb52bd965">func remainderReportingOverflow(dividingBy rhs: Self) -> (partialValue: Self, overflow: Bool)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-remainderReportingOverflow_dividingBy-327472ee0ff66d6f8990038fb52bd965"><p>Returns the remainder after dividing this value by the given value, along
+with a Boolean value indicating whether overflow occurred during division.</p>
+<p>Dividing by zero is not an error when using this method. For a value <code>x</code>,
+the result of <code>x.remainderReportingOverflow(dividingBy: 0)</code> is
+<code>(x, true)</code>.</p>
+<ul>
+<li>Parameter rhs: The value to divide this value by.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func remainderReportingOverflow(dividingBy rhs: Self) -> (partialValue: Self, overflow: Bool)</code></div></div><div id="subtractingReportingOverflow-65d53123a87e02980b43b2de35e216e7" class="declaration"><a class="toggle-link" href="#comment-subtractingReportingOverflow-65d53123a87e02980b43b2de35e216e7">func subtractingReportingOverflow(_ rhs: Self) -> (partialValue: Self, overflow: Bool)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subtractingReportingOverflow-65d53123a87e02980b43b2de35e216e7"><p>Returns the difference obtained by subtracting the given value from this
+value, along with a Boolean value indicating whether overflow occurred in
+the operation.</p>
+<ul>
+<li>Parameter rhs: The value to subtract from this value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func subtractingReportingOverflow(_ rhs: Self) -> (partialValue: Self, overflow: Bool)</code></div></div><h3>Type Variables</h3><div id="bitWidth-7ca3c2412b2ba21ed2344f4b472f9347" class="declaration"><a class="toggle-link" href="#comment-bitWidth-7ca3c2412b2ba21ed2344f4b472f9347">var bitWidth</a> <span class="required">Required</span><div class="comment collapse in" id="comment-bitWidth-7ca3c2412b2ba21ed2344f4b472f9347"><p>The number of bits used for the underlying binary representation of
+values of this type.</p>
+<p>An unsigned, fixed-width integer type can represent values from 0 through
+<code>(2 ** bitWidth) - 1</code>, where <code>**</code> is exponentiation. A signed,
+fixed-width integer type can represent values from
+<code>-(2 ** (bitWidth - 1))</code> through <code>(2 ** (bitWidth - 1)) - 1</code>. For example,
+the <code>Int8</code> type has a <code>bitWidth</code> value of 8 and can store any integer in
+the range <code>-128...127</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var bitWidth: Int</code></div></div><div id="max-2ffe4e77325d9a7152f7086ea7aa5114" class="declaration"><a class="toggle-link" href="#comment-max-2ffe4e77325d9a7152f7086ea7aa5114">var max</a> <span class="required">Required</span><div class="comment collapse in" id="comment-max-2ffe4e77325d9a7152f7086ea7aa5114"><p>The maximum representable integer in this type.</p>
+<p>For unsigned integer types, this value is <code>(2 ** bitWidth) - 1</code>, where
+<code>**</code> is exponentiation. For signed integer types, this value is
+<code>(2 ** (bitWidth - 1)) - 1</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var max: Self</code></div></div><div id="min-d8bd79cc131920d5de426f914d17405a" class="declaration"><a class="toggle-link" href="#comment-min-d8bd79cc131920d5de426f914d17405a">var min</a> <span class="required">Required</span><div class="comment collapse in" id="comment-min-d8bd79cc131920d5de426f914d17405a"><p>The minimum representable integer in this type.</p>
+<p>For unsigned integer types, this value is always <code>0</code>. For signed integer
+types, this value is <code>-(2 ** (bitWidth - 1))</code>, where <code>**</code> is
+exponentiation.</p>
+<h4>Declaration</h4><code class="language-swift">var min: Self</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-ab0857b5da3983a56b05a0dadb0a089e" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-ab0857b5da3983a56b05a0dadb0a089e">func &amp;&lt;&lt;(lhs: Self, rhs: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-ab0857b5da3983a56b05a0dadb0a089e"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the left, masking the shift amount to the
+type's bit width.</p>
+<p>Use the masking left shift operator (<code>&amp;&lt;&lt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking left shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&lt;&lt; 2
+// y == 120                       // 0b01111000
+</code></pre>
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+<pre><code class="language-swift">let z = x &amp;&lt;&lt; 8
+// z == 30                        // 0b00011110
+</code></pre>
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+<h4>Declaration</h4><code class="language-swift">static func &amp;&lt;&lt;(lhs: Self, rhs: Self) -> Self</code></div></div><div id="lhs_rhs-eaac6a93118a75870df4445e545b0161" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-eaac6a93118a75870df4445e545b0161">func &amp;&lt;&lt;=(lhs: inout Self, rhs: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-eaac6a93118a75870df4445e545b0161"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the left, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.</p>
+<p>The <code>&amp;&lt;&lt;=</code> operator performs a <em>masking shift</em>, where the value used as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&lt;&lt;= 2
+// x == 120                       // 0b01111000
+</code></pre>
+<p>However, if you pass <code>19</code> as <code>rhs</code>, the method first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&lt;&lt;= 19
+// y == 240                       // 0b11110000
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">static func &amp;&lt;&lt;=(lhs: inout Self, rhs: Self)</code></div></div><div id="lhs_rhs-0e7fea1a22e5e436fc50aeb0bd9eef22" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-0e7fea1a22e5e436fc50aeb0bd9eef22">func &amp;>>(lhs: Self, rhs: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-0e7fea1a22e5e436fc50aeb0bd9eef22"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width.</p>
+<p>Use the masking right shift operator (<code>&amp;&gt;&gt;</code>) when you need to perform a
+shift and are sure that the shift amount is in the range
+<code>0..&lt;lhs.bitWidth</code>. Before shifting, the masking right shift operator
+masks the shift to this range. The shift is performed using this masked
+value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &amp;&gt;&gt; 2
+// y == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>8</code> as the shift amount, the method first masks the
+shift amount to zero, and then performs the shift, resulting in no change
+to the original value.</p>
+<pre><code class="language-swift">let z = x &amp;&gt;&gt; 8
+// z == 30                        // 0b00011110
+</code></pre>
+<p>If the bit width of the shifted integer type is a power of two, masking
+is performed using a bitmask; otherwise, masking is performed using a
+modulo operation.</p>
+<h4>Declaration</h4><code class="language-swift">static func &amp;>>(lhs: Self, rhs: Self) -> Self</code></div></div><div id="lhs_rhs-e8ca0f7542e622e29b8ee228059adba7" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-e8ca0f7542e622e29b8ee228059adba7">func &amp;>>=(lhs: inout Self, rhs: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-e8ca0f7542e622e29b8ee228059adba7"><p>Calculates the result of shifting a value's binary representation the
+specified number of digits to the right, masking the shift amount to the
+type's bit width, and stores the result in the left-hand-side variable.</p>
+<p>The <code>&amp;&gt;&gt;=</code> operator performs a <em>masking shift</em>, where the value passed as
+<code>rhs</code> is masked to produce a value in the range <code>0..&lt;lhs.bitWidth</code>. The
+shift is performed using this masked value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the shift amount requires no masking.</p>
+<pre><code class="language-swift">var x: UInt8 = 30                 // 0b00011110
+x &amp;&gt;&gt;= 2
+// x == 7                         // 0b00000111
+</code></pre>
+<p>However, if you use <code>19</code> as <code>rhs</code>, the operation first bitmasks <code>rhs</code> to
+<code>3</code>, and then uses that masked value as the number of bits to shift <code>lhs</code>.</p>
+<pre><code class="language-swift">var y: UInt8 = 30                 // 0b00011110
+y &amp;&gt;&gt;= 19
+// y == 3                         // 0b00000011
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">static func &amp;>>=(lhs: inout Self, rhs: Self)</code></div></div><h3>Default Implementations</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Other) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><p>Returns a Boolean value indicating whether the two given values are not
+equal.</p>
+<p>You can check the inequality of instances of any <code>BinaryInteger</code> types
+using the not-equal-to operator (<code>!=</code>). For example, you can test
+whether the first <code>UInt8</code> value in a string's UTF-8 encoding is not
+equal to the first <code>UInt32</code> value in its Unicode scalar view:</p>
+<pre><code class="language-swift">let gameName = &quot;Red Light, Green Light&quot;
+if let firstUTF8 = gameName.utf8.first,
+    let firstScalar = gameName.unicodeScalars.first?.value {
+    print(&quot;First code values are different: \(firstUTF8 != firstScalar)&quot;)
+}
+// Prints &quot;First code values are different: false&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func !=&lt;Other>(lhs: Self, rhs: Other) -> Bool where Other: BinaryInteger</code></div></div><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-8e394094eebf256a06c74c30008a9a9c" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-8e394094eebf256a06c74c30008a9a9c">func &amp;(lhs: Self, rhs: Self) -> Self</a> <div class="comment collapse in" id="comment-lhs_rhs-8e394094eebf256a06c74c30008a9a9c"><p>Returns the result of performing a bitwise AND operation on the two given
+values.</p>
+<p>A bitwise AND operation results in a value that has each bit set to <code>1</code>
+where <em>both</em> of its arguments have that bit set to <code>1</code>. For example:</p>
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x &amp; y             // 0b00000100
+// z == 4
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;(lhs: Self, rhs: Self) -> Self</code></div></div><div id="lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f">func &lt;(lhs: Self, rhs: Other) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+less-than operator (<code>&lt;</code>), even if the two instances are of different
+types.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;&lt;Other>(lhs: Self, rhs: Other) -> Bool where Other: BinaryInteger</code></div></div><div id="lhs_rhs-a78dd2cd608d0fea2c2953583468409c" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a78dd2cd608d0fea2c2953583468409c">func &lt;&lt;(lhs: Self, rhs: RHS) -> Self</a> <div class="comment collapse in" id="comment-lhs_rhs-a78dd2cd608d0fea2c2953583468409c"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the left.</p>
+<p>The <code>&lt;&lt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted left by two bits.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &lt;&lt; 2
+// y == 120                       // 0b01111000
+</code></pre>
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+<pre><code class="language-swift">let z = x &lt;&lt; 11
+// z == 0                         // 0b00000000
+</code></pre>
+<p>Using a negative value as <code>rhs</code> is the same as performing a right shift
+with <code>abs(rhs)</code>.</p>
+<pre><code class="language-swift">let a = x &lt;&lt; -3
+// a == 3                         // 0b00000011
+let b = x &gt;&gt; 3
+// b == 3                         // 0b00000011
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;&lt;&lt;RHS>(lhs: Self, rhs: RHS) -> Self where RHS: BinaryInteger</code></div></div><div id="lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92">func &lt;=(lhs: Self, rhs: Other) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than or equal to that of the second argument.</p>
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+less-than-or-equal-to operator (<code>&lt;=</code>), even if the two instances are of
+different types.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;=&lt;Other>(lhs: Self, rhs: Other) -> Bool where Other: BinaryInteger</code></div></div><div id="lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92">func &lt;=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than or equal to that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: Self, rhs: Other) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether the two given values are
+equal.</p>
+<p>You can check the equality of instances of any <code>BinaryInteger</code> types
+using the equal-to operator (<code>==</code>). For example, you can test whether
+the first <code>UInt8</code> value in a string's UTF-8 encoding is equal to the
+first <code>UInt32</code> value in its Unicode scalar view:</p>
+<pre><code class="language-swift">let gameName = &quot;Red Light, Green Light&quot;
+if let firstUTF8 = gameName.utf8.first,
+    let firstScalar = gameName.unicodeScalars.first?.value {
+    print(&quot;First code values are equal: \(firstUTF8 == firstScalar)&quot;)
+}
+// Prints &quot;First code values are equal: true&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ==&lt;Other>(lhs: Self, rhs: Other) -> Bool where Other: BinaryInteger</code></div></div><div id="lhs_rhs-a00561663d495dd2668b929fde178932" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a00561663d495dd2668b929fde178932">func >(lhs: Self, rhs: Other) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a00561663d495dd2668b929fde178932"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than that of the second argument.</p>
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than operator (<code>&gt;</code>), even if the two instances are of different
+types.</p>
+<h4>Declaration</h4><code class="language-swift">public static func >&lt;Other>(lhs: Self, rhs: Other) -> Bool where Other: BinaryInteger</code></div></div><div id="lhs_rhs-a00561663d495dd2668b929fde178932" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a00561663d495dd2668b929fde178932">func >(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a00561663d495dd2668b929fde178932"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">public static func >(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a0e01127094d0eee401411c4b5eb8e60" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60">func >=(lhs: Self, rhs: Other) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+<h4>Declaration</h4><code class="language-swift">public static func >=&lt;Other>(lhs: Self, rhs: Other) -> Bool where Other: BinaryInteger</code></div></div><div id="lhs_rhs-a0e01127094d0eee401411c4b5eb8e60" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60">func >=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">public static func >=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-8f77e46ddc0964d547890243c92f559e" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-8f77e46ddc0964d547890243c92f559e">func >>(lhs: Self, rhs: RHS) -> Self</a> <div class="comment collapse in" id="comment-lhs_rhs-8f77e46ddc0964d547890243c92f559e"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the right.</p>
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111
+</code></pre>
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000
+</code></pre>
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000
+</code></pre>
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func >>&lt;RHS>(lhs: Self, rhs: RHS) -> Self where RHS: BinaryInteger</code></div></div><div id="lhs_rhs-03f47400539569672fd3bb01c98ae9b6" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-03f47400539569672fd3bb01c98ae9b6">func ^(lhs: Self, rhs: Self) -> Self</a> <div class="comment collapse in" id="comment-lhs_rhs-03f47400539569672fd3bb01c98ae9b6"><p>Returns the result of performing a bitwise XOR operation on the two given
+values.</p>
+<p>A bitwise XOR operation, also known as an exclusive OR operation, results
+in a value that has each bit set to <code>1</code> where <em>one or the other but not
+both</em> of its arguments had that bit set to <code>1</code>. For example:</p>
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x ^ y             // 0b00001011
+// z == 11
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ^(lhs: Self, rhs: Self) -> Self</code></div></div><div id="advanced_by-eca6cfea7368ad69605cb85a19cee2ca" class="declaration"><a class="toggle-link" href="#comment-advanced_by-eca6cfea7368ad69605cb85a19cee2ca">func advanced(by n: Int) -> Self</a> <div class="comment collapse in" id="comment-advanced_by-eca6cfea7368ad69605cb85a19cee2ca"><p>Returns a value that is offset the specified distance from this value.</p>
+<p>Use the <code>advanced(by:)</code> method in generic code to offset a value by a
+specified distance. If you're working directly with numeric values, use
+the addition operator (<code>+</code>) instead of this method.</p>
+<p>For a value <code>x</code>, a distance <code>n</code>, and a value <code>y = x.advanced(by: n)</code>,
+<code>x.distance(to: y) == n</code>.</p>
+<ul>
+<li>Parameter n: The distance to advance this value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func advanced(by n: Int) -> Self</code></div></div><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>A textual representation of this value.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div><div id="distance_to-55ea9db2502ccb9247fb4f931340a7ef" class="declaration"><a class="toggle-link" href="#comment-distance_to-55ea9db2502ccb9247fb4f931340a7ef">func distance(to other: Self) -> Int</a> <div class="comment collapse in" id="comment-distance_to-55ea9db2502ccb9247fb4f931340a7ef"><p>Returns the distance from this value to the given value, expressed as a
+stride.</p>
+<p>For two values <code>x</code> and <code>y</code>, and a distance <code>n = x.distance(to: y)</code>,
+<code>x.advanced(by: n) == y</code>.</p>
+<ul>
+<li>Parameter other: The value to calculate the distance to.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func distance(to other: Self) -> Int</code></div></div><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates a new value equal to zero.</p>
+<h4>Declaration</h4><code class="language-swift">public init()</code></div></div><div id="isMultiple_of-84e2864b50e0c1455da2c03587b87368" class="declaration"><a class="toggle-link" href="#comment-isMultiple_of-84e2864b50e0c1455da2c03587b87368">func isMultiple(of other: Self) -> Bool</a> <div class="comment collapse in" id="comment-isMultiple_of-84e2864b50e0c1455da2c03587b87368"><p>Returns <code>true</code> if this value is a multiple of the given value, and <code>false</code>
+otherwise.</p>
+<p>For two integers <em>a</em> and <em>b</em>, <em>a</em> is a multiple of <em>b</em> if there exists a
+third integer <em>q</em> such that <em>a = q*b</em>. For example, <em>6</em> is a multiple of
+<em>3</em> because <em>6 = 2*3</em>. Zero is a multiple of everything because <em>0 = 0*x</em>
+for any integer <em>x</em>.</p>
+<p>Two edge cases are worth particular attention:</p>
+<ul>
+<li>Parameter other: The value to test.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func isMultiple(of other: Self) -> Bool</code></div></div><div id="quotientAndRemainder_dividingBy-bd9d69aac9134c326c30a832593a3aaa" class="declaration"><a class="toggle-link" href="#comment-quotientAndRemainder_dividingBy-bd9d69aac9134c326c30a832593a3aaa">func quotientAndRemainder(dividingBy rhs: Self) -> (quotient: Self, remainder: Self)</a> <div class="comment collapse in" id="comment-quotientAndRemainder_dividingBy-bd9d69aac9134c326c30a832593a3aaa"><p>Returns the quotient and remainder of this value divided by the given
+value.</p>
+<p>Use this method to calculate the quotient and remainder of a division at
+the same time.</p>
+<pre><code class="language-swift">let x = 1_000_000
+let (q, r) = x.quotientAndRemainder(dividingBy: 933)
+// q == 1071
+// r == 757
+</code></pre>
+<ul>
+<li>Parameter rhs: The value to divide this value by.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func quotientAndRemainder(dividingBy rhs: Self) -> (quotient: Self, remainder: Self)</code></div></div><div id="signum-2afcbb0e6bfa05c60dcc2163fbdbfc23" class="declaration"><a class="toggle-link" href="#comment-signum-2afcbb0e6bfa05c60dcc2163fbdbfc23">func signum() -> Self</a> <div class="comment collapse in" id="comment-signum-2afcbb0e6bfa05c60dcc2163fbdbfc23"><p>Returns <code>-1</code> if this value is negative and <code>1</code> if it's positive;
+otherwise, <code>0</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func signum() -> Self</code></div></div><div id="lhs_rhs-4e71b0d2abd7c5dbfd95249811ea3f9a" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-4e71b0d2abd7c5dbfd95249811ea3f9a">func |(lhs: Self, rhs: Self) -> Self</a> <div class="comment collapse in" id="comment-lhs_rhs-4e71b0d2abd7c5dbfd95249811ea3f9a"><p>Returns the result of performing a bitwise OR operation on the two given
+values.</p>
+<p>A bitwise OR operation results in a value that has each bit set to <code>1</code>
+where <em>one or both</em> of its arguments have that bit set to <code>1</code>. For
+example:</p>
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x | y             // 0b00001111
+// z == 15
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func |(lhs: Self, rhs: Self) -> Self</code></div></div>

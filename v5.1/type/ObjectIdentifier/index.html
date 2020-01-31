@@ -1,0 +1,148 @@
+---
+keywords: ""
+root: "/v5.1"
+layout: "default"
+title: "ObjectIdentifier"
+description: "Swift documentation for 'ObjectIdentifier'"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct ObjectIdentifier</code></div><p>A unique identifier for a class instance or metatype.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Comparable, CustomDebugStringConvertible, Equatable, Hashable</code></td></tr></table><div class="discussion comment"><p>In Swift, only class instances and metatypes have unique identities. There
+is no notion of identity for structs, enums, functions, or tuples.</p>
+</div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an instance that uniquely identifies the given class instance.</p>
+<p>The following example creates an example class <code>IntegerRef</code> and compares
+instances of the class using their object identifiers and the identical-to
+operator (<code>===</code>):</p>
+<pre><code class="language-swift">class IntegerRef {
+    let value: Int
+    init(_ value: Int) {
+        self.value = value
+    }
+}
+
+let x = IntegerRef(10)
+let y = x
+
+print(ObjectIdentifier(x) == ObjectIdentifier(y))
+// Prints &quot;true&quot;
+print(x === y)
+// Prints &quot;true&quot;
+
+let z = IntegerRef(10)
+print(ObjectIdentifier(x) == ObjectIdentifier(z))
+// Prints &quot;false&quot;
+print(x === z)
+// Prints &quot;false&quot;
+</code></pre>
+<ul>
+<li>Parameter x: An instance of a class.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(_ x: AnyObject)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an instance that uniquely identifies the given metatype.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(_ x: Any.Type)</code></div></div><h3>Instance Variables</h3><div id="debugDescription-15dc1a07010ea28e38b1f4d74663fe11" class="declaration"><a class="toggle-link" href="#comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11">var debugDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11"><p>A textual representation of the identifier, suitable for debugging.</p>
+<h4>Declaration</h4><code class="language-swift">var debugDescription: String</code></div></div><h3>Instance Methods</h3><div id="hash_into-6d50cb3daa41162a12fb4542a687b393" class="declaration"><a class="toggle-link" href="#comment-hash_into-6d50cb3daa41162a12fb4542a687b393">func hash(into hasher: inout Hasher)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hash_into-6d50cb3daa41162a12fb4542a687b393"><p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+<ul>
+<li>Parameter hasher: The hasher to use when combining the components
+of this instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func hash(into hasher: inout Hasher)</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="maximum-f364ae2bc228ba8221fe0433f2c559c9" class="declaration"><a class="toggle-link" href="#comment-maximum-f364ae2bc228ba8221fe0433f2c559c9">func ...(maximum: Self) -> PartialRangeThrough&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-maximum-f364ae2bc228ba8221fe0433f2c559c9"><p>Returns a partial range up to, and including, its upper bound.</p>
+<p>Use the prefix closed range operator (prefix <code>...</code>) to create a partial
+range of any type that conforms to the <code>Comparable</code> protocol. This
+example creates a <code>PartialRangeThrough&lt;Double&gt;</code> instance that includes
+any value less than or equal to <code>5.0</code>.</p>
+<pre><code class="language-swift">let throughFive = ...5.0
+
+throughFive.contains(4.0)     // true
+throughFive.contains(5.0)     // true
+throughFive.contains(6.0)     // false
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the start of the collection up to, and
+including, the partial range's upper bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[...3])
+// Prints &quot;[10, 20, 30, 40]&quot;
+</code></pre>
+<ul>
+<li>Parameter maximum: The upper bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">prefix public static func ...(maximum: Self) -> PartialRangeThrough&lt;Self></code></div></div><div id="minimum-ad36ec6fc191696455d9a15f6a532bdf" class="declaration"><a class="toggle-link" href="#comment-minimum-ad36ec6fc191696455d9a15f6a532bdf">func ...(minimum: Self) -> PartialRangeFrom&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-minimum-ad36ec6fc191696455d9a15f6a532bdf"><p>Returns a partial range extending upward from a lower bound.</p>
+<p>Use the postfix range operator (postfix <code>...</code>) to create a partial range
+of any type that conforms to the <code>Comparable</code> protocol. This example
+creates a <code>PartialRangeFrom&lt;Double&gt;</code> instance that includes any value
+greater than or equal to <code>5.0</code>.</p>
+<pre><code class="language-swift">let atLeastFive = 5.0...
+
+atLeastFive.contains(4.0)     // false
+atLeastFive.contains(5.0)     // true
+atLeastFive.contains(6.0)     // true
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the partial range's lower bound up to the end
+of the collection.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[3...])
+// Prints &quot;[40, 50, 60, 70]&quot;
+</code></pre>
+<ul>
+<li>Parameter minimum: The lower bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">postfix public static func ...(minimum: Self) -> PartialRangeFrom&lt;Self></code></div></div><div id="minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed" class="declaration"><a class="toggle-link" href="#comment-minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed">func ...(minimum: Self, maximum: Self) -> ClosedRange&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed"><p>Returns a closed range that contains both of its bounds.</p>
+<p>Use the closed range operator (<code>...</code>) to create a closed range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>ClosedRange&lt;Character&gt;</code> from &quot;a&quot; up to, and including, &quot;z&quot;.</p>
+<pre><code class="language-swift">let lowercase = &quot;a&quot;...&quot;z&quot;
+print(lowercase.contains(&quot;z&quot;))
+// Prints &quot;true&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ...(minimum: Self, maximum: Self) -> ClosedRange&lt;Self></code></div></div><div id="maximum-af5142abac0dee4ee61f3e1db6af3f1c" class="declaration"><a class="toggle-link" href="#comment-maximum-af5142abac0dee4ee61f3e1db6af3f1c">func ..&lt;(maximum: Self) -> PartialRangeUpTo&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-maximum-af5142abac0dee4ee61f3e1db6af3f1c"><p>Returns a partial range up to, but not including, its upper bound.</p>
+<p>Use the prefix half-open range operator (prefix <code>..&lt;</code>) to create a
+partial range of any type that conforms to the <code>Comparable</code> protocol.
+This example creates a <code>PartialRangeUpTo&lt;Double&gt;</code> instance that includes
+any value less than <code>5.0</code>.</p>
+<pre><code class="language-swift">let upToFive = ..&lt;5.0
+
+upToFive.contains(3.14)       // true
+upToFive.contains(6.28)       // false
+upToFive.contains(5.0)        // false
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the start of the collection up to, but not
+including, the partial range's upper bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[..&lt;3])
+// Prints &quot;[10, 20, 30]&quot;
+</code></pre>
+<ul>
+<li>Parameter maximum: The upper bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">prefix public static func ..&lt;(maximum: Self) -> PartialRangeUpTo&lt;Self></code></div></div><div id="minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39" class="declaration"><a class="toggle-link" href="#comment-minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39">func ..&lt;(minimum: Self, maximum: Self) -> Range&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39"><p>Returns a half-open range that contains its lower bound but not its upper
+bound.</p>
+<p>Use the half-open range operator (<code>..&lt;</code>) to create a range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>Range&lt;Double&gt;</code> from zero up to, but not including, 5.0.</p>
+<pre><code class="language-swift">let lessThanFive = 0.0..&lt;5.0
+print(lessThanFive.contains(3.14))  // Prints &quot;true&quot;
+print(lessThanFive.contains(5.0))   // Prints &quot;false&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ..&lt;(minimum: Self, maximum: Self) -> Range&lt;Self></code></div></div><div id="lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f">func &lt;(lhs: ObjectIdentifier, rhs: ObjectIdentifier) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func &lt;(lhs: ObjectIdentifier, rhs: ObjectIdentifier) -> Bool</code></div></div><div id="lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92">func &lt;=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92"><p>Returns a Boolean value indicating whether the value of the first argument
+is less than or equal to that of the second argument.</p>
+<p>This is the default implementation of the less-than-or-equal-to
+operator (<code>&lt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func &lt;=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="x_y-41595b3223e387ce1a31eb3ce917dcca" class="declaration"><a class="toggle-link" href="#comment-x_y-41595b3223e387ce1a31eb3ce917dcca">func ==(x: ObjectIdentifier, y: ObjectIdentifier) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-x_y-41595b3223e387ce1a31eb3ce917dcca"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func ==(x: ObjectIdentifier, y: ObjectIdentifier) -> Bool</code></div></div><div id="lhs_rhs-a00561663d495dd2668b929fde178932" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a00561663d495dd2668b929fde178932">func >(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a00561663d495dd2668b929fde178932"><p>Returns a Boolean value indicating whether the value of the first argument
+is greater than that of the second argument.</p>
+<p>This is the default implementation of the greater-than operator (<code>&gt;</code>) for
+any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func >(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a0e01127094d0eee401411c4b5eb8e60" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60">func >=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60"><p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func >=(lhs: Self, rhs: Self) -> Bool</code></div></div>

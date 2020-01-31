@@ -1,0 +1,118 @@
+---
+description: "Swift documentation for 'Comparable'"
+root: "/v5.1"
+title: "Comparable"
+keywords: ""
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Comparable</code></div><p>A type that can be compared using the relational operators <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;=</code>,
+and <code>&gt;</code>.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Equatable</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">AnyIndex, Character, ClosedRange.Index, CollectionDifference.Index, Dictionary.Index, FlattenSequence.Index, LazyPrefixWhileSequence.Index, Never, ObjectIdentifier, ReversedCollection.Index, Set.Index, Strideable, String, String.Index, StringProtocol, Unicode.Scalar</code></td></tr></table><div class="discussion comment"><p>The <code>Comparable</code> protocol is used for types that have an inherent order,
+such as numbers and strings. Many types in the standard library already
+conform to the <code>Comparable</code> protocol. Add <code>Comparable</code> conformance to your
+own custom types when you want to be able to compare instances using
+relational operators or use standard library methods that are designed for
+<code>Comparable</code> types.</p>
+<p>The most familiar use of relational operators is to compare numbers, as in
+the following example:</p>
+<pre><code class="language-swift">let currentTemp = 73
+
+if currentTemp &gt;= 90 {
+    print(&quot;It's a scorcher!&quot;)
+} else if currentTemp &lt; 65 {
+    print(&quot;Might need a sweater today.&quot;)
+} else {
+    print(&quot;Seems like picnic weather!&quot;)
+}
+// Prints &quot;Seems like picnic weather!&quot;
+</code></pre>
+<p>You can use special versions of some sequence and collection operations
+when working with a <code>Comparable</code> type. For example, if your array's
+elements conform to <code>Comparable</code>, you can call the <code>sort()</code> method without
+using arguments to sort the elements of your array in ascending order.</p>
+<pre><code class="language-swift">var measurements = [1.1, 1.5, 2.9, 1.2, 1.5, 1.3, 1.2]
+measurements.sort()
+print(measurements)
+// Prints &quot;[1.1, 1.2, 1.2, 1.3, 1.5, 1.5, 2.9]&quot;
+</code></pre>
+<h3>Conforming to the Comparable Protocol</h3>
+<p>Types with Comparable conformance implement the less-than operator (<code>&lt;</code>)
+and the equal-to operator (<code>==</code>). These two operations impose a strict
+total order on the values of a type, in which exactly one of the following
+must be true for any two values <code>a</code> and <code>b</code>:</p>
+<p>In addition, the following conditions must hold:</p>
+<p>To add <code>Comparable</code> conformance to your custom types, define the <code>&lt;</code> and
+<code>==</code> operators as static methods of your types. The <code>==</code> operator is a
+requirement of the <code>Equatable</code> protocol, which <code>Comparable</code> extends---see
+that protocol's documentation for more information about equality in
+Swift. Because default implementations of the remainder of the relational
+operators are provided by the standard library, you'll be able to use
+<code>!=</code>, <code>&gt;</code>, <code>&lt;=</code>, and <code>&gt;=</code> with instances of your type without any further
+code.</p>
+<p>As an example, here's an implementation of a <code>Date</code> structure that stores
+the year, month, and day of a date:</p>
+<pre><code class="language-swift">struct Date {
+    let year: Int
+    let month: Int
+    let day: Int
+}
+</code></pre>
+<p>To add <code>Comparable</code> conformance to <code>Date</code>, first declare conformance to
+<code>Comparable</code> and implement the <code>&lt;</code> operator function.</p>
+<pre><code class="language-swift">extension Date: Comparable {
+    static func &lt; (lhs: Date, rhs: Date) -&gt; Bool {
+        if lhs.year != rhs.year {
+            return lhs.year &lt; rhs.year
+        } else if lhs.month != rhs.month {
+            return lhs.month &lt; rhs.month
+        } else {
+            return lhs.day &lt; rhs.day
+        }
+    }
+</code></pre>
+<p>This function uses the least specific nonmatching property of the date to
+determine the result of the comparison. For example, if the two <code>year</code>
+properties are equal but the two <code>month</code> properties are not, the date with
+the lesser value for <code>month</code> is the lesser of the two dates.</p>
+<p>Next, implement the <code>==</code> operator function, the requirement inherited from
+the <code>Equatable</code> protocol.</p>
+<pre><code class="language-swift">    static func == (lhs: Date, rhs: Date) -&gt; Bool {
+        return lhs.year == rhs.year &amp;&amp; lhs.month == rhs.month
+            &amp;&amp; lhs.day == rhs.day
+    }
+}
+</code></pre>
+<p>Two <code>Date</code> instances are equal if each of their corresponding properties is
+equal.</p>
+<p>Now that <code>Date</code> conforms to <code>Comparable</code>, you can compare instances of the
+type with any of the relational operators. The following example compares
+the date of the first moon landing with the release of David Bowie's song
+&quot;Space Oddity&quot;:</p>
+<pre><code class="language-swift">let spaceOddity = Date(year: 1969, month: 7, day: 11)   // July 11, 1969
+let moonLanding = Date(year: 1969, month: 7, day: 20)   // July 20, 1969
+if moonLanding &gt; spaceOddity {
+    print(&quot;Major Tom stepped through the door first.&quot;)
+} else {
+    print(&quot;David Bowie was following in Neil Armstrong's footsteps.&quot;)
+}
+// Prints &quot;Major Tom stepped through the door first.&quot;
+</code></pre>
+<p>Note that the <code>&gt;</code> operator provided by the standard library is used in this
+example, not the <code>&lt;</code> operator implemented above.</p>
+<blockquote>
+<p>Note:
+A conforming type may contain a subset of values which are treated as exceptional---that is, values that are outside the domain of meaningful arguments for the purposes of the <code>Comparable</code> protocol. For example, the special &quot;not a number&quot; value for floating-point types (<code>FloatingPoint.nan</code>) compares as neither less than, greater than, nor equal to any normal floating-point value. Exceptional values need not take part in the strict total order.</p>
+</blockquote>
+</div><h3>Type Methods</h3><div id="lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f">func &lt;(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">static func &lt;(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92">func &lt;=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than or equal to that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">static func &lt;=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a00561663d495dd2668b929fde178932" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a00561663d495dd2668b929fde178932">func >(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a00561663d495dd2668b929fde178932"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">static func >(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a0e01127094d0eee401411c4b5eb8e60" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60">func >=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">static func >=(lhs: Self, rhs: Self) -> Bool</code></div></div><h3>Default Implementations</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div>

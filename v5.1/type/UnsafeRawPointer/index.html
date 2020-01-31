@@ -1,0 +1,270 @@
+---
+title: "UnsafeRawPointer"
+description: "Swift documentation for 'UnsafeRawPointer'"
+layout: "default"
+root: "/v5.1"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">struct UnsafeRawPointer</code></div><p>A raw pointer for accessing
+untyped data.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Strideable</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Pointee = UInt8</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>The <code>UnsafeRawPointer</code> type provides no automated memory management, no type safety,
+and no alignment guarantees. You are responsible for handling the life
+cycle of any memory you work with through unsafe pointers, to avoid leaks
+or undefined behavior.</p>
+<p>Memory that you manually manage can be either <em>untyped</em> or <em>bound</em> to a
+specific type. You use the <code>UnsafeRawPointer</code> type to access and
+manage raw bytes in memory, whether or not that memory has been bound to a
+specific type.</p>
+<h3>Understanding a Pointer's Memory State</h3>
+<p>The memory referenced by an <code>UnsafeRawPointer</code> instance can be in one of several
+states. Many pointer operations must only be applied to pointers with
+memory in a specific state---you must keep track of the state of the
+memory you are working with and understand the changes to that state that
+different operations perform. Memory can be untyped and uninitialized,
+bound to a type and uninitialized, or bound to a type and initialized to a
+value. Finally, memory that was allocated previously may have been
+deallocated, leaving existing pointers referencing unallocated memory.</p>
+<h4>Raw, Uninitialized Memory</h4>
+<p>Raw memory that has just been allocated is in an <em>uninitialized, untyped</em>
+state. Uninitialized memory must be initialized with values of a type
+before it can be used with any typed operations.</p>
+<p>To bind uninitialized memory to a type without initializing it, use the
+<code>bindMemory(to:count:)</code> method. This method returns a typed pointer
+for further typed access to the memory.</p>
+<h4>Typed Memory</h4>
+<p>Memory that has been bound to a type, whether it is initialized or
+uninitialized, is typically accessed using typed pointers---instances of
+<code>UnsafePointer</code> and <code>UnsafeMutablePointer</code>. Initialization, assignment,
+and deinitialization can be performed using <code>UnsafeMutablePointer</code>
+methods.</p>
+<p>Memory that has been bound to a type can be rebound to a different type
+only after it has been deinitialized or if the bound type is a <em>trivial
+type</em>. Deinitializing typed memory does not unbind that memory's type. The
+deinitialized memory can be reinitialized with values of the same type,
+bound to a new type, or deallocated.</p>
+<blockquote>
+<p>Note:
+A trivial type can be copied bit for bit with no indirection or reference-counting operations. Generally, native Swift types that do not contain strong or weak references or other forms of indirection are trivial, as are imported C structs and enumerations.</p>
+</blockquote>
+<p>When reading from  memory as raw
+bytes when that memory is bound to a type, you must ensure that you
+satisfy any alignment requirements.</p>
+<h3>Raw Pointer Arithmetic</h3>
+<p>Pointer arithmetic with raw pointers is performed at the byte level. When
+you add to or subtract from a raw pointer, the result is a new raw pointer
+offset by that number of bytes. The following example allocates four bytes
+of memory and stores <code>0xFF</code> in all four bytes:</p>
+<pre><code class="language-swift">let bytesPointer = UnsafeMutableRawPointer.allocate(byteCount: 4, alignment: 4)
+bytesPointer.storeBytes(of: 0xFFFF_FFFF, as: UInt32.self)
+
+// Load a value from the memory referenced by 'bytesPointer'
+let x = bytesPointer.load(as: UInt8.self)       // 255
+
+// Load a value from the last two allocated bytes
+let offsetPointer = bytesPointer + 2
+let y = offsetPointer.load(as: UInt16.self)     // 65535
+</code></pre>
+<p>The code above stores the value <code>0xFFFF_FFFF</code> into the four newly allocated
+bytes, and then loads the first byte as a <code>UInt8</code> instance and the third
+and fourth bytes as a <code>UInt16</code> instance.</p>
+<p>Always remember to deallocate any memory that you allocate yourself.</p>
+<pre><code class="language-swift">bytesPointer.deallocate()
+</code></pre>
+<h3>Implicit Casting and Bridging</h3>
+<p>When calling a function or method with an <code>UnsafeRawPointer</code> parameter, you can pass
+an instance of that specific pointer type, pass an instance of a
+compatible pointer type, or use Swift's implicit bridging to pass a
+compatible pointer.</p>
+<p>For example, the <code>print(address:as:)</code> function in the following code sample
+takes an <code>UnsafeRawPointer</code> instance as its first parameter:</p>
+<pre><code class="language-swift">func print&lt;T&gt;(address p: UnsafeRawPointer, as type: T.Type) {
+    let value = p.load(as: type)
+    print(value)
+}
+</code></pre>
+<p>As is typical in Swift, you can call the <code>print(address:as:)</code> function with
+an <code>UnsafeRawPointer</code> instance. This example passes <code>rawPointer</code> as the initial
+parameter.</p>
+<pre><code class="language-swift">// 'rawPointer' points to memory initialized with `Int` values.
+let rawPointer: UnsafeRawPointer = ...
+print(address: rawPointer, as: Int.self)
+// Prints &quot;42&quot;
+</code></pre>
+<p>Because typed pointers can be implicitly cast to raw pointers when passed
+as a parameter, you can also call <code>print(address:as:)</code> with any mutable or
+immutable typed pointer instance.</p>
+<pre><code class="language-swift">let intPointer: UnsafePointer&lt;Int&gt; = ...
+print(address: intPointer, as: Int.self)
+// Prints &quot;42&quot;
+
+let mutableIntPointer = UnsafeMutablePointer(mutating: intPointer)
+print(address: mutableIntPointer, as: Int.self)
+// Prints &quot;42&quot;
+</code></pre>
+<p>Alternatively, you can use Swift's <em>implicit bridging</em> to pass a pointer to
+an instance or to the elements of an array. Use inout syntax to implicitly
+create a pointer to an instance of any type. The following example uses
+implicit bridging to pass a pointer to <code>value</code> when calling
+<code>print(address:as:)</code>:</p>
+<pre><code class="language-swift">var value: Int = 23
+print(address: &amp;value, as: Int.self)
+// Prints &quot;23&quot;
+</code></pre>
+<p>An immutable pointer to the elements of an array is implicitly created when
+you pass the array as an argument. This example uses implicit bridging to
+pass a pointer to the elements of <code>numbers</code> when calling
+<code>print(address:as:)</code>.</p>
+<pre><code class="language-swift">let numbers = [5, 10, 15, 20]
+print(address: numbers, as: Int.self)
+// Prints &quot;5&quot;
+</code></pre>
+<p>You can also use inout syntax to pass a mutable pointer to the elements of
+an array. Because <code>print(address:as:)</code> requires an immutable pointer,
+although this is syntactically valid, it isn't necessary.</p>
+<pre><code class="language-swift">var mutableNumbers = numbers
+print(address: &amp;mutableNumbers, as: Int.self)
+</code></pre>
+<blockquote>
+<p>Important:</p>
+<pre><code class="language-swift">var number = 5
+let numberPointer = UnsafeRawPointer(&amp;number)
+// Accessing 'numberPointer' is undefined behavior.
+</code></pre>
+</blockquote>
+</div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new raw pointer from the given typed pointer.</p>
+<p>Use this initializer to explicitly convert <code>other</code> to an <code>UnsafeRawPointer</code>
+instance. This initializer creates a new pointer to the same address as
+<code>other</code> and performs no allocation or copying.</p>
+<ul>
+<li>Parameter other: The typed pointer to convert.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init&lt;T>(_ other: UnsafePointer&lt;T>)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new raw pointer from the given mutable raw pointer.</p>
+<p>Use this initializer to explicitly convert <code>other</code> to an <code>UnsafeRawPointer</code>
+instance. This initializer creates a new pointer to the same address as
+<code>other</code> and performs no allocation or copying.</p>
+<ul>
+<li>Parameter other: The mutable raw pointer to convert.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(_ other: UnsafeMutableRawPointer)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new raw pointer from the given typed pointer.</p>
+<p>Use this initializer to explicitly convert <code>other</code> to an <code>UnsafeRawPointer</code>
+instance. This initializer creates a new pointer to the same address as
+<code>other</code> and performs no allocation or copying.</p>
+<ul>
+<li>Parameter other: The typed pointer to convert.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init&lt;T>(_ other: UnsafeMutablePointer&lt;T>)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new raw pointer from an <code>AutoreleasingUnsafeMutablePointer</code>
+instance.</p>
+<ul>
+<li>Parameter other: The pointer to convert.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init&lt;T>(_ other: AutoreleasingUnsafeMutablePointer&lt;T>)</code></div></div><div id="init-48690522e4b66d2b1596ce439b7dd9cd" class="declaration"><a class="toggle-link" href="#comment-init-48690522e4b66d2b1596ce439b7dd9cd">init init?(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-48690522e4b66d2b1596ce439b7dd9cd"><p>Creates a new raw pointer from the given typed pointer.</p>
+<p>Use this initializer to explicitly convert <code>other</code> to an <code>UnsafeRawPointer</code>
+instance. This initializer creates a new pointer to the same address as
+<code>other</code> and performs no allocation or copying.</p>
+<ul>
+<li>Parameter other: The typed pointer to convert. If <code>other</code> is <code>nil</code>, the
+result is <code>nil</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init?&lt;T>(_ other: UnsafePointer&lt;T>?)</code></div></div><div id="init-48690522e4b66d2b1596ce439b7dd9cd" class="declaration"><a class="toggle-link" href="#comment-init-48690522e4b66d2b1596ce439b7dd9cd">init init?(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-48690522e4b66d2b1596ce439b7dd9cd"><p>Creates a new raw pointer from the given mutable raw pointer.</p>
+<p>Use this initializer to explicitly convert <code>other</code> to an <code>UnsafeRawPointer</code>
+instance. This initializer creates a new pointer to the same address as
+<code>other</code> and performs no allocation or copying.</p>
+<ul>
+<li>Parameter other: The mutable raw pointer to convert. If <code>other</code> is
+<code>nil</code>, the result is <code>nil</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init?(_ other: UnsafeMutableRawPointer?)</code></div></div><div id="init-48690522e4b66d2b1596ce439b7dd9cd" class="declaration"><a class="toggle-link" href="#comment-init-48690522e4b66d2b1596ce439b7dd9cd">init init?(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-48690522e4b66d2b1596ce439b7dd9cd"><p>Creates a new raw pointer from the given typed pointer.</p>
+<p>Use this initializer to explicitly convert <code>other</code> to an <code>UnsafeRawPointer</code>
+instance. This initializer creates a new pointer to the same address as
+<code>other</code> and performs no allocation or copying.</p>
+<ul>
+<li>Parameter other: The typed pointer to convert. If <code>other</code> is <code>nil</code>, the
+result is <code>nil</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init?&lt;T>(_ other: UnsafeMutablePointer&lt;T>?)</code></div></div><div id="init-48690522e4b66d2b1596ce439b7dd9cd" class="declaration"><a class="toggle-link" href="#comment-init-48690522e4b66d2b1596ce439b7dd9cd">init init?(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-48690522e4b66d2b1596ce439b7dd9cd"><p>Creates a new raw pointer from an <code>AutoreleasingUnsafeMutablePointer</code>
+instance.</p>
+<ul>
+<li>Parameter other: The pointer to convert. If <code>other</code> is <code>nil</code>, the
+result is <code>nil</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init?&lt;T>(_ other: AutoreleasingUnsafeMutablePointer&lt;T>?)</code></div></div><h3>Instance Variables</h3><div id="customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3" class="declaration"><a class="toggle-link" href="#comment-customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3">var customPlaygroundQuickLook</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3"><p>A custom playground Quick Look for this instance.</p>
+<p>If this type has value semantics, the <code>PlaygroundQuickLook</code> instance
+should be unaffected by subsequent mutations.</p>
+<h4>Declaration</h4><code class="language-swift">var customPlaygroundQuickLook: _PlaygroundQuickLook</code></div></div><h3>Instance Methods</h3><div id="advanced_by-eca6cfea7368ad69605cb85a19cee2ca" class="declaration"><a class="toggle-link" href="#comment-advanced_by-eca6cfea7368ad69605cb85a19cee2ca">func advanced(by n: Int) -> UnsafeRawPointer</a> <span class="required">Required</span><div class="comment collapse in" id="comment-advanced_by-eca6cfea7368ad69605cb85a19cee2ca"><p>Returns a value that is offset the specified distance from this value.</p>
+<p>Use the <code>advanced(by:)</code> method in generic code to offset a value by a
+specified distance. If you're working directly with numeric values, use
+the addition operator (<code>+</code>) instead of this method.</p>
+<pre><code class="language-swift">func addOne&lt;T: Strideable&gt;(to x: T) -&gt; T
+    where T.Stride: ExpressibleByIntegerLiteral
+{
+    return x.advanced(by: 1)
+}
+
+let x = addOne(to: 5)
+// x == 6
+let y = addOne(to: 3.5)
+// y = 4.5
+</code></pre>
+<p>If this type's <code>Stride</code> type conforms to <code>BinaryInteger</code>, then for a
+value <code>x</code>, a distance <code>n</code>, and a value <code>y = x.advanced(by: n)</code>,
+<code>x.distance(to: y) == n</code>. Using this method with types that have a
+noninteger <code>Stride</code> may result in an approximation.</p>
+<ul>
+<li>Parameter n: The distance to advance this value.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public func advanced(by n: Int) -> UnsafeRawPointer</code></div></div><div id="assumingMemoryBound_to-c3ea5f32e0a9ad7ba1cd08ae31ebcc1a" class="declaration"><a class="toggle-link" href="#comment-assumingMemoryBound_to-c3ea5f32e0a9ad7ba1cd08ae31ebcc1a">func assumingMemoryBound(to: T.Type) -> UnsafePointer&lt;T></a> <span class="required">Required</span><div class="comment collapse in" id="comment-assumingMemoryBound_to-c3ea5f32e0a9ad7ba1cd08ae31ebcc1a"><p>Returns a typed pointer to the memory referenced by this pointer,
+assuming that the memory is already bound to the specified type.</p>
+<p>Use this method when you have a raw pointer to memory that has <em>already</em>
+been bound to the specified type. The memory starting at this pointer
+must be bound to the type <code>T</code>. Accessing memory through the returned
+pointer is undefined if the memory has not been bound to <code>T</code>. To bind
+memory to <code>T</code>, use <code>bindMemory(to:capacity:)</code> instead of this method.</p>
+<ul>
+<li>Parameter to: The type <code>T</code> that the memory has already been bound to.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func assumingMemoryBound&lt;T>(to: T.Type) -> UnsafePointer&lt;T></code></div></div><div id="bindMemory_to_capacity-20f57b569b8d93a3e43811abd42ecfed" class="declaration"><a class="toggle-link" href="#comment-bindMemory_to_capacity-20f57b569b8d93a3e43811abd42ecfed">func bindMemory(to type: T.Type, capacity count: Int) -> UnsafePointer&lt;T></a> <span class="required">Required</span><div class="comment collapse in" id="comment-bindMemory_to_capacity-20f57b569b8d93a3e43811abd42ecfed"><p>Binds the memory to the specified type and returns a typed pointer to the
+bound memory.</p>
+<p>Use the <code>bindMemory(to:capacity:)</code> method to bind the memory referenced
+by this pointer to the type <code>T</code>. The memory must be uninitialized or
+initialized to a type that is layout compatible with <code>T</code>. If the memory
+is uninitialized, it is still uninitialized after being bound to <code>T</code>.</p>
+<p>In this example, 100 bytes of raw memory are allocated for the pointer
+<code>bytesPointer</code>, and then the first four bytes are bound to the <code>Int8</code>
+type.</p>
+<pre><code class="language-swift">let count = 4
+let bytesPointer = UnsafeMutableRawPointer.allocate(
+        bytes: 100,
+        alignedTo: MemoryLayout&lt;Int8&gt;.alignment)
+let int8Pointer = bytesPointer.bindMemory(to: Int8.self, capacity: count)
+</code></pre>
+<p>After calling <code>bindMemory(to:capacity:)</code>, the first four bytes of the
+memory referenced by <code>bytesPointer</code> are bound to the <code>Int8</code> type, though
+they remain uninitialized. The remainder of the allocated region is
+unbound raw memory. All 100 bytes of memory must eventually be
+deallocated.</p>
+<blockquote>
+<p>Warning:
+A memory location may only be bound to one type at a time. The behavior of accessing memory as a type unrelated to its bound type is undefined.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public func bindMemory&lt;T>(to type: T.Type, capacity count: Int) -> UnsafePointer&lt;T></code></div></div><div id="deallocate-b827264e335823a9a490f24d9f393b73" class="declaration"><a class="toggle-link" href="#comment-deallocate-b827264e335823a9a490f24d9f393b73">func deallocate()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-deallocate-b827264e335823a9a490f24d9f393b73"><p>Deallocates the previously allocated memory block referenced by this pointer.</p>
+<p>The memory to be deallocated must be uninitialized or initialized to a
+trivial type.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func deallocate()</code></div></div><div id="load_fromByteOffset_as-0b44caf853c2d2b5536cbaee8bb6a6b0" class="declaration"><a class="toggle-link" href="#comment-load_fromByteOffset_as-0b44caf853c2d2b5536cbaee8bb6a6b0">func load(fromByteOffset offset: Int = 0, as type: T.Type) -> T</a> <span class="required">Required</span><div class="comment collapse in" id="comment-load_fromByteOffset_as-0b44caf853c2d2b5536cbaee8bb6a6b0"><p>Returns a new instance of the given type, constructed from the raw memory
+at the specified offset.</p>
+<p>The memory at this pointer plus <code>offset</code> must be properly aligned for
+accessing <code>T</code> and initialized to <code>T</code> or another type that is layout
+compatible with <code>T</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func load&lt;T>(fromByteOffset offset: Int = 0, as type: T.Type) -> T</code></div></div><h3>Type Methods</h3><div id="x_y-4804d4748c34357d4373b49c8403cd1d" class="declaration"><a class="toggle-link" href="#comment-x_y-4804d4748c34357d4373b49c8403cd1d">func &lt;(x: Self, y: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-x_y-4804d4748c34357d4373b49c8403cd1d"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func &lt;(x: Self, y: Self) -> Bool</code></div></div><div id="x_y-41595b3223e387ce1a31eb3ce917dcca" class="declaration"><a class="toggle-link" href="#comment-x_y-41595b3223e387ce1a31eb3ce917dcca">func ==(x: Self, y: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-x_y-41595b3223e387ce1a31eb3ce917dcca"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func ==(x: Self, y: Self) -> Bool</code></div></div>

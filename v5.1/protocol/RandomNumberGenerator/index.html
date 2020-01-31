@@ -1,0 +1,46 @@
+---
+keywords: ""
+root: "/v5.1"
+layout: "default"
+title: "RandomNumberGenerator"
+description: "Swift documentation for 'RandomNumberGenerator'"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol RandomNumberGenerator</code></div><p>A type that provides uniformly distributed random data.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">SystemRandomNumberGenerator</code></td></tr></table><div class="discussion comment"><p>When you call methods that use random data, such as creating new random
+values or shuffling a collection, you can pass a <code>RandomNumberGenerator</code>
+type to be used as the source for randomness. When you don't pass a
+generator, the default <code>SystemRandomNumberGenerator</code> type is used.</p>
+<p>When providing new APIs that use randomness, provide a version that accepts
+a generator conforming to the <code>RandomNumberGenerator</code> protocol as well as a
+version that uses the default system generator. For example, this <code>Weekday</code>
+enumeration provides static methods that return a random day of the week:</p>
+<pre><code class="language-swift">enum Weekday: CaseIterable {
+    case sunday, monday, tuesday, wednesday, thursday, friday, saturday
+
+    static func random&lt;G: RandomNumberGenerator&gt;(using generator: inout G) -&gt; Weekday {
+        return Weekday.allCases.randomElement(using: &amp;generator)!
+    }
+
+    static func random() -&gt; Weekday {
+        var g = SystemRandomNumberGenerator()
+        return Weekday.random(using: &amp;g)
+    }
+}
+</code></pre>
+<h3>Conforming to the RandomNumberGenerator Protocol</h3>
+<p>A custom <code>RandomNumberGenerator</code> type can have different characteristics
+than the default <code>SystemRandomNumberGenerator</code> type. For example, a
+seedable generator can be used to generate a repeatable sequence of random
+values for testing purposes.</p>
+<p>To make a custom type conform to the <code>RandomNumberGenerator</code> protocol,
+implement the required <code>next()</code> method. Each call to <code>next()</code> must produce
+a uniform and independent random value.</p>
+<p>Types that conform to <code>RandomNumberGenerator</code> should specifically document
+the thread safety and quality of the generator.</p>
+</div><h3>Instance Methods</h3><div id="next-664f8784e379383402f73aeb98bca97f" class="declaration"><a class="toggle-link" href="#comment-next-664f8784e379383402f73aeb98bca97f">func next() -> UInt64</a> <span class="required">Required</span><div class="comment collapse in" id="comment-next-664f8784e379383402f73aeb98bca97f"><p>Returns a value from a uniform, independent distribution of binary data.</p>
+<p>Use this method when you need random binary data to generate another
+value. If you need an integer value within a specific range, use the
+static <code>random(in:using:)</code> method on that integer type instead of this
+method.</p>
+<h4>Declaration</h4><code class="language-swift">mutating func next() -> UInt64</code></div></div>

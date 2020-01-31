@@ -1,0 +1,214 @@
+---
+root: "/v5.1"
+description: "Swift documentation for 'Unicode'"
+layout: "default"
+title: "Unicode"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">enum Unicode</code></div><p>A namespace for Unicode utilities.</p>
+<table class="standard"><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Encoding = _UnicodeEncoding</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias Parser = _UnicodeParser</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias Version = (major: Int, minor: Int)</code><div class="comment"></div></div></td></tr><tr><th>Nested Types</th><td><code class="nested">Unicode.ASCII, Unicode.Scalar, Unicode.UTF16, Unicode.UTF8, Unicode.ParseResult, Unicode.GeneralCategory, Unicode.CanonicalCombiningClass, Unicode.NumericType, Unicode.UTF32</code></td></tr></table><div class="discussion comment"></div><h3>Cases</h3><div id="swift_Buffer-61f353e89d1a2c1aaacb778dc3decaa2" class="declaration"><a class="toggle-link" href="#comment-swift_Buffer-61f353e89d1a2c1aaacb778dc3decaa2">case _swift3Buffer</a> <span class="required">Required</span><div class="comment collapse in" id="comment-swift_Buffer-61f353e89d1a2c1aaacb778dc3decaa2"><h4>Declaration</h4><code class="language-swift">case _swift3Buffer(: Unicode.UTF16.ForwardParser)</code></div></div><div id="swift_Buffer-61f353e89d1a2c1aaacb778dc3decaa2" class="declaration"><a class="toggle-link" href="#comment-swift_Buffer-61f353e89d1a2c1aaacb778dc3decaa2">case _swift3Buffer</a> <span class="required">Required</span><div class="comment collapse in" id="comment-swift_Buffer-61f353e89d1a2c1aaacb778dc3decaa2"><h4>Declaration</h4><code class="language-swift">case _swift3Buffer(: Unicode.UTF8.ForwardParser)</code></div></div><div id="swift_Codec-e2c92b4415e2638dbd1d52e6b37e7f71" class="declaration"><a class="toggle-link" href="#comment-swift_Codec-e2c92b4415e2638dbd1d52e6b37e7f71">case _swift3Codec</a> <span class="required">Required</span><div class="comment collapse in" id="comment-swift_Codec-e2c92b4415e2638dbd1d52e6b37e7f71"><h4>Declaration</h4><code class="language-swift">case _swift3Codec</code></div></div><div id="closePunctuation-0cb4e41ad3f114a8eda1e943e68e42ef" class="declaration"><a class="toggle-link" href="#comment-closePunctuation-0cb4e41ad3f114a8eda1e943e68e42ef">case closePunctuation</a> <span class="required">Required</span><div class="comment collapse in" id="comment-closePunctuation-0cb4e41ad3f114a8eda1e943e68e42ef"><p>A closing punctuation mark of a pair.</p>
+<p>This value corresponds to the category <code>Close_Punctuation</code> (abbreviated
+<code>Pe</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case closePunctuation</code></div></div><div id="connectorPunctuation-9c6593428920097025839baa6ee503d8" class="declaration"><a class="toggle-link" href="#comment-connectorPunctuation-9c6593428920097025839baa6ee503d8">case connectorPunctuation</a> <span class="required">Required</span><div class="comment collapse in" id="comment-connectorPunctuation-9c6593428920097025839baa6ee503d8"><p>A connecting punctuation mark, like a tie.</p>
+<p>This value corresponds to the category <code>Connector_Punctuation</code>
+(abbreviated <code>Pc</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case connectorPunctuation</code></div></div><div id="control-fc5364bf9dbfa34954526becad136d4b" class="declaration"><a class="toggle-link" href="#comment-control-fc5364bf9dbfa34954526becad136d4b">case control</a> <span class="required">Required</span><div class="comment collapse in" id="comment-control-fc5364bf9dbfa34954526becad136d4b"><p>A C0 or C1 control code.</p>
+<p>This value corresponds to the category <code>Control</code> (abbreviated <code>Cc</code>) in
+the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case control</code></div></div><div id="currencySymbol-c5613a5a91579972fbae451acabeb080" class="declaration"><a class="toggle-link" href="#comment-currencySymbol-c5613a5a91579972fbae451acabeb080">case currencySymbol</a> <span class="required">Required</span><div class="comment collapse in" id="comment-currencySymbol-c5613a5a91579972fbae451acabeb080"><p>A currency sign.</p>
+<p>This value corresponds to the category <code>Currency_Symbol</code> (abbreviated
+<code>Sc</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case currencySymbol</code></div></div><div id="dashPunctuation-2efd5ba71fcc6b06544aa7c09115e952" class="declaration"><a class="toggle-link" href="#comment-dashPunctuation-2efd5ba71fcc6b06544aa7c09115e952">case dashPunctuation</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dashPunctuation-2efd5ba71fcc6b06544aa7c09115e952"><p>A dash or hyphen punctuation mark.</p>
+<p>This value corresponds to the category <code>Dash_Punctuation</code> (abbreviated
+<code>Pd</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case dashPunctuation</code></div></div><div id="decimal-bdaa3c20a3e3851599514f7c6be5f62f" class="declaration"><a class="toggle-link" href="#comment-decimal-bdaa3c20a3e3851599514f7c6be5f62f">case decimal</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decimal-bdaa3c20a3e3851599514f7c6be5f62f"><p>A digit that is commonly understood to form base-10 numbers.</p>
+<p>Specifically, scalars have this numeric type if they occupy a contiguous
+range of code points representing numeric values <code>0...9</code>.</p>
+<h4>Declaration</h4><code class="language-swift">case decimal</code></div></div><div id="decimalNumber-eb7c6b80ac06acc7918308da07777196" class="declaration"><a class="toggle-link" href="#comment-decimalNumber-eb7c6b80ac06acc7918308da07777196">case decimalNumber</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decimalNumber-eb7c6b80ac06acc7918308da07777196"><p>A decimal digit.</p>
+<p>This value corresponds to the category <code>Decimal_Number</code> (abbreviated
+<code>Nd</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case decimalNumber</code></div></div><div id="digit-29a1470067b045281deaf936a75d8c06" class="declaration"><a class="toggle-link" href="#comment-digit-29a1470067b045281deaf936a75d8c06">case digit</a> <span class="required">Required</span><div class="comment collapse in" id="comment-digit-29a1470067b045281deaf936a75d8c06"><p>A digit that does not meet the requirements of the <code>decimal</code> numeric
+type.</p>
+<p>Scalars with this numeric type are often those that represent a decimal
+digit but would not typically be used to write a base-10 number, such
+as &quot;④&quot; (U+2463 CIRCLED DIGIT FOUR).</p>
+<p>As of Unicode 6.3, any new scalars that represent numbers but do not
+meet the requirements of <code>decimal</code> will have numeric type <code>numeric</code>,
+and programs can treat <code>digit</code> and <code>numeric</code> equivalently.</p>
+<h4>Declaration</h4><code class="language-swift">case digit</code></div></div><div id="emptyInput-6ed8ac20ecdf679c91e80432006ee832" class="declaration"><a class="toggle-link" href="#comment-emptyInput-6ed8ac20ecdf679c91e80432006ee832">case emptyInput</a> <span class="required">Required</span><div class="comment collapse in" id="comment-emptyInput-6ed8ac20ecdf679c91e80432006ee832"><p>The input was entirely consumed.</p>
+<h4>Declaration</h4><code class="language-swift">case emptyInput</code></div></div><div id="enclosingMark-af4683aa1aa0eda476862e5857c06420" class="declaration"><a class="toggle-link" href="#comment-enclosingMark-af4683aa1aa0eda476862e5857c06420">case enclosingMark</a> <span class="required">Required</span><div class="comment collapse in" id="comment-enclosingMark-af4683aa1aa0eda476862e5857c06420"><p>An enclosing combining mark.</p>
+<p>This value corresponds to the category <code>Enclosing_Mark</code> (abbreviated
+<code>Me</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case enclosingMark</code></div></div><div id="error-cb5e100e5a9a3e7f6d1fd97512215282" class="declaration"><a class="toggle-link" href="#comment-error-cb5e100e5a9a3e7f6d1fd97512215282">case error</a> <span class="required">Required</span><div class="comment collapse in" id="comment-error-cb5e100e5a9a3e7f6d1fd97512215282"><p>An encoding error was detected.</p>
+<p><code>length</code> is the number of underlying code units consumed by this
+error, guaranteed to be greater than 0.</p>
+<h4>Declaration</h4><code class="language-swift">case error(length: Int)</code></div></div><div id="finalPunctuation-c7dd52c095f336ffd36ebe0affa81448" class="declaration"><a class="toggle-link" href="#comment-finalPunctuation-c7dd52c095f336ffd36ebe0affa81448">case finalPunctuation</a> <span class="required">Required</span><div class="comment collapse in" id="comment-finalPunctuation-c7dd52c095f336ffd36ebe0affa81448"><p>A final quotation mark.</p>
+<p>This value corresponds to the category <code>Final_Punctuation</code> (abbreviated
+<code>Pf</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case finalPunctuation</code></div></div><div id="format-1ddcb92ade31c8fbd370001f9b29a7d9" class="declaration"><a class="toggle-link" href="#comment-format-1ddcb92ade31c8fbd370001f9b29a7d9">case format</a> <span class="required">Required</span><div class="comment collapse in" id="comment-format-1ddcb92ade31c8fbd370001f9b29a7d9"><p>A format control character.</p>
+<p>This value corresponds to the category <code>Format</code> (abbreviated <code>Cf</code>) in
+the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case format</code></div></div><div id="initialPunctuation-46f49a8aef9d705058189383a401fa7c" class="declaration"><a class="toggle-link" href="#comment-initialPunctuation-46f49a8aef9d705058189383a401fa7c">case initialPunctuation</a> <span class="required">Required</span><div class="comment collapse in" id="comment-initialPunctuation-46f49a8aef9d705058189383a401fa7c"><p>An initial quotation mark.</p>
+<p>This value corresponds to the category <code>Initial_Punctuation</code>
+(abbreviated <code>Pi</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case initialPunctuation</code></div></div><div id="letterNumber-f8abc1ee91b58ac3bd2b3be3f4932042" class="declaration"><a class="toggle-link" href="#comment-letterNumber-f8abc1ee91b58ac3bd2b3be3f4932042">case letterNumber</a> <span class="required">Required</span><div class="comment collapse in" id="comment-letterNumber-f8abc1ee91b58ac3bd2b3be3f4932042"><p>A letter-like numeric character.</p>
+<p>This value corresponds to the category <code>Letter_Number</code> (abbreviated
+<code>Nl</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case letterNumber</code></div></div><div id="lineSeparator-2295b6f1520bb4ed9248e07ac41bc7ac" class="declaration"><a class="toggle-link" href="#comment-lineSeparator-2295b6f1520bb4ed9248e07ac41bc7ac">case lineSeparator</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lineSeparator-2295b6f1520bb4ed9248e07ac41bc7ac"><p>A line separator, which is specifically (and only) U+2028 LINE
+SEPARATOR.</p>
+<p>This value corresponds to the category <code>Line_Separator</code> (abbreviated
+<code>Zl</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case lineSeparator</code></div></div><div id="lowercaseLetter-14e8d09ad6b2584f9a9d537e82be2ff2" class="declaration"><a class="toggle-link" href="#comment-lowercaseLetter-14e8d09ad6b2584f9a9d537e82be2ff2">case lowercaseLetter</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lowercaseLetter-14e8d09ad6b2584f9a9d537e82be2ff2"><p>A lowercase letter.</p>
+<p>This value corresponds to the category <code>Lowercase_Letter</code> (abbreviated
+<code>Ll</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case lowercaseLetter</code></div></div><div id="mathSymbol-52297d23f7406d22566cde3048516df6" class="declaration"><a class="toggle-link" href="#comment-mathSymbol-52297d23f7406d22566cde3048516df6">case mathSymbol</a> <span class="required">Required</span><div class="comment collapse in" id="comment-mathSymbol-52297d23f7406d22566cde3048516df6"><p>A symbol of mathematical use.</p>
+<p>This value corresponds to the category <code>Math_Symbol</code> (abbreviated <code>Sm</code>)
+in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case mathSymbol</code></div></div><div id="modifierLetter-5b200a1af9306030a4fb79595bfe1c22" class="declaration"><a class="toggle-link" href="#comment-modifierLetter-5b200a1af9306030a4fb79595bfe1c22">case modifierLetter</a> <span class="required">Required</span><div class="comment collapse in" id="comment-modifierLetter-5b200a1af9306030a4fb79595bfe1c22"><p>A modifier letter.</p>
+<p>This value corresponds to the category <code>Modifier_Letter</code> (abbreviated
+<code>Lm</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case modifierLetter</code></div></div><div id="modifierSymbol-44c40191822534c85159dac6b323a643" class="declaration"><a class="toggle-link" href="#comment-modifierSymbol-44c40191822534c85159dac6b323a643">case modifierSymbol</a> <span class="required">Required</span><div class="comment collapse in" id="comment-modifierSymbol-44c40191822534c85159dac6b323a643"><p>A non-letterlike modifier symbol.</p>
+<p>This value corresponds to the category <code>Modifier_Symbol</code> (abbreviated
+<code>Sk</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case modifierSymbol</code></div></div><div id="nonspacingMark-af0500ea5be639b8ccea7f7694b31993" class="declaration"><a class="toggle-link" href="#comment-nonspacingMark-af0500ea5be639b8ccea7f7694b31993">case nonspacingMark</a> <span class="required">Required</span><div class="comment collapse in" id="comment-nonspacingMark-af0500ea5be639b8ccea7f7694b31993"><p>A non-spacing combining mark with zero advance width (abbreviated Mn).</p>
+<p>This value corresponds to the category <code>Nonspacing_Mark</code> (abbreviated
+<code>Mn</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case nonspacingMark</code></div></div><div id="numeric-49057168d24dc9566533ec48326ced2c" class="declaration"><a class="toggle-link" href="#comment-numeric-49057168d24dc9566533ec48326ced2c">case numeric</a> <span class="required">Required</span><div class="comment collapse in" id="comment-numeric-49057168d24dc9566533ec48326ced2c"><p>A digit that does not meet the requirements of the <code>decimal</code> numeric
+type or a non-digit numeric value.</p>
+<p>This numeric type includes fractions such as &quot;⅕&quot; (U+2155 VULGAR
+FRACITON ONE FIFTH), numerical CJK ideographs like &quot;兆&quot; (U+5146 CJK
+UNIFIED IDEOGRAPH-5146), and other scalars that are not decimal digits
+used positionally in the writing of base-10 numbers.</p>
+<p>As of Unicode 6.3, any new scalars that represent numbers but do not
+meet the requirements of <code>decimal</code> will have numeric type <code>numeric</code>,
+and programs can treat <code>digit</code> and <code>numeric</code> equivalently.</p>
+<h4>Declaration</h4><code class="language-swift">case numeric</code></div></div><div id="openPunctuation-1a8c40ca1081a064ebec19a20353f4d0" class="declaration"><a class="toggle-link" href="#comment-openPunctuation-1a8c40ca1081a064ebec19a20353f4d0">case openPunctuation</a> <span class="required">Required</span><div class="comment collapse in" id="comment-openPunctuation-1a8c40ca1081a064ebec19a20353f4d0"><p>An opening punctuation mark of a pair.</p>
+<p>This value corresponds to the category <code>Open_Punctuation</code> (abbreviated
+<code>Ps</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case openPunctuation</code></div></div><div id="otherLetter-1b97f504b9e4a1358ea98a26750d308a" class="declaration"><a class="toggle-link" href="#comment-otherLetter-1b97f504b9e4a1358ea98a26750d308a">case otherLetter</a> <span class="required">Required</span><div class="comment collapse in" id="comment-otherLetter-1b97f504b9e4a1358ea98a26750d308a"><p>Other letters, including syllables and ideographs.</p>
+<p>This value corresponds to the category <code>Other_Letter</code> (abbreviated
+<code>Lo</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case otherLetter</code></div></div><div id="otherNumber-8984e150810c2a508db645bcb34009fb" class="declaration"><a class="toggle-link" href="#comment-otherNumber-8984e150810c2a508db645bcb34009fb">case otherNumber</a> <span class="required">Required</span><div class="comment collapse in" id="comment-otherNumber-8984e150810c2a508db645bcb34009fb"><p>A numeric character of another type.</p>
+<p>This value corresponds to the category <code>Other_Number</code> (abbreviated <code>No</code>)
+in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case otherNumber</code></div></div><div id="otherPunctuation-7261d5d18daeeaace355b51bdee1afcd" class="declaration"><a class="toggle-link" href="#comment-otherPunctuation-7261d5d18daeeaace355b51bdee1afcd">case otherPunctuation</a> <span class="required">Required</span><div class="comment collapse in" id="comment-otherPunctuation-7261d5d18daeeaace355b51bdee1afcd"><p>A punctuation mark of another type.</p>
+<p>This value corresponds to the category <code>Other_Punctuation</code> (abbreviated
+<code>Po</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case otherPunctuation</code></div></div><div id="otherSymbol-66f9eb93b5e935b7a74d2135a98bcac7" class="declaration"><a class="toggle-link" href="#comment-otherSymbol-66f9eb93b5e935b7a74d2135a98bcac7">case otherSymbol</a> <span class="required">Required</span><div class="comment collapse in" id="comment-otherSymbol-66f9eb93b5e935b7a74d2135a98bcac7"><p>A symbol of another type.</p>
+<p>This value corresponds to the category <code>Other_Symbol</code> (abbreviated
+<code>So</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case otherSymbol</code></div></div><div id="paragraphSeparator-a6aca592825f0208a806c6d09b44c4b5" class="declaration"><a class="toggle-link" href="#comment-paragraphSeparator-a6aca592825f0208a806c6d09b44c4b5">case paragraphSeparator</a> <span class="required">Required</span><div class="comment collapse in" id="comment-paragraphSeparator-a6aca592825f0208a806c6d09b44c4b5"><p>A paragraph separator, which is specifically (and only) U+2029 PARAGRAPH
+SEPARATOR.</p>
+<p>This value corresponds to the category <code>Paragraph_Separator</code>
+(abbreviated <code>Zp</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case paragraphSeparator</code></div></div><div id="privateUse-0f3e4b65a8b6d5eca2a12455cd319fab" class="declaration"><a class="toggle-link" href="#comment-privateUse-0f3e4b65a8b6d5eca2a12455cd319fab">case privateUse</a> <span class="required">Required</span><div class="comment collapse in" id="comment-privateUse-0f3e4b65a8b6d5eca2a12455cd319fab"><p>A private-use character.</p>
+<p>This value corresponds to the category <code>Private_Use</code> (abbreviated <code>Co</code>)
+in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case privateUse</code></div></div><div id="spaceSeparator-e246ed920816a2074aae7cb91a394ed3" class="declaration"><a class="toggle-link" href="#comment-spaceSeparator-e246ed920816a2074aae7cb91a394ed3">case spaceSeparator</a> <span class="required">Required</span><div class="comment collapse in" id="comment-spaceSeparator-e246ed920816a2074aae7cb91a394ed3"><p>A space character of non-zero width.</p>
+<p>This value corresponds to the category <code>Space_Separator</code> (abbreviated
+<code>Zs</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case spaceSeparator</code></div></div><div id="spacingMark-3fef986d34426088ca0fa928d4be12f2" class="declaration"><a class="toggle-link" href="#comment-spacingMark-3fef986d34426088ca0fa928d4be12f2">case spacingMark</a> <span class="required">Required</span><div class="comment collapse in" id="comment-spacingMark-3fef986d34426088ca0fa928d4be12f2"><p>A spacing combining mark with positive advance width.</p>
+<p>This value corresponds to the category <code>Spacing_Mark</code> (abbreviated <code>Mc</code>)
+in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case spacingMark</code></div></div><div id="surrogate-4bcea80df6bc125e52a0361152f5a87a" class="declaration"><a class="toggle-link" href="#comment-surrogate-4bcea80df6bc125e52a0361152f5a87a">case surrogate</a> <span class="required">Required</span><div class="comment collapse in" id="comment-surrogate-4bcea80df6bc125e52a0361152f5a87a"><p>A surrogate code point.</p>
+<p>This value corresponds to the category <code>Surrogate</code> (abbreviated <code>Cs</code>) in
+the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case surrogate</code></div></div><div id="titlecaseLetter-5f295121142f65dedbbc72f12d9f0e56" class="declaration"><a class="toggle-link" href="#comment-titlecaseLetter-5f295121142f65dedbbc72f12d9f0e56">case titlecaseLetter</a> <span class="required">Required</span><div class="comment collapse in" id="comment-titlecaseLetter-5f295121142f65dedbbc72f12d9f0e56"><p>A digraph character whose first part is uppercase.</p>
+<p>This value corresponds to the category <code>Titlecase_Letter</code> (abbreviated
+<code>Lt</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case titlecaseLetter</code></div></div><div id="unassigned-bad097494597a4e092c1524102eeaea7" class="declaration"><a class="toggle-link" href="#comment-unassigned-bad097494597a4e092c1524102eeaea7">case unassigned</a> <span class="required">Required</span><div class="comment collapse in" id="comment-unassigned-bad097494597a4e092c1524102eeaea7"><p>A reserved unassigned code point or a non-character.</p>
+<p>This value corresponds to the category <code>Unassigned</code> (abbreviated <code>Cn</code>)
+in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case unassigned</code></div></div><div id="uppercaseLetter-e23034112438db105bedba67707df957" class="declaration"><a class="toggle-link" href="#comment-uppercaseLetter-e23034112438db105bedba67707df957">case uppercaseLetter</a> <span class="required">Required</span><div class="comment collapse in" id="comment-uppercaseLetter-e23034112438db105bedba67707df957"><p>An uppercase letter.</p>
+<p>This value corresponds to the category <code>Uppercase_Letter</code> (abbreviated
+<code>Lu</code>) in the
+<a href="https://unicode.org/reports/tr44/#General_Category_Values">Unicode Standard</a>.</p>
+<h4>Declaration</h4><code class="language-swift">case uppercaseLetter</code></div></div><div id="valid-9f7d0ee82b6a6ca7ddeae841f3253059" class="declaration"><a class="toggle-link" href="#comment-valid-9f7d0ee82b6a6ca7ddeae841f3253059">case valid</a> <span class="required">Required</span><div class="comment collapse in" id="comment-valid-9f7d0ee82b6a6ca7ddeae841f3253059"><p>A <code>T</code> was parsed successfully</p>
+<h4>Declaration</h4><code class="language-swift">case valid(: T)</code></div></div><h3>Initializers</h3><div id="init_rawValue-ab0cba39516734b3086ce9f9d6330d3d" class="declaration"><a class="toggle-link" href="#comment-init_rawValue-ab0cba39516734b3086ce9f9d6330d3d">init init(rawValue:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_rawValue-ab0cba39516734b3086ce9f9d6330d3d"><p>Creates a new canonical combining class with the given raw integer
+value.</p>
+<ul>
+<li>Parameter rawValue: The raw integer value of the canonical combining
+class.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(rawValue: UInt8)</code></div></div><h3>Instance Variables</h3><div id="hashValue-491de0d7adc95987fe9b96f8ce8b5ed1" class="declaration"><a class="toggle-link" href="#comment-hashValue-491de0d7adc95987fe9b96f8ce8b5ed1">var hashValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hashValue-491de0d7adc95987fe9b96f8ce8b5ed1"><p>The hash value.</p>
+<p>Hash values are not guaranteed to be equal across different executions of
+your program. Do not save hash values to use during a future execution.</p>
+<blockquote>
+<p>Important:
+<code>hashValue</code> is deprecated as a <code>Hashable</code> requirement. To conform to <code>Hashable</code>, implement the <code>hash(into:)</code> requirement instead.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var hashValue: Int</code></div></div><div id="rawValue-05d5e54af177d42e80ca02e20dada809" class="declaration"><a class="toggle-link" href="#comment-rawValue-05d5e54af177d42e80ca02e20dada809">let rawValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-rawValue-05d5e54af177d42e80ca02e20dada809"><p>The raw integer value of the canonical combining class.</p>
+<h4>Declaration</h4><code class="language-swift">let rawValue: UInt8</code></div></div><h3>Instance Methods</h3><div id="hash_into-6d50cb3daa41162a12fb4542a687b393" class="declaration"><a class="toggle-link" href="#comment-hash_into-6d50cb3daa41162a12fb4542a687b393">func hash(into hasher: inout Hasher)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hash_into-6d50cb3daa41162a12fb4542a687b393"><p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+<p>Implement this method to conform to the <code>Hashable</code> protocol. The
+components used for hashing must be the same as the components compared
+in your type's <code>==</code> operator implementation. Call <code>hasher.combine(_:)</code>
+with each of these components.</p>
+<blockquote>
+<p>Important:
+Never call <code>finalize()</code> on <code>hasher</code>. Doing so may become a compile-time error in the future.</p>
+</blockquote>
+<ul>
+<li>Parameter hasher: The hasher to use when combining the components
+of this instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func hash(into hasher: inout Hasher)</code></div></div><h3>Type Variables</h3><div id="above-55a9d6aa251e3c334db4ab4055a4a004" class="declaration"><a class="toggle-link" href="#comment-above-55a9d6aa251e3c334db4ab4055a4a004">let above</a> <span class="required">Required</span><div class="comment collapse in" id="comment-above-55a9d6aa251e3c334db4ab4055a4a004"><p>Distinct marks directly above.</p>
+<h4>Declaration</h4><code class="language-swift">let above: Unicode.CanonicalCombiningClass</code></div></div><div id="aboveLeft-91b418d536bfcf5b646cc2a7c8de003e" class="declaration"><a class="toggle-link" href="#comment-aboveLeft-91b418d536bfcf5b646cc2a7c8de003e">let aboveLeft</a> <span class="required">Required</span><div class="comment collapse in" id="comment-aboveLeft-91b418d536bfcf5b646cc2a7c8de003e"><p>Distinct marks at the top left.</p>
+<h4>Declaration</h4><code class="language-swift">let aboveLeft: Unicode.CanonicalCombiningClass</code></div></div><div id="aboveRight-5ea98868caa6a59555387816bf7d142e" class="declaration"><a class="toggle-link" href="#comment-aboveRight-5ea98868caa6a59555387816bf7d142e">let aboveRight</a> <span class="required">Required</span><div class="comment collapse in" id="comment-aboveRight-5ea98868caa6a59555387816bf7d142e"><p>Distinct marks at the top right.</p>
+<h4>Declaration</h4><code class="language-swift">let aboveRight: Unicode.CanonicalCombiningClass</code></div></div><div id="attachedAbove-7f77fd6fcf87899a5239e4ac94a3d332" class="declaration"><a class="toggle-link" href="#comment-attachedAbove-7f77fd6fcf87899a5239e4ac94a3d332">let attachedAbove</a> <span class="required">Required</span><div class="comment collapse in" id="comment-attachedAbove-7f77fd6fcf87899a5239e4ac94a3d332"><p>Marks attached directly above.</p>
+<h4>Declaration</h4><code class="language-swift">let attachedAbove: Unicode.CanonicalCombiningClass</code></div></div><div id="attachedAboveRight-87bc24ad581776376cc7b629158327f8" class="declaration"><a class="toggle-link" href="#comment-attachedAboveRight-87bc24ad581776376cc7b629158327f8">let attachedAboveRight</a> <span class="required">Required</span><div class="comment collapse in" id="comment-attachedAboveRight-87bc24ad581776376cc7b629158327f8"><p>Marks attached at the top right.</p>
+<h4>Declaration</h4><code class="language-swift">let attachedAboveRight: Unicode.CanonicalCombiningClass</code></div></div><div id="attachedBelow-06a3e826abbe9c2152c9988e329fe350" class="declaration"><a class="toggle-link" href="#comment-attachedBelow-06a3e826abbe9c2152c9988e329fe350">let attachedBelow</a> <span class="required">Required</span><div class="comment collapse in" id="comment-attachedBelow-06a3e826abbe9c2152c9988e329fe350"><p>Marks attached directly below.</p>
+<h4>Declaration</h4><code class="language-swift">let attachedBelow: Unicode.CanonicalCombiningClass</code></div></div><div id="attachedBelowLeft-cc4edf9ce1cfbfdea7d55cd184e756c7" class="declaration"><a class="toggle-link" href="#comment-attachedBelowLeft-cc4edf9ce1cfbfdea7d55cd184e756c7">let attachedBelowLeft</a> <span class="required">Required</span><div class="comment collapse in" id="comment-attachedBelowLeft-cc4edf9ce1cfbfdea7d55cd184e756c7"><p>Marks attached at the bottom left.</p>
+<h4>Declaration</h4><code class="language-swift">let attachedBelowLeft: Unicode.CanonicalCombiningClass</code></div></div><div id="below-6cede1cfde12fc6d88ad1d8b6636a977" class="declaration"><a class="toggle-link" href="#comment-below-6cede1cfde12fc6d88ad1d8b6636a977">let below</a> <span class="required">Required</span><div class="comment collapse in" id="comment-below-6cede1cfde12fc6d88ad1d8b6636a977"><p>Distinct marks directly below.</p>
+<h4>Declaration</h4><code class="language-swift">let below: Unicode.CanonicalCombiningClass</code></div></div><div id="belowLeft-721f3cfc335264815c6b15ee5500acde" class="declaration"><a class="toggle-link" href="#comment-belowLeft-721f3cfc335264815c6b15ee5500acde">let belowLeft</a> <span class="required">Required</span><div class="comment collapse in" id="comment-belowLeft-721f3cfc335264815c6b15ee5500acde"><p>Distinct marks at the bottom left.</p>
+<h4>Declaration</h4><code class="language-swift">let belowLeft: Unicode.CanonicalCombiningClass</code></div></div><div id="belowRight-3a2951110bb478d6fa892936028793d4" class="declaration"><a class="toggle-link" href="#comment-belowRight-3a2951110bb478d6fa892936028793d4">let belowRight</a> <span class="required">Required</span><div class="comment collapse in" id="comment-belowRight-3a2951110bb478d6fa892936028793d4"><p>Distinct marks at the bottom right.</p>
+<h4>Declaration</h4><code class="language-swift">let belowRight: Unicode.CanonicalCombiningClass</code></div></div><div id="doubleAbove-c056002078f277b9f9f01a8d83aa94bd" class="declaration"><a class="toggle-link" href="#comment-doubleAbove-c056002078f277b9f9f01a8d83aa94bd">let doubleAbove</a> <span class="required">Required</span><div class="comment collapse in" id="comment-doubleAbove-c056002078f277b9f9f01a8d83aa94bd"><p>Distinct marks extending above two bases.</p>
+<h4>Declaration</h4><code class="language-swift">let doubleAbove: Unicode.CanonicalCombiningClass</code></div></div><div id="doubleBelow-0e022075f87770beb729ea9cbc32ca29" class="declaration"><a class="toggle-link" href="#comment-doubleBelow-0e022075f87770beb729ea9cbc32ca29">let doubleBelow</a> <span class="required">Required</span><div class="comment collapse in" id="comment-doubleBelow-0e022075f87770beb729ea9cbc32ca29"><p>Distinct marks subtending two bases.</p>
+<h4>Declaration</h4><code class="language-swift">let doubleBelow: Unicode.CanonicalCombiningClass</code></div></div><div id="iotaSubscript-d94241b1e0d82e185cb1129d9bbd5f2b" class="declaration"><a class="toggle-link" href="#comment-iotaSubscript-d94241b1e0d82e185cb1129d9bbd5f2b">let iotaSubscript</a> <span class="required">Required</span><div class="comment collapse in" id="comment-iotaSubscript-d94241b1e0d82e185cb1129d9bbd5f2b"><p>Greek iota subscript only (U+0345 COMBINING GREEK YPOGEGRAMMENI).</p>
+<h4>Declaration</h4><code class="language-swift">let iotaSubscript: Unicode.CanonicalCombiningClass</code></div></div><div id="kanaVoicing-9ba4310bdef4abc82e2156b9d6f43f26" class="declaration"><a class="toggle-link" href="#comment-kanaVoicing-9ba4310bdef4abc82e2156b9d6f43f26">let kanaVoicing</a> <span class="required">Required</span><div class="comment collapse in" id="comment-kanaVoicing-9ba4310bdef4abc82e2156b9d6f43f26"><p>Combining marks that are attached to hiragana and katakana to indicate
+voicing changes.</p>
+<h4>Declaration</h4><code class="language-swift">let kanaVoicing: Unicode.CanonicalCombiningClass</code></div></div><div id="left-811882fecd5c7618d7099ebbd39ea254" class="declaration"><a class="toggle-link" href="#comment-left-811882fecd5c7618d7099ebbd39ea254">let left</a> <span class="required">Required</span><div class="comment collapse in" id="comment-left-811882fecd5c7618d7099ebbd39ea254"><p>Distinct marks to the left.</p>
+<h4>Declaration</h4><code class="language-swift">let left: Unicode.CanonicalCombiningClass</code></div></div><div id="notReordered-8ad76cd8a33146752418fff01a036f74" class="declaration"><a class="toggle-link" href="#comment-notReordered-8ad76cd8a33146752418fff01a036f74">let notReordered</a> <span class="required">Required</span><div class="comment collapse in" id="comment-notReordered-8ad76cd8a33146752418fff01a036f74"><p>Base glyphs that occupy their own space and do not combine with others.</p>
+<h4>Declaration</h4><code class="language-swift">let notReordered: Unicode.CanonicalCombiningClass</code></div></div><div id="nukta-2c6d91442f74f1348cadbb8119a300bf" class="declaration"><a class="toggle-link" href="#comment-nukta-2c6d91442f74f1348cadbb8119a300bf">let nukta</a> <span class="required">Required</span><div class="comment collapse in" id="comment-nukta-2c6d91442f74f1348cadbb8119a300bf"><p>Diacritic nukta marks in Brahmi-derived scripts.</p>
+<h4>Declaration</h4><code class="language-swift">let nukta: Unicode.CanonicalCombiningClass</code></div></div><div id="overlay-380e537acdaedd487ca1adb49d020f7e" class="declaration"><a class="toggle-link" href="#comment-overlay-380e537acdaedd487ca1adb49d020f7e">let overlay</a> <span class="required">Required</span><div class="comment collapse in" id="comment-overlay-380e537acdaedd487ca1adb49d020f7e"><p>Marks that overlay a base letter or symbol.</p>
+<h4>Declaration</h4><code class="language-swift">let overlay: Unicode.CanonicalCombiningClass</code></div></div><div id="right-7c4f29407893c334a6cb7a87bf045c0d" class="declaration"><a class="toggle-link" href="#comment-right-7c4f29407893c334a6cb7a87bf045c0d">let right</a> <span class="required">Required</span><div class="comment collapse in" id="comment-right-7c4f29407893c334a6cb7a87bf045c0d"><p>Distinct marks to the right.</p>
+<h4>Declaration</h4><code class="language-swift">let right: Unicode.CanonicalCombiningClass</code></div></div><div id="virama-ff3e7767ace152cb5483aed42b244645" class="declaration"><a class="toggle-link" href="#comment-virama-ff3e7767ace152cb5483aed42b244645">let virama</a> <span class="required">Required</span><div class="comment collapse in" id="comment-virama-ff3e7767ace152cb5483aed42b244645"><p>Diacritic virama marks in Brahmi-derived scripts.</p>
+<h4>Declaration</h4><code class="language-swift">let virama: Unicode.CanonicalCombiningClass</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f">func &lt;(lhs: Unicode.CanonicalCombiningClass, rhs: Unicode.CanonicalCombiningClass) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;(lhs: Unicode.CanonicalCombiningClass, rhs: Unicode.CanonicalCombiningClass) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: Unicode.CanonicalCombiningClass, rhs: Unicode.CanonicalCombiningClass) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func ==(lhs: Unicode.CanonicalCombiningClass, rhs: Unicode.CanonicalCombiningClass) -> Bool</code></div></div>

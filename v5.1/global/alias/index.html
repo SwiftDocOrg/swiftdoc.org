@@ -1,0 +1,254 @@
+---
+root: "/v5.1"
+layout: "default"
+title: "Type Aliases"
+description: "Swift documentation for Type Aliases"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">typealias AnyClass</code></div><div class="discussion comment"><p>The protocol to which all class types implicitly conform.</p>
+<p>You can use the <code>AnyClass</code> protocol as the concrete type for an instance of
+any class. When you do, all known <code>@objc</code> class methods and properties are
+available as implicitly unwrapped optional methods and properties,
+respectively. For example:</p>
+<pre><code class="language-swift">class IntegerRef {
+    @objc class func getDefaultValue() -&gt; Int {
+        return 42
+    }
+}
+
+func getDefaultValue(_ c: AnyClass) -&gt; Int? {
+    return c.getDefaultValue?()
+}
+</code></pre>
+<p>The <code>getDefaultValue(_:)</code> function uses optional chaining to safely call
+the implicitly unwrapped class method on <code>c</code>. Calling the function with
+different class types shows how the <code>getDefaultValue()</code> class method is
+only conditionally available.</p>
+<pre><code class="language-swift">print(getDefaultValue(IntegerRef.self))
+// Prints &quot;Optional(42)&quot;
+
+print(getDefaultValue(NSString.self))
+// Prints &quot;nil&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public typealias AnyClass = AnyObject.Type</code></div><div class="intro-declaration"><code class="language-swift">typealias AnyObject</code></div><div class="discussion comment"><p>The protocol to which all classes implicitly conform.</p>
+<p>You use <code>AnyObject</code> when you need the flexibility of an untyped object or
+when you use bridged Objective-C methods and properties that return an
+untyped result. <code>AnyObject</code> can be used as the concrete type for an
+instance of any class, class type, or class-only protocol. For example:</p>
+<pre><code class="language-swift">class FloatRef {
+    let value: Float
+    init(_ value: Float) {
+        self.value = value
+    }
+}
+
+let x = FloatRef(2.3)
+let y: AnyObject = x
+let z: AnyObject = FloatRef.self
+</code></pre>
+<p><code>AnyObject</code> can also be used as the concrete type for an instance of a type
+that bridges to an Objective-C class. Many value types in Swift bridge to
+Objective-C counterparts, like <code>String</code> and <code>Int</code>.</p>
+<pre><code class="language-swift">let s: AnyObject = &quot;This is a bridged string.&quot; as NSString
+print(s is NSString)
+// Prints &quot;true&quot;
+
+let v: AnyObject = 100 as NSNumber
+print(type(of: v))
+// Prints &quot;__NSCFNumber&quot;
+</code></pre>
+<p>The flexible behavior of the <code>AnyObject</code> protocol is similar to
+Objective-C's <code>id</code> type. For this reason, imported Objective-C types
+frequently use <code>AnyObject</code> as the type for properties, method parameters,
+and return values.</p>
+<h3>Casting AnyObject Instances to a Known Type</h3>
+<p>Objects with a concrete type of <code>AnyObject</code> maintain a specific dynamic
+type and can be cast to that type using one of the type-cast operators
+(<code>as</code>, <code>as?</code>, or <code>as!</code>).</p>
+<p>This example uses the conditional downcast operator (<code>as?</code>) to
+conditionally cast the <code>s</code> constant declared above to an instance of
+Swift's <code>String</code> type.</p>
+<pre><code class="language-swift">if let message = s as? String {
+    print(&quot;Successful cast to String: \(message)&quot;)
+}
+// Prints &quot;Successful cast to String: This is a bridged string.&quot;
+</code></pre>
+<p>If you have prior knowledge that an <code>AnyObject</code> instance has a particular
+type, you can use the unconditional downcast operator (<code>as!</code>). Performing
+an invalid cast triggers a runtime error.</p>
+<pre><code class="language-swift">let message = s as! String
+print(&quot;Successful cast to String: \(message)&quot;)
+// Prints &quot;Successful cast to String: This is a bridged string.&quot;
+
+let badCase = v as! String
+// Runtime error
+</code></pre>
+<p>Casting is always safe in the context of a <code>switch</code> statement.</p>
+<pre><code class="language-swift">let mixedArray: [AnyObject] = [s, v]
+for object in mixedArray {
+    switch object {
+    case let x as String:
+        print(&quot;'\(x)' is a String&quot;)
+    default:
+        print(&quot;'\(object)' is not a String&quot;)
+    }
+}
+// Prints &quot;'This is a bridged string.' is a String&quot;
+// Prints &quot;'100' is not a String&quot;
+</code></pre>
+<h3>Accessing Objective-C Methods and Properties</h3>
+<p>When you use <code>AnyObject</code> as a concrete type, you have at your disposal
+every <code>@objc</code> method and property---that is, methods and properties
+imported from Objective-C or marked with the <code>@objc</code> attribute. Because
+Swift can't guarantee at compile time that these methods and properties
+are actually available on an <code>AnyObject</code> instance's underlying type, these
+<code>@objc</code> symbols are available as implicitly unwrapped optional methods and
+properties, respectively.</p>
+<p>This example defines an <code>IntegerRef</code> type with an <code>@objc</code> method named
+<code>getIntegerValue()</code>.</p>
+<pre><code class="language-swift">class IntegerRef {
+    let value: Int
+    init(_ value: Int) {
+        self.value = value
+    }
+
+    @objc func getIntegerValue() -&gt; Int {
+        return value
+    }
+}
+
+func getObject() -&gt; AnyObject {
+    return IntegerRef(100)
+}
+
+let obj: AnyObject = getObject()
+</code></pre>
+<p>In the example, <code>obj</code> has a static type of <code>AnyObject</code> and a dynamic type
+of <code>IntegerRef</code>. You can use optional chaining to call the <code>@objc</code> method
+<code>getIntegerValue()</code> on <code>obj</code> safely. If you're sure of the dynamic type of
+<code>obj</code>, you can call <code>getIntegerValue()</code> directly.</p>
+<pre><code class="language-swift">let possibleValue = obj.getIntegerValue?()
+print(possibleValue)
+// Prints &quot;Optional(100)&quot;
+
+let certainValue = obj.getIntegerValue()
+print(certainValue)
+// Prints &quot;100&quot;
+</code></pre>
+<p>If the dynamic type of <code>obj</code> doesn't implement a <code>getIntegerValue()</code>
+method, the system returns a runtime error when you initialize
+<code>certainValue</code>.</p>
+<p>Alternatively, if you need to test whether <code>obj.getIntegerValue()</code> exists,
+use optional binding before calling the method.</p>
+<pre><code class="language-swift">if let f = obj.getIntegerValue {
+    print(&quot;The value of 'obj' is \(f())&quot;)
+} else {
+    print(&quot;'obj' does not have a 'getIntegerValue()' method&quot;)
+}
+// Prints &quot;The value of 'obj' is 100&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public typealias AnyObject</code></div><div class="intro-declaration"><code class="language-swift">typealias BooleanLiteralType</code></div><div class="discussion comment"><p>The default type for an otherwise-unconstrained Boolean literal.</p>
+<p>When you create a constant or variable using one of the Boolean literals
+<code>true</code> or <code>false</code>, the resulting type is determined by the
+<code>BooleanLiteralType</code> alias. For example:</p>
+<pre><code class="language-swift">let isBool = true
+print(&quot;isBool is a '\(type(of: isBool))'&quot;)
+// Prints &quot;isBool is a 'Bool'&quot;
+</code></pre>
+<p>The type aliased by <code>BooleanLiteralType</code> must conform to the
+<code>ExpressibleByBooleanLiteral</code> protocol.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias BooleanLiteralType = Bool</code></div><div class="intro-declaration"><code class="language-swift">typealias CBool</code></div><div class="discussion comment"><p>The C '_Bool' and C++ 'bool' type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CBool = Bool</code></div><div class="intro-declaration"><code class="language-swift">typealias CChar</code></div><div class="discussion comment"><p>The C 'char' type.</p>
+<p>This will be the same as either <code>CSignedChar</code> (in the common
+case) or <code>CUnsignedChar</code>, depending on the platform.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CChar = Int8</code></div><div class="intro-declaration"><code class="language-swift">typealias CChar16</code></div><div class="discussion comment"><p>The C++11 'char16_t' type, which has UTF-16 encoding.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CChar16 = UInt16</code></div><div class="intro-declaration"><code class="language-swift">typealias CChar32</code></div><div class="discussion comment"><p>The C++11 'char32_t' type, which has UTF-32 encoding.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CChar32 = Unicode.Scalar</code></div><div class="intro-declaration"><code class="language-swift">typealias CDouble</code></div><div class="discussion comment"><p>The C 'double' type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CDouble = Double</code></div><div class="intro-declaration"><code class="language-swift">typealias CFloat</code></div><div class="discussion comment"><p>The C 'float' type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CFloat = Float</code></div><div class="intro-declaration"><code class="language-swift">typealias CInt</code></div><div class="discussion comment"><p>The C 'int' type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CInt = Int32</code></div><div class="intro-declaration"><code class="language-swift">typealias CLong</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias CLong = Int</code></div><div class="intro-declaration"><code class="language-swift">typealias CLongDouble</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias CLongDouble = Float80</code></div><div class="intro-declaration"><code class="language-swift">typealias CLongLong</code></div><div class="discussion comment"><p>The C 'long long' type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CLongLong = Int64</code></div><div class="intro-declaration"><code class="language-swift">typealias CShort</code></div><div class="discussion comment"><p>The C 'short' type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CShort = Int16</code></div><div class="intro-declaration"><code class="language-swift">typealias CSignedChar</code></div><div class="discussion comment"><p>The C 'signed char' type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CSignedChar = Int8</code></div><div class="intro-declaration"><code class="language-swift">typealias CUnsignedChar</code></div><div class="discussion comment"><p>The C 'unsigned char' type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CUnsignedChar = UInt8</code></div><div class="intro-declaration"><code class="language-swift">typealias CUnsignedInt</code></div><div class="discussion comment"><p>The C 'unsigned int' type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CUnsignedInt = UInt32</code></div><div class="intro-declaration"><code class="language-swift">typealias CUnsignedLong</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias CUnsignedLong = UInt</code></div><div class="intro-declaration"><code class="language-swift">typealias CUnsignedLongLong</code></div><div class="discussion comment"><p>The C 'unsigned long long' type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CUnsignedLongLong = UInt64</code></div><div class="intro-declaration"><code class="language-swift">typealias CUnsignedShort</code></div><div class="discussion comment"><p>The C 'unsigned short' type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CUnsignedShort = UInt16</code></div><div class="intro-declaration"><code class="language-swift">typealias CWideChar</code></div><div class="discussion comment"><p>The C++ 'wchar_t' type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias CWideChar = Unicode.Scalar</code></div><div class="intro-declaration"><code class="language-swift">typealias Codable</code></div><div class="discussion comment"><p>A type that can convert itself into and out of an external representation.</p>
+<p><code>Codable</code> is a type alias for the <code>Encodable</code> and <code>Decodable</code> protocols.
+When you use <code>Codable</code> as a type or a generic constraint, it matches
+any type that conforms to both protocols.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias Codable = Decodable &amp; Encodable</code></div><div class="intro-declaration"><code class="language-swift">typealias CountableClosedRange</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias CountableClosedRange&lt;Bound> = ClosedRange&lt;Bound> where Bound: Strideable, Bound.Stride: SignedInteger</code></div><div class="intro-declaration"><code class="language-swift">typealias CountablePartialRangeFrom</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias CountablePartialRangeFrom&lt;Bound> = PartialRangeFrom&lt;Bound> where Bound: Strideable, Bound.Stride: SignedInteger</code></div><div class="intro-declaration"><code class="language-swift">typealias CountableRange</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias CountableRange&lt;Bound> = Range&lt;Bound> where Bound: Strideable, Bound.Stride: SignedInteger</code></div><div class="intro-declaration"><code class="language-swift">typealias DictionaryIndex</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias DictionaryIndex&lt;Key, Value> = Dictionary&lt;Key, Value>.Index where Key: Hashable</code></div><div class="intro-declaration"><code class="language-swift">typealias DictionaryIterator</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias DictionaryIterator&lt;Key, Value> = Dictionary&lt;Key, Value>.Iterator where Key: Hashable</code></div><div class="intro-declaration"><code class="language-swift">typealias DictionaryLiteral</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">@available(swift, deprecated: 5.0, renamed: "KeyValuePairs") public typealias DictionaryLiteral&lt;Key, Value> = KeyValuePairs&lt;Key, Value></code></div><div class="intro-declaration"><code class="language-swift">typealias EnumeratedIterator</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">@available(swift, deprecated: 4.2, renamed: "EnumeratedSequence.Iterator") public typealias EnumeratedIterator&lt;T> = EnumeratedSequence&lt;T>.Iterator where T: Sequence</code></div><div class="intro-declaration"><code class="language-swift">typealias ExtendedGraphemeClusterType</code></div><div class="discussion comment"><p>The default type for an otherwise-unconstrained Unicode extended
+grapheme cluster literal.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias ExtendedGraphemeClusterType = String</code></div><div class="intro-declaration"><code class="language-swift">typealias FlattenCollection</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias FlattenCollection&lt;T> = FlattenSequence&lt;T> where T: Collection, T.Element: Collection</code></div><div class="intro-declaration"><code class="language-swift">typealias Float32</code></div><div class="discussion comment"><p>A 32-bit floating point type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias Float32 = Float</code></div><div class="intro-declaration"><code class="language-swift">typealias Float64</code></div><div class="discussion comment"><p>A 64-bit floating point type.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias Float64 = Double</code></div><div class="intro-declaration"><code class="language-swift">typealias FloatLiteralType</code></div><div class="discussion comment"><p>The default type for an otherwise-unconstrained floating point literal.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias FloatLiteralType = Double</code></div><div class="intro-declaration"><code class="language-swift">typealias IntegerLiteralType</code></div><div class="discussion comment"><p>The default type for an otherwise-unconstrained integer literal.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias IntegerLiteralType = Int</code></div><div class="intro-declaration"><code class="language-swift">typealias LazyCollection</code></div><div class="discussion comment"><p>A collection containing the same elements as a <code>Base</code> collection,
+but on which some operations such as <code>map</code> and <code>filter</code> are
+implemented lazily.</p>
+<ul>
+<li>See also: <code>LazySequenceProtocol</code>, <code>LazyCollection</code></li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public typealias LazyCollection&lt;T> = LazySequence&lt;T> where T: Collection</code></div><div class="intro-declaration"><code class="language-swift">typealias LazyDropWhileCollection</code></div><div class="discussion comment"><p>A lazy wrapper that includes the elements of an underlying
+collection after any initial consecutive elements that satisfy a
+predicate.</p>
+<blockquote>
+<p>Note:
+The performance of accessing <code>startIndex</code>, <code>first</code>, or any methods that depend on <code>startIndex</code> depends on how many elements satisfy the predicate at the start of the collection, and may not offer the usual performance given by the <code>Collection</code> protocol. Be aware, therefore, that general operations on lazy collections may not have the documented complexity.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public typealias LazyDropWhileCollection&lt;T> = LazyDropWhileSequence&lt;T> where T: Collection</code></div><div class="intro-declaration"><code class="language-swift">typealias LazyFilterCollection</code></div><div class="discussion comment"><p>A lazy <code>Collection</code> wrapper that includes the elements of an
+underlying collection that satisfy a predicate.</p>
+<blockquote>
+<p>Note:
+The performance of accessing <code>startIndex</code>, <code>first</code>, any methods that depend on <code>startIndex</code>, or of advancing an index depends on how sparsely the filtering predicate is satisfied, and may not offer the usual performance given by <code>Collection</code>. Be aware, therefore, that general operations on <code>LazyFilterCollection</code> instances may not have the documented complexity.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public typealias LazyFilterCollection&lt;T> = LazyFilterSequence&lt;T> where T: Collection</code></div><div class="intro-declaration"><code class="language-swift">typealias LazyMapCollection</code></div><div class="discussion comment"><p>A <code>Collection</code> whose elements consist of those in a <code>Base</code>
+<code>Collection</code> passed through a transform function returning <code>Element</code>.
+These elements are computed lazily, each time they're read, by
+calling the transform function on a base element.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias LazyMapCollection&lt;T, U> = LazyMapSequence&lt;T, U> where T: Collection</code></div><div class="intro-declaration"><code class="language-swift">typealias LazyPrefixWhileCollection</code></div><div class="discussion comment"><p>A lazy collection wrapper that includes the initial consecutive
+elements of an underlying collection that satisfy a predicate.</p>
+<blockquote>
+<p>Note:
+The performance of accessing <code>endIndex</code> depends on how many elements satisfy the predicate at the start of the collection, and might not offer the usual performance given by the <code>Collection</code> protocol. Accessing <code>endIndex</code>, the <code>last</code> property, or calling methods that depend on moving indices might not have the documented complexity.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public typealias LazyPrefixWhileCollection&lt;T> = LazyPrefixWhileSequence&lt;T> where T: Collection</code></div><div class="intro-declaration"><code class="language-swift">typealias PlaygroundQuickLook</code></div><div class="discussion comment"><p>The sum of types that can be used as a Quick Look representation.</p>
+<p>The <code>PlaygroundQuickLook</code> protocol is deprecated, and will be removed from
+the standard library in a future Swift release. To customize the logging of
+your type in a playground, conform to the
+<code>CustomPlaygroundDisplayConvertible</code> protocol, which does not use the
+<code>PlaygroundQuickLook</code> enum.</p>
+<p>If you need to provide a customized playground representation in Swift 4.0
+or Swift 3.2 or earlier, use a conditional compilation block:</p>
+<pre><code class="language-swift">#if swift(&gt;=4.1) || (swift(&gt;=3.3) &amp;&amp; !swift(&gt;=4.0))
+    // With Swift 4.1 and later (including Swift 3.3 and later), use
+    // the CustomPlaygroundDisplayConvertible protocol.
+#else
+    // With Swift 4.0 and Swift 3.2 and earlier, use PlaygroundQuickLook
+    // and the CustomPlaygroundQuickLookable protocol.
+#endif
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@available(swift, deprecated: 4.2, message: "PlaygroundQuickLook will be removed in a future Swift version. For customizing how types are presented in playgrounds, use CustomPlaygroundDisplayConvertible instead.") public typealias PlaygroundQuickLook</code></div><div class="intro-declaration"><code class="language-swift">typealias SetIndex</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias SetIndex&lt;Element> = Set&lt;Element>.Index where Element: Hashable</code></div><div class="intro-declaration"><code class="language-swift">typealias SetIterator</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias SetIterator&lt;Element> = Set&lt;Element>.Iterator where Element: Hashable</code></div><div class="intro-declaration"><code class="language-swift">typealias StringLiteralType</code></div><div class="discussion comment"><p>The default type for an otherwise-unconstrained string literal.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias StringLiteralType = String</code></div><div class="intro-declaration"><code class="language-swift">typealias UTF16</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias UTF16 = Unicode.UTF16</code></div><div class="intro-declaration"><code class="language-swift">typealias UTF32</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias UTF32 = Unicode.UTF32</code></div><div class="intro-declaration"><code class="language-swift">typealias UTF8</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias UTF8 = Unicode.UTF8</code></div><div class="intro-declaration"><code class="language-swift">typealias UnboundedRange</code></div><div class="discussion comment"><p>The type of an unbounded range operator.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias UnboundedRange = (UnboundedRange_) -> ()</code></div><div class="intro-declaration"><code class="language-swift">typealias UnfoldFirstSequence</code></div><div class="discussion comment"><p>The return type of <code>sequence(first:next:)</code>.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias UnfoldFirstSequence&lt;T> = UnfoldSequence&lt;T, (T?, Bool)></code></div><div class="intro-declaration"><code class="language-swift">typealias UnicodeScalar</code></div><div class="discussion comment"><h4>Declaration</h4><code class="language-swift">public typealias UnicodeScalar = Unicode.Scalar</code></div><div class="intro-declaration"><code class="language-swift">typealias UnicodeScalarType</code></div><div class="discussion comment"><p>The default type for an otherwise-unconstrained unicode scalar literal.</p>
+<h4>Declaration</h4><code class="language-swift">public typealias UnicodeScalarType = String</code></div><div class="intro-declaration"><code class="language-swift">typealias Void</code></div><div class="discussion comment"><p>The return type of functions that don't explicitly specify a return type,
+that is, an empty tuple <code>()</code>.</p>
+<p>When declaring a function or method, you don't need to specify a return
+type if no value will be returned. However, the type of a function,
+method, or closure always includes a return type, which is <code>Void</code> if
+otherwise unspecified.</p>
+<p>Use <code>Void</code> or an empty tuple as the return type when declaring a closure,
+function, or method that doesn't return a value.</p>
+<pre><code class="language-swift">// No return type declared:
+func logMessage(_ s: String) {
+    print(&quot;Message: \(s)&quot;)
+}
+
+let logger: (String) -&gt; Void = logMessage
+logger(&quot;This is a void function&quot;)
+// Prints &quot;Message: This is a void function&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public typealias Void = ()</code></div>

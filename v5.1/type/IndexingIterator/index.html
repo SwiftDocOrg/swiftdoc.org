@@ -1,0 +1,725 @@
+---
+root: "/v5.1"
+layout: "default"
+title: "IndexingIterator"
+description: "Swift documentation for 'IndexingIterator'"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">struct IndexingIterator</code></div><p>A type that iterates over a collection using its indices.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">IteratorProtocol, Sequence</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Element = Elements.Element</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias Iterator = IndexingIterator&lt;Elements></code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias SubSequence = AnySequence&lt;IndexingIterator&lt;Elements>.Element></code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>The <code>IndexingIterator</code> type is the default iterator for any collection that
+doesn't declare its own. It acts as an iterator by using a collection's
+indices to step over each value in the collection. Most collections in the
+standard library use <code>IndexingIterator</code> as their iterator.</p>
+<p>By default, any custom collection type you create will inherit a
+<code>makeIterator()</code> method that returns an <code>IndexingIterator</code> instance,
+making it unnecessary to declare your own. When creating a custom
+collection type, add the minimal requirements of the <code>Collection</code>
+protocol: starting and ending indices and a subscript for accessing
+elements. With those elements defined, the inherited <code>makeIterator()</code>
+method satisfies the requirements of the <code>Sequence</code> protocol.</p>
+<p>Here's an example of a type that declares the minimal requirements for a
+collection. The <code>CollectionOfTwo</code> structure is a fixed-size collection
+that always holds two elements of a specific type.</p>
+<pre><code class="language-swift">struct CollectionOfTwo&lt;Element&gt;: Collection {
+    let elements: (Element, Element)
+
+    init(_ first: Element, _ second: Element) {
+        self.elements = (first, second)
+    }
+
+    var startIndex: Int { return 0 }
+    var endIndex: Int   { return 2 }
+
+    subscript(index: Int) -&gt; Element {
+        switch index {
+        case 0: return elements.0
+        case 1: return elements.1
+        default: fatalError(&quot;Index out of bounds.&quot;)
+        }
+    }
+    
+    func index(after i: Int) -&gt; Int {
+        precondition(i &lt; endIndex, &quot;Can't advance beyond endIndex&quot;)
+        return i + 1
+    }
+}
+</code></pre>
+<p>Because <code>CollectionOfTwo</code> doesn't define its own <code>makeIterator()</code>
+method or <code>Iterator</code> associated type, it uses the default iterator type,
+<code>IndexingIterator</code>. This example shows how a <code>CollectionOfTwo</code> instance
+can be created holding the values of a point, and then iterated over
+using a <code>for</code>-<code>in</code> loop.</p>
+<pre><code class="language-swift">let point = CollectionOfTwo(15.0, 20.0)
+for element in point {
+    print(element)
+}
+// Prints &quot;15.0&quot;
+// Prints &quot;20.0&quot;
+</code></pre>
+</div><h3>Instance Variables</h3><div id="lazy-0ffe34b4e04c2b282c5a388b1ad8aa7a" class="declaration"><a class="toggle-link" href="#comment-lazy-0ffe34b4e04c2b282c5a388b1ad8aa7a">var lazy</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lazy-0ffe34b4e04c2b282c5a388b1ad8aa7a"><p>A sequence containing the same elements as this sequence,
+but on which some operations, such as <code>map</code> and <code>filter</code>, are
+implemented lazily.</p>
+<h4>Declaration</h4><code class="language-swift">var lazy: LazySequence&lt;Self></code></div></div><div id="underestimatedCount-cea0d409be772f5ea3e5db1bcf473531" class="declaration"><a class="toggle-link" href="#comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531">var underestimatedCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531"><p>A value less than or equal to the number of elements in the sequence,
+calculated nondestructively.</p>
+<p>The default implementation returns 0. If you provide your own
+implementation, make sure to compute the value nondestructively.</p>
+<blockquote>
+<p>Complexity:
+O(1), except if the sequence also conforms to <code>Collection</code>. In this case, see the documentation of <code>Collection.underestimatedCount</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var underestimatedCount: Int</code></div></div><h3>Instance Methods</h3><div id="allSatisfy-c621553c94cc281ceea6176cdad51713" class="declaration"><a class="toggle-link" href="#comment-allSatisfy-c621553c94cc281ceea6176cdad51713">func allSatisfy(_ predicate: (Self.Element) throws -> Bool) rethrows -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-allSatisfy-c621553c94cc281ceea6176cdad51713"><p>Returns a Boolean value indicating whether every element of a sequence
+satisfies a given predicate.</p>
+<p>The following code uses this method to test whether all the names in an
+array have at least five characters:</p>
+<pre><code class="language-swift">let names = [&quot;Sofia&quot;, &quot;Camilla&quot;, &quot;Martina&quot;, &quot;Mateo&quot;, &quot;Nicolás&quot;]
+let allHaveAtLeastFive = names.allSatisfy({ $0.count &gt;= 5 })
+// allHaveAtLeastFive == true
+</code></pre>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence
+as its argument and returns a Boolean value that indicates whether
+the passed element satisfies a condition.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func allSatisfy(_ predicate: (Self.Element) throws -> Bool) rethrows -> Bool</code></div></div><div id="compactMap-a8c62c4ad60d8835e27b59f92895e72f" class="declaration"><a class="toggle-link" href="#comment-compactMap-a8c62c4ad60d8835e27b59f92895e72f">func compactMap(_ transform: (Self.Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-compactMap-a8c62c4ad60d8835e27b59f92895e72f"><p>Returns an array containing the non-<code>nil</code> results of calling the given
+transformation with each element of this sequence.</p>
+<p>Use this method to receive an array of non-optional values when your
+transformation produces an optional value.</p>
+<p>In this example, note the difference in the result of using <code>map</code> and
+<code>compactMap</code> with a transformation that returns an optional <code>Int</code> value.</p>
+<pre><code class="language-swift">let possibleNumbers = [&quot;1&quot;, &quot;2&quot;, &quot;three&quot;, &quot;///4///&quot;, &quot;5&quot;]
+
+let mapped: [Int?] = possibleNumbers.map { str in Int(str) }
+// [1, 2, nil, nil, 5]
+
+let compactMapped: [Int] = possibleNumbers.compactMap { str in Int(str) }
+// [1, 2, 5]
+</code></pre>
+<ul>
+<li>Parameter transform: A closure that accepts an element of this
+sequence as its argument and returns an optional value.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>m</em> + <em>n</em>), where <em>n</em> is the length of this sequence and <em>m</em> is the length of the result.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func compactMap&lt;ElementOfResult>(_ transform: (Self.Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult]</code></div></div><div id="contains_where-646c7d1601eddd774748fba720b77ec5" class="declaration"><a class="toggle-link" href="#comment-contains_where-646c7d1601eddd774748fba720b77ec5">func contains(where predicate: (Self.Element) throws -> Bool) rethrows -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-contains_where-646c7d1601eddd774748fba720b77ec5"><p>Returns a Boolean value indicating whether the sequence contains an
+element that satisfies the given predicate.</p>
+<p>You can use the predicate to check for an element of a type that
+doesn't conform to the <code>Equatable</code> protocol, such as the
+<code>HTTPResponse</code> enumeration in this example.</p>
+<pre><code class="language-swift">enum HTTPResponse {
+    case ok
+    case error(Int)
+}
+
+let lastThreeResponses: [HTTPResponse] = [.ok, .ok, .error(404)]
+let hadError = lastThreeResponses.contains { element in
+    if case .error = element {
+        return true
+    } else {
+        return false
+    }
+}
+// 'hadError' == true
+</code></pre>
+<p>Alternatively, a predicate can be satisfied by a range of <code>Equatable</code>
+elements or a general condition. This example shows how you can check an
+array for an expense greater than $100.</p>
+<pre><code class="language-swift">let expenses = [21.37, 55.21, 9.32, 10.18, 388.77, 11.41]
+let hasBigPurchase = expenses.contains { $0 &gt; 100 }
+// 'hasBigPurchase' == true
+</code></pre>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence
+as its argument and returns a Boolean value that indicates whether
+the passed element represents a match.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func contains(where predicate: (Self.Element) throws -> Bool) rethrows -> Bool</code></div></div><div id="drop_while-ca523aea465630a53d85fd083d49a402" class="declaration"><a class="toggle-link" href="#comment-drop_while-ca523aea465630a53d85fd083d49a402">func drop(while predicate: (Self.Element) throws -> Bool) rethrows -> DropWhileSequence&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-drop_while-ca523aea465630a53d85fd083d49a402"><p>Returns a sequence by skipping the initial, consecutive elements that
+satisfy the given predicate.</p>
+<p>The following example uses the <code>drop(while:)</code> method to skip over the
+positive numbers at the beginning of the <code>numbers</code> array. The result
+begins with the first element of <code>numbers</code> that does not satisfy
+<code>predicate</code>.</p>
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+let startingWithNegative = numbers.drop(while: { $0 &gt; 0 })
+// startingWithNegative == [-2, 9, -6, 10, 1]
+</code></pre>
+<p>If <code>predicate</code> matches every element in the sequence, the result is an
+empty sequence.</p>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence as
+its argument and returns a Boolean value indicating whether the
+element should be included in the result.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>k</em>), where <em>k</em> is the number of elements to drop from the beginning of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func drop(while predicate: (Self.Element) throws -> Bool) rethrows -> DropWhileSequence&lt;Self></code></div></div><div id="dropFirst-cfdc97e613e61021a5c6755568f65e2d" class="declaration"><a class="toggle-link" href="#comment-dropFirst-cfdc97e613e61021a5c6755568f65e2d">func dropFirst(_ k: Int = 1) -> DropFirstSequence&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-dropFirst-cfdc97e613e61021a5c6755568f65e2d"><p>Returns a sequence containing all but the given number of initial
+elements.</p>
+<p>If the number of elements to drop exceeds the number of elements in
+the sequence, the result is an empty sequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropFirst(2))
+// Prints &quot;[3, 4, 5]&quot;
+print(numbers.dropFirst(10))
+// Prints &quot;[]&quot;
+</code></pre>
+<ul>
+<li>Parameter k: The number of elements to drop from the beginning of
+the sequence. <code>k</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1), with O(<em>k</em>) deferred to each iteration of the result, where <em>k</em> is the number of elements to drop from the beginning of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func dropFirst(_ k: Int = 1) -> DropFirstSequence&lt;Self></code></div></div><div id="dropLast-7c2fee97e997e1ca958d9114f37e2c7f" class="declaration"><a class="toggle-link" href="#comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f">func dropLast(_ k: Int = 1) -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f"><p>Returns a sequence containing all but the given number of final
+elements.</p>
+<p>The sequence must be finite. If the number of elements to drop exceeds
+the number of elements in the sequence, the result is an empty
+sequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast(2))
+// Prints &quot;[1, 2, 3]&quot;
+print(numbers.dropLast(10))
+// Prints &quot;[]&quot;
+</code></pre>
+<ul>
+<li>Parameter n: The number of elements to drop off the end of the
+sequence. <code>n</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func dropLast(_ k: Int = 1) -> [Self.Element]</code></div></div><div id="elementsEqual_by-3170893d42fda92d5ea6b777a9763215" class="declaration"><a class="toggle-link" href="#comment-elementsEqual_by-3170893d42fda92d5ea6b777a9763215">func elementsEqual(_ other: OtherSequence, by areEquivalent: (Self.Element, OtherSequence.Element) throws -> Bool) rethrows -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-elementsEqual_by-3170893d42fda92d5ea6b777a9763215"><p>Returns a Boolean value indicating whether this sequence and another
+sequence contain equivalent elements in the same order, using the given
+predicate as the equivalence test.</p>
+<p>At least one of the sequences must be finite.</p>
+<p>The predicate must be a <em>equivalence relation</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+<blockquote>
+<p>Complexity:
+O(<em>m</em>), where <em>m</em> is the lesser of the length of the sequence and the length of <code>other</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func elementsEqual&lt;OtherSequence>(_ other: OtherSequence, by areEquivalent: (Self.Element, OtherSequence.Element) throws -> Bool) rethrows -> Bool where OtherSequence: Sequence</code></div></div><div id="enumerated-56f5502941642bb584db542ed9564502" class="declaration"><a class="toggle-link" href="#comment-enumerated-56f5502941642bb584db542ed9564502">func enumerated() -> EnumeratedSequence&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-enumerated-56f5502941642bb584db542ed9564502"><p>Returns a sequence of pairs (<em>n</em>, <em>x</em>), where <em>n</em> represents a
+consecutive integer starting at zero and <em>x</em> represents an element of
+the sequence.</p>
+<p>This example enumerates the characters of the string &quot;Swift&quot; and prints
+each character along with its place in the string.</p>
+<pre><code class="language-swift">for (n, c) in &quot;Swift&quot;.enumerated() {
+    print(&quot;\(n): '\(c)'&quot;)
+}
+// Prints &quot;0: 'S'&quot;
+// Prints &quot;1: 'w'&quot;
+// Prints &quot;2: 'i'&quot;
+// Prints &quot;3: 'f'&quot;
+// Prints &quot;4: 't'&quot;
+</code></pre>
+<p>When you enumerate a collection, the integer part of each pair is a counter
+for the enumeration, but is not necessarily the index of the paired value.
+These counters can be used as indices only in instances of zero-based,
+integer-indexed collections, such as <code>Array</code> and <code>ContiguousArray</code>. For
+other collections the counters may be out of range or of the wrong type
+to use as an index. To iterate over the elements of a collection with its
+indices, use the <code>zip(_:_:)</code> function.</p>
+<p>This example iterates over the indices and elements of a set, building a
+list consisting of indices of names with five or fewer letters.</p>
+<pre><code class="language-swift">let names: Set = [&quot;Sofia&quot;, &quot;Camilla&quot;, &quot;Martina&quot;, &quot;Mateo&quot;, &quot;Nicolás&quot;]
+var shorterIndices: [Set&lt;String&gt;.Index] = []
+for (i, name) in zip(names.indices, names) {
+    if name.count &lt;= 5 {
+        shorterIndices.append(i)
+    }
+}
+</code></pre>
+<p>Now that the <code>shorterIndices</code> array holds the indices of the shorter
+names in the <code>names</code> set, you can use those indices to access elements in
+the set.</p>
+<pre><code class="language-swift">for i in shorterIndices {
+    print(names[i])
+}
+// Prints &quot;Sofia&quot;
+// Prints &quot;Mateo&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func enumerated() -> EnumeratedSequence&lt;Self></code></div></div><div id="filter-1c174b73935eda6461cafaf0555f7dfd" class="declaration"><a class="toggle-link" href="#comment-filter-1c174b73935eda6461cafaf0555f7dfd">func filter(_ isIncluded: (Self.Element) throws -> Bool) rethrows -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-filter-1c174b73935eda6461cafaf0555f7dfd"><p>Returns an array containing, in order, the elements of the sequence
+that satisfy the given predicate.</p>
+<p>In this example, <code>filter(_:)</code> is used to include only names shorter than
+five characters.</p>
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let shortNames = cast.filter { $0.count &lt; 5 }
+print(shortNames)
+// Prints &quot;[&quot;Kim&quot;, &quot;Karl&quot;]&quot;
+</code></pre>
+<ul>
+<li>Parameter isIncluded: A closure that takes an element of the
+sequence as its argument and returns a Boolean value indicating
+whether the element should be included in the returned array.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func filter(_ isIncluded: (Self.Element) throws -> Bool) rethrows -> [Self.Element]</code></div></div><div id="first_where-3ff63b14d77bfe6b38a0c859ea31446a" class="declaration"><a class="toggle-link" href="#comment-first_where-3ff63b14d77bfe6b38a0c859ea31446a">func first(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-first_where-3ff63b14d77bfe6b38a0c859ea31446a"><p>Returns the first element of the sequence that satisfies the given
+predicate.</p>
+<p>The following example uses the <code>first(where:)</code> method to find the first
+negative number in an array of integers:</p>
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+if let firstNegative = numbers.first(where: { $0 &lt; 0 }) {
+    print(&quot;The first negative number is \(firstNegative).&quot;)
+}
+// Prints &quot;The first negative number is -2.&quot;
+</code></pre>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence as
+its argument and returns a Boolean value indicating whether the
+element is a match.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func first(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Element?</code></div></div><div id="flatMap-0dcf52c05bdbca30a9e61d2230812108" class="declaration"><a class="toggle-link" href="#comment-flatMap-0dcf52c05bdbca30a9e61d2230812108">func flatMap(_ transform: (Self.Element) throws -> SegmentOfResult) rethrows -> [SegmentOfResult.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-flatMap-0dcf52c05bdbca30a9e61d2230812108"><p>Returns an array containing the concatenated results of calling the
+given transformation with each element of this sequence.</p>
+<p>Use this method to receive a single-level collection when your
+transformation produces a sequence or collection for each element.</p>
+<p>In this example, note the difference in the result of using <code>map</code> and
+<code>flatMap</code> with a transformation that returns an array.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4]
+
+let mapped = numbers.map { Array(repeating: $0, count: $0) }
+// [[1], [2, 2], [3, 3, 3], [4, 4, 4, 4]]
+
+let flatMapped = numbers.flatMap { Array(repeating: $0, count: $0) }
+// [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+</code></pre>
+<p>In fact, <code>s.flatMap(transform)</code>  is equivalent to
+<code>Array(s.map(transform).joined())</code>.</p>
+<ul>
+<li>Parameter transform: A closure that accepts an element of this
+sequence as its argument and returns a sequence or collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>m</em> + <em>n</em>), where <em>n</em> is the length of this sequence and <em>m</em> is the length of the result.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func flatMap&lt;SegmentOfResult>(_ transform: (Self.Element) throws -> SegmentOfResult) rethrows -> [SegmentOfResult.Element] where SegmentOfResult: Sequence</code></div></div><div id="flatMap-0dcf52c05bdbca30a9e61d2230812108" class="declaration"><a class="toggle-link" href="#comment-flatMap-0dcf52c05bdbca30a9e61d2230812108">func flatMap(_ transform: (Self.Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-flatMap-0dcf52c05bdbca30a9e61d2230812108"><h4>Declaration</h4><code class="language-swift">@available(swift, deprecated: 4.1, renamed: "compactMap(_:)", message: "Please use compactMap(_:) for the case where closure returns an optional value") public func flatMap&lt;ElementOfResult>(_ transform: (Self.Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult]</code></div></div><div id="forEach-ffd41d8863d1befb51ab68b12f90c272" class="declaration"><a class="toggle-link" href="#comment-forEach-ffd41d8863d1befb51ab68b12f90c272">func forEach(_ body: (Self.Element) throws -> Void) rethrows</a> <span class="required">Required</span><div class="comment collapse in" id="comment-forEach-ffd41d8863d1befb51ab68b12f90c272"><p>Calls the given closure on each element in the sequence in the same order
+as a <code>for</code>-<code>in</code> loop.</p>
+<p>The two loops in the following example produce the same output:</p>
+<pre><code class="language-swift">let numberWords = [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;]
+for word in numberWords {
+    print(word)
+}
+// Prints &quot;one&quot;
+// Prints &quot;two&quot;
+// Prints &quot;three&quot;
+
+numberWords.forEach { word in
+    print(word)
+}
+// Same as above
+</code></pre>
+<p>Using the <code>forEach</code> method is distinct from a <code>for</code>-<code>in</code> loop in two
+important ways:</p>
+<ol>
+<li>You cannot use a <code>break</code> or <code>continue</code> statement to exit the current
+call of the <code>body</code> closure or skip subsequent calls.</li>
+<li>Using the <code>return</code> statement in the <code>body</code> closure will exit only from
+the current call to <code>body</code>, not from any outer scope, and won't skip
+subsequent calls.</li>
+</ol>
+<!-- raw HTML omitted -->
+<ul>
+<li>Parameter body: A closure that takes an element of the sequence as a
+parameter.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func forEach(_ body: (Self.Element) throws -> Void) rethrows</code></div></div><div id="lexicographicallyPrecedes_by-fd26990d822e9c0069da910c611b45d8" class="declaration"><a class="toggle-link" href="#comment-lexicographicallyPrecedes_by-fd26990d822e9c0069da910c611b45d8">func lexicographicallyPrecedes(_ other: OtherSequence, by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lexicographicallyPrecedes_by-fd26990d822e9c0069da910c611b45d8"><p>Returns a Boolean value indicating whether the sequence precedes another
+sequence in a lexicographical (dictionary) ordering, using the given
+predicate to compare elements.</p>
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+<blockquote>
+<p>Note:
+This method implements the mathematical notion of lexicographical ordering, which has no connection to Unicode.  If you are sorting strings to present to the end user, use <code>String</code> APIs that perform localized comparison instead.</p>
+</blockquote>
+<blockquote>
+<p>Complexity:
+O(<em>m</em>), where <em>m</em> is the lesser of the length of the sequence and the length of <code>other</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func lexicographicallyPrecedes&lt;OtherSequence>(_ other: OtherSequence, by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> Bool where OtherSequence: Sequence, Self.Element == OtherSequence.Element</code></div></div><div id="map-d86ddaae0a60cc94d2ecc186aad275b0" class="declaration"><a class="toggle-link" href="#comment-map-d86ddaae0a60cc94d2ecc186aad275b0">func map(_ transform: (Self.Element) throws -> T) rethrows -> [T]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-map-d86ddaae0a60cc94d2ecc186aad275b0"><p>Returns an array containing the results of mapping the given closure
+over the sequence's elements.</p>
+<p>In this example, <code>map</code> is used first to convert the names in the array
+to lowercase strings and then to count their characters.</p>
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let lowercaseNames = cast.map { $0.lowercased() }
+// 'lowercaseNames' == [&quot;vivien&quot;, &quot;marlon&quot;, &quot;kim&quot;, &quot;karl&quot;]
+let letterCounts = cast.map { $0.count }
+// 'letterCounts' == [6, 6, 3, 4]
+</code></pre>
+<ul>
+<li>Parameter transform: A mapping closure. <code>transform</code> accepts an
+element of this sequence as its parameter and returns a transformed
+value of the same or of a different type.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func map&lt;T>(_ transform: (Self.Element) throws -> T) rethrows -> [T]</code></div></div><div id="max_by-05d9c83745b703013bfec787972e043a" class="declaration"><a class="toggle-link" href="#comment-max_by-05d9c83745b703013bfec787972e043a">func max(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-max_by-05d9c83745b703013bfec787972e043a"><p>Returns the maximum element in the sequence, using the given predicate
+as the comparison between elements.</p>
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+<p>This example shows how to use the <code>max(by:)</code> method on a
+dictionary to find the key-value pair with the highest value.</p>
+<pre><code class="language-swift">let hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+let greatestHue = hues.max { a, b in a.value &lt; b.value }
+print(greatestHue)
+// Prints &quot;Optional((&quot;Heliotrope&quot;, 296))&quot;
+</code></pre>
+<ul>
+<li>Parameter areInIncreasingOrder:  A predicate that returns <code>true</code> if its
+first argument should be ordered before its second argument;
+otherwise, <code>false</code>.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@warn_unqualified_access @inlinable public func max(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> Self.Element?</code></div></div><div id="min_by-c443e0d08728771d56e780e5e1bffa4b" class="declaration"><a class="toggle-link" href="#comment-min_by-c443e0d08728771d56e780e5e1bffa4b">func min(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-min_by-c443e0d08728771d56e780e5e1bffa4b"><p>Returns the minimum element in the sequence, using the given predicate as
+the comparison between elements.</p>
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+<p>This example shows how to use the <code>min(by:)</code> method on a
+dictionary to find the key-value pair with the lowest value.</p>
+<pre><code class="language-swift">let hues = [&quot;Heliotrope&quot;: 296, &quot;Coral&quot;: 16, &quot;Aquamarine&quot;: 156]
+let leastHue = hues.min { a, b in a.value &lt; b.value }
+print(leastHue)
+// Prints &quot;Optional((&quot;Coral&quot;, 16))&quot;
+</code></pre>
+<ul>
+<li>Parameter areInIncreasingOrder: A predicate that returns <code>true</code>
+if its first argument should be ordered before its second
+argument; otherwise, <code>false</code>.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@warn_unqualified_access @inlinable public func min(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> Self.Element?</code></div></div><div id="next-664f8784e379383402f73aeb98bca97f" class="declaration"><a class="toggle-link" href="#comment-next-664f8784e379383402f73aeb98bca97f">func next() -> Elements.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-next-664f8784e379383402f73aeb98bca97f"><p>Advances to the next element and returns it, or <code>nil</code> if no next element
+exists.</p>
+<p>Repeatedly calling this method returns all the elements of the underlying
+sequence in order. As soon as the sequence has run out of elements, all
+subsequent calls return <code>nil</code>.</p>
+<p>This example shows how an iterator can be used explicitly to emulate a
+<code>for</code>-<code>in</code> loop. First, retrieve a sequence's iterator, and then call
+the iterator's <code>next()</code> method until it returns <code>nil</code>.</p>
+<pre><code class="language-swift">let numbers = [2, 3, 5, 7]
+var numbersIterator = numbers.makeIterator()
+
+while let num = numbersIterator.next() {
+    print(num)
+}
+// Prints &quot;2&quot;
+// Prints &quot;3&quot;
+// Prints &quot;5&quot;
+// Prints &quot;7&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func next() -> Elements.Element?</code></div></div><div id="prefix-0c90e3e9cf80d963bff973e2da9dc4d7" class="declaration"><a class="toggle-link" href="#comment-prefix-0c90e3e9cf80d963bff973e2da9dc4d7">func prefix(_ maxLength: Int) -> PrefixSequence&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix-0c90e3e9cf80d963bff973e2da9dc4d7"><p>Returns a sequence, up to the specified maximum length, containing the
+initial elements of the sequence.</p>
+<p>If the maximum length exceeds the number of elements in the sequence,
+the result contains all the elements in the sequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.prefix(2))
+// Prints &quot;[1, 2]&quot;
+print(numbers.prefix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;
+</code></pre>
+<ul>
+<li>Parameter maxLength: The maximum number of elements to return. The
+value of <code>maxLength</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(_ maxLength: Int) -> PrefixSequence&lt;Self></code></div></div><div id="prefix_while-c1b423a2138af25080fc01f86d3d8a66" class="declaration"><a class="toggle-link" href="#comment-prefix_while-c1b423a2138af25080fc01f86d3d8a66">func prefix(while predicate: (Self.Element) throws -> Bool) rethrows -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix_while-c1b423a2138af25080fc01f86d3d8a66"><p>Returns a sequence containing the initial, consecutive elements that
+satisfy the given predicate.</p>
+<p>The following example uses the <code>prefix(while:)</code> method to find the
+positive numbers at the beginning of the <code>numbers</code> array. Every element
+of <code>numbers</code> up to, but not including, the first negative value is
+included in the result.</p>
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+let positivePrefix = numbers.prefix(while: { $0 &gt; 0 })
+// positivePrefix == [3, 7, 4]
+</code></pre>
+<p>If <code>predicate</code> matches every element in the sequence, the resulting
+sequence contains every element of the sequence.</p>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence as
+its argument and returns a Boolean value indicating whether the
+element should be included in the result.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>k</em>), where <em>k</em> is the length of the result.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(while predicate: (Self.Element) throws -> Bool) rethrows -> [Self.Element]</code></div></div><div id="reduce-6df4b118cc55876e9cb07e09c5307a38" class="declaration"><a class="toggle-link" href="#comment-reduce-6df4b118cc55876e9cb07e09c5307a38">func reduce(_ initialResult: Result, _ nextPartialResult: (Result, Self.Element) throws -> Result) rethrows -> Result</a> <span class="required">Required</span><div class="comment collapse in" id="comment-reduce-6df4b118cc55876e9cb07e09c5307a38"><p>Returns the result of combining the elements of the sequence using the
+given closure.</p>
+<p>Use the <code>reduce(_:_:)</code> method to produce a single value from the elements
+of an entire sequence. For example, you can use this method on an array
+of numbers to find their sum or product.</p>
+<p>The <code>nextPartialResult</code> closure is called sequentially with an
+accumulating value initialized to <code>initialResult</code> and each element of
+the sequence. This example shows how to find the sum of an array of
+numbers.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4]
+let numberSum = numbers.reduce(0, { x, y in
+    x + y
+})
+// numberSum == 10
+</code></pre>
+<p>When <code>numbers.reduce(_:_:)</code> is called, the following steps occur:</p>
+<ol>
+<li>The <code>nextPartialResult</code> closure is called with <code>initialResult</code>---<code>0</code>
+in this case---and the first element of <code>numbers</code>, returning the sum:
+<code>1</code>.</li>
+<li>The closure is called again repeatedly with the previous call's return
+value and each element of the sequence.</li>
+<li>When the sequence is exhausted, the last value returned from the
+closure is returned to the caller.</li>
+</ol>
+<p>If the sequence has no elements, <code>nextPartialResult</code> is never executed
+and <code>initialResult</code> is the result of the call to <code>reduce(_:_:)</code>.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func reduce&lt;Result>(_ initialResult: Result, _ nextPartialResult: (Result, Self.Element) throws -> Result) rethrows -> Result</code></div></div><div id="reduce_into-10a1c7283e52d8f79e866ead2add1bdf" class="declaration"><a class="toggle-link" href="#comment-reduce_into-10a1c7283e52d8f79e866ead2add1bdf">func reduce(into initialResult: Result, _ updateAccumulatingResult: (inout Result, Self.Element) throws -> ()) rethrows -> Result</a> <span class="required">Required</span><div class="comment collapse in" id="comment-reduce_into-10a1c7283e52d8f79e866ead2add1bdf"><p>Returns the result of combining the elements of the sequence using the
+given closure.</p>
+<p>Use the <code>reduce(into:_:)</code> method to produce a single value from the
+elements of an entire sequence. For example, you can use this method on an
+array of integers to filter adjacent equal entries or count frequencies.</p>
+<p>This method is preferred over <code>reduce(_:_:)</code> for efficiency when the
+result is a copy-on-write type, for example an Array or a Dictionary.</p>
+<p>The <code>updateAccumulatingResult</code> closure is called sequentially with a
+mutable accumulating value initialized to <code>initialResult</code> and each element
+of the sequence. This example shows how to build a dictionary of letter
+frequencies of a string.</p>
+<pre><code class="language-swift">let letters = &quot;abracadabra&quot;
+let letterCount = letters.reduce(into: [:]) { counts, letter in
+    counts[letter, default: 0] += 1
+}
+// letterCount == [&quot;a&quot;: 5, &quot;b&quot;: 2, &quot;r&quot;: 2, &quot;c&quot;: 1, &quot;d&quot;: 1]
+</code></pre>
+<p>When <code>letters.reduce(into:_:)</code> is called, the following steps occur:</p>
+<ol>
+<li>The <code>updateAccumulatingResult</code> closure is called with the initial
+accumulating value---<code>[:]</code> in this case---and the first character of
+<code>letters</code>, modifying the accumulating value by setting <code>1</code> for the key
+<code>&quot;a&quot;</code>.</li>
+<li>The closure is called again repeatedly with the updated accumulating
+value and each element of the sequence.</li>
+<li>When the sequence is exhausted, the accumulating value is returned to
+the caller.</li>
+</ol>
+<p>If the sequence has no elements, <code>updateAccumulatingResult</code> is never
+executed and <code>initialResult</code> is the result of the call to
+<code>reduce(into:_:)</code>.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func reduce&lt;Result>(into initialResult: Result, _ updateAccumulatingResult: (inout Result, Self.Element) throws -> ()) rethrows -> Result</code></div></div><div id="reversed-037fb3d48a3529920c6559a641d74216" class="declaration"><a class="toggle-link" href="#comment-reversed-037fb3d48a3529920c6559a641d74216">func reversed() -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-reversed-037fb3d48a3529920c6559a641d74216"><p>Returns an array containing the elements of this sequence in reverse
+order.</p>
+<p>The sequence must be finite.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func reversed() -> [Self.Element]</code></div></div><div id="shuffled-44c7a97faf679331c28548a1e178d576" class="declaration"><a class="toggle-link" href="#comment-shuffled-44c7a97faf679331c28548a1e178d576">func shuffled() -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-shuffled-44c7a97faf679331c28548a1e178d576"><p>Returns the elements of the sequence, shuffled.</p>
+<p>For example, you can shuffle the numbers between <code>0</code> and <code>9</code> by calling
+the <code>shuffled()</code> method on that range:</p>
+<pre><code class="language-swift">let numbers = 0...9
+let shuffledNumbers = numbers.shuffled()
+// shuffledNumbers == [1, 7, 6, 2, 8, 9, 4, 3, 5, 0]
+</code></pre>
+<p>This method is equivalent to calling <code>shuffled(using:)</code>, passing in the
+system's default random generator.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func shuffled() -> [Self.Element]</code></div></div><div id="shuffled_using-4090d690f2da5ce349d3536b272bf833" class="declaration"><a class="toggle-link" href="#comment-shuffled_using-4090d690f2da5ce349d3536b272bf833">func shuffled(using generator: inout T) -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-shuffled_using-4090d690f2da5ce349d3536b272bf833"><p>Returns the elements of the sequence, shuffled using the given generator
+as a source for randomness.</p>
+<p>You use this method to randomize the elements of a sequence when you are
+using a custom random number generator. For example, you can shuffle the
+numbers between <code>0</code> and <code>9</code> by calling the <code>shuffled(using:)</code> method on
+that range:</p>
+<pre><code class="language-swift">let numbers = 0...9
+let shuffledNumbers = numbers.shuffled(using: &amp;myGenerator)
+// shuffledNumbers == [8, 9, 4, 3, 2, 6, 7, 0, 5, 1]
+</code></pre>
+<ul>
+<li>Parameter generator: The random number generator to use when shuffling
+the sequence.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<blockquote>
+<p>Note:
+The algorithm used to shuffle a sequence may change in a future version of Swift. If you're passing a generator that results in the same shuffled order each time you run your program, that sequence may change when your program is compiled using a different version of Swift.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func shuffled&lt;T>(using generator: inout T) -> [Self.Element] where T: RandomNumberGenerator</code></div></div><div id="sorted_by-b6fb78e28250adcdc8ef3c70e7f3db00" class="declaration"><a class="toggle-link" href="#comment-sorted_by-b6fb78e28250adcdc8ef3c70e7f3db00">func sorted(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-sorted_by-b6fb78e28250adcdc8ef3c70e7f3db00"><p>Returns the elements of the sequence, sorted using the given predicate as
+the comparison between elements.</p>
+<p>When you want to sort a sequence of elements that don't conform to the
+<code>Comparable</code> protocol, pass a predicate to this method that returns
+<code>true</code> when the first element should be ordered before the second. The
+elements of the resulting array are ordered according to the given
+predicate.</p>
+<p>In the following example, the predicate provides an ordering for an array
+of a custom <code>HTTPResponse</code> type. The predicate orders errors before
+successes and sorts the error responses by their error code.</p>
+<pre><code class="language-swift">enum HTTPResponse {
+    case ok
+    case error(Int)
+}
+
+let responses: [HTTPResponse] = [.error(500), .ok, .ok, .error(404), .error(403)]
+let sortedResponses = responses.sorted {
+    switch ($0, $1) {
+    // Order errors by code
+    case let (.error(aCode), .error(bCode)):
+        return aCode &lt; bCode
+
+    // All successes are equivalent, so none is before any other
+    case (.ok, .ok): return false
+
+    // Order errors before successes
+    case (.error, .ok): return true
+    case (.ok, .error): return false
+    }
+}
+print(sortedResponses)
+// Prints &quot;[.error(403), .error(404), .error(500), .ok, .ok]&quot;
+</code></pre>
+<p>You also use this method to sort elements that conform to the
+<code>Comparable</code> protocol in descending order. To sort your sequence in
+descending order, pass the greater-than operator (<code>&gt;</code>) as the
+<code>areInIncreasingOrder</code> parameter.</p>
+<pre><code class="language-swift">let students: Set = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+let descendingStudents = students.sorted(by: &gt;)
+print(descendingStudents)
+// Prints &quot;[&quot;Peter&quot;, &quot;Kweku&quot;, &quot;Kofi&quot;, &quot;Akosua&quot;, &quot;Abena&quot;]&quot;
+</code></pre>
+<p>Calling the related <code>sorted()</code> method is equivalent to calling this
+method and passing the less-than operator (<code>&lt;</code>) as the predicate.</p>
+<pre><code class="language-swift">print(students.sorted())
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;
+print(students.sorted(by: &lt;))
+// Prints &quot;[&quot;Abena&quot;, &quot;Akosua&quot;, &quot;Kofi&quot;, &quot;Kweku&quot;, &quot;Peter&quot;]&quot;
+</code></pre>
+<p>The predicate must be a <em>strict weak ordering</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+<p>The sorting algorithm is not guaranteed to be stable. A stable sort
+preserves the relative order of elements for which
+<code>areInIncreasingOrder</code> does not establish an order.</p>
+<ul>
+<li>Parameter areInIncreasingOrder: A predicate that returns <code>true</code> if its
+first argument should be ordered before its second argument;
+otherwise, <code>false</code>.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em> log <em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func sorted(by areInIncreasingOrder: (Self.Element, Self.Element) throws -> Bool) rethrows -> [Self.Element]</code></div></div><div id="split_maxSplits_omittingEmptySubsequences_whereSeparator-c732c52f9b4aaad6daab6945dcdfba81" class="declaration"><a class="toggle-link" href="#comment-split_maxSplits_omittingEmptySubsequences_whereSeparator-c732c52f9b4aaad6daab6945dcdfba81">func split(maxSplits: Int = Int.max, omittingEmptySubsequences: Bool = true, whereSeparator isSeparator: (Self.Element) throws -> Bool) rethrows -> [ArraySlice&lt;Self.Element>]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-split_maxSplits_omittingEmptySubsequences_whereSeparator-c732c52f9b4aaad6daab6945dcdfba81"><p>Returns the longest possible subsequences of the sequence, in order, that
+don't contain elements satisfying the given predicate. Elements that are
+used to split the sequence are not returned as part of any subsequence.</p>
+<p>The following examples show the effects of the <code>maxSplits</code> and
+<code>omittingEmptySubsequences</code> parameters when splitting a string using a
+closure that matches spaces. The first use of <code>split</code> returns each word
+that was originally separated by one or more spaces.</p>
+<pre><code class="language-swift">let line = &quot;BLANCHE:   I don't want realism. I want magic!&quot;
+print(line.split(whereSeparator: { $0 == &quot; &quot; })
+          .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;I&quot;, &quot;don\'t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;
+</code></pre>
+<p>The second example passes <code>1</code> for the <code>maxSplits</code> parameter, so the
+original string is split just once, into two new strings.</p>
+<pre><code class="language-swift">print(
+   line.split(maxSplits: 1, whereSeparator: { $0 == &quot; &quot; })
+                  .map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;  I don\'t want realism. I want magic!&quot;]&quot;
+</code></pre>
+<p>The final example passes <code>true</code> for the <code>allowEmptySlices</code> parameter, so
+the returned array contains empty strings where spaces were repeated.</p>
+<pre><code class="language-swift">print(
+    line.split(
+        omittingEmptySubsequences: false,
+        whereSeparator: { $0 == &quot; &quot; }
+    ).map(String.init))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;&quot;, &quot;&quot;, &quot;I&quot;, &quot;don\'t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func split(maxSplits: Int = Int.max, omittingEmptySubsequences: Bool = true, whereSeparator isSeparator: (Self.Element) throws -> Bool) rethrows -> [ArraySlice&lt;Self.Element>]</code></div></div><div id="starts_with_by-b931922bf9dff1a2b19b00a66517d488" class="declaration"><a class="toggle-link" href="#comment-starts_with_by-b931922bf9dff1a2b19b00a66517d488">func starts(with possiblePrefix: PossiblePrefix, by areEquivalent: (Self.Element, PossiblePrefix.Element) throws -> Bool) rethrows -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-starts_with_by-b931922bf9dff1a2b19b00a66517d488"><p>Returns a Boolean value indicating whether the initial elements of the
+sequence are equivalent to the elements in another sequence, using
+the given predicate as the equivalence test.</p>
+<p>The predicate must be a <em>equivalence relation</em> over the elements. That
+is, for any elements <code>a</code>, <code>b</code>, and <code>c</code>, the following conditions must
+hold:</p>
+<blockquote>
+<p>Complexity:
+O(<em>m</em>), where <em>m</em> is the lesser of the length of the sequence and the length of <code>possiblePrefix</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func starts&lt;PossiblePrefix>(with possiblePrefix: PossiblePrefix, by areEquivalent: (Self.Element, PossiblePrefix.Element) throws -> Bool) rethrows -> Bool where PossiblePrefix: Sequence</code></div></div><div id="suffix-f3a8eed76ea35c11a090befc2c217d73" class="declaration"><a class="toggle-link" href="#comment-suffix-f3a8eed76ea35c11a090befc2c217d73">func suffix(_ maxLength: Int) -> [Self.Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-suffix-f3a8eed76ea35c11a090befc2c217d73"><p>Returns a subsequence, up to the given maximum length, containing the
+final elements of the sequence.</p>
+<p>The sequence must be finite. If the maximum length exceeds the number of
+elements in the sequence, the result contains all the elements in the
+sequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.suffix(2))
+// Prints &quot;[4, 5]&quot;
+print(numbers.suffix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;
+</code></pre>
+<ul>
+<li>Parameter maxLength: The maximum number of elements to return. The
+value of <code>maxLength</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the sequence.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func suffix(_ maxLength: Int) -> [Self.Element]</code></div></div><div id="withContiguousStorageIfAvailable-a498ae9a2038e195b24a1bcdf0aa982e" class="declaration"><a class="toggle-link" href="#comment-withContiguousStorageIfAvailable-a498ae9a2038e195b24a1bcdf0aa982e">func withContiguousStorageIfAvailable(_ body: (UnsafeBufferPointer&lt;Self.Element>) throws -> R) rethrows -> R?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withContiguousStorageIfAvailable-a498ae9a2038e195b24a1bcdf0aa982e"><p>Call <code>body(p)</code>, where <code>p</code> is a pointer to the collection's
+contiguous storage.  If no such storage exists, it is
+first created.  If the collection does not support an internal
+representation in a form of contiguous storage, <code>body</code> is not
+called and <code>nil</code> is returned.</p>
+<p>A <code>Collection</code> that provides its own implementation of this method
+must also guarantee that an equivalent buffer of its <code>SubSequence</code>
+can be generated by advancing the pointer by the distance to the
+slice's <code>startIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func withContiguousStorageIfAvailable&lt;R>(_ body: (UnsafeBufferPointer&lt;Self.Element>) throws -> R) rethrows -> R?</code></div></div>

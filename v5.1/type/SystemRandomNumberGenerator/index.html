@@ -1,0 +1,41 @@
+---
+keywords: ""
+title: "SystemRandomNumberGenerator"
+layout: "default"
+description: "Swift documentation for 'SystemRandomNumberGenerator'"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct SystemRandomNumberGenerator</code></div><p>The system's default source of random data.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">RandomNumberGenerator</code></td></tr></table><div class="discussion comment"><p>When you generate random values, shuffle a collection, or perform another
+operation that depends on random data, this type is the generator used by
+default. For example, the two method calls in this example are equivalent:</p>
+<pre><code class="language-swift">let x = Int.random(in: 1...100)
+var g = SystemRandomNumberGenerator()
+let y = Int.random(in: 1...100, using: &amp;g)
+</code></pre>
+<p><code>SystemRandomNumberGenerator</code> is automatically seeded, is safe to use in
+multiple threads, and uses a cryptographically secure algorithm whenever
+possible.</p>
+<h3>Platform Implementation of <code>SystemRandomNumberGenerator</code></h3>
+<p>While the system generator is automatically seeded and thread-safe on every
+platform, the cryptographic quality of the stream of random data produced by
+the generator may vary. For more detail, see the documentation for the APIs
+used by each platform.</p>
+</div><h3>Initializers</h3><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates a new instance of the system's default random number generator.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init()</code></div></div><h3>Instance Methods</h3><div id="next-664f8784e379383402f73aeb98bca97f" class="declaration"><a class="toggle-link" href="#comment-next-664f8784e379383402f73aeb98bca97f">func next() -> UInt64</a> <span class="required">Required</span><div class="comment collapse in" id="comment-next-664f8784e379383402f73aeb98bca97f"><p>Returns a value from a uniform, independent distribution of binary data.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func next() -> UInt64</code></div></div><div id="next-664f8784e379383402f73aeb98bca97f" class="declaration"><a class="toggle-link" href="#comment-next-664f8784e379383402f73aeb98bca97f">func next() -> T</a> <span class="required">Required</span><div class="comment collapse in" id="comment-next-664f8784e379383402f73aeb98bca97f"><p>Returns a value from a uniform, independent distribution of binary data.</p>
+<p>Use this method when you need random binary data to generate another
+value. If you need an integer value within a specific range, use the
+static <code>random(in:using:)</code> method on that integer type instead of this
+method.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func next&lt;T>() -> T where T: FixedWidthInteger, T: UnsignedInteger</code></div></div><div id="next_upperBound-9f25ebab40ee40c267b5f69143735098" class="declaration"><a class="toggle-link" href="#comment-next_upperBound-9f25ebab40ee40c267b5f69143735098">func next(upperBound: T) -> T</a> <span class="required">Required</span><div class="comment collapse in" id="comment-next_upperBound-9f25ebab40ee40c267b5f69143735098"><p>Returns a random value that is less than the given upper bound.</p>
+<p>Use this method when you need random binary data to generate another
+value. If you need an integer value within a specific range, use the
+static <code>random(in:using:)</code> method on that integer type instead of this
+method.</p>
+<ul>
+<li>Parameter upperBound: The upper bound for the randomly generated value.
+Must be non-zero.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func next&lt;T>(upperBound: T) -> T where T: FixedWidthInteger, T: UnsignedInteger</code></div></div>

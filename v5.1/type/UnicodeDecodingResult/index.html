@@ -1,0 +1,19 @@
+---
+title: "UnicodeDecodingResult"
+layout: "default"
+keywords: ""
+description: "Swift documentation for 'UnicodeDecodingResult'"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum UnicodeDecodingResult</code></div><p>The result of one Unicode decoding step.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Equatable</code></td></tr></table><div class="discussion comment"><p>Each <code>UnicodeDecodingResult</code> instance can represent a Unicode scalar value,
+an indication that no more Unicode scalars are available, or an indication
+of a decoding error.</p>
+</div><h3>Cases</h3><div id="emptyInput-6ed8ac20ecdf679c91e80432006ee832" class="declaration"><a class="toggle-link" href="#comment-emptyInput-6ed8ac20ecdf679c91e80432006ee832">case emptyInput</a> <span class="required">Required</span><div class="comment collapse in" id="comment-emptyInput-6ed8ac20ecdf679c91e80432006ee832"><p>An indication that no more Unicode scalars are available in the input.</p>
+<h4>Declaration</h4><code class="language-swift">case emptyInput</code></div></div><div id="error-cb5e100e5a9a3e7f6d1fd97512215282" class="declaration"><a class="toggle-link" href="#comment-error-cb5e100e5a9a3e7f6d1fd97512215282">case error</a> <span class="required">Required</span><div class="comment collapse in" id="comment-error-cb5e100e5a9a3e7f6d1fd97512215282"><p>An indication of a decoding error.</p>
+<h4>Declaration</h4><code class="language-swift">case error</code></div></div><div id="scalarValue-34dee9dee719a73ce545fdb1dd8f6690" class="declaration"><a class="toggle-link" href="#comment-scalarValue-34dee9dee719a73ce545fdb1dd8f6690">case scalarValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-scalarValue-34dee9dee719a73ce545fdb1dd8f6690"><p>A decoded Unicode scalar value.</p>
+<h4>Declaration</h4><code class="language-swift">case scalarValue(: Unicode.Scalar)</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: UnicodeDecodingResult, rhs: UnicodeDecodingResult) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func ==(lhs: UnicodeDecodingResult, rhs: UnicodeDecodingResult) -> Bool</code></div></div>

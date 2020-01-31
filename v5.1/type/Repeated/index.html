@@ -1,0 +1,67 @@
+---
+title: "Repeated"
+layout: "default"
+description: "Swift documentation for 'Repeated'"
+keywords: ""
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Repeated</code></div><p>A collection whose elements are all identical.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">RandomAccessCollection</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Indices = Range&lt;Int></code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias Index = Int</code><div class="comment"><p>Valid indices consist of the position of every element and a &quot;past the
+end&quot; position that's not valid for use as a subscript.</p>
+</div></div></td></tr></table><div class="discussion comment"><p>You create an instance of the <code>Repeated</code> collection by calling the
+<code>repeatElement(_:count:)</code> function. The following example creates a
+collection containing the name &quot;Humperdinck&quot; repeated five times:</p>
+<pre><code class="language-swift">let repeatedName = repeatElement(&quot;Humperdinck&quot;, count: 5)
+for name in repeatedName {
+    print(name)
+}
+// &quot;Humperdinck&quot;
+// &quot;Humperdinck&quot;
+// &quot;Humperdinck&quot;
+// &quot;Humperdinck&quot;
+// &quot;Humperdinck&quot;
+</code></pre>
+</div><h3>Instance Variables</h3><div id="count-e2942a04780e223b215eb8b663cf5353" class="declaration"><a class="toggle-link" href="#comment-count-e2942a04780e223b215eb8b663cf5353">let count</a> <span class="required">Required</span><div class="comment collapse in" id="comment-count-e2942a04780e223b215eb8b663cf5353"><p>The number of elements in this collection.</p>
+<h4>Declaration</h4><code class="language-swift">let count: Int</code></div></div><div id="endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e" class="declaration"><a class="toggle-link" href="#comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e">var endIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e"><p>The collection's &quot;past the end&quot; position---that is, the position one
+greater than the last valid subscript argument.</p>
+<p>In a <code>Repeated</code> collection, <code>endIndex</code> is always equal to <code>count</code>. If the
+collection is empty, <code>endIndex</code> is equal to <code>startIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var endIndex: Repeated&lt;Element>.Index</code></div></div><div id="repeatedValue-3b64f165ab75098a4a27674d6c4bfc30" class="declaration"><a class="toggle-link" href="#comment-repeatedValue-3b64f165ab75098a4a27674d6c4bfc30">let repeatedValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-repeatedValue-3b64f165ab75098a4a27674d6c4bfc30"><p>The value of every element in this collection.</p>
+<h4>Declaration</h4><code class="language-swift">let repeatedValue: Element</code></div></div><div id="startIndex-04d77ddd9c9389cc56939726d3da8089" class="declaration"><a class="toggle-link" href="#comment-startIndex-04d77ddd9c9389cc56939726d3da8089">var startIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-startIndex-04d77ddd9c9389cc56939726d3da8089"><p>The position of the first element in a nonempty collection.</p>
+<p>In a <code>Repeated</code> collection, <code>startIndex</code> is always equal to zero. If the
+collection is empty, <code>startIndex</code> is equal to <code>endIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var startIndex: Repeated&lt;Element>.Index</code></div></div><h3>Subscripts</h3><div id="subscript_position-b5586bf26309c2c713b44ec1088f3a50" class="declaration"><a class="toggle-link" href="#comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50">subscript subscript(position:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50"><p>Accesses the element at the specified position.</p>
+<ul>
+<li>Parameter position: The position of the element to access. <code>position</code>
+must be a valid index of the collection that is not equal to the
+<code>endIndex</code> property.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(position: Int) -> Element</code></div></div><h3>Instance Methods</h3><div id="index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130">func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130"><p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+<p>The following example obtains an index advanced four positions from an
+array's starting index and then prints the element at that position. The
+operation doesn't require going beyond the limiting <code>numbers.endIndex</code>
+value, so it succeeds.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+let i = numbers.index(numbers.startIndex, offsetBy: 4)
+print(numbers[i])
+// Prints &quot;50&quot;
+</code></pre>
+<p>The next example attempts to retrieve an index ten positions from
+<code>numbers.startIndex</code>, but fails, because that distance is beyond the
+index passed as <code>limit</code>.</p>
+<pre><code class="language-swift">let j = numbers.index(numbers.startIndex,
+                      offsetBy: 10,
+                      limitedBy: numbers.endIndex)
+print(j)
+// Prints &quot;nil&quot;
+</code></pre>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</code></div></div>

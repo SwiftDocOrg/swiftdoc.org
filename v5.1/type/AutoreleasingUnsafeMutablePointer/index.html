@@ -1,0 +1,46 @@
+---
+title: "AutoreleasingUnsafeMutablePointer"
+description: "Swift documentation for 'AutoreleasingUnsafeMutablePointer'"
+root: "/v5.1"
+layout: "default"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">struct AutoreleasingUnsafeMutablePointer</code></div><p>A mutable pointer addressing an Objective-C reference that doesn't own its
+target.</p>
+<div class="discussion comment"><p><code>Pointee</code> must be a class type or <code>Optional&lt;C&gt;</code> where <code>C</code> is a class.</p>
+<p>This type has implicit conversions to allow passing any of the following
+to a C or ObjC API:</p>
+<p>Passing pointers to mutable arrays of ObjC class pointers is not
+directly supported. Unlike <code>UnsafeMutablePointer&lt;Pointee&gt;</code>,
+<code>AutoreleasingUnsafeMutablePointer&lt;Pointee&gt;</code> must reference storage that
+does not own a reference count to the referenced
+value. UnsafeMutablePointer's operations, by contrast, assume that
+the referenced storage owns values loaded from or stored to it.</p>
+<p>This type does not carry an owner pointer unlike the other C*Pointer types
+because it only needs to reference the results of inout conversions, which
+already have writeback-scoped lifetime.</p>
+</div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Explicit construction from an UnsafeMutablePointer.</p>
+<p>This is inherently unsafe; UnsafeMutablePointer assumes the
+referenced memory has +1 strong ownership semantics, whereas
+AutoreleasingUnsafeMutablePointer implies +0 semantics.</p>
+<blockquote>
+<p>Warning:
+Accessing <code>pointee</code> as a type that is unrelated to the underlying memory's bound type is undefined.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public init&lt;U>(_ from: UnsafeMutablePointer&lt;U>)</code></div></div><div id="init-48690522e4b66d2b1596ce439b7dd9cd" class="declaration"><a class="toggle-link" href="#comment-init-48690522e4b66d2b1596ce439b7dd9cd">init init?(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-48690522e4b66d2b1596ce439b7dd9cd"><p>Explicit construction from an UnsafeMutablePointer.</p>
+<p>Returns nil if <code>from</code> is nil.</p>
+<p>This is inherently unsafe; UnsafeMutablePointer assumes the
+referenced memory has +1 strong ownership semantics, whereas
+AutoreleasingUnsafeMutablePointer implies +0 semantics.</p>
+<blockquote>
+<p>Warning:
+Accessing <code>pointee</code> as a type that is unrelated to the underlying memory's bound type is undefined.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public init?&lt;U>(_ from: UnsafeMutablePointer&lt;U>?)</code></div></div><h3>Subscripts</h3><div id="subscript_i-c92365e25f38d226feb13e8a5783416f" class="declaration"><a class="toggle-link" href="#comment-subscript_i-c92365e25f38d226feb13e8a5783416f">subscript subscript(i:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_i-c92365e25f38d226feb13e8a5783416f"><p>Access the <code>i</code>th element of the raw array pointed to by
+<code>self</code>.</p>
+<blockquote>
+<p>Precondition:
+<code>self != nil</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(i: Int) -> Pointee</code></div></div>

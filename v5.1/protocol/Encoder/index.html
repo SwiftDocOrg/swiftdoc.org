@@ -1,0 +1,32 @@
+---
+description: "Swift documentation for 'Encoder'"
+title: "Encoder"
+root: "/v5.1"
+keywords: ""
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Encoder</code></div><p>A type that can encode values into a native format for external
+representation.</p>
+<div class="discussion comment"></div><h3>Instance Variables</h3><div id="codingPath-038986a6e6564f0dd444735f926a6ca4" class="declaration"><a class="toggle-link" href="#comment-codingPath-038986a6e6564f0dd444735f926a6ca4">var codingPath</a> <span class="required">Required</span><div class="comment collapse in" id="comment-codingPath-038986a6e6564f0dd444735f926a6ca4"><p>The path of coding keys taken to get to this point in encoding.</p>
+<h4>Declaration</h4><code class="language-swift">var codingPath: [CodingKey]</code></div></div><div id="userInfo-49f290d6e8459c53f31f97de37921086" class="declaration"><a class="toggle-link" href="#comment-userInfo-49f290d6e8459c53f31f97de37921086">var userInfo</a> <span class="required">Required</span><div class="comment collapse in" id="comment-userInfo-49f290d6e8459c53f31f97de37921086"><p>Any contextual information set by the user for encoding.</p>
+<h4>Declaration</h4><code class="language-swift">var userInfo: [CodingUserInfoKey : Any]</code></div></div><h3>Instance Methods</h3><div id="container_keyedBy-fd27355916e54c796c32f37ccb0f6427" class="declaration"><a class="toggle-link" href="#comment-container_keyedBy-fd27355916e54c796c32f37ccb0f6427">func container(keyedBy type: Key.Type) -> KeyedEncodingContainer&lt;Key></a> <span class="required">Required</span><div class="comment collapse in" id="comment-container_keyedBy-fd27355916e54c796c32f37ccb0f6427"><p>Returns an encoding container appropriate for holding multiple values
+keyed by the given key type.</p>
+<p>You must use only one kind of top-level encoding container. This method
+must not be called after a call to <code>unkeyedContainer()</code> or after
+encoding a value through a call to <code>singleValueContainer()</code></p>
+<ul>
+<li>parameter type: The key type to use for the container.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">func container&lt;Key>(keyedBy type: Key.Type) -> KeyedEncodingContainer&lt;Key> where Key: CodingKey</code></div></div><div id="singleValueContainer-ed399abe32f4e258623b819368e67ce2" class="declaration"><a class="toggle-link" href="#comment-singleValueContainer-ed399abe32f4e258623b819368e67ce2">func singleValueContainer() -> SingleValueEncodingContainer</a> <span class="required">Required</span><div class="comment collapse in" id="comment-singleValueContainer-ed399abe32f4e258623b819368e67ce2"><p>Returns an encoding container appropriate for holding a single primitive
+value.</p>
+<p>You must use only one kind of top-level encoding container. This method
+must not be called after a call to <code>unkeyedContainer()</code> or
+<code>container(keyedBy:)</code>, or after encoding a value through a call to
+<code>singleValueContainer()</code></p>
+<h4>Declaration</h4><code class="language-swift">func singleValueContainer() -> SingleValueEncodingContainer</code></div></div><div id="unkeyedContainer-23fc7e2badc58fffe60a2c216775e91b" class="declaration"><a class="toggle-link" href="#comment-unkeyedContainer-23fc7e2badc58fffe60a2c216775e91b">func unkeyedContainer() -> UnkeyedEncodingContainer</a> <span class="required">Required</span><div class="comment collapse in" id="comment-unkeyedContainer-23fc7e2badc58fffe60a2c216775e91b"><p>Returns an encoding container appropriate for holding multiple unkeyed
+values.</p>
+<p>You must use only one kind of top-level encoding container. This method
+must not be called after a call to <code>container(keyedBy:)</code> or after
+encoding a value through a call to <code>singleValueContainer()</code></p>
+<h4>Declaration</h4><code class="language-swift">func unkeyedContainer() -> UnkeyedEncodingContainer</code></div></div>

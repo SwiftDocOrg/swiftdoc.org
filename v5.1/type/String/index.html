@@ -1,0 +1,1530 @@
+---
+title: "String"
+keywords: ""
+root: "/v5.1"
+layout: "default"
+description: "Swift documentation for 'String'"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct String</code></div><p>A Unicode string value that is a collection of characters.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">BidirectionalCollection, Codable, Comparable, CustomDebugStringConvertible, CustomReflectable, CustomStringConvertible, Equatable, ExpressibleByStringLiteral, Hashable, RangeReplaceableCollection, TextOutputStream, TextOutputStreamable</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias UnicodeScalarIndex = String.UnicodeScalarView.Index</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias IndexDistance = Int</code><div class="comment"><p>In Swift, <em>reachability</em> refers to the ability to produce one value from
+the other through zero or more applications of <code>index(after:)</code>.</p>
+</div></div><div class="declaration"><code class="language-swift">public typealias SubSequence = Substring</code><div class="comment"><p>This associated type appears as a requirement in the <code>Sequence</code>
+protocol, but it is restated here with stricter constraints. In a
+collection, the subsequence should also conform to <code>Collection</code>.</p>
+</div></div><div class="declaration"><code class="language-swift">public typealias Element = Character</code><div class="comment"></div></div></td></tr><tr><th>Nested Types</th><td><code class="nested">String.Iterator, String.Index, String.UnicodeScalarView, String.UTF16View, String.UTF8View</code></td></tr></table><div class="discussion comment"><p>A string is a series of characters, such as <code>&quot;Swift&quot;</code>, that forms a
+collection. Strings in Swift are Unicode correct and locale insensitive,
+and are designed to be efficient. The <code>String</code> type bridges with the
+Objective-C class <code>NSString</code> and offers interoperability with C functions
+that works with strings.</p>
+<p>You can create new strings using string literals or string interpolations.
+A <em>string literal</em> is a series of characters enclosed in quotes.</p>
+<pre><code class="language-swift">let greeting = &quot;Welcome!&quot;
+</code></pre>
+<p><em>String interpolations</em> are string literals that evaluate any included
+expressions and convert the results to string form. String interpolations
+give you an easy way to build a string from multiple pieces. Wrap each
+expression in a string interpolation in parentheses, prefixed by a
+backslash.</p>
+<pre><code class="language-swift">let name = &quot;Rosa&quot;
+let personalizedGreeting = &quot;Welcome, \(name)!&quot;
+// personalizedGreeting == &quot;Welcome, Rosa!&quot;
+
+let price = 2
+let number = 3
+let cookiePrice = &quot;\(number) cookies: $\(price * number).&quot;
+// cookiePrice == &quot;3 cookies: $6.&quot;
+</code></pre>
+<p>Combine strings using the concatenation operator (<code>+</code>).</p>
+<pre><code class="language-swift">let longerGreeting = greeting + &quot; We're glad you're here!&quot;
+// longerGreeting == &quot;Welcome! We're glad you're here!&quot;
+</code></pre>
+<p>Multiline string literals are enclosed in three double quotation marks
+(<code>&quot;&quot;&quot;</code>), with each delimiter on its own line. Indentation is stripped from
+each line of a multiline string literal to match the indentation of the
+closing delimiter.</p>
+<pre><code class="language-swift">let banner = &quot;&quot;&quot;
+          __,
+         (           o  /) _/_
+          `.  , , , ,  //  /
+        (___)(_(_/_(_ //_ (__
+                     /)
+                    (/
+        &quot;&quot;&quot;
+</code></pre>
+<h3>Modifying and Comparing Strings</h3>
+<p>Strings always have value semantics. Modifying a copy of a string leaves
+the original unaffected.</p>
+<pre><code class="language-swift">var otherGreeting = greeting
+otherGreeting += &quot; Have a nice time!&quot;
+// otherGreeting == &quot;Welcome! Have a nice time!&quot;
+
+print(greeting)
+// Prints &quot;Welcome!&quot;
+</code></pre>
+<p>Comparing strings for equality using the equal-to operator (<code>==</code>) or a
+relational operator (like <code>&lt;</code> or <code>&gt;=</code>) is always performed using Unicode
+canonical representation. As a result, different representations of a
+string compare as being equal.</p>
+<pre><code class="language-swift">let cafe1 = &quot;Cafe\u{301}&quot;
+let cafe2 = &quot;Café&quot;
+print(cafe1 == cafe2)
+// Prints &quot;true&quot;
+</code></pre>
+<p>The Unicode scalar value <code>&quot;\u{301}&quot;</code> modifies the preceding character to
+include an accent, so <code>&quot;e\u{301}&quot;</code> has the same canonical representation
+as the single Unicode scalar value <code>&quot;é&quot;</code>.</p>
+<p>Basic string operations are not sensitive to locale settings, ensuring that
+string comparisons and other operations always have a single, stable
+result, allowing strings to be used as keys in <code>Dictionary</code> instances and
+for other purposes.</p>
+<h3>Accessing String Elements</h3>
+<p>A string is a collection of <em>extended grapheme clusters</em>, which approximate
+human-readable characters. Many individual characters, such as &quot;é&quot;, &quot;김&quot;,
+and &quot;🇮🇳&quot;, can be made up of multiple Unicode scalar values. These scalar
+values are combined by Unicode's boundary algorithms into extended
+grapheme clusters, represented by the Swift <code>Character</code> type. Each element
+of a string is represented by a <code>Character</code> instance.</p>
+<p>For example, to retrieve the first word of a longer string, you can search
+for a space and then create a substring from a prefix of the string up to
+that point:</p>
+<pre><code class="language-swift">let name = &quot;Marie Curie&quot;
+let firstSpace = name.firstIndex(of: &quot; &quot;) ?? name.endIndex
+let firstName = name[..&lt;firstSpace]
+// firstName == &quot;Marie&quot;
+</code></pre>
+<p>The <code>firstName</code> constant is an instance of the <code>Substring</code> type---a type
+that represents substrings of a string while sharing the original string's
+storage. Substrings present the same interface as strings.</p>
+<pre><code class="language-swift">print(&quot;\(name)'s first name has \(firstName.count) letters.&quot;)
+// Prints &quot;Marie Curie's first name has 5 letters.&quot;
+</code></pre>
+<h3>Accessing a String's Unicode Representation</h3>
+<p>If you need to access the contents of a string as encoded in different
+Unicode encodings, use one of the string's <code>unicodeScalars</code>, <code>utf16</code>, or
+<code>utf8</code> properties. Each property provides access to a view of the string
+as a series of code units, each encoded in a different Unicode encoding.</p>
+<p>To demonstrate the different views available for every string, the
+following examples use this <code>String</code> instance:</p>
+<pre><code class="language-swift">let cafe = &quot;Cafe\u{301} du 🌍&quot;
+print(cafe)
+// Prints &quot;Café du 🌍&quot;
+</code></pre>
+<p>The <code>cafe</code> string is a collection of the nine characters that are visible
+when the string is displayed.</p>
+<pre><code class="language-swift">print(cafe.count)
+// Prints &quot;9&quot;
+print(Array(cafe))
+// Prints &quot;[&quot;C&quot;, &quot;a&quot;, &quot;f&quot;, &quot;é&quot;, &quot; &quot;, &quot;d&quot;, &quot;u&quot;, &quot; &quot;, &quot;🌍&quot;]&quot;
+</code></pre>
+<h4>Unicode Scalar View</h4>
+<p>A string's <code>unicodeScalars</code> property is a collection of Unicode scalar
+values, the 21-bit codes that are the basic unit of Unicode. Each scalar
+value is represented by a <code>Unicode.Scalar</code> instance and is equivalent to a
+UTF-32 code unit.</p>
+<pre><code class="language-swift">print(cafe.unicodeScalars.count)
+// Prints &quot;10&quot;
+print(Array(cafe.unicodeScalars))
+// Prints &quot;[&quot;C&quot;, &quot;a&quot;, &quot;f&quot;, &quot;e&quot;, &quot;\u{0301}&quot;, &quot; &quot;, &quot;d&quot;, &quot;u&quot;, &quot; &quot;, &quot;\u{0001F30D}&quot;]&quot;
+print(cafe.unicodeScalars.map { $0.value })
+// Prints &quot;[67, 97, 102, 101, 769, 32, 100, 117, 32, 127757]&quot;
+</code></pre>
+<p>The <code>unicodeScalars</code> view's elements comprise each Unicode scalar value in
+the <code>cafe</code> string. In particular, because <code>cafe</code> was declared using the
+decomposed form of the <code>&quot;é&quot;</code> character, <code>unicodeScalars</code> contains the
+scalar values for both the letter <code>&quot;e&quot;</code> (101) and the accent character
+<code>&quot;´&quot;</code> (769).</p>
+<h4>UTF-16 View</h4>
+<p>A string's <code>utf16</code> property is a collection of UTF-16 code units, the
+16-bit encoding form of the string's Unicode scalar values. Each code unit
+is stored as a <code>UInt16</code> instance.</p>
+<pre><code class="language-swift">print(cafe.utf16.count)
+// Prints &quot;11&quot;
+print(Array(cafe.utf16))
+// Prints &quot;[67, 97, 102, 101, 769, 32, 100, 117, 32, 55356, 57101]&quot;
+</code></pre>
+<p>The elements of the <code>utf16</code> view are the code units for the string when
+encoded in UTF-16. These elements match those accessed through indexed
+<code>NSString</code> APIs.</p>
+<pre><code class="language-swift">let nscafe = cafe as NSString
+print(nscafe.length)
+// Prints &quot;11&quot;
+print(nscafe.character(at: 3))
+// Prints &quot;101&quot;
+</code></pre>
+<h4>UTF-8 View</h4>
+<p>A string's <code>utf8</code> property is a collection of UTF-8 code units, the 8-bit
+encoding form of the string's Unicode scalar values. Each code unit is
+stored as a <code>UInt8</code> instance.</p>
+<pre><code class="language-swift">print(cafe.utf8.count)
+// Prints &quot;14&quot;
+print(Array(cafe.utf8))
+// Prints &quot;[67, 97, 102, 101, 204, 129, 32, 100, 117, 32, 240, 159, 140, 141]&quot;
+</code></pre>
+<p>The elements of the <code>utf8</code> view are the code units for the string when
+encoded in UTF-8. This representation matches the one used when <code>String</code>
+instances are passed to C APIs.</p>
+<pre><code class="language-swift">let cLength = strlen(cafe)
+print(cLength)
+// Prints &quot;14&quot;
+</code></pre>
+<h3>Measuring the Length of a String</h3>
+<p>When you need to know the length of a string, you must first consider what
+you'll use the length for. Are you measuring the number of characters that
+will be displayed on the screen, or are you measuring the amount of
+storage needed for the string in a particular encoding? A single string
+can have greatly differing lengths when measured by its different views.</p>
+<p>For example, an ASCII character like the capital letter <em>A</em> is represented
+by a single element in each of its four views. The Unicode scalar value of
+<em>A</em> is <code>65</code>, which is small enough to fit in a single code unit in both
+UTF-16 and UTF-8.</p>
+<pre><code class="language-swift">let capitalA = &quot;A&quot;
+print(capitalA.count)
+// Prints &quot;1&quot;
+print(capitalA.unicodeScalars.count)
+// Prints &quot;1&quot;
+print(capitalA.utf16.count)
+// Prints &quot;1&quot;
+print(capitalA.utf8.count)
+// Prints &quot;1&quot;
+</code></pre>
+<p>On the other hand, an emoji flag character is constructed from a pair of
+Unicode scalar values, like <code>&quot;\u{1F1F5}&quot;</code> and <code>&quot;\u{1F1F7}&quot;</code>. Each of these
+scalar values, in turn, is too large to fit into a single UTF-16 or UTF-8
+code unit. As a result, each view of the string <code>&quot;🇵🇷&quot;</code> reports a different
+length.</p>
+<pre><code class="language-swift">let flag = &quot;🇵🇷&quot;
+print(flag.count)
+// Prints &quot;1&quot;
+print(flag.unicodeScalars.count)
+// Prints &quot;2&quot;
+print(flag.utf16.count)
+// Prints &quot;4&quot;
+print(flag.utf8.count)
+// Prints &quot;8&quot;
+</code></pre>
+<p>To check whether a string is empty, use its <code>isEmpty</code> property instead of
+comparing the length of one of the views to <code>0</code>. Unlike with <code>isEmpty</code>,
+calculating a view's <code>count</code> property requires iterating through the
+elements of the string.</p>
+<h3>Accessing String View Elements</h3>
+<p>To find individual elements of a string, use the appropriate view for your
+task. For example, to retrieve the first word of a longer string, you can
+search the string for a space and then create a new string from a prefix
+of the string up to that point.</p>
+<pre><code class="language-swift">let name = &quot;Marie Curie&quot;
+let firstSpace = name.firstIndex(of: &quot; &quot;) ?? name.endIndex
+let firstName = name[..&lt;firstSpace]
+print(firstName)
+// Prints &quot;Marie&quot;
+</code></pre>
+<p>Strings and their views share indices, so you can access the UTF-8 view of
+the <code>name</code> string using the same <code>firstSpace</code> index.</p>
+<pre><code class="language-swift">print(Array(name.utf8[..&lt;firstSpace]))
+// Prints &quot;[77, 97, 114, 105, 101]&quot;
+</code></pre>
+<p>Note that an index into one view may not have an exact corresponding
+position in another view. For example, the <code>flag</code> string declared above
+comprises a single character, but is composed of eight code units when
+encoded as UTF-8. The following code creates constants for the first and
+second positions in the <code>flag.utf8</code> view. Accessing the <code>utf8</code> view with
+these indices yields the first and second code UTF-8 units.</p>
+<pre><code class="language-swift">let firstCodeUnit = flag.startIndex
+let secondCodeUnit = flag.utf8.index(after: firstCodeUnit)
+// flag.utf8[firstCodeUnit] == 240
+// flag.utf8[secondCodeUnit] == 159
+</code></pre>
+<p>When used to access the elements of the <code>flag</code> string itself, however, the
+<code>secondCodeUnit</code> index does not correspond to the position of a specific
+character. Instead of only accessing the specific UTF-8 code unit, that
+index is treated as the position of the character at the index's encoded
+offset. In the case of <code>secondCodeUnit</code>, that character is still the flag
+itself.</p>
+<pre><code class="language-swift">// flag[firstCodeUnit] == &quot;🇵🇷&quot;
+// flag[secondCodeUnit] == &quot;🇵🇷&quot;
+</code></pre>
+<p>If you need to validate that an index from one string's view corresponds
+with an exact position in another view, use the index's
+<code>samePosition(in:)</code> method or the <code>init(_:within:)</code> initializer.</p>
+<pre><code class="language-swift">if let exactIndex = secondCodeUnit.samePosition(in: flag) {
+    print(flag[exactIndex])
+} else {
+    print(&quot;No exact match for this position.&quot;)
+}
+// Prints &quot;No exact match for this position.&quot;
+</code></pre>
+<h3>Performance Optimizations</h3>
+<p>Although strings in Swift have value semantics, strings use a copy-on-write
+strategy to store their data in a buffer. This buffer can then be shared
+by different copies of a string. A string's data is only copied lazily,
+upon mutation, when more than one string instance is using the same
+buffer. Therefore, the first in any sequence of mutating operations may
+cost O(<em>n</em>) time and space.</p>
+<p>When a string's contiguous storage fills up, a new buffer must be allocated
+and data must be moved to the new storage. String buffers use an
+exponential growth strategy that makes appending to a string a constant
+time operation when averaged over many append operations.</p>
+<h3>Bridging Between String and NSString</h3>
+<p>Any <code>String</code> instance can be bridged to <code>NSString</code> using the type-cast
+operator (<code>as</code>), and any <code>String</code> instance that originates in Objective-C
+may use an <code>NSString</code> instance as its storage. Because any arbitrary
+subclass of <code>NSString</code> can become a <code>String</code> instance, there are no
+guarantees about representation or efficiency when a <code>String</code> instance is
+backed by <code>NSString</code> storage. Because <code>NSString</code> is immutable, it is just
+as though the storage was shared by a copy. The first in any sequence of
+mutating operations causes elements to be copied into unique, contiguous
+storage which may cost O(<em>n</em>) time and space, where <em>n</em> is the length of
+the string's encoded representation (or more, if the underlying <code>NSString</code>
+has unusual performance characteristics).</p>
+<p>For more information about the Unicode terms used in this discussion, see
+the <a href="http://www.unicode.org/glossary/">Unicode.org glossary</a>. In particular, this discussion
+mentions <a href="http://www.unicode.org/glossary/#extended_grapheme_cluster">extended grapheme clusters</a>, <a href="http://www.unicode.org/glossary/#unicode_scalar_value">Unicode scalar
+values</a>, and <a href="http://www.unicode.org/glossary/#canonical_equivalent">canonical equivalence</a>.</p>
+</div><h3>Initializers</h3><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates an empty string.</p>
+<p>Using this initializer is equivalent to initializing a string with an
+empty string literal.</p>
+<pre><code class="language-swift">let empty = &quot;&quot;
+let alsoEmpty = String()
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init()</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new instance of a collection containing the elements of a
+sequence.</p>
+<ul>
+<li>Parameter elements: The sequence of elements for the new collection.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;S>(_ elements: S) where S: Sequence, Self.Element == S.Element</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a string containing the given character.</p>
+<ul>
+<li>Parameter c: The character to convert to a string.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(_ c: Character)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><h4>Declaration</h4><code class="language-swift">@inlinable public init(_ scalar: Unicode.Scalar)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an instance from the description of a given
+<code>LosslessStringConvertible</code> instance.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;T>(_ value: T) where T: LosslessStringConvertible</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a string corresponding to the given collection of Unicode
+scalars.</p>
+<p>You can use this initializer to create a new string from a slice of
+another string's <code>unicodeScalars</code> view.</p>
+<pre><code class="language-swift">let picnicGuest = &quot;Deserving porcupine&quot;
+if let i = picnicGuest.unicodeScalars.firstIndex(of: &quot; &quot;) {
+    let adjective = String(picnicGuest.unicodeScalars[..&lt;i])
+    print(adjective)
+}
+// Prints &quot;Deserving&quot;
+</code></pre>
+<p>The <code>adjective</code> constant is created by calling this initializer with a
+slice of the <code>picnicGuest.unicodeScalars</code> view.</p>
+<ul>
+<li>Parameter unicodeScalars: A collection of Unicode scalar values.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(_ unicodeScalars: String.UnicodeScalarView)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a string corresponding to the given sequence of UTF-16 code units.</p>
+<h4>Declaration</h4><code class="language-swift">@available(swift 4.0) @inlinable public init(_ utf16: String.UTF16View)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a string corresponding to the given sequence of UTF-8 code units.</p>
+<h4>Declaration</h4><code class="language-swift">@available(swift, introduced: 4.0, message: "Please use failable String.init?(_:UTF8View) when in Swift 3.2 mode") @inlinable public init(_ utf8: String.UTF8View)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new string from the given substring.</p>
+<ul>
+<li>Parameter substring: A substring to convert to a standalone <code>String</code>
+instance.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of <code>substring</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(_ substring: Substring)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a String having the given content.</p>
+<blockquote>
+<p>Complexity:
+O(N), where N is the length of the resulting <code>String</code>'s UTF-16.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public init(_ content: Substring.UnicodeScalarView)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new string containing the characters in the given sequence.</p>
+<p>You can use this initializer to create a new string from the result of
+one or more collection operations on a string's characters. For example:</p>
+<pre><code class="language-swift">let str = &quot;The rain in Spain stays mainly in the plain.&quot;
+
+let vowels: Set&lt;Character&gt; = [&quot;a&quot;, &quot;e&quot;, &quot;i&quot;, &quot;o&quot;, &quot;u&quot;]
+let disemvoweled = String(str.lazy.filter { !vowels.contains($0) })
+
+print(disemvoweled)
+// Prints &quot;Th rn n Spn stys mnly n th pln.&quot;
+</code></pre>
+<ul>
+<li>Parameter other: A string instance or another sequence of
+characters.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init&lt;S>(_ other: S) where S: LosslessStringConvertible, S: Sequence, S.Element == Character</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new string containing the characters in the given sequence.</p>
+<p>You can use this initializer to create a new string from the result of
+one or more collection operations on a string's characters. For example:</p>
+<pre><code class="language-swift">let str = &quot;The rain in Spain stays mainly in the plain.&quot;
+
+let vowels: Set&lt;Character&gt; = [&quot;a&quot;, &quot;e&quot;, &quot;i&quot;, &quot;o&quot;, &quot;u&quot;]
+let disemvoweled = String(str.lazy.filter { !vowels.contains($0) })
+
+print(disemvoweled)
+// Prints &quot;Th rn n Spn stys mnly n th pln.&quot;
+</code></pre>
+<ul>
+<li>Parameter characters: A string instance or another sequence of
+characters.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init&lt;S>(_ characters: S) where S: Sequence, S.Element == Character</code></div></div><div id="init_radix_uppercase-dfcb0c611df45df7f984d33d4077abcc" class="declaration"><a class="toggle-link" href="#comment-init_radix_uppercase-dfcb0c611df45df7f984d33d4077abcc">init init(_:radix:uppercase:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_radix_uppercase-dfcb0c611df45df7f984d33d4077abcc"><p>Creates a string representing the given value in base 10, or some other
+specified base.</p>
+<p>The following example converts the maximal <code>Int</code> value to a string and
+prints its length:</p>
+<pre><code class="language-swift">let max = String(Int.max)
+print(&quot;\(max) has \(max.count) digits.&quot;)
+// Prints &quot;9223372036854775807 has 19 digits.&quot;
+</code></pre>
+<p>Numerals greater than 9 are represented as Roman letters. These letters
+start with <code>&quot;A&quot;</code> if <code>uppercase</code> is <code>true</code>; otherwise, with <code>&quot;a&quot;</code>.</p>
+<pre><code class="language-swift">let v = 999_999
+print(String(v, radix: 2))
+// Prints &quot;11110100001000111111&quot;
+
+print(String(v, radix: 16))
+// Prints &quot;f423f&quot;
+print(String(v, radix: 16, uppercase: true))
+// Prints &quot;F423F&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public init&lt;T>(_ value: T, radix: Int = 10, uppercase: Bool = false) where T: BinaryInteger</code></div></div><div id="init_cString-58864c26f194dbf4c57e94ac2a9fe21b" class="declaration"><a class="toggle-link" href="#comment-init_cString-58864c26f194dbf4c57e94ac2a9fe21b">init init(cString:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_cString-58864c26f194dbf4c57e94ac2a9fe21b"><p>Creates a new string by copying the null-terminated UTF-8 data referenced
+by the given pointer.</p>
+<p>If <code>cString</code> contains ill-formed UTF-8 code unit sequences, this
+initializer replaces them with the Unicode replacement character
+(<code>&quot;\u{FFFD}&quot;</code>).</p>
+<p>The following example calls this initializer with pointers to the
+contents of two different <code>CChar</code> arrays---the first with well-formed
+UTF-8 code unit sequences and the second with an ill-formed sequence at
+the end.</p>
+<pre><code class="language-swift">let validUTF8: [CChar] = [67, 97, 102, -61, -87, 0]
+validUTF8.withUnsafeBufferPointer { ptr in
+    let s = String(cString: ptr.baseAddress!)
+    print(s)
+}
+// Prints &quot;Café&quot;
+
+let invalidUTF8: [CChar] = [67, 97, 102, -61, 0]
+invalidUTF8.withUnsafeBufferPointer { ptr in
+    let s = String(cString: ptr.baseAddress!)
+    print(s)
+}
+// Prints &quot;Caf�&quot;
+</code></pre>
+<ul>
+<li>Parameter cString: A pointer to a null-terminated UTF-8 code sequence.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(cString: UnsafePointer&lt;CChar>)</code></div></div><div id="init_cString-58864c26f194dbf4c57e94ac2a9fe21b" class="declaration"><a class="toggle-link" href="#comment-init_cString-58864c26f194dbf4c57e94ac2a9fe21b">init init(cString:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_cString-58864c26f194dbf4c57e94ac2a9fe21b"><p>Creates a new string by copying the null-terminated UTF-8 data referenced
+by the given pointer.</p>
+<p>This is identical to <code>init(cString: UnsafePointer&lt;CChar&gt;)</code> but operates on
+an unsigned sequence of bytes.</p>
+<h4>Declaration</h4><code class="language-swift">public init(cString: UnsafePointer&lt;UInt8>)</code></div></div><div id="init_decoding_as-31e3ddbd83c6dda492b07376979509b4" class="declaration"><a class="toggle-link" href="#comment-init_decoding_as-31e3ddbd83c6dda492b07376979509b4">init init(decoding:as:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_decoding_as-31e3ddbd83c6dda492b07376979509b4"><p>Creates a string from the given Unicode code units in the specified
+encoding.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;C, Encoding>(decoding codeUnits: C, as sourceEncoding: Encoding.Type) where C: Collection, Encoding: _UnicodeEncoding, C.Element == Encoding.CodeUnit</code></div></div><div id="init_decodingCString_as-927a148198368771afe270469643556f" class="declaration"><a class="toggle-link" href="#comment-init_decodingCString_as-927a148198368771afe270469643556f">init init(decodingCString:as:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_decodingCString_as-927a148198368771afe270469643556f"><p>Creates a string from the null-terminated sequence of bytes at the given
+pointer.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;Encoding>(decodingCString ptr: UnsafePointer&lt;Encoding.CodeUnit>, as sourceEncoding: Encoding.Type) where Encoding: _UnicodeEncoding</code></div></div><div id="init_describing-98cb532780b897bd6a86926290a30612" class="declaration"><a class="toggle-link" href="#comment-init_describing-98cb532780b897bd6a86926290a30612">init init(describing:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_describing-98cb532780b897bd6a86926290a30612"><p>Creates a string representing the given value.</p>
+<p>Use this initializer to convert an instance of any type to its preferred
+representation as a <code>String</code> instance. The initializer creates the
+string representation of <code>instance</code> in one of the following ways,
+depending on its protocol conformance:</p>
+<p>For example, this custom <code>Point</code> struct uses the default representation
+supplied by the standard library.</p>
+<pre><code class="language-swift">struct Point {
+    let x: Int, y: Int
+}
+
+let p = Point(x: 21, y: 30)
+print(String(describing: p))
+// Prints &quot;Point(x: 21, y: 30)&quot;
+</code></pre>
+<p>After adding <code>CustomStringConvertible</code> conformance by implementing the
+<code>description</code> property, <code>Point</code> provides its own custom representation.</p>
+<pre><code class="language-swift">extension Point: CustomStringConvertible {
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+print(String(describing: p))
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public init&lt;Subject>(describing instance: Subject)</code></div></div><div id="init_describing-98cb532780b897bd6a86926290a30612" class="declaration"><a class="toggle-link" href="#comment-init_describing-98cb532780b897bd6a86926290a30612">init init(describing:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_describing-98cb532780b897bd6a86926290a30612"><p>Creates a string representing the given value.</p>
+<p>Use this initializer to convert an instance of any type to its preferred
+representation as a <code>String</code> instance. The initializer creates the
+string representation of <code>instance</code> in one of the following ways,
+depending on its protocol conformance:</p>
+<p>For example, this custom <code>Point</code> struct uses the default representation
+supplied by the standard library.</p>
+<pre><code class="language-swift">struct Point {
+    let x: Int, y: Int
+}
+
+let p = Point(x: 21, y: 30)
+print(String(describing: p))
+// Prints &quot;Point(x: 21, y: 30)&quot;
+</code></pre>
+<p>After adding <code>CustomStringConvertible</code> conformance by implementing the
+<code>description</code> property, <code>Point</code> provides its own custom representation.</p>
+<pre><code class="language-swift">extension Point: CustomStringConvertible {
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+print(String(describing: p))
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;Subject>(describing instance: Subject) where Subject: CustomStringConvertible</code></div></div><div id="init_describing-98cb532780b897bd6a86926290a30612" class="declaration"><a class="toggle-link" href="#comment-init_describing-98cb532780b897bd6a86926290a30612">init init(describing:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_describing-98cb532780b897bd6a86926290a30612"><p>Creates a string representing the given value.</p>
+<p>Use this initializer to convert an instance of any type to its preferred
+representation as a <code>String</code> instance. The initializer creates the
+string representation of <code>instance</code> in one of the following ways,
+depending on its protocol conformance:</p>
+<p>For example, this custom <code>Point</code> struct uses the default representation
+supplied by the standard library.</p>
+<pre><code class="language-swift">struct Point {
+    let x: Int, y: Int
+}
+
+let p = Point(x: 21, y: 30)
+print(String(describing: p))
+// Prints &quot;Point(x: 21, y: 30)&quot;
+</code></pre>
+<p>After adding <code>CustomStringConvertible</code> conformance by implementing the
+<code>description</code> property, <code>Point</code> provides its own custom representation.</p>
+<pre><code class="language-swift">extension Point: CustomStringConvertible {
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+print(String(describing: p))
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;Subject>(describing instance: Subject) where Subject: TextOutputStreamable</code></div></div><div id="init_describing-98cb532780b897bd6a86926290a30612" class="declaration"><a class="toggle-link" href="#comment-init_describing-98cb532780b897bd6a86926290a30612">init init(describing:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_describing-98cb532780b897bd6a86926290a30612"><p>Creates a string representing the given value.</p>
+<p>Use this initializer to convert an instance of any type to its preferred
+representation as a <code>String</code> instance. The initializer creates the
+string representation of <code>instance</code> in one of the following ways,
+depending on its protocol conformance:</p>
+<p>For example, this custom <code>Point</code> struct uses the default representation
+supplied by the standard library.</p>
+<pre><code class="language-swift">struct Point {
+    let x: Int, y: Int
+}
+
+let p = Point(x: 21, y: 30)
+print(String(describing: p))
+// Prints &quot;Point(x: 21, y: 30)&quot;
+</code></pre>
+<p>After adding <code>CustomStringConvertible</code> conformance by implementing the
+<code>description</code> property, <code>Point</code> provides its own custom representation.</p>
+<pre><code class="language-swift">extension Point: CustomStringConvertible {
+    var description: String {
+        return &quot;(\(x), \(y))&quot;
+    }
+}
+
+print(String(describing: p))
+// Prints &quot;(21, 30)&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;Subject>(describing instance: Subject) where Subject: CustomStringConvertible, Subject: TextOutputStreamable</code></div></div><div id="init_from-ac2c581668ee6074e8eee083d88ea873" class="declaration"><a class="toggle-link" href="#comment-init_from-ac2c581668ee6074e8eee083d88ea873">init init(from:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_from-ac2c581668ee6074e8eee083d88ea873"><p>Creates a new instance by decoding from the given decoder.</p>
+<p>This initializer throws an error if reading from the decoder fails, or
+if the data read is corrupted or otherwise invalid.</p>
+<ul>
+<li>Parameter decoder: The decoder to read data from.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init(from decoder: Decoder) throws</code></div></div><div id="init_reflecting-2586edbab8b9e950827fea7012ea5fea" class="declaration"><a class="toggle-link" href="#comment-init_reflecting-2586edbab8b9e950827fea7012ea5fea">init init(reflecting:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_reflecting-2586edbab8b9e950827fea7012ea5fea"><p>Creates a string with a detailed representation of the given value,
+suitable for debugging.</p>
+<p>Use this initializer to convert an instance of any type to its custom
+debugging representation. The initializer creates the string
+representation of <code>instance</code> in one of the following ways, depending on
+its protocol conformance:</p>
+<p>For example, this custom <code>Point</code> struct uses the default representation
+supplied by the standard library.</p>
+<pre><code class="language-swift">struct Point {
+    let x: Int, y: Int
+}
+
+let p = Point(x: 21, y: 30)
+print(String(reflecting: p))
+// Prints &quot;p: Point = {
+//           x = 21
+//           y = 30
+//         }&quot;
+</code></pre>
+<p>After adding <code>CustomDebugStringConvertible</code> conformance by implementing
+the <code>debugDescription</code> property, <code>Point</code> provides its own custom
+debugging representation.</p>
+<pre><code class="language-swift">extension Point: CustomDebugStringConvertible {
+    var debugDescription: String {
+        return &quot;Point(x: \(x), y: \(y))&quot;
+    }
+}
+
+print(String(reflecting: p))
+// Prints &quot;Point(x: 21, y: 30)&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public init&lt;Subject>(reflecting subject: Subject)</code></div></div><div id="init_repeating_count-386429a7befa4cc7818e4639b5637091" class="declaration"><a class="toggle-link" href="#comment-init_repeating_count-386429a7befa4cc7818e4639b5637091">init init(repeating:count:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_repeating_count-386429a7befa4cc7818e4639b5637091"><p>Creates a new collection containing the specified number of a single,
+repeated value.</p>
+<p>Here's an example of creating an array initialized with five strings
+containing the letter <em>Z</em>.</p>
+<pre><code class="language-swift">let fiveZs = Array(repeating: &quot;Z&quot;, count: 5)
+print(fiveZs)
+// Prints &quot;[&quot;Z&quot;, &quot;Z&quot;, &quot;Z&quot;, &quot;Z&quot;, &quot;Z&quot;]&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(repeating repeatedValue: Self.Element, count: Int)</code></div></div><div id="init_repeating_count-386429a7befa4cc7818e4639b5637091" class="declaration"><a class="toggle-link" href="#comment-init_repeating_count-386429a7befa4cc7818e4639b5637091">init init(repeating:count:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_repeating_count-386429a7befa4cc7818e4639b5637091"><p>Creates a new string representing the given string repeated the specified
+number of times.</p>
+<p>For example, you can use this initializer to create a string with ten
+<code>&quot;ab&quot;</code> strings in a row.</p>
+<pre><code class="language-swift">let s = String(repeating: &quot;ab&quot;, count: 10)
+print(s)
+// Prints &quot;abababababababababab&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public init(repeating repeatedValue: String, count: Int)</code></div></div><div id="init_repeating_count-386429a7befa4cc7818e4639b5637091" class="declaration"><a class="toggle-link" href="#comment-init_repeating_count-386429a7befa4cc7818e4639b5637091">init init(repeating:count:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_repeating_count-386429a7befa4cc7818e4639b5637091"><p>Creates a string representing the given character repeated the specified
+number of times.</p>
+<p>For example, use this initializer to create a string with ten <code>&quot;0&quot;</code>
+characters in a row.</p>
+<pre><code class="language-swift">let zeroes = String(repeating: &quot;0&quot; as Character, count: 10)
+print(zeroes)
+// Prints &quot;0000000000&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public init(repeating repeatedValue: Character, count: Int)</code></div></div><div id="init_stringInterpolation-43b771a40606e1d1ba75f6a22de5ca57" class="declaration"><a class="toggle-link" href="#comment-init_stringInterpolation-43b771a40606e1d1ba75f6a22de5ca57">init init(stringInterpolation:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_stringInterpolation-43b771a40606e1d1ba75f6a22de5ca57"><p>Creates a new instance from an interpolated string literal.</p>
+<p>Do not call this initializer directly. It is used by the compiler when
+you create a string using string interpolation. Instead, use string
+interpolation to create a new string by including values, literals,
+variables, or expressions enclosed in parentheses, prefixed by a
+backslash (<code>\(</code>...<code>)</code>).</p>
+<pre><code class="language-swift">let price = 2
+let number = 3
+let message = &quot;&quot;&quot;
+              If one cookie costs \(price) dollars, \
+              \(number) cookies cost \(price * number) dollars.
+              &quot;&quot;&quot;
+print(message)
+// Prints &quot;If one cookie costs 2 dollars, 3 cookies cost 6 dollars.&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(stringInterpolation: DefaultStringInterpolation)</code></div></div><div id="init_stringLiteral-a150a34163a566e92846a108f6703cde" class="declaration"><a class="toggle-link" href="#comment-init_stringLiteral-a150a34163a566e92846a108f6703cde">init init(stringLiteral:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_stringLiteral-a150a34163a566e92846a108f6703cde"><p>Creates an instance initialized to the given string value.</p>
+<p>Do not call this initializer directly. It is used by the compiler when you
+initialize a string using a string literal. For example:</p>
+<pre><code class="language-swift">let nextStop = &quot;Clark &amp; Lake&quot;
+</code></pre>
+<p>This assignment to the <code>nextStop</code> constant calls this string literal
+initializer behind the scenes.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(stringLiteral value: String)</code></div></div><div id="init-48690522e4b66d2b1596ce439b7dd9cd" class="declaration"><a class="toggle-link" href="#comment-init-48690522e4b66d2b1596ce439b7dd9cd">init init?(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-48690522e4b66d2b1596ce439b7dd9cd"><p>Creates a String having the given content.</p>
+<p>If <code>codeUnits</code> is an ill-formed code unit sequence, the result is <code>nil</code>.</p>
+<blockquote>
+<p>Complexity:
+O(N), where N is the length of the resulting <code>String</code>'s UTF-16.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public init?(_ codeUnits: Substring.UTF8View)</code></div></div><div id="init-48690522e4b66d2b1596ce439b7dd9cd" class="declaration"><a class="toggle-link" href="#comment-init-48690522e4b66d2b1596ce439b7dd9cd">init init?(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-48690522e4b66d2b1596ce439b7dd9cd"><p>Creates a String having the given content.</p>
+<p>If <code>codeUnits</code> is an ill-formed code unit sequence, the result is <code>nil</code>.</p>
+<blockquote>
+<p>Complexity:
+O(N), where N is the length of the resulting <code>String</code>'s UTF-16.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public init?(_ codeUnits: Substring.UTF16View)</code></div></div><div id="init_validatingUTF-3c6e4108e2b909af39e2257aead2a255" class="declaration"><a class="toggle-link" href="#comment-init_validatingUTF-3c6e4108e2b909af39e2257aead2a255">init init?(validatingUTF8:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_validatingUTF-3c6e4108e2b909af39e2257aead2a255"><p>Creates a new string by copying and validating the null-terminated UTF-8
+data referenced by the given pointer.</p>
+<p>This initializer does not try to repair ill-formed UTF-8 code unit
+sequences. If any are found, the result of the initializer is <code>nil</code>.</p>
+<p>The following example calls this initializer with pointers to the
+contents of two different <code>CChar</code> arrays---the first with well-formed
+UTF-8 code unit sequences and the second with an ill-formed sequence at
+the end.</p>
+<pre><code class="language-swift">let validUTF8: [CChar] = [67, 97, 102, -61, -87, 0]
+validUTF8.withUnsafeBufferPointer { ptr in
+    let s = String(validatingUTF8: ptr.baseAddress!)
+    print(s)
+}
+// Prints &quot;Optional(Café)&quot;
+
+let invalidUTF8: [CChar] = [67, 97, 102, -61, 0]
+invalidUTF8.withUnsafeBufferPointer { ptr in
+    let s = String(validatingUTF8: ptr.baseAddress!)
+    print(s)
+}
+// Prints &quot;nil&quot;
+</code></pre>
+<ul>
+<li>Parameter cString: A pointer to a null-terminated UTF-8 code sequence.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public init?(validatingUTF8 cString: UnsafePointer&lt;CChar>)</code></div></div><h3>Instance Variables</h3><div id="count-e2942a04780e223b215eb8b663cf5353" class="declaration"><a class="toggle-link" href="#comment-count-e2942a04780e223b215eb8b663cf5353">var count</a> <span class="required">Required</span><div class="comment collapse in" id="comment-count-e2942a04780e223b215eb8b663cf5353"><p>The number of characters in a string.</p>
+<h4>Declaration</h4><code class="language-swift">var count: Int</code></div></div><div id="customMirror-c4bea5adb1649887b1a7e9972736e2a9" class="declaration"><a class="toggle-link" href="#comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9">var customMirror</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9"><p>A mirror that reflects the <code>String</code> instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customMirror: Mirror</code></div></div><div id="customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3" class="declaration"><a class="toggle-link" href="#comment-customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3">var customPlaygroundQuickLook</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customPlaygroundQuickLook-f9753f8429ddbf38426ca2eda101c4d3"><p>A custom playground Quick Look for the <code>String</code> instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customPlaygroundQuickLook: _PlaygroundQuickLook</code></div></div><div id="debugDescription-15dc1a07010ea28e38b1f4d74663fe11" class="declaration"><a class="toggle-link" href="#comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11">var debugDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11"><p>A representation of the string that is suitable for debugging.</p>
+<h4>Declaration</h4><code class="language-swift">var debugDescription: String</code></div></div><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <span class="required">Required</span><div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>The value of this string.</p>
+<p>Using this property directly is discouraged. Instead, use simple
+assignment to create a new constant or variable equal to this string.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div><div id="endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e" class="declaration"><a class="toggle-link" href="#comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e">var endIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e"><p>A string's &quot;past the end&quot; position---that is, the position one greater
+than the last valid subscript argument.</p>
+<p>In an empty string, <code>endIndex</code> is equal to <code>startIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var endIndex: String.Index</code></div></div><div id="isContiguousUTF-fbd1cae90f14352fc30517618be2b3e1" class="declaration"><a class="toggle-link" href="#comment-isContiguousUTF-fbd1cae90f14352fc30517618be2b3e1">var isContiguousUTF8</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isContiguousUTF-fbd1cae90f14352fc30517618be2b3e1"><p>Returns whether this string is capable of providing access to
+validly-encoded UTF-8 contents in contiguous memory in O(1) time.</p>
+<p>Contiguous strings always operate in O(1) time for withUTF8 and always
+give a result for String.UTF8View.withContiguousStorageIfAvailable.
+Contiguous strings also benefit from fast-paths and better optimizations.</p>
+<h4>Declaration</h4><code class="language-swift">var isContiguousUTF8: Bool</code></div></div><div id="isEmpty-371a91e5c91e40f6212ab50995ccb0cd" class="declaration"><a class="toggle-link" href="#comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd">var isEmpty</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd"><p>A Boolean value indicating whether a string has no characters.</p>
+<h4>Declaration</h4><code class="language-swift">var isEmpty: Bool</code></div></div><div id="last-98bd1c45684cf587ac2347a92dd7bb51" class="declaration"><a class="toggle-link" href="#comment-last-98bd1c45684cf587ac2347a92dd7bb51">var last</a> <span class="required">Required</span><div class="comment collapse in" id="comment-last-98bd1c45684cf587ac2347a92dd7bb51"><p>The last element of the collection.</p>
+<p>If the collection is empty, the value of this property is <code>nil</code>.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let lastNumber = numbers.last {
+    print(lastNumber)
+}
+// Prints &quot;50&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var last: Self.Element?</code></div></div><div id="startIndex-04d77ddd9c9389cc56939726d3da8089" class="declaration"><a class="toggle-link" href="#comment-startIndex-04d77ddd9c9389cc56939726d3da8089">var startIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-startIndex-04d77ddd9c9389cc56939726d3da8089"><p>The position of the first character in a nonempty string.</p>
+<p>In an empty string, <code>startIndex</code> is equal to <code>endIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var startIndex: String.Index</code></div></div><div id="unicodeScalars-bb9adb223a5d0705cdb539e7fb533ea2" class="declaration"><a class="toggle-link" href="#comment-unicodeScalars-bb9adb223a5d0705cdb539e7fb533ea2">var unicodeScalars</a> <span class="required">Required</span><div class="comment collapse in" id="comment-unicodeScalars-bb9adb223a5d0705cdb539e7fb533ea2"><p>The string's value represented as a collection of Unicode scalar values.</p>
+<h4>Declaration</h4><code class="language-swift">var unicodeScalars: String.UnicodeScalarView</code></div></div><div id="utf-5ab39c2bd546655547f6101ed91e395e" class="declaration"><a class="toggle-link" href="#comment-utf-5ab39c2bd546655547f6101ed91e395e">var utf16</a> <span class="required">Required</span><div class="comment collapse in" id="comment-utf-5ab39c2bd546655547f6101ed91e395e"><p>A UTF-16 encoding of <code>self</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var utf16: String.UTF16View</code></div></div><div id="utf-30df7f629fcf6b940bcaef5faf2490bb" class="declaration"><a class="toggle-link" href="#comment-utf-30df7f629fcf6b940bcaef5faf2490bb">var utf8</a> <span class="required">Required</span><div class="comment collapse in" id="comment-utf-30df7f629fcf6b940bcaef5faf2490bb"><p>A UTF-8 encoding of <code>self</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var utf8: String.UTF8View</code></div></div><div id="utf_CString-9d5db72dc2c365b636d70f6cf593d981" class="declaration"><a class="toggle-link" href="#comment-utf_CString-9d5db72dc2c365b636d70f6cf593d981">var utf8CString</a> <span class="required">Required</span><div class="comment collapse in" id="comment-utf_CString-9d5db72dc2c365b636d70f6cf593d981"><p>A contiguously stored null-terminated UTF-8 representation of the string.</p>
+<p>To access the underlying memory, invoke <code>withUnsafeBufferPointer</code> on the
+array.</p>
+<pre><code class="language-swift">let s = &quot;Hello!&quot;
+let bytes = s.utf8CString
+print(bytes)
+// Prints &quot;[72, 101, 108, 108, 111, 33, 0]&quot;
+
+bytes.withUnsafeBufferPointer { ptr in
+    print(strlen(ptr.baseAddress!))
+}
+// Prints &quot;6&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var utf8CString: ContiguousArray&lt;CChar></code></div></div><h3>Subscripts</h3><div id="subscript_i-c92365e25f38d226feb13e8a5783416f" class="declaration"><a class="toggle-link" href="#comment-subscript_i-c92365e25f38d226feb13e8a5783416f">subscript subscript(i:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_i-c92365e25f38d226feb13e8a5783416f"><p>Accesses the character at the given position.</p>
+<p>You can use the same indices for subscripting a string and its substring.
+For example, this code finds the first letter after the first space:</p>
+<pre><code class="language-swift">let str = &quot;Greetings, friend! How are you?&quot;
+let firstSpace = str.firstIndex(of: &quot; &quot;) ?? str.endIndex
+let substr = str[firstSpace...]
+if let nextCapital = substr.firstIndex(where: { $0 &gt;= &quot;A&quot; &amp;&amp; $0 &lt;= &quot;Z&quot; }) {
+    print(&quot;Capital after a space: \(str[nextCapital])&quot;)
+}
+// Prints &quot;Capital after a space: H&quot;
+</code></pre>
+<ul>
+<li>Parameter i: A valid index of the string. <code>i</code> must be less than the
+string's end index.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(i: String.Index) -> Character</code></div></div><div id="subscript_r-466c73e996c8d896f1c6a25f9add8052" class="declaration"><a class="toggle-link" href="#comment-subscript_r-466c73e996c8d896f1c6a25f9add8052">subscript subscript(r:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_r-466c73e996c8d896f1c6a25f9add8052"><p>Accesses a contiguous subrange of the collection's elements.</p>
+<p>The accessed slice uses the same indices for the same elements as the
+original collection uses. Always use the slice's <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.firstIndex(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// Prints &quot;Evarts&quot;
+</code></pre>
+<ul>
+<li>Parameter bounds: A range of the collection's indices. The bounds of
+the range must be valid indices of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@available(swift 4) @inlinable public subscript(r: Range&lt;String.Index>) -> Substring</code></div></div><h3>Instance Methods</h3><div id="append-1fd0af8599f8632e7a2669725979f22c" class="declaration"><a class="toggle-link" href="#comment-append-1fd0af8599f8632e7a2669725979f22c">func append(_ newElement: Self.Element)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-append-1fd0af8599f8632e7a2669725979f22c"><p>Adds an element to the end of the collection.</p>
+<p>If the collection does not have sufficient capacity for another element,
+additional storage is allocated before appending <code>newElement</code>. The
+following example adds a new number to an array of integers:</p>
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers.append(100)
+
+print(numbers)
+// Prints &quot;[1, 2, 3, 4, 5, 100]&quot;
+</code></pre>
+<ul>
+<li>Parameter newElement: The element to append to the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) on average, over many calls to <code>append(_:)</code> on the same collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func append(_ newElement: Self.Element)</code></div></div><div id="append-1fd0af8599f8632e7a2669725979f22c" class="declaration"><a class="toggle-link" href="#comment-append-1fd0af8599f8632e7a2669725979f22c">func append(_ other: String)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-append-1fd0af8599f8632e7a2669725979f22c"><p>Appends the given string to this string.</p>
+<p>The following example builds a customized greeting by using the
+<code>append(_:)</code> method:</p>
+<pre><code class="language-swift">var greeting = &quot;Hello, &quot;
+if let name = getUserName() {
+    greeting.append(name)
+} else {
+    greeting.append(&quot;friend&quot;)
+}
+print(greeting)
+// Prints &quot;Hello, friend&quot;
+</code></pre>
+<ul>
+<li>Parameter other: Another string.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public mutating func append(_ other: String)</code></div></div><div id="append-1fd0af8599f8632e7a2669725979f22c" class="declaration"><a class="toggle-link" href="#comment-append-1fd0af8599f8632e7a2669725979f22c">func append(_ c: Character)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-append-1fd0af8599f8632e7a2669725979f22c"><p>Appends the given character to the string.</p>
+<p>The following example adds an emoji globe to the end of a string.</p>
+<pre><code class="language-swift">var globe = &quot;Globe &quot;
+globe.append(&quot;🌍&quot;)
+print(globe)
+// Prints &quot;Globe 🌍&quot;
+</code></pre>
+<ul>
+<li>Parameter c: The character to append to the string.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public mutating func append(_ c: Character)</code></div></div><div id="append_contentsOf-ac3371fb120478d23360c9cd8a715233" class="declaration"><a class="toggle-link" href="#comment-append_contentsOf-ac3371fb120478d23360c9cd8a715233">func append(contentsOf newElements: S)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-append_contentsOf-ac3371fb120478d23360c9cd8a715233"><p>Adds the elements of a sequence or collection to the end of this
+collection.</p>
+<p>The collection being appended to allocates any additional necessary
+storage to hold the new elements.</p>
+<p>The following example appends the elements of a <code>Range&lt;Int&gt;</code> instance to
+an array of integers:</p>
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers.append(contentsOf: 10...15)
+print(numbers)
+// Prints &quot;[1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15]&quot;
+</code></pre>
+<ul>
+<li>Parameter newElements: The elements to append to the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>m</em>), where <em>m</em> is the length of <code>newElements</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func append&lt;S>(contentsOf newElements: S) where S: Sequence, Self.Element == S.Element</code></div></div><div id="append_contentsOf-ac3371fb120478d23360c9cd8a715233" class="declaration"><a class="toggle-link" href="#comment-append_contentsOf-ac3371fb120478d23360c9cd8a715233">func append(contentsOf newElements: String)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-append_contentsOf-ac3371fb120478d23360c9cd8a715233"><h4>Declaration</h4><code class="language-swift">public mutating func append(contentsOf newElements: String)</code></div></div><div id="append_contentsOf-ac3371fb120478d23360c9cd8a715233" class="declaration"><a class="toggle-link" href="#comment-append_contentsOf-ac3371fb120478d23360c9cd8a715233">func append(contentsOf newElements: Substring)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-append_contentsOf-ac3371fb120478d23360c9cd8a715233"><h4>Declaration</h4><code class="language-swift">public mutating func append(contentsOf newElements: Substring)</code></div></div><div id="append_contentsOf-ac3371fb120478d23360c9cd8a715233" class="declaration"><a class="toggle-link" href="#comment-append_contentsOf-ac3371fb120478d23360c9cd8a715233">func append(contentsOf newElements: S)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-append_contentsOf-ac3371fb120478d23360c9cd8a715233"><p>Appends the characters in the given sequence to the string.</p>
+<ul>
+<li>Parameter newElements: A sequence of characters.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public mutating func append&lt;S>(contentsOf newElements: S) where S: Sequence, S.Element == Character</code></div></div><div id="applying-4859fa95d24831da77250741f009e926" class="declaration"><a class="toggle-link" href="#comment-applying-4859fa95d24831da77250741f009e926">func applying(_ difference: CollectionDifference&lt;Self.Element>) -> Self?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-applying-4859fa95d24831da77250741f009e926"><p>Applies the given difference to this collection.</p>
+<ul>
+<li>Parameter difference: The difference to be applied.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em> + <em>c</em>), where <em>n</em> is <code>self.count</code> and <em>c</em> is the number of changes contained by the parameter.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@available(OSX 10.15, iOS 13, tvOS 13, watchOS 6, *) public func applying(_ difference: CollectionDifference&lt;Self.Element>) -> Self?</code></div></div><div id="difference_from_by-3e80323567e5bc038b2d822bffd055cc" class="declaration"><a class="toggle-link" href="#comment-difference_from_by-3e80323567e5bc038b2d822bffd055cc">func difference(from other: C, by areEquivalent: (C.Element, Self.Element) -> Bool) -> CollectionDifference&lt;Self.Element></a> <span class="required">Required</span><div class="comment collapse in" id="comment-difference_from_by-3e80323567e5bc038b2d822bffd055cc"><p>Returns the difference needed to produce this collection's ordered
+elements from the given collection, using the given predicate as an
+equivalence test.</p>
+<p>This function does not infer element moves. If you need to infer moves,
+call the <code>inferringMoves()</code> method on the resulting difference.</p>
+<blockquote>
+<p>Complexity:
+Worst case performance is O(<em>n</em> * <em>m</em>), where <em>n</em> is the count of this collection and <em>m</em> is <code>other.count</code>. You can expect faster execution when the collections share many common elements.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@available(OSX 10.15, iOS 13, tvOS 13, watchOS 6, *) public func difference&lt;C>(from other: C, by areEquivalent: (C.Element, Self.Element) -> Bool) -> CollectionDifference&lt;Self.Element> where C: BidirectionalCollection, Self.Element == C.Element</code></div></div><div id="distance_from_to-a4fda42879a53b11f7add335ae2b09e2" class="declaration"><a class="toggle-link" href="#comment-distance_from_to-a4fda42879a53b11f7add335ae2b09e2">func distance(from start: Self.Index, to end: Self.Index) -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-distance_from_to-a4fda42879a53b11f7add335ae2b09e2"><h4>Declaration</h4><code class="language-swift">@inlinable public func distance(from start: Self.Index, to end: Self.Index) -> Int</code></div></div><div id="distance_from_to-a4fda42879a53b11f7add335ae2b09e2" class="declaration"><a class="toggle-link" href="#comment-distance_from_to-a4fda42879a53b11f7add335ae2b09e2">func distance(from start: String.Index, to end: String.Index) -> String.IndexDistance</a> <span class="required">Required</span><div class="comment collapse in" id="comment-distance_from_to-a4fda42879a53b11f7add335ae2b09e2"><p>Returns the distance between two indices.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the resulting distance.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func distance(from start: String.Index, to end: String.Index) -> String.IndexDistance</code></div></div><div id="dropLast-7c2fee97e997e1ca958d9114f37e2c7f" class="declaration"><a class="toggle-link" href="#comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f">func dropLast(_ k: Int) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f"><p>Returns a subsequence containing all but the specified number of final
+elements.</p>
+<p>If the number of elements to drop exceeds the number of elements in the
+collection, the result is an empty subsequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast(2))
+// Prints &quot;[1, 2, 3]&quot;
+print(numbers.dropLast(10))
+// Prints &quot;[]&quot;
+</code></pre>
+<ul>
+<li>Parameter k: The number of elements to drop off the end of the
+collection. <code>k</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the number of elements to drop.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func dropLast(_ k: Int) -> Self.SubSequence</code></div></div><div id="encode_to-8c7f999a44e91e36e6d67e62075ffdbb" class="declaration"><a class="toggle-link" href="#comment-encode_to-8c7f999a44e91e36e6d67e62075ffdbb">func encode(to encoder: Encoder) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_to-8c7f999a44e91e36e6d67e62075ffdbb"><p>Encodes this value into the given encoder.</p>
+<p>This function throws an error if any values are invalid for the given
+encoder's format.</p>
+<ul>
+<li>Parameter encoder: The encoder to write data to.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func encode(to encoder: Encoder) throws</code></div></div><div id="filter-1c174b73935eda6461cafaf0555f7dfd" class="declaration"><a class="toggle-link" href="#comment-filter-1c174b73935eda6461cafaf0555f7dfd">func filter(_ isIncluded: (Self.Element) throws -> Bool) rethrows -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-filter-1c174b73935eda6461cafaf0555f7dfd"><p>Returns a new collection of the same type containing, in order, the
+elements of the original collection that satisfy the given predicate.</p>
+<p>In this example, <code>filter(_:)</code> is used to include only names shorter than
+five characters.</p>
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let shortNames = cast.filter { $0.count &lt; 5 }
+print(shortNames)
+// Prints &quot;[&quot;Kim&quot;, &quot;Karl&quot;]&quot;
+</code></pre>
+<ul>
+<li>Parameter isIncluded: A closure that takes an element of the
+sequence as its argument and returns a Boolean value indicating
+whether the element should be included in the returned collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@available(swift 4.0) @inlinable public func filter(_ isIncluded: (Self.Element) throws -> Bool) rethrows -> Self</code></div></div><div id="formIndex_before-a737e88621c75c8fd2b2c70af6a4f220" class="declaration"><a class="toggle-link" href="#comment-formIndex_before-a737e88621c75c8fd2b2c70af6a4f220">func formIndex(before i: inout Self.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_before-a737e88621c75c8fd2b2c70af6a4f220"><p>Replaces the given index with its predecessor.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be greater than
+<code>startIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(before i: inout Self.Index)</code></div></div><div id="hasPrefix-2c330b117aea3d7648825fa75e2003e0" class="declaration"><a class="toggle-link" href="#comment-hasPrefix-2c330b117aea3d7648825fa75e2003e0">func hasPrefix(_ prefix: String) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hasPrefix-2c330b117aea3d7648825fa75e2003e0"><h4>Declaration</h4><code class="language-swift">public func hasPrefix(_ prefix: String) -> Bool</code></div></div><div id="hasSuffix-24c7a481465f55f55e2d4ec26c610960" class="declaration"><a class="toggle-link" href="#comment-hasSuffix-24c7a481465f55f55e2d4ec26c610960">func hasSuffix(_ suffix: String) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hasSuffix-24c7a481465f55f55e2d4ec26c610960"><h4>Declaration</h4><code class="language-swift">public func hasSuffix(_ suffix: String) -> Bool</code></div></div><div id="hash_into-6d50cb3daa41162a12fb4542a687b393" class="declaration"><a class="toggle-link" href="#comment-hash_into-6d50cb3daa41162a12fb4542a687b393">func hash(into hasher: inout Hasher)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-hash_into-6d50cb3daa41162a12fb4542a687b393"><p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+<ul>
+<li>Parameter hasher: The hasher to use when combining the components
+of this instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func hash(into hasher: inout Hasher)</code></div></div><div id="index_offsetBy-41a458d51308012c8383ec58b39fc85a" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy-41a458d51308012c8383ec58b39fc85a">func index(_ i: Self.Index, offsetBy distance: Int) -> Self.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy-41a458d51308012c8383ec58b39fc85a"><h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: Self.Index, offsetBy distance: Int) -> Self.Index</code></div></div><div id="index_offsetBy-41a458d51308012c8383ec58b39fc85a" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy-41a458d51308012c8383ec58b39fc85a">func index(_ i: String.Index, offsetBy n: String.IndexDistance) -> String.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy-41a458d51308012c8383ec58b39fc85a"><p>Returns an index that is the specified distance from the given index.</p>
+<p>The following example obtains an index advanced four positions from a
+string's starting index and then prints the character at that position.</p>
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+let i = s.index(s.startIndex, offsetBy: 4)
+print(s[i])
+// Prints &quot;t&quot;
+</code></pre>
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the bounds of the
+collection.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the absolute value of <code>n</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: String.Index, offsetBy n: String.IndexDistance) -> String.Index</code></div></div><div id="index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130">func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130"><h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</code></div></div><div id="index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130">func index(_ i: String.Index, offsetBy n: String.IndexDistance, limitedBy limit: String.Index) -> String.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130"><p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+<p>The following example obtains an index advanced four positions from a
+string's starting index and then prints the character at that position.
+The operation doesn't require going beyond the limiting <code>s.endIndex</code>
+value, so it succeeds.</p>
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+if let i = s.index(s.startIndex, offsetBy: 4, limitedBy: s.endIndex) {
+    print(s[i])
+}
+// Prints &quot;t&quot;
+</code></pre>
+<p>The next example attempts to retrieve an index six positions from
+<code>s.startIndex</code> but fails, because that distance is beyond the index
+passed as <code>limit</code>.</p>
+<pre><code class="language-swift">let j = s.index(s.startIndex, offsetBy: 6, limitedBy: s.endIndex)
+print(j)
+// Prints &quot;nil&quot;
+</code></pre>
+<p>The value passed as <code>n</code> must not offset <code>i</code> beyond the bounds of the
+collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the absolute value of <code>n</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: String.Index, offsetBy n: String.IndexDistance, limitedBy limit: String.Index) -> String.Index?</code></div></div><div id="index_after-976478ce790c064a72519919a525cb29" class="declaration"><a class="toggle-link" href="#comment-index_after-976478ce790c064a72519919a525cb29">func index(after i: String.Index) -> String.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_after-976478ce790c064a72519919a525cb29"><p>Returns the position immediately after the given index.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func index(after i: String.Index) -> String.Index</code></div></div><div id="index_before-ee7e993bbd939c71d46566c977277662" class="declaration"><a class="toggle-link" href="#comment-index_before-ee7e993bbd939c71d46566c977277662">func index(before i: String.Index) -> String.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_before-ee7e993bbd939c71d46566c977277662"><p>Returns the position immediately before the given index.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be greater than
+<code>startIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func index(before i: String.Index) -> String.Index</code></div></div><div id="insert_at-2422c5a8ae5e7107d8c851b9681eb071" class="declaration"><a class="toggle-link" href="#comment-insert_at-2422c5a8ae5e7107d8c851b9681eb071">func insert(_ newElement: Self.Element, at i: Self.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-insert_at-2422c5a8ae5e7107d8c851b9681eb071"><p>Inserts a new element into the collection at the specified position.</p>
+<p>The new element is inserted before the element currently at the
+specified index. If you pass the collection's <code>endIndex</code> property as
+the <code>index</code> parameter, the new element is appended to the
+collection.</p>
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers.insert(100, at: 3)
+numbers.insert(200, at: numbers.endIndex)
+
+print(numbers)
+// Prints &quot;[1, 2, 3, 100, 4, 5, 200]&quot;
+</code></pre>
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+<ul>
+<li>Parameter newElement: The new element to insert into the collection.</li>
+</ul>
+<ul>
+<li>Parameter i: The position at which to insert the new element.
+<code>index</code> must be a valid index into the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection. If <code>i == endIndex</code>, this method is equivalent to <code>append(_:)</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func insert(_ newElement: Self.Element, at i: Self.Index)</code></div></div><div id="insert_at-2422c5a8ae5e7107d8c851b9681eb071" class="declaration"><a class="toggle-link" href="#comment-insert_at-2422c5a8ae5e7107d8c851b9681eb071">func insert(_ newElement: Character, at i: String.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-insert_at-2422c5a8ae5e7107d8c851b9681eb071"><p>Inserts a new character at the specified position.</p>
+<p>Calling this method invalidates any existing indices for use with this
+string.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the string.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public mutating func insert(_ newElement: Character, at i: String.Index)</code></div></div><div id="insert_contentsOf_at-c903317351c7d5642de7c18c61788233" class="declaration"><a class="toggle-link" href="#comment-insert_contentsOf_at-c903317351c7d5642de7c18c61788233">func insert(contentsOf newElements: C, at i: Self.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-insert_contentsOf_at-c903317351c7d5642de7c18c61788233"><p>Inserts the elements of a sequence into the collection at the specified
+position.</p>
+<p>The new elements are inserted before the element currently at the
+specified index. If you pass the collection's <code>endIndex</code> property as the
+<code>index</code> parameter, the new elements are appended to the collection.</p>
+<p>Here's an example of inserting a range of integers into an array of the
+same type:</p>
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers.insert(contentsOf: 100...103, at: 3)
+print(numbers)
+// Prints &quot;[1, 2, 3, 100, 101, 102, 103, 4, 5]&quot;
+</code></pre>
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+<ul>
+<li>Parameter newElements: The new elements to insert into the collection.</li>
+</ul>
+<ul>
+<li>Parameter i: The position at which to insert the new elements. <code>index</code>
+must be a valid index of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em> + <em>m</em>), where <em>n</em> is length of this collection and <em>m</em> is the length of <code>newElements</code>. If <code>i == endIndex</code>, this method is equivalent to <code>append(contentsOf:)</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func insert&lt;C>(contentsOf newElements: C, at i: Self.Index) where C: Collection, Self.Element == C.Element</code></div></div><div id="insert_contentsOf_at-c903317351c7d5642de7c18c61788233" class="declaration"><a class="toggle-link" href="#comment-insert_contentsOf_at-c903317351c7d5642de7c18c61788233">func insert(contentsOf newElements: S, at i: String.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-insert_contentsOf_at-c903317351c7d5642de7c18c61788233"><p>Inserts a collection of characters at the specified position.</p>
+<p>Calling this method invalidates any existing indices for use with this
+string.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the combined length of the string and <code>newElements</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public mutating func insert&lt;S>(contentsOf newElements: S, at i: String.Index) where S: Collection, S.Element == Character</code></div></div><div id="last_where-abb9e2fa264914f3d88c06ec70992b4c" class="declaration"><a class="toggle-link" href="#comment-last_where-abb9e2fa264914f3d88c06ec70992b4c">func last(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-last_where-abb9e2fa264914f3d88c06ec70992b4c"><p>Returns the last element of the sequence that satisfies the given
+predicate.</p>
+<p>This example uses the <code>last(where:)</code> method to find the last
+negative number in an array of integers:</p>
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+if let lastNegative = numbers.last(where: { $0 &lt; 0 }) {
+    print(&quot;The last negative number is \(lastNegative).&quot;)
+}
+// Prints &quot;The last negative number is -6.&quot;
+</code></pre>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence as
+its argument and returns a Boolean value indicating whether the
+element is a match.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func last(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Element?</code></div></div><div id="lastIndex_where-fd3dbbdc3036873d291ef0a7f27e2739" class="declaration"><a class="toggle-link" href="#comment-lastIndex_where-fd3dbbdc3036873d291ef0a7f27e2739">func lastIndex(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lastIndex_where-fd3dbbdc3036873d291ef0a7f27e2739"><p>Returns the index of the last element in the collection that matches the
+given predicate.</p>
+<p>You can use the predicate to find an element of a type that doesn't
+conform to the <code>Equatable</code> protocol or to find an element that matches
+particular criteria. This example finds the index of the last name that
+begins with the letter <em>A:</em></p>
+<pre><code class="language-swift">let students = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+if let i = students.lastIndex(where: { $0.hasPrefix(&quot;A&quot;) }) {
+    print(&quot;\(students[i]) starts with 'A'!&quot;)
+}
+// Prints &quot;Akosua starts with 'A'!&quot;
+</code></pre>
+<ul>
+<li>Parameter predicate: A closure that takes an element as its argument
+and returns a Boolean value that indicates whether the passed element
+represents a match.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func lastIndex(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Index?</code></div></div><div id="lowercased-29ba18707683dbcba3cb456c027a71f1" class="declaration"><a class="toggle-link" href="#comment-lowercased-29ba18707683dbcba3cb456c027a71f1">func lowercased() -> String</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lowercased-29ba18707683dbcba3cb456c027a71f1"><p>Returns a lowercase version of the string.</p>
+<p>Here's an example of transforming a string to all lowercase letters.</p>
+<pre><code class="language-swift">let cafe = &quot;BBQ Café 🍵&quot;
+print(cafe.lowercased())
+// Prints &quot;bbq café 🍵&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public func lowercased() -> String</code></div></div><div id="makeContiguousUTF-a844e9a4d44c3964c718fb53f17767f6" class="declaration"><a class="toggle-link" href="#comment-makeContiguousUTF-a844e9a4d44c3964c718fb53f17767f6">func makeContiguousUTF8()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-makeContiguousUTF-a844e9a4d44c3964c718fb53f17767f6"><p>If this string is not contiguous, make it so. If this mutates the string,
+it will invalidate any pre-existing indices.</p>
+<p>Complexity: O(n) if non-contiguous, O(1) if already contiguous</p>
+<h4>Declaration</h4><code class="language-swift">public mutating func makeContiguousUTF8()</code></div></div><div id="makeIterator-ad197585f06641cbd99e9aec657b11c0" class="declaration"><a class="toggle-link" href="#comment-makeIterator-ad197585f06641cbd99e9aec657b11c0">func makeIterator() -> String.Iterator</a> <span class="required">Required</span><div class="comment collapse in" id="comment-makeIterator-ad197585f06641cbd99e9aec657b11c0"><p>Returns an iterator over the elements of the collection.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func makeIterator() -> String.Iterator</code></div></div><div id="max-7ce152f9dbe3da8ce651dfa61dffe1cb" class="declaration"><a class="toggle-link" href="#comment-max-7ce152f9dbe3da8ce651dfa61dffe1cb">func max(_ x: T, _ y: T) -> T</a> <span class="required">Required</span><div class="comment collapse in" id="comment-max-7ce152f9dbe3da8ce651dfa61dffe1cb"><h4>Declaration</h4><code class="language-swift">public func max&lt;T>(_ x: T, _ y: T) -> T where T: Comparable</code></div></div><div id="min-7a5f729cc716ea73132d939907dd557f" class="declaration"><a class="toggle-link" href="#comment-min-7a5f729cc716ea73132d939907dd557f">func min(_ x: T, _ y: T) -> T</a> <span class="required">Required</span><div class="comment collapse in" id="comment-min-7a5f729cc716ea73132d939907dd557f"><h4>Declaration</h4><code class="language-swift">public func min&lt;T>(_ x: T, _ y: T) -> T where T: Comparable</code></div></div><div id="next-664f8784e379383402f73aeb98bca97f" class="declaration"><a class="toggle-link" href="#comment-next-664f8784e379383402f73aeb98bca97f">func next() -> Character?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-next-664f8784e379383402f73aeb98bca97f"><p>Advances to the next element and returns it, or <code>nil</code> if no next element
+exists.</p>
+<p>Repeatedly calling this method returns, in order, all the elements of the
+underlying sequence. As soon as the sequence has run out of elements, all
+subsequent calls return <code>nil</code>.</p>
+<p>You must not call this method if any other copy of this iterator has been
+advanced with a call to its <code>next()</code> method.</p>
+<p>The following example shows how an iterator can be used explicitly to
+emulate a <code>for</code>-<code>in</code> loop. First, retrieve a sequence's iterator, and
+then call the iterator's <code>next()</code> method until it returns <code>nil</code>.</p>
+<pre><code class="language-swift">let numbers = [2, 3, 5, 7]
+var numbersIterator = numbers.makeIterator()
+
+while let num = numbersIterator.next() {
+    print(num)
+}
+// Prints &quot;2&quot;
+// Prints &quot;3&quot;
+// Prints &quot;5&quot;
+// Prints &quot;7&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func next() -> Character?</code></div></div><div id="remove_at-3e0c9900dc44c20e5d46b7cd3b677435" class="declaration"><a class="toggle-link" href="#comment-remove_at-3e0c9900dc44c20e5d46b7cd3b677435">func remove(at position: Self.Index) -> Self.Element</a> <span class="required">Required</span><div class="comment collapse in" id="comment-remove_at-3e0c9900dc44c20e5d46b7cd3b677435"><p>Removes and returns the element at the specified position.</p>
+<p>All the elements following the specified position are moved to close the
+gap. This example removes the middle element from an array of
+measurements.</p>
+<pre><code class="language-swift">var measurements = [1.2, 1.5, 2.9, 1.2, 1.6]
+let removed = measurements.remove(at: 2)
+print(measurements)
+// Prints &quot;[1.2, 1.5, 1.2, 1.6]&quot;
+</code></pre>
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+<ul>
+<li>Parameter position: The position of the element to remove. <code>position</code>
+must be a valid index of the collection that is not equal to the
+collection's end index.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func remove(at position: Self.Index) -> Self.Element</code></div></div><div id="remove_at-3e0c9900dc44c20e5d46b7cd3b677435" class="declaration"><a class="toggle-link" href="#comment-remove_at-3e0c9900dc44c20e5d46b7cd3b677435">func remove(at i: String.Index) -> Character</a> <span class="required">Required</span><div class="comment collapse in" id="comment-remove_at-3e0c9900dc44c20e5d46b7cd3b677435"><p>Removes and returns the character at the specified position.</p>
+<p>All the elements following <code>i</code> are moved to close the gap. This example
+removes the hyphen from the middle of a string.</p>
+<pre><code class="language-swift">var nonempty = &quot;non-empty&quot;
+if let i = nonempty.firstIndex(of: &quot;-&quot;) {
+    nonempty.remove(at: i)
+}
+print(nonempty)
+// Prints &quot;nonempty&quot;
+</code></pre>
+<p>Calling this method invalidates any existing indices for use with this
+string.</p>
+<ul>
+<li>Parameter i: The position of the character to remove. <code>i</code> must be a
+valid index of the string that is not equal to the string's end index.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public mutating func remove(at i: String.Index) -> Character</code></div></div><div id="removeAll_keepingCapacity-258ecaf1c68e3810fad8df6f24bcd010" class="declaration"><a class="toggle-link" href="#comment-removeAll_keepingCapacity-258ecaf1c68e3810fad8df6f24bcd010">func removeAll(keepingCapacity keepCapacity: Bool = false)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-removeAll_keepingCapacity-258ecaf1c68e3810fad8df6f24bcd010"><p>Removes all elements from the collection.</p>
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+<ul>
+<li>Parameter keepCapacity: Pass <code>true</code> to request that the collection
+avoid releasing its storage. Retaining the collection's storage can
+be a useful optimization when you're planning to grow the collection
+again. The default value is <code>false</code>.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func removeAll(keepingCapacity keepCapacity: Bool = false)</code></div></div><div id="removeAll_keepingCapacity-258ecaf1c68e3810fad8df6f24bcd010" class="declaration"><a class="toggle-link" href="#comment-removeAll_keepingCapacity-258ecaf1c68e3810fad8df6f24bcd010">func removeAll(keepingCapacity keepCapacity: Bool = false)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-removeAll_keepingCapacity-258ecaf1c68e3810fad8df6f24bcd010"><p>Replaces this string with the empty string.</p>
+<p>Calling this method invalidates any existing indices for use with this
+string.</p>
+<ul>
+<li>Parameter keepCapacity: Pass <code>true</code> to prevent the release of the
+string's allocated storage. Retaining the storage can be a useful
+optimization when you're planning to grow the string again. The
+default value is <code>false</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public mutating func removeAll(keepingCapacity keepCapacity: Bool = false)</code></div></div><div id="removeAll_where-78f1ec47693ca0c39027cef2bf1c64be" class="declaration"><a class="toggle-link" href="#comment-removeAll_where-78f1ec47693ca0c39027cef2bf1c64be">func removeAll(where shouldBeRemoved: (Self.Element) throws -> Bool) rethrows</a> <span class="required">Required</span><div class="comment collapse in" id="comment-removeAll_where-78f1ec47693ca0c39027cef2bf1c64be"><p>Removes all the elements that satisfy the given predicate.</p>
+<p>Use this method to remove every element in a collection that meets
+particular criteria. The order of the remaining elements is preserved.
+This example removes all the vowels from a string:</p>
+<pre><code class="language-swift">var phrase = &quot;The rain in Spain stays mainly in the plain.&quot;
+
+let vowels: Set&lt;Character&gt; = [&quot;a&quot;, &quot;e&quot;, &quot;i&quot;, &quot;o&quot;, &quot;u&quot;]
+phrase.removeAll(where: { vowels.contains($0) })
+// phrase == &quot;Th rn n Spn stys mnly n th pln.&quot;
+</code></pre>
+<ul>
+<li>Parameter shouldBeRemoved: A closure that takes an element of the
+sequence as its argument and returns a Boolean value indicating
+whether the element should be removed from the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func removeAll(where shouldBeRemoved: (Self.Element) throws -> Bool) rethrows</code></div></div><div id="removeFirst-90bb9af594748b627d638a3b28d286c7" class="declaration"><a class="toggle-link" href="#comment-removeFirst-90bb9af594748b627d638a3b28d286c7">func removeFirst() -> Self.Element</a> <span class="required">Required</span><div class="comment collapse in" id="comment-removeFirst-90bb9af594748b627d638a3b28d286c7"><p>Removes and returns the first element of the collection.</p>
+<p>The collection must not be empty.</p>
+<pre><code class="language-swift">var bugs = [&quot;Aphid&quot;, &quot;Bumblebee&quot;, &quot;Cicada&quot;, &quot;Damselfly&quot;, &quot;Earwig&quot;]
+bugs.removeFirst()
+print(bugs)
+// Prints &quot;[&quot;Bumblebee&quot;, &quot;Cicada&quot;, &quot;Damselfly&quot;, &quot;Earwig&quot;]&quot;
+</code></pre>
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func removeFirst() -> Self.Element</code></div></div><div id="removeFirst-38c26d3d2ce7e1284c4720b69bb07b0c" class="declaration"><a class="toggle-link" href="#comment-removeFirst-38c26d3d2ce7e1284c4720b69bb07b0c">func removeFirst(_ k: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-removeFirst-38c26d3d2ce7e1284c4720b69bb07b0c"><p>Removes the specified number of elements from the beginning of the
+collection.</p>
+<pre><code class="language-swift">var bugs = [&quot;Aphid&quot;, &quot;Bumblebee&quot;, &quot;Cicada&quot;, &quot;Damselfly&quot;, &quot;Earwig&quot;]
+bugs.removeFirst(3)
+print(bugs)
+// Prints &quot;[&quot;Damselfly&quot;, &quot;Earwig&quot;]&quot;
+</code></pre>
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+<ul>
+<li>Parameter k: The number of elements to remove from the collection.
+<code>k</code> must be greater than or equal to zero and must not exceed the
+number of elements in the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func removeFirst(_ k: Int)</code></div></div><div id="removeSubrange-879999614b8060026a48a1f66c30ac8f" class="declaration"><a class="toggle-link" href="#comment-removeSubrange-879999614b8060026a48a1f66c30ac8f">func removeSubrange(_ bounds: Range&lt;Self.Index>)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-removeSubrange-879999614b8060026a48a1f66c30ac8f"><p>Removes the elements in the specified subrange from the collection.</p>
+<p>All the elements following the specified position are moved to close the
+gap. This example removes three elements from the middle of an array of
+measurements.</p>
+<pre><code class="language-swift">var measurements = [1.2, 1.5, 2.9, 1.2, 1.5]
+measurements.removeSubrange(1..&lt;4)
+print(measurements)
+// Prints &quot;[1.2, 1.5]&quot;
+</code></pre>
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+<ul>
+<li>Parameter bounds: The range of the collection to be removed. The
+bounds of the range must be valid indices of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func removeSubrange(_ bounds: Range&lt;Self.Index>)</code></div></div><div id="removeSubrange-879999614b8060026a48a1f66c30ac8f" class="declaration"><a class="toggle-link" href="#comment-removeSubrange-879999614b8060026a48a1f66c30ac8f">func removeSubrange(_ bounds: R)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-removeSubrange-879999614b8060026a48a1f66c30ac8f"><p>Removes the elements in the specified subrange from the collection.</p>
+<p>All the elements following the specified position are moved to close the
+gap. This example removes three elements from the middle of an array of
+measurements.</p>
+<pre><code class="language-swift">var measurements = [1.2, 1.5, 2.9, 1.2, 1.5]
+measurements.removeSubrange(1..&lt;4)
+print(measurements)
+// Prints &quot;[1.2, 1.5]&quot;
+</code></pre>
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+<ul>
+<li>Parameter bounds: The range of the collection to be removed. The
+bounds of the range must be valid indices of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func removeSubrange&lt;R>(_ bounds: R) where R: RangeExpression, Self.Index == R.Bound</code></div></div><div id="removeSubrange-879999614b8060026a48a1f66c30ac8f" class="declaration"><a class="toggle-link" href="#comment-removeSubrange-879999614b8060026a48a1f66c30ac8f">func removeSubrange(_ bounds: Range&lt;String.Index>)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-removeSubrange-879999614b8060026a48a1f66c30ac8f"><p>Removes the characters in the given range.</p>
+<p>Calling this method invalidates any existing indices for use with this
+string.</p>
+<ul>
+<li>Parameter bounds: The range of the elements to remove. The upper and
+lower bounds of <code>bounds</code> must be valid indices of the string and not
+equal to the string's end index.</li>
+</ul>
+<ul>
+<li>Parameter bounds: The range of the elements to remove. The upper and
+lower bounds of <code>bounds</code> must be valid indices of the string.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public mutating func removeSubrange(_ bounds: Range&lt;String.Index>)</code></div></div><div id="replaceSubrange_with-37f24f980773f1736abe2f2109e3c177" class="declaration"><a class="toggle-link" href="#comment-replaceSubrange_with-37f24f980773f1736abe2f2109e3c177">func replaceSubrange(_ subrange: R, with newElements: C)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-replaceSubrange_with-37f24f980773f1736abe2f2109e3c177"><p>Replaces the specified subrange of elements with the given collection.</p>
+<p>This method has the effect of removing the specified range of elements
+from the collection and inserting the new elements at the same location.
+The number of new elements need not match the number of elements being
+removed.</p>
+<p>In this example, three elements in the middle of an array of integers are
+replaced by the five elements of a <code>Repeated&lt;Int&gt;</code> instance.</p>
+<pre><code class="language-swift"> var nums = [10, 20, 30, 40, 50]
+ nums.replaceSubrange(1...3, with: repeatElement(1, count: 5))
+ print(nums)
+ // Prints &quot;[10, 1, 1, 1, 1, 1, 50]&quot;
+</code></pre>
+<p>If you pass a zero-length range as the <code>subrange</code> parameter, this method
+inserts the elements of <code>newElements</code> at <code>subrange.startIndex</code>. Calling
+the <code>insert(contentsOf:at:)</code> method instead is preferred.</p>
+<p>Likewise, if you pass a zero-length collection as the <code>newElements</code>
+parameter, this method removes the elements in the given subrange
+without replacement. Calling the <code>removeSubrange(_:)</code> method instead is
+preferred.</p>
+<p>Calling this method may invalidate any existing indices for use with this
+collection.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em> + <em>m</em>), where <em>n</em> is length of this collection and <em>m</em> is the length of <code>newElements</code>. If the call to this method simply appends the contents of <code>newElements</code> to the collection, the complexity is O(<em>m</em>).</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func replaceSubrange&lt;C, R>(_ subrange: R, with newElements: C) where C: Collection, R: RangeExpression, Self.Element == C.Element, Self.Index == R.Bound</code></div></div><div id="replaceSubrange_with-37f24f980773f1736abe2f2109e3c177" class="declaration"><a class="toggle-link" href="#comment-replaceSubrange_with-37f24f980773f1736abe2f2109e3c177">func replaceSubrange(_ bounds: Range&lt;String.Index>, with newElements: C)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-replaceSubrange_with-37f24f980773f1736abe2f2109e3c177"><p>Replaces the text within the specified bounds with the given characters.</p>
+<p>Calling this method invalidates any existing indices for use with this
+string.</p>
+<blockquote>
+<p>Complexity:
+O(<em>m</em>), where <em>m</em> is the combined length of the string and <code>newElements</code>. If the call to <code>replaceSubrange(_:with:)</code> simply removes text at the end of the string, the complexity is O(<em>n</em>), where <em>n</em> is equal to <code>bounds.count</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public mutating func replaceSubrange&lt;C>(_ bounds: Range&lt;String.Index>, with newElements: C) where C: Collection, C.Element == Character</code></div></div><div id="reserveCapacity-f5185bdad5243d37ae23c866665e584b" class="declaration"><a class="toggle-link" href="#comment-reserveCapacity-f5185bdad5243d37ae23c866665e584b">func reserveCapacity(_ n: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-reserveCapacity-f5185bdad5243d37ae23c866665e584b"><p>Prepares the collection to store the specified number of elements, when
+doing so is appropriate for the underlying type.</p>
+<p>If you will be adding a known number of elements to a collection, use
+this method to avoid multiple reallocations. A type that conforms to
+<code>RangeReplaceableCollection</code> can choose how to respond when this method
+is called. Depending on the type, it may make sense to allocate more or
+less storage than requested or to take no action at all.</p>
+<ul>
+<li>Parameter n: The requested number of elements to store.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func reserveCapacity(_ n: Int)</code></div></div><div id="reserveCapacity-f5185bdad5243d37ae23c866665e584b" class="declaration"><a class="toggle-link" href="#comment-reserveCapacity-f5185bdad5243d37ae23c866665e584b">func reserveCapacity(_ n: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-reserveCapacity-f5185bdad5243d37ae23c866665e584b"><p>Reserves enough space in the string's underlying storage to store the
+specified number of ASCII characters.</p>
+<p>Because each character in a string can require more than a single ASCII
+character's worth of storage, additional allocation may be necessary
+when adding characters to a string after a call to
+<code>reserveCapacity(_:)</code>.</p>
+<ul>
+<li>Parameter n: The minimum number of ASCII character's worth of storage
+to allocate.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public mutating func reserveCapacity(_ n: Int)</code></div></div><div id="reversed-037fb3d48a3529920c6559a641d74216" class="declaration"><a class="toggle-link" href="#comment-reversed-037fb3d48a3529920c6559a641d74216">func reversed() -> ReversedCollection&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-reversed-037fb3d48a3529920c6559a641d74216"><p>Returns a view presenting the elements of the collection in reverse
+order.</p>
+<p>You can reverse a collection without allocating new space for its
+elements by calling this <code>reversed()</code> method. A <code>ReversedCollection</code>
+instance wraps an underlying collection and provides access to its
+elements in reverse order. This example prints the characters of a
+string in reverse order:</p>
+<pre><code class="language-swift">let word = &quot;Backwards&quot;
+for char in word.reversed() {
+    print(char, terminator: &quot;&quot;)
+}
+// Prints &quot;sdrawkcaB&quot;
+</code></pre>
+<p>If you need a reversed collection of the same type, you may be able to
+use the collection's sequence-based or collection-based initializer. For
+example, to get the reversed version of a string, reverse its
+characters and initialize a new <code>String</code> instance from the result.</p>
+<pre><code class="language-swift">let reversedWord = String(word.reversed())
+print(reversedWord)
+// Prints &quot;sdrawkcaB&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func reversed() -> ReversedCollection&lt;Self></code></div></div><div id="suffix-f3a8eed76ea35c11a090befc2c217d73" class="declaration"><a class="toggle-link" href="#comment-suffix-f3a8eed76ea35c11a090befc2c217d73">func suffix(_ maxLength: Int) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-suffix-f3a8eed76ea35c11a090befc2c217d73"><p>Returns a subsequence, up to the given maximum length, containing the
+final elements of the collection.</p>
+<p>If the maximum length exceeds the number of elements in the collection,
+the result contains the entire collection.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.suffix(2))
+// Prints &quot;[4, 5]&quot;
+print(numbers.suffix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;
+</code></pre>
+<ul>
+<li>Parameter maxLength: The maximum number of elements to return.
+<code>maxLength</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is equal to <code>maxLength</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func suffix(_ maxLength: Int) -> Self.SubSequence</code></div></div><div id="uppercased-b2325f56718bd5f485736afc15cf40c6" class="declaration"><a class="toggle-link" href="#comment-uppercased-b2325f56718bd5f485736afc15cf40c6">func uppercased() -> String</a> <span class="required">Required</span><div class="comment collapse in" id="comment-uppercased-b2325f56718bd5f485736afc15cf40c6"><p>Returns an uppercase version of the string.</p>
+<p>The following example transforms a string to uppercase letters:</p>
+<pre><code class="language-swift">let cafe = &quot;Café 🍵&quot;
+print(cafe.uppercased())
+// Prints &quot;CAFÉ 🍵&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public func uppercased() -> String</code></div></div><div id="withCString-d3871ec370a17d93f46ca97505aae9fe" class="declaration"><a class="toggle-link" href="#comment-withCString-d3871ec370a17d93f46ca97505aae9fe">func withCString(_ body: (UnsafePointer&lt;Int8>) throws -> Result) rethrows -> Result</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withCString-d3871ec370a17d93f46ca97505aae9fe"><p>Calls the given closure with a pointer to the contents of the string,
+represented as a null-terminated sequence of UTF-8 code units.</p>
+<p>The pointer passed as an argument to <code>body</code> is valid only during the
+execution of <code>withCString(_:)</code>. Do not store or return the pointer for
+later use.</p>
+<ul>
+<li>Parameter body: A closure with a pointer parameter that points to a
+null-terminated sequence of UTF-8 code units. If <code>body</code> has a return
+value, that value is also used as the return value for the
+<code>withCString(_:)</code> method. The pointer argument is valid only for the
+duration of the method's execution.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func withCString&lt;Result>(_ body: (UnsafePointer&lt;Int8>) throws -> Result) rethrows -> Result</code></div></div><div id="withCString_encodedAs-0f41b6f994c07361fa528fb4166467e0" class="declaration"><a class="toggle-link" href="#comment-withCString_encodedAs-0f41b6f994c07361fa528fb4166467e0">func withCString(encodedAs targetEncoding: TargetEncoding.Type, _ body: (UnsafePointer&lt;TargetEncoding.CodeUnit>) throws -> Result) rethrows -> Result</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withCString_encodedAs-0f41b6f994c07361fa528fb4166467e0"><p>Calls the given closure with a pointer to the contents of the string,
+represented as a null-terminated sequence of code units.</p>
+<p>The pointer passed as an argument to <code>body</code> is valid only during the
+execution of <code>withCString(encodedAs:_:)</code>. Do not store or return the
+pointer for later use.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func withCString&lt;Result, TargetEncoding>(encodedAs targetEncoding: TargetEncoding.Type, _ body: (UnsafePointer&lt;TargetEncoding.CodeUnit>) throws -> Result) rethrows -> Result where TargetEncoding: _UnicodeEncoding</code></div></div><div id="withUTF-5b958f60be09b0148cab41887e3a64bd" class="declaration"><a class="toggle-link" href="#comment-withUTF-5b958f60be09b0148cab41887e3a64bd">func withUTF8(_ body: (UnsafeBufferPointer&lt;UInt8>) throws -> R) rethrows -> R</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withUTF-5b958f60be09b0148cab41887e3a64bd"><p>Runs <code>body</code> over the content of this string in contiguous memory. If this
+string is not contiguous, this will first make it contiguous, which will
+also speed up subsequent access. If this mutates the string,
+it will invalidate any pre-existing indices.</p>
+<p>Note that it is unsafe to escape the pointer provided to <code>body</code>. For
+example, strings of up to 15 UTF-8 code units in length may be represented
+in a small-string representation, and thus will be spilled into
+temporary stack space which is invalid after <code>withUTF8</code> finishes
+execution.</p>
+<p>Complexity: O(n) if non-contiguous, O(1) if already contiguous</p>
+<h4>Declaration</h4><code class="language-swift">public mutating func withUTF8&lt;R>(_ body: (UnsafeBufferPointer&lt;UInt8>) throws -> R) rethrows -> R</code></div></div><div id="write-8a0b06b688402ed7e1a24c09bf3ddfc1" class="declaration"><a class="toggle-link" href="#comment-write-8a0b06b688402ed7e1a24c09bf3ddfc1">func write(_ other: String)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-write-8a0b06b688402ed7e1a24c09bf3ddfc1"><p>Appends the given string to this string.</p>
+<ul>
+<li>Parameter other: A string to append.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public mutating func write(_ other: String)</code></div></div><div id="write_to-d457d816b415ff3bee040fb06f595e0f" class="declaration"><a class="toggle-link" href="#comment-write_to-d457d816b415ff3bee040fb06f595e0f">func write(to target: inout Target)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-write_to-d457d816b415ff3bee040fb06f595e0f"><p>Writes the string into the given output stream.</p>
+<ul>
+<li>Parameter target: An output stream.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func write&lt;Target>(to target: inout Target) where Target: TextOutputStream</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-1ace6c0ccceecc18799beae40fae2402" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-1ace6c0ccceecc18799beae40fae2402">func +(lhs: Self, rhs: Other) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-1ace6c0ccceecc18799beae40fae2402"><p>Creates a new collection by concatenating the elements of a collection and
+a sequence.</p>
+<p>The two arguments must have the same <code>Element</code> type. For example, you can
+concatenate the elements of an integer array and a <code>Range&lt;Int&gt;</code> instance.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4]
+let moreNumbers = numbers + 5...10
+print(moreNumbers)
+// Prints &quot;[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]&quot;
+</code></pre>
+<p>The resulting collection has the type of the argument on the left-hand
+side. In the example above, <code>moreNumbers</code> has the same type as <code>numbers</code>,
+which is <code>[Int]</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func +&lt;Other>(lhs: Self, rhs: Other) -> Self where Other: Sequence, Self.Element == Other.Element</code></div></div><div id="lhs_rhs-1ace6c0ccceecc18799beae40fae2402" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-1ace6c0ccceecc18799beae40fae2402">func +(lhs: Other, rhs: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-1ace6c0ccceecc18799beae40fae2402"><p>Creates a new collection by concatenating the elements of a sequence and a
+collection.</p>
+<p>The two arguments must have the same <code>Element</code> type. For example, you can
+concatenate the elements of a <code>Range&lt;Int&gt;</code> instance and an integer array.</p>
+<pre><code class="language-swift">let numbers = [7, 8, 9, 10]
+let moreNumbers = 1...6 + numbers
+print(moreNumbers)
+// Prints &quot;[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]&quot;
+</code></pre>
+<p>The resulting collection has the type of argument on the right-hand side.
+In the example above, <code>moreNumbers</code> has the same type as <code>numbers</code>, which
+is <code>[Int]</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func +&lt;Other>(lhs: Other, rhs: Self) -> Self where Other: Sequence, Self.Element == Other.Element</code></div></div><div id="lhs_rhs-1ace6c0ccceecc18799beae40fae2402" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-1ace6c0ccceecc18799beae40fae2402">func +(lhs: Self, rhs: Other) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-1ace6c0ccceecc18799beae40fae2402"><p>Creates a new collection by concatenating the elements of two collections.</p>
+<p>The two arguments must have the same <code>Element</code> type. For example, you can
+concatenate the elements of two integer arrays.</p>
+<pre><code class="language-swift">let lowerNumbers = [1, 2, 3, 4]
+let higherNumbers: ContiguousArray = [5, 6, 7, 8, 9, 10]
+let allNumbers = lowerNumbers + higherNumbers
+print(allNumbers)
+// Prints &quot;[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]&quot;
+</code></pre>
+<p>The resulting collection has the type of the argument on the left-hand
+side. In the example above, <code>moreNumbers</code> has the same type as <code>numbers</code>,
+which is <code>[Int]</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func +&lt;Other>(lhs: Self, rhs: Other) -> Self where Other: RangeReplaceableCollection, Self.Element == Other.Element</code></div></div><div id="lhs_rhs-1ace6c0ccceecc18799beae40fae2402" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-1ace6c0ccceecc18799beae40fae2402">func +(lhs: String, rhs: String) -> String</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-1ace6c0ccceecc18799beae40fae2402"><h4>Declaration</h4><code class="language-swift">@inlinable public static func +(lhs: String, rhs: String) -> String</code></div></div><div id="lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb">func +=(lhs: inout Self, rhs: Other)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb"><p>Appends the elements of a sequence to a range-replaceable collection.</p>
+<p>Use this operator to append the elements of a sequence to the end of
+range-replaceable collection with same <code>Element</code> type. This example
+appends the elements of a <code>Range&lt;Int&gt;</code> instance to an array of integers.</p>
+<pre><code class="language-swift">var numbers = [1, 2, 3, 4, 5]
+numbers += 10...15
+print(numbers)
+// Prints &quot;[1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15]&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(<em>m</em>), where <em>m</em> is the length of the right-hand-side argument.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func +=&lt;Other>(lhs: inout Self, rhs: Other) where Other: Sequence, Self.Element == Other.Element</code></div></div><div id="lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb">func +=(lhs: inout String, rhs: String)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb"><h4>Declaration</h4><code class="language-swift">@inlinable public static func +=(lhs: inout String, rhs: String)</code></div></div><div id="maximum-f364ae2bc228ba8221fe0433f2c559c9" class="declaration"><a class="toggle-link" href="#comment-maximum-f364ae2bc228ba8221fe0433f2c559c9">func ...(maximum: Self) -> PartialRangeThrough&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-maximum-f364ae2bc228ba8221fe0433f2c559c9"><p>Returns a partial range up to, and including, its upper bound.</p>
+<p>Use the prefix closed range operator (prefix <code>...</code>) to create a partial
+range of any type that conforms to the <code>Comparable</code> protocol. This
+example creates a <code>PartialRangeThrough&lt;Double&gt;</code> instance that includes
+any value less than or equal to <code>5.0</code>.</p>
+<pre><code class="language-swift">let throughFive = ...5.0
+
+throughFive.contains(4.0)     // true
+throughFive.contains(5.0)     // true
+throughFive.contains(6.0)     // false
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the start of the collection up to, and
+including, the partial range's upper bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[...3])
+// Prints &quot;[10, 20, 30, 40]&quot;
+</code></pre>
+<ul>
+<li>Parameter maximum: The upper bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">prefix public static func ...(maximum: Self) -> PartialRangeThrough&lt;Self></code></div></div><div id="minimum-ad36ec6fc191696455d9a15f6a532bdf" class="declaration"><a class="toggle-link" href="#comment-minimum-ad36ec6fc191696455d9a15f6a532bdf">func ...(minimum: Self) -> PartialRangeFrom&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-minimum-ad36ec6fc191696455d9a15f6a532bdf"><p>Returns a partial range extending upward from a lower bound.</p>
+<p>Use the postfix range operator (postfix <code>...</code>) to create a partial range
+of any type that conforms to the <code>Comparable</code> protocol. This example
+creates a <code>PartialRangeFrom&lt;Double&gt;</code> instance that includes any value
+greater than or equal to <code>5.0</code>.</p>
+<pre><code class="language-swift">let atLeastFive = 5.0...
+
+atLeastFive.contains(4.0)     // false
+atLeastFive.contains(5.0)     // true
+atLeastFive.contains(6.0)     // true
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the partial range's lower bound up to the end
+of the collection.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[3...])
+// Prints &quot;[40, 50, 60, 70]&quot;
+</code></pre>
+<ul>
+<li>Parameter minimum: The lower bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">postfix public static func ...(minimum: Self) -> PartialRangeFrom&lt;Self></code></div></div><div id="minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed" class="declaration"><a class="toggle-link" href="#comment-minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed">func ...(minimum: Self, maximum: Self) -> ClosedRange&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-minimum_maximum-e93f98b1cfadd2dd48aa4661fc83e3ed"><p>Returns a closed range that contains both of its bounds.</p>
+<p>Use the closed range operator (<code>...</code>) to create a closed range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>ClosedRange&lt;Character&gt;</code> from &quot;a&quot; up to, and including, &quot;z&quot;.</p>
+<pre><code class="language-swift">let lowercase = &quot;a&quot;...&quot;z&quot;
+print(lowercase.contains(&quot;z&quot;))
+// Prints &quot;true&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ...(minimum: Self, maximum: Self) -> ClosedRange&lt;Self></code></div></div><div id="maximum-af5142abac0dee4ee61f3e1db6af3f1c" class="declaration"><a class="toggle-link" href="#comment-maximum-af5142abac0dee4ee61f3e1db6af3f1c">func ..&lt;(maximum: Self) -> PartialRangeUpTo&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-maximum-af5142abac0dee4ee61f3e1db6af3f1c"><p>Returns a partial range up to, but not including, its upper bound.</p>
+<p>Use the prefix half-open range operator (prefix <code>..&lt;</code>) to create a
+partial range of any type that conforms to the <code>Comparable</code> protocol.
+This example creates a <code>PartialRangeUpTo&lt;Double&gt;</code> instance that includes
+any value less than <code>5.0</code>.</p>
+<pre><code class="language-swift">let upToFive = ..&lt;5.0
+
+upToFive.contains(3.14)       // true
+upToFive.contains(6.28)       // false
+upToFive.contains(5.0)        // false
+</code></pre>
+<p>You can use this type of partial range of a collection's indices to
+represent the range from the start of the collection up to, but not
+including, the partial range's upper bound.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60, 70]
+print(numbers[..&lt;3])
+// Prints &quot;[10, 20, 30]&quot;
+</code></pre>
+<ul>
+<li>Parameter maximum: The upper bound for the range.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">prefix public static func ..&lt;(maximum: Self) -> PartialRangeUpTo&lt;Self></code></div></div><div id="minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39" class="declaration"><a class="toggle-link" href="#comment-minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39">func ..&lt;(minimum: Self, maximum: Self) -> Range&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-minimum_maximum-ce422a7f3ceea31f61b4a279520d0c39"><p>Returns a half-open range that contains its lower bound but not its upper
+bound.</p>
+<p>Use the half-open range operator (<code>..&lt;</code>) to create a range of any type
+that conforms to the <code>Comparable</code> protocol. This example creates a
+<code>Range&lt;Double&gt;</code> from zero up to, but not including, 5.0.</p>
+<pre><code class="language-swift">let lessThanFive = 0.0..&lt;5.0
+print(lessThanFive.contains(3.14))  // Prints &quot;true&quot;
+print(lessThanFive.contains(5.0))   // Prints &quot;false&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ..&lt;(minimum: Self, maximum: Self) -> Range&lt;Self></code></div></div><div id="lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f">func &lt;(lhs: String, rhs: String) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func &lt;(lhs: String, rhs: String) -> Bool</code></div></div><div id="lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92">func &lt;=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92"><p>Returns a Boolean value indicating whether the value of the first argument
+is less than or equal to that of the second argument.</p>
+<p>This is the default implementation of the less-than-or-equal-to
+operator (<code>&lt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func &lt;=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: String, rhs: String) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func ==(lhs: String, rhs: String) -> Bool</code></div></div><div id="lhs_rhs-a00561663d495dd2668b929fde178932" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a00561663d495dd2668b929fde178932">func >(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a00561663d495dd2668b929fde178932"><p>Returns a Boolean value indicating whether the value of the first argument
+is greater than that of the second argument.</p>
+<p>This is the default implementation of the greater-than operator (<code>&gt;</code>) for
+any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func >(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a0e01127094d0eee401411c4b5eb8e60" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60">func >=(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60"><p>Returns a Boolean value indicating whether the value of the first argument
+is greater than or equal to that of the second argument.</p>
+<p>This is the default implementation of the greater-than-or-equal-to operator
+(<code>&gt;=</code>) for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func >=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="decodeCString_as_repairingInvalidCodeUnits-7085ad1d42307f7605661f8354db9128" class="declaration"><a class="toggle-link" href="#comment-decodeCString_as_repairingInvalidCodeUnits-7085ad1d42307f7605661f8354db9128">func decodeCString(_ cString: UnsafePointer&lt;Encoding.CodeUnit>?, as encoding: Encoding.Type, repairingInvalidCodeUnits isRepairing: Bool = true) -> (result: String, repairsMade: Bool)?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-decodeCString_as_repairingInvalidCodeUnits-7085ad1d42307f7605661f8354db9128"><p>Creates a new string by copying the null-terminated data referenced by
+the given pointer using the specified encoding.</p>
+<p>When you pass <code>true</code> as <code>isRepairing</code>, this method replaces ill-formed
+sequences with the Unicode replacement character (<code>&quot;\u{FFFD}&quot;</code>);
+otherwise, an ill-formed sequence causes this method to stop decoding
+and return <code>nil</code>.</p>
+<p>The following example calls this method with pointers to the contents of
+two different <code>CChar</code> arrays---the first with well-formed UTF-8 code
+unit sequences and the second with an ill-formed sequence at the end.</p>
+<pre><code class="language-swift">let validUTF8: [UInt8] = [67, 97, 102, 195, 169, 0]
+validUTF8.withUnsafeBufferPointer { ptr in
+    let s = String.decodeCString(ptr.baseAddress,
+                                 as: UTF8.self,
+                                 repairingInvalidCodeUnits: true)
+    print(s)
+}
+// Prints &quot;Optional((Café, false))&quot;
+
+let invalidUTF8: [UInt8] = [67, 97, 102, 195, 0]
+invalidUTF8.withUnsafeBufferPointer { ptr in
+    let s = String.decodeCString(ptr.baseAddress,
+                                 as: UTF8.self,
+                                 repairingInvalidCodeUnits: true)
+    print(s)
+}
+// Prints &quot;Optional((Caf�, true))&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func decodeCString&lt;Encoding>(_ cString: UnsafePointer&lt;Encoding.CodeUnit>?, as encoding: Encoding.Type, repairingInvalidCodeUnits isRepairing: Bool = true) -> (result: String, repairsMade: Bool)? where Encoding: _UnicodeEncoding</code></div></div>

@@ -1,0 +1,47 @@
+---
+layout: "default"
+root: "/v5.1"
+keywords: ""
+title: "Hasher"
+description: "Swift documentation for 'Hasher'"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct Hasher</code></div><p>The universal hash function used by <code>Set</code> and <code>Dictionary</code>.</p>
+<div class="discussion comment"><p><code>Hasher</code> can be used to map an arbitrary sequence of bytes to an integer
+hash value. You can feed data to the hasher using a series of calls to
+mutating <code>combine</code> methods. When you've finished feeding the hasher, the
+hash value can be retrieved by calling <code>finalize()</code>:</p>
+<pre><code class="language-swift">var hasher = Hasher()
+hasher.combine(23)
+hasher.combine(&quot;Hello&quot;)
+let hashValue = hasher.finalize()
+</code></pre>
+<p>Within the execution of a Swift program, <code>Hasher</code> guarantees that finalizing
+it will always produce the same hash value as long as it is fed the exact
+same sequence of bytes. However, the underlying hash algorithm is designed
+to exhibit avalanche effects: slight changes to the seed or the input byte
+sequence will typically produce drastic changes in the generated hash value.</p>
+<blockquote>
+<p>Note:
+Do not save or otherwise reuse hash values across executions of your program. <code>Hasher</code> is usually randomly seeded, which means it will return different values on every new execution of your program. The hash algorithm implemented by <code>Hasher</code> may itself change between any two versions of the standard library.</p>
+</blockquote>
+</div><h3>Initializers</h3><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates a new hasher.</p>
+<p>The hasher uses a per-execution seed value that is set during process
+startup, usually from a high-quality random source.</p>
+<h4>Declaration</h4><code class="language-swift">public init()</code></div></div><h3>Instance Methods</h3><div id="combine-7cddf0d8170baf5f39d1b87fe1dcd086" class="declaration"><a class="toggle-link" href="#comment-combine-7cddf0d8170baf5f39d1b87fe1dcd086">func combine(_ value: H)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-combine-7cddf0d8170baf5f39d1b87fe1dcd086"><p>Adds the given value to this hasher, mixing its essential parts into the
+hasher state.</p>
+<ul>
+<li>Parameter value: A value to add to the hasher.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public mutating func combine&lt;H>(_ value: H) where H: Hashable</code></div></div><div id="combine_bytes-b8649a47a9b1430ac9ff11b2f587fbf1" class="declaration"><a class="toggle-link" href="#comment-combine_bytes-b8649a47a9b1430ac9ff11b2f587fbf1">func combine(bytes: UnsafeRawBufferPointer)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-combine_bytes-b8649a47a9b1430ac9ff11b2f587fbf1"><p>Adds the contents of the given buffer to this hasher, mixing it into the
+hasher state.</p>
+<ul>
+<li>Parameter bytes: A raw memory buffer.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public mutating func combine(bytes: UnsafeRawBufferPointer)</code></div></div><div id="finalize-2d35678dd49895e544cca814cba683a7" class="declaration"><a class="toggle-link" href="#comment-finalize-2d35678dd49895e544cca814cba683a7">func finalize() -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-finalize-2d35678dd49895e544cca814cba683a7"><p>Finalizes the hasher state and returns the hash value.</p>
+<p>Finalizing consumes the hasher: it is illegal to finalize a hasher you
+don't own, or to perform operations on a finalized hasher. (These may
+become compile-time errors in the future.)</p>
+<p>Hash values are not guaranteed to be equal across different executions of
+your program. Do not save hash values to use during a future execution.</p>
+<h4>Declaration</h4><code class="language-swift">public func finalize() -> Int</code></div></div>

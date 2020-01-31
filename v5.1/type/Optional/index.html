@@ -1,0 +1,250 @@
+---
+layout: "default"
+description: "Swift documentation for 'Optional'"
+keywords: ""
+title: "Optional"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum Optional</code></div><p>A type that represents either a wrapped value or <code>nil</code>, the absence of a
+value.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">ExpressibleByNilLiteral, CustomDebugStringConvertible, CustomReflectable</code></td></tr></table><div class="discussion comment"><p>You use the <code>Optional</code> type whenever you use optional values, even if you
+never type the word <code>Optional</code>. Swift's type system usually shows the
+wrapped type's name with a trailing question mark (<code>?</code>) instead of showing
+the full type name. For example, if a variable has the type <code>Int?</code>, that's
+just another way of writing <code>Optional&lt;Int&gt;</code>. The shortened form is
+preferred for ease of reading and writing code.</p>
+<p>The types of <code>shortForm</code> and <code>longForm</code> in the following code sample are
+the same:</p>
+<pre><code class="language-swift">let shortForm: Int? = Int(&quot;42&quot;)
+let longForm: Optional&lt;Int&gt; = Int(&quot;42&quot;)
+</code></pre>
+<p>The <code>Optional</code> type is an enumeration with two cases. <code>Optional.none</code> is
+equivalent to the <code>nil</code> literal. <code>Optional.some(Wrapped)</code> stores a wrapped
+value. For example:</p>
+<pre><code class="language-swift">let number: Int? = Optional.some(42)
+let noNumber: Int? = Optional.none
+print(noNumber == nil)
+// Prints &quot;true&quot;
+</code></pre>
+<p>You must unwrap the value of an <code>Optional</code> instance before you can use it
+in many contexts. Because Swift provides several ways to safely unwrap
+optional values, you can choose the one that helps you write clear,
+concise code.</p>
+<p>The following examples use this dictionary of image names and file paths:</p>
+<pre><code class="language-swift">let imagePaths = [&quot;star&quot;: &quot;/glyphs/star.png&quot;,
+                  &quot;portrait&quot;: &quot;/images/content/portrait.jpg&quot;,
+                  &quot;spacer&quot;: &quot;/images/shared/spacer.gif&quot;]
+</code></pre>
+<p>Getting a dictionary's value using a key returns an optional value, so
+<code>imagePaths[&quot;star&quot;]</code> has type <code>Optional&lt;String&gt;</code> or, written in the
+preferred manner, <code>String?</code>.</p>
+<h4>Optional Binding</h4>
+<p>To conditionally bind the wrapped value of an <code>Optional</code> instance to a new
+variable, use one of the optional binding control structures, including
+<code>if let</code>, <code>guard let</code>, and <code>switch</code>.</p>
+<pre><code class="language-swift">if let starPath = imagePaths[&quot;star&quot;] {
+    print(&quot;The star image is at '\(starPath)'&quot;)
+} else {
+    print(&quot;Couldn't find the star image&quot;)
+}
+// Prints &quot;The star image is at '/glyphs/star.png'&quot;
+</code></pre>
+<h4>Optional Chaining</h4>
+<p>To safely access the properties and methods of a wrapped instance, use the
+postfix optional chaining operator (postfix <code>?</code>). The following example uses
+optional chaining to access the <code>hasSuffix(_:)</code> method on a <code>String?</code>
+instance.</p>
+<pre><code class="language-swift">if imagePaths[&quot;star&quot;]?.hasSuffix(&quot;.png&quot;) == true {
+    print(&quot;The star image is in PNG format&quot;)
+}
+// Prints &quot;The star image is in PNG format&quot;
+</code></pre>
+<h4>Using the Nil-Coalescing Operator</h4>
+<p>Use the nil-coalescing operator (<code>??</code>) to supply a default value in case
+the <code>Optional</code> instance is <code>nil</code>. Here a default path is supplied for an
+image that is missing from <code>imagePaths</code>.</p>
+<pre><code class="language-swift">let defaultImagePath = &quot;/images/default.png&quot;
+let heartPath = imagePaths[&quot;heart&quot;] ?? defaultImagePath
+print(heartPath)
+// Prints &quot;/images/default.png&quot;
+</code></pre>
+<p>The <code>??</code> operator also works with another <code>Optional</code> instance on the
+right-hand side. As a result, you can chain multiple <code>??</code> operators
+together.</p>
+<pre><code class="language-swift">let shapePath = imagePaths[&quot;cir&quot;] ?? imagePaths[&quot;squ&quot;] ?? defaultImagePath
+print(shapePath)
+// Prints &quot;/images/default.png&quot;
+</code></pre>
+<h4>Unconditional Unwrapping</h4>
+<p>When you're certain that an instance of <code>Optional</code> contains a value, you
+can unconditionally unwrap the value by using the forced
+unwrap operator (postfix <code>!</code>). For example, the result of the failable <code>Int</code>
+initializer is unconditionally unwrapped in the example below.</p>
+<pre><code class="language-swift">let number = Int(&quot;42&quot;)!
+print(number)
+// Prints &quot;42&quot;
+</code></pre>
+<p>You can also perform unconditional optional chaining by using the postfix
+<code>!</code> operator.</p>
+<pre><code class="language-swift">let isPNG = imagePaths[&quot;star&quot;]!.hasSuffix(&quot;.png&quot;)
+print(isPNG)
+// Prints &quot;true&quot;
+</code></pre>
+<p>Unconditionally unwrapping a <code>nil</code> instance with <code>!</code> triggers a runtime
+error.</p>
+</div><h3>Cases</h3><div id="none-334c4a4c42fdb79d7ebc3e73b517e6f8" class="declaration"><a class="toggle-link" href="#comment-none-334c4a4c42fdb79d7ebc3e73b517e6f8">case none</a> <span class="required">Required</span><div class="comment collapse in" id="comment-none-334c4a4c42fdb79d7ebc3e73b517e6f8"><p>The absence of a value.</p>
+<p>In code, the absence of a value is typically written using the <code>nil</code>
+literal rather than the explicit <code>.none</code> enumeration case.</p>
+<h4>Declaration</h4><code class="language-swift">case none</code></div></div><div id="some-03d59e663c1af9ac33a9949d1193505a" class="declaration"><a class="toggle-link" href="#comment-some-03d59e663c1af9ac33a9949d1193505a">case some</a> <span class="required">Required</span><div class="comment collapse in" id="comment-some-03d59e663c1af9ac33a9949d1193505a"><p>The presence of a value, stored as <code>Wrapped</code>.</p>
+<h4>Declaration</h4><code class="language-swift">case some(: Wrapped)</code></div></div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an instance that stores the given value.</p>
+<h4>Declaration</h4><code class="language-swift">public init(_ some: Wrapped)</code></div></div><div id="init_nilLiteral-c798df068cf572edeb7077b1637a3b9e" class="declaration"><a class="toggle-link" href="#comment-init_nilLiteral-c798df068cf572edeb7077b1637a3b9e">init init(nilLiteral:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_nilLiteral-c798df068cf572edeb7077b1637a3b9e"><p>Creates an instance initialized with <code>nil</code>.</p>
+<p>Do not call this initializer directly. It is used by the compiler when you
+initialize an <code>Optional</code> instance with a <code>nil</code> literal. For example:</p>
+<pre><code class="language-swift">var i: Index? = nil
+</code></pre>
+<p>In this example, the assignment to the <code>i</code> variable calls this
+initializer behind the scenes.</p>
+<h4>Declaration</h4><code class="language-swift">public init(nilLiteral: ())</code></div></div><h3>Instance Variables</h3><div id="customMirror-c4bea5adb1649887b1a7e9972736e2a9" class="declaration"><a class="toggle-link" href="#comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9">var customMirror</a> <span class="required">Required</span><div class="comment collapse in" id="comment-customMirror-c4bea5adb1649887b1a7e9972736e2a9"><p>The custom mirror for this instance.</p>
+<p>If this type has value semantics, the mirror should be unaffected by
+subsequent mutations of the instance.</p>
+<h4>Declaration</h4><code class="language-swift">var customMirror: Mirror</code></div></div><div id="debugDescription-15dc1a07010ea28e38b1f4d74663fe11" class="declaration"><a class="toggle-link" href="#comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11">var debugDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11"><p>A textual representation of this instance, suitable for debugging.</p>
+<h4>Declaration</h4><code class="language-swift">var debugDescription: String</code></div></div><div id="unsafelyUnwrapped-0a255b0b33c380968deebb0c7c3f22cb" class="declaration"><a class="toggle-link" href="#comment-unsafelyUnwrapped-0a255b0b33c380968deebb0c7c3f22cb">var unsafelyUnwrapped</a> <span class="required">Required</span><div class="comment collapse in" id="comment-unsafelyUnwrapped-0a255b0b33c380968deebb0c7c3f22cb"><p>The wrapped value of this instance, unwrapped without checking whether
+the instance is <code>nil</code>.</p>
+<p>The <code>unsafelyUnwrapped</code> property provides the same value as the forced
+unwrap operator (postfix <code>!</code>). However, in optimized builds (<code>-O</code>), no
+check is performed to ensure that the current instance actually has a
+value. Accessing this property in the case of a <code>nil</code> value is a serious
+programming error and could lead to undefined behavior or a runtime
+error.</p>
+<p>In debug builds (<code>-Onone</code>), the <code>unsafelyUnwrapped</code> property has the same
+behavior as using the postfix <code>!</code> operator and triggers a runtime error
+if the instance is <code>nil</code>.</p>
+<p>The <code>unsafelyUnwrapped</code> property is recommended over calling the
+<code>unsafeBitCast(_:)</code> function because the property is more restrictive
+and because accessing the property still performs checking in debug
+builds.</p>
+<blockquote>
+<p>Warning:
+This property trades safety for performance.  Use <code>unsafelyUnwrapped</code> only when you are confident that this instance will never be equal to <code>nil</code> and only after you've tried using the postfix <code>!</code> operator.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var unsafelyUnwrapped: Wrapped</code></div></div><h3>Instance Methods</h3><div id="flatMap-0dcf52c05bdbca30a9e61d2230812108" class="declaration"><a class="toggle-link" href="#comment-flatMap-0dcf52c05bdbca30a9e61d2230812108">func flatMap(_ transform: (Wrapped) throws -> U?) rethrows -> U?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-flatMap-0dcf52c05bdbca30a9e61d2230812108"><p>Evaluates the given closure when this <code>Optional</code> instance is not <code>nil</code>,
+passing the unwrapped value as a parameter.</p>
+<p>Use the <code>flatMap</code> method with a closure that returns an optional value.
+This example performs an arithmetic operation with an optional result on
+an optional integer.</p>
+<pre><code class="language-swift">let possibleNumber: Int? = Int(&quot;42&quot;)
+let nonOverflowingSquare = possibleNumber.flatMap { x -&gt; Int? in
+    let (result, overflowed) = x.multipliedReportingOverflow(by: x)
+    return overflowed ? nil : result
+}
+print(nonOverflowingSquare)
+// Prints &quot;Optional(1764)&quot;
+</code></pre>
+<ul>
+<li>Parameter transform: A closure that takes the unwrapped value
+of the instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func flatMap&lt;U>(_ transform: (Wrapped) throws -> U?) rethrows -> U?</code></div></div><div id="map-d86ddaae0a60cc94d2ecc186aad275b0" class="declaration"><a class="toggle-link" href="#comment-map-d86ddaae0a60cc94d2ecc186aad275b0">func map(_ transform: (Wrapped) throws -> U) rethrows -> U?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-map-d86ddaae0a60cc94d2ecc186aad275b0"><p>Evaluates the given closure when this <code>Optional</code> instance is not <code>nil</code>,
+passing the unwrapped value as a parameter.</p>
+<p>Use the <code>map</code> method with a closure that returns a non-optional value.
+This example performs an arithmetic operation on an
+optional integer.</p>
+<pre><code class="language-swift">let possibleNumber: Int? = Int(&quot;42&quot;)
+let possibleSquare = possibleNumber.map { $0 * $0 }
+print(possibleSquare)
+// Prints &quot;Optional(1764)&quot;
+
+let noNumber: Int? = nil
+let noSquare = noNumber.map { $0 * $0 }
+print(noSquare)
+// Prints &quot;nil&quot;
+</code></pre>
+<ul>
+<li>Parameter transform: A closure that takes the unwrapped value
+of the instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func map&lt;U>(_ transform: (Wrapped) throws -> U) rethrows -> U?</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Wrapped?, rhs: _OptionalNilComparisonType) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><p>Returns a Boolean value indicating whether the left-hand-side argument is
+not <code>nil</code>.</p>
+<p>You can use this not-equal-to operator (<code>!=</code>) to test whether an optional
+instance is not <code>nil</code> even when the wrapped value's type does not conform
+to the <code>Equatable</code> protocol.</p>
+<p>The following example declares the <code>stream</code> variable as an optional
+instance of a hypothetical <code>DataStream</code> type. Although <code>DataStream</code> is not
+an <code>Equatable</code> type, this operator allows checking whether <code>stream</code> wraps
+a value and is therefore not <code>nil</code>.</p>
+<pre><code class="language-swift">var stream: DataStream? = fetchDataStream()
+if stream != nil {
+    print(&quot;The data stream has been configured.&quot;)
+}
+// Prints &quot;The data stream has been configured.&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Wrapped?, rhs: _OptionalNilComparisonType) -> Bool</code></div></div><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: _OptionalNilComparisonType, rhs: Wrapped?) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><p>Returns a Boolean value indicating whether the right-hand-side argument is
+not <code>nil</code>.</p>
+<p>You can use this not-equal-to operator (<code>!=</code>) to test whether an optional
+instance is not <code>nil</code> even when the wrapped value's type does not conform
+to the <code>Equatable</code> protocol.</p>
+<p>The following example declares the <code>stream</code> variable as an optional
+instance of a hypothetical <code>DataStream</code> type. Although <code>DataStream</code> is not
+an <code>Equatable</code> type, this operator allows checking whether <code>stream</code> wraps
+a value and is therefore not <code>nil</code>.</p>
+<pre><code class="language-swift">var stream: DataStream? = fetchDataStream()
+if nil != stream {
+    print(&quot;The data stream has been configured.&quot;)
+}
+// Prints &quot;The data stream has been configured.&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func !=(lhs: _OptionalNilComparisonType, rhs: Wrapped?) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: Wrapped?, rhs: _OptionalNilComparisonType) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether the left-hand-side argument is
+<code>nil</code>.</p>
+<p>You can use this equal-to operator (<code>==</code>) to test whether an optional
+instance is <code>nil</code> even when the wrapped value's type does not conform to
+the <code>Equatable</code> protocol.</p>
+<p>The following example declares the <code>stream</code> variable as an optional
+instance of a hypothetical <code>DataStream</code> type. Although <code>DataStream</code> is not
+an <code>Equatable</code> type, this operator allows checking whether <code>stream</code> is
+<code>nil</code>.</p>
+<pre><code class="language-swift">var stream: DataStream? = nil
+if stream == nil {
+    print(&quot;No data stream is configured.&quot;)
+}
+// Prints &quot;No data stream is configured.&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ==(lhs: Wrapped?, rhs: _OptionalNilComparisonType) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: _OptionalNilComparisonType, rhs: Wrapped?) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether the right-hand-side argument is
+<code>nil</code>.</p>
+<p>You can use this equal-to operator (<code>==</code>) to test whether an optional
+instance is <code>nil</code> even when the wrapped value's type does not conform to
+the <code>Equatable</code> protocol.</p>
+<p>The following example declares the <code>stream</code> variable as an optional
+instance of a hypothetical <code>DataStream</code> type. Although <code>DataStream</code> is not
+an <code>Equatable</code> type, this operator allows checking whether <code>stream</code> is
+<code>nil</code>.</p>
+<pre><code class="language-swift">var stream: DataStream? = nil
+if nil == stream {
+    print(&quot;No data stream is configured.&quot;)
+}
+// Prints &quot;No data stream is configured.&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ==(lhs: _OptionalNilComparisonType, rhs: Wrapped?) -> Bool</code></div></div><div id="lhs_rhs-51121daad663e027db9571ba07e3a3ea" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-51121daad663e027db9571ba07e3a3ea">func ~=(lhs: _OptionalNilComparisonType, rhs: Wrapped?) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-51121daad663e027db9571ba07e3a3ea"><p>Returns a Boolean value indicating whether an argument matches <code>nil</code>.</p>
+<p>You can use the pattern-matching operator (<code>~=</code>) to test whether an
+optional instance is <code>nil</code> even when the wrapped value's type does not
+conform to the <code>Equatable</code> protocol. The pattern-matching operator is used
+internally in <code>case</code> statements for pattern matching.</p>
+<p>The following example declares the <code>stream</code> variable as an optional
+instance of a hypothetical <code>DataStream</code> type, and then uses a <code>switch</code>
+statement to determine whether the stream is <code>nil</code> or has a configured
+value. When evaluating the <code>nil</code> case of the <code>switch</code> statement, this
+operator is called behind the scenes.</p>
+<pre><code class="language-swift">var stream: DataStream? = nil
+switch stream {
+case nil:
+    print(&quot;No data stream is configured.&quot;)
+case let x?:
+    print(&quot;The data stream has \(x.availableBytes) bytes available.&quot;)
+}
+// Prints &quot;No data stream is configured.&quot;
+</code></pre>
+<blockquote>
+<p>Note:
+To test whether an instance is <code>nil</code> in an <code>if</code> statement, use the equal-to operator (<code>==</code>) instead of the pattern-matching operator. The pattern-matching operator is primarily intended to enable <code>case</code> statement pattern matching.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">public static func ~=(lhs: _OptionalNilComparisonType, rhs: Wrapped?) -> Bool</code></div></div>

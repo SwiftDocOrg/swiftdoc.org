@@ -1,0 +1,22 @@
+---
+description: "Swift documentation for 'abs'"
+root: "/v5.1"
+title: "abs"
+layout: "default"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">func abs(_:)(_ x: T) -> T</code></div><div class="discussion comment"><p>Returns the absolute value of the given number.
+</p>
+<p>The absolute value of <code>x</code> must be representable in the same type. In
+particular, the absolute value of a signed, fixed-width integer type's
+minimum cannot be represented.</p>
+<pre><code class="language-swift">let x = Int8.min
+// x == -128
+let y = abs(x)
+// Overflow error
+</code></pre>
+<ul>
+<li>Parameter x: A signed number.</li>
+</ul>
+</div>

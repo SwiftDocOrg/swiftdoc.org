@@ -1,0 +1,62 @@
+---
+layout: "default"
+root: "/v5.1"
+description: "Swift documentation for 'ExpressibleByDictionaryLiteral'"
+keywords: ""
+title: "ExpressibleByDictionaryLiteral"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol ExpressibleByDictionaryLiteral</code></div><p>A type that can be initialized using a dictionary literal.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">Dictionary, KeyValuePairs</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype Key</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">associatedtype Value</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>A dictionary literal is a simple way of writing a list of key-value pairs.
+You write each key-value pair with a colon (<code>:</code>) separating the key and
+the value. The dictionary literal is made up of one or more key-value
+pairs, separated by commas and surrounded with square brackets.</p>
+<p>To declare a dictionary, assign a dictionary literal to a variable or
+constant:</p>
+<pre><code class="language-swift">let countryCodes = [&quot;BR&quot;: &quot;Brazil&quot;, &quot;GH&quot;: &quot;Ghana&quot;,
+                    &quot;JP&quot;: &quot;Japan&quot;, &quot;US&quot;: &quot;United States&quot;]
+// 'countryCodes' has type [String: String]
+
+print(countryCodes[&quot;BR&quot;]!)
+// Prints &quot;Brazil&quot;
+</code></pre>
+<p>When the context provides enough type information, you can use a special
+form of the dictionary literal, square brackets surrounding a single
+colon, to initialize an empty dictionary.</p>
+<pre><code class="language-swift">var frequencies: [String: Int] = [:]
+print(frequencies.count)
+// Prints &quot;0&quot;
+</code></pre>
+<blockquote>
+<p>Note:
+A dictionary literal is <em>not</em> the same as an instance of <code>Dictionary</code>. You can't initialize a type that conforms to <code>ExpressibleByDictionaryLiteral</code> simply by assigning an instance of <code>Dictionary</code>, <code>KeyValuePairs</code>, or similar.</p>
+</blockquote>
+<h3>Conforming to the ExpressibleByDictionaryLiteral Protocol</h3>
+<p>To add the capability to be initialized with a dictionary literal to your
+own custom types, declare an <code>init(dictionaryLiteral:)</code> initializer. The
+following example shows the dictionary literal initializer for a
+hypothetical <code>CountedSet</code> type, which uses setlike semantics while keeping
+track of the count for duplicate elements:</p>
+<pre><code class="language-swift">struct CountedSet&lt;Element: Hashable&gt;: Collection, SetAlgebra {
+    // implementation details
+
+    /// Updates the count stored in the set for the given element,
+    /// adding the element if necessary.
+    ///
+    /// - Parameter n: The new count for `element`. `n` must be greater
+    ///   than or equal to zero.
+    /// - Parameter element: The element to set the new count on.
+    mutating func updateCount(_ n: Int, for element: Element)
+}
+
+extension CountedSet: ExpressibleByDictionaryLiteral {
+    init(dictionaryLiteral elements: (Element, Int)...) {
+        self.init()
+        for (element, count) in elements {
+            self.updateCount(count, for: element)
+        }
+    }
+}
+</code></pre>
+</div><h3>Initializers</h3><div id="init_dictionaryLiteral-92195e445b3542ae7165b4529659eadb" class="declaration"><a class="toggle-link" href="#comment-init_dictionaryLiteral-92195e445b3542ae7165b4529659eadb">init init(dictionaryLiteral:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_dictionaryLiteral-92195e445b3542ae7165b4529659eadb"><p>Creates an instance initialized with the given key-value pairs.</p>
+<h4>Declaration</h4><code class="language-swift">init(dictionaryLiteral elements: (Self.Key, Self.Value))</code></div></div>

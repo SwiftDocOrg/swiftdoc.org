@@ -1,0 +1,188 @@
+---
+title: "UnsignedInteger"
+description: "Swift documentation for 'UnsignedInteger'"
+keywords: ""
+layout: "default"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol UnsignedInteger</code></div><p>An integer type that can represent only nonnegative values.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">BinaryInteger</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">UInt, UInt16, UInt32, UInt64, UInt8</code></td></tr></table><div class="discussion comment"></div><h3>Default Implementations</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Other) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><p>Returns a Boolean value indicating whether the two given values are not
+equal.</p>
+<p>You can check the inequality of instances of any <code>BinaryInteger</code> types
+using the not-equal-to operator (<code>!=</code>). For example, you can test
+whether the first <code>UInt8</code> value in a string's UTF-8 encoding is not
+equal to the first <code>UInt32</code> value in its Unicode scalar view:</p>
+<pre><code class="language-swift">let gameName = &quot;Red Light, Green Light&quot;
+if let firstUTF8 = gameName.utf8.first,
+    let firstScalar = gameName.unicodeScalars.first?.value {
+    print(&quot;First code values are different: \(firstUTF8 != firstScalar)&quot;)
+}
+// Prints &quot;First code values are different: false&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func !=&lt;Other>(lhs: Self, rhs: Other) -> Bool where Other: BinaryInteger</code></div></div><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-8e394094eebf256a06c74c30008a9a9c" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-8e394094eebf256a06c74c30008a9a9c">func &amp;(lhs: Self, rhs: Self) -> Self</a> <div class="comment collapse in" id="comment-lhs_rhs-8e394094eebf256a06c74c30008a9a9c"><p>Returns the result of performing a bitwise AND operation on the two given
+values.</p>
+<p>A bitwise AND operation results in a value that has each bit set to <code>1</code>
+where <em>both</em> of its arguments have that bit set to <code>1</code>. For example:</p>
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x &amp; y             // 0b00000100
+// z == 4
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func &amp;(lhs: Self, rhs: Self) -> Self</code></div></div><div id="lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f">func &lt;(lhs: Self, rhs: Other) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+less-than operator (<code>&lt;</code>), even if the two instances are of different
+types.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;&lt;Other>(lhs: Self, rhs: Other) -> Bool where Other: BinaryInteger</code></div></div><div id="lhs_rhs-a78dd2cd608d0fea2c2953583468409c" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a78dd2cd608d0fea2c2953583468409c">func &lt;&lt;(lhs: Self, rhs: RHS) -> Self</a> <div class="comment collapse in" id="comment-lhs_rhs-a78dd2cd608d0fea2c2953583468409c"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the left.</p>
+<p>The <code>&lt;&lt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted left by two bits.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &lt;&lt; 2
+// y == 120                       // 0b01111000
+</code></pre>
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+<pre><code class="language-swift">let z = x &lt;&lt; 11
+// z == 0                         // 0b00000000
+</code></pre>
+<p>Using a negative value as <code>rhs</code> is the same as performing a right shift
+with <code>abs(rhs)</code>.</p>
+<pre><code class="language-swift">let a = x &lt;&lt; -3
+// a == 3                         // 0b00000011
+let b = x &gt;&gt; 3
+// b == 3                         // 0b00000011
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;&lt;&lt;RHS>(lhs: Self, rhs: RHS) -> Self where RHS: BinaryInteger</code></div></div><div id="lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92">func &lt;=(lhs: Self, rhs: Other) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than or equal to that of the second argument.</p>
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+less-than-or-equal-to operator (<code>&lt;=</code>), even if the two instances are of
+different types.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;=&lt;Other>(lhs: Self, rhs: Other) -> Bool where Other: BinaryInteger</code></div></div><div id="lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92">func &lt;=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than or equal to that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: Self, rhs: Other) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether the two given values are
+equal.</p>
+<p>You can check the equality of instances of any <code>BinaryInteger</code> types
+using the equal-to operator (<code>==</code>). For example, you can test whether
+the first <code>UInt8</code> value in a string's UTF-8 encoding is equal to the
+first <code>UInt32</code> value in its Unicode scalar view:</p>
+<pre><code class="language-swift">let gameName = &quot;Red Light, Green Light&quot;
+if let firstUTF8 = gameName.utf8.first,
+    let firstScalar = gameName.unicodeScalars.first?.value {
+    print(&quot;First code values are equal: \(firstUTF8 == firstScalar)&quot;)
+}
+// Prints &quot;First code values are equal: true&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ==&lt;Other>(lhs: Self, rhs: Other) -> Bool where Other: BinaryInteger</code></div></div><div id="lhs_rhs-a00561663d495dd2668b929fde178932" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a00561663d495dd2668b929fde178932">func >(lhs: Self, rhs: Other) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a00561663d495dd2668b929fde178932"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than that of the second argument.</p>
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than operator (<code>&gt;</code>), even if the two instances are of different
+types.</p>
+<h4>Declaration</h4><code class="language-swift">public static func >&lt;Other>(lhs: Self, rhs: Other) -> Bool where Other: BinaryInteger</code></div></div><div id="lhs_rhs-a00561663d495dd2668b929fde178932" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a00561663d495dd2668b929fde178932">func >(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a00561663d495dd2668b929fde178932"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">public static func >(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a0e01127094d0eee401411c4b5eb8e60" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60">func >=(lhs: Self, rhs: Other) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+<p>You can compare instances of any <code>BinaryInteger</code> types using the
+greater-than-or-equal-to operator (<code>&gt;=</code>), even if the two instances are
+of different types.</p>
+<h4>Declaration</h4><code class="language-swift">public static func >=&lt;Other>(lhs: Self, rhs: Other) -> Bool where Other: BinaryInteger</code></div></div><div id="lhs_rhs-a0e01127094d0eee401411c4b5eb8e60" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60">func >=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">public static func >=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-8f77e46ddc0964d547890243c92f559e" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-8f77e46ddc0964d547890243c92f559e">func >>(lhs: Self, rhs: RHS) -> Self</a> <div class="comment collapse in" id="comment-lhs_rhs-8f77e46ddc0964d547890243c92f559e"><p>Returns the result of shifting a value's binary representation the
+specified number of digits to the right.</p>
+<p>The <code>&gt;&gt;</code> operator performs a <em>smart shift</em>, which defines a result for a
+shift of any value.</p>
+<p>The following example defines <code>x</code> as an instance of <code>UInt8</code>, an 8-bit,
+unsigned integer type. If you use <code>2</code> as the right-hand-side value in an
+operation on <code>x</code>, the value is shifted right by two bits.</p>
+<pre><code class="language-swift">let x: UInt8 = 30                 // 0b00011110
+let y = x &gt;&gt; 2
+// y == 7                         // 0b00000111
+</code></pre>
+<p>If you use <code>11</code> as <code>rhs</code>, <code>x</code> is overshifted such that all of its bits
+are set to zero.</p>
+<pre><code class="language-swift">let z = x &gt;&gt; 11
+// z == 0                         // 0b00000000
+</code></pre>
+<p>Using a negative value as <code>rhs</code> is the same as performing a left shift
+using <code>abs(rhs)</code>.</p>
+<pre><code class="language-swift">let a = x &gt;&gt; -3
+// a == 240                       // 0b11110000
+let b = x &lt;&lt; 3
+// b == 240                       // 0b11110000
+</code></pre>
+<p>Right shift operations on negative values &quot;fill in&quot; the high bits with
+ones instead of zeros.</p>
+<pre><code class="language-swift">let q: Int8 = -30                 // 0b11100010
+let r = q &gt;&gt; 2
+// r == -8                        // 0b11111000
+
+let s = q &gt;&gt; 11
+// s == -1                        // 0b11111111
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func >>&lt;RHS>(lhs: Self, rhs: RHS) -> Self where RHS: BinaryInteger</code></div></div><div id="lhs_rhs-03f47400539569672fd3bb01c98ae9b6" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-03f47400539569672fd3bb01c98ae9b6">func ^(lhs: Self, rhs: Self) -> Self</a> <div class="comment collapse in" id="comment-lhs_rhs-03f47400539569672fd3bb01c98ae9b6"><p>Returns the result of performing a bitwise XOR operation on the two given
+values.</p>
+<p>A bitwise XOR operation, also known as an exclusive OR operation, results
+in a value that has each bit set to <code>1</code> where <em>one or the other but not
+both</em> of its arguments had that bit set to <code>1</code>. For example:</p>
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x ^ y             // 0b00001011
+// z == 11
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func ^(lhs: Self, rhs: Self) -> Self</code></div></div><div id="advanced_by-eca6cfea7368ad69605cb85a19cee2ca" class="declaration"><a class="toggle-link" href="#comment-advanced_by-eca6cfea7368ad69605cb85a19cee2ca">func advanced(by n: Int) -> Self</a> <div class="comment collapse in" id="comment-advanced_by-eca6cfea7368ad69605cb85a19cee2ca"><p>Returns a value that is offset the specified distance from this value.</p>
+<p>Use the <code>advanced(by:)</code> method in generic code to offset a value by a
+specified distance. If you're working directly with numeric values, use
+the addition operator (<code>+</code>) instead of this method.</p>
+<p>For a value <code>x</code>, a distance <code>n</code>, and a value <code>y = x.advanced(by: n)</code>,
+<code>x.distance(to: y) == n</code>.</p>
+<ul>
+<li>Parameter n: The distance to advance this value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func advanced(by n: Int) -> Self</code></div></div><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>A textual representation of this value.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div><div id="distance_to-55ea9db2502ccb9247fb4f931340a7ef" class="declaration"><a class="toggle-link" href="#comment-distance_to-55ea9db2502ccb9247fb4f931340a7ef">func distance(to other: Self) -> Int</a> <div class="comment collapse in" id="comment-distance_to-55ea9db2502ccb9247fb4f931340a7ef"><p>Returns the distance from this value to the given value, expressed as a
+stride.</p>
+<p>For two values <code>x</code> and <code>y</code>, and a distance <code>n = x.distance(to: y)</code>,
+<code>x.advanced(by: n) == y</code>.</p>
+<ul>
+<li>Parameter other: The value to calculate the distance to.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func distance(to other: Self) -> Int</code></div></div><div id="init-e67906ab4373125a18eb2b5a75f59bd2" class="declaration"><a class="toggle-link" href="#comment-init-e67906ab4373125a18eb2b5a75f59bd2">init init()</a> <div class="comment collapse in" id="comment-init-e67906ab4373125a18eb2b5a75f59bd2"><p>Creates a new value equal to zero.</p>
+<h4>Declaration</h4><code class="language-swift">public init()</code></div></div><div id="isMultiple_of-84e2864b50e0c1455da2c03587b87368" class="declaration"><a class="toggle-link" href="#comment-isMultiple_of-84e2864b50e0c1455da2c03587b87368">func isMultiple(of other: Self) -> Bool</a> <div class="comment collapse in" id="comment-isMultiple_of-84e2864b50e0c1455da2c03587b87368"><p>Returns <code>true</code> if this value is a multiple of the given value, and <code>false</code>
+otherwise.</p>
+<p>For two integers <em>a</em> and <em>b</em>, <em>a</em> is a multiple of <em>b</em> if there exists a
+third integer <em>q</em> such that <em>a = q*b</em>. For example, <em>6</em> is a multiple of
+<em>3</em> because <em>6 = 2*3</em>. Zero is a multiple of everything because <em>0 = 0*x</em>
+for any integer <em>x</em>.</p>
+<p>Two edge cases are worth particular attention:</p>
+<ul>
+<li>Parameter other: The value to test.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func isMultiple(of other: Self) -> Bool</code></div></div><div id="quotientAndRemainder_dividingBy-bd9d69aac9134c326c30a832593a3aaa" class="declaration"><a class="toggle-link" href="#comment-quotientAndRemainder_dividingBy-bd9d69aac9134c326c30a832593a3aaa">func quotientAndRemainder(dividingBy rhs: Self) -> (quotient: Self, remainder: Self)</a> <div class="comment collapse in" id="comment-quotientAndRemainder_dividingBy-bd9d69aac9134c326c30a832593a3aaa"><p>Returns the quotient and remainder of this value divided by the given
+value.</p>
+<p>Use this method to calculate the quotient and remainder of a division at
+the same time.</p>
+<pre><code class="language-swift">let x = 1_000_000
+let (q, r) = x.quotientAndRemainder(dividingBy: 933)
+// q == 1071
+// r == 757
+</code></pre>
+<ul>
+<li>Parameter rhs: The value to divide this value by.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func quotientAndRemainder(dividingBy rhs: Self) -> (quotient: Self, remainder: Self)</code></div></div><div id="signum-2afcbb0e6bfa05c60dcc2163fbdbfc23" class="declaration"><a class="toggle-link" href="#comment-signum-2afcbb0e6bfa05c60dcc2163fbdbfc23">func signum() -> Self</a> <div class="comment collapse in" id="comment-signum-2afcbb0e6bfa05c60dcc2163fbdbfc23"><p>Returns <code>-1</code> if this value is negative and <code>1</code> if it's positive;
+otherwise, <code>0</code>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func signum() -> Self</code></div></div><div id="lhs_rhs-4e71b0d2abd7c5dbfd95249811ea3f9a" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-4e71b0d2abd7c5dbfd95249811ea3f9a">func |(lhs: Self, rhs: Self) -> Self</a> <div class="comment collapse in" id="comment-lhs_rhs-4e71b0d2abd7c5dbfd95249811ea3f9a"><p>Returns the result of performing a bitwise OR operation on the two given
+values.</p>
+<p>A bitwise OR operation results in a value that has each bit set to <code>1</code>
+where <em>one or both</em> of its arguments have that bit set to <code>1</code>. For
+example:</p>
+<pre><code class="language-swift">let x: UInt8 = 5          // 0b00000101
+let y: UInt8 = 14         // 0b00001110
+let z = x | y             // 0b00001111
+// z == 15
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public static func |(lhs: Self, rhs: Self) -> Self</code></div></div>

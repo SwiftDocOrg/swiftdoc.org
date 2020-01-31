@@ -1,0 +1,25 @@
+---
+title: "CodingKey"
+root: "/v5.1"
+keywords: ""
+layout: "default"
+description: "Swift documentation for 'CodingKey'"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CodingKey</code></div><p>A type that can be used as a key for encoding and decoding.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">CustomDebugStringConvertible, CustomStringConvertible</code></td></tr></table><div class="discussion comment"></div><h3>Initializers</h3><div id="init_intValue-03a7338717a0bff4778dfcfbb9030a01" class="declaration"><a class="toggle-link" href="#comment-init_intValue-03a7338717a0bff4778dfcfbb9030a01">init init?(intValue:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_intValue-03a7338717a0bff4778dfcfbb9030a01"><p>Creates a new instance from the specified integer.</p>
+<p>If the value passed as <code>intValue</code> does not correspond to any instance of
+this type, the result is <code>nil</code>.</p>
+<ul>
+<li>parameter intValue: The integer value of the desired key.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init?(intValue: Int)</code></div></div><div id="init_stringValue-3226d800d383dd3753ada5c16a20bcf7" class="declaration"><a class="toggle-link" href="#comment-init_stringValue-3226d800d383dd3753ada5c16a20bcf7">init init?(stringValue:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_stringValue-3226d800d383dd3753ada5c16a20bcf7"><p>Creates a new instance from the given string.</p>
+<p>If the string passed as <code>stringValue</code> does not correspond to any instance
+of this type, the result is <code>nil</code>.</p>
+<ul>
+<li>parameter stringValue: The string value of the desired key.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init?(stringValue: String)</code></div></div><h3>Instance Variables</h3><div id="intValue-481f44389b52d587646c4a792551b4dc" class="declaration"><a class="toggle-link" href="#comment-intValue-481f44389b52d587646c4a792551b4dc">var intValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-intValue-481f44389b52d587646c4a792551b4dc"><p>The value to use in an integer-indexed collection (e.g. an int-keyed
+dictionary).</p>
+<h4>Declaration</h4><code class="language-swift">var intValue: Int?</code></div></div><div id="stringValue-5b57ab60c984eec4bc98143f6d1e8775" class="declaration"><a class="toggle-link" href="#comment-stringValue-5b57ab60c984eec4bc98143f6d1e8775">var stringValue</a> <span class="required">Required</span><div class="comment collapse in" id="comment-stringValue-5b57ab60c984eec4bc98143f6d1e8775"><p>The string to use in a named collection (e.g. a string-keyed dictionary).</p>
+<h4>Declaration</h4><code class="language-swift">var stringValue: String</code></div></div>

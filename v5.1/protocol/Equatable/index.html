@@ -1,0 +1,135 @@
+---
+keywords: ""
+description: "Swift documentation for 'Equatable'"
+root: "/v5.1"
+layout: "default"
+title: "Equatable"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Equatable</code></div><p>A type that can be compared for value equality.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">AdditiveArithmetic, AnyHashable, Bool, Character, ClosedRange, CodingUserInfoKey, CollectionDifference.Index, Comparable, Dictionary.Index, EmptyCollection, FlattenSequence.Index, Hashable, ManagedBufferPointer, ObjectIdentifier, OpaquePointer, Range, Set, Set.Index, SetAlgebra, String, String.Index, Unicode.Scalar, UnicodeDecodingResult</code></td></tr></table><div class="discussion comment"><p>Types that conform to the <code>Equatable</code> protocol can be compared for equality
+using the equal-to operator (<code>==</code>) or inequality using the not-equal-to
+operator (<code>!=</code>). Most basic types in the Swift standard library conform to
+<code>Equatable</code>.</p>
+<p>Some sequence and collection operations can be used more simply when the
+elements conform to <code>Equatable</code>. For example, to check whether an array
+contains a particular value, you can pass the value itself to the
+<code>contains(_:)</code> method when the array's element conforms to <code>Equatable</code>
+instead of providing a closure that determines equivalence. The following
+example shows how the <code>contains(_:)</code> method can be used with an array of
+strings.</p>
+<pre><code class="language-swift">let students = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Efua&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+
+let nameToCheck = &quot;Kofi&quot;
+if students.contains(nameToCheck) {
+    print(&quot;\(nameToCheck) is signed up!&quot;)
+} else {
+    print(&quot;No record of \(nameToCheck).&quot;)
+}
+// Prints &quot;Kofi is signed up!&quot;
+</code></pre>
+<h3>Conforming to the Equatable Protocol</h3>
+<p>Adding <code>Equatable</code> conformance to your custom types means that you can use
+more convenient APIs when searching for particular instances in a
+collection. <code>Equatable</code> is also the base protocol for the <code>Hashable</code> and
+<code>Comparable</code> protocols, which allow more uses of your custom type, such as
+constructing sets or sorting the elements of a collection.</p>
+<p>You can rely on automatic synthesis of the <code>Equatable</code> protocol's
+requirements for a custom type when you declare <code>Equatable</code> conformance in
+the type's original declaration and your type meets these criteria:</p>
+<p>To customize your type's <code>Equatable</code> conformance, to adopt <code>Equatable</code> in a
+type that doesn't meet the criteria listed above, or to extend an existing
+type to conform to <code>Equatable</code>, implement the equal-to operator (<code>==</code>) as
+a static method of your type. The standard library provides an
+implementation for the not-equal-to operator (<code>!=</code>) for any <code>Equatable</code>
+type, which calls the custom <code>==</code> function and negates its result.</p>
+<p>As an example, consider a <code>StreetAddress</code> class that holds the parts of a
+street address: a house or building number, the street name, and an
+optional unit number. Here's the initial declaration of the
+<code>StreetAddress</code> type:</p>
+<pre><code class="language-swift">class StreetAddress {
+    let number: String
+    let street: String
+    let unit: String?
+
+    init(_ number: String, _ street: String, unit: String? = nil) {
+        self.number = number
+        self.street = street
+        self.unit = unit
+    }
+}
+</code></pre>
+<p>Now suppose you have an array of addresses that you need to check for a
+particular address. To use the <code>contains(_:)</code> method without including a
+closure in each call, extend the <code>StreetAddress</code> type to conform to
+<code>Equatable</code>.</p>
+<pre><code class="language-swift">extension StreetAddress: Equatable {
+    static func == (lhs: StreetAddress, rhs: StreetAddress) -&gt; Bool {
+        return
+            lhs.number == rhs.number &amp;&amp;
+            lhs.street == rhs.street &amp;&amp;
+            lhs.unit == rhs.unit
+    }
+}
+</code></pre>
+<p>The <code>StreetAddress</code> type now conforms to <code>Equatable</code>. You can use <code>==</code> to
+check for equality between any two instances or call the
+<code>Equatable</code>-constrained <code>contains(_:)</code> method.</p>
+<pre><code class="language-swift">let addresses = [StreetAddress(&quot;1490&quot;, &quot;Grove Street&quot;),
+                 StreetAddress(&quot;2119&quot;, &quot;Maple Avenue&quot;),
+                 StreetAddress(&quot;1400&quot;, &quot;16th Street&quot;)]
+let home = StreetAddress(&quot;1400&quot;, &quot;16th Street&quot;)
+
+print(addresses[0] == home)
+// Prints &quot;false&quot;
+print(addresses.contains(home))
+// Prints &quot;true&quot;
+</code></pre>
+<p>Equality implies substitutability---any two instances that compare equally
+can be used interchangeably in any code that depends on their values. To
+maintain substitutability, the <code>==</code> operator should take into account all
+visible aspects of an <code>Equatable</code> type. Exposing nonvalue aspects of
+<code>Equatable</code> types other than class identity is discouraged, and any that
+<em>are</em> exposed should be explicitly pointed out in documentation.</p>
+<p>Since equality between instances of <code>Equatable</code> types is an equivalence
+relation, any of your custom types that conform to <code>Equatable</code> must
+satisfy three conditions, for any values <code>a</code>, <code>b</code>, and <code>c</code>:</p>
+<p>Moreover, inequality is the inverse of equality, so any custom
+implementation of the <code>!=</code> operator must guarantee that <code>a != b</code> implies
+<code>!(a == b)</code>. The default implementation of the <code>!=</code> operator function
+satisfies this requirement.</p>
+<h4>Equality is Separate From Identity</h4>
+<p>The identity of a class instance is not part of an instance's value.
+Consider a class called <code>IntegerRef</code> that wraps an integer value. Here's
+the definition for <code>IntegerRef</code> and the <code>==</code> function that makes it
+conform to <code>Equatable</code>:</p>
+<pre><code class="language-swift">class IntegerRef: Equatable {
+    let value: Int
+    init(_ value: Int) {
+        self.value = value
+    }
+
+    static func == (lhs: IntegerRef, rhs: IntegerRef) -&gt; Bool {
+        return lhs.value == rhs.value
+    }
+}
+</code></pre>
+<p>The implementation of the <code>==</code> function returns the same value whether its
+two arguments are the same instance or are two different instances with
+the same integer stored in their <code>value</code> properties. For example:</p>
+<pre><code class="language-swift">let a = IntegerRef(100)
+let b = IntegerRef(100)
+
+print(a == a, a == b, separator: &quot;, &quot;)
+// Prints &quot;true, true&quot;
+</code></pre>
+<p>Class instance identity, on the other hand, is compared using the
+triple-equals identical-to operator (<code>===</code>). For example:</p>
+<pre><code class="language-swift">let c = a
+print(c === a, c === b, separator: &quot;, &quot;)
+// Prints &quot;true, false&quot;
+</code></pre>
+</div><h3>Type Methods</h3><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: Self, rhs: Self) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">static func ==(lhs: Self, rhs: Self) -> Bool</code></div></div>

@@ -1,0 +1,105 @@
+---
+keywords: ""
+description: "Swift documentation for 'ExpressibleByArrayLiteral'"
+root: "/v5.1"
+layout: "default"
+title: "ExpressibleByArrayLiteral"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol ExpressibleByArrayLiteral</code></div><p>A type that can be initialized using an array literal.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">Array, ArraySlice, ContiguousArray, SIMD, Set, SetAlgebra</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype ArrayLiteralElement</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>An array literal is a simple way of expressing a list of values. Simply
+surround a comma-separated list of values, instances, or literals with
+square brackets to create an array literal. You can use an array literal
+anywhere an instance of an <code>ExpressibleByArrayLiteral</code> type is expected: as
+a value assigned to a variable or constant, as a parameter to a method or
+initializer, or even as the subject of a nonmutating operation like
+<code>map(_:)</code> or <code>filter(_:)</code>.</p>
+<p>Arrays, sets, and option sets all conform to <code>ExpressibleByArrayLiteral</code>,
+and your own custom types can as well. Here's an example of creating a set
+and an array using array literals:</p>
+<pre><code class="language-swift">let employeesSet: Set&lt;String&gt; = [&quot;Amir&quot;, &quot;Jihye&quot;, &quot;Dave&quot;, &quot;Alessia&quot;, &quot;Dave&quot;]
+print(employeesSet)
+// Prints &quot;[&quot;Amir&quot;, &quot;Dave&quot;, &quot;Jihye&quot;, &quot;Alessia&quot;]&quot;
+
+let employeesArray: [String] = [&quot;Amir&quot;, &quot;Jihye&quot;, &quot;Dave&quot;, &quot;Alessia&quot;, &quot;Dave&quot;]
+print(employeesArray)
+// Prints &quot;[&quot;Amir&quot;, &quot;Jihye&quot;, &quot;Dave&quot;, &quot;Alessia&quot;, &quot;Dave&quot;]&quot;
+</code></pre>
+<p>The <code>Set</code> and <code>Array</code> types each handle array literals in their own way to
+create new instances. In this case, the newly created set drops the
+duplicate value (&quot;Dave&quot;) and doesn't maintain the order of the array
+literal's elements. The new array, on the other hand, matches the order
+and number of elements provided.</p>
+<blockquote>
+<p>Note:</p>
+<pre><code class="language-swift">let anotherSet: Set = employeesArray
+// error: cannot convert value of type '[String]' to specified type 'Set'
+</code></pre>
+</blockquote>
+<h3>Type Inference of Array Literals</h3>
+<p>Whenever possible, Swift's compiler infers the full intended type of your
+array literal. Because <code>Array</code> is the default type for an array literal,
+without writing any other code, you can declare an array with a particular
+element type by providing one or more values.</p>
+<p>In this example, the compiler infers the full type of each array literal.</p>
+<pre><code class="language-swift">let integers = [1, 2, 3]
+// 'integers' has type '[Int]'
+
+let strings = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+// 'strings' has type '[String]'
+</code></pre>
+<p>An empty array literal alone doesn't provide enough information for the
+compiler to infer the intended type of the <code>Array</code> instance. When using an
+empty array literal, specify the type of the variable or constant.</p>
+<pre><code class="language-swift">var emptyArray: [Bool] = []
+// 'emptyArray' has type '[Bool]'
+</code></pre>
+<p>Because many functions and initializers fully specify the types of their
+parameters, you can often use an array literal with or without elements as
+a parameter. For example, the <code>sum(_:)</code> function shown here takes an <code>Int</code>
+array as a parameter:</p>
+<pre><code class="language-swift">func sum(values: [Int]) -&gt; Int {
+    return values.reduce(0, +)
+}
+
+let sumOfFour = sum([5, 10, 15, 20])
+// 'sumOfFour' == 50
+
+let sumOfNone = sum([])
+// 'sumOfNone' == 0
+</code></pre>
+<p>When you call a function that does not fully specify its parameters' types,
+use the type-cast operator (<code>as</code>) to specify the type of an array literal.
+For example, the <code>log(name:value:)</code> function shown here has an
+unconstrained generic <code>value</code> parameter.</p>
+<pre><code class="language-swift">func log&lt;T&gt;(name name: String, value: T) {
+    print(&quot;\(name): \(value)&quot;)
+}
+
+log(name: &quot;Four integers&quot;, value: [5, 10, 15, 20])
+// Prints &quot;Four integers: [5, 10, 15, 20]&quot;
+
+log(name: &quot;Zero integers&quot;, value: [] as [Int])
+// Prints &quot;Zero integers: []&quot;
+</code></pre>
+<h3>Conforming to ExpressibleByArrayLiteral</h3>
+<p>Add the capability to be initialized with an array literal to your own
+custom types by declaring an <code>init(arrayLiteral:)</code> initializer. The
+following example shows the array literal initializer for a hypothetical
+<code>OrderedSet</code> type, which has setlike semantics but maintains the order of
+its elements.</p>
+<pre><code class="language-swift">struct OrderedSet&lt;Element: Hashable&gt;: Collection, SetAlgebra {
+    // implementation details
+}
+
+extension OrderedSet: ExpressibleByArrayLiteral {
+    init(arrayLiteral: Element...) {
+        self.init()
+        for element in arrayLiteral {
+            self.append(element)
+        }
+    }
+}
+</code></pre>
+</div><h3>Initializers</h3><div id="init_arrayLiteral-122bf8141cc945de0f292024b4f08315" class="declaration"><a class="toggle-link" href="#comment-init_arrayLiteral-122bf8141cc945de0f292024b4f08315">init init(arrayLiteral:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_arrayLiteral-122bf8141cc945de0f292024b4f08315"><p>Creates an instance initialized with the given elements.</p>
+<h4>Declaration</h4><code class="language-swift">init(arrayLiteral elements: Self.ArrayLiteralElement)</code></div></div>

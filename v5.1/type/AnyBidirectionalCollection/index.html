@@ -1,0 +1,305 @@
+---
+layout: "default"
+keywords: ""
+title: "AnyBidirectionalCollection"
+description: "Swift documentation for 'AnyBidirectionalCollection'"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct AnyBidirectionalCollection</code></div><p>A type-erased wrapper over any collection with indices that
+support bidirectional traversal.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">BidirectionalCollection</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Indices = DefaultIndices&lt;AnyBidirectionalCollection&lt;Element>></code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias Iterator = AnyIterator&lt;Element></code><div class="comment"><p>By default, a collection conforms to the <code>Sequence</code> protocol by
+supplying <code>IndexingIterator</code> as its associated <code>Iterator</code>
+type.</p>
+</div></div><div class="declaration"><code class="language-swift">public typealias Index = AnyIndex</code><div class="comment"><p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that's not valid for use as a subscript
+argument.</p>
+</div></div><div class="declaration"><code class="language-swift">public typealias SubSequence = AnyBidirectionalCollection&lt;Element></code><div class="comment"><p>This associated type appears as a requirement in the <code>Sequence</code>
+protocol, but it is restated here with stricter constraints. In a
+collection, the subsequence should also conform to <code>Collection</code>.</p>
+</div></div></td></tr></table><div class="discussion comment"><p>An <code>AnyBidirectionalCollection</code> instance forwards its operations to a base collection having the
+same <code>Element</code> type, hiding the specifics of the underlying
+collection.</p>
+</div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a type-erased collection that wraps the given collection.</p>
+<ul>
+<li>Parameter base: The collection to wrap.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1).</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;C>(_ base: C) where Element == C.Element, C: BidirectionalCollection</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an <code>AnyBidirectionalCollection</code> having the same underlying collection as <code>other</code>.</p>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(_ other: AnyBidirectionalCollection&lt;Element>)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a type-erased collection that wraps the given collection.</p>
+<ul>
+<li>Parameter base: The collection to wrap.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1).</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init&lt;C>(_ base: C) where Element == C.Element, C: RandomAccessCollection</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates an <code>AnyBidirectionalCollection</code> having the same underlying collection as <code>other</code>.</p>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(_ other: AnyRandomAccessCollection&lt;Element>)</code></div></div><div id="init-48690522e4b66d2b1596ce439b7dd9cd" class="declaration"><a class="toggle-link" href="#comment-init-48690522e4b66d2b1596ce439b7dd9cd">init init?(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-48690522e4b66d2b1596ce439b7dd9cd"><p>Creates an <code>AnyBidirectionalCollection</code> having the same underlying collection as <code>other</code>.</p>
+<p>If the underlying collection stored by <code>other</code> does not satisfy
+<code>BidirectionalCollection</code>, the result is <code>nil</code>.</p>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init?(_ other: AnyCollection&lt;Element>)</code></div></div><h3>Instance Variables</h3><div id="count-e2942a04780e223b215eb8b663cf5353" class="declaration"><a class="toggle-link" href="#comment-count-e2942a04780e223b215eb8b663cf5353">var count</a> <span class="required">Required</span><div class="comment collapse in" id="comment-count-e2942a04780e223b215eb8b663cf5353"><p>The number of elements.</p>
+<p>To check whether a collection is empty, use its <code>isEmpty</code> property
+instead of comparing <code>count</code> to zero. Calculating <code>count</code> can be an O(<em>n</em>)
+operation.</p>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var count: Int</code></div></div><div id="endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e" class="declaration"><a class="toggle-link" href="#comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e">var endIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e"><p>The collection's &quot;past the end&quot; position---that is, the position one
+greater than the last valid subscript argument.</p>
+<p><code>endIndex</code> is always reachable from <code>startIndex</code> by zero or more
+applications of <code>index(after:)</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var endIndex: AnyBidirectionalCollection&lt;Element>.Index</code></div></div><div id="last-98bd1c45684cf587ac2347a92dd7bb51" class="declaration"><a class="toggle-link" href="#comment-last-98bd1c45684cf587ac2347a92dd7bb51">var last</a> <span class="required">Required</span><div class="comment collapse in" id="comment-last-98bd1c45684cf587ac2347a92dd7bb51"><p>The last element of the collection.</p>
+<p>If the collection is empty, the value of this property is <code>nil</code>.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let lastNumber = numbers.last {
+    print(lastNumber)
+}
+// Prints &quot;50&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var last: Self.Element?</code></div></div><div id="startIndex-04d77ddd9c9389cc56939726d3da8089" class="declaration"><a class="toggle-link" href="#comment-startIndex-04d77ddd9c9389cc56939726d3da8089">var startIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-startIndex-04d77ddd9c9389cc56939726d3da8089"><p>The position of the first element in a non-empty collection.</p>
+<p>In an empty collection, <code>startIndex == endIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var startIndex: AnyBidirectionalCollection&lt;Element>.Index</code></div></div><div id="underestimatedCount-cea0d409be772f5ea3e5db1bcf473531" class="declaration"><a class="toggle-link" href="#comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531">var underestimatedCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531"><p>A value less than or equal to the number of elements in the sequence,
+calculated nondestructively.</p>
+<p>The default implementation returns 0. If you provide your own
+implementation, make sure to compute the value nondestructively.</p>
+<blockquote>
+<p>Complexity:
+O(1), except if the sequence also conforms to <code>Collection</code>. In this case, see the documentation of <code>Collection.underestimatedCount</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var underestimatedCount: Int</code></div></div><h3>Subscripts</h3><div id="subscript_bounds-788086fb8ff4edc0aa2bd3c41f362493" class="declaration"><a class="toggle-link" href="#comment-subscript_bounds-788086fb8ff4edc0aa2bd3c41f362493">subscript subscript(bounds:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_bounds-788086fb8ff4edc0aa2bd3c41f362493"><p>Accesses a contiguous subrange of the collection's elements.</p>
+<p>The accessed slice uses the same indices for the same elements as the
+original collection uses. Always use the slice's <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.firstIndex(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// Prints &quot;Evarts&quot;
+</code></pre>
+<ul>
+<li>Parameter bounds: A range of the collection's indices. The bounds of
+the range must be valid indices of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(bounds: Range&lt;AnyBidirectionalCollection&lt;Element>.Index>) -> AnyBidirectionalCollection&lt;Element>.SubSequence</code></div></div><div id="subscript_position-b5586bf26309c2c713b44ec1088f3a50" class="declaration"><a class="toggle-link" href="#comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50">subscript subscript(position:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50"><p>Accesses the element indicated by <code>position</code>.</p>
+<blockquote>
+<p>Precondition:
+<code>position</code> indicates a valid position in <code>self</code> and <code>position != endIndex</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(position: AnyBidirectionalCollection&lt;Element>.Index) -> Element</code></div></div><h3>Instance Methods</h3><div id="difference_from_by-3e80323567e5bc038b2d822bffd055cc" class="declaration"><a class="toggle-link" href="#comment-difference_from_by-3e80323567e5bc038b2d822bffd055cc">func difference(from other: C, by areEquivalent: (C.Element, Self.Element) -> Bool) -> CollectionDifference&lt;Self.Element></a> <span class="required">Required</span><div class="comment collapse in" id="comment-difference_from_by-3e80323567e5bc038b2d822bffd055cc"><p>Returns the difference needed to produce this collection's ordered
+elements from the given collection, using the given predicate as an
+equivalence test.</p>
+<p>This function does not infer element moves. If you need to infer moves,
+call the <code>inferringMoves()</code> method on the resulting difference.</p>
+<blockquote>
+<p>Complexity:
+Worst case performance is O(<em>n</em> * <em>m</em>), where <em>n</em> is the count of this collection and <em>m</em> is <code>other.count</code>. You can expect faster execution when the collections share many common elements.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@available(OSX 10.15, iOS 13, tvOS 13, watchOS 6, *) public func difference&lt;C>(from other: C, by areEquivalent: (C.Element, Self.Element) -> Bool) -> CollectionDifference&lt;Self.Element> where C: BidirectionalCollection, Self.Element == C.Element</code></div></div><div id="distance_from_to-a4fda42879a53b11f7add335ae2b09e2" class="declaration"><a class="toggle-link" href="#comment-distance_from_to-a4fda42879a53b11f7add335ae2b09e2">func distance(from start: Self.Index, to end: Self.Index) -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-distance_from_to-a4fda42879a53b11f7add335ae2b09e2"><h4>Declaration</h4><code class="language-swift">@inlinable public func distance(from start: Self.Index, to end: Self.Index) -> Int</code></div></div><div id="distance_from_to-a4fda42879a53b11f7add335ae2b09e2" class="declaration"><a class="toggle-link" href="#comment-distance_from_to-a4fda42879a53b11f7add335ae2b09e2">func distance(from start: AnyBidirectionalCollection&lt;Element>.Index, to end: AnyBidirectionalCollection&lt;Element>.Index) -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-distance_from_to-a4fda42879a53b11f7add335ae2b09e2"><p>Returns the distance between two indices.</p>
+<p>Unless the collection conforms to the <code>BidirectionalCollection</code> protocol,
+<code>start</code> must be less than or equal to <code>end</code>.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the resulting distance.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func distance(from start: AnyBidirectionalCollection&lt;Element>.Index, to end: AnyBidirectionalCollection&lt;Element>.Index) -> Int</code></div></div><div id="drop_while-ca523aea465630a53d85fd083d49a402" class="declaration"><a class="toggle-link" href="#comment-drop_while-ca523aea465630a53d85fd083d49a402">func drop(while predicate: (Element) throws -> Bool) rethrows -> AnyBidirectionalCollection&lt;Element></a> <span class="required">Required</span><div class="comment collapse in" id="comment-drop_while-ca523aea465630a53d85fd083d49a402"><h4>Declaration</h4><code class="language-swift">@inlinable public func drop(while predicate: (Element) throws -> Bool) rethrows -> AnyBidirectionalCollection&lt;Element></code></div></div><div id="dropFirst-cfdc97e613e61021a5c6755568f65e2d" class="declaration"><a class="toggle-link" href="#comment-dropFirst-cfdc97e613e61021a5c6755568f65e2d">func dropFirst(_ n: Int = 1) -> AnyBidirectionalCollection&lt;Element></a> <span class="required">Required</span><div class="comment collapse in" id="comment-dropFirst-cfdc97e613e61021a5c6755568f65e2d"><h4>Declaration</h4><code class="language-swift">@inlinable public func dropFirst(_ n: Int = 1) -> AnyBidirectionalCollection&lt;Element></code></div></div><div id="dropLast-7c2fee97e997e1ca958d9114f37e2c7f" class="declaration"><a class="toggle-link" href="#comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f">func dropLast(_ n: Int = 1) -> AnyBidirectionalCollection&lt;Element></a> <span class="required">Required</span><div class="comment collapse in" id="comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f"><h4>Declaration</h4><code class="language-swift">@inlinable public func dropLast(_ n: Int = 1) -> AnyBidirectionalCollection&lt;Element></code></div></div><div id="dropLast-7c2fee97e997e1ca958d9114f37e2c7f" class="declaration"><a class="toggle-link" href="#comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f">func dropLast(_ k: Int) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f"><p>Returns a subsequence containing all but the specified number of final
+elements.</p>
+<p>If the number of elements to drop exceeds the number of elements in the
+collection, the result is an empty subsequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast(2))
+// Prints &quot;[1, 2, 3]&quot;
+print(numbers.dropLast(10))
+// Prints &quot;[]&quot;
+</code></pre>
+<ul>
+<li>Parameter k: The number of elements to drop off the end of the
+collection. <code>k</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the number of elements to drop.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func dropLast(_ k: Int) -> Self.SubSequence</code></div></div><div id="filter-1c174b73935eda6461cafaf0555f7dfd" class="declaration"><a class="toggle-link" href="#comment-filter-1c174b73935eda6461cafaf0555f7dfd">func filter(_ isIncluded: (Element) throws -> Bool) rethrows -> [Element]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-filter-1c174b73935eda6461cafaf0555f7dfd"><h4>Declaration</h4><code class="language-swift">@inlinable public func filter(_ isIncluded: (Element) throws -> Bool) rethrows -> [Element]</code></div></div><div id="forEach-ffd41d8863d1befb51ab68b12f90c272" class="declaration"><a class="toggle-link" href="#comment-forEach-ffd41d8863d1befb51ab68b12f90c272">func forEach(_ body: (Element) throws -> Void) rethrows</a> <span class="required">Required</span><div class="comment collapse in" id="comment-forEach-ffd41d8863d1befb51ab68b12f90c272"><h4>Declaration</h4><code class="language-swift">@inlinable public func forEach(_ body: (Element) throws -> Void) rethrows</code></div></div><div id="formIndex_offsetBy-2182b1026c3b63acf3f08aef9a292825" class="declaration"><a class="toggle-link" href="#comment-formIndex_offsetBy-2182b1026c3b63acf3f08aef9a292825">func formIndex(_ i: inout AnyBidirectionalCollection&lt;Element>.Index, offsetBy n: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_offsetBy-2182b1026c3b63acf3f08aef9a292825"><h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(_ i: inout AnyBidirectionalCollection&lt;Element>.Index, offsetBy n: Int)</code></div></div><div id="formIndex_offsetBy_limitedBy-77cef915940f272750243f38458b9a94" class="declaration"><a class="toggle-link" href="#comment-formIndex_offsetBy_limitedBy-77cef915940f272750243f38458b9a94">func formIndex(_ i: inout AnyBidirectionalCollection&lt;Element>.Index, offsetBy n: Int, limitedBy limit: AnyBidirectionalCollection&lt;Element>.Index) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_offsetBy_limitedBy-77cef915940f272750243f38458b9a94"><h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(_ i: inout AnyBidirectionalCollection&lt;Element>.Index, offsetBy n: Int, limitedBy limit: AnyBidirectionalCollection&lt;Element>.Index) -> Bool</code></div></div><div id="formIndex_after-13e63bf648e45549081b5214c49499ce" class="declaration"><a class="toggle-link" href="#comment-formIndex_after-13e63bf648e45549081b5214c49499ce">func formIndex(after i: inout AnyBidirectionalCollection&lt;Element>.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_after-13e63bf648e45549081b5214c49499ce"><p>Replaces the given index with its successor.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(after i: inout AnyBidirectionalCollection&lt;Element>.Index)</code></div></div><div id="formIndex_before-a737e88621c75c8fd2b2c70af6a4f220" class="declaration"><a class="toggle-link" href="#comment-formIndex_before-a737e88621c75c8fd2b2c70af6a4f220">func formIndex(before i: inout Self.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_before-a737e88621c75c8fd2b2c70af6a4f220"><p>Replaces the given index with its predecessor.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be greater than
+<code>startIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(before i: inout Self.Index)</code></div></div><div id="formIndex_before-a737e88621c75c8fd2b2c70af6a4f220" class="declaration"><a class="toggle-link" href="#comment-formIndex_before-a737e88621c75c8fd2b2c70af6a4f220">func formIndex(before i: inout AnyBidirectionalCollection&lt;Element>.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_before-a737e88621c75c8fd2b2c70af6a4f220"><p>Replaces the given index with its predecessor.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be greater than
+<code>startIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(before i: inout AnyBidirectionalCollection&lt;Element>.Index)</code></div></div><div id="index_offsetBy-41a458d51308012c8383ec58b39fc85a" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy-41a458d51308012c8383ec58b39fc85a">func index(_ i: Self.Index, offsetBy distance: Int) -> Self.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy-41a458d51308012c8383ec58b39fc85a"><h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: Self.Index, offsetBy distance: Int) -> Self.Index</code></div></div><div id="index_offsetBy-41a458d51308012c8383ec58b39fc85a" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy-41a458d51308012c8383ec58b39fc85a">func index(_ i: AnyBidirectionalCollection&lt;Element>.Index, offsetBy n: Int) -> AnyBidirectionalCollection&lt;Element>.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy-41a458d51308012c8383ec58b39fc85a"><p>Returns an index that is the specified distance from the given index.</p>
+<p>The following example obtains an index advanced four positions from a
+string's starting index and then prints the character at that position.</p>
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+let i = s.index(s.startIndex, offsetBy: 4)
+print(s[i])
+// Prints &quot;t&quot;
+</code></pre>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the absolute value of <code>distance</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: AnyBidirectionalCollection&lt;Element>.Index, offsetBy n: Int) -> AnyBidirectionalCollection&lt;Element>.Index</code></div></div><div id="index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130">func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130"><h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</code></div></div><div id="index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130">func index(_ i: AnyBidirectionalCollection&lt;Element>.Index, offsetBy n: Int, limitedBy limit: AnyBidirectionalCollection&lt;Element>.Index) -> AnyBidirectionalCollection&lt;Element>.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130"><p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+<p>The following example obtains an index advanced four positions from a
+string's starting index and then prints the character at that position.
+The operation doesn't require going beyond the limiting <code>s.endIndex</code>
+value, so it succeeds.</p>
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+if let i = s.index(s.startIndex, offsetBy: 4, limitedBy: s.endIndex) {
+    print(s[i])
+}
+// Prints &quot;t&quot;
+</code></pre>
+<p>The next example attempts to retrieve an index six positions from
+<code>s.startIndex</code> but fails, because that distance is beyond the index
+passed as <code>limit</code>.</p>
+<pre><code class="language-swift">let j = s.index(s.startIndex, offsetBy: 6, limitedBy: s.endIndex)
+print(j)
+// Prints &quot;nil&quot;
+</code></pre>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the absolute value of <code>distance</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: AnyBidirectionalCollection&lt;Element>.Index, offsetBy n: Int, limitedBy limit: AnyBidirectionalCollection&lt;Element>.Index) -> AnyBidirectionalCollection&lt;Element>.Index?</code></div></div><div id="index_after-976478ce790c064a72519919a525cb29" class="declaration"><a class="toggle-link" href="#comment-index_after-976478ce790c064a72519919a525cb29">func index(after i: AnyBidirectionalCollection&lt;Element>.Index) -> AnyBidirectionalCollection&lt;Element>.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_after-976478ce790c064a72519919a525cb29"><p>Returns the position immediately after the given index.</p>
+<p>The successor of an index must be well defined. For an index <code>i</code> into a
+collection <code>c</code>, calling <code>c.index(after: i)</code> returns the same index every
+time.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(after i: AnyBidirectionalCollection&lt;Element>.Index) -> AnyBidirectionalCollection&lt;Element>.Index</code></div></div><div id="index_before-ee7e993bbd939c71d46566c977277662" class="declaration"><a class="toggle-link" href="#comment-index_before-ee7e993bbd939c71d46566c977277662">func index(before i: AnyBidirectionalCollection&lt;Element>.Index) -> AnyBidirectionalCollection&lt;Element>.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_before-ee7e993bbd939c71d46566c977277662"><p>Returns the position immediately before the given index.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be greater than
+<code>startIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(before i: AnyBidirectionalCollection&lt;Element>.Index) -> AnyBidirectionalCollection&lt;Element>.Index</code></div></div><div id="last_where-abb9e2fa264914f3d88c06ec70992b4c" class="declaration"><a class="toggle-link" href="#comment-last_where-abb9e2fa264914f3d88c06ec70992b4c">func last(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-last_where-abb9e2fa264914f3d88c06ec70992b4c"><p>Returns the last element of the sequence that satisfies the given
+predicate.</p>
+<p>This example uses the <code>last(where:)</code> method to find the last
+negative number in an array of integers:</p>
+<pre><code class="language-swift">let numbers = [3, 7, 4, -2, 9, -6, 10, 1]
+if let lastNegative = numbers.last(where: { $0 &lt; 0 }) {
+    print(&quot;The last negative number is \(lastNegative).&quot;)
+}
+// Prints &quot;The last negative number is -6.&quot;
+</code></pre>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the sequence as
+its argument and returns a Boolean value indicating whether the
+element is a match.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func last(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Element?</code></div></div><div id="lastIndex_where-fd3dbbdc3036873d291ef0a7f27e2739" class="declaration"><a class="toggle-link" href="#comment-lastIndex_where-fd3dbbdc3036873d291ef0a7f27e2739">func lastIndex(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lastIndex_where-fd3dbbdc3036873d291ef0a7f27e2739"><p>Returns the index of the last element in the collection that matches the
+given predicate.</p>
+<p>You can use the predicate to find an element of a type that doesn't
+conform to the <code>Equatable</code> protocol or to find an element that matches
+particular criteria. This example finds the index of the last name that
+begins with the letter <em>A:</em></p>
+<pre><code class="language-swift">let students = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+if let i = students.lastIndex(where: { $0.hasPrefix(&quot;A&quot;) }) {
+    print(&quot;\(students[i]) starts with 'A'!&quot;)
+}
+// Prints &quot;Akosua starts with 'A'!&quot;
+</code></pre>
+<ul>
+<li>Parameter predicate: A closure that takes an element as its argument
+and returns a Boolean value that indicates whether the passed element
+represents a match.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func lastIndex(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Index?</code></div></div><div id="makeIterator-ad197585f06641cbd99e9aec657b11c0" class="declaration"><a class="toggle-link" href="#comment-makeIterator-ad197585f06641cbd99e9aec657b11c0">func makeIterator() -> AnyBidirectionalCollection&lt;Element>.Iterator</a> <span class="required">Required</span><div class="comment collapse in" id="comment-makeIterator-ad197585f06641cbd99e9aec657b11c0"><p>Returns an iterator over the elements of this collection.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func makeIterator() -> AnyBidirectionalCollection&lt;Element>.Iterator</code></div></div><div id="map-d86ddaae0a60cc94d2ecc186aad275b0" class="declaration"><a class="toggle-link" href="#comment-map-d86ddaae0a60cc94d2ecc186aad275b0">func map(_ transform: (Element) throws -> T) rethrows -> [T]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-map-d86ddaae0a60cc94d2ecc186aad275b0"><h4>Declaration</h4><code class="language-swift">@inlinable public func map&lt;T>(_ transform: (Element) throws -> T) rethrows -> [T]</code></div></div><div id="prefix-0c90e3e9cf80d963bff973e2da9dc4d7" class="declaration"><a class="toggle-link" href="#comment-prefix-0c90e3e9cf80d963bff973e2da9dc4d7">func prefix(_ maxLength: Int = 1) -> AnyBidirectionalCollection&lt;Element></a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix-0c90e3e9cf80d963bff973e2da9dc4d7"><h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(_ maxLength: Int = 1) -> AnyBidirectionalCollection&lt;Element></code></div></div><div id="prefix_while-c1b423a2138af25080fc01f86d3d8a66" class="declaration"><a class="toggle-link" href="#comment-prefix_while-c1b423a2138af25080fc01f86d3d8a66">func prefix(while predicate: (Element) throws -> Bool) rethrows -> AnyBidirectionalCollection&lt;Element></a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix_while-c1b423a2138af25080fc01f86d3d8a66"><h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(while predicate: (Element) throws -> Bool) rethrows -> AnyBidirectionalCollection&lt;Element></code></div></div><div id="reversed-037fb3d48a3529920c6559a641d74216" class="declaration"><a class="toggle-link" href="#comment-reversed-037fb3d48a3529920c6559a641d74216">func reversed() -> ReversedCollection&lt;Self></a> <span class="required">Required</span><div class="comment collapse in" id="comment-reversed-037fb3d48a3529920c6559a641d74216"><p>Returns a view presenting the elements of the collection in reverse
+order.</p>
+<p>You can reverse a collection without allocating new space for its
+elements by calling this <code>reversed()</code> method. A <code>ReversedCollection</code>
+instance wraps an underlying collection and provides access to its
+elements in reverse order. This example prints the characters of a
+string in reverse order:</p>
+<pre><code class="language-swift">let word = &quot;Backwards&quot;
+for char in word.reversed() {
+    print(char, terminator: &quot;&quot;)
+}
+// Prints &quot;sdrawkcaB&quot;
+</code></pre>
+<p>If you need a reversed collection of the same type, you may be able to
+use the collection's sequence-based or collection-based initializer. For
+example, to get the reversed version of a string, reverse its
+characters and initialize a new <code>String</code> instance from the result.</p>
+<pre><code class="language-swift">let reversedWord = String(word.reversed())
+print(reversedWord)
+// Prints &quot;sdrawkcaB&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func reversed() -> ReversedCollection&lt;Self></code></div></div><div id="suffix-f3a8eed76ea35c11a090befc2c217d73" class="declaration"><a class="toggle-link" href="#comment-suffix-f3a8eed76ea35c11a090befc2c217d73">func suffix(_ maxLength: Int) -> AnyBidirectionalCollection&lt;Element></a> <span class="required">Required</span><div class="comment collapse in" id="comment-suffix-f3a8eed76ea35c11a090befc2c217d73"><h4>Declaration</h4><code class="language-swift">@inlinable public func suffix(_ maxLength: Int) -> AnyBidirectionalCollection&lt;Element></code></div></div><div id="suffix-f3a8eed76ea35c11a090befc2c217d73" class="declaration"><a class="toggle-link" href="#comment-suffix-f3a8eed76ea35c11a090befc2c217d73">func suffix(_ maxLength: Int) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-suffix-f3a8eed76ea35c11a090befc2c217d73"><p>Returns a subsequence, up to the given maximum length, containing the
+final elements of the collection.</p>
+<p>If the maximum length exceeds the number of elements in the collection,
+the result contains the entire collection.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.suffix(2))
+// Prints &quot;[4, 5]&quot;
+print(numbers.suffix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;
+</code></pre>
+<ul>
+<li>Parameter maxLength: The maximum number of elements to return.
+<code>maxLength</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is equal to <code>maxLength</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func suffix(_ maxLength: Int) -> Self.SubSequence</code></div></div>

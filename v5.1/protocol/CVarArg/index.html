@@ -1,0 +1,33 @@
+---
+layout: "default"
+title: "CVarArg"
+keywords: ""
+description: "Swift documentation for 'CVarArg'"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CVarArg</code></div><p>A type whose instances can be encoded, and appropriately passed, as
+elements of a C <code>va_list</code>.</p>
+<div class="discussion comment"><p>You use this protocol to present a native Swift interface to a C &quot;varargs&quot;
+API. For example, a program can import a C API like the one defined here:</p>
+<pre><code class="language-c">int c_api(int, va_list arguments)
+</code></pre>
+<p>To create a wrapper for the <code>c_api</code> function, write a function that takes
+<code>CVarArg</code> arguments, and then call the imported C function using the
+<code>withVaList(_:_:)</code> function:</p>
+<pre><code class="language-swift">func swiftAPI(_ x: Int, arguments: CVarArg...) -&gt; Int {
+    return withVaList(arguments) { c_api(x, $0) }
+}
+</code></pre>
+<p>Swift only imports C variadic functions that use a <code>va_list</code> for their
+arguments. C functions that use the <code>...</code> syntax for variadic arguments
+are not imported, and therefore can't be called using <code>CVarArg</code> arguments.</p>
+<p>If you need to pass an optional pointer as a <code>CVarArg</code> argument, use the
+<code>Int(bitPattern:)</code> initializer to interpret the optional pointer as an
+<code>Int</code> value, which has the same C variadic calling conventions as a pointer
+on all supported platforms.</p>
+<blockquote>
+<p>Note:
+Declaring conformance to the <code>CVarArg</code> protocol for types defined outside the standard library is not supported.</p>
+</blockquote>
+</div>

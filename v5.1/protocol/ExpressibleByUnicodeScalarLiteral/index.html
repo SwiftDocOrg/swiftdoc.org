@@ -1,0 +1,28 @@
+---
+keywords: ""
+root: "/v5.1"
+title: "ExpressibleByUnicodeScalarLiteral"
+layout: "default"
+description: "Swift documentation for 'ExpressibleByUnicodeScalarLiteral'"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol ExpressibleByUnicodeScalarLiteral</code></div><p>A type that can be initialized with a string literal containing a single
+Unicode scalar value.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">ExpressibleByExtendedGraphemeClusterLiteral, StaticString, Substring, Unicode.Scalar</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype UnicodeScalarLiteralType</code><div class="comment"><p>Valid types for <code>UnicodeScalarLiteralType</code> are <code>Unicode.Scalar</code>,
+<code>Character</code>, <code>String</code>, and <code>StaticString</code>.</p>
+</div></div></td></tr></table><div class="discussion comment"><p>The <code>String</code>, <code>StaticString</code>, <code>Character</code>, and <code>Unicode.Scalar</code> types all
+conform to the <code>ExpressibleByUnicodeScalarLiteral</code> protocol. You can
+initialize a variable of any of these types using a string literal that
+holds a single Unicode scalar.</p>
+<pre><code class="language-swift">let ñ: Unicode.Scalar = &quot;ñ&quot;
+print(ñ)
+// Prints &quot;ñ&quot;
+</code></pre>
+<h3>Conforming to ExpressibleByUnicodeScalarLiteral</h3>
+<p>To add <code>ExpressibleByUnicodeScalarLiteral</code> conformance to your custom type,
+implement the required initializer.</p>
+</div><h3>Initializers</h3><div id="init_unicodeScalarLiteral-dab818ff6fb6437e4888e0483fe7b2eb" class="declaration"><a class="toggle-link" href="#comment-init_unicodeScalarLiteral-dab818ff6fb6437e4888e0483fe7b2eb">init init(unicodeScalarLiteral:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_unicodeScalarLiteral-dab818ff6fb6437e4888e0483fe7b2eb"><p>Creates an instance initialized to the given value.</p>
+<ul>
+<li>Parameter value: The value of the new instance.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init(unicodeScalarLiteral value: Self.UnicodeScalarLiteralType)</code></div></div>

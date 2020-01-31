@@ -1,0 +1,71 @@
+---
+title: "AdditiveArithmetic"
+keywords: ""
+root: "/v5.1"
+description: "Swift documentation for 'AdditiveArithmetic'"
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol AdditiveArithmetic</code></div><p>A type with values that support addition and subtraction.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Equatable</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">Numeric</code></td></tr></table><div class="discussion comment"><p>The <code>AdditiveArithmetic</code> protocol provides a suitable basis for additive
+arithmetic on scalar values, such as integers and floating-point numbers,
+or vectors. You can write generic methods that operate on any numeric type
+in the standard library by using the <code>AdditiveArithmetic</code> protocol as a
+generic constraint.</p>
+<p>The following code declares a method that calculates the total of any
+sequence with <code>AdditiveArithmetic</code> elements.</p>
+<pre><code class="language-swift">extension Sequence where Element: AdditiveArithmetic {
+    func sum() -&gt; Element {
+        return reduce(.zero, +)
+    }
+}
+</code></pre>
+<p>The <code>sum()</code> method is now available on any sequence with values that
+conform to <code>AdditiveArithmetic</code>, whether it is an array of <code>Double</code> or a
+range of <code>Int</code>.</p>
+<pre><code class="language-swift">let arraySum = [1.1, 2.2, 3.3, 4.4, 5.5].sum()
+// arraySum == 16.5
+
+let rangeSum = (1..&lt;10).sum()
+// rangeSum == 45
+</code></pre>
+<h3>Conforming to the AdditiveArithmetic Protocol</h3>
+<p>To add <code>AdditiveArithmetic</code> protocol conformance to your own custom type,
+implement the required operators, and provide a static <code>zero</code> property
+using a type that can represent the magnitude of any value of your custom
+type.</p>
+</div><h3>Type Variables</h3><div id="zero-d02c4c4cde7ae76252540d116a40f23a" class="declaration"><a class="toggle-link" href="#comment-zero-d02c4c4cde7ae76252540d116a40f23a">var zero</a> <span class="required">Required</span><div class="comment collapse in" id="comment-zero-d02c4c4cde7ae76252540d116a40f23a"><p>The zero value.</p>
+<p>Zero is the identity element for addition. For any value,
+<code>x + .zero == x</code> and <code>.zero + x == x</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var zero: Self</code></div></div><h3>Type Methods</h3><div id="lhs_rhs-1ace6c0ccceecc18799beae40fae2402" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-1ace6c0ccceecc18799beae40fae2402">func +(lhs: Self, rhs: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-1ace6c0ccceecc18799beae40fae2402"><p>Adds two values and produces their sum.</p>
+<p>The addition operator (<code>+</code>) calculates the sum of its two arguments. For
+example:</p>
+<pre><code class="language-swift">1 + 2                   // 3
+-10 + 15                // 5
+-15 + -5                // -20
+21.5 + 3.25             // 24.75
+</code></pre>
+<p>You cannot use <code>+</code> with arguments of different types. To add values of
+different types, convert one of the values to the other value's type.</p>
+<pre><code class="language-swift">let x: Int8 = 21
+let y: Int = 1000000
+Int(x) + y              // 1000021
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">static func +(lhs: Self, rhs: Self) -> Self</code></div></div><div id="lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb">func +=(lhs: inout Self, rhs: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-7b743b7b721afe0b0efa21dcf331e0fb"><p>Adds two values and stores the result in the left-hand-side variable.</p>
+<h4>Declaration</h4><code class="language-swift">static func +=(lhs: inout Self, rhs: Self)</code></div></div><div id="lhs_rhs-d3d9eeb5284a9f8a3101d48d6c5f5dde" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-d3d9eeb5284a9f8a3101d48d6c5f5dde">func -(lhs: Self, rhs: Self) -> Self</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-d3d9eeb5284a9f8a3101d48d6c5f5dde"><p>Subtracts one value from another and produces their difference.</p>
+<p>The subtraction operator (<code>-</code>) calculates the difference of its two
+arguments. For example:</p>
+<pre><code class="language-swift">8 - 3                   // 5
+-10 - 5                 // -15
+100 - -5                // 105
+10.5 - 100.0            // -89.5
+</code></pre>
+<p>You cannot use <code>-</code> with arguments of different types. To subtract values
+of different types, convert one of the values to the other value's type.</p>
+<pre><code class="language-swift">let x: UInt8 = 21
+let y: UInt = 1000000
+y - UInt(x)             // 999979
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">static func -(lhs: Self, rhs: Self) -> Self</code></div></div><div id="lhs_rhs-265a6353740687d540f523762f8cf760" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-265a6353740687d540f523762f8cf760">func -=(lhs: inout Self, rhs: Self)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-lhs_rhs-265a6353740687d540f523762f8cf760"><p>Subtracts the second value from the first and stores the difference in the
+left-hand-side variable.</p>
+<h4>Declaration</h4><code class="language-swift">static func -=(lhs: inout Self, rhs: Self)</code></div></div><h3>Default Implementations</h3><div id="lhs_rhs-a606646d54567350092f2c9a8c1adc2d" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d">func !=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a606646d54567350092f2c9a8c1adc2d"><h4>Declaration</h4><code class="language-swift">public static func !=(lhs: Self, rhs: Self) -> Bool</code></div></div>

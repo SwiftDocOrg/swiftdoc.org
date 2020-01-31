@@ -1,0 +1,311 @@
+---
+description: "Swift documentation for 'BinaryFloatingPoint'"
+title: "BinaryFloatingPoint"
+keywords: ""
+root: "/v5.1"
+layout: "default"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol BinaryFloatingPoint</code></div><p>A radix-2 (binary) floating-point type.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">ExpressibleByFloatLiteral, FloatingPoint</code></td></tr><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">Double, Float, Float80</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype RawSignificand</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">associatedtype RawExponent</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>The <code>BinaryFloatingPoint</code> protocol extends the <code>FloatingPoint</code> protocol
+with operations specific to floating-point binary types, as defined by the
+<a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754 specification</a>. <code>BinaryFloatingPoint</code> is implemented in
+the standard library by <code>Float</code>, <code>Double</code>, and <code>Float80</code> where available.</p>
+</div><h3>Initializers</h3><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new instance from the given value, rounded to the closest
+possible representation.</p>
+<ul>
+<li>Parameter value: A floating-point value to be converted.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init(_ value: Float)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new instance from the given value, rounded to the closest
+possible representation.</p>
+<ul>
+<li>Parameter value: A floating-point value to be converted.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init(_ value: Double)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new instance from the given value, rounded to the closest
+possible representation.</p>
+<ul>
+<li>Parameter value: A floating-point value to be converted.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init(_ value: Float80)</code></div></div><div id="init-00a2b987552997ee43208aca83ac6ae6" class="declaration"><a class="toggle-link" href="#comment-init-00a2b987552997ee43208aca83ac6ae6">init init(_:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init-00a2b987552997ee43208aca83ac6ae6"><p>Creates a new instance from the given value, rounded to the closest
+possible representation.</p>
+<p>If two representable values are equally close, the result is the value
+with more trailing zeros in its significand bit pattern.</p>
+<ul>
+<li>Parameter value: A floating-point value to be converted.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init&lt;Source>(_ value: Source) where Source: BinaryFloatingPoint</code></div></div><div id="init_sign_exponentBitPattern_significandBitPattern-df70b9cc2df84ba9aa039f122ee4beae" class="declaration"><a class="toggle-link" href="#comment-init_sign_exponentBitPattern_significandBitPattern-df70b9cc2df84ba9aa039f122ee4beae">init init(sign:exponentBitPattern:significandBitPattern:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_sign_exponentBitPattern_significandBitPattern-df70b9cc2df84ba9aa039f122ee4beae"><p>Creates a new instance from the specified sign and bit patterns.</p>
+<p>The values passed as <code>exponentBitPattern</code> and <code>significandBitPattern</code> are
+interpreted in the binary interchange format defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754
+specification</a>.</p>
+<h4>Declaration</h4><code class="language-swift">init(sign: FloatingPointSign, exponentBitPattern: Self.RawExponent, significandBitPattern: Self.RawSignificand)</code></div></div><div id="init_exactly-204302d00b556e1a402a579cd2a4f8b6" class="declaration"><a class="toggle-link" href="#comment-init_exactly-204302d00b556e1a402a579cd2a4f8b6">init init?(exactly:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_exactly-204302d00b556e1a402a579cd2a4f8b6"><p>Creates a new instance from the given value, if it can be represented
+exactly.</p>
+<p>If the given floating-point value cannot be represented exactly, the
+result is <code>nil</code>. A value that is NaN (&quot;not a number&quot;) cannot be
+represented exactly if its payload cannot be encoded exactly.</p>
+<ul>
+<li>Parameter value: A floating-point value to be converted.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">init?&lt;Source>(exactly value: Source) where Source: BinaryFloatingPoint</code></div></div><h3>Instance Variables</h3><div id="binade-101913c61ccad4f2d3df9f767bf14e05" class="declaration"><a class="toggle-link" href="#comment-binade-101913c61ccad4f2d3df9f767bf14e05">var binade</a> <span class="required">Required</span><div class="comment collapse in" id="comment-binade-101913c61ccad4f2d3df9f767bf14e05"><p>The floating-point value with the same sign and exponent as this value,
+but with a significand of 1.0.</p>
+<p>A <em>binade</em> is a set of binary floating-point values that all have the
+same sign and exponent. The <code>binade</code> property is a member of the same
+binade as this value, but with a unit significand.</p>
+<p>In this example, <code>x</code> has a value of <code>21.5</code>, which is stored as
+<code>1.34375 * 2**4</code>, where <code>**</code> is exponentiation. Therefore, <code>x.binade</code> is
+equal to <code>1.0 * 2**4</code>, or <code>16.0</code>.</p>
+<pre><code class="language-swift">let x = 21.5
+// x.significand == 1.34375
+// x.exponent == 4
+
+let y = x.binade
+// y == 16.0
+// y.significand == 1.0
+// y.exponent == 4
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var binade: Self</code></div></div><div id="exponentBitPattern-5114e0ec4bf24f8198eaf9e0eaed36a4" class="declaration"><a class="toggle-link" href="#comment-exponentBitPattern-5114e0ec4bf24f8198eaf9e0eaed36a4">var exponentBitPattern</a> <span class="required">Required</span><div class="comment collapse in" id="comment-exponentBitPattern-5114e0ec4bf24f8198eaf9e0eaed36a4"><p>The raw encoding of the value's exponent field.</p>
+<p>This value is unadjusted by the type's exponent bias.</p>
+<h4>Declaration</h4><code class="language-swift">var exponentBitPattern: Self.RawExponent</code></div></div><div id="significandBitPattern-b8205ffbbb0d8e16303cc55729557f5e" class="declaration"><a class="toggle-link" href="#comment-significandBitPattern-b8205ffbbb0d8e16303cc55729557f5e">var significandBitPattern</a> <span class="required">Required</span><div class="comment collapse in" id="comment-significandBitPattern-b8205ffbbb0d8e16303cc55729557f5e"><p>The raw encoding of the value's significand field.</p>
+<p>The <code>significandBitPattern</code> property does not include the leading
+integral bit of the significand, even for types like <code>Float80</code> that
+store it explicitly.</p>
+<h4>Declaration</h4><code class="language-swift">var significandBitPattern: Self.RawSignificand</code></div></div><div id="significandWidth-c773978ad788bdc5839de81ee2e8850d" class="declaration"><a class="toggle-link" href="#comment-significandWidth-c773978ad788bdc5839de81ee2e8850d">var significandWidth</a> <span class="required">Required</span><div class="comment collapse in" id="comment-significandWidth-c773978ad788bdc5839de81ee2e8850d"><p>The number of bits required to represent the value's significand.</p>
+<p>If this value is a finite nonzero number, <code>significandWidth</code> is the
+number of fractional bits required to represent the value of
+<code>significand</code>; otherwise, <code>significandWidth</code> is -1. The value of
+<code>significandWidth</code> is always -1 or between zero and
+<code>significandBitCount</code>. For example:</p>
+<h4>Declaration</h4><code class="language-swift">var significandWidth: Int</code></div></div><h3>Type Variables</h3><div id="exponentBitCount-815cdfd2ce472be44e9d47c04ce83ca1" class="declaration"><a class="toggle-link" href="#comment-exponentBitCount-815cdfd2ce472be44e9d47c04ce83ca1">var exponentBitCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-exponentBitCount-815cdfd2ce472be44e9d47c04ce83ca1"><p>The number of bits used to represent the type's exponent.</p>
+<p>A binary floating-point type's <code>exponentBitCount</code> imposes a limit on the
+range of the exponent for normal, finite values. The <em>exponent bias</em> of
+a type <code>F</code> can be calculated as the following, where <code>**</code> is
+exponentiation:</p>
+<pre><code class="language-swift">let bias = 2 ** (F.exponentBitCount - 1) - 1
+</code></pre>
+<p>The least normal exponent for values of the type <code>F</code> is <code>1 - bias</code>, and
+the largest finite exponent is <code>bias</code>. An all-zeros exponent is reserved
+for subnormals and zeros, and an all-ones exponent is reserved for
+infinity and NaN.</p>
+<p>For example, the <code>Float</code> type has an <code>exponentBitCount</code> of 8, which gives
+an exponent bias of <code>127</code> by the calculation above.</p>
+<pre><code class="language-swift">let bias = 2 ** (Float.exponentBitCount - 1) - 1
+// bias == 127
+print(Float.greatestFiniteMagnitude.exponent)
+// Prints &quot;127&quot;
+print(Float.leastNormalMagnitude.exponent)
+// Prints &quot;-126&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var exponentBitCount: Int</code></div></div><div id="significandBitCount-4031c18da0242aa9e2149c9f09a21d07" class="declaration"><a class="toggle-link" href="#comment-significandBitCount-4031c18da0242aa9e2149c9f09a21d07">var significandBitCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-significandBitCount-4031c18da0242aa9e2149c9f09a21d07"><p>The available number of fractional significand bits.</p>
+<p>For fixed-width floating-point types, this is the actual number of
+fractional significand bits.</p>
+<p>For extensible floating-point types, <code>significandBitCount</code> should be the
+maximum allowed significand width (without counting any leading integral
+bit of the significand). If there is no upper limit, then
+<code>significandBitCount</code> should be <code>Int.max</code>.</p>
+<p>Note that <code>Float80.significandBitCount</code> is 63, even though 64 bits are
+used to store the significand in the memory representation of a
+<code>Float80</code> (unlike other floating-point types, <code>Float80</code> explicitly
+stores the leading integral significand bit, but the
+<code>BinaryFloatingPoint</code> APIs provide an abstraction so that users don't
+need to be aware of this detail).</p>
+<h4>Declaration</h4><code class="language-swift">var significandBitCount: Int</code></div></div><h3>Default Implementations</h3><div id="lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f">func &lt;(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-fd1eb92a63f65c4a12e77f2bca10240f"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than that of the second argument.</p>
+<p>This function is the only requirement of the <code>Comparable</code> protocol. The
+remainder of the relational operator functions are implemented by the
+standard library for any type that conforms to <code>Comparable</code>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92">func &lt;=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-cc639dad42d3ea71f6f367b80a3ccb92"><p>Returns a Boolean value indicating whether the value of the first
+argument is less than or equal to that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">public static func &lt;=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-28a45cba8101c0b1017a22535b8b2710" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710">func ==(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-28a45cba8101c0b1017a22535b8b2710"><p>Returns a Boolean value indicating whether two values are equal.</p>
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<h4>Declaration</h4><code class="language-swift">public static func ==(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a00561663d495dd2668b929fde178932" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a00561663d495dd2668b929fde178932">func >(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a00561663d495dd2668b929fde178932"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">public static func >(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="lhs_rhs-a0e01127094d0eee401411c4b5eb8e60" class="declaration"><a class="toggle-link" href="#comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60">func >=(lhs: Self, rhs: Self) -> Bool</a> <div class="comment collapse in" id="comment-lhs_rhs-a0e01127094d0eee401411c4b5eb8e60"><p>Returns a Boolean value indicating whether the value of the first
+argument is greater than or equal to that of the second argument.</p>
+<h4>Declaration</h4><code class="language-swift">public static func >=(lhs: Self, rhs: Self) -> Bool</code></div></div><div id="addingProduct-22e9b1c2a16b17dde82231b945d038e7" class="declaration"><a class="toggle-link" href="#comment-addingProduct-22e9b1c2a16b17dde82231b945d038e7">func addingProduct(_ lhs: Self, _ rhs: Self) -> Self</a> <div class="comment collapse in" id="comment-addingProduct-22e9b1c2a16b17dde82231b945d038e7"><p>Returns the result of adding the product of the two given values to this
+value, computed without intermediate rounding.</p>
+<p>This method is equivalent to the C <code>fma</code> function and implements the
+<code>fusedMultiplyAdd</code> operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754
+specification</a>.</p>
+<h4>Declaration</h4><code class="language-swift">public func addingProduct(_ lhs: Self, _ rhs: Self) -> Self</code></div></div><div id="floatingPointClass-00230a995c32af0fa0504c789d9611a8" class="declaration"><a class="toggle-link" href="#comment-floatingPointClass-00230a995c32af0fa0504c789d9611a8">var floatingPointClass</a> <div class="comment collapse in" id="comment-floatingPointClass-00230a995c32af0fa0504c789d9611a8"><p>The classification of this value.</p>
+<p>A value's <code>floatingPointClass</code> property describes its &quot;class&quot; as
+described by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754 specification</a>.</p>
+<h4>Declaration</h4><code class="language-swift">var floatingPointClass: FloatingPointClassification</code></div></div><div id="maximum-cf2a7e4bda8846b626f4ff4877c3eb87" class="declaration"><a class="toggle-link" href="#comment-maximum-cf2a7e4bda8846b626f4ff4877c3eb87">func maximum(_ x: Self, _ y: Self) -> Self</a> <div class="comment collapse in" id="comment-maximum-cf2a7e4bda8846b626f4ff4877c3eb87"><p>Returns the greater of the two given values.</p>
+<p>This method returns the maximum of two values, preserving order and
+eliminating NaN when possible. For two values <code>x</code> and <code>y</code>, the result of
+<code>maximum(x, y)</code> is <code>x</code> if <code>x &gt; y</code>, <code>y</code> if <code>x &lt;= y</code>, or whichever of <code>x</code>
+or <code>y</code> is a number if the other is a quiet NaN. If both <code>x</code> and <code>y</code> are
+NaN, or either <code>x</code> or <code>y</code> is a signaling NaN, the result is NaN.</p>
+<pre><code class="language-swift">Double.maximum(10.0, -25.0)
+// 10.0
+Double.maximum(10.0, .nan)
+// 10.0
+Double.maximum(.nan, -25.0)
+// -25.0
+Double.maximum(.nan, .nan)
+// nan
+</code></pre>
+<p>The <code>maximum</code> method implements the <code>maxNum</code> operation defined by the
+<a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754 specification</a>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func maximum(_ x: Self, _ y: Self) -> Self</code></div></div><div id="maximumMagnitude-44d17abc5af0293aec39a1980777f27f" class="declaration"><a class="toggle-link" href="#comment-maximumMagnitude-44d17abc5af0293aec39a1980777f27f">func maximumMagnitude(_ x: Self, _ y: Self) -> Self</a> <div class="comment collapse in" id="comment-maximumMagnitude-44d17abc5af0293aec39a1980777f27f"><p>Returns the value with greater magnitude.</p>
+<p>This method returns the value with greater magnitude of the two given
+values, preserving order and eliminating NaN when possible. For two
+values <code>x</code> and <code>y</code>, the result of <code>maximumMagnitude(x, y)</code> is <code>x</code> if
+<code>x.magnitude &gt; y.magnitude</code>, <code>y</code> if <code>x.magnitude &lt;= y.magnitude</code>, or
+whichever of <code>x</code> or <code>y</code> is a number if the other is a quiet NaN. If both
+<code>x</code> and <code>y</code> are NaN, or either <code>x</code> or <code>y</code> is a signaling NaN, the result
+is NaN.</p>
+<pre><code class="language-swift">Double.maximumMagnitude(10.0, -25.0)
+// -25.0
+Double.maximumMagnitude(10.0, .nan)
+// 10.0
+Double.maximumMagnitude(.nan, -25.0)
+// -25.0
+Double.maximumMagnitude(.nan, .nan)
+// nan
+</code></pre>
+<p>The <code>maximumMagnitude</code> method implements the <code>maxNumMag</code> operation
+defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754 specification</a>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func maximumMagnitude(_ x: Self, _ y: Self) -> Self</code></div></div><div id="minimum-229aac545847e9beab3607876bd6fd7a" class="declaration"><a class="toggle-link" href="#comment-minimum-229aac545847e9beab3607876bd6fd7a">func minimum(_ x: Self, _ y: Self) -> Self</a> <div class="comment collapse in" id="comment-minimum-229aac545847e9beab3607876bd6fd7a"><p>Returns the lesser of the two given values.</p>
+<p>This method returns the minimum of two values, preserving order and
+eliminating NaN when possible. For two values <code>x</code> and <code>y</code>, the result of
+<code>minimum(x, y)</code> is <code>x</code> if <code>x &lt;= y</code>, <code>y</code> if <code>y &lt; x</code>, or whichever of <code>x</code>
+or <code>y</code> is a number if the other is a quiet NaN. If both <code>x</code> and <code>y</code> are
+NaN, or either <code>x</code> or <code>y</code> is a signaling NaN, the result is NaN.</p>
+<pre><code class="language-swift">Double.minimum(10.0, -25.0)
+// -25.0
+Double.minimum(10.0, .nan)
+// 10.0
+Double.minimum(.nan, -25.0)
+// -25.0
+Double.minimum(.nan, .nan)
+// nan
+</code></pre>
+<p>The <code>minimum</code> method implements the <code>minNum</code> operation defined by the
+<a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754 specification</a>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func minimum(_ x: Self, _ y: Self) -> Self</code></div></div><div id="minimumMagnitude-810a69fa1618c5f5811221aa0d24a839" class="declaration"><a class="toggle-link" href="#comment-minimumMagnitude-810a69fa1618c5f5811221aa0d24a839">func minimumMagnitude(_ x: Self, _ y: Self) -> Self</a> <div class="comment collapse in" id="comment-minimumMagnitude-810a69fa1618c5f5811221aa0d24a839"><p>Returns the value with lesser magnitude.</p>
+<p>This method returns the value with lesser magnitude of the two given
+values, preserving order and eliminating NaN when possible. For two
+values <code>x</code> and <code>y</code>, the result of <code>minimumMagnitude(x, y)</code> is <code>x</code> if
+<code>x.magnitude &lt;= y.magnitude</code>, <code>y</code> if <code>y.magnitude &lt; x.magnitude</code>, or
+whichever of <code>x</code> or <code>y</code> is a number if the other is a quiet NaN. If both
+<code>x</code> and <code>y</code> are NaN, or either <code>x</code> or <code>y</code> is a signaling NaN, the result
+is NaN.</p>
+<pre><code class="language-swift">Double.minimumMagnitude(10.0, -25.0)
+// 10.0
+Double.minimumMagnitude(10.0, .nan)
+// 10.0
+Double.minimumMagnitude(.nan, -25.0)
+// -25.0
+Double.minimumMagnitude(.nan, .nan)
+// nan
+</code></pre>
+<p>The <code>minimumMagnitude</code> method implements the <code>minNumMag</code> operation
+defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754 specification</a>.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public static func minimumMagnitude(_ x: Self, _ y: Self) -> Self</code></div></div><div id="nextDown-b451116f6d7f3aa5e5b36f360f232ce0" class="declaration"><a class="toggle-link" href="#comment-nextDown-b451116f6d7f3aa5e5b36f360f232ce0">var nextDown</a> <div class="comment collapse in" id="comment-nextDown-b451116f6d7f3aa5e5b36f360f232ce0"><p>The greatest representable value that compares less than this value.</p>
+<p>For any finite value <code>x</code>, <code>x.nextDown</code> is less than <code>x</code>. For <code>nan</code> or
+<code>-infinity</code>, <code>x.nextDown</code> is <code>x</code> itself. The following special cases
+also apply:</p>
+<h4>Declaration</h4><code class="language-swift">var nextDown: Self</code></div></div><div id="remainder_dividingBy-32ec22de2ecb5168b3833a5049c12148" class="declaration"><a class="toggle-link" href="#comment-remainder_dividingBy-32ec22de2ecb5168b3833a5049c12148">func remainder(dividingBy other: Self) -> Self</a> <div class="comment collapse in" id="comment-remainder_dividingBy-32ec22de2ecb5168b3833a5049c12148"><p>Returns the remainder of this value divided by the given value.</p>
+<p>For two finite values <code>x</code> and <code>y</code>, the remainder <code>r</code> of dividing <code>x</code> by
+<code>y</code> satisfies <code>x == y * q + r</code>, where <code>q</code> is the integer nearest to
+<code>x / y</code>. If <code>x / y</code> is exactly halfway between two integers, <code>q</code> is
+chosen to be even. Note that <code>q</code> is <em>not</em> <code>x / y</code> computed in
+floating-point arithmetic, and that <code>q</code> may not be representable in any
+available integer type.</p>
+<p>The following example calculates the remainder of dividing 8.625 by 0.75:</p>
+<pre><code class="language-swift">let x = 8.625
+print(x / 0.75)
+// Prints &quot;11.5&quot;
+
+let q = (x / 0.75).rounded(.toNearestOrEven)
+// q == 12.0
+let r = x.remainder(dividingBy: 0.75)
+// r == -0.375
+
+let x1 = 0.75 * q + r
+// x1 == 8.625
+</code></pre>
+<p>If this value and <code>other</code> are finite numbers, the remainder is in the
+closed range <code>-abs(other / 2)...abs(other / 2)</code>. The
+<code>remainder(dividingBy:)</code> method is always exact. This method implements
+the remainder operation defined by the <a href="http://ieeexplore.ieee.org/servlet/opac?punumber=4610933">IEEE 754 specification</a>.</p>
+<ul>
+<li>Parameter other: The value to use when dividing this value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func remainder(dividingBy other: Self) -> Self</code></div></div><div id="round-c299d4bf2e8daffdcf497aef15f5a71e" class="declaration"><a class="toggle-link" href="#comment-round-c299d4bf2e8daffdcf497aef15f5a71e">func round()</a> <div class="comment collapse in" id="comment-round-c299d4bf2e8daffdcf497aef15f5a71e"><h4>Declaration</h4><code class="language-swift">public mutating func round()</code></div></div><div id="rounded-9c90c71e51d2a946c0d54c4d7199da93" class="declaration"><a class="toggle-link" href="#comment-rounded-9c90c71e51d2a946c0d54c4d7199da93">func rounded() -> Self</a> <div class="comment collapse in" id="comment-rounded-9c90c71e51d2a946c0d54c4d7199da93"><h4>Declaration</h4><code class="language-swift">public func rounded() -> Self</code></div></div><div id="rounded-8d9d441602090fca798b337a34709bc0" class="declaration"><a class="toggle-link" href="#comment-rounded-8d9d441602090fca798b337a34709bc0">func rounded(_ rule: FloatingPointRoundingRule) -> Self</a> <div class="comment collapse in" id="comment-rounded-8d9d441602090fca798b337a34709bc0"><p>Returns this value rounded to an integral value using the specified
+rounding rule.</p>
+<p>The following example rounds a value using four different rounding rules:</p>
+<pre><code class="language-swift">let x = 6.5
+
+// Equivalent to the C 'round' function:
+print(x.rounded(.toNearestOrAwayFromZero))
+// Prints &quot;7.0&quot;
+
+// Equivalent to the C 'trunc' function:
+print(x.rounded(.towardZero))
+// Prints &quot;6.0&quot;
+
+// Equivalent to the C 'ceil' function:
+print(x.rounded(.up))
+// Prints &quot;7.0&quot;
+
+// Equivalent to the C 'floor' function:
+print(x.rounded(.down))
+// Prints &quot;6.0&quot;
+</code></pre>
+<p>For more information about the available rounding rules, see the
+<code>FloatingPointRoundingRule</code> enumeration. To round a value using the
+default &quot;schoolbook rounding&quot;, you can use the shorter <code>rounded()</code>
+method instead.</p>
+<pre><code class="language-swift">print(x.rounded())
+// Prints &quot;7.0&quot;
+</code></pre>
+<ul>
+<li>Parameter rule: The rounding rule to use.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">public func rounded(_ rule: FloatingPointRoundingRule) -> Self</code></div></div><div id="squareRoot-758e5499d843284d75609b85efd0257c" class="declaration"><a class="toggle-link" href="#comment-squareRoot-758e5499d843284d75609b85efd0257c">func squareRoot() -> Self</a> <div class="comment collapse in" id="comment-squareRoot-758e5499d843284d75609b85efd0257c"><p>Returns the square root of the value, rounded to a representable value.</p>
+<p>The following example declares a function that calculates the length of
+the hypotenuse of a right triangle given its two perpendicular sides.</p>
+<pre><code class="language-swift">func hypotenuse(_ a: Double, _ b: Double) -&gt; Double {
+    return (a * a + b * b).squareRoot()
+}
+
+let (dx, dy) = (3.0, 4.0)
+let distance = hypotenuse(dx, dy)
+// distance == 5.0
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">public func squareRoot() -> Self</code></div></div><div id="truncatingRemainder_dividingBy-0357251679c8e5993478aa833e95150a" class="declaration"><a class="toggle-link" href="#comment-truncatingRemainder_dividingBy-0357251679c8e5993478aa833e95150a">func truncatingRemainder(dividingBy other: Self) -> Self</a> <div class="comment collapse in" id="comment-truncatingRemainder_dividingBy-0357251679c8e5993478aa833e95150a"><p>Returns the remainder of this value divided by the given value using
+truncating division.</p>
+<p>Performing truncating division with floating-point values results in a
+truncated integer quotient and a remainder. For values <code>x</code> and <code>y</code> and
+their truncated integer quotient <code>q</code>, the remainder <code>r</code> satisfies
+<code>x == y * q + r</code>.</p>
+<p>The following example calculates the truncating remainder of dividing
+8.625 by 0.75:</p>
+<pre><code class="language-swift">let x = 8.625
+print(x / 0.75)
+// Prints &quot;11.5&quot;
+
+let q = (x / 0.75).rounded(.towardZero)
+// q == 11.0
+let r = x.truncatingRemainder(dividingBy: 0.75)
+// r == 0.375
+
+let x1 = 0.75 * q + r
+// x1 == 8.625
+</code></pre>
+<p>If this value and <code>other</code> are both finite numbers, the truncating
+remainder has the same sign as this value and is strictly smaller in
+magnitude than <code>other</code>. The <code>truncatingRemainder(dividingBy:)</code> method
+is always exact.</p>
+<ul>
+<li>Parameter other: The value to use when dividing this value.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func truncatingRemainder(dividingBy other: Self) -> Self</code></div></div><div id="ulpOfOne-c793570339d0de8d802fbd69ee826318" class="declaration"><a class="toggle-link" href="#comment-ulpOfOne-c793570339d0de8d802fbd69ee826318">var ulpOfOne</a> <div class="comment collapse in" id="comment-ulpOfOne-c793570339d0de8d802fbd69ee826318"><p>The unit in the last place of 1.0.</p>
+<p>The positive difference between 1.0 and the next greater representable
+number. <code>ulpOfOne</code> corresponds to the value represented by the C macros
+<code>FLT_EPSILON</code>, <code>DBL_EPSILON</code>, etc, and is sometimes called <em>epsilon</em> or
+<em>machine epsilon</em>. Swift deliberately avoids using the term &quot;epsilon&quot;
+because:</p>
+<p>See also the <code>ulp</code> member property.</p>
+<h4>Declaration</h4><code class="language-swift">var ulpOfOne: Self</code></div></div>

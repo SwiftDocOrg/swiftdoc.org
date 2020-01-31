@@ -1,0 +1,152 @@
+---
+title: "UnkeyedEncodingContainer"
+description: "Swift documentation for 'UnkeyedEncodingContainer'"
+layout: "default"
+keywords: ""
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol UnkeyedEncodingContainer</code></div><p>A type that provides a view into an encoder's storage and is used to hold
+the encoded properties of an encodable type sequentially, without keys.</p>
+<div class="discussion comment"><p>Encoders should provide types conforming to <code>UnkeyedEncodingContainer</code> for
+their format.</p>
+</div><h3>Instance Variables</h3><div id="codingPath-038986a6e6564f0dd444735f926a6ca4" class="declaration"><a class="toggle-link" href="#comment-codingPath-038986a6e6564f0dd444735f926a6ca4">var codingPath</a> <span class="required">Required</span><div class="comment collapse in" id="comment-codingPath-038986a6e6564f0dd444735f926a6ca4"><p>The path of coding keys taken to get to this point in encoding.</p>
+<h4>Declaration</h4><code class="language-swift">var codingPath: [CodingKey]</code></div></div><div id="count-e2942a04780e223b215eb8b663cf5353" class="declaration"><a class="toggle-link" href="#comment-count-e2942a04780e223b215eb8b663cf5353">var count</a> <span class="required">Required</span><div class="comment collapse in" id="comment-count-e2942a04780e223b215eb8b663cf5353"><p>The number of elements encoded into the container.</p>
+<h4>Declaration</h4><code class="language-swift">var count: Int</code></div></div><h3>Instance Methods</h3><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: Bool) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Bool) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: String) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: String) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: Double) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Double) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: Float) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Float) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: Int) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Int) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: Int8) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Int8) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: Int16) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Int16) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: Int32) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Int32) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: Int64) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: Int64) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: UInt) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: UInt) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: UInt8) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: UInt8) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: UInt16) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: UInt16) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: UInt32) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: UInt32) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: UInt64) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode(_ value: UInt64) throws</code></div></div><div id="encode-916cae29d671f40991b97828ef8e343f" class="declaration"><a class="toggle-link" href="#comment-encode-916cae29d671f40991b97828ef8e343f">func encode(_ value: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode-916cae29d671f40991b97828ef8e343f"><p>Encodes the given value.</p>
+<ul>
+<li>parameter value: The value to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(_ value: T) throws where T: Encodable</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == Bool</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == String</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == Double</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == Float</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == Int</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == Int8</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == Int16</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == Int32</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == Int64</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == UInt</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == UInt8</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == UInt16</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == UInt32</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element == UInt64</code></div></div><div id="encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c" class="declaration"><a class="toggle-link" href="#comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c">func encode(contentsOf sequence: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encode_contentsOf-03ff018a07f1b2dc0a9a1922127a081c"><p>Encodes the elements of the given sequence.</p>
+<ul>
+<li>parameter sequence: The sequences whose contents to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encode&lt;T>(contentsOf sequence: T) throws where T: Sequence, T.Element: Encodable</code></div></div><div id="encodeConditional-3b9dcd5f65f795124d528935515ba1f7" class="declaration"><a class="toggle-link" href="#comment-encodeConditional-3b9dcd5f65f795124d528935515ba1f7">func encodeConditional(_ object: T) throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeConditional-3b9dcd5f65f795124d528935515ba1f7"><p>Encodes a reference to the given object only if it is encoded
+unconditionally elsewhere in the payload (previously, or in the future).</p>
+<p>For encoders which don't support this feature, the default implementation
+encodes the given object unconditionally.</p>
+<p>For formats which don't support this feature, the default implementation
+encodes the given object unconditionally.</p>
+<ul>
+<li>parameter object: The object to encode.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeConditional&lt;T>(_ object: T) throws where T: AnyObject, T: Encodable</code></div></div><div id="encodeNil-b0d11198b36a46b570f69fb7d0d484c4" class="declaration"><a class="toggle-link" href="#comment-encodeNil-b0d11198b36a46b570f69fb7d0d484c4">func encodeNil() throws</a> <span class="required">Required</span><div class="comment collapse in" id="comment-encodeNil-b0d11198b36a46b570f69fb7d0d484c4"><p>Encodes a null value.</p>
+<h4>Declaration</h4><code class="language-swift">mutating func encodeNil() throws</code></div></div><div id="nestedContainer_keyedBy-5f320e97c05f02f2857b3b6787b7916a" class="declaration"><a class="toggle-link" href="#comment-nestedContainer_keyedBy-5f320e97c05f02f2857b3b6787b7916a">func nestedContainer(keyedBy keyType: NestedKey.Type) -> KeyedEncodingContainer&lt;NestedKey></a> <span class="required">Required</span><div class="comment collapse in" id="comment-nestedContainer_keyedBy-5f320e97c05f02f2857b3b6787b7916a"><p>Encodes a nested container keyed by the given type and returns it.</p>
+<ul>
+<li>parameter keyType: The key type to use for the container.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">mutating func nestedContainer&lt;NestedKey>(keyedBy keyType: NestedKey.Type) -> KeyedEncodingContainer&lt;NestedKey> where NestedKey: CodingKey</code></div></div><div id="nestedUnkeyedContainer-9f186315e96cf6c554c27552062d12e7" class="declaration"><a class="toggle-link" href="#comment-nestedUnkeyedContainer-9f186315e96cf6c554c27552062d12e7">func nestedUnkeyedContainer() -> UnkeyedEncodingContainer</a> <span class="required">Required</span><div class="comment collapse in" id="comment-nestedUnkeyedContainer-9f186315e96cf6c554c27552062d12e7"><p>Encodes an unkeyed encoding container and returns it.</p>
+<h4>Declaration</h4><code class="language-swift">mutating func nestedUnkeyedContainer() -> UnkeyedEncodingContainer</code></div></div><div id="superEncoder-a433614659088b611101974daaccf53a" class="declaration"><a class="toggle-link" href="#comment-superEncoder-a433614659088b611101974daaccf53a">func superEncoder() -> Encoder</a> <span class="required">Required</span><div class="comment collapse in" id="comment-superEncoder-a433614659088b611101974daaccf53a"><p>Encodes a nested container and returns an <code>Encoder</code> instance for encoding
+<code>super</code> into that container.</p>
+<h4>Declaration</h4><code class="language-swift">mutating func superEncoder() -> Encoder</code></div></div>

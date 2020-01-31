@@ -1,0 +1,542 @@
+---
+description: "Swift documentation for 'DefaultIndices'"
+layout: "default"
+title: "DefaultIndices"
+keywords: ""
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct DefaultIndices</code></div><p>A collection of indices for an arbitrary collection</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">Collection</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Index = Elements.Index</code><div class="comment"><p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that's not valid for use as a subscript
+argument.</p>
+</div></div><div class="declaration"><code class="language-swift">public typealias Element = Elements.Index</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias Indices = DefaultIndices&lt;Elements></code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias SubSequence = DefaultIndices&lt;Elements></code><div class="comment"><p>This associated type appears as a requirement in the <code>Sequence</code>
+protocol, but it is restated here with stricter constraints. In a
+collection, the subsequence should also conform to <code>Collection</code>.</p>
+</div></div><div class="declaration"><code class="language-swift">public typealias Iterator = IndexingIterator&lt;DefaultIndices&lt;Elements>></code><div class="comment"><p>By default, a collection conforms to the <code>Sequence</code> protocol by
+supplying <code>IndexingIterator</code> as its associated <code>Iterator</code>
+type.</p>
+</div></div></td></tr></table><div class="discussion comment"></div><h3>Instance Variables</h3><div id="count-e2942a04780e223b215eb8b663cf5353" class="declaration"><a class="toggle-link" href="#comment-count-e2942a04780e223b215eb8b663cf5353">var count</a> <span class="required">Required</span><div class="comment collapse in" id="comment-count-e2942a04780e223b215eb8b663cf5353"><p>The number of elements in the collection.</p>
+<p>To check whether a collection is empty, use its <code>isEmpty</code> property
+instead of comparing <code>count</code> to zero. Unless the collection guarantees
+random-access performance, calculating <code>count</code> can be an O(<em>n</em>)
+operation.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var count: Int</code></div></div><div id="endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e" class="declaration"><a class="toggle-link" href="#comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e">var endIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e"><p>The collection's &quot;past the end&quot; position---that is, the position one
+greater than the last valid subscript argument.</p>
+<p>When you need a range that includes the last element of a collection, use
+the half-open range operator (<code>..&lt;</code>) with <code>endIndex</code>. The <code>..&lt;</code> operator
+creates a range that doesn't include the upper bound, so it's always
+safe to use with <code>endIndex</code>. For example:</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let index = numbers.firstIndex(of: 30) {
+    print(numbers[index ..&lt; numbers.endIndex])
+}
+// Prints &quot;[30, 40, 50]&quot;
+</code></pre>
+<p>If the collection is empty, <code>endIndex</code> is equal to <code>startIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var endIndex: DefaultIndices&lt;Elements>.Index</code></div></div><div id="first-8b04d5e3775d298e78455efc5ca404d5" class="declaration"><a class="toggle-link" href="#comment-first-8b04d5e3775d298e78455efc5ca404d5">var first</a> <span class="required">Required</span><div class="comment collapse in" id="comment-first-8b04d5e3775d298e78455efc5ca404d5"><p>The first element of the collection.</p>
+<p>If the collection is empty, the value of this property is <code>nil</code>.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+if let firstNumber = numbers.first {
+    print(firstNumber)
+}
+// Prints &quot;10&quot;
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var first: Self.Element?</code></div></div><div id="indices-a51a528f35c02157e603a20c8796a684" class="declaration"><a class="toggle-link" href="#comment-indices-a51a528f35c02157e603a20c8796a684">var indices</a> <span class="required">Required</span><div class="comment collapse in" id="comment-indices-a51a528f35c02157e603a20c8796a684"><p>The indices that are valid for subscripting the collection, in ascending
+order.</p>
+<p>A collection's <code>indices</code> property can hold a strong reference to the
+collection itself, causing the collection to be non-uniquely referenced.
+If you mutate the collection while iterating over its indices, a strong
+reference can cause an unexpected copy of the collection. To avoid the
+unexpected copy, use the <code>index(after:)</code> method starting with
+<code>startIndex</code> to produce indices instead.</p>
+<pre><code class="language-swift">var c = MyFancyCollection([10, 20, 30, 40, 50])
+var i = c.startIndex
+while i != c.endIndex {
+    c[i] /= 5
+    i = c.index(after: i)
+}
+// c == MyFancyCollection([2, 4, 6, 8, 10])
+</code></pre>
+<h4>Declaration</h4><code class="language-swift">var indices: DefaultIndices&lt;Elements>.Indices</code></div></div><div id="isEmpty-371a91e5c91e40f6212ab50995ccb0cd" class="declaration"><a class="toggle-link" href="#comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd">var isEmpty</a> <span class="required">Required</span><div class="comment collapse in" id="comment-isEmpty-371a91e5c91e40f6212ab50995ccb0cd"><p>A Boolean value indicating whether the collection is empty.</p>
+<p>When you need to check whether your collection is empty, use the
+<code>isEmpty</code> property instead of checking that the <code>count</code> property is
+equal to zero. For collections that don't conform to
+<code>RandomAccessCollection</code>, accessing the <code>count</code> property iterates
+through the elements of the collection.</p>
+<pre><code class="language-swift">let horseName = &quot;Silver&quot;
+if horseName.isEmpty {
+    print(&quot;I've been through the desert on a horse with no name.&quot;)
+} else {
+    print(&quot;Hi ho, \(horseName)!&quot;)
+}
+// Prints &quot;Hi ho, Silver!&quot;)
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var isEmpty: Bool</code></div></div><div id="startIndex-04d77ddd9c9389cc56939726d3da8089" class="declaration"><a class="toggle-link" href="#comment-startIndex-04d77ddd9c9389cc56939726d3da8089">var startIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-startIndex-04d77ddd9c9389cc56939726d3da8089"><p>The position of the first element in a nonempty collection.</p>
+<p>If the collection is empty, <code>startIndex</code> is equal to <code>endIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var startIndex: DefaultIndices&lt;Elements>.Index</code></div></div><div id="underestimatedCount-cea0d409be772f5ea3e5db1bcf473531" class="declaration"><a class="toggle-link" href="#comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531">var underestimatedCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531"><p>A value less than or equal to the number of elements in the collection.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var underestimatedCount: Int</code></div></div><h3>Subscripts</h3><div id="subscript_bounds-788086fb8ff4edc0aa2bd3c41f362493" class="declaration"><a class="toggle-link" href="#comment-subscript_bounds-788086fb8ff4edc0aa2bd3c41f362493">subscript subscript(bounds:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_bounds-788086fb8ff4edc0aa2bd3c41f362493"><p>Accesses a contiguous subrange of the collection's elements.</p>
+<p>The accessed slice uses the same indices for the same elements as the
+original collection uses. Always use the slice's <code>startIndex</code> property
+instead of assuming that its indices start at a particular value.</p>
+<p>This example demonstrates getting a slice of an array of strings, finding
+the index of one of the strings in the slice, and then using that index
+in the original array.</p>
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2 ..&lt; streets.endIndex]
+print(streetsSlice)
+// Prints &quot;[&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]&quot;
+
+let index = streetsSlice.firstIndex(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// Prints &quot;Evarts&quot;
+</code></pre>
+<ul>
+<li>Parameter bounds: A range of the collection's indices. The bounds of
+the range must be valid indices of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(bounds: Range&lt;DefaultIndices&lt;Elements>.Index>) -> DefaultIndices&lt;Elements></code></div></div><div id="subscript_i-c92365e25f38d226feb13e8a5783416f" class="declaration"><a class="toggle-link" href="#comment-subscript_i-c92365e25f38d226feb13e8a5783416f">subscript subscript(i:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_i-c92365e25f38d226feb13e8a5783416f"><p>Accesses the element at the specified position.</p>
+<p>The following example accesses an element of an array through its
+subscript to print its value:</p>
+<pre><code class="language-swift">var streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+print(streets[1])
+// Prints &quot;Bryant&quot;
+</code></pre>
+<p>You can subscript a collection with any valid index other than the
+collection's end index. The end index refers to the position one past
+the last element of a collection, so it doesn't correspond with an
+element.</p>
+<ul>
+<li>Parameter position: The position of the element to access. <code>position</code>
+must be a valid index of the collection that is not equal to the
+<code>endIndex</code> property.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(i: DefaultIndices&lt;Elements>.Index) -> Elements.Index</code></div></div><div id="subscript_r-466c73e996c8d896f1c6a25f9add8052" class="declaration"><a class="toggle-link" href="#comment-subscript_r-466c73e996c8d896f1c6a25f9add8052">subscript subscript(r:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_r-466c73e996c8d896f1c6a25f9add8052"><p>Accesses the contiguous subrange of the collection's elements specified
+by a range expression.</p>
+<p>The range expression is converted to a concrete subrange relative to this
+collection. For example, using a <code>PartialRangeFrom</code> range expression
+with an array accesses the subrange from the start of the range
+expression until the end of the array.</p>
+<pre><code class="language-swift">let streets = [&quot;Adams&quot;, &quot;Bryant&quot;, &quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+let streetsSlice = streets[2...]
+print(streetsSlice)
+// [&quot;Channing&quot;, &quot;Douglas&quot;, &quot;Evarts&quot;]
+</code></pre>
+<p>The accessed slice uses the same indices for the same elements as the
+original collection uses. This example searches <code>streetsSlice</code> for one
+of the strings in the slice, and then uses that index in the original
+array.</p>
+<pre><code class="language-swift">let index = streetsSlice.firstIndex(of: &quot;Evarts&quot;)    // 4
+print(streets[index!])
+// &quot;Evarts&quot;
+</code></pre>
+<p>Always use the slice's <code>startIndex</code> property instead of assuming that its
+indices start at a particular value. Attempting to access an element by
+using an index outside the bounds of the slice's indices may result in a
+runtime error, even if that index is valid for the original collection.</p>
+<pre><code class="language-swift">print(streetsSlice.startIndex)
+// 2
+print(streetsSlice[2])
+// &quot;Channing&quot;
+
+print(streetsSlice[0])
+// error: Index out of bounds
+</code></pre>
+<ul>
+<li>Parameter bounds: A range of the collection's indices. The bounds of
+the range must be valid indices of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript&lt;R>(r: R) where R: RangeExpression, Self.Index == R.Bound -> Self.SubSequence</code></div></div><div id="subscript_x-1b251887405ca8ce324c4bcc9f09a96e" class="declaration"><a class="toggle-link" href="#comment-subscript_x-1b251887405ca8ce324c4bcc9f09a96e">subscript subscript(x:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_x-1b251887405ca8ce324c4bcc9f09a96e"><h4>Declaration</h4><code class="language-swift">@inlinable public subscript(x: (UnboundedRange_) -> ()) -> Self.SubSequence</code></div></div><h3>Instance Methods</h3><div id="distance_from_to-a4fda42879a53b11f7add335ae2b09e2" class="declaration"><a class="toggle-link" href="#comment-distance_from_to-a4fda42879a53b11f7add335ae2b09e2">func distance(from start: Self.Index, to end: Self.Index) -> Int</a> <span class="required">Required</span><div class="comment collapse in" id="comment-distance_from_to-a4fda42879a53b11f7add335ae2b09e2"><p>Returns the distance between two indices.</p>
+<p>Unless the collection conforms to the <code>BidirectionalCollection</code> protocol,
+<code>start</code> must be less than or equal to <code>end</code>.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the resulting distance.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func distance(from start: Self.Index, to end: Self.Index) -> Int</code></div></div><div id="drop_while-ca523aea465630a53d85fd083d49a402" class="declaration"><a class="toggle-link" href="#comment-drop_while-ca523aea465630a53d85fd083d49a402">func drop(while predicate: (Self.Element) throws -> Bool) rethrows -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-drop_while-ca523aea465630a53d85fd083d49a402"><p>Returns a subsequence by skipping elements while <code>predicate</code> returns
+<code>true</code> and returning the remaining elements.</p>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the
+sequence as its argument and returns <code>true</code> if the element should
+be skipped or <code>false</code> if it should be included. Once the predicate
+returns <code>false</code> it will not be called again.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func drop(while predicate: (Self.Element) throws -> Bool) rethrows -> Self.SubSequence</code></div></div><div id="dropFirst-cfdc97e613e61021a5c6755568f65e2d" class="declaration"><a class="toggle-link" href="#comment-dropFirst-cfdc97e613e61021a5c6755568f65e2d">func dropFirst(_ k: Int = 1) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dropFirst-cfdc97e613e61021a5c6755568f65e2d"><p>Returns a subsequence containing all but the given number of initial
+elements.</p>
+<p>If the number of elements to drop exceeds the number of elements in
+the collection, the result is an empty subsequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropFirst(2))
+// Prints &quot;[3, 4, 5]&quot;
+print(numbers.dropFirst(10))
+// Prints &quot;[]&quot;
+</code></pre>
+<ul>
+<li>Parameter k: The number of elements to drop from the beginning of
+the collection. <code>k</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the number of elements to drop from the beginning of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func dropFirst(_ k: Int = 1) -> Self.SubSequence</code></div></div><div id="dropLast-7c2fee97e997e1ca958d9114f37e2c7f" class="declaration"><a class="toggle-link" href="#comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f">func dropLast(_ k: Int = 1) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-dropLast-7c2fee97e997e1ca958d9114f37e2c7f"><p>Returns a subsequence containing all but the specified number of final
+elements.</p>
+<p>If the number of elements to drop exceeds the number of elements in the
+collection, the result is an empty subsequence.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.dropLast(2))
+// Prints &quot;[1, 2, 3]&quot;
+print(numbers.dropLast(10))
+// Prints &quot;[]&quot;
+</code></pre>
+<ul>
+<li>Parameter k: The number of elements to drop off the end of the
+collection. <code>k</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func dropLast(_ k: Int = 1) -> Self.SubSequence</code></div></div><div id="firstIndex_where-521d8351894345820bf85f296b29656f" class="declaration"><a class="toggle-link" href="#comment-firstIndex_where-521d8351894345820bf85f296b29656f">func firstIndex(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-firstIndex_where-521d8351894345820bf85f296b29656f"><p>Returns the first index in which an element of the collection satisfies
+the given predicate.</p>
+<p>You can use the predicate to find an element of a type that doesn't
+conform to the <code>Equatable</code> protocol or to find an element that matches
+particular criteria. Here's an example that finds a student name that
+begins with the letter &quot;A&quot;:</p>
+<pre><code class="language-swift">let students = [&quot;Kofi&quot;, &quot;Abena&quot;, &quot;Peter&quot;, &quot;Kweku&quot;, &quot;Akosua&quot;]
+if let i = students.firstIndex(where: { $0.hasPrefix(&quot;A&quot;) }) {
+    print(&quot;\(students[i]) starts with 'A'!&quot;)
+}
+// Prints &quot;Abena starts with 'A'!&quot;
+</code></pre>
+<ul>
+<li>Parameter predicate: A closure that takes an element as its argument
+and returns a Boolean value that indicates whether the passed element
+represents a match.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func firstIndex(where predicate: (Self.Element) throws -> Bool) rethrows -> Self.Index?</code></div></div><div id="formIndex_offsetBy-2182b1026c3b63acf3f08aef9a292825" class="declaration"><a class="toggle-link" href="#comment-formIndex_offsetBy-2182b1026c3b63acf3f08aef9a292825">func formIndex(_ i: inout Self.Index, offsetBy distance: Int)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_offsetBy-2182b1026c3b63acf3f08aef9a292825"><p>Offsets the given index by the specified distance.</p>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the absolute value of <code>distance</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(_ i: inout Self.Index, offsetBy distance: Int)</code></div></div><div id="formIndex_offsetBy_limitedBy-77cef915940f272750243f38458b9a94" class="declaration"><a class="toggle-link" href="#comment-formIndex_offsetBy_limitedBy-77cef915940f272750243f38458b9a94">func formIndex(_ i: inout Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Bool</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_offsetBy_limitedBy-77cef915940f272750243f38458b9a94"><p>Offsets the given index by the specified distance, or so that it equals
+the given limiting index.</p>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the absolute value of <code>distance</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(_ i: inout Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Bool</code></div></div><div id="formIndex_after-13e63bf648e45549081b5214c49499ce" class="declaration"><a class="toggle-link" href="#comment-formIndex_after-13e63bf648e45549081b5214c49499ce">func formIndex(after i: inout DefaultIndices&lt;Elements>.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_after-13e63bf648e45549081b5214c49499ce"><p>Replaces the given index with its successor.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(after i: inout DefaultIndices&lt;Elements>.Index)</code></div></div><div id="formIndex_after-13e63bf648e45549081b5214c49499ce" class="declaration"><a class="toggle-link" href="#comment-formIndex_after-13e63bf648e45549081b5214c49499ce">func formIndex(after i: inout Self.Index)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-formIndex_after-13e63bf648e45549081b5214c49499ce"><p>Replaces the given index with its successor.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func formIndex(after i: inout Self.Index)</code></div></div><div id="index_offsetBy-41a458d51308012c8383ec58b39fc85a" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy-41a458d51308012c8383ec58b39fc85a">func index(_ i: Self.Index, offsetBy distance: Int) -> Self.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy-41a458d51308012c8383ec58b39fc85a"><p>Returns an index that is the specified distance from the given index.</p>
+<p>The following example obtains an index advanced four positions from a
+string's starting index and then prints the character at that position.</p>
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+let i = s.index(s.startIndex, offsetBy: 4)
+print(s[i])
+// Prints &quot;t&quot;
+</code></pre>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the absolute value of <code>distance</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: Self.Index, offsetBy distance: Int) -> Self.Index</code></div></div><div id="index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130">func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130"><p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+<p>The following example obtains an index advanced four positions from a
+string's starting index and then prints the character at that position.
+The operation doesn't require going beyond the limiting <code>s.endIndex</code>
+value, so it succeeds.</p>
+<pre><code class="language-swift">let s = &quot;Swift&quot;
+if let i = s.index(s.startIndex, offsetBy: 4, limitedBy: s.endIndex) {
+    print(s[i])
+}
+// Prints &quot;t&quot;
+</code></pre>
+<p>The next example attempts to retrieve an index six positions from
+<code>s.startIndex</code> but fails, because that distance is beyond the index
+passed as <code>limit</code>.</p>
+<pre><code class="language-swift">let j = s.index(s.startIndex, offsetBy: 6, limitedBy: s.endIndex)
+print(j)
+// Prints &quot;nil&quot;
+</code></pre>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the absolute value of <code>distance</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</code></div></div><div id="index_after-976478ce790c064a72519919a525cb29" class="declaration"><a class="toggle-link" href="#comment-index_after-976478ce790c064a72519919a525cb29">func index(after i: DefaultIndices&lt;Elements>.Index) -> DefaultIndices&lt;Elements>.Index</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_after-976478ce790c064a72519919a525cb29"><p>Returns the position immediately after the given index.</p>
+<p>The successor of an index must be well defined. For an index <code>i</code> into a
+collection <code>c</code>, calling <code>c.index(after: i)</code> returns the same index every
+time.</p>
+<ul>
+<li>Parameter i: A valid index of the collection. <code>i</code> must be less than
+<code>endIndex</code>.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(after i: DefaultIndices&lt;Elements>.Index) -> DefaultIndices&lt;Elements>.Index</code></div></div><div id="map-d86ddaae0a60cc94d2ecc186aad275b0" class="declaration"><a class="toggle-link" href="#comment-map-d86ddaae0a60cc94d2ecc186aad275b0">func map(_ transform: (Self.Element) throws -> T) rethrows -> [T]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-map-d86ddaae0a60cc94d2ecc186aad275b0"><p>Returns an array containing the results of mapping the given closure
+over the sequence's elements.</p>
+<p>In this example, <code>map</code> is used first to convert the names in the array
+to lowercase strings and then to count their characters.</p>
+<pre><code class="language-swift">let cast = [&quot;Vivien&quot;, &quot;Marlon&quot;, &quot;Kim&quot;, &quot;Karl&quot;]
+let lowercaseNames = cast.map { $0.lowercased() }
+// 'lowercaseNames' == [&quot;vivien&quot;, &quot;marlon&quot;, &quot;kim&quot;, &quot;karl&quot;]
+let letterCounts = cast.map { $0.count }
+// 'letterCounts' == [6, 6, 3, 4]
+</code></pre>
+<ul>
+<li>Parameter transform: A mapping closure. <code>transform</code> accepts an
+element of this sequence as its parameter and returns a transformed
+value of the same or of a different type.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func map&lt;T>(_ transform: (Self.Element) throws -> T) rethrows -> [T]</code></div></div><div id="prefix-0c90e3e9cf80d963bff973e2da9dc4d7" class="declaration"><a class="toggle-link" href="#comment-prefix-0c90e3e9cf80d963bff973e2da9dc4d7">func prefix(_ maxLength: Int) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix-0c90e3e9cf80d963bff973e2da9dc4d7"><p>Returns a subsequence, up to the specified maximum length, containing
+the initial elements of the collection.</p>
+<p>If the maximum length exceeds the number of elements in the collection,
+the result contains all the elements in the collection.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.prefix(2))
+// Prints &quot;[1, 2]&quot;
+print(numbers.prefix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;
+</code></pre>
+<ul>
+<li>Parameter maxLength: The maximum number of elements to return.
+<code>maxLength</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>k</em>), where <em>k</em> is the number of elements to select from the beginning of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(_ maxLength: Int) -> Self.SubSequence</code></div></div><div id="prefix_through-af35e7e2415a9bfae8f02be969ebdc70" class="declaration"><a class="toggle-link" href="#comment-prefix_through-af35e7e2415a9bfae8f02be969ebdc70">func prefix(through position: Self.Index) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix_through-af35e7e2415a9bfae8f02be969ebdc70"><p>Returns a subsequence from the start of the collection through the
+specified position.</p>
+<p>The resulting subsequence <em>includes</em> the element at the position <code>end</code>.
+The following example searches for the index of the number <code>40</code> in an
+array of integers, and then prints the prefix of the array up to, and
+including, that index:</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60]
+if let i = numbers.firstIndex(of: 40) {
+    print(numbers.prefix(through: i))
+}
+// Prints &quot;[10, 20, 30, 40]&quot;
+</code></pre>
+<p>Using the <code>prefix(through:)</code> method is equivalent to using a partial
+closed range as the collection's subscript. The subscript notation is
+preferred over <code>prefix(through:)</code>.</p>
+<pre><code class="language-swift">if let i = numbers.firstIndex(of: 40) {
+    print(numbers[...i])
+}
+// Prints &quot;[10, 20, 30, 40]&quot;
+</code></pre>
+<ul>
+<li>Parameter end: The index of the last element to include in the
+resulting subsequence. <code>end</code> must be a valid index of the collection
+that is not equal to the <code>endIndex</code> property.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(through position: Self.Index) -> Self.SubSequence</code></div></div><div id="prefix_upTo-08fca4e629db666df1579b83a65e98f4" class="declaration"><a class="toggle-link" href="#comment-prefix_upTo-08fca4e629db666df1579b83a65e98f4">func prefix(upTo end: Self.Index) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix_upTo-08fca4e629db666df1579b83a65e98f4"><p>Returns a subsequence from the start of the collection up to, but not
+including, the specified position.</p>
+<p>The resulting subsequence <em>does not include</em> the element at the position
+<code>end</code>. The following example searches for the index of the number <code>40</code>
+in an array of integers, and then prints the prefix of the array up to,
+but not including, that index:</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60]
+if let i = numbers.firstIndex(of: 40) {
+    print(numbers.prefix(upTo: i))
+}
+// Prints &quot;[10, 20, 30]&quot;
+</code></pre>
+<p>Passing the collection's starting index as the <code>end</code> parameter results in
+an empty subsequence.</p>
+<pre><code class="language-swift">print(numbers.prefix(upTo: numbers.startIndex))
+// Prints &quot;[]&quot;
+</code></pre>
+<p>Using the <code>prefix(upTo:)</code> method is equivalent to using a partial
+half-open range as the collection's subscript. The subscript notation is
+preferred over <code>prefix(upTo:)</code>.</p>
+<pre><code class="language-swift">if let i = numbers.firstIndex(of: 40) {
+    print(numbers[..&lt;i])
+}
+// Prints &quot;[10, 20, 30]&quot;
+</code></pre>
+<ul>
+<li>Parameter end: The &quot;past the end&quot; index of the resulting subsequence.
+<code>end</code> must be a valid index of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(upTo end: Self.Index) -> Self.SubSequence</code></div></div><div id="prefix_while-c1b423a2138af25080fc01f86d3d8a66" class="declaration"><a class="toggle-link" href="#comment-prefix_while-c1b423a2138af25080fc01f86d3d8a66">func prefix(while predicate: (Self.Element) throws -> Bool) rethrows -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-prefix_while-c1b423a2138af25080fc01f86d3d8a66"><p>Returns a subsequence containing the initial elements until <code>predicate</code>
+returns <code>false</code> and skipping the remaining elements.</p>
+<ul>
+<li>Parameter predicate: A closure that takes an element of the
+sequence as its argument and returns <code>true</code> if the element should
+be included or <code>false</code> if it should be excluded. Once the predicate
+returns <code>false</code> it will not be called again.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func prefix(while predicate: (Self.Element) throws -> Bool) rethrows -> Self.SubSequence</code></div></div><div id="randomElement-cb73dc7294d283d83fedcab76a23b81e" class="declaration"><a class="toggle-link" href="#comment-randomElement-cb73dc7294d283d83fedcab76a23b81e">func randomElement() -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-randomElement-cb73dc7294d283d83fedcab76a23b81e"><p>Returns a random element of the collection.</p>
+<p>Call <code>randomElement()</code> to select a random element from an array or
+another collection. This example picks a name at random from an array:</p>
+<pre><code class="language-swift">let names = [&quot;Zoey&quot;, &quot;Chloe&quot;, &quot;Amani&quot;, &quot;Amaia&quot;]
+let randomName = names.randomElement()!
+// randomName == &quot;Amani&quot;
+</code></pre>
+<p>This method is equivalent to calling <code>randomElement(using:)</code>, passing in
+the system's default random generator.</p>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func randomElement() -> Self.Element?</code></div></div><div id="randomElement_using-dc67acb25c029fcc1df75c2ca154c119" class="declaration"><a class="toggle-link" href="#comment-randomElement_using-dc67acb25c029fcc1df75c2ca154c119">func randomElement(using generator: inout T) -> Self.Element?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-randomElement_using-dc67acb25c029fcc1df75c2ca154c119"><p>Returns a random element of the collection, using the given generator as
+a source for randomness.</p>
+<p>Call <code>randomElement(using:)</code> to select a random element from an array or
+another collection when you are using a custom random number generator.
+This example picks a name at random from an array:</p>
+<pre><code class="language-swift">let names = [&quot;Zoey&quot;, &quot;Chloe&quot;, &quot;Amani&quot;, &quot;Amaia&quot;]
+let randomName = names.randomElement(using: &amp;myGenerator)!
+// randomName == &quot;Amani&quot;
+</code></pre>
+<ul>
+<li>Parameter generator: The random number generator to use when choosing a
+random element.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<blockquote>
+<p>Note:
+The algorithm used to select a random element may change in a future version of Swift. If you're passing a generator that results in the same sequence of elements each time you run your program, that sequence may change when your program is compiled using a different version of Swift.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func randomElement&lt;T>(using generator: inout T) -> Self.Element? where T: RandomNumberGenerator</code></div></div><div id="split_maxSplits_omittingEmptySubsequences_whereSeparator-c732c52f9b4aaad6daab6945dcdfba81" class="declaration"><a class="toggle-link" href="#comment-split_maxSplits_omittingEmptySubsequences_whereSeparator-c732c52f9b4aaad6daab6945dcdfba81">func split(maxSplits: Int = Int.max, omittingEmptySubsequences: Bool = true, whereSeparator isSeparator: (Self.Element) throws -> Bool) rethrows -> [Self.SubSequence]</a> <span class="required">Required</span><div class="comment collapse in" id="comment-split_maxSplits_omittingEmptySubsequences_whereSeparator-c732c52f9b4aaad6daab6945dcdfba81"><p>Returns the longest possible subsequences of the collection, in order,
+that don't contain elements satisfying the given predicate.</p>
+<p>The resulting array consists of at most <code>maxSplits + 1</code> subsequences.
+Elements that are used to split the sequence are not returned as part of
+any subsequence.</p>
+<p>The following examples show the effects of the <code>maxSplits</code> and
+<code>omittingEmptySubsequences</code> parameters when splitting a string using a
+closure that matches spaces. The first use of <code>split</code> returns each word
+that was originally separated by one or more spaces.</p>
+<pre><code class="language-swift">let line = &quot;BLANCHE:   I don't want realism. I want magic!&quot;
+print(line.split(whereSeparator: { $0 == &quot; &quot; }))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;I&quot;, &quot;don\'t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;
+</code></pre>
+<p>The second example passes <code>1</code> for the <code>maxSplits</code> parameter, so the
+original string is split just once, into two new strings.</p>
+<pre><code class="language-swift">print(line.split(maxSplits: 1, whereSeparator: { $0 == &quot; &quot; }))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;  I don\'t want realism. I want magic!&quot;]&quot;
+</code></pre>
+<p>The final example passes <code>false</code> for the <code>omittingEmptySubsequences</code>
+parameter, so the returned array contains empty strings where spaces
+were repeated.</p>
+<pre><code class="language-swift">print(line.split(omittingEmptySubsequences: false, whereSeparator: { $0 == &quot; &quot; }))
+// Prints &quot;[&quot;BLANCHE:&quot;, &quot;&quot;, &quot;&quot;, &quot;I&quot;, &quot;don\'t&quot;, &quot;want&quot;, &quot;realism.&quot;, &quot;I&quot;, &quot;want&quot;, &quot;magic!&quot;]&quot;
+</code></pre>
+<blockquote>
+<p>Complexity:
+O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func split(maxSplits: Int = Int.max, omittingEmptySubsequences: Bool = true, whereSeparator isSeparator: (Self.Element) throws -> Bool) rethrows -> [Self.SubSequence]</code></div></div><div id="suffix-f3a8eed76ea35c11a090befc2c217d73" class="declaration"><a class="toggle-link" href="#comment-suffix-f3a8eed76ea35c11a090befc2c217d73">func suffix(_ maxLength: Int) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-suffix-f3a8eed76ea35c11a090befc2c217d73"><p>Returns a subsequence, up to the given maximum length, containing the
+final elements of the collection.</p>
+<p>If the maximum length exceeds the number of elements in the collection,
+the result contains all the elements in the collection.</p>
+<pre><code class="language-swift">let numbers = [1, 2, 3, 4, 5]
+print(numbers.suffix(2))
+// Prints &quot;[4, 5]&quot;
+print(numbers.suffix(10))
+// Prints &quot;[1, 2, 3, 4, 5]&quot;
+</code></pre>
+<ul>
+<li>Parameter maxLength: The maximum number of elements to return. The
+value of <code>maxLength</code> must be greater than or equal to zero.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1) if the collection conforms to <code>RandomAccessCollection</code>; otherwise, O(<em>n</em>), where <em>n</em> is the length of the collection.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func suffix(_ maxLength: Int) -> Self.SubSequence</code></div></div><div id="suffix_from-b9c1dd3926930fd47109f90d010ae677" class="declaration"><a class="toggle-link" href="#comment-suffix_from-b9c1dd3926930fd47109f90d010ae677">func suffix(from start: Self.Index) -> Self.SubSequence</a> <span class="required">Required</span><div class="comment collapse in" id="comment-suffix_from-b9c1dd3926930fd47109f90d010ae677"><p>Returns a subsequence from the specified position to the end of the
+collection.</p>
+<p>The following example searches for the index of the number <code>40</code> in an
+array of integers, and then prints the suffix of the array starting at
+that index:</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50, 60]
+if let i = numbers.firstIndex(of: 40) {
+    print(numbers.suffix(from: i))
+}
+// Prints &quot;[40, 50, 60]&quot;
+</code></pre>
+<p>Passing the collection's <code>endIndex</code> as the <code>start</code> parameter results in
+an empty subsequence.</p>
+<pre><code class="language-swift">print(numbers.suffix(from: numbers.endIndex))
+// Prints &quot;[]&quot;
+</code></pre>
+<p>Using the <code>suffix(from:)</code> method is equivalent to using a partial range
+from the index as the collection's subscript. The subscript notation is
+preferred over <code>suffix(from:)</code>.</p>
+<pre><code class="language-swift">if let i = numbers.firstIndex(of: 40) {
+    print(numbers[i...])
+}
+// Prints &quot;[40, 50, 60]&quot;
+</code></pre>
+<ul>
+<li>Parameter start: The index at which to start the resulting subsequence.
+<code>start</code> must be a valid index of the collection.</li>
+</ul>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func suffix(from start: Self.Index) -> Self.SubSequence</code></div></div>

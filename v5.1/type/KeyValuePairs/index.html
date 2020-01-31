@@ -1,0 +1,116 @@
+---
+title: "KeyValuePairs"
+keywords: ""
+layout: "default"
+description: "Swift documentation for 'KeyValuePairs'"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">struct KeyValuePairs</code></div><p>A lightweight collection of key-value pairs.</p>
+<table class="standard"><tr><th id="inheritance">Inheritance</th><td><code class="inherits">ExpressibleByDictionaryLiteral, CustomDebugStringConvertible, CustomStringConvertible, RandomAccessCollection</code></td></tr><tr><th id="aliases">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">public typealias Element = (key: Key, value: Value)</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias Index = Int</code><div class="comment"><p>Valid indices consist of the position of every element and a
+&quot;past the end&quot; position that's not valid for use as a subscript
+argument.</p>
+</div></div><div class="declaration"><code class="language-swift">public typealias Indices = Range&lt;Int></code><div class="comment"></div></div><div class="declaration"><code class="language-swift">public typealias SubSequence = Slice&lt;KeyValuePairs&lt;Key, Value>></code><div class="comment"><p>This associated type appears as a requirement in the <code>Sequence</code>
+protocol, but it is restated here with stricter constraints. In a
+collection, the subsequence should also conform to <code>Collection</code>.</p>
+</div></div></td></tr></table><div class="discussion comment"><p>Use a <code>KeyValuePairs</code> instance when you need an ordered collection of
+key-value pairs and don't require the fast key lookup that the
+<code>Dictionary</code> type provides. Unlike key-value pairs in a true dictionary,
+neither the key nor the value of a <code>KeyValuePairs</code> instance must
+conform to the <code>Hashable</code> protocol.</p>
+<p>You initialize a <code>KeyValuePairs</code> instance using a Swift dictionary
+literal. Besides maintaining the order of the original dictionary literal,
+<code>KeyValuePairs</code> also allows duplicates keys. For example:</p>
+<pre><code class="language-swift">let recordTimes: KeyValuePairs = [&quot;Florence Griffith-Joyner&quot;: 10.49,
+                                      &quot;Evelyn Ashford&quot;: 10.76,
+                                      &quot;Evelyn Ashford&quot;: 10.79,
+                                      &quot;Marlies Gohr&quot;: 10.81]
+print(recordTimes.first!)
+// Prints &quot;(&quot;Florence Griffith-Joyner&quot;, 10.49)&quot;
+</code></pre>
+<p>Some operations that are efficient on a dictionary are slower when using
+<code>KeyValuePairs</code>. In particular, to find the value matching a key, you
+must search through every element of the collection. The call to
+<code>firstIndex(where:)</code> in the following example must traverse the whole
+collection to find the element that matches the predicate:</p>
+<pre><code class="language-swift">let runner = &quot;Marlies Gohr&quot;
+if let index = recordTimes.firstIndex(where: { $0.0 == runner }) {
+    let time = recordTimes[index].1
+    print(&quot;\(runner) set a 100m record of \(time) seconds.&quot;)
+} else {
+    print(&quot;\(runner) couldn't be found in the records.&quot;)
+}
+// Prints &quot;Marlies Gohr set a 100m record of 10.81 seconds.&quot;
+</code></pre>
+<h4>Key-Value Pairs as a Function Parameter</h4>
+<p>When calling a function with a <code>KeyValuePairs</code> parameter, you can pass
+a Swift dictionary literal without causing a <code>Dictionary</code> to be created.
+This capability can be especially important when the order of elements in
+the literal is significant.</p>
+<p>For example, you could create an <code>IntPairs</code> structure that holds a list of
+two-integer tuples and use an initializer that accepts a
+<code>KeyValuePairs</code> instance.</p>
+<pre><code class="language-swift">struct IntPairs {
+    var elements: [(Int, Int)]
+
+    init(_ elements: KeyValuePairs&lt;Int, Int&gt;) {
+        self.elements = Array(elements)
+    }
+}
+</code></pre>
+<p>When you're ready to create a new <code>IntPairs</code> instance, use a dictionary
+literal as the parameter to the <code>IntPairs</code> initializer. The
+<code>KeyValuePairs</code> instance preserves the order of the elements as
+passed.</p>
+<pre><code class="language-swift">let pairs = IntPairs([1: 2, 1: 1, 3: 4, 2: 1])
+print(pairs.elements)
+// Prints &quot;[(1, 2), (1, 1), (3, 4), (2, 1)]&quot;
+</code></pre>
+</div><h3>Initializers</h3><div id="init_dictionaryLiteral-92195e445b3542ae7165b4529659eadb" class="declaration"><a class="toggle-link" href="#comment-init_dictionaryLiteral-92195e445b3542ae7165b4529659eadb">init init(dictionaryLiteral:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-init_dictionaryLiteral-92195e445b3542ae7165b4529659eadb"><p>Creates a new <code>KeyValuePairs</code> instance from the given dictionary
+literal.</p>
+<p>The order of the key-value pairs is kept intact in the resulting
+<code>KeyValuePairs</code> instance.</p>
+<h4>Declaration</h4><code class="language-swift">@inlinable public init(dictionaryLiteral elements: (Key, Value))</code></div></div><h3>Instance Variables</h3><div id="debugDescription-15dc1a07010ea28e38b1f4d74663fe11" class="declaration"><a class="toggle-link" href="#comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11">var debugDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-debugDescription-15dc1a07010ea28e38b1f4d74663fe11"><p>A string that represents the contents of the dictionary, suitable for
+debugging.</p>
+<h4>Declaration</h4><code class="language-swift">var debugDescription: String</code></div></div><div id="description-67daf92c833c41c95db874e18fcb2786" class="declaration"><a class="toggle-link" href="#comment-description-67daf92c833c41c95db874e18fcb2786">var description</a> <span class="required">Required</span><div class="comment collapse in" id="comment-description-67daf92c833c41c95db874e18fcb2786"><p>A string that represents the contents of the dictionary.</p>
+<h4>Declaration</h4><code class="language-swift">var description: String</code></div></div><div id="endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e" class="declaration"><a class="toggle-link" href="#comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e">var endIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-endIndex-6c7c6ecf23a364eb2ec70b77c92e7a4e"><p>The collection's &quot;past the end&quot; position---that is, the position one
+greater than the last valid subscript argument.</p>
+<p>If the <code>KeyValuePairs</code> instance is empty, <code>endIndex</code> is equal to
+<code>startIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var endIndex: KeyValuePairs&lt;Key, Value>.Index</code></div></div><div id="startIndex-04d77ddd9c9389cc56939726d3da8089" class="declaration"><a class="toggle-link" href="#comment-startIndex-04d77ddd9c9389cc56939726d3da8089">var startIndex</a> <span class="required">Required</span><div class="comment collapse in" id="comment-startIndex-04d77ddd9c9389cc56939726d3da8089"><p>The position of the first element in a nonempty collection.</p>
+<p>If the <code>KeyValuePairs</code> instance is empty, <code>startIndex</code> is equal to
+<code>endIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">var startIndex: KeyValuePairs&lt;Key, Value>.Index</code></div></div><h3>Subscripts</h3><div id="subscript_position-b5586bf26309c2c713b44ec1088f3a50" class="declaration"><a class="toggle-link" href="#comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50">subscript subscript(position:)</a> <span class="required">Required</span><div class="comment collapse in" id="comment-subscript_position-b5586bf26309c2c713b44ec1088f3a50"><p>Accesses the element at the specified position.</p>
+<ul>
+<li>Parameter position: The position of the element to access. <code>position</code>
+must be a valid index of the collection that is not equal to the
+<code>endIndex</code> property.</li>
+</ul>
+<h4>Declaration</h4><code class="language-swift">@inlinable public subscript(position: KeyValuePairs&lt;Key, Value>.Index) -> KeyValuePairs&lt;Key, Value>.Element</code></div></div><h3>Instance Methods</h3><div id="index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130" class="declaration"><a class="toggle-link" href="#comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130">func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-index_offsetBy_limitedBy-c29af88d32684042c610f5da0fa07130"><p>Returns an index that is the specified distance from the given index,
+unless that distance is beyond a given limiting index.</p>
+<p>The following example obtains an index advanced four positions from an
+array's starting index and then prints the element at that position. The
+operation doesn't require going beyond the limiting <code>numbers.endIndex</code>
+value, so it succeeds.</p>
+<pre><code class="language-swift">let numbers = [10, 20, 30, 40, 50]
+let i = numbers.index(numbers.startIndex, offsetBy: 4)
+print(numbers[i])
+// Prints &quot;50&quot;
+</code></pre>
+<p>The next example attempts to retrieve an index ten positions from
+<code>numbers.startIndex</code>, but fails, because that distance is beyond the
+index passed as <code>limit</code>.</p>
+<pre><code class="language-swift">let j = numbers.index(numbers.startIndex,
+                      offsetBy: 10,
+                      limitedBy: numbers.endIndex)
+print(j)
+// Prints &quot;nil&quot;
+</code></pre>
+<p>The value passed as <code>distance</code> must not offset <code>i</code> beyond the bounds of
+the collection, unless the index passed as <code>limit</code> prevents offsetting
+beyond those bounds.</p>
+<blockquote>
+<p>Complexity:
+O(1)</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">@inlinable public func index(_ i: Self.Index, offsetBy distance: Int, limitedBy limit: Self.Index) -> Self.Index?</code></div></div>

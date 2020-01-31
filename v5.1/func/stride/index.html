@@ -1,0 +1,86 @@
+---
+title: "stride"
+description: "Swift documentation for 'stride'"
+root: "/v5.1"
+layout: "default"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">func stride(from:to:by:)(from start: T, to end: T, by stride: T.Stride) -> StrideTo&lt;T></code></div><div class="discussion comment"><p>Returns a sequence from a starting value to, but not including, an end
+value, stepping by the specified amount.
+</p>
+<p>You can use this function to stride over values of any type that conforms
+to the <code>Strideable</code> protocol, such as integers or floating-point types.
+Starting with <code>start</code>, each successive value of the sequence adds <code>stride</code>
+until the next value would be equal to or beyond <code>end</code>.</p>
+<pre><code class="language-swift">for radians in stride(from: 0.0, to: .pi * 2, by: .pi / 2) {
+    let degrees = Int(radians * 180 / .pi)
+    print(&quot;Degrees: \(degrees), radians: \(radians)&quot;)
+}
+// Degrees: 0, radians: 0.0
+// Degrees: 90, radians: 1.5707963267949
+// Degrees: 180, radians: 3.14159265358979
+// Degrees: 270, radians: 4.71238898038469
+</code></pre>
+<p>You can use <code>stride(from:to:by:)</code> to create a sequence that strides upward
+or downward. Pass a negative value as <code>stride</code> to create a sequence from a
+higher start to a lower end:</p>
+<pre><code class="language-swift">for countdown in stride(from: 3, to: 0, by: -1) {
+    print(&quot;\(countdown)...&quot;)
+}
+// 3...
+// 2...
+// 1...
+</code></pre>
+<p>If you pass a value as <code>stride</code> that moves away from <code>end</code>, the sequence
+contains no values.</p>
+<pre><code class="language-swift">for x in stride(from: 0, to: 10, by: -1) {
+    print(x)
+}
+// Nothing is printed.
+</code></pre>
+</div><div class="intro-declaration"><code class="language-swift">func stride(from:through:by:)(from start: T, through end: T, by stride: T.Stride) -> StrideThrough&lt;T></code></div><div class="discussion comment"><p>Returns a sequence from a starting value toward, and possibly including, an end
+value, stepping by the specified amount.
+</p>
+<p>You can use this function to stride over values of any type that conforms
+to the <code>Strideable</code> protocol, such as integers or floating-point types.
+Starting with <code>start</code>, each successive value of the sequence adds <code>stride</code>
+until the next value would be beyond <code>end</code>.</p>
+<pre><code class="language-swift">for radians in stride(from: 0.0, through: .pi * 2, by: .pi / 2) {
+    let degrees = Int(radians * 180 / .pi)
+    print(&quot;Degrees: \(degrees), radians: \(radians)&quot;)
+}
+// Degrees: 0, radians: 0.0
+// Degrees: 90, radians: 1.5707963267949
+// Degrees: 180, radians: 3.14159265358979
+// Degrees: 270, radians: 4.71238898038469
+// Degrees: 360, radians: 6.28318530717959
+</code></pre>
+<p>You can use <code>stride(from:through:by:)</code> to create a sequence that strides
+upward or downward. Pass a negative value as <code>stride</code> to create a sequence
+from a higher start to a lower end:</p>
+<pre><code class="language-swift">for countdown in stride(from: 3, through: 1, by: -1) {
+    print(&quot;\(countdown)...&quot;)
+}
+// 3...
+// 2...
+// 1...
+</code></pre>
+<p>The value you pass as <code>end</code> is not guaranteed to be included in the
+sequence. If stepping from <code>start</code> by <code>stride</code> does not produce <code>end</code>,
+the last value in the sequence will be one step before going beyond <code>end</code>.</p>
+<pre><code class="language-swift">for multipleOfThree in stride(from: 3, through: 10, by: 3) {
+    print(multipleOfThree)
+}
+// 3
+// 6
+// 9
+</code></pre>
+<p>If you pass a value as <code>stride</code> that moves away from <code>end</code>, the sequence
+contains no values.</p>
+<pre><code class="language-swift">for x in stride(from: 0, through: 10, by: -1) {
+    print(x)
+}
+// Nothing is printed.
+</code></pre>
+</div>

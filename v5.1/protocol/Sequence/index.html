@@ -1,0 +1,125 @@
+---
+keywords: ""
+layout: "default"
+description: "Swift documentation for 'Sequence'"
+root: "/v5.1"
+title: "Sequence"
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol Sequence</code></div><p>A type that provides sequential, iterated access to its elements.</p>
+<table class="standard"><tr><th id="conforming-types">Conforming Types</th><td><code class="inherits">AnySequence, Collection, Dictionary, DropFirstSequence, DropWhileSequence, EmptyCollection, EmptyCollection.Iterator, EnumeratedSequence, EnumeratedSequence.Iterator, FlattenSequence, IndexingIterator, IteratorSequence, JoinedSequence, LazyDropWhileSequence, LazyFilterSequence, LazyFilterSequence.Iterator, LazyMapSequence.Iterator, LazyPrefixWhileSequence, LazyPrefixWhileSequence.Iterator, LazySequence, LazySequenceProtocol, PrefixSequence, ReversedCollection, ReversedCollection.Iterator, Set, StrideThrough, StrideTo, UnfoldSequence, UnsafeBufferPointer, UnsafeMutableBufferPointer, UnsafeMutableRawBufferPointer, UnsafeRawBufferPointer, UnsafeRawBufferPointer.Iterator, Zip2Sequence</code></td></tr><tr><th id="associatedtypes">Associated Types</th><td><span id="aliasesmark"></span><div class="declaration"><code class="language-swift">associatedtype Element</code><div class="comment"></div></div><div class="declaration"><code class="language-swift">associatedtype Iterator</code><div class="comment"></div></div></td></tr></table><div class="discussion comment"><p>A sequence is a list of values that you can step through one at a time. The
+most common way to iterate over the elements of a sequence is to use a
+<code>for</code>-<code>in</code> loop:</p>
+<pre><code class="language-swift">let oneTwoThree = 1...3
+for number in oneTwoThree {
+    print(number)
+}
+// Prints &quot;1&quot;
+// Prints &quot;2&quot;
+// Prints &quot;3&quot;
+</code></pre>
+<p>While seemingly simple, this capability gives you access to a large number
+of operations that you can perform on any sequence. As an example, to
+check whether a sequence includes a particular value, you can test each
+value sequentially until you've found a match or reached the end of the
+sequence. This example checks to see whether a particular insect is in an
+array.</p>
+<pre><code class="language-swift">let bugs = [&quot;Aphid&quot;, &quot;Bumblebee&quot;, &quot;Cicada&quot;, &quot;Damselfly&quot;, &quot;Earwig&quot;]
+var hasMosquito = false
+for bug in bugs {
+    if bug == &quot;Mosquito&quot; {
+        hasMosquito = true
+        break
+    }
+}
+print(&quot;'bugs' has a mosquito: \(hasMosquito)&quot;)
+// Prints &quot;'bugs' has a mosquito: false&quot;
+</code></pre>
+<p>The <code>Sequence</code> protocol provides default implementations for many common
+operations that depend on sequential access to a sequence's values. For
+clearer, more concise code, the example above could use the array's
+<code>contains(_:)</code> method, which every sequence inherits from <code>Sequence</code>,
+instead of iterating manually:</p>
+<pre><code class="language-swift">if bugs.contains(&quot;Mosquito&quot;) {
+    print(&quot;Break out the bug spray.&quot;)
+} else {
+    print(&quot;Whew, no mosquitos!&quot;)
+}
+// Prints &quot;Whew, no mosquitos!&quot;
+</code></pre>
+<h3>Repeated Access</h3>
+<p>The <code>Sequence</code> protocol makes no requirement on conforming types regarding
+whether they will be destructively consumed by iteration. As a
+consequence, don't assume that multiple <code>for</code>-<code>in</code> loops on a sequence
+will either resume iteration or restart from the beginning:</p>
+<pre><code class="language-swift">for element in sequence {
+    if ... some condition { break }
+}
+
+for element in sequence {
+    // No defined behavior
+}
+</code></pre>
+<p>In this case, you cannot assume either that a sequence will be consumable
+and will resume iteration, or that a sequence is a collection and will
+restart iteration from the first element. A conforming sequence that is
+not a collection is allowed to produce an arbitrary sequence of elements
+in the second <code>for</code>-<code>in</code> loop.</p>
+<p>To establish that a type you've created supports nondestructive iteration,
+add conformance to the <code>Collection</code> protocol.</p>
+<h3>Conforming to the Sequence Protocol</h3>
+<p>Making your own custom types conform to <code>Sequence</code> enables many useful
+operations, like <code>for</code>-<code>in</code> looping and the <code>contains</code> method, without
+much effort. To add <code>Sequence</code> conformance to your own custom type, add a
+<code>makeIterator()</code> method that returns an iterator.</p>
+<p>Alternatively, if your type can act as its own iterator, implementing the
+requirements of the <code>IteratorProtocol</code> protocol and declaring conformance
+to both <code>Sequence</code> and <code>IteratorProtocol</code> are sufficient.</p>
+<p>Here's a definition of a <code>Countdown</code> sequence that serves as its own
+iterator. The <code>makeIterator()</code> method is provided as a default
+implementation.</p>
+<pre><code class="language-swift">struct Countdown: Sequence, IteratorProtocol {
+    var count: Int
+
+    mutating func next() -&gt; Int? {
+        if count == 0 {
+            return nil
+        } else {
+            defer { count -= 1 }
+            return count
+        }
+    }
+}
+
+let threeToGo = Countdown(count: 3)
+for i in threeToGo {
+    print(i)
+}
+// Prints &quot;3&quot;
+// Prints &quot;2&quot;
+// Prints &quot;1&quot;
+</code></pre>
+<h3>Expected Performance</h3>
+<p>A sequence should provide its iterator in O(1). The <code>Sequence</code> protocol
+makes no other requirements about element access, so routines that
+traverse a sequence should be considered O(<em>n</em>) unless documented
+otherwise.</p>
+</div><h3>Instance Variables</h3><div id="underestimatedCount-cea0d409be772f5ea3e5db1bcf473531" class="declaration"><a class="toggle-link" href="#comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531">var underestimatedCount</a> <span class="required">Required</span><div class="comment collapse in" id="comment-underestimatedCount-cea0d409be772f5ea3e5db1bcf473531"><p>A value less than or equal to the number of elements in the sequence,
+calculated nondestructively.</p>
+<p>The default implementation returns 0. If you provide your own
+implementation, make sure to compute the value nondestructively.</p>
+<blockquote>
+<p>Complexity:
+O(1), except if the sequence also conforms to <code>Collection</code>. In this case, see the documentation of <code>Collection.underestimatedCount</code>.</p>
+</blockquote>
+<h4>Declaration</h4><code class="language-swift">var underestimatedCount: Int</code></div></div><h3>Instance Methods</h3><div id="makeIterator-ad197585f06641cbd99e9aec657b11c0" class="declaration"><a class="toggle-link" href="#comment-makeIterator-ad197585f06641cbd99e9aec657b11c0">func makeIterator() -> Self.Iterator</a> <span class="required">Required</span><div class="comment collapse in" id="comment-makeIterator-ad197585f06641cbd99e9aec657b11c0"><p>Returns an iterator over the elements of this sequence.</p>
+<h4>Declaration</h4><code class="language-swift">func makeIterator() -> Self.Iterator</code></div></div><div id="withContiguousStorageIfAvailable-a498ae9a2038e195b24a1bcdf0aa982e" class="declaration"><a class="toggle-link" href="#comment-withContiguousStorageIfAvailable-a498ae9a2038e195b24a1bcdf0aa982e">func withContiguousStorageIfAvailable(_ body: (UnsafeBufferPointer&lt;Self.Element>) throws -> R) rethrows -> R?</a> <span class="required">Required</span><div class="comment collapse in" id="comment-withContiguousStorageIfAvailable-a498ae9a2038e195b24a1bcdf0aa982e"><p>Call <code>body(p)</code>, where <code>p</code> is a pointer to the collection's
+contiguous storage.  If no such storage exists, it is
+first created.  If the collection does not support an internal
+representation in a form of contiguous storage, <code>body</code> is not
+called and <code>nil</code> is returned.</p>
+<p>A <code>Collection</code> that provides its own implementation of this method
+must also guarantee that an equivalent buffer of its <code>SubSequence</code>
+can be generated by advancing the pointer by the distance to the
+slice's <code>startIndex</code>.</p>
+<h4>Declaration</h4><code class="language-swift">func withContiguousStorageIfAvailable&lt;R>(_ body: (UnsafeBufferPointer&lt;Self.Element>) throws -> R) rethrows -> R?</code></div></div>

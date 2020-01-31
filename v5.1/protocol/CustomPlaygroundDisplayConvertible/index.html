@@ -1,0 +1,35 @@
+---
+layout: "default"
+title: "CustomPlaygroundDisplayConvertible"
+description: "Swift documentation for 'CustomPlaygroundDisplayConvertible'"
+root: "/v5.1"
+keywords: ""
+---
+
+<div class="intro-declaration"><code class="language-swift">protocol CustomPlaygroundDisplayConvertible</code></div><p>A type that supplies a custom description for playground logging.</p>
+<div class="discussion comment"><p>Playground logging can generate, at a minimum, a structured description
+of any type. If you want to provide a custom description of your type to be
+logged in place of the default description, conform to the
+<code>CustomPlaygroundDisplayConvertible</code> protocol.</p>
+<p>Playground logging generates a richer, more specialized description of core
+types. For example, the contents of a <code>String</code> are logged, as are the
+components of an <code>NSColor</code> or <code>UIColor</code>. The current playground logging
+implementation logs specialized descriptions of at least the following
+types:</p>
+<p>Playground logging may also be able to support specialized descriptions
+of other types.</p>
+<h4>Conforming to the CustomPlaygroundDisplayConvertible Protocol</h4>
+<p>To add <code>CustomPlaygroundDisplayConvertible</code> conformance to your custom type,
+implement the <code>playgroundDescription</code> property. If your implementation
+returns an instance of one of the types above, that type's specialized
+description is used. If you return any other type, a structured description
+is generated.</p>
+<p>If your type has value semantics, the <code>playgroundDescription</code> should be
+unaffected by subsequent mutations, if possible.</p>
+<p>If your type's <code>playgroundDescription</code> returns an instance which itself
+conforms to <code>CustomPlaygroundDisplayConvertible</code>, then that type's
+<code>playgroundDescription</code> will be used, and so on. To prevent infinite loops,
+playground logging implementations can place a reasonable limit on this
+kind of chaining.</p>
+</div><h3>Instance Variables</h3><div id="playgroundDescription-5dc8297d6961cbcd068be8bd143c7af7" class="declaration"><a class="toggle-link" href="#comment-playgroundDescription-5dc8297d6961cbcd068be8bd143c7af7">var playgroundDescription</a> <span class="required">Required</span><div class="comment collapse in" id="comment-playgroundDescription-5dc8297d6961cbcd068be8bd143c7af7"><p>A custom playground description for this instance.</p>
+<h4>Declaration</h4><code class="language-swift">var playgroundDescription: Any</code></div></div>

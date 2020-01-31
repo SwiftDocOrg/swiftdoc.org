@@ -1,0 +1,19 @@
+---
+description: "Swift documentation for 'CollectionDifference.Change'"
+keywords: ""
+layout: "default"
+title: "CollectionDifference.Change"
+root: "/v5.1"
+---
+
+<div class="intro-declaration"><code class="language-swift">enum Change</code></div><p>A single change to a collection.</p>
+<div class="discussion comment"></div><h3>Cases</h3><div id="insert-e0df5f3dfd2650ae5be9993434e2b2c0" class="declaration"><a class="toggle-link" href="#comment-insert-e0df5f3dfd2650ae5be9993434e2b2c0">case insert</a> <span class="required">Required</span><div class="comment collapse in" id="comment-insert-e0df5f3dfd2650ae5be9993434e2b2c0"><p>An insertion.</p>
+<p>The <code>offset</code> value is the offset of the inserted element in the final
+state of the collection after the difference is fully applied.
+A non-<code>nil</code> <code>associatedWith</code> value is the offset of the complementary
+change.</p>
+<h4>Declaration</h4><code class="language-swift">case insert(offset: Int, element: ChangeElement, associatedWith: Int?)</code></div></div><div id="remove-0f6969d7052da9261e31ddb6e88c136e" class="declaration"><a class="toggle-link" href="#comment-remove-0f6969d7052da9261e31ddb6e88c136e">case remove</a> <span class="required">Required</span><div class="comment collapse in" id="comment-remove-0f6969d7052da9261e31ddb6e88c136e"><p>A removal.</p>
+<p>The <code>offset</code> value is the offset of the element to be removed in the
+original state of the collection. A non-<code>nil</code> <code>associatedWith</code> value is
+the offset of the complementary change.</p>
+<h4>Declaration</h4><code class="language-swift">case remove(offset: Int, element: ChangeElement, associatedWith: Int?)</code></div></div>
