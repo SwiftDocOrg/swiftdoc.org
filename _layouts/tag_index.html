@@ -2,17 +2,12 @@
 layout: wrapper
 ---
 
-          <header>
-            <h2>{{ page.title }}</strong></h2>
-          </header>
-          
-          <article class="content">
-            <ul class="postlist">
-  {% for post in page.posts %}
-  
-    {% include post-item.html %}
-  
-  {% endfor %}
-            </ul>
-          </article>
+<header>
+  <h2>{{ page.title }}</h2>
+</header>
 
+<article class="content">
+  <ul class="postlist">
+    {% for post in page.posts %} {% include post-item.html %} {% endfor %}
+  </ul>
+</article>
